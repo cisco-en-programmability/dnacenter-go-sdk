@@ -35,8 +35,8 @@ type Rules struct {
 type TagDTO struct {
 	Description      string         `json:"description,omitempty"`      //
 	DynamicRules     []DynamicRules `json:"dynamicRules,omitempty"`     //
-	Id               string         `json:"id,omitempty"`               //
-	InstanceTenantId string         `json:"instanceTenantId,omitempty"` //
+	ID               string         `json:"id,omitempty"`               //
+	InstanceTenantID string         `json:"instanceTenantId,omitempty"` //
 	Name             string         `json:"name,omitempty"`             //
 	SystemTag        bool           `json:"systemTag,omitempty"`        //
 }
@@ -45,33 +45,6 @@ type TagDTO struct {
 type TagMemberDTO struct {
 	MemberToTags []MemberToTags `json:"memberToTags,omitempty"` //
 	MemberType   string         `json:"memberType,omitempty"`   //
-}
-
-// CountResult is the CountResult definition
-type CountResult struct {
-	Response int    `json:"response,omitempty"` //
-	Version  string `json:"version,omitempty"`  //
-}
-
-// DynamicRules is the DynamicRules definition
-type DynamicRules struct {
-	MemberType string `json:"memberType,omitempty"` //
-	Rules      Rules  `json:"rules,omitempty"`      //
-}
-
-// Response is the Response definition
-type Response struct {
-	TaskId string `json:"taskId,omitempty"` //
-	Url    string `json:"url,omitempty"`    //
-}
-
-// Rules is the Rules definition
-type Rules struct {
-	Items     []string `json:"items,omitempty"`     //
-	Name      string   `json:"name,omitempty"`      //
-	Operation string   `json:"operation,omitempty"` //
-	Value     string   `json:"value,omitempty"`     //
-	Values    []string `json:"values,omitempty"`    //
 }
 
 // TagListResult is the TagListResult definition
@@ -98,57 +71,51 @@ type TagTypesResult struct {
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// TaskIdResult is the TaskIdResult definition
-type TaskIdResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
-}
-
 // AddMembersToTheTag addMembersToTheTag
 /* Adds members to the tag specified by id
 @param id Tag ID
 */
-func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*TaskIdResult, *resty.Response, error) {
+// func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*TaskIDResult, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag/{id}/member"
-	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+// 	path := "/dna/intent/api/v1/tag/{id}/member"
+// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
-		SetBody(addMembersToTheTagRequest).
-		SetResult(&TaskIdResult{}).
-		SetError(&Error{}).
-		Post(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(addMembersToTheTagRequest).
+// 		SetResult(&TaskIDResult{}).
+// 		SetError(&Error{}).
+// 		Post(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*TaskIdResult)
-	return result, response, err
+// 	result := response.Result().(*TaskIDResult)
+// 	return result, response, err
 
-}
+// }
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes
  */
-func (s *TagService) CreateTag(createTagRequest *CreateTagRequest) (*TaskIdResult, *resty.Response, error) {
+// func (s *TagService) CreateTag(createTagRequest *CreateTagRequest) (*TaskIDResult, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag"
+// 	path := "/dna/intent/api/v1/tag"
 
-	response, err := RestyClient.R().
-		SetBody(createTagRequest).
-		SetResult(&TaskIdResult{}).
-		SetError(&Error{}).
-		Post(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(createTagRequest).
+// 		SetResult(&TaskIDResult{}).
+// 		SetError(&Error{}).
+// 		Post(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*TaskIdResult)
-	return result, response, err
+// 	result := response.Result().(*TaskIDResult)
+// 	return result, response, err
 
-}
+// }
 
 // DeleteTag deleteTag
 /* Deletes a tag specified by id
@@ -180,7 +147,7 @@ type GetTagQueryParams struct {
 	Offset                 string `url:"offset,omitempty"`                    // offset
 	Limit                  string `url:"limit,omitempty"`                     // limit
 	Size                   string `url:"size,omitempty"`                      // size in kilobytes(KB)
-	Field                  string `url:"field,omitempty"`                     // Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'
+	Field                  string `url:"field,omitempty"`                     // Available field names are :'name,id,parentID,type,additionalInfo.nameSpace,additionalInfo.attributes'
 	SortBy                 string `url:"sortBy,omitempty"`                    // Only supported attribute is name. SortyBy is mandatory when order is used.
 	Order                  string `url:"order,omitempty"`                     // Available values are asc and des
 	SystemTag              string `url:"systemTag,omitempty"`                 // systemTag
@@ -195,7 +162,7 @@ type GetTagQueryParams struct {
 @param offset offset
 @param limit limit
 @param size size in kilobytes(KB)
-@param field Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'
+@param field Available field names are :'name,id,parentID,type,additionalInfo.nameSpace,additionalInfo.attributes'
 @param sortBy Only supported attribute is name. SortyBy is mandatory when order is used.
 @param order Available values are asc and des
 @param systemTag systemTag
@@ -221,11 +188,11 @@ func (s *TagService) GetTag(getTagQueryParams *GetTagQueryParams) (*TagListResul
 
 }
 
-// GetTagById getTagById
-/* Returns tag specified by Id
+// GetTagByID getTagById
+/* Returns tag specified by ID
 @param id Tag ID
 */
-func (s *TagService) GetTagById(id string) (*TagResult, *resty.Response, error) {
+func (s *TagService) GetTagByID(id string) (*TagResult, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/tag/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -292,7 +259,7 @@ type GetTagMemberCountQueryParams struct {
 }
 
 // GetTagMemberCount getTagMemberCount
-/* Returns the number of members in a given tag
+/* Returns the int of members in a given tag
 @param id Tag ID
 @param memberType memberType
 @param memberAssociationType memberAssociationType
@@ -320,30 +287,30 @@ func (s *TagService) GetTagMemberCount(id string, getTagMemberCountQueryParams *
 
 }
 
-// GetTagMembersByIdQueryParams defines the query parameters for this request
-type GetTagMembersByIdQueryParams struct {
+// GetTagMembersByIDQueryParams defines the query parameters for this request
+type GetTagMembersByIDQueryParams struct {
 	MemberType            string `url:"memberType,omitempty"`            // Entity type of the member. Possible values can be retrieved by using /tag/member/type API
-	Offset                string `url:"offset,omitempty"`                // Used for pagination. It indicates the starting row number out of available member records
+	Offset                string `url:"offset,omitempty"`                // Used for pagination. It indicates the starting row int out of available member records
 	Limit                 string `url:"limit,omitempty"`                 // Used to Number of maximum members to return in the result
 	MemberAssociationType string `url:"memberAssociationType,omitempty"` // Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
 	Level                 string `url:"level,omitempty"`                 // level
 }
 
-// GetTagMembersById getTagMembersById
+// GetTagMembersByID getTagMembersById
 /* Returns tag members specified by id
 @param id Tag ID
 @param memberType Entity type of the member. Possible values can be retrieved by using /tag/member/type API
-@param offset Used for pagination. It indicates the starting row number out of available member records
+@param offset Used for pagination. It indicates the starting row int out of available member records
 @param limit Used to Number of maximum members to return in the result
 @param memberAssociationType Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
 @param level level
 */
-func (s *TagService) GetTagMembersById(id string, getTagMembersByIdQueryParams *GetTagMembersByIdQueryParams) (*TagMembersResult, *resty.Response, error) {
+func (s *TagService) GetTagMembersByID(id string, getTagMembersByIDQueryParams *GetTagMembersByIDQueryParams) (*TagMembersResult, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/tag/{id}/member"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	queryString, _ := query.Values(getTagMembersByIdQueryParams)
+	queryString, _ := query.Values(getTagMembersByIDQueryParams)
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
@@ -384,13 +351,13 @@ func (s *TagService) GetTagResourceTypes() (*TagTypesResult, *resty.Response, er
 // RemoveTagMember removeTagMember
 /* Removes Tag member from the tag specified by id
 @param id Tag ID
-@param memberId TagMember id to be removed from tag
+@param memberID TagMember id to be removed from tag
 */
-func (s *TagService) RemoveTagMember(id string, memberId string) (*resty.Response, error) {
+func (s *TagService) RemoveTagMember(id string, memberID string) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag/{id}/member/{memberId}"
+	path := "/dna/intent/api/v1/tag/{id}/member/{memberID}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
-	path = strings.Replace(path, "{"+"memberId"+"}", fmt.Sprintf("%v", memberId), -1)
+	path = strings.Replace(path, "{"+"memberID"+"}", fmt.Sprintf("%v", memberID), -1)
 
 	response, err := RestyClient.R().
 		SetError(&Error{}).
@@ -407,43 +374,43 @@ func (s *TagService) RemoveTagMember(id string, memberId string) (*resty.Respons
 // UpdateTag updateTag
 /* Updates a tag specified by id
  */
-func (s *TagService) UpdateTag(updateTagRequest *UpdateTagRequest) (*TaskIdResult, *resty.Response, error) {
+// func (s *TagService) UpdateTag(updateTagRequest *UpdateTagRequest) (*TaskIDResult, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag"
+// 	path := "/dna/intent/api/v1/tag"
 
-	response, err := RestyClient.R().
-		SetBody(updateTagRequest).
-		SetResult(&TaskIdResult{}).
-		SetError(&Error{}).
-		Put(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(updateTagRequest).
+// 		SetResult(&TaskIDResult{}).
+// 		SetError(&Error{}).
+// 		Put(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*TaskIdResult)
-	return result, response, err
+// 	result := response.Result().(*TaskIDResult)
+// 	return result, response, err
 
-}
+// }
 
 // UpdatesTagMembership updatesTagMembership
 /* Updates tag membership. As part of the request payload through this API, only the specified members are added / retained to the given input tags. Possible values of memberType attribute in the request payload can be queried by using the /tag/member/type API
  */
-func (s *TagService) UpdatesTagMembership(updatesTagMembershipRequest *UpdatesTagMembershipRequest) (*TaskIdResult, *resty.Response, error) {
+// func (s *TagService) UpdatesTagMembership(updatesTagMembershipRequest *UpdatesTagMembershipRequest) (*TaskIDResult, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag/member"
+// 	path := "/dna/intent/api/v1/tag/member"
 
-	response, err := RestyClient.R().
-		SetBody(updatesTagMembershipRequest).
-		SetResult(&TaskIdResult{}).
-		SetError(&Error{}).
-		Put(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(updatesTagMembershipRequest).
+// 		SetResult(&TaskIDResult{}).
+// 		SetError(&Error{}).
+// 		Put(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*TaskIdResult)
-	return result, response, err
+// 	result := response.Result().(*TaskIDResult)
+// 	return result, response, err
 
-}
+// }

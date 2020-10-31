@@ -57,11 +57,6 @@ func (s *Client) SetAuthToken(accessToken string) {
 	RestyClient.SetAuthToken(accessToken)
 }
 
-// SetAuthToken defines the Authorization token sent in the request
-func (s *Client) SetAuthToken(accessToken string) {
-	RestyClient.SetAuthToken(accessToken)
-}
-
 // NewClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewClient() *Client {

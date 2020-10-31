@@ -29,15 +29,15 @@ type AccuracyList struct {
 	Reason  string `json:"reason,omitempty"`  //
 }
 
-// AclAnalysis is the AclAnalysis definition
-type AclAnalysis struct {
-	AclName      string         `json:"aclName,omitempty"`      //
+// ACLAnalysis is the ACLAnalysis definition
+type ACLAnalysis struct {
+	ACLName      string         `json:"aclName,omitempty"`      //
 	MatchingAces []MatchingAces `json:"matchingAces,omitempty"` //
 	Result       string         `json:"result,omitempty"`       //
 }
 
-// CpuStatistics is the CpuStatistics definition
-type CpuStatistics struct {
+// CPUStatistics is the CpuStatistics definition
+type CPUStatistics struct {
 	FiveMinUsageInPercentage  int `json:"fiveMinUsageInPercentage,omitempty"`  //
 	FiveSecsUsageInPercentage int `json:"fiveSecsUsageInPercentage,omitempty"` //
 	OneMinUsageInPercentage   int `json:"oneMinUsageInPercentage,omitempty"`   //
@@ -46,19 +46,19 @@ type CpuStatistics struct {
 
 // DetailedStatus is the DetailedStatus definition
 type DetailedStatus struct {
-	AclTraceCalculation              string `json:"aclTraceCalculation,omitempty"`              //
-	AclTraceCalculationFailureReason string `json:"aclTraceCalculationFailureReason,omitempty"` //
+	ACLTraceCalculation              string `json:"aclTraceCalculation,omitempty"`              //
+	ACLTraceCalculationFailureReason string `json:"aclTraceCalculationFailureReason,omitempty"` //
 }
 
 // DeviceStatistics is the DeviceStatistics definition
 type DeviceStatistics struct {
-	CpuStatistics    CpuStatistics    `json:"cpuStatistics,omitempty"`    //
+	CPUStatistics    CPUStatistics    `json:"cpuStatistics,omitempty"`    //
 	MemoryStatistics MemoryStatistics `json:"memoryStatistics,omitempty"` //
 }
 
-// EgressAclAnalysis is the EgressAclAnalysis definition
-type EgressAclAnalysis struct {
-	AclName      string         `json:"aclName,omitempty"`      //
+// EgressACLAnalysis is the EgressACLAnalysis definition
+type EgressACLAnalysis struct {
+	ACLName      string         `json:"aclName,omitempty"`      //
 	MatchingAces []MatchingAces `json:"matchingAces,omitempty"` //
 	Result       string         `json:"result,omitempty"`       //
 }
@@ -71,8 +71,8 @@ type EgressInterface struct {
 
 // EgressPhysicalInterface is the EgressPhysicalInterface definition
 type EgressPhysicalInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -87,8 +87,8 @@ type EgressPhysicalInterface struct {
 
 // EgressVirtualInterface is the EgressVirtualInterface definition
 type EgressVirtualInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -105,9 +105,9 @@ type EgressVirtualInterface struct {
 type FlexConnect struct {
 	Authentication            string             `json:"authentication,omitempty"`            //
 	DataSwitching             string             `json:"dataSwitching,omitempty"`             //
-	EgressAclAnalysis         EgressAclAnalysis  `json:"egressAclAnalysis,omitempty"`         //
-	IngressAclAnalysis        IngressAclAnalysis `json:"ingressAclAnalysis,omitempty"`        //
-	WirelessLanControllerId   string             `json:"wirelessLanControllerId,omitempty"`   //
+	EgressACLAnalysis         EgressACLAnalysis  `json:"egressACLAnalysis,omitempty"`         //
+	IngressACLAnalysis        IngressACLAnalysis `json:"ingressACLAnalysis,omitempty"`        //
+	WirelessLanControllerID   string             `json:"wirelessLanControllerId,omitempty"`   //
 	WirelessLanControllerName string             `json:"wirelessLanControllerName,omitempty"` //
 }
 
@@ -123,9 +123,9 @@ type FlowAnalysisRequestResultOutput struct {
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// IngressAclAnalysis is the IngressAclAnalysis definition
-type IngressAclAnalysis struct {
-	AclName      string         `json:"aclName,omitempty"`      //
+// IngressACLAnalysis is the IngressACLAnalysis definition
+type IngressACLAnalysis struct {
+	ACLName      string         `json:"aclName,omitempty"`      //
 	MatchingAces []MatchingAces `json:"matchingAces,omitempty"` //
 	Result       string         `json:"result,omitempty"`       //
 }
@@ -138,8 +138,8 @@ type IngressInterface struct {
 
 // IngressPhysicalInterface is the IngressPhysicalInterface definition
 type IngressPhysicalInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -154,8 +154,8 @@ type IngressPhysicalInterface struct {
 
 // IngressVirtualInterface is the IngressVirtualInterface definition
 type IngressVirtualInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -216,20 +216,20 @@ type NetworkElements struct {
 	EgressPhysicalInterface            EgressPhysicalInterface  `json:"egressPhysicalInterface,omitempty"`            //
 	EgressVirtualInterface             EgressVirtualInterface   `json:"egressVirtualInterface,omitempty"`             //
 	FlexConnect                        FlexConnect              `json:"flexConnect,omitempty"`                        //
-	Id                                 string                   `json:"id,omitempty"`                                 //
+	ID                                 string                   `json:"id,omitempty"`                                 //
 	IngressPhysicalInterface           IngressPhysicalInterface `json:"ingressPhysicalInterface,omitempty"`           //
 	IngressVirtualInterface            IngressVirtualInterface  `json:"ingressVirtualInterface,omitempty"`            //
-	Ip                                 string                   `json:"ip,omitempty"`                                 //
+	IP                                 string                   `json:"ip,omitempty"`                                 //
 	LinkInformationSource              string                   `json:"linkInformationSource,omitempty"`              //
 	Name                               string                   `json:"name,omitempty"`                               //
 	PerfMonCollection                  string                   `json:"perfMonCollection,omitempty"`                  //
 	PerfMonCollectionFailureReason     string                   `json:"perfMonCollectionFailureReason,omitempty"`     //
 	PerfMonStatistics                  []PerfMonStatistics      `json:"perfMonStatistics,omitempty"`                  //
 	Role                               string                   `json:"role,omitempty"`                               //
-	Ssid                               string                   `json:"ssid,omitempty"`                               //
+	SSID                               string                   `json:"ssid,omitempty"`                               //
 	Tunnels                            []string                 `json:"tunnels,omitempty"`                            //
 	Type                               string                   `json:"type,omitempty"`                               //
-	WlanId                             string                   `json:"wlanId,omitempty"`                             //
+	WlanID                             string                   `json:"wlanId,omitempty"`                             //
 }
 
 // NetworkElementsInfo is the NetworkElementsInfo definition
@@ -241,29 +241,29 @@ type NetworkElementsInfo struct {
 	DeviceStatsCollectionFailureReason string                  `json:"deviceStatsCollectionFailureReason,omitempty"` //
 	EgressInterface                    EgressInterface         `json:"egressInterface,omitempty"`                    //
 	FlexConnect                        FlexConnect             `json:"flexConnect,omitempty"`                        //
-	Id                                 string                  `json:"id,omitempty"`                                 //
+	ID                                 string                  `json:"id,omitempty"`                                 //
 	IngressInterface                   IngressInterface        `json:"ingressInterface,omitempty"`                   //
-	Ip                                 string                  `json:"ip,omitempty"`                                 //
+	IP                                 string                  `json:"ip,omitempty"`                                 //
 	LinkInformationSource              string                  `json:"linkInformationSource,omitempty"`              //
 	Name                               string                  `json:"name,omitempty"`                               //
 	PerfMonCollection                  string                  `json:"perfMonCollection,omitempty"`                  //
 	PerfMonCollectionFailureReason     string                  `json:"perfMonCollectionFailureReason,omitempty"`     //
 	PerfMonitorStatistics              []PerfMonitorStatistics `json:"perfMonitorStatistics,omitempty"`              //
 	Role                               string                  `json:"role,omitempty"`                               //
-	Ssid                               string                  `json:"ssid,omitempty"`                               //
+	SSID                               string                  `json:"ssid,omitempty"`                               //
 	Tunnels                            []string                `json:"tunnels,omitempty"`                            //
 	Type                               string                  `json:"type,omitempty"`                               //
-	WlanId                             string                  `json:"wlanId,omitempty"`                             //
+	WlanID                             string                  `json:"wlanId,omitempty"`                             //
 }
 
 // PathOverlayInfo is the PathOverlayInfo definition
 type PathOverlayInfo struct {
 	ControlPlane            string    `json:"controlPlane,omitempty"`            //
 	DataPacketEncapsulation string    `json:"dataPacketEncapsulation,omitempty"` //
-	DestIp                  string    `json:"destIp,omitempty"`                  //
+	DestIP                  string    `json:"destIp,omitempty"`                  //
 	DestPort                string    `json:"destPort,omitempty"`                //
 	Protocol                string    `json:"protocol,omitempty"`                //
-	SourceIp                string    `json:"sourceIp,omitempty"`                //
+	SourceIP                string    `json:"sourceIp,omitempty"`                //
 	SourcePort              string    `json:"sourcePort,omitempty"`              //
 	VxlanInfo               VxlanInfo `json:"vxlanInfo,omitempty"`               //
 }
@@ -277,11 +277,11 @@ type PathResponseResult struct {
 // PerfMonStatistics is the PerfMonStatistics definition
 type PerfMonStatistics struct {
 	ByteRate             int    `json:"byteRate,omitempty"`             //
-	DestIpAddress        string `json:"destIpAddress,omitempty"`        //
+	DestIPAddress        string `json:"destIpAddress,omitempty"`        //
 	DestPort             string `json:"destPort,omitempty"`             //
 	InputInterface       string `json:"inputInterface,omitempty"`       //
-	Ipv4DSCP             string `json:"ipv4DSCP,omitempty"`             //
-	Ipv4TTL              int    `json:"ipv4TTL,omitempty"`              //
+	IPv4DSCP             string `json:"ipv4DSCP,omitempty"`             //
+	IPv4TTL              int    `json:"ipv4TTL,omitempty"`              //
 	OutputInterface      string `json:"outputInterface,omitempty"`      //
 	PacketBytes          int    `json:"packetBytes,omitempty"`          //
 	PacketCount          int    `json:"packetCount,omitempty"`          //
@@ -292,18 +292,18 @@ type PerfMonStatistics struct {
 	RtpJitterMax         int    `json:"rtpJitterMax,omitempty"`         //
 	RtpJitterMean        int    `json:"rtpJitterMean,omitempty"`        //
 	RtpJitterMin         int    `json:"rtpJitterMin,omitempty"`         //
-	SourceIpAddress      string `json:"sourceIpAddress,omitempty"`      //
+	SourceIPAddress      string `json:"sourceIpAddress,omitempty"`      //
 	SourcePort           string `json:"sourcePort,omitempty"`           //
 }
 
 // PerfMonitorStatistics is the PerfMonitorStatistics definition
 type PerfMonitorStatistics struct {
 	ByteRate             int    `json:"byteRate,omitempty"`             //
-	DestIpAddress        string `json:"destIpAddress,omitempty"`        //
+	DestIPAddress        string `json:"destIpAddress,omitempty"`        //
 	DestPort             string `json:"destPort,omitempty"`             //
 	InputInterface       string `json:"inputInterface,omitempty"`       //
-	Ipv4DSCP             string `json:"ipv4DSCP,omitempty"`             //
-	Ipv4TTL              int    `json:"ipv4TTL,omitempty"`              //
+	IPv4DSCP             string `json:"ipv4DSCP,omitempty"`             //
+	IPv4TTL              int    `json:"ipv4TTL,omitempty"`              //
 	OutputInterface      string `json:"outputInterface,omitempty"`      //
 	PacketBytes          int    `json:"packetBytes,omitempty"`          //
 	PacketCount          int    `json:"packetCount,omitempty"`          //
@@ -314,14 +314,14 @@ type PerfMonitorStatistics struct {
 	RtpJitterMax         int    `json:"rtpJitterMax,omitempty"`         //
 	RtpJitterMean        int    `json:"rtpJitterMean,omitempty"`        //
 	RtpJitterMin         int    `json:"rtpJitterMin,omitempty"`         //
-	SourceIpAddress      string `json:"sourceIpAddress,omitempty"`      //
+	SourceIPAddress      string `json:"sourceIpAddress,omitempty"`      //
 	SourcePort           string `json:"sourcePort,omitempty"`           //
 }
 
 // PhysicalInterface is the PhysicalInterface definition
 type PhysicalInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -361,7 +361,7 @@ type Request struct {
 	DestIP          string   `json:"destIP,omitempty"`          //
 	DestPort        string   `json:"destPort,omitempty"`        //
 	FailureReason   string   `json:"failureReason,omitempty"`   //
-	Id              string   `json:"id,omitempty"`              //
+	ID              string   `json:"id,omitempty"`              //
 	Inclusions      []string `json:"inclusions,omitempty"`      //
 	LastUpdateTime  int      `json:"lastUpdateTime,omitempty"`  //
 	PeriodicRefresh bool     `json:"periodicRefresh,omitempty"` //
@@ -372,25 +372,19 @@ type Request struct {
 }
 
 // Response is the Response definition
-type Response struct {
-	DetailedStatus      DetailedStatus        `json:"detailedStatus,omitempty"`      //
-	LastUpdate          string                `json:"lastUpdate,omitempty"`          //
-	NetworkElements     []NetworkElements     `json:"networkElements,omitempty"`     //
-	NetworkElementsInfo []NetworkElementsInfo `json:"networkElementsInfo,omitempty"` //
-	Properties          []string              `json:"properties,omitempty"`          //
-	Request             Request               `json:"request,omitempty"`             //
-}
-
-// TaskIdResult is the TaskIdResult definition
-type TaskIdResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
-}
+// type Response struct {
+// 	DetailedStatus      DetailedStatus        `json:"detailedStatus,omitempty"`      //
+// 	LastUpdate          string                `json:"lastUpdate,omitempty"`          //
+// 	NetworkElements     []NetworkElements     `json:"networkElements,omitempty"`     //
+// 	NetworkElementsInfo []NetworkElementsInfo `json:"networkElementsInfo,omitempty"` //
+// 	Properties          []string              `json:"properties,omitempty"`          //
+// 	Request             Request               `json:"request,omitempty"`             //
+// }
 
 // VirtualInterface is the VirtualInterface definition
 type VirtualInterface struct {
-	AclAnalysis                           AclAnalysis         `json:"aclAnalysis,omitempty"`                           //
-	Id                                    string              `json:"id,omitempty"`                                    //
+	ACLAnalysis                           ACLAnalysis         `json:"aclAnalysis,omitempty"`                           //
+	ID                                    string              `json:"id,omitempty"`                                    //
 	InterfaceStatistics                   InterfaceStatistics `json:"interfaceStatistics,omitempty"`                   //
 	InterfaceStatsCollection              string              `json:"interfaceStatsCollection,omitempty"`              //
 	InterfaceStatsCollectionFailureReason string              `json:"interfaceStatsCollectionFailureReason,omitempty"` //
@@ -409,14 +403,14 @@ type VxlanInfo struct {
 	Vnid string `json:"vnid,omitempty"` //
 }
 
-// DeletesPathtraceById deletesPathtraceById
+// DeletesPathtraceByID deletesPathtraceById
 /* Deletes a flow analysis request by its id
-@param flowAnalysisId Flow analysis request id
+@param flowAnalysisID Flow analysis request id
 */
-func (s *PathTraceService) DeletesPathtraceById(flowAnalysisId string) (*resty.Response, error) {
+func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
-	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisId), -1)
+	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisID}"
+	path = strings.Replace(path, "{"+"flowAnalysisID"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
 
 	response, err := RestyClient.R().
 		SetError(&Error{}).
@@ -433,33 +427,33 @@ func (s *PathTraceService) DeletesPathtraceById(flowAnalysisId string) (*resty.R
 // InitiateANewPathtrace initiateANewPathtrace
 /* Initiates a new flow analysis with periodic refresh and stat collection options. Returns a request id and a task id to get results and follow progress.
  */
-func (s *PathTraceService) InitiateANewPathtrace(initiateANewPathtraceRequest *InitiateANewPathtraceRequest) (*FlowAnalysisRequestResultOutput, *resty.Response, error) {
+// func (s *PathTraceService) InitiateANewPathtrace(initiateANewPathtraceRequest *InitiateANewPathtraceRequest) (*FlowAnalysisRequestResultOutput, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/flow-analysis"
+// 	path := "/dna/intent/api/v1/flow-analysis"
 
-	response, err := RestyClient.R().
-		SetBody(initiateANewPathtraceRequest).
-		SetResult(&FlowAnalysisRequestResultOutput{}).
-		SetError(&Error{}).
-		Post(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(initiateANewPathtraceRequest).
+// 		SetResult(&FlowAnalysisRequestResultOutput{}).
+// 		SetError(&Error{}).
+// 		Post(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*FlowAnalysisRequestResultOutput)
-	return result, response, err
+// 	result := response.Result().(*FlowAnalysisRequestResultOutput)
+// 	return result, response, err
 
-}
+// }
 
 // RetrievesPreviousPathtrace retrievesPreviousPathtrace
 /* Returns result of a previously requested flow analysis by its Flow Analysis id
-@param flowAnalysisId Flow analysis request id
+@param flowAnalysisID Flow analysis request id
 */
-func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisId string) (*PathResponseResult, *resty.Response, error) {
+func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*PathResponseResult, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
-	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisId), -1)
+	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisID}"
+	path = strings.Replace(path, "{"+"flowAnalysisID"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
 
 	response, err := RestyClient.R().
 		SetResult(&PathResponseResult{}).
@@ -477,21 +471,21 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisId string) (*P
 
 // RetrivesAllPreviousPathtracesSummaryQueryParams defines the query parameters for this request
 type RetrivesAllPreviousPathtracesSummaryQueryParams struct {
-	PeriodicRefresh boolean `url:"periodicRefresh,omitempty"` // Is analysis periodically refreshed?
-	SourceIP        string  `url:"sourceIP,omitempty"`        // Source IP address
-	DestIP          string  `url:"destIP,omitempty"`          // Destination IP adress
-	SourcePort      string  `url:"sourcePort,omitempty"`      // Source port
-	DestPort        string  `url:"destPort,omitempty"`        // Destination port
-	GtCreateTime    string  `url:"gtCreateTime,omitempty"`    // Analyses requested after this time
-	LtCreateTime    string  `url:"ltCreateTime,omitempty"`    // Analyses requested before this time
-	Protocol        string  `url:"protocol,omitempty"`        // Protocol
-	Status          string  `url:"status,omitempty"`          // Status
-	TaskId          string  `url:"taskId,omitempty"`          // Task ID
-	LastUpdateTime  string  `url:"lastUpdateTime,omitempty"`  // Last update time
-	Limit           string  `url:"limit,omitempty"`           // Number of resources returned
-	Offset          string  `url:"offset,omitempty"`          // Start index of resources returned (1-based)
-	Order           string  `url:"order,omitempty"`           // Order by this field
-	SortBy          string  `url:"sortBy,omitempty"`          // Sort by this field
+	PeriodicRefresh bool   `url:"periodicRefresh,omitempty"` // Is analysis periodically refreshed?
+	SourceIP        string `url:"sourceIP,omitempty"`        // Source IP address
+	DestIP          string `url:"destIP,omitempty"`          // Destination IP adress
+	SourcePort      string `url:"sourcePort,omitempty"`      // Source port
+	DestPort        string `url:"destPort,omitempty"`        // Destination port
+	GtCreateTime    string `url:"gtCreateTime,omitempty"`    // Analyses requested after this time
+	LtCreateTime    string `url:"ltCreateTime,omitempty"`    // Analyses requested before this time
+	Protocol        string `url:"protocol,omitempty"`        // Protocol
+	Status          string `url:"status,omitempty"`          // Status
+	TaskID          string `url:"taskId,omitempty"`          // Task ID
+	LastUpdateTime  string `url:"lastUpdateTime,omitempty"`  // Last update time
+	Limit           string `url:"limit,omitempty"`           // Number of resources returned
+	Offset          string `url:"offset,omitempty"`          // Start index of resources returned (1-based)
+	Order           string `url:"order,omitempty"`           // Order by this field
+	SortBy          string `url:"sortBy,omitempty"`          // Sort by this field
 }
 
 // RetrivesAllPreviousPathtracesSummary retrivesAllPreviousPathtracesSummary
@@ -505,7 +499,7 @@ type RetrivesAllPreviousPathtracesSummaryQueryParams struct {
 @param ltCreateTime Analyses requested before this time
 @param protocol Protocol
 @param status Status
-@param taskId Task ID
+@param taskID Task ID
 @param lastUpdateTime Last update time
 @param limit Number of resources returned
 @param offset Start index of resources returned (1-based)

@@ -17,7 +17,7 @@ type APProvisionRequest struct {
 	CustomFlexGroupName []string `json:"customFlexGroupName,omitempty"` //
 	DeviceName          string   `json:"deviceName,omitempty"`          //
 	RfProfile           string   `json:"rfProfile,omitempty"`           //
-	SiteId              string   `json:"siteId,omitempty"`              //
+	SiteID              string   `json:"siteId,omitempty"`              //
 	Type                string   `json:"type,omitempty"`                //
 }
 
@@ -26,8 +26,8 @@ type CreateAndProvisionSSIDRequest struct {
 	EnableFabric       bool        `json:"enableFabric,omitempty"`       //
 	FlexConnect        FlexConnect `json:"flexConnect,omitempty"`        //
 	ManagedAPLocations []string    `json:"managedAPLocations,omitempty"` //
-	SsidDetails        SsidDetails `json:"ssidDetails,omitempty"`        //
-	SsidType           string      `json:"ssidType,omitempty"`           //
+	SSIDDetails        SSIDDetails `json:"ssidDetails,omitempty"`        //
+	SSIDType           string      `json:"ssidType,omitempty"`           //
 }
 
 // CreateEnterpriseSSIDRequest is the CreateEnterpriseSSIDRequest definition
@@ -68,20 +68,14 @@ type DynamicInterfaces struct {
 	InterfaceName          string `json:"interfaceName,omitempty"`          //
 	InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
 	LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
-	VlanId                 int    `json:"vlanId,omitempty"`                 //
-}
-
-// FlexConnect is the FlexConnect definition
-type FlexConnect struct {
-	EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-	LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+	VlanID                 int    `json:"vlanId,omitempty"`                 //
 }
 
 // ProfileDetails is the ProfileDetails definition
 type ProfileDetails struct {
 	Name        string        `json:"name,omitempty"`        //
 	Sites       []string      `json:"sites,omitempty"`       //
-	SsidDetails []SsidDetails `json:"ssidDetails,omitempty"` //
+	SSIDDetails []SSIDDetails `json:"ssidDetails,omitempty"` //
 }
 
 // ProvisionRequest is the ProvisionRequest definition
@@ -123,8 +117,8 @@ type RadioTypeBProperties struct {
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
 }
 
-// SsidDetails is the SsidDetails definition
-type SsidDetails struct {
+// SSIDDetails is the SSIDDetails definition
+type SSIDDetails struct {
 	EnableFabric  bool        `json:"enableFabric,omitempty"`  //
 	FlexConnect   FlexConnect `json:"flexConnect,omitempty"`   //
 	InterfaceName string      `json:"interfaceName,omitempty"` //
@@ -137,67 +131,62 @@ type UpdateWirelessProfileRequest struct {
 	ProfileDetails ProfileDetails `json:"profileDetails,omitempty"` //
 }
 
-// APP_CONNECTIVITY is the APP_CONNECTIVITY definition
-type APP_CONNECTIVITY struct {
-	FILETRANSFER      FILETRANSFER      `json:"FILETRANSFER,omitempty"`      //
-	HOST_REACHABILITY HOST_REACHABILITY `json:"HOST_REACHABILITY,omitempty"` //
-	WEBSERVER         WEBSERVER         `json:"WEBSERVER,omitempty"`         //
+// AppConnectivity is the AppConnectivity definition
+type AppConnectivity struct {
+	FileTransfer     FileTransfer     `json:"FILETRANSFER,omitempty"`      //
+	HostReachability HostReachability `json:"HOST_REACHABILITY,omitempty"` //
+	WebServer        WebServer        `json:"WEBSERVER,omitempty"`         //
 }
 
 // APProvisionResponse is the APProvisionResponse definition
 type APProvisionResponse struct {
-	ExecutionId    string         `json:"executionId,omitempty"`    //
-	ExecutionUrl   string         `json:"executionUrl,omitempty"`   //
+	ExecutionID    string         `json:"executionId,omitempty"`    //
+	ExecutionURL   string         `json:"executionUrl,omitempty"`   //
 	ProvisionTasks ProvisionTasks `json:"provisionTasks,omitempty"` //
 }
 
-// ASSOC is the ASSOC definition
-type ASSOC struct {
+// Assoc is the Assoc definition
+type Assoc struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
 
-// AUTH is the AUTH definition
-type AUTH struct {
+// Auth is the Auth definition
+type Auth struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
 
 // CreateAndProvisionSSIDResponse is the CreateAndProvisionSSIDResponse definition
 type CreateAndProvisionSSIDResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // CreateEnterpriseSSIDResponse is the CreateEnterpriseSSIDResponse definition
 type CreateEnterpriseSSIDResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // CreateOrUpdateRFProfileResponse is the CreateOrUpdateRFProfileResponse definition
 type CreateOrUpdateRFProfileResponse struct {
-	ExecutionId  string `json:"executionId,omitempty"`  //
-	ExecutionUrl string `json:"executionUrl,omitempty"` //
+	ExecutionID  string `json:"executionId,omitempty"`  //
+	ExecutionURL string `json:"executionUrl,omitempty"` //
 	Message      string `json:"message,omitempty"`      //
-}
-
-// CreateWirelessProfileRequest is the CreateWirelessProfileRequest definition
-type CreateWirelessProfileRequest struct {
-	ProfileDetails ProfileDetails `json:"profileDetails,omitempty"` //
 }
 
 // CreateWirelessProfileResponse is the CreateWirelessProfileResponse definition
 type CreateWirelessProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// DATA_RATE is the DATA_RATE definition
-type DATA_RATE struct {
+// DataRate is the DataRate definition
+type DataRate struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
@@ -208,47 +197,41 @@ type DHCP struct {
 	PassCount int `json:"passCount,omitempty"` //
 }
 
-// DNS is the DNS definition
-type DNS struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
 // DeleteEnterpriseSSIDResponse is the DeleteEnterpriseSSIDResponse definition
 type DeleteEnterpriseSSIDResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // DeleteRFProfilesResponse is the DeleteRFProfilesResponse definition
 type DeleteRFProfilesResponse struct {
-	ExecutionId  string `json:"executionId,omitempty"`  //
-	ExecutionUrl string `json:"executionUrl,omitempty"` //
+	ExecutionID  string `json:"executionId,omitempty"`  //
+	ExecutionURL string `json:"executionUrl,omitempty"` //
 	Message      string `json:"message,omitempty"`      //
 }
 
 // DeleteSSIDAndProvisionItToDevicesResponse is the DeleteSSIDAndProvisionItToDevicesResponse definition
 type DeleteSSIDAndProvisionItToDevicesResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // DeleteWirelessProfileResponse is the DeleteWirelessProfileResponse definition
 type DeleteWirelessProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// EMAIL is the EMAIL definition
-type EMAIL struct {
-	MAILSERVER MAILSERVER `json:"MAILSERVER,omitempty"` //
+// Email is the Email definition
+type Email struct {
+	MailServer MailServer `json:"MAILSERVER,omitempty"` //
 }
 
-// FILETRANSFER is the FILETRANSFER definition
-type FILETRANSFER struct {
+// FileTransfer is the FileTransfer definition
+type FileTransfer struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
@@ -256,8 +239,8 @@ type FILETRANSFER struct {
 // Failure is the Failure definition
 type Failure struct {
 	FailureReason string `json:"failureReason,omitempty"` //
-	TaskId        string `json:"taskId,omitempty"`        //
-	TaskUrl       string `json:"taskUrl,omitempty"`       //
+	TaskID        string `json:"taskId,omitempty"`        //
+	TaskURL       string `json:"taskUrl,omitempty"`       //
 }
 
 // FailureStats is the FailureStats definition
@@ -268,68 +251,55 @@ type FailureStats struct {
 	TestType     string `json:"testType,omitempty"`     //
 }
 
-// FlexConnect is the FlexConnect definition
-type FlexConnect struct {
-	EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-	LocalToVlan       int  `json:"localToVlan,omitempty"`       //
-}
-
 // GetEnterpriseSSIDResponse is the GetEnterpriseSSIDResponse definition
 type GetEnterpriseSSIDResponse struct {
-	GroupUuid          string        `json:"groupUuid,omitempty"`          //
+	GroupUUID          string        `json:"groupUuid,omitempty"`          //
 	InheritedGroupName string        `json:"inheritedGroupName,omitempty"` //
-	InheritedGroupUuid string        `json:"inheritedGroupUuid,omitempty"` //
-	InstanceUuid       string        `json:"instanceUuid,omitempty"`       //
-	SsidDetails        []SsidDetails `json:"ssidDetails,omitempty"`        //
+	InheritedGroupUUID string        `json:"inheritedGroupUuid,omitempty"` //
+	InstanceUUID       string        `json:"instanceUuid,omitempty"`       //
+	SSIDDetails        []SSIDDetails `json:"ssidDetails,omitempty"`        //
 	Version            int           `json:"version,omitempty"`            //
 }
 
-// HOST_REACHABILITY is the HOST_REACHABILITY definition
-type HOST_REACHABILITY struct {
+// HostReachability is the HostReachability definition
+type HostReachability struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
 
-// IPSLASENDER is the IPSLASENDER definition
-type IPSLASENDER struct {
+// IPSLASender is the IPSLASender definition
+type IPSLASender struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
 
-// MAILSERVER is the MAILSERVER definition
-type MAILSERVER struct {
+// MailServer is the MailServer definition
+type MailServer struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
 
-// NETWORK_SERVICES is the NETWORK_SERVICES definition
-type NETWORK_SERVICES struct {
+// NetworkServices is the NetworkServices definition
+type NetworkServices struct {
 	DNS DNS `json:"DNS,omitempty"` //
 }
 
-// ONBOARDING is the ONBOARDING definition
-type ONBOARDING struct {
-	ASSOC ASSOC `json:"ASSOC,omitempty"` //
-	AUTH  AUTH  `json:"AUTH,omitempty"`  //
+// OnBoarding is the OnBoarding definition
+type OnBoarding struct {
+	Assoc Assoc `json:"ASSOC,omitempty"` //
+	Auth  Auth  `json:"AUTH,omitempty"`  //
 	DHCP  DHCP  `json:"DHCP,omitempty"`  //
 }
 
-// PERFORMANCE is the PERFORMANCE definition
-type PERFORMANCE struct {
-	IPSLASENDER IPSLASENDER `json:"IPSLASENDER,omitempty"` //
-}
-
-// ProfileDetails is the ProfileDetails definition
-type ProfileDetails struct {
-	Name        string        `json:"name,omitempty"`        //
-	Sites       []string      `json:"sites,omitempty"`       //
-	SsidDetails []SsidDetails `json:"ssidDetails,omitempty"` //
+// Performance is the Performance definition
+type Performance struct {
+	IPSLASender IPSLASender `json:"IPSLASENDER,omitempty"` //
 }
 
 // ProvisionResponse is the ProvisionResponse definition
 type ProvisionResponse struct {
-	ExecutionId       string            `json:"executionId,omitempty"`       //
-	ExecutionUrl      string            `json:"executionUrl,omitempty"`      //
+	ExecutionID       string            `json:"executionId,omitempty"`       //
+	ExecutionURL      string            `json:"executionUrl,omitempty"`      //
 	ProvisioningTasks ProvisioningTasks `json:"provisioningTasks,omitempty"` //
 }
 
@@ -341,8 +311,8 @@ type ProvisionTasks struct {
 
 // ProvisionUpdateResponse is the ProvisionUpdateResponse definition
 type ProvisionUpdateResponse struct {
-	ExecutionId       string            `json:"executionId,omitempty"`       //
-	ExecutionUrl      string            `json:"executionUrl,omitempty"`      //
+	ExecutionID       string            `json:"executionId,omitempty"`       //
+	ExecutionURL      string            `json:"executionUrl,omitempty"`      //
 	ProvisioningTasks ProvisioningTasks `json:"provisioningTasks,omitempty"` //
 }
 
@@ -352,14 +322,14 @@ type ProvisioningTasks struct {
 	Success []string `json:"success,omitempty"` //
 }
 
-// RF_ASSESSMENT is the RF_ASSESSMENT definition
-type RF_ASSESSMENT struct {
-	DATA_RATE DATA_RATE `json:"DATA_RATE,omitempty"` //
-	SNR       SNR       `json:"SNR,omitempty"`       //
+// RFAssessment is the RFAssessment definition
+type RFAssessment struct {
+	DataRate DataRate `json:"DATA_RATE,omitempty"` //
+	SNR      SNR      `json:"SNR,omitempty"`       //
 }
 
-// Response is the Response definition
-type Response struct {
+// RFProfilesResponse is the Response definition
+type RFProfilesResponse struct {
 	ARadioChannels      string `json:"aRadioChannels,omitempty"`      //
 	BRadioChannels      string `json:"bRadioChannels,omitempty"`      //
 	ChannelWidth        string `json:"channelWidth,omitempty"`        //
@@ -387,7 +357,7 @@ type Response struct {
 
 // RetrieveRFProfilesResponse is the RetrieveRFProfilesResponse definition
 type RetrieveRFProfilesResponse struct {
-	Response []Response `json:"response,omitempty"` //
+	Response []RFProfilesResponse `json:"response,omitempty"` //
 }
 
 // SNR is the SNR definition
@@ -402,41 +372,32 @@ type SensorTestResultsResponse struct {
 	Summary      Summary        `json:"summary,omitempty"`      //
 }
 
-// SsidDetails is the SsidDetails definition
-type SsidDetails struct {
-	EnableFabric  bool        `json:"enableFabric,omitempty"`  //
-	FlexConnect   FlexConnect `json:"flexConnect,omitempty"`   //
-	InterfaceName string      `json:"interfaceName,omitempty"` //
-	Name          string      `json:"name,omitempty"`          //
-	Type          string      `json:"type,omitempty"`          //
-}
-
 // Success is the Success definition
 type Success struct {
-	TaskId  string `json:"taskId,omitempty"`  //
-	TaskUrl string `json:"taskUrl,omitempty"` //
+	TaskID  string `json:"taskId,omitempty"`  //
+	TaskURL string `json:"taskUrl,omitempty"` //
 }
 
 // Summary is the Summary definition
 type Summary struct {
-	APP_CONNECTIVITY APP_CONNECTIVITY `json:"APP_CONNECTIVITY,omitempty"` //
-	EMAIL            EMAIL            `json:"EMAIL,omitempty"`            //
-	NETWORK_SERVICES NETWORK_SERVICES `json:"NETWORK_SERVICES,omitempty"` //
-	ONBOARDING       ONBOARDING       `json:"ONBOARDING,omitempty"`       //
-	PERFORMANCE      PERFORMANCE      `json:"PERFORMANCE,omitempty"`      //
-	RF_ASSESSMENT    RF_ASSESSMENT    `json:"RF_ASSESSMENT,omitempty"`    //
-	TotalTestCount   int              `json:"totalTestCount,omitempty"`   //
+	AppConnectivity AppConnectivity `json:"APP_CONNECTIVITY,omitempty"` //
+	Email           Email           `json:"EMAIL,omitempty"`            //
+	NetworkServices NetworkServices `json:"NETWORK_SERVICES,omitempty"` //
+	OnBoarding      OnBoarding      `json:"ONBOARDING,omitempty"`       //
+	Performance     Performance     `json:"PERFORMANCE,omitempty"`      //
+	RFAssessment    RFAssessment    `json:"RF_ASSESSMENT,omitempty"`    //
+	TotalTestCount  int             `json:"totalTestCount,omitempty"`   //
 }
 
 // UpdateWirelessProfileResponse is the UpdateWirelessProfileResponse definition
 type UpdateWirelessProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// WEBSERVER is the WEBSERVER definition
-type WEBSERVER struct {
+// WebServer is the WebServer definition
+type WebServer struct {
 	FailCount int `json:"failCount,omitempty"` //
 	PassCount int `json:"passCount,omitempty"` //
 }
@@ -623,27 +584,27 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 /* Delete the Wireless Profile from DNAC whose name is provided.
 @param wirelessProfileName
 */
-func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string, deleteWirelessProfileRequest *DeleteWirelessProfileRequest) (*resty.Response, error) {
+// func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string, deleteWirelessProfileRequest *DeleteWirelessProfileRequest) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
-	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
+// 	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
+// 	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
 
-	response, err := RestyClient.R().
-		SetBody(deleteWirelessProfileRequest).
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(deleteWirelessProfileRequest).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return response, err
+// 	return response, err
 
-}
+// }
 
 // GetEnterpriseSSIDQueryParams defines the query parameters for this request
 type GetEnterpriseSSIDQueryParams struct {
-	SsidName string `url:"ssidName,omitempty"` // Enter the enterprise SSID name that needs to be retrieved. If not entered, all the enterprise SSIDs will be retrieved.
+	SSIDName string `url:"ssidName,omitempty"` // Enter the enterprise SSID name that needs to be retrieved. If not entered, all the enterprise SSIDs will be retrieved.
 }
 
 // GetEnterpriseSSID getEnterpriseSSID
@@ -680,26 +641,26 @@ type GetWirelessProfileQueryParams struct {
 /* Gets either one or all the wireless network profiles if no name is provided for network-profile.
 @param profileName
 */
-func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*GetWirelessProfileResponse, *resty.Response, error) {
+// func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*GetWirelessProfileResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/wireless/profile"
+// 	path := "/dna/intent/api/v1/wireless/profile"
 
-	queryString, _ := query.Values(getWirelessProfileQueryParams)
+// 	queryString, _ := query.Values(getWirelessProfileQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetWirelessProfileResponse{}).
-		SetError(&Error{}).
-		Get(path)
+// 	response, err := RestyClient.R().
+// 		SetQueryString(queryString.Encode()).
+// 		SetResult(&GetWirelessProfileResponse{}).
+// 		SetError(&Error{}).
+// 		Get(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*GetWirelessProfileResponse)
-	return result, response, err
+// 	result := response.Result().(*GetWirelessProfileResponse)
+// 	return result, response, err
 
-}
+// }
 
 // Provision provision
 /* Provision wireless devices
@@ -779,15 +740,15 @@ func (s *WirelessService) RetrieveRFProfiles(retrieveRFProfilesQueryParams *Retr
 
 // SensorTestResultsQueryParams defines the query parameters for this request
 type SensorTestResultsQueryParams struct {
-	SiteId        string `url:"siteId,omitempty"`        // Assurance site UUID
-	StartTime     number `url:"startTime,omitempty"`     // The epoch time in milliseconds
-	EndTime       number `url:"endTime,omitempty"`       // The epoch time in milliseconds
+	SiteID        string `url:"siteId,omitempty"`        // Assurance site UUID
+	StartTime     int    `url:"startTime,omitempty"`     // The epoch time in milliseconds
+	EndTime       int    `url:"endTime,omitempty"`       // The epoch time in milliseconds
 	TestFailureBy string `url:"testFailureBy,omitempty"` // Obtain failure statistics group by "area", "building", or "floor"
 }
 
 // SensorTestResults sensorTestResults
 /* Intent API to get SENSOR test result summary
-@param siteId Assurance site UUID
+@param siteID Assurance site UUID
 @param startTime The epoch time in milliseconds
 @param endTime The epoch time in milliseconds
 @param testFailureBy Obtain failure statistics group by "area", "building", or "floor"

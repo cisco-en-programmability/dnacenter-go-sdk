@@ -13,26 +13,26 @@ type NetworkSettingsService service
 
 // AssignCredentialToSiteRequest is the AssignCredentialToSiteRequest definition
 type AssignCredentialToSiteRequest struct {
-	CliId         string `json:"cliId,omitempty"`         //
-	HttpRead      string `json:"httpRead,omitempty"`      //
-	HttpWrite     string `json:"httpWrite,omitempty"`     //
-	SnmpV2ReadId  string `json:"snmpV2ReadId,omitempty"`  //
-	SnmpV2WriteId string `json:"snmpV2WriteId,omitempty"` //
-	SnmpV3Id      string `json:"snmpV3Id,omitempty"`      //
+	CliID         string `json:"cliId,omitempty"`         //
+	HTTPRead      string `json:"httpRead,omitempty"`      //
+	HTTPWrite     string `json:"httpWrite,omitempty"`     //
+	SNMPV2ReadID  string `json:"snmpV2ReadId,omitempty"`  //
+	SNMPV2WriteID string `json:"snmpV2WriteId,omitempty"` //
+	SNMPV3ID      string `json:"snmpV3Id,omitempty"`      //
 }
 
 // CliCredential is the CliCredential definition
 type CliCredential struct {
 	Description    string `json:"description,omitempty"`    //
 	EnablePassword string `json:"enablePassword,omitempty"` //
-	Id             string `json:"id,omitempty"`             //
+	ID             string `json:"id,omitempty"`             //
 	Password       string `json:"password,omitempty"`       //
 	Username       string `json:"username,omitempty"`       //
 }
 
-// ClientAndEndpoint_aaa is the ClientAndEndpoint_aaa definition
-type ClientAndEndpoint_aaa struct {
-	IpAddress    string `json:"ipAddress,omitempty"`    //
+// ClientAndEndpointAAA is the ClientAndEndpoint_aaa definition
+type ClientAndEndpointAAA struct {
+	IPAddress    string `json:"ipAddress,omitempty"`    //
 	Network      string `json:"network,omitempty"`      //
 	Protocol     string `json:"protocol,omitempty"`     //
 	Servers      string `json:"servers,omitempty"`      //
@@ -59,38 +59,38 @@ type CreateSPProfileRequest struct {
 	Settings Settings `json:"settings,omitempty"` //
 }
 
-// DnsServer is the DnsServer definition
-type DnsServer struct {
+// DNSServer is the DnsServer definition
+type DNSServer struct {
 	DomainName         string `json:"domainName,omitempty"`         //
-	PrimaryIpAddress   string `json:"primaryIpAddress,omitempty"`   //
-	SecondaryIpAddress string `json:"secondaryIpAddress,omitempty"` //
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   //
+	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` //
 }
 
-// HttpsRead is the HttpsRead definition
-type HttpsRead struct {
-	Id       string `json:"id,omitempty"`       //
+// HTTPSRead is the HTTPsRead definition
+type HTTPSRead struct {
+	ID       string `json:"id,omitempty"`       //
 	Name     string `json:"name,omitempty"`     //
 	Password string `json:"password,omitempty"` //
 	Port     string `json:"port,omitempty"`     //
 	Username string `json:"username,omitempty"` //
 }
 
-// HttpsWrite is the HttpsWrite definition
-type HttpsWrite struct {
-	Id       string `json:"id,omitempty"`       //
+// HTTPSWrite is the HTTPsWrite definition
+type HTTPSWrite struct {
+	ID       string `json:"id,omitempty"`       //
 	Name     string `json:"name,omitempty"`     //
 	Password string `json:"password,omitempty"` //
 	Port     string `json:"port,omitempty"`     //
 	Username string `json:"username,omitempty"` //
 }
 
-// Ippool is the Ippool definition
-type Ippool struct {
-	DhcpServerIps []string `json:"dhcpServerIps,omitempty"` //
-	DnsServerIps  []string `json:"dnsServerIps,omitempty"`  //
+// IPpool is the Ippool definition
+type IPpool struct {
+	DhcpServerIPs []string `json:"dhcpServerIps,omitempty"` //
+	DNSServerIPs  []string `json:"dnsServerIps,omitempty"`  //
 	Gateway       string   `json:"gateway,omitempty"`       //
-	Id            string   `json:"id,omitempty"`            //
-	IpPoolName    string   `json:"ipPoolName,omitempty"`    //
+	ID            string   `json:"id,omitempty"`            //
+	IPPoolName    string   `json:"ipPoolName,omitempty"`    //
 }
 
 // MessageOfTheday is the MessageOfTheday definition
@@ -101,13 +101,13 @@ type MessageOfTheday struct {
 
 // Netflowcollector is the Netflowcollector definition
 type Netflowcollector struct {
-	IpAddress string `json:"ipAddress,omitempty"` //
+	IPAddress string `json:"ipAddress,omitempty"` //
 	Port      int    `json:"port,omitempty"`      //
 }
 
-// Network_aaa is the Network_aaa definition
-type Network_aaa struct {
-	IpAddress    string `json:"ipAddress,omitempty"`    //
+// NetworkAAA is the Network_aaa definition
+type NetworkAAA struct {
+	IPAddress    string `json:"ipAddress,omitempty"`    //
 	Network      string `json:"network,omitempty"`      //
 	Protocol     string `json:"protocol,omitempty"`     //
 	Servers      string `json:"servers,omitempty"`      //
@@ -127,42 +127,42 @@ type Settings struct {
 	Qos []Qos `json:"qos,omitempty"` //
 }
 
-// SnmpServer is the SnmpServer definition
-type SnmpServer struct {
+// SNMPServer is the SnmpServer definition
+type SNMPServer struct {
 	ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
-	IpAddresses     []string `json:"ipAddresses,omitempty"`     //
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     //
 }
 
-// SnmpV2cRead is the SnmpV2cRead definition
-type SnmpV2cRead struct {
+// SNMPV2cRead is the SnmpV2cRead definition
+type SNMPV2cRead struct {
 	Description   string `json:"description,omitempty"`   //
-	Id            string `json:"id,omitempty"`            //
+	ID            string `json:"id,omitempty"`            //
 	ReadCommunity string `json:"readCommunity,omitempty"` //
 }
 
-// SnmpV2cWrite is the SnmpV2cWrite definition
-type SnmpV2cWrite struct {
+// SNMPV2cWrite is the SnmpV2cWrite definition
+type SNMPV2cWrite struct {
 	Description    string `json:"description,omitempty"`    //
-	Id             string `json:"id,omitempty"`             //
+	ID             string `json:"id,omitempty"`             //
 	WriteCommunity string `json:"writeCommunity,omitempty"` //
 }
 
-// SnmpV3 is the SnmpV3 definition
-type SnmpV3 struct {
+// SNMPV3 is the SnmpV3 definition
+type SNMPV3 struct {
 	AuthPassword    string `json:"authPassword,omitempty"`    //
 	AuthType        string `json:"authType,omitempty"`        //
 	Description     string `json:"description,omitempty"`     //
-	Id              string `json:"id,omitempty"`              //
+	ID              string `json:"id,omitempty"`              //
 	PrivacyPassword string `json:"privacyPassword,omitempty"` //
 	PrivacyType     string `json:"privacyType,omitempty"`     //
-	SnmpMode        string `json:"snmpMode,omitempty"`        //
+	SNMPMode        string `json:"snmpMode,omitempty"`        //
 	Username        string `json:"username,omitempty"`        //
 }
 
 // SyslogServer is the SyslogServer definition
 type SyslogServer struct {
 	ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
-	IpAddresses     []string `json:"ipAddresses,omitempty"`     //
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     //
 }
 
 // UpdateDeviceCredentialsRequest is the UpdateDeviceCredentialsRequest definition
@@ -187,8 +187,8 @@ type UpdateSPProfileRequest struct {
 
 // AssignCredentialToSiteResponse is the AssignCredentialToSiteResponse definition
 type AssignCredentialToSiteResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
@@ -198,9 +198,9 @@ type Cli struct {
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
 	EnablePassword   string `json:"enablePassword,omitempty"`   //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
 	Username         string `json:"username,omitempty"`         //
 }
@@ -214,61 +214,61 @@ type Context struct {
 
 // CreateDeviceCredentialsResponse is the CreateDeviceCredentialsResponse definition
 type CreateDeviceCredentialsResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // CreateGlobalPoolResponse is the CreateGlobalPoolResponse definition
 type CreateGlobalPoolResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // CreateNetworkResponse is the CreateNetworkResponse definition
 type CreateNetworkResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // CreateSPProfileResponse is the CreateSPProfileResponse definition
 type CreateSPProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // DeleteDeviceCredentialResponse is the DeleteDeviceCredentialResponse definition
 type DeleteDeviceCredentialResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // DeleteGlobalIPPoolResponse is the DeleteGlobalIPPoolResponse definition
 type DeleteGlobalIPPoolResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // DeleteSPProfileResponse is the DeleteSPProfileResponse definition
 type DeleteSPProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // GetDeviceCredentialDetailsResponse is the GetDeviceCredentialDetailsResponse definition
 type GetDeviceCredentialDetailsResponse struct {
 	Cli         []Cli         `json:"cli,omitempty"`           //
-	HttpRead    []HttpRead    `json:"http_read,omitempty"`     //
-	HttpWrite   []HttpWrite   `json:"http_write,omitempty"`    //
-	SnmpV2Read  []SnmpV2Read  `json:"snmp_v2_read,omitempty"`  //
-	SnmpV2Write []SnmpV2Write `json:"snmp_v2_write,omitempty"` //
-	SnmpV3      []SnmpV3      `json:"snmp_v3,omitempty"`       //
+	HTTPRead    []HTTPRead    `json:"http_read,omitempty"`     //
+	HTTPWrite   []HTTPWrite   `json:"http_write,omitempty"`    //
+	SNMPV2Read  []SNMPv2Read  `json:"snmp_v2_read,omitempty"`  //
+	SNMPV2Write []SNMPv2Write `json:"snmp_v2_write,omitempty"` //
+	SNMPV3      []SNMPv3      `json:"snmp_v3,omitempty"`       //
 }
 
 // GetGlobalPoolResponse is the GetGlobalPoolResponse definition
@@ -285,45 +285,45 @@ type GetNetworkResponse struct {
 
 // GetServiceProviderDetailsResponse is the GetServiceProviderDetailsResponse definition
 type GetServiceProviderDetailsResponse struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []ServiceProviderDetailsResponse `json:"response,omitempty"` //
+	Version  string                           `json:"version,omitempty"`  //
 }
 
-// Http_read is the Http_read definition
-type Http_read struct {
+// HTTPRead is the HTTP_read definition
+type HTTPRead struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
 	Port             string `json:"port,omitempty"`             //
 	Secure           string `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
 }
 
-// Http_write is the Http_write definition
-type Http_write struct {
+// HTTPWrite is the HTTP_write definition
+type HTTPWrite struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
 	Port             string `json:"port,omitempty"`             //
 	Secure           string `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
 }
 
-// Response is the Response definition
-type Response struct {
-	GroupUuid          string  `json:"groupUuid,omitempty"`          //
+// ServiceProviderDetailsResponse is the Response definition
+type ServiceProviderDetailsResponse struct {
+	GroupUUID          string  `json:"groupUuid,omitempty"`          //
 	InheritedGroupName string  `json:"inheritedGroupName,omitempty"` //
-	InheritedGroupUuid string  `json:"inheritedGroupUuid,omitempty"` //
+	InheritedGroupUUID string  `json:"inheritedGroupUuid,omitempty"` //
 	InstanceType       string  `json:"instanceType,omitempty"`       //
-	InstanceUuid       string  `json:"instanceUuid,omitempty"`       //
+	InstanceUUID       string  `json:"instanceUuid,omitempty"`       //
 	Key                string  `json:"key,omitempty"`                //
 	Namespace          string  `json:"namespace,omitempty"`          //
 	Type               string  `json:"type,omitempty"`               //
@@ -331,75 +331,75 @@ type Response struct {
 	Version            string  `json:"version,omitempty"`            //
 }
 
-// Snmp_v2_read is the Snmp_v2_read definition
-type Snmp_v2_read struct {
+// SNMPv2Read is the Snmp_v2_read definition
+type SNMPv2Read struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	ReadCommunity    string `json:"readCommunity,omitempty"`    //
 }
 
-// Snmp_v2_write is the Snmp_v2_write definition
-type Snmp_v2_write struct {
+// SNMPv2Write is the Snmp_v2_write definition
+type SNMPv2Write struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
 }
 
-// Snmp_v3 is the Snmp_v3 definition
-type Snmp_v3 struct {
+// SNMPv3 is the Snmp_v3 definition
+type SNMPv3 struct {
 	AuthPassword     string `json:"authPassword,omitempty"`     //
 	AuthType         string `json:"authType,omitempty"`         //
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
 	Description      string `json:"description,omitempty"`      //
-	Id               string `json:"id,omitempty"`               //
-	InstanceTenantId string `json:"instanceTenantId,omitempty"` //
-	InstanceUuid     string `json:"instanceUuid,omitempty"`     //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	PrivacyPassword  string `json:"privacyPassword,omitempty"`  //
 	PrivacyType      string `json:"privacyType,omitempty"`      //
-	SnmpMode         string `json:"snmpMode,omitempty"`         //
+	SNMPMode         string `json:"snmpMode,omitempty"`         //
 	Username         string `json:"username,omitempty"`         //
 }
 
 // UpdateDeviceCredentialsResponse is the UpdateDeviceCredentialsResponse definition
 type UpdateDeviceCredentialsResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // UpdateGlobalPoolResponse is the UpdateGlobalPoolResponse definition
 type UpdateGlobalPoolResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // UpdateNetworkResponse is the UpdateNetworkResponse definition
 type UpdateNetworkResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // UpdateSPProfileResponse is the UpdateSPProfileResponse definition
 type UpdateSPProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // Value is the Value definition
 type Value struct {
-	SlaProfileName string `json:"slaProfileName,omitempty"` //
+	SLAProfileName string `json:"slaProfileName,omitempty"` //
 	SpProfileName  string `json:"spProfileName,omitempty"`  //
 	WanProvider    string `json:"wanProvider,omitempty"`    //
 }
@@ -407,12 +407,12 @@ type Value struct {
 // AssignCredentialToSite assignCredentialToSite
 /* Assign Device Credential To Site
 @param __persistbapioutput Persist bapi sync response
-@param siteId site id to assign credential.
+@param siteID site id to assign credential.
 */
-func (s *NetworkSettingsService) AssignCredentialToSite(siteId string, assignCredentialToSiteRequest *AssignCredentialToSiteRequest) (*AssignCredentialToSiteResponse, *resty.Response, error) {
+func (s *NetworkSettingsService) AssignCredentialToSite(siteID string, assignCredentialToSiteRequest *AssignCredentialToSiteRequest) (*AssignCredentialToSiteResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/credential-to-site/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteId), -1)
+	path := "/dna/intent/api/v1/credential-to-site/{siteID}"
+	path = strings.Replace(path, "{"+"siteID"+"}", fmt.Sprintf("%v", siteID), -1)
 
 	response, err := RestyClient.R().
 		SetBody(assignCredentialToSiteRequest).
@@ -477,12 +477,12 @@ func (s *NetworkSettingsService) CreateGlobalPool(createGlobalPoolRequest *Creat
 // CreateNetwork createNetwork
 /* API to create a network for DHCP and DNS center server settings.
 @param __persistbapioutput Persist bapi sync response
-@param siteId Site id to which site details to associate with the network settings.
+@param siteID Site id to which site details to associate with the network settings.
 */
-func (s *NetworkSettingsService) CreateNetwork(siteId string, createNetworkRequest *CreateNetworkRequest) (*CreateNetworkResponse, *resty.Response, error) {
+func (s *NetworkSettingsService) CreateNetwork(siteID string, createNetworkRequest *CreateNetworkRequest) (*CreateNetworkResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/network/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteId), -1)
+	path := "/dna/intent/api/v1/network/{siteID}"
+	path = strings.Replace(path, "{"+"siteID"+"}", fmt.Sprintf("%v", siteID), -1)
 
 	response, err := RestyClient.R().
 		SetBody(createNetworkRequest).
@@ -586,12 +586,12 @@ func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*resty.R
 
 // GetDeviceCredentialDetailsQueryParams defines the query parameters for this request
 type GetDeviceCredentialDetailsQueryParams struct {
-	SiteId string `url:"siteId,omitempty"` // Site id to retrieve the credential details associated with the site.
+	SiteID string `url:"siteId,omitempty"` // Site id to retrieve the credential details associated with the site.
 }
 
 // GetDeviceCredentialDetails getDeviceCredentialDetails
 /* API to get device credential details.
-@param siteId Site id to retrieve the credential details associated with the site.
+@param siteID Site id to retrieve the credential details associated with the site.
 */
 func (s *NetworkSettingsService) GetDeviceCredentialDetails(getDeviceCredentialDetailsQueryParams *GetDeviceCredentialDetailsQueryParams) (*GetDeviceCredentialDetailsResponse, *resty.Response, error) {
 
@@ -648,12 +648,12 @@ func (s *NetworkSettingsService) GetGlobalPool(getGlobalPoolQueryParams *GetGlob
 
 // GetNetworkQueryParams defines the query parameters for this request
 type GetNetworkQueryParams struct {
-	SiteId string `url:"siteId,omitempty"` // Site id to get the network settings associated with the site.
+	SiteID string `url:"siteId,omitempty"` // Site id to get the network settings associated with the site.
 }
 
 // GetNetwork getNetwork
 /* API to get  DHCP and DNS center server details.
-@param siteId Site id to get the network settings associated with the site.
+@param siteID Site id to get the network settings associated with the site.
 */
 func (s *NetworkSettingsService) GetNetwork(getNetworkQueryParams *GetNetworkQueryParams) (*GetNetworkResponse, *resty.Response, error) {
 
@@ -744,12 +744,12 @@ func (s *NetworkSettingsService) UpdateGlobalPool(updateGlobalPoolRequest *Updat
 // UpdateNetwork updateNetwork
 /* API to update network for DHCP and DNS center server settings.
 @param __persistbapioutput Persist bapi sync response
-@param siteId Site id to update the network settings which is associated with the site
+@param siteID Site id to update the network settings which is associated with the site
 */
-func (s *NetworkSettingsService) UpdateNetwork(siteId string, updateNetworkRequest *UpdateNetworkRequest) (*UpdateNetworkResponse, *resty.Response, error) {
+func (s *NetworkSettingsService) UpdateNetwork(siteID string, updateNetworkRequest *UpdateNetworkRequest) (*UpdateNetworkResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/network/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteId), -1)
+	path := "/dna/intent/api/v1/network/{siteID}"
+	path = strings.Replace(path, "{"+"siteID"+"}", fmt.Sprintf("%v", siteID), -1)
 
 	response, err := RestyClient.R().
 		SetBody(updateNetworkRequest).

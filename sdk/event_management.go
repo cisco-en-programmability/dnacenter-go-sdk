@@ -17,13 +17,13 @@ type CreateEventSubscriptionsRequest struct {
 	Filter                Filter                  `json:"filter,omitempty"`                //
 	Name                  string                  `json:"name,omitempty"`                  //
 	SubscriptionEndpoints []SubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
-	SubscriptionId        string                  `json:"subscriptionId,omitempty"`        //
+	SubscriptionID        string                  `json:"subscriptionId,omitempty"`        //
 	Version               string                  `json:"version,omitempty"`               //
 }
 
 // Filter is the Filter definition
 type Filter struct {
-	EventIds []string `json:"eventIds,omitempty"` //
+	EventIDs []string `json:"eventIds,omitempty"` //
 }
 
 // SubscriptionDetails is the SubscriptionDetails definition
@@ -31,12 +31,12 @@ type SubscriptionDetails struct {
 	ConnectorType string `json:"connectorType,omitempty"` //
 	Method        string `json:"method,omitempty"`        //
 	Name          string `json:"name,omitempty"`          //
-	Url           string `json:"url,omitempty"`           //
+	URL           string `json:"url,omitempty"`           //
 }
 
 // SubscriptionEndpoints is the SubscriptionEndpoints definition
 type SubscriptionEndpoints struct {
-	InstanceId          string              `json:"instanceId,omitempty"`          //
+	InstanceID          string              `json:"instanceId,omitempty"`          //
 	SubscriptionDetails SubscriptionDetails `json:"subscriptionDetails,omitempty"` //
 }
 
@@ -46,7 +46,7 @@ type UpdateEventSubscriptionsRequest struct {
 	Filter                Filter                  `json:"filter,omitempty"`                //
 	Name                  string                  `json:"name,omitempty"`                  //
 	SubscriptionEndpoints []SubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
-	SubscriptionId        string                  `json:"subscriptionId,omitempty"`        //
+	SubscriptionID        string                  `json:"subscriptionId,omitempty"`        //
 	Version               string                  `json:"version,omitempty"`               //
 }
 
@@ -67,17 +67,12 @@ type CountOfNotificationsResponse struct {
 
 // CreateEventSubscriptionsResponse is the CreateEventSubscriptionsResponse definition
 type CreateEventSubscriptionsResponse struct {
-	StatusUri string `json:"statusUri,omitempty"` //
+	StatusURI string `json:"statusUri,omitempty"` //
 }
 
 // DeleteEventSubscriptionsResponse is the DeleteEventSubscriptionsResponse definition
 type DeleteEventSubscriptionsResponse struct {
-	StatusUri string `json:"statusUri,omitempty"` //
-}
-
-// Filter is the Filter definition
-type Filter struct {
-	EventIds []string `json:"eventIds,omitempty"` //
+	StatusURI string `json:"statusUri,omitempty"` //
 }
 
 // GetEventSubscriptionsResponse is the GetEventSubscriptionsResponse definition
@@ -95,7 +90,7 @@ type GetEventsResponse struct {
 	Description       string   `json:"description,omitempty"`       //
 	Details           string   `json:"details,omitempty"`           //
 	Domain            string   `json:"domain,omitempty"`            //
-	EventId           string   `json:"eventId,omitempty"`           //
+	EventID           string   `json:"eventId,omitempty"`           //
 	Name              string   `json:"name,omitempty"`              //
 	NameSpace         string   `json:"nameSpace,omitempty"`         //
 	Severity          int      `json:"severity,omitempty"`          //
@@ -113,53 +108,38 @@ type GetNotificationsResponse struct {
 	Description string `json:"description,omitempty"` //
 	Details     string `json:"details,omitempty"`     //
 	Domain      string `json:"domain,omitempty"`      //
-	EventId     string `json:"eventId,omitempty"`     //
-	InstanceId  string `json:"instanceId,omitempty"`  //
+	EventID     string `json:"eventId,omitempty"`     //
+	InstanceID  string `json:"instanceId,omitempty"`  //
 	Name        string `json:"name,omitempty"`        //
 	Namespace   string `json:"namespace,omitempty"`   //
 	Severity    int    `json:"severity,omitempty"`    //
 	Source      string `json:"source,omitempty"`      //
 	SubDomain   string `json:"subDomain,omitempty"`   //
-	TenantId    string `json:"tenantId,omitempty"`    //
+	TenantID    string `json:"tenantId,omitempty"`    //
 	Timestamp   int    `json:"timestamp,omitempty"`   //
 	Type        string `json:"type,omitempty"`        //
 }
 
 // GetStatusAPIForEventsResponse is the GetStatusAPIForEventsResponse definition
 type GetStatusAPIForEventsResponse struct {
-	ApiStatus     string `json:"apiStatus,omitempty"`     //
+	APIStatus     string `json:"apiStatus,omitempty"`     //
 	ErrorMessage  string `json:"errorMessage,omitempty"`  //
 	StatusMessage string `json:"statusMessage,omitempty"` //
 }
 
-// SubscriptionDetails is the SubscriptionDetails definition
-type SubscriptionDetails struct {
-	ConnectorType string `json:"connectorType,omitempty"` //
-	Method        string `json:"method,omitempty"`        //
-	Name          string `json:"name,omitempty"`          //
-	Url           string `json:"url,omitempty"`           //
-}
-
-// SubscriptionEndpoints is the SubscriptionEndpoints definition
-type SubscriptionEndpoints struct {
-	Id                  string              `json:"id,omitempty"`                  //
-	InstanceId          string              `json:"instanceId,omitempty"`          //
-	SubscriptionDetails SubscriptionDetails `json:"subscriptionDetails,omitempty"` //
-}
-
 // UpdateEventSubscriptionsResponse is the UpdateEventSubscriptionsResponse definition
 type UpdateEventSubscriptionsResponse struct {
-	StatusUri string `json:"statusUri,omitempty"` //
+	StatusURI string `json:"statusUri,omitempty"` //
 }
 
 // CountOfEventSubscriptionsQueryParams defines the query parameters for this request
 type CountOfEventSubscriptionsQueryParams struct {
-	EventIds string `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
+	EventIDs string `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
 }
 
 // CountOfEventSubscriptions countOfEventSubscriptions
 /* Returns the Count of EventSubscriptions
-@param eventIds List of subscriptions related to the respective eventIds
+@param eventIDs List of subscriptions related to the respective eventIds
 */
 func (s *EventManagementService) CountOfEventSubscriptions(countOfEventSubscriptionsQueryParams *CountOfEventSubscriptionsQueryParams) (*CountOfEventSubscriptionsResponse, *resty.Response, error) {
 
@@ -184,13 +164,13 @@ func (s *EventManagementService) CountOfEventSubscriptions(countOfEventSubscript
 
 // CountOfEventsQueryParams defines the query parameters for this request
 type CountOfEventsQueryParams struct {
-	EventId string `url:"eventId,omitempty"` // The registered EventId should be provided
+	EventID string `url:"eventId,omitempty"` // The registered EventId should be provided
 	Tags    string `url:"tags,omitempty"`    // The registered Tags should be provided
 }
 
 // CountOfEvents countOfEvents
-/* Get the count of registered events with provided eventIds or tags as mandatory
-@param eventId The registered EventId should be provided
+/* Get the count of registered events with provided eventIDs or tags as mandatory
+@param eventID The registered EventId should be provided
 @param tags The registered Tags should be provided
 */
 func (s *EventManagementService) CountOfEvents(countOfEventsQueryParams *CountOfEventsQueryParams) (*CountOfEventsResponse, *resty.Response, error) {
@@ -216,7 +196,7 @@ func (s *EventManagementService) CountOfEvents(countOfEventsQueryParams *CountOf
 
 // CountOfNotificationsQueryParams defines the query parameters for this request
 type CountOfNotificationsQueryParams struct {
-	EventIds  string `url:"eventIds,omitempty"`  // The registered EventIds should be provided
+	EventIDs  string `url:"eventIds,omitempty"`  // The registered EventIds should be provided
 	StartTime string `url:"startTime,omitempty"` // StartTime
 	EndTime   string `url:"endTime,omitempty"`   // endTime
 	Category  string `url:"category,omitempty"`  // category
@@ -229,7 +209,7 @@ type CountOfNotificationsQueryParams struct {
 
 // CountOfNotifications countOfNotifications
 /* Get the Count of Published Notifications
-@param eventIds The registered EventIds should be provided
+@param eventIDs The registered EventIds should be provided
 @param startTime StartTime
 @param endTime endTime
 @param category category
@@ -284,13 +264,13 @@ func (s *EventManagementService) CreateEventSubscriptions(createEventSubscriptio
 
 // DeleteEventSubscriptionsQueryParams defines the query parameters for this request
 type DeleteEventSubscriptionsQueryParams struct {
-	Subscriptions string `url:"subscriptions,omitempty"` // List of EventSubscriptionId's for removal
+	Subscriptions string `url:"subscriptions,omitempty"` // List of EventSubscriptionID's for removal
 }
 
 // DeleteEventSubscriptions deleteEventSubscriptions
 /* Delete EventSubscriptions
 @param Content-Type Content Type
-@param subscriptions List of EventSubscriptionId's for removal
+@param subscriptions List of EventSubscriptionID's for removal
 */
 func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptionsQueryParams *DeleteEventSubscriptionsQueryParams) (*resty.Response, error) {
 
@@ -313,18 +293,18 @@ func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptio
 
 // GetEventSubscriptionsQueryParams defines the query parameters for this request
 type GetEventSubscriptionsQueryParams struct {
-	EventIds string `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
-	Offset   number `url:"offset,omitempty"`   // The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit    number `url:"limit,omitempty"`    // The number of Subscriptions's to limit in the resultset whose default value 10
+	EventIDs string `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
+	Offset   int    `url:"offset,omitempty"`   // The int of Subscriptions's to offset in the resultset whose default value 0
+	Limit    int    `url:"limit,omitempty"`    // The int of Subscriptions's to limit in the resultset whose default value 10
 	SortBy   string `url:"sortBy,omitempty"`   // SortBy field name
 	Order    string `url:"order,omitempty"`    // order(asc/desc)
 }
 
 // GetEventSubscriptions getEventSubscriptions
 /* Gets the list of Subscriptions's based on provided offset and limit
-@param eventIds List of subscriptions related to the respective eventIds
-@param offset The number of Subscriptions's to offset in the resultset whose default value 0
-@param limit The number of Subscriptions's to limit in the resultset whose default value 10
+@param eventIDs List of subscriptions related to the respective eventIds
+@param offset The int of Subscriptions's to offset in the resultset whose default value 0
+@param limit The int of Subscriptions's to limit in the resultset whose default value 10
 @param sortBy SortBy field name
 @param order order(asc/desc)
 */
@@ -351,20 +331,20 @@ func (s *EventManagementService) GetEventSubscriptions(getEventSubscriptionsQuer
 
 // GetEventsQueryParams defines the query parameters for this request
 type GetEventsQueryParams struct {
-	EventId string `url:"eventId,omitempty"` // The registered EventId should be provided
+	EventID string `url:"eventId,omitempty"` // The registered EventId should be provided
 	Tags    string `url:"tags,omitempty"`    // The registered Tags should be provided
-	Offset  number `url:"offset,omitempty"`  // The number of Registries to offset in the resultset whose default value 0
-	Limit   number `url:"limit,omitempty"`   // The number of Registries to limit in the resultset whose default value 10
+	Offset  int    `url:"offset,omitempty"`  // The int of Registries to offset in the resultset whose default value 0
+	Limit   int    `url:"limit,omitempty"`   // The int of Registries to limit in the resultset whose default value 10
 	SortBy  string `url:"sortBy,omitempty"`  // SortBy field name
 	Order   string `url:"order,omitempty"`   // order(asc/desc)
 }
 
 // GetEvents getEvents
-/* Gets the list of registered Events with provided eventIds or tags as mandatory
-@param eventId The registered EventId should be provided
+/* Gets the list of registered Events with provided eventIDs or tags as mandatory
+@param eventID The registered EventId should be provided
 @param tags The registered Tags should be provided
-@param offset The number of Registries to offset in the resultset whose default value 0
-@param limit The number of Registries to limit in the resultset whose default value 10
+@param offset The int of Registries to offset in the resultset whose default value 0
+@param limit The int of Registries to limit in the resultset whose default value 10
 @param sortBy SortBy field name
 @param order order(asc/desc)
 */
@@ -391,7 +371,7 @@ func (s *EventManagementService) GetEvents(getEventsQueryParams *GetEventsQueryP
 
 // GetNotificationsQueryParams defines the query parameters for this request
 type GetNotificationsQueryParams struct {
-	EventIds  string `url:"eventIds,omitempty"`  // The registered EventIds should be provided
+	EventIDs  string `url:"eventIds,omitempty"`  // The registered EventIds should be provided
 	StartTime string `url:"startTime,omitempty"` // StartTime
 	EndTime   string `url:"endTime,omitempty"`   // endTime
 	Category  string `url:"category,omitempty"`  // category
@@ -400,15 +380,15 @@ type GetNotificationsQueryParams struct {
 	Domain    string `url:"domain,omitempty"`    // domain
 	SubDomain string `url:"subDomain,omitempty"` // subDomain
 	Source    string `url:"source,omitempty"`    // source
-	Offset    number `url:"offset,omitempty"`    // Offset whose default value 0
-	Limit     number `url:"limit,omitempty"`     // Limit whose default value 10
+	Offset    int    `url:"offset,omitempty"`    // Offset whose default value 0
+	Limit     int    `url:"limit,omitempty"`     // Limit whose default value 10
 	SortBy    string `url:"sortBy,omitempty"`    // SortBy field name
 	Order     string `url:"order,omitempty"`     // order(asc/desc)
 }
 
 // GetNotifications getNotifications
 /* Get the list of Published Notifications
-@param eventIds The registered EventIds should be provided
+@param eventIDs The registered EventIds should be provided
 @param startTime StartTime
 @param endTime endTime
 @param category category
@@ -444,13 +424,13 @@ func (s *EventManagementService) GetNotifications(getNotificationsQueryParams *G
 }
 
 // GetStatusAPIForEvents getStatusAPIForEvents
-/* Get the Status of events API calls with provided executionId as mandatory path parameter
-@param executionId Execution ID
+/* Get the Status of events API calls with provided executionID as mandatory path parameter
+@param executionID Execution ID
 */
-func (s *EventManagementService) GetStatusAPIForEvents(executionId string) (*GetStatusAPIForEventsResponse, *resty.Response, error) {
+func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*GetStatusAPIForEventsResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/event/api-status/{executionId}"
-	path = strings.Replace(path, "{"+"executionId"+"}", fmt.Sprintf("%v", executionId), -1)
+	path := "/dna/intent/api/v1/event/api-status/{executionID}"
+	path = strings.Replace(path, "{"+"executionID"+"}", fmt.Sprintf("%v", executionID), -1)
 
 	response, err := RestyClient.R().
 		SetResult(&GetStatusAPIForEventsResponse{}).

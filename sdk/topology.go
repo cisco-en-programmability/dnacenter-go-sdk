@@ -13,9 +13,9 @@ type TopologyService service
 
 // CustomParam is the CustomParam definition
 type CustomParam struct {
-	Id           string `json:"id,omitempty"`           //
+	ID           string `json:"id,omitempty"`           //
 	Label        string `json:"label,omitempty"`        //
-	ParentNodeId string `json:"parentNodeId,omitempty"` //
+	ParentNodeID string `json:"parentNodeId,omitempty"` //
 	X            int    `json:"x,omitempty"`            //
 	Y            int    `json:"y,omitempty"`            //
 }
@@ -50,79 +50,79 @@ type HealthDistirubution struct {
 	UnmonPercentage int      `json:"unmonPercentage,omitempty"` //
 }
 
-// Links is the Links definition
-type Links struct {
+// TopologyLinks is the Links definition
+type TopologyLinks struct {
 	AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
 	EndPortID            string `json:"endPortID,omitempty"`            //
-	EndPortIpv4Address   string `json:"endPortIpv4Address,omitempty"`   //
-	EndPortIpv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
+	EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
+	EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
 	EndPortName          string `json:"endPortName,omitempty"`          //
 	EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
 	GreyOut              bool   `json:"greyOut,omitempty"`              //
-	Id                   string `json:"id,omitempty"`                   //
+	ID                   string `json:"id,omitempty"`                   //
 	LinkStatus           string `json:"linkStatus,omitempty"`           //
 	Source               string `json:"source,omitempty"`               //
 	StartPortID          string `json:"startPortID,omitempty"`          //
-	StartPortIpv4Address string `json:"startPortIpv4Address,omitempty"` //
-	StartPortIpv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
+	StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
+	StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
 	StartPortName        string `json:"startPortName,omitempty"`        //
 	StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
 	Tag                  string `json:"tag,omitempty"`                  //
 	Target               string `json:"target,omitempty"`               //
 }
 
-// Nodes is the Nodes definition
-type Nodes struct {
-	AclApplied      bool        `json:"aclApplied,omitempty"`      //
+// TopologyNodes is the Nodes definition
+type TopologyNodes struct {
+	ACLApplied      bool        `json:"aclApplied,omitempty"`      //
 	AdditionalInfo  string      `json:"additionalInfo,omitempty"`  //
 	CustomParam     CustomParam `json:"customParam,omitempty"`     //
-	DataPathId      string      `json:"dataPathId,omitempty"`      //
+	DataPathID      string      `json:"dataPathId,omitempty"`      //
 	DeviceType      string      `json:"deviceType,omitempty"`      //
 	Family          string      `json:"family,omitempty"`          //
 	Fixed           bool        `json:"fixed,omitempty"`           //
 	GreyOut         bool        `json:"greyOut,omitempty"`         //
-	Id              string      `json:"id,omitempty"`              //
-	Ip              string      `json:"ip,omitempty"`              //
+	ID              string      `json:"id,omitempty"`              //
+	IP              string      `json:"ip,omitempty"`              //
 	Label           string      `json:"label,omitempty"`           //
 	NetworkType     string      `json:"networkType,omitempty"`     //
 	NodeType        string      `json:"nodeType,omitempty"`        //
 	Order           int         `json:"order,omitempty"`           //
 	OsType          string      `json:"osType,omitempty"`          //
-	PlatformId      string      `json:"platformId,omitempty"`      //
+	PlatformID      string      `json:"platformId,omitempty"`      //
 	Role            string      `json:"role,omitempty"`            //
 	RoleSource      string      `json:"roleSource,omitempty"`      //
 	SoftwareVersion string      `json:"softwareVersion,omitempty"` //
 	Tags            []string    `json:"tags,omitempty"`            //
 	UpperNode       string      `json:"upperNode,omitempty"`       //
-	UserId          string      `json:"userId,omitempty"`          //
-	VlanId          string      `json:"vlanId,omitempty"`          //
+	UserID          string      `json:"userId,omitempty"`          //
+	VlanID          string      `json:"vlanId,omitempty"`          //
 	X               int         `json:"x,omitempty"`               //
 	Y               int         `json:"y,omitempty"`               //
 }
 
-// Response is the Response definition
-type Response struct {
-	Sites []Sites `json:"sites,omitempty"` //
+// TopologyResponse is the Response definition
+type TopologyResponse struct {
+	Sites []TopologySites `json:"sites,omitempty"` //
 }
 
 // SiteResult is the SiteResult definition
 type SiteResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response TopologyResponse `json:"response,omitempty"` //
+	Version  string           `json:"version,omitempty"`  //
 }
 
-// Sites is the Sites definition
-type Sites struct {
+// TopologySites is the Sites definition
+type TopologySites struct {
 	DisplayName        string `json:"displayName,omitempty"`        //
 	GroupNameHierarchy string `json:"groupNameHierarchy,omitempty"` //
-	Id                 string `json:"id,omitempty"`                 //
+	ID                 string `json:"id,omitempty"`                 //
 	Latitude           string `json:"latitude,omitempty"`           //
 	LocationAddress    string `json:"locationAddress,omitempty"`    //
 	LocationCountry    string `json:"locationCountry,omitempty"`    //
 	LocationType       string `json:"locationType,omitempty"`       //
 	Longitude          string `json:"longitude,omitempty"`          //
 	Name               string `json:"name,omitempty"`               //
-	ParentId           string `json:"parentId,omitempty"`           //
+	ParentID           string `json:"parentId,omitempty"`           //
 }
 
 // TopologyResult is the TopologyResult definition

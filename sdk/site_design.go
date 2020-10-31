@@ -11,30 +11,15 @@ import (
 // SiteDesignService is the service to communicate with the SiteDesign API endpoint
 type SiteDesignService service
 
-// Area is the Area definition
-type Area struct {
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-}
-
 // Asav is the Asav definition
 type Asav struct {
 	Var1 string `json:"var1,omitempty"` //
 }
 
-// Building is the Building definition
-type Building struct {
-	Address    string `json:"address,omitempty"`    //
-	Latitude   int    `json:"latitude,omitempty"`   //
-	Longitude  int    `json:"longitude,omitempty"`  //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-}
-
 // CreateNFVProfileRequest is the CreateNFVProfileRequest definition
 type CreateNFVProfileRequest struct {
-	Device      []Device `json:"device,omitempty"`      //
-	ProfileName string   `json:"profileName,omitempty"` //
+	Device      []SiteDesignDevice `json:"device,omitempty"`      //
+	ProfileName string             `json:"profileName,omitempty"` //
 }
 
 // CustomNetworks is the CustomNetworks definition
@@ -42,17 +27,17 @@ type CustomNetworks struct {
 	ConnectionType    string              `json:"connectionType,omitempty"`    //
 	NetworkName       string              `json:"networkName,omitempty"`       //
 	ServicesToConnect []ServicesToConnect `json:"servicesToConnect,omitempty"` //
-	VlanId            int                 `json:"vlanId,omitempty"`            //
+	VlanID            int                 `json:"vlanId,omitempty"`            //
 	VlanMode          string              `json:"vlanMode,omitempty"`          //
 }
 
 // CustomServices is the CustomServices definition
 type CustomServices struct {
-	ApplicationType string   `json:"applicationType,omitempty"` //
-	ImageName       string   `json:"imageName,omitempty"`       //
-	Name            string   `json:"name,omitempty"`            //
-	Profile         string   `json:"profile,omitempty"`         //
-	Topology        Topology `json:"topology,omitempty"`        //
+	ApplicationType string             `json:"applicationType,omitempty"` //
+	ImageName       string             `json:"imageName,omitempty"`       //
+	Name            string             `json:"name,omitempty"`            //
+	Profile         string             `json:"profile,omitempty"`         //
+	Topology        SiteDesignTopology `json:"topology,omitempty"`        //
 }
 
 // CustomTemplate is the CustomTemplate definition
@@ -62,8 +47,8 @@ type CustomTemplate struct {
 	TemplateType string `json:"templateType,omitempty"` //
 }
 
-// Device is the Device definition
-type Device struct {
+// SiteDesignDevice is the Device definition
+type SiteDesignDevice struct {
 	CurrentDeviceTag                string           `json:"currentDeviceTag,omitempty"`                //
 	CustomNetworks                  []CustomNetworks `json:"customNetworks,omitempty"`                  //
 	CustomTemplate                  []CustomTemplate `json:"customTemplate,omitempty"`                  //
@@ -73,19 +58,9 @@ type Device struct {
 	VlanForL2                       []VlanForL2      `json:"vlanForL2,omitempty"`                       //
 }
 
-// Floor is the Floor definition
-type Floor struct {
-	Height     int    `json:"height,omitempty"`     //
-	Length     int    `json:"length,omitempty"`     //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-	RfModel    string `json:"rfModel,omitempty"`    //
-	Width      int    `json:"width,omitempty"`      //
-}
-
 // NFVProvisioningDetailRequest is the NFVProvisioningDetailRequest definition
 type NFVProvisioningDetailRequest struct {
-	DeviceIp string `json:"device_ip,omitempty"` //
+	DeviceIP string `json:"device_ip,omitempty"` //
 }
 
 // Nfvis is the Nfvis definition
@@ -101,8 +76,8 @@ type ProvisionNFVRequest struct {
 
 // Provisioning is the Provisioning definition
 type Provisioning struct {
-	Device []Device `json:"device,omitempty"` //
-	Site   Site     `json:"site,omitempty"`   //
+	Device []Device       `json:"device,omitempty"` //
+	Site   SiteDesignSite `json:"site,omitempty"`   //
 }
 
 // ServiceProviderProfile is the ServiceProviderProfile definition
@@ -136,8 +111,8 @@ type ServicesToConnect struct {
 	ServiceName string `json:"serviceName,omitempty"` //
 }
 
-// Site is the Site definition
-type Site struct {
+// SiteDesignSite is the Site definition
+type SiteDesignSite struct {
 	Area            Area     `json:"area,omitempty"`            //
 	Building        Building `json:"building,omitempty"`        //
 	Floor           Floor    `json:"floor,omitempty"`           //
@@ -153,7 +128,7 @@ type SiteProfile struct {
 // SubPools is the SubPools definition
 type SubPools struct {
 	Gateway        string `json:"gateway,omitempty"`        //
-	IpSubnet       string `json:"ipSubnet,omitempty"`       //
+	IPSubnet       string `json:"ipSubnet,omitempty"`       //
 	Name           string `json:"name,omitempty"`           //
 	ParentPoolName string `json:"parentPoolName,omitempty"` //
 	Type           string `json:"type,omitempty"`           //
@@ -165,9 +140,9 @@ type TemplateParam struct {
 	Nfvis Nfvis `json:"nfvis,omitempty"` //
 }
 
-// Topology is the Topology definition
-type Topology struct {
-	AssignIp string `json:"assignIp,omitempty"` //
+// SiteDesignTopology is the Topology definition
+type SiteDesignTopology struct {
+	AssignIP string `json:"assignIp,omitempty"` //
 	Name     string `json:"name,omitempty"`     //
 	Type     string `json:"type,omitempty"`     //
 }
@@ -179,20 +154,20 @@ type UpdateNFVProfileRequest struct {
 
 // VNicMapping is the VNicMapping definition
 type VNicMapping struct {
-	AssignIpAddressToNetwork string `json:"assignIpAddressToNetwork,omitempty"` //
+	AssignIPAddressToNetwork string `json:"assignIpAddressToNetwork,omitempty"` //
 	NetworkType              string `json:"networkType,omitempty"`              //
 }
 
 // Vlan is the Vlan definition
 type Vlan struct {
-	Id   string `json:"id,omitempty"`   //
+	ID   string `json:"id,omitempty"`   //
 	Type string `json:"type,omitempty"` //
 }
 
 // VlanForL2 is the VlanForL2 definition
 type VlanForL2 struct {
 	VlanDescription string `json:"vlanDescription,omitempty"` //
-	VlanId          int    `json:"vlanId,omitempty"`          //
+	VlanID          int    `json:"vlanId,omitempty"`          //
 	VlanType        string `json:"vlanType,omitempty"`        //
 }
 
@@ -201,43 +176,15 @@ type WanInterface struct {
 	Bandwidth     string `json:"bandwidth,omitempty"`     //
 	Gateway       string `json:"gateway,omitempty"`       //
 	InterfaceName string `json:"interfaceName,omitempty"` //
-	IpAddress     string `json:"ipAddress,omitempty"`     //
+	IPAddress     string `json:"ipAddress,omitempty"`     //
 	Subnetmask    string `json:"subnetmask,omitempty"`    //
 }
 
 // CreateNFVProfileResponse is the CreateNFVProfileResponse definition
 type CreateNFVProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
-}
-
-// CustomNetworks is the CustomNetworks definition
-type CustomNetworks struct {
-	ConnectionType    string              `json:"connectionType,omitempty"`    //
-	NetworkName       string              `json:"networkName,omitempty"`       //
-	ServicesToConnect []ServicesToConnect `json:"servicesToConnect,omitempty"` //
-	VlanId            string              `json:"vlanId,omitempty"`            //
-	VlanMode          string              `json:"vlanMode,omitempty"`          //
-}
-
-// CustomTemplate is the CustomTemplate definition
-type CustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   //
-	Template     string `json:"template,omitempty"`     //
-	TemplateType string `json:"templateType,omitempty"` //
-}
-
-// Device is the Device definition
-type Device struct {
-	CustomNetworks                  []CustomNetworks         `json:"customNetworks,omitempty"`                  //
-	CustomTemplate                  []CustomTemplate         `json:"customTemplate,omitempty"`                  //
-	DeviceTag                       string                   `json:"deviceTag,omitempty"`                       //
-	DeviceType                      string                   `json:"deviceType,omitempty"`                      //
-	DirectInternetAccessForFirewall bool                     `json:"directInternetAccessForFirewall,omitempty"` //
-	ServiceProviderProfile          []ServiceProviderProfile `json:"serviceProviderProfile,omitempty"`          //
-	Services                        []Services               `json:"services,omitempty"`                        //
-	VlanForL2                       []VlanForL2              `json:"vlanForL2,omitempty"`                       //
 }
 
 // GetDeviceDetailsByIPResponse is the GetDeviceDetailsByIPResponse definition
@@ -247,13 +194,13 @@ type GetDeviceDetailsByIPResponse struct {
 
 // GetNFVProfileResponse is the GetNFVProfileResponse definition
 type GetNFVProfileResponse struct {
-	Response []Response `json:"response,omitempty"` //
+	Response []NFVProfileResponse `json:"response,omitempty"` //
 }
 
 // NFVProvisioningDetailResponse is the NFVProvisioningDetailResponse definition
 type NFVProvisioningDetailResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
@@ -271,39 +218,16 @@ type ProvisionDetails struct {
 
 // ProvisionNFVResponse is the ProvisionNFVResponse definition
 type ProvisionNFVResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// Response is the Response definition
-type Response struct {
+// NFVProfileResponse is the Response definition
+type NFVProfileResponse struct {
 	Device      []Device `json:"device,omitempty"`      //
-	Id          string   `json:"id,omitempty"`          //
+	ID          string   `json:"id,omitempty"`          //
 	ProfileName string   `json:"profileName,omitempty"` //
-}
-
-// ServiceProviderProfile is the ServiceProviderProfile definition
-type ServiceProviderProfile struct {
-	Connect                    bool   `json:"connect,omitempty"`                    //
-	ConnectDefaultGatewayOnWan bool   `json:"connectDefaultGatewayOnWan,omitempty"` //
-	LinkType                   string `json:"linkType,omitempty"`                   //
-	ServiceProvider            string `json:"serviceProvider,omitempty"`            //
-}
-
-// Services is the Services definition
-type Services struct {
-	FirewallMode string        `json:"firewallMode,omitempty"` //
-	ImageName    string        `json:"imageName,omitempty"`    //
-	ProfileType  string        `json:"profileType,omitempty"`  //
-	ServiceName  string        `json:"serviceName,omitempty"`  //
-	ServiceType  string        `json:"serviceType,omitempty"`  //
-	VNicMapping  []VNicMapping `json:"vNicMapping,omitempty"`  //
-}
-
-// ServicesToConnect is the ServicesToConnect definition
-type ServicesToConnect struct {
-	ServiceName string `json:"serviceName,omitempty"` //
 }
 
 // TaskNodes is the TaskNodes definition
@@ -326,22 +250,9 @@ type TaskNodes struct {
 
 // UpdateNFVProfileResponse is the UpdateNFVProfileResponse definition
 type UpdateNFVProfileResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
-}
-
-// VNicMapping is the VNicMapping definition
-type VNicMapping struct {
-	AssignIpAddressToNetwork bool   `json:"assignIpAddressToNetwork,omitempty"` //
-	NetworkType              string `json:"networkType,omitempty"`              //
-}
-
-// VlanForL2 is the VlanForL2 definition
-type VlanForL2 struct {
-	VlanDescription string `json:"vlanDescription,omitempty"` //
-	VlanId          string `json:"vlanId,omitempty"`          //
-	VlanType        string `json:"vlanType,omitempty"`        //
 }
 
 // CreateNFVProfile createNFVProfile
@@ -368,12 +279,12 @@ func (s *SiteDesignService) CreateNFVProfile(createNFVProfileRequest *CreateNFVP
 
 // GetDeviceDetailsByIPQueryParams defines the query parameters for this request
 type GetDeviceDetailsByIPQueryParams struct {
-	DeviceIp string `url:"deviceIp,omitempty"` // Device to which the provisioning detail has to be retrieved
+	DeviceIP string `url:"deviceIp,omitempty"` // Device to which the provisioning detail has to be retrieved
 }
 
 // GetDeviceDetailsByIP getDeviceDetailsByIP
 /* Returns provisioning device information for the specified IP address.
-@param deviceIp Device to which the provisioning detail has to be retrieved
+@param deviceIP Device to which the provisioning detail has to be retrieved
 */
 func (s *SiteDesignService) GetDeviceDetailsByIP(getDeviceDetailsByIPQueryParams *GetDeviceDetailsByIPQueryParams) (*GetDeviceDetailsByIPResponse, *resty.Response, error) {
 
@@ -489,7 +400,7 @@ type UpdateNFVProfileQueryParams struct {
 
 // UpdateNFVProfile updateNFVProfile
 /* API to update a NFV Network profile
-@param id Id of the NFV profile to be updated
+@param id ID of the NFV profile to be updated
 @param name Name of the profile to be updated
 */
 func (s *SiteDesignService) UpdateNFVProfile(id string, updateNFVProfileQueryParams *UpdateNFVProfileQueryParams, updateNFVProfileRequest *UpdateNFVProfileRequest) (*UpdateNFVProfileResponse, *resty.Response, error) {

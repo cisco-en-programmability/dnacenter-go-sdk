@@ -1,9 +1,6 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -25,8 +22,8 @@ type GetFailedITSMEventsResponse struct {
 	Description    string         `json:"description,omitempty"`    //
 	Domain         string         `json:"domain,omitempty"`         //
 	EnrichmentInfo EnrichmentInfo `json:"enrichmentInfo,omitempty"` //
-	EventId        string         `json:"eventId,omitempty"`        //
-	InstanceId     string         `json:"instanceId,omitempty"`     //
+	EventID        string         `json:"eventId,omitempty"`        //
+	InstanceID     string         `json:"instanceId,omitempty"`     //
 	Name           string         `json:"name,omitempty"`           //
 	Severity       string         `json:"severity,omitempty"`       //
 	Source         string         `json:"source,omitempty"`         //
@@ -37,19 +34,19 @@ type GetFailedITSMEventsResponse struct {
 
 // RetryIntegrationEventsResponse is the RetryIntegrationEventsResponse definition
 type RetryIntegrationEventsResponse struct {
-	ExecutionId        string `json:"executionId,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
 // GetFailedITSMEventsQueryParams defines the query parameters for this request
 type GetFailedITSMEventsQueryParams struct {
-	InstanceId string `url:"instanceId,omitempty"` // Instance Id of the failed event as in the Runtime Dashboard
+	InstanceID string `url:"instanceId,omitempty"` // Instance Id of the failed event as in the Runtime Dashboard
 }
 
 // GetFailedITSMEvents getFailedITSMEvents
 /* Used to retrieve the list of integration events that failed to create tickets in ITSM
-@param instanceId Instance Id of the failed event as in the Runtime Dashboard
+@param instanceID Instance Id of the failed event as in the Runtime Dashboard
 */
 func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFailedITSMEventsQueryParams) (*GetFailedITSMEventsResponse, *resty.Response, error) {
 
@@ -73,23 +70,23 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 }
 
 // RetryIntegrationEvents retryIntegrationEvents
-/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
+/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance ID is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
  */
-func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
+// func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/integration/events"
+// 	path := "/dna/intent/api/v1/integration/events"
 
-	response, err := RestyClient.R().
-		SetBody(retryIntegrationEventsRequest).
-		SetResult(&RetryIntegrationEventsResponse{}).
-		SetError(&Error{}).
-		Post(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(retryIntegrationEventsRequest).
+// 		SetResult(&RetryIntegrationEventsResponse{}).
+// 		SetError(&Error{}).
+// 		Post(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*RetryIntegrationEventsResponse)
-	return result, response, err
+// 	result := response.Result().(*RetryIntegrationEventsResponse)
+// 	return result, response, err
 
-}
+// }

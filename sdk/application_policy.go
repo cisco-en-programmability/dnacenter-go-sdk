@@ -1,9 +1,6 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -13,7 +10,7 @@ type ApplicationPolicyService service
 
 // ApplicationSet is the ApplicationSet definition
 type ApplicationSet struct {
-	IdRef string `json:"idRef,omitempty"` //
+	IDRef string `json:"idRef,omitempty"` //
 }
 
 // CreateApplicationRequest is the CreateApplicationRequest definition
@@ -21,7 +18,7 @@ type CreateApplicationRequest struct {
 	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
 	Name                string                `json:"name,omitempty"`                //
 	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIdentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
 }
 
 // CreateApplicationSetRequest is the CreateApplicationSetRequest definition
@@ -32,10 +29,10 @@ type CreateApplicationSetRequest struct {
 // EditApplicationRequest is the EditApplicationRequest definition
 type EditApplicationRequest struct {
 	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
-	Id                  string                `json:"id,omitempty"`                  //
+	ID                  string                `json:"id,omitempty"`                  //
 	Name                string                `json:"name,omitempty"`                //
 	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIdentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
 }
 
 // NetworkApplications is the NetworkApplications definition
@@ -43,12 +40,12 @@ type NetworkApplications struct {
 	AppProtocol        string `json:"appProtocol,omitempty"`        //
 	ApplicationSubType string `json:"applicationSubType,omitempty"` //
 	ApplicationType    string `json:"applicationType,omitempty"`    //
-	CategoryId         string `json:"categoryId,omitempty"`         //
+	CategoryID         string `json:"categoryId,omitempty"`         //
 	DisplayName        string `json:"displayName,omitempty"`        //
 	Dscp               string `json:"dscp,omitempty"`               //
-	EngineId           string `json:"engineId,omitempty"`           //
+	EngineID           string `json:"engineId,omitempty"`           //
 	HelpString         string `json:"helpString,omitempty"`         //
-	Id                 string `json:"id,omitempty"`                 //
+	ID                 string `json:"id,omitempty"`                 //
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
 	LongDescription    string `json:"longDescription,omitempty"`    //
 	Name               string `json:"name,omitempty"`               //
@@ -56,22 +53,17 @@ type NetworkApplications struct {
 	Rank               string `json:"rank,omitempty"`               //
 	ServerName         string `json:"serverName,omitempty"`         //
 	TrafficClass       string `json:"trafficClass,omitempty"`       //
-	Url                string `json:"url,omitempty"`                //
+	URL                string `json:"url,omitempty"`                //
 }
 
 // NetworkIdentity is the NetworkIdentity definition
 type NetworkIdentity struct {
 	DisplayName string `json:"displayName,omitempty"` //
-	Id          string `json:"id,omitempty"`          //
+	ID          string `json:"id,omitempty"`          //
 	LowerPort   string `json:"lowerPort,omitempty"`   //
 	Ports       string `json:"ports,omitempty"`       //
 	Protocol    string `json:"protocol,omitempty"`    //
 	UpperPort   string `json:"upperPort,omitempty"`   //
-}
-
-// ApplicationSet is the ApplicationSet definition
-type ApplicationSet struct {
-	IdRef string `json:"idRef,omitempty"` //
 }
 
 // CreateApplicationResponse is the CreateApplicationResponse definition
@@ -124,53 +116,22 @@ type GetApplicationsCountResponse struct {
 // GetApplicationsResponse is the GetApplicationsResponse definition
 type GetApplicationsResponse struct {
 	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
-	Id                  string                `json:"id,omitempty"`                  //
+	ID                  string                `json:"id,omitempty"`                  //
 	Name                string                `json:"name,omitempty"`                //
 	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIdentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
 }
 
-// IdentitySource is the IdentitySource definition
-type IdentitySource struct {
-	Id   string `json:"id,omitempty"`   //
+// IDentitySource is the IdentitySource definition
+type IDentitySource struct {
+	ID   string `json:"id,omitempty"`   //
 	Type string `json:"type,omitempty"` //
-}
-
-// NetworkApplications is the NetworkApplications definition
-type NetworkApplications struct {
-	AppProtocol        string `json:"appProtocol,omitempty"`        //
-	ApplicationSubType string `json:"applicationSubType,omitempty"` //
-	ApplicationType    string `json:"applicationType,omitempty"`    //
-	CategoryId         string `json:"categoryId,omitempty"`         //
-	DisplayName        string `json:"displayName,omitempty"`        //
-	Dscp               string `json:"dscp,omitempty"`               //
-	EngineId           string `json:"engineId,omitempty"`           //
-	HelpString         string `json:"helpString,omitempty"`         //
-	Id                 string `json:"id,omitempty"`                 //
-	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
-	LongDescription    string `json:"longDescription,omitempty"`    //
-	Name               string `json:"name,omitempty"`               //
-	Popularity         string `json:"popularity,omitempty"`         //
-	Rank               string `json:"rank,omitempty"`               //
-	ServerName         string `json:"serverName,omitempty"`         //
-	TrafficClass       string `json:"trafficClass,omitempty"`       //
-	Url                string `json:"url,omitempty"`                //
-}
-
-// NetworkIdentity is the NetworkIdentity definition
-type NetworkIdentity struct {
-	DisplayName string `json:"displayName,omitempty"` //
-	Id          string `json:"id,omitempty"`          //
-	LowerPort   string `json:"lowerPort,omitempty"`   //
-	Ports       string `json:"ports,omitempty"`       //
-	Protocol    string `json:"protocol,omitempty"`    //
-	UpperPort   string `json:"upperPort,omitempty"`   //
 }
 
 // Response is the Response definition
 type Response struct {
-	TaskId string `json:"taskId,omitempty"` //
-	Url    string `json:"url,omitempty"`    //
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // CreateApplication createApplication
@@ -219,12 +180,12 @@ func (s *ApplicationPolicyService) CreateApplicationSet(createApplicationSetRequ
 
 // DeleteApplicationQueryParams defines the query parameters for this request
 type DeleteApplicationQueryParams struct {
-	Id string `url:"id,omitempty"` // Application's Id
+	ID string `url:"id,omitempty"` // Application's Id
 }
 
 // DeleteApplication deleteApplication
 /* Delete existing application by its id
-@param id Application's Id
+@param id Application's ID
 */
 func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParams *DeleteApplicationQueryParams) (*resty.Response, error) {
 
@@ -247,7 +208,7 @@ func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParam
 
 // DeleteApplicationSetQueryParams defines the query parameters for this request
 type DeleteApplicationSetQueryParams struct {
-	Id string `url:"id,omitempty"` //
+	ID string `url:"id,omitempty"` //
 }
 
 // DeleteApplicationSet deleteApplicationSet
@@ -297,8 +258,8 @@ func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *EditA
 
 // GetApplicationSetsQueryParams defines the query parameters for this request
 type GetApplicationSetsQueryParams struct {
-	Offset number `url:"offset,omitempty"` //
-	Limit  number `url:"limit,omitempty"`  //
+	Offset int    `url:"offset,omitempty"` //
+	Limit  int    `url:"limit,omitempty"`  //
 	Name   string `url:"name,omitempty"`   //
 }
 
@@ -330,7 +291,7 @@ func (s *ApplicationPolicyService) GetApplicationSets(getApplicationSetsQueryPar
 }
 
 // GetApplicationSetsCount getApplicationSetsCount
-/* Get the number of existing application-sets
+/* Get the int of existing application-sets
  */
 func (s *ApplicationPolicyService) GetApplicationSetsCount() (*GetApplicationSetsCountResponse, *resty.Response, error) {
 
@@ -352,15 +313,15 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*GetApplicationSet
 
 // GetApplicationsQueryParams defines the query parameters for this request
 type GetApplicationsQueryParams struct {
-	Offset number `url:"offset,omitempty"` // The offset of the first application to be returned
-	Limit  number `url:"limit,omitempty"`  // The maximum number of applications to be returned
+	Offset int    `url:"offset,omitempty"` // The offset of the first application to be returned
+	Limit  int    `url:"limit,omitempty"`  // The maximum int of applications to be returned
 	Name   string `url:"name,omitempty"`   // Application's name
 }
 
 // GetApplications getApplications
 /* Get applications by offset/limit or by name
 @param offset The offset of the first application to be returned
-@param limit The maximum number of applications to be returned
+@param limit The maximum int of applications to be returned
 @param name Application's name
 */
 func (s *ApplicationPolicyService) GetApplications(getApplicationsQueryParams *GetApplicationsQueryParams) (*GetApplicationsResponse, *resty.Response, error) {
@@ -385,7 +346,7 @@ func (s *ApplicationPolicyService) GetApplications(getApplicationsQueryParams *G
 }
 
 // GetApplicationsCount getApplicationsCount
-/* Get the number of all existing applications
+/* Get the int of all existing applications
  */
 func (s *ApplicationPolicyService) GetApplicationsCount() (*GetApplicationsCountResponse, *resty.Response, error) {
 

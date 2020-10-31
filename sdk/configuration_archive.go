@@ -1,11 +1,7 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 // ConfigurationArchiveService is the service to communicate with the ConfigurationArchive API endpoint
@@ -24,7 +20,7 @@ func (s *ConfigurationArchiveService) ExportDeviceConfigurations() (*resty.Respo
 		Post(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	return response, err

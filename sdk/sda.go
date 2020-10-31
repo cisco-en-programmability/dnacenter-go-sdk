@@ -1,9 +1,6 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -13,7 +10,7 @@ type SDAService service
 
 // AddControlPlaneDeviceInSDAFabricRequest is the AddControlPlaneDeviceInSDAFabricRequest definition
 type AddControlPlaneDeviceInSDAFabricRequest struct {
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 }
 
@@ -25,7 +22,7 @@ type AddDefaultAuthenticationProfileInSDAFabricRequest struct {
 
 // AddEdgeDeviceInSDAFabricRequest is the AddEdgeDeviceInSDAFabricRequest definition
 type AddEdgeDeviceInSDAFabricRequest struct {
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 }
 
@@ -37,7 +34,7 @@ type AddFabricRequest struct {
 // AddIPPoolInSDAVirtualNetworkRequest is the AddIPPoolInSDAVirtualNetworkRequest definition
 type AddIPPoolInSDAVirtualNetworkRequest struct {
 	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` //
-	IpPoolName               string `json:"ipPoolName,omitempty"`               //
+	IPPoolName               string `json:"ipPoolName,omitempty"`               //
 	IsL2FloodingEnabled      bool   `json:"isL2FloodingEnabled,omitempty"`      //
 	IsThisCriticalPool       bool   `json:"isThisCriticalPool,omitempty"`       //
 	PoolType                 string `json:"poolType,omitempty"`                 //
@@ -49,21 +46,21 @@ type AddIPPoolInSDAVirtualNetworkRequest struct {
 // AddPortAssignmentForAccessPointInSDAFabricRequest is the AddPortAssignmentForAccessPointInSDAFabricRequest definition
 type AddPortAssignmentForAccessPointInSDAFabricRequest struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // AddPortAssignmentForUserDeviceInSDAFabricRequest is the AddPortAssignmentForUserDeviceInSDAFabricRequest definition
 type AddPortAssignmentForUserDeviceInSDAFabricRequest struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // AddSiteInSDAFabricRequest is the AddSiteInSDAFabricRequest definition
@@ -82,8 +79,8 @@ type AddVNInSDAFabricRequest struct {
 type AddsBorderDeviceInSDAFabricRequest struct {
 	BorderSessionType                 string                         `json:"borderSessionType,omitempty"`                 //
 	ConnectedToInternet               bool                           `json:"connectedToInternet,omitempty"`               //
-	DeviceManagementIpAddress         string                         `json:"deviceManagementIpAddress,omitempty"`         //
-	ExternalConnectivityIpPoolName    string                         `json:"externalConnectivityIpPoolName,omitempty"`    //
+	DeviceManagementIPAddress         string                         `json:"deviceManagementIpAddress,omitempty"`         //
+	ExternalConnectivityIPPoolName    string                         `json:"externalConnectivityIpPoolName,omitempty"`    //
 	ExternalConnectivitySettings      []ExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      //
 	ExternalDomainRoutingProtocolName string                         `json:"externalDomainRoutingProtocolName,omitempty"` //
 	InternalAutonomouSystemNumber     string                         `json:"internalAutonomouSystemNumber,omitempty"`     //
@@ -99,7 +96,7 @@ type DeleteDefaultAuthenticationProfileFromSDAFabricRequest struct {
 // DeleteIPPoolFromSDAVirtualNetworkRequest is the DeleteIPPoolFromSDAVirtualNetworkRequest definition
 type DeleteIPPoolFromSDAVirtualNetworkRequest struct {
 	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` //
-	IpPoolName               string `json:"ipPoolName,omitempty"`               //
+	IPPoolName               string `json:"ipPoolName,omitempty"`               //
 	IsL2FloodingEnabled      bool   `json:"isL2FloodingEnabled,omitempty"`      //
 	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        //
 	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        //
@@ -110,34 +107,34 @@ type DeleteIPPoolFromSDAVirtualNetworkRequest struct {
 // DeletePortAssignmentForAccessPointInSDAFabricRequest is the DeletePortAssignmentForAccessPointInSDAFabricRequest definition
 type DeletePortAssignmentForAccessPointInSDAFabricRequest struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // DeletePortAssignmentForUserDeviceInSDAFabricRequest is the DeletePortAssignmentForUserDeviceInSDAFabricRequest definition
 type DeletePortAssignmentForUserDeviceInSDAFabricRequest struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // DeleteSDAFabricRequest is the DeleteSDAFabricRequest definition
 type DeleteSDAFabricRequest struct {
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 }
 
 // DeleteSiteFromSDAFabricRequest is the DeleteSiteFromSDAFabricRequest definition
 type DeleteSiteFromSDAFabricRequest struct {
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 }
 
@@ -146,11 +143,6 @@ type ExternalConnectivitySettings struct {
 	ExternalAutonomouSystemNumber string      `json:"externalAutonomouSystemNumber,omitempty"` //
 	InterfaceName                 string      `json:"interfaceName,omitempty"`                 //
 	L3Handoff                     []L3Handoff `json:"l3Handoff,omitempty"`                     //
-}
-
-// L3Handoff is the L3Handoff definition
-type L3Handoff struct {
-	VirtualNetwork VirtualNetwork `json:"virtualNetwork,omitempty"` //
 }
 
 // UpdateDefaultAuthenticationProfileInSDAFabricRequest is the UpdateDefaultAuthenticationProfileInSDAFabricRequest definition
@@ -167,63 +159,63 @@ type VirtualNetwork struct {
 // AddControlPlaneDeviceInSDAFabricResponse is the AddControlPlaneDeviceInSDAFabricResponse definition
 type AddControlPlaneDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddDefaultAuthenticationProfileInSDAFabricResponse is the AddDefaultAuthenticationProfileInSDAFabricResponse definition
 type AddDefaultAuthenticationProfileInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddEdgeDeviceInSDAFabricResponse is the AddEdgeDeviceInSDAFabricResponse definition
 type AddEdgeDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddFabricResponse is the AddFabricResponse definition
 type AddFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddIPPoolInSDAVirtualNetworkResponse is the AddIPPoolInSDAVirtualNetworkResponse definition
 type AddIPPoolInSDAVirtualNetworkResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddPortAssignmentForAccessPointInSDAFabricResponse is the AddPortAssignmentForAccessPointInSDAFabricResponse definition
 type AddPortAssignmentForAccessPointInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddPortAssignmentForUserDeviceInSDAFabricResponse is the AddPortAssignmentForUserDeviceInSDAFabricResponse definition
 type AddPortAssignmentForUserDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddSiteInSDAFabricResponse is the AddSiteInSDAFabricResponse definition
 type AddSiteInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // AddVNInSDAFabricResponse is the AddVNInSDAFabricResponse definition
 type AddVNInSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -233,70 +225,70 @@ type AddVNInSDAFabricResponse struct {
 // AddsBorderDeviceInSDAFabricResponse is the AddsBorderDeviceInSDAFabricResponse definition
 type AddsBorderDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteControlPlaneDeviceInSDAFabricResponse is the DeleteControlPlaneDeviceInSDAFabricResponse definition
 type DeleteControlPlaneDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteDefaultAuthenticationProfileFromSDAFabricResponse is the DeleteDefaultAuthenticationProfileFromSDAFabricResponse definition
 type DeleteDefaultAuthenticationProfileFromSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteEdgeDeviceFromSDAFabricResponse is the DeleteEdgeDeviceFromSDAFabricResponse definition
 type DeleteEdgeDeviceFromSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteIPPoolFromSDAVirtualNetworkResponse is the DeleteIPPoolFromSDAVirtualNetworkResponse definition
 type DeleteIPPoolFromSDAVirtualNetworkResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeletePortAssignmentForAccessPointInSDAFabricResponse is the DeletePortAssignmentForAccessPointInSDAFabricResponse definition
 type DeletePortAssignmentForAccessPointInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeletePortAssignmentForUserDeviceInSDAFabricResponse is the DeletePortAssignmentForUserDeviceInSDAFabricResponse definition
 type DeletePortAssignmentForUserDeviceInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteSDAFabricResponse is the DeleteSDAFabricResponse definition
 type DeleteSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteSiteFromSDAFabricResponse is the DeleteSiteFromSDAFabricResponse definition
 type DeleteSiteFromSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeleteVNFromSDAFabricResponse is the DeleteVNFromSDAFabricResponse definition
 type DeleteVNFromSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -306,23 +298,23 @@ type DeleteVNFromSDAFabricResponse struct {
 // DeletesBorderDeviceFromSDAFabricResponse is the DeletesBorderDeviceFromSDAFabricResponse definition
 type DeletesBorderDeviceFromSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // DeviceSettings is the DeviceSettings definition
 type DeviceSettings struct {
 	ConnectedTo                   []string                  `json:"connectedTo,omitempty"`                   //
-	Cpu                           int                       `json:"cpu,omitempty"`                           //
+	CPU                           int                       `json:"cpu,omitempty"`                           //
 	DeployPending                 string                    `json:"deployPending,omitempty"`                 //
 	DhcpEnabled                   bool                      `json:"dhcpEnabled,omitempty"`                   //
 	DisplayName                   string                    `json:"displayName,omitempty"`                   //
 	ExtConnectivitySettings       []ExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
-	ExternalConnectivityIpPool    string                    `json:"externalConnectivityIpPool,omitempty"`    //
+	ExternalConnectivityIPPool    string                    `json:"externalConnectivityIpPool,omitempty"`    //
 	ExternalDomainRoutingProtocol string                    `json:"externalDomainRoutingProtocol,omitempty"` //
-	Id                            string                    `json:"id,omitempty"`                            //
-	InstanceId                    int                       `json:"instanceId,omitempty"`                    //
-	InstanceTenantId              string                    `json:"instanceTenantId,omitempty"`              //
+	ID                            string                    `json:"id,omitempty"`                            //
+	InstanceID                    int                       `json:"instanceId,omitempty"`                    //
+	InstanceTenantID              string                    `json:"instanceTenantId,omitempty"`              //
 	InstanceVersion               int                       `json:"instanceVersion,omitempty"`               //
 	InternalDomainProtocolNumber  string                    `json:"internalDomainProtocolNumber,omitempty"`  //
 	Memory                        int                       `json:"memory,omitempty"`                        //
@@ -332,15 +324,15 @@ type DeviceSettings struct {
 
 // Dhcp is the Dhcp definition
 type Dhcp struct {
-	Id        string    `json:"id,omitempty"`        //
-	IpAddress IpAddress `json:"ipAddress,omitempty"` //
+	ID        string    `json:"id,omitempty"`        //
+	IPAddress IPAddress `json:"ipAddress,omitempty"` //
 }
 
-// Dns is the Dns definition
-type Dns struct {
+// DNS is the Dns definition
+type DNS struct {
 	DomainName string `json:"domainName,omitempty"` //
-	Id         string `json:"id,omitempty"`         //
-	Ip         Ip     `json:"ip,omitempty"`         //
+	ID         string `json:"id,omitempty"`         //
+	IP         IP     `json:"ip,omitempty"`         //
 }
 
 // ExtConnectivitySettings is the ExtConnectivitySettings definition
@@ -348,11 +340,11 @@ type ExtConnectivitySettings struct {
 	DeployPending                string      `json:"deployPending,omitempty"`                //
 	DisplayName                  string      `json:"displayName,omitempty"`                  //
 	ExternalDomainProtocolNumber string      `json:"externalDomainProtocolNumber,omitempty"` //
-	Id                           string      `json:"id,omitempty"`                           //
-	InstanceId                   int         `json:"instanceId,omitempty"`                   //
-	InstanceTenantId             string      `json:"instanceTenantId,omitempty"`             //
+	ID                           string      `json:"id,omitempty"`                           //
+	InstanceID                   int         `json:"instanceId,omitempty"`                   //
+	InstanceTenantID             string      `json:"instanceTenantId,omitempty"`             //
 	InstanceVersion              int         `json:"instanceVersion,omitempty"`              //
-	InterfaceUuid                string      `json:"interfaceUuid,omitempty"`                //
+	InterfaceUUID                string      `json:"interfaceUuid,omitempty"`                //
 	L2Handoff                    []string    `json:"l2Handoff,omitempty"`                    //
 	L3Handoff                    []L3Handoff `json:"l3Handoff,omitempty"`                    //
 	PolicyPropagationEnabled     bool        `json:"policyPropagationEnabled,omitempty"`     //
@@ -362,7 +354,7 @@ type ExtConnectivitySettings struct {
 // GetControlPlaneDeviceFromSDAFabricResponse is the GetControlPlaneDeviceFromSDAFabricResponse definition
 type GetControlPlaneDeviceFromSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -371,7 +363,7 @@ type GetControlPlaneDeviceFromSDAFabricResponse struct {
 
 // GetDefaultAuthenticationProfileFromSDAFabricResponse is the GetDefaultAuthenticationProfileFromSDAFabricResponse definition
 type GetDefaultAuthenticationProfileFromSDAFabricResponse struct {
-	AuthenticateTemplateId   string `json:"authenticateTemplateId,omitempty"`   //
+	AuthenticateTemplateID   string `json:"authenticateTemplateId,omitempty"`   //
 	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` //
 	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        //
 }
@@ -379,7 +371,7 @@ type GetDefaultAuthenticationProfileFromSDAFabricResponse struct {
 // GetDeviceInfoFromSDAFabricResponse is the GetDeviceInfoFromSDAFabricResponse definition
 type GetDeviceInfoFromSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -395,7 +387,7 @@ type GetDeviceRoleInSDAFabricResponse struct {
 // GetEdgeDeviceFromSDAFabricResponse is the GetEdgeDeviceFromSDAFabricResponse definition
 type GetEdgeDeviceFromSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -406,7 +398,7 @@ type GetEdgeDeviceFromSDAFabricResponse struct {
 type GetIPPoolFromSDAVirtualNetworkResponse struct {
 	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` //
 	Description              string `json:"description,omitempty"`              //
-	IpPoolName               string `json:"ipPoolName,omitempty"`               //
+	IPPoolName               string `json:"ipPoolName,omitempty"`               //
 	IsL2FloodingEnabled      bool   `json:"isL2FloodingEnabled,omitempty"`      //
 	IsThisCriticalPool       bool   `json:"isThisCriticalPool,omitempty"`       //
 	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        //
@@ -418,27 +410,27 @@ type GetIPPoolFromSDAVirtualNetworkResponse struct {
 // GetPortAssignmentForAccessPointInSDAFabricResponse is the GetPortAssignmentForAccessPointInSDAFabricResponse definition
 type GetPortAssignmentForAccessPointInSDAFabricResponse struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
 	Description               string `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 	Status                    string `json:"status,omitempty"`                    //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // GetPortAssignmentForUserDeviceInSDAFabricResponse is the GetPortAssignmentForUserDeviceInSDAFabricResponse definition
 type GetPortAssignmentForUserDeviceInSDAFabricResponse struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  //
-	DataIpAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     //
 	Description               string `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` //
 	InterfaceName             string `json:"interfaceName,omitempty"`             //
 	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         //
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         //
 	Status                    string `json:"status,omitempty"`                    //
-	VoiceIpAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    //
 }
 
 // GetSDAFabricCountResponse is the GetSDAFabricCountResponse definition
@@ -450,21 +442,21 @@ type GetSDAFabricCountResponse struct {
 // GetSDAFabricInfoResponse is the GetSDAFabricInfoResponse definition
 type GetSDAFabricInfoResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // GetSiteFromSDAFabricResponse is the GetSiteFromSDAFabricResponse definition
 type GetSiteFromSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // GetVNFromSDAFabricResponse is the GetVNFromSDAFabricResponse definition
 type GetVNFromSDAFabricResponse struct {
 	Description               string   `json:"description,omitempty"`               //
-	DeviceManagementIpAddress string   `json:"deviceManagementIpAddress,omitempty"` //
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` //
 	Name                      string   `json:"name,omitempty"`                      //
 	Roles                     []string `json:"roles,omitempty"`                     //
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             //
@@ -478,19 +470,19 @@ type GetsBorderDeviceDetailFromSDAFabricResponse struct {
 	Status      string  `json:"status,omitempty"`      //
 }
 
-// Ip is the Ip definition
-type Ip struct {
+// IP is the Ip definition
+type IP struct {
 	Address       string `json:"address,omitempty"`       //
 	AddressType   string `json:"addressType,omitempty"`   //
-	Id            string `json:"id,omitempty"`            //
+	ID            string `json:"id,omitempty"`            //
 	PaddedAddress string `json:"paddedAddress,omitempty"` //
 }
 
-// IpAddress is the IpAddress definition
-type IpAddress struct {
+// IPAddress is the IpAddress definition
+type IPAddress struct {
 	Address       string `json:"address,omitempty"`       //
 	AddressType   string `json:"addressType,omitempty"`   //
-	Id            string `json:"id,omitempty"`            //
+	ID            string `json:"id,omitempty"`            //
 	PaddedAddress string `json:"paddedAddress,omitempty"` //
 }
 
@@ -498,14 +490,14 @@ type IpAddress struct {
 type L3Handoff struct {
 	DeployPending    string         `json:"deployPending,omitempty"`    //
 	DisplayName      string         `json:"displayName,omitempty"`      //
-	Id               string         `json:"id,omitempty"`               //
-	InstanceId       int            `json:"instanceId,omitempty"`       //
-	InstanceTenantId string         `json:"instanceTenantId,omitempty"` //
+	ID               string         `json:"id,omitempty"`               //
+	InstanceID       int            `json:"instanceId,omitempty"`       //
+	InstanceTenantID string         `json:"instanceTenantId,omitempty"` //
 	InstanceVersion  int            `json:"instanceVersion,omitempty"`  //
-	LocalIpAddress   string         `json:"localIpAddress,omitempty"`   //
-	RemoteIpAddress  string         `json:"remoteIpAddress,omitempty"`  //
+	LocalIPAddress   string         `json:"localIpAddress,omitempty"`   //
+	RemoteIPAddress  string         `json:"remoteIpAddress,omitempty"`  //
 	VirtualNetwork   VirtualNetwork `json:"virtualNetwork,omitempty"`   //
-	VlanId           int            `json:"vlanId,omitempty"`           //
+	VlanID           int            `json:"vlanId,omitempty"`           //
 }
 
 // NetworkWideSettings is the NetworkWideSettings definition
@@ -513,18 +505,18 @@ type NetworkWideSettings struct {
 	Aaa              []string `json:"aaa,omitempty"`              //
 	Cmx              []string `json:"cmx,omitempty"`              //
 	DeployPending    string   `json:"deployPending,omitempty"`    //
-	Dhcp             []Dhcp   `json:"dhcp,omitempty"`             //
+	Dhcp             []DHCP   `json:"dhcp,omitempty"`             //
 	DisplayName      string   `json:"displayName,omitempty"`      //
-	Dns              []Dns    `json:"dns,omitempty"`              //
-	Id               string   `json:"id,omitempty"`               //
-	InstanceId       int      `json:"instanceId,omitempty"`       //
-	InstanceTenantId string   `json:"instanceTenantId,omitempty"` //
+	DNS              []DNS    `json:"dns,omitempty"`              //
+	ID               string   `json:"id,omitempty"`               //
+	InstanceID       int      `json:"instanceId,omitempty"`       //
+	InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
 	InstanceVersion  int      `json:"instanceVersion,omitempty"`  //
 	Ldap             []string `json:"ldap,omitempty"`             //
 	NativeVlan       []string `json:"nativeVlan,omitempty"`       //
 	Netflow          []string `json:"netflow,omitempty"`          //
 	Ntp              []string `json:"ntp,omitempty"`              //
-	Snmp             []string `json:"snmp,omitempty"`             //
+	SNMP             []string `json:"snmp,omitempty"`             //
 	Syslogs          []string `json:"syslogs,omitempty"`          //
 }
 
@@ -532,7 +524,7 @@ type NetworkWideSettings struct {
 type Payload struct {
 	AkcSettingsCfs                 []string            `json:"akcSettingsCfs,omitempty"`                 //
 	AuthEntityClass                int                 `json:"authEntityClass,omitempty"`                //
-	AuthEntityId                   int                 `json:"authEntityId,omitempty"`                   //
+	AuthEntityID                   int                 `json:"authEntityId,omitempty"`                   //
 	CfsChangeInfo                  []string            `json:"cfsChangeInfo,omitempty"`                  //
 	Configs                        []string            `json:"configs,omitempty"`                        //
 	CreateTime                     int                 `json:"createTime,omitempty"`                     //
@@ -542,9 +534,9 @@ type Payload struct {
 	DeviceInterfaceInfo            []string            `json:"deviceInterfaceInfo,omitempty"`            //
 	DeviceSettings                 DeviceSettings      `json:"deviceSettings,omitempty"`                 //
 	DisplayName                    string              `json:"displayName,omitempty"`                    //
-	Id                             string              `json:"id,omitempty"`                             //
-	InstanceId                     int                 `json:"instanceId,omitempty"`                     //
-	InstanceTenantId               string              `json:"instanceTenantId,omitempty"`               //
+	ID                             string              `json:"id,omitempty"`                             //
+	InstanceID                     int                 `json:"instanceId,omitempty"`                     //
+	InstanceTenantID               string              `json:"instanceTenantId,omitempty"`               //
 	InstanceVersion                int                 `json:"instanceVersion,omitempty"`                //
 	IsSeeded                       bool                `json:"isSeeded,omitempty"`                       //
 	IsStale                        bool                `json:"isStale,omitempty"`                        //
@@ -552,15 +544,15 @@ type Payload struct {
 	ManagedSites                   []string            `json:"managedSites,omitempty"`                   //
 	Name                           string              `json:"name,omitempty"`                           //
 	Namespace                      string              `json:"namespace,omitempty"`                      //
-	NetworkDeviceId                string              `json:"networkDeviceId,omitempty"`                //
+	NetworkDeviceID                string              `json:"networkDeviceId,omitempty"`                //
 	NetworkWideSettings            NetworkWideSettings `json:"networkWideSettings,omitempty"`            //
 	OtherDevice                    []string            `json:"otherDevice,omitempty"`                    //
 	ProvisioningState              string              `json:"provisioningState,omitempty"`              //
 	ResourceVersion                int                 `json:"resourceVersion,omitempty"`                //
 	Roles                          []string            `json:"roles,omitempty"`                          //
 	SaveWanConnectivityDetailsOnly bool                `json:"saveWanConnectivityDetailsOnly,omitempty"` //
-	SiteId                         string              `json:"siteId,omitempty"`                         //
-	TargetIdList                   []string            `json:"targetIdList,omitempty"`                   //
+	SiteID                         string              `json:"siteId,omitempty"`                         //
+	TargetIDList                   []string            `json:"targetIdList,omitempty"`                   //
 	TransitNetworks                []TransitNetworks   `json:"transitNetworks,omitempty"`                //
 	Type                           string              `json:"type,omitempty"`                           //
 	VirtualNetwork                 []string            `json:"virtualNetwork,omitempty"`                 //
@@ -568,28 +560,28 @@ type Payload struct {
 }
 
 // Response is the Response definition
-type Response struct {
-	Description string `json:"description,omitempty"` //
-	FabricCount string `json:"fabricCount,omitempty"` //
-	Status      string `json:"status,omitempty"`      //
-}
+// type Response struct {
+// 	Description string `json:"description,omitempty"` //
+// 	FabricCount string `json:"fabricCount,omitempty"` //
+// 	Status      string `json:"status,omitempty"`      //
+// }
 
 // TransitNetworks is the TransitNetworks definition
 type TransitNetworks struct {
-	IdRef string `json:"idRef,omitempty"` //
+	IDRef string `json:"idRef,omitempty"` //
 }
 
 // UpdateDefaultAuthenticationProfileInSDAFabricResponse is the UpdateDefaultAuthenticationProfileInSDAFabricResponse definition
 type UpdateDefaultAuthenticationProfileInSDAFabricResponse struct {
 	Description        string `json:"description,omitempty"`        //
-	ExecutionStatusUrl string `json:"executionStatusUrl,omitempty"` //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
 
 // VirtualNetwork is the VirtualNetwork definition
-type VirtualNetwork struct {
-	IdRef string `json:"idRef,omitempty"` //
-}
+// type VirtualNetwork struct {
+// 	IDRef string `json:"idRef,omitempty"` //
+// }
 
 // AddControlPlaneDeviceInSDAFabric addControlPlaneDeviceInSDAFabric
 /* Add control plane device in SDA Fabric
@@ -898,7 +890,7 @@ func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabric
 
 // DeleteIPPoolFromSDAVirtualNetworkQueryParams defines the query parameters for this request
 type DeleteIPPoolFromSDAVirtualNetworkQueryParams struct {
-	IpPoolName         string `url:"ipPoolName,omitempty"`         // ipPoolName
+	IPPoolName         string `url:"ipPoolName,omitempty"`         // ipPoolName
 	VirtualNetworkName string `url:"virtualNetworkName,omitempty"` // virtualNetworkName
 }
 
@@ -1086,25 +1078,25 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 /* Deletes border device from SDA Fabric
 @param deviceIPAddress Device IP Address
 */
-func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
+// func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/business/sda/border-device"
+// 	path := "/dna/intent/api/v1/business/sda/border-device"
 
-	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
+// 	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetBody(deletesBorderDeviceFromSDAFabricRequest).
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetQueryString(queryString.Encode()).
+// 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return response, err
+// 	return response, err
 
-}
+// }
 
 // GetControlPlaneDeviceFromSDAFabricQueryParams defines the query parameters for this request
 type GetControlPlaneDeviceFromSDAFabricQueryParams struct {
@@ -1198,12 +1190,12 @@ func (s *SDAService) GetDeviceInfoFromSDAFabric(getDeviceInfoFromSDAFabricQueryP
 
 // GetDeviceRoleInSDAFabricQueryParams defines the query parameters for this request
 type GetDeviceRoleInSDAFabricQueryParams struct {
-	DeviceManagementIpAddress string `url:"deviceManagementIpAddress,omitempty"` // Device Management IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` // Device Management IP Address
 }
 
 // GetDeviceRoleInSDAFabric getDeviceRoleInSDAFabric
 /* Get device role in SDA Fabric
-@param deviceManagementIpAddress Device Management IP Address
+@param deviceManagementIPAddress Device Management IP Address
 */
 func (s *SDAService) GetDeviceRoleInSDAFabric(getDeviceRoleInSDAFabricQueryParams *GetDeviceRoleInSDAFabricQueryParams) (*GetDeviceRoleInSDAFabricResponse, *resty.Response, error) {
 
@@ -1258,7 +1250,7 @@ func (s *SDAService) GetEdgeDeviceFromSDAFabric(getEdgeDeviceFromSDAFabricQueryP
 
 // GetIPPoolFromSDAVirtualNetworkQueryParams defines the query parameters for this request
 type GetIPPoolFromSDAVirtualNetworkQueryParams struct {
-	IpPoolName         string `url:"ipPoolName,omitempty"`         // ipPoolName
+	IPPoolName         string `url:"ipPoolName,omitempty"`         // ipPoolName
 	VirtualNetworkName string `url:"virtualNetworkName,omitempty"` // virtualNetworkName
 }
 

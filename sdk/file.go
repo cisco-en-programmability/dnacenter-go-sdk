@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 // FileService is the service to communicate with the File API endpoint
@@ -13,8 +12,8 @@ type FileService service
 
 // FileObjectListResult is the FileObjectListResult definition
 type FileObjectListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []FileObjectResponse `json:"response,omitempty"` //
+	Version  string               `json:"version,omitempty"`  //
 }
 
 // NameSpaceListResult is the NameSpaceListResult definition
@@ -23,37 +22,37 @@ type NameSpaceListResult struct {
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// Response is the Response definition
-type Response struct {
+// FileObjectResponse is the Response definition
+type FileObjectResponse struct {
 	AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
 	DownloadPath   string   `json:"downloadPath,omitempty"`   //
 	Encrypted      bool     `json:"encrypted,omitempty"`      //
 	FileFormat     string   `json:"fileFormat,omitempty"`     //
 	FileSize       string   `json:"fileSize,omitempty"`       //
-	Id             string   `json:"id,omitempty"`             //
+	ID             string   `json:"id,omitempty"`             //
 	Md5Checksum    string   `json:"md5Checksum,omitempty"`    //
 	Name           string   `json:"name,omitempty"`           //
 	NameSpace      string   `json:"nameSpace,omitempty"`      //
 	SftpServerList []string `json:"sftpServerList,omitempty"` //
 	Sha1Checksum   string   `json:"sha1Checksum,omitempty"`   //
-	TaskId         string   `json:"taskId,omitempty"`         //
+	TaskID         string   `json:"taskId,omitempty"`         //
 }
 
-// DownloadAFileByFileId downloadAFileByFileId
-/* Downloads a file specified by fileId
-@param fileId File Identification number
+// DownloadAFileByFileID downloadAFileByFileId
+/* Downloads a file specified by fileID
+@param fileID File Identification int
 */
-func (s *FileService) DownloadAFileByFileId(fileId string) (*resty.Response, error) {
+func (s *FileService) DownloadAFileByFileID(fileID string) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/file/{fileId}"
-	path = strings.Replace(path, "{"+"fileId"+"}", fmt.Sprintf("%v", fileId), -1)
+	path := "/dna/intent/api/v1/file/{fileID}"
+	path = strings.Replace(path, "{"+"fileID"+"}", fmt.Sprintf("%v", fileID), -1)
 
 	response, err := RestyClient.R().
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	return response, err
@@ -83,7 +82,7 @@ func (s *FileService) GetListOfAvailableNamespaces() (*NameSpaceListResult, *res
 
 // GetListOfFiles getListOfFiles
 /* Returns list of files under a specific namespace
-@param nameSpace A listing of fileId's
+@param nameSpace A listing of fileID's
 */
 func (s *FileService) GetListOfFiles(nameSpace string) (*FileObjectListResult, *resty.Response, error) {
 

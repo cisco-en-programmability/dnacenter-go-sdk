@@ -1,9 +1,6 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -13,9 +10,9 @@ type SensorsService service
 
 // ApCoverage is the ApCoverage definition
 type ApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest string `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     string `json:"rssiThreshold,omitempty"`     //
+	Bands             string `json:"bands,omitempty"`          //
+	NumberOfApsToTest string `json:"intOfApsToTest,omitempty"` //
+	RssiThreshold     string `json:"rssiThreshold,omitempty"`  //
 }
 
 // CreateSensorTestTemplateRequest is the CreateSensorTestTemplateRequest definition
@@ -24,7 +21,7 @@ type CreateSensorTestTemplateRequest struct {
 	Connection   string       `json:"connection,omitempty"`   //
 	ModelVersion int          `json:"modelVersion,omitempty"` //
 	Name         string       `json:"name,omitempty"`         //
-	Ssids        []Ssids      `json:"ssids,omitempty"`        //
+	SSIDs        []SSIDs      `json:"ssids,omitempty"`        //
 }
 
 // DuplicateSensorTestTemplateRequest is the DuplicateSensorTestTemplateRequest definition
@@ -49,7 +46,7 @@ type Frequency struct {
 // LocationInfoList is the LocationInfoList definition
 type LocationInfoList struct {
 	AllSensors    bool   `json:"allSensors,omitempty"`    //
-	LocationId    string `json:"locationId,omitempty"`    //
+	LocationID    string `json:"locationId,omitempty"`    //
 	LocationType  string `json:"locationType,omitempty"`  //
 	SiteHierarchy string `json:"siteHierarchy,omitempty"` //
 }
@@ -72,17 +69,17 @@ type ScheduleRange struct {
 	TimeRange []TimeRange `json:"timeRange,omitempty"` //
 }
 
-// Ssids is the Ssids definition
-type Ssids struct {
-	AuthType    string     `json:"authType,omitempty"`    //
-	Categories  []string   `json:"categories,omitempty"`  //
-	ProfileName string     `json:"profileName,omitempty"` //
-	Psk         string     `json:"psk,omitempty"`         //
-	QosPolicy   string     `json:"qosPolicy,omitempty"`   //
-	Ssid        string     `json:"ssid,omitempty"`        //
-	Tests       []Tests    `json:"tests,omitempty"`       //
-	ThirdParty  ThirdParty `json:"thirdParty,omitempty"`  //
-}
+// SSIDs is the SSIDs definition
+// type SSIDs struct {
+// 	AuthType    string     `json:"authType,omitempty"`    //
+// 	Categories  []string   `json:"categories,omitempty"`  //
+// 	ProfileName string     `json:"profileName,omitempty"` //
+// 	Psk         string     `json:"psk,omitempty"`         //
+// 	QosPolicy   string     `json:"qosPolicy,omitempty"`   //
+// 	SSID        string     `json:"ssid,omitempty"`        //
+// 	Tests       []Tests    `json:"tests,omitempty"`       //
+// 	ThirdParty  ThirdParty `json:"thirdParty,omitempty"`  //
+// }
 
 // Tests is the Tests definition
 type Tests struct {
@@ -102,13 +99,6 @@ type TimeRange struct {
 	To        string    `json:"to,omitempty"`        //
 }
 
-// ApCoverage is the ApCoverage definition
-type ApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest int    `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     int    `json:"rssiThreshold,omitempty"`     //
-}
-
 // CreateSensorTestTemplateResponse is the CreateSensorTestTemplateResponse definition
 type CreateSensorTestTemplateResponse struct {
 	Response Response `json:"response,omitempty"` //
@@ -117,8 +107,8 @@ type CreateSensorTestTemplateResponse struct {
 
 // DeleteSensorTestResponse is the DeleteSensorTestResponse definition
 type DeleteSensorTestResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response DeleteSensorResponse `json:"response,omitempty"` //
+	Version  string               `json:"version,omitempty"`  //
 }
 
 // DuplicateSensorTestTemplateResponse is the DuplicateSensorTestTemplateResponse definition
@@ -133,24 +123,9 @@ type EditSensorTestTemplateResponse struct {
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// Frequency is the Frequency definition
-type Frequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// LocationInfoList is the LocationInfoList definition
-type LocationInfoList struct {
-	AllSensors     bool     `json:"allSensors,omitempty"`     //
-	LocationId     string   `json:"locationId,omitempty"`     //
-	LocationType   string   `json:"locationType,omitempty"`   //
-	MacAddressList []string `json:"macAddressList,omitempty"` //
-	SiteHierarchy  string   `json:"siteHierarchy,omitempty"`  //
-}
-
-// Response is the Response definition
-type Response struct {
-	_id                    string             `json:"_id,omitempty"`                    //
+// DeleteSensorResponse is the Response definition
+type DeleteSensorResponse struct {
+	ID                     string             `json:"_id,omitempty"`                    //
 	ApCoverage             []ApCoverage       `json:"apCoverage,omitempty"`             //
 	Connection             string             `json:"connection,omitempty"`             //
 	EncryptionMode         string             `json:"encryptionMode,omitempty"`         //
@@ -171,10 +146,10 @@ type Response struct {
 	Sensors                []string           `json:"sensors,omitempty"`                //
 	ShowWlcUpgradeBanner   bool               `json:"showWlcUpgradeBanner,omitempty"`   //
 	SiteHierarchy          string             `json:"siteHierarchy,omitempty"`          //
-	Ssids                  []Ssids            `json:"ssids,omitempty"`                  //
+	SSIDs                  []SSIDs            `json:"ssids,omitempty"`                  //
 	StartTime              int                `json:"startTime,omitempty"`              //
 	Status                 string             `json:"status,omitempty"`                 //
-	TenantId               string             `json:"tenantId,omitempty"`               //
+	TenantID               string             `json:"tenantId,omitempty"`               //
 	TestDurationEstimate   int                `json:"testDurationEstimate,omitempty"`   //
 	TestScheduleMode       string             `json:"testScheduleMode,omitempty"`       //
 	TestTemplate           bool               `json:"testTemplate,omitempty"`           //
@@ -183,36 +158,22 @@ type Response struct {
 	Wlans                  []string           `json:"wlans,omitempty"`                  //
 }
 
-// Schedule is the Schedule definition
-type Schedule struct {
-	Frequency        Frequency       `json:"frequency,omitempty"`        //
-	ScheduleRange    []ScheduleRange `json:"scheduleRange,omitempty"`    //
-	StartTime        int             `json:"startTime,omitempty"`        //
-	TestScheduleMode string          `json:"testScheduleMode,omitempty"` //
-}
-
-// ScheduleRange is the ScheduleRange definition
-type ScheduleRange struct {
-	Day       string      `json:"day,omitempty"`       //
-	TimeRange []TimeRange `json:"timeRange,omitempty"` //
-}
-
 // SensorsResponse is the SensorsResponse definition
 type SensorsResponse struct {
 	Response []Response `json:"response,omitempty"` //
 	Version  string     `json:"version,omitempty"`  //
 }
 
-// SshConfig is the SshConfig definition
-type SshConfig struct {
+// SSHConfig is the SshConfig definition
+type SSHConfig struct {
 	EnablePassword string `json:"enablePassword,omitempty"` //
-	SshPassword    string `json:"sshPassword,omitempty"`    //
-	SshState       string `json:"sshState,omitempty"`       //
-	SshUserName    string `json:"sshUserName,omitempty"`    //
+	SSHPassword    string `json:"sshPassword,omitempty"`    //
+	SSHState       string `json:"sshState,omitempty"`       //
+	SSHUserName    string `json:"sshUserName,omitempty"`    //
 }
 
-// Ssids is the Ssids definition
-type Ssids struct {
+// SSIDs is the SSIDs definition
+type SSIDs struct {
 	AuthProtocol              string     `json:"authProtocol,omitempty"`              //
 	AuthType                  string     `json:"authType,omitempty"`                  //
 	AuthTypeRcvd              string     `json:"authTypeRcvd,omitempty"`              //
@@ -224,11 +185,11 @@ type Ssids struct {
 	Certxferprotocol          string     `json:"certxferprotocol,omitempty"`          //
 	EapMethod                 string     `json:"eapMethod,omitempty"`                 //
 	ExtWebAuth                bool       `json:"extWebAuth,omitempty"`                //
-	ExtWebAuthAccessUrl       string     `json:"extWebAuthAccessUrl,omitempty"`       //
-	ExtWebAuthHtmlTag         []string   `json:"extWebAuthHtmlTag,omitempty"`         //
+	ExtWebAuthAccessURL       string     `json:"extWebAuthAccessUrl,omitempty"`       //
+	ExtWebAuthHTMLTag         []string   `json:"extWebAuthHtmlTag,omitempty"`         //
 	ExtWebAuthPortal          string     `json:"extWebAuthPortal,omitempty"`          //
-	ExtWebAuthVirtualIp       string     `json:"extWebAuthVirtualIp,omitempty"`       //
-	Id                        int        `json:"id,omitempty"`                        //
+	ExtWebAuthVirtualIP       string     `json:"extWebAuthVirtualIp,omitempty"`       //
+	ID                        int        `json:"id,omitempty"`                        //
 	Layer3webAuthEmailAddress string     `json:"layer3webAuthEmailAddress,omitempty"` //
 	Layer3webAuthpassword     string     `json:"layer3webAuthpassword,omitempty"`     //
 	Layer3webAuthsecurity     string     `json:"layer3webAuthsecurity,omitempty"`     //
@@ -240,7 +201,7 @@ type Ssids struct {
 	Psk                       string     `json:"psk,omitempty"`                       //
 	QosPolicy                 string     `json:"qosPolicy,omitempty"`                 //
 	Scep                      bool       `json:"scep,omitempty"`                      //
-	Ssid                      string     `json:"ssid,omitempty"`                      //
+	SSID                      string     `json:"ssid,omitempty"`                      //
 	Status                    string     `json:"status,omitempty"`                    //
 	Tests                     []Tests    `json:"tests,omitempty"`                     //
 	ThirdParty                ThirdParty `json:"thirdParty,omitempty"`                //
@@ -248,26 +209,8 @@ type Ssids struct {
 	ValidFrom                 int        `json:"validFrom,omitempty"`                 //
 	ValidTo                   int        `json:"validTo,omitempty"`                   //
 	WhiteList                 bool       `json:"whiteList,omitempty"`                 //
-	WlanId                    int        `json:"wlanId,omitempty"`                    //
+	WlanID                    int        `json:"wlanId,omitempty"`                    //
 	Wlc                       string     `json:"wlc,omitempty"`                       //
-}
-
-// Tests is the Tests definition
-type Tests struct {
-	Config []string `json:"config,omitempty"` //
-	Name   string   `json:"name,omitempty"`   //
-}
-
-// ThirdParty is the ThirdParty definition
-type ThirdParty struct {
-	Selected bool `json:"selected,omitempty"` //
-}
-
-// TimeRange is the TimeRange definition
-type TimeRange struct {
-	Frequency Frequency `json:"frequency,omitempty"` //
-	From      string    `json:"from,omitempty"`      //
-	To        string    `json:"to,omitempty"`        //
 }
 
 // CreateSensorTestTemplate createSensorTestTemplate
@@ -377,7 +320,7 @@ func (s *SensorsService) RunNowSensorTest(runNowSensorTestRequest *RunNowSensorT
 		Put(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	return response, err
@@ -386,12 +329,12 @@ func (s *SensorsService) RunNowSensorTest(runNowSensorTestRequest *RunNowSensorT
 
 // SensorsQueryParams defines the query parameters for this request
 type SensorsQueryParams struct {
-	SiteId string `url:"siteId,omitempty"` //
+	SiteID string `url:"siteId,omitempty"` //
 }
 
 // Sensors sensors
 /* Intent API to get a list of SENSOR devices
-@param siteId
+@param siteID
 */
 func (s *SensorsService) Sensors(sensorsQueryParams *SensorsQueryParams) (*SensorsResponse, *resty.Response, error) {
 
