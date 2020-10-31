@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"crypto/tls"
+	"fmt"
 	"os"
 
 	"github.com/go-resty/resty/v2"
@@ -9,7 +11,7 @@ import (
 // RestyClient is the REST Client
 var RestyClient *resty.Client
 
-const apiURL = "https://{defaultHost}"
+var apiURL = "https://sandboxdnac.cisco.com"
 
 // Client manages communication with the Webex Teams API API v1.0.0
 // In most cases there should be only one, shared, APIClient.
@@ -55,17 +57,36 @@ func (s *Client) SetAuthToken(accessToken string) {
 	RestyClient.SetAuthToken(accessToken)
 }
 
+// SetAuthToken defines the Authorization token sent in the request
+func (s *Client) SetAuthToken(accessToken string) {
+	RestyClient.SetAuthToken(accessToken)
+}
+
 // NewClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewClient() *Client {
+	var username = ""
+	var password = ""
 	client := resty.New()
 	c := &Client{}
 	RestyClient = client
-	RestyClient.SetHostURL(apiURL)
-	if os.Getenv("WEBEX_TEAMS_ACCESS_TOKEN") != "" {
-		RestyClient.SetAuthToken(os.Getenv("WEBEX_TEAMS_ACCESS_TOKEN"))
+
+	if os.Getenv("DNAC_DEBUG") == "true" {
+		client.SetDebug(true)
+	}
+	if os.Getenv("DNAC_SSL_VERIFY") == "false" {
+		client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	}
 
+	if os.Getenv("DNAC_BASE_URL") != "" {
+		RestyClient.SetHostURL(os.Getenv("DNAC_BASE_URL"))
+	}
+	if os.Getenv("DNAC_USERNAME") != "" {
+		username = os.Getenv("DNAC_USERNAME")
+	}
+	if os.Getenv("DNAC_PASSWORD") != "" {
+		password = os.Getenv("DNAC_PASSWORD")
+	}
 	// API Services
 	c.Authentication = (*AuthenticationService)(&c.common)
 	c.Sites = (*SitesService)(&c.common)
@@ -95,10 +116,30 @@ func NewClient() *Client {
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 
+	result, response, err := c.Authentication.AuthenticationAPI(username, password)
+	if err != nil {
+		return c
+	}
+	if response.StatusCode() > 399 {
+		error := response.Error()
+		fmt.Println(error)
+	} else {
+		client.SetHeader("X-Auth-Token", result.Token)
+	}
 	return c
 }
 
-// Error indicates an error from the invocation of the API.
+//NewClientWithOptions is the client with options passed with parameters
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) *Client {
+	os.Setenv("DNAC_BASE_URL", baseURL)
+	os.Setenv("DNAC_USERNAME", username)
+	os.Setenv("DNAC_PASSWORD", password)
+	os.Setenv("DNAC_DEBUG", debug)
+	os.Setenv("DNAC_SSL_VERIFY", sslVerify)
+	return NewClient()
+}
+
+// Error indicates an error from the invocation of a Cisco DNA Center API.
 type Error struct {
-	Message string `json:"message,omitempty"` // Error message
+	Error string `json:"error,omitempty"` // Error message
 }

@@ -1,11 +1,7 @@
 package dnac
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 // AuthenticationService is the service to communicate with the Authentication API endpoint
@@ -21,11 +17,12 @@ type AuthenticationAPIResponse struct {
 @param Content-Type Request body content type
 @param Authorization String composed of “Basic”, followed by a space, followed by the Base64 encoding of “username:password”, NOT including the quotes. For example “Basic YWRtaW46TWFnbGV2MTIz”, where YWRtaW46TWFnbGV2MTIz is the Base 64 encoding.
 */
-func (s *AuthenticationService) AuthenticationAPI() (*AuthenticationAPIResponse, *resty.Response, error) {
+func (s *AuthenticationService) AuthenticationAPI(username string, password string) (*AuthenticationAPIResponse, *resty.Response, error) {
 
 	path := "/dna/system/api/v1/auth/token"
 
 	response, err := RestyClient.R().
+		SetBasicAuth(username, password).
 		SetResult(&AuthenticationAPIResponse{}).
 		SetError(&Error{}).
 		Post(path)
