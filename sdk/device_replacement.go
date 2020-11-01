@@ -34,8 +34,23 @@ type DeviceReplacementWorkflowDTO struct {
 
 // DeviceReplacementResult is the DeviceReplacementResult definition
 type DeviceReplacementResult struct {
-	Response []TaskResponse `json:"response,omitempty"` //
-	Version  string         `json:"version,omitempty"`  //
+	Response []struct {
+		CreationTime                  int    `json:"creationTime,omitempty"`                  //
+		Family                        string `json:"family,omitempty"`                        //
+		FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
+		FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
+		FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
+		FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+		ID                            string `json:"id,omitempty"`                            //
+		NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
+		NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
+		ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
+		ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+		ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
+		ReplacementTime               int    `json:"replacementTime,omitempty"`               //
+		WorkflowID                    string `json:"workflowId,omitempty"`                    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DeployDeviceReplacementWorkflow deployDeviceReplacementWorkflow

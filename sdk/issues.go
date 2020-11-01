@@ -10,30 +10,46 @@ type IssuesService service
 
 // GetIssueEnrichmentDetailsResponse is the GetIssueEnrichmentDetailsResponse definition
 type GetIssueEnrichmentDetailsResponse struct {
-	IssueDetails IssueDetails `json:"issueDetails,omitempty"` //
+	IssueDetails struct {
+		Issue []struct {
+			ImpactedHosts    []string `json:"impactedHosts,omitempty"`    //
+			IssueCategory    string   `json:"issueCategory,omitempty"`    //
+			IssueDescription string   `json:"issueDescription,omitempty"` //
+			IssueEntity      string   `json:"issueEntity,omitempty"`      //
+			IssueEntityValue string   `json:"issueEntityValue,omitempty"` //
+			IssueID          string   `json:"issueId,omitempty"`          //
+			IssueName        string   `json:"issueName,omitempty"`        //
+			IssuePriority    string   `json:"issuePriority,omitempty"`    //
+			IssueSeverity    string   `json:"issueSeverity,omitempty"`    //
+			IssueSource      string   `json:"issueSource,omitempty"`      //
+			IssueSummary     string   `json:"issueSummary,omitempty"`     //
+			IssueTimestamp   int      `json:"issueTimestamp,omitempty"`   //
+			SuggestedActions []struct {
+				Message string   `json:"message,omitempty"` //
+				Steps   []string `json:"steps,omitempty"`   //
+			} `json:"suggestedActions,omitempty"` //
+		} `json:"issue,omitempty"` //
+	} `json:"issueDetails,omitempty"` //
 }
 
 // IssuesResponse is the IssuesResponse definition
 type IssuesResponse struct {
-	Response   []Issues `json:"response,omitempty"`   //
-	TotalCount int      `json:"totalCount,omitempty"` //
-	Version    string   `json:"version,omitempty"`    //
-}
-
-// Issues is the Response definition
-type Issues struct {
-	AiDriven            bool   `json:"aiDriven,omitempty"`              //
-	Category            string `json:"category,omitempty"`              //
-	ClientMac           string `json:"clientMac,omitempty"`             //
-	DeviceID            string `json:"deviceId,omitempty"`              //
-	DeviceRole          string `json:"deviceRole,omitempty"`            //
-	IssueID             string `json:"issueId,omitempty"`               //
-	IssueOccurenceCount int    `json:"issue_occurence_count,omitempty"` //
-	LastOccurenceTime   int    `json:"last_occurence_time,omitempty"`   //
-	Name                string `json:"name,omitempty"`                  //
-	Priority            string `json:"priority,omitempty"`              //
-	SiteID              string `json:"siteId,omitempty"`                //
-	Status              string `json:"status,omitempty"`                //
+	Response []struct {
+		AiDriven            bool   `json:"aiDriven,omitempty"`              //
+		Category            string `json:"category,omitempty"`              //
+		ClientMac           string `json:"clientMac,omitempty"`             //
+		DeviceID            string `json:"deviceId,omitempty"`              //
+		DeviceRole          string `json:"deviceRole,omitempty"`            //
+		IssueID             string `json:"issueId,omitempty"`               //
+		IssueOccurenceCount int    `json:"issue_occurence_count,omitempty"` //
+		LastOccurenceTime   int    `json:"last_occurence_time,omitempty"`   //
+		Name                string `json:"name,omitempty"`                  //
+		Priority            string `json:"priority,omitempty"`              //
+		SiteID              string `json:"siteId,omitempty"`                //
+		Status              string `json:"status,omitempty"`                //
+	} `json:"response,omitempty"` //
+	TotalCount int    `json:"totalCount,omitempty"` //
+	Version    string `json:"version,omitempty"`    //
 }
 
 // GetIssueEnrichmentDetails getIssueEnrichmentDetails

@@ -22,33 +22,36 @@ type ExportDeviceDTO struct {
 
 // InventoryDeviceInfo is the InventoryDeviceInfo definition
 type InventoryDeviceInfo struct {
-	CliTransport            string                    `json:"cliTransport,omitempty"`            //
-	ComputeDevice           bool                      `json:"computeDevice,omitempty"`           //
-	EnablePassword          string                    `json:"enablePassword,omitempty"`          //
-	ExtendedDiscoveryInfo   string                    `json:"extendedDiscoveryInfo,omitempty"`   //
-	HTTPPassword            string                    `json:"httpPassword,omitempty"`            //
-	HTTPPort                string                    `json:"httpPort,omitempty"`                //
-	HTTPSecure              bool                      `json:"httpSecure,omitempty"`              //
-	HTTPUserName            string                    `json:"httpUserName,omitempty"`            //
-	IPAddress               []string                  `json:"ipAddress,omitempty"`               //
-	MerakiOrgID             []string                  `json:"merakiOrgId,omitempty"`             //
-	NetconfPort             string                    `json:"netconfPort,omitempty"`             //
-	Password                string                    `json:"password,omitempty"`                //
-	SerialNumber            string                    `json:"serialNumber,omitempty"`            //
-	SNMPAuthPassphrase      string                    `json:"snmpAuthPassphrase,omitempty"`      //
-	SNMPAuthProtocol        string                    `json:"snmpAuthProtocol,omitempty"`        //
-	SNMPMode                string                    `json:"snmpMode,omitempty"`                //
-	SNMPPrivPassphrase      string                    `json:"snmpPrivPassphrase,omitempty"`      //
-	SNMPPrivProtocol        string                    `json:"snmpPrivProtocol,omitempty"`        //
-	SNMPROCommunity         string                    `json:"snmpROCommunity,omitempty"`         //
-	SNMPRWCommunity         string                    `json:"snmpRWCommunity,omitempty"`         //
-	SNMPRetry               int                       `json:"snmpRetry,omitempty"`               //
-	SNMPTimeout             int                       `json:"snmpTimeout,omitempty"`             //
-	SNMPUserName            string                    `json:"snmpUserName,omitempty"`            //
-	SNMPVersion             string                    `json:"snmpVersion,omitempty"`             //
-	Type                    string                    `json:"type,omitempty"`                    //
-	UpdateMgmtIPaddressList []UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
-	UserName                string                    `json:"userName,omitempty"`                //
+	CliTransport            string   `json:"cliTransport,omitempty"`          //
+	ComputeDevice           bool     `json:"computeDevice,omitempty"`         //
+	EnablePassword          string   `json:"enablePassword,omitempty"`        //
+	ExtendedDiscoveryInfo   string   `json:"extendedDiscoveryInfo,omitempty"` //
+	HTTPPassword            string   `json:"httpPassword,omitempty"`          //
+	HTTPPort                string   `json:"httpPort,omitempty"`              //
+	HTTPSecure              bool     `json:"httpSecure,omitempty"`            //
+	HTTPUserName            string   `json:"httpUserName,omitempty"`          //
+	IPAddress               []string `json:"ipAddress,omitempty"`             //
+	MerakiOrgID             []string `json:"merakiOrgId,omitempty"`           //
+	NetconfPort             string   `json:"netconfPort,omitempty"`           //
+	Password                string   `json:"password,omitempty"`              //
+	SerialNumber            string   `json:"serialNumber,omitempty"`          //
+	SNMPAuthPassphrase      string   `json:"snmpAuthPassphrase,omitempty"`    //
+	SNMPAuthProtocol        string   `json:"snmpAuthProtocol,omitempty"`      //
+	SNMPMode                string   `json:"snmpMode,omitempty"`              //
+	SNMPPrivPassphrase      string   `json:"snmpPrivPassphrase,omitempty"`    //
+	SNMPPrivProtocol        string   `json:"snmpPrivProtocol,omitempty"`      //
+	SNMPROCommunity         string   `json:"snmpROCommunity,omitempty"`       //
+	SNMPRWCommunity         string   `json:"snmpRWCommunity,omitempty"`       //
+	SNMPRetry               int      `json:"snmpRetry,omitempty"`             //
+	SNMPTimeout             int      `json:"snmpTimeout,omitempty"`           //
+	SNMPUserName            string   `json:"snmpUserName,omitempty"`          //
+	SNMPVersion             string   `json:"snmpVersion,omitempty"`           //
+	Type                    string   `json:"type,omitempty"`                  //
+	UpdateMgmtIPaddressList []struct {
+		ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` //
+		NewMgmtIPAddress   string `json:"newMgmtIpAddress,omitempty"`   //
+	} `json:"updateMgmtIPaddressList,omitempty"` //
+	UserName string `json:"userName,omitempty"` //
 }
 
 // NetworkDeviceBriefNIO is the NetworkDeviceBriefNIO definition
@@ -82,21 +85,129 @@ type ClientCount struct {
 
 // DeviceIfListResult is the DeviceIfListResult definition
 type DeviceIfListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		AdminStatus                 string `json:"adminStatus,omitempty"`                 //
+		ClassName                   string `json:"className,omitempty"`                   //
+		Description                 string `json:"description,omitempty"`                 //
+		DeviceID                    string `json:"deviceId,omitempty"`                    //
+		Duplex                      string `json:"duplex,omitempty"`                      //
+		ID                          string `json:"id,omitempty"`                          //
+		IfIndex                     string `json:"ifIndex,omitempty"`                     //
+		InstanceTenantID            string `json:"instanceTenantId,omitempty"`            //
+		InstanceUUID                string `json:"instanceUuid,omitempty"`                //
+		InterfaceType               string `json:"interfaceType,omitempty"`               //
+		IPv4Address                 string `json:"ipv4Address,omitempty"`                 //
+		IPv4Mask                    string `json:"ipv4Mask,omitempty"`                    //
+		IsisSupport                 string `json:"isisSupport,omitempty"`                 //
+		LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
+		MacAddress                  string `json:"macAddress,omitempty"`                  //
+		MappedPhysicalInterfaceID   string `json:"mappedPhysicalInterfaceId,omitempty"`   //
+		MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` //
+		MediaType                   string `json:"mediaType,omitempty"`                   //
+		NativeVlanID                string `json:"nativeVlanId,omitempty"`                //
+		OspfSupport                 string `json:"ospfSupport,omitempty"`                 //
+		Pid                         string `json:"pid,omitempty"`                         //
+		PortMode                    string `json:"portMode,omitempty"`                    //
+		PortName                    string `json:"portName,omitempty"`                    //
+		PortType                    string `json:"portType,omitempty"`                    //
+		SerialNo                    string `json:"serialNo,omitempty"`                    //
+		Series                      string `json:"series,omitempty"`                      //
+		Speed                       string `json:"speed,omitempty"`                       //
+		Status                      string `json:"status,omitempty"`                      //
+		VlanID                      string `json:"vlanId,omitempty"`                      //
+		VoiceVlan                   string `json:"voiceVlan,omitempty"`                   //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DeviceIfResult is the DeviceIfResult definition
 type DeviceIfResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		AdminStatus                 string `json:"adminStatus,omitempty"`                 //
+		ClassName                   string `json:"className,omitempty"`                   //
+		Description                 string `json:"description,omitempty"`                 //
+		DeviceID                    string `json:"deviceId,omitempty"`                    //
+		Duplex                      string `json:"duplex,omitempty"`                      //
+		ID                          string `json:"id,omitempty"`                          //
+		IfIndex                     string `json:"ifIndex,omitempty"`                     //
+		InstanceTenantID            string `json:"instanceTenantId,omitempty"`            //
+		InstanceUUID                string `json:"instanceUuid,omitempty"`                //
+		InterfaceType               string `json:"interfaceType,omitempty"`               //
+		IPv4Address                 string `json:"ipv4Address,omitempty"`                 //
+		IPv4Mask                    string `json:"ipv4Mask,omitempty"`                    //
+		IsisSupport                 string `json:"isisSupport,omitempty"`                 //
+		LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
+		MacAddress                  string `json:"macAddress,omitempty"`                  //
+		MappedPhysicalInterfaceID   string `json:"mappedPhysicalInterfaceId,omitempty"`   //
+		MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` //
+		MediaType                   string `json:"mediaType,omitempty"`                   //
+		NativeVlanID                string `json:"nativeVlanId,omitempty"`                //
+		OspfSupport                 string `json:"ospfSupport,omitempty"`                 //
+		Pid                         string `json:"pid,omitempty"`                         //
+		PortMode                    string `json:"portMode,omitempty"`                    //
+		PortName                    string `json:"portName,omitempty"`                    //
+		PortType                    string `json:"portType,omitempty"`                    //
+		SerialNo                    string `json:"serialNo,omitempty"`                    //
+		Series                      string `json:"series,omitempty"`                      //
+		Speed                       string `json:"speed,omitempty"`                       //
+		Status                      string `json:"status,omitempty"`                      //
+		VlanID                      string `json:"vlanId,omitempty"`                      //
+		VoiceVlan                   string `json:"voiceVlan,omitempty"`                   //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DevicesResponse is the DevicesResponse definition
 type DevicesResponse struct {
-	Response   []Response `json:"response,omitempty"`   //
-	TotalCount int        `json:"totalCount,omitempty"` //
-	Version    string     `json:"version,omitempty"`    //
+	Response []struct {
+		AirQualityHealth struct {
+			Ghz24  int `json:"Ghz24,omitempty"`  //
+			Ghz50  int `json:"Ghz50,omitempty"`  //
+			Radio0 int `json:"radio0,omitempty"` //
+			Radio1 int `json:"radio1,omitempty"` //
+		} `json:"airQualityHealth,omitempty"` //
+		ClientCount struct {
+			Ghz24  int `json:"Ghz24,omitempty"`  //
+			Ghz50  int `json:"Ghz50,omitempty"`  //
+			Radio0 int `json:"radio0,omitempty"` //
+			Radio1 int `json:"radio1,omitempty"` //
+		} `json:"clientCount,omitempty"` //
+		CPUHealth                  int    `json:"cpuHealth,omitempty"`                  //
+		CPUUlitilization           int    `json:"cpuUlitilization,omitempty"`           //
+		DeviceFamily               string `json:"deviceFamily,omitempty"`               //
+		DeviceType                 string `json:"deviceType,omitempty"`                 //
+		InterDeviceLinkAvailHealth int    `json:"interDeviceLinkAvailHealth,omitempty"` //
+		InterfaceLinkErrHealth     int    `json:"interfaceLinkErrHealth,omitempty"`     //
+		InterferenceHealth         struct {
+			Ghz24  int `json:"Ghz24,omitempty"`  //
+			Ghz50  int `json:"Ghz50,omitempty"`  //
+			Radio0 int `json:"radio0,omitempty"` //
+			Radio1 int `json:"radio1,omitempty"` //
+		} `json:"interferenceHealth,omitempty"` //
+		IPAddress               string `json:"ipAddress,omitempty"`               //
+		IssueCount              int    `json:"issueCount,omitempty"`              //
+		Location                string `json:"location,omitempty"`                //
+		MacAddress              string `json:"macAddress,omitempty"`              //
+		MemoryUtilization       int    `json:"memoryUtilization,omitempty"`       //
+		MemoryUtilizationHealth int    `json:"memoryUtilizationHealth,omitempty"` //
+		Model                   string `json:"model,omitempty"`                   //
+		Name                    string `json:"name,omitempty"`                    //
+		NoiseHealth             struct {
+			Ghz50  int `json:"Ghz50,omitempty"`  //
+			Radio1 int `json:"radio1,omitempty"` //
+		} `json:"noiseHealth,omitempty"` //
+		OsVersion          string `json:"osVersion,omitempty"`          //
+		OverallHealth      int    `json:"overallHealth,omitempty"`      //
+		ReachabilityHealth string `json:"reachabilityHealth,omitempty"` //
+		UtilizationHealth  struct {
+			Ghz24  int `json:"Ghz24,omitempty"`  //
+			Ghz50  int `json:"Ghz50,omitempty"`  //
+			Radio0 int `json:"radio0,omitempty"` //
+			Radio1 int `json:"radio1,omitempty"` //
+		} `json:"utilizationHealth,omitempty"` //
+	} `json:"response,omitempty"` //
+	TotalCount int    `json:"totalCount,omitempty"` //
+	Version    string `json:"version,omitempty"`    //
 }
 
 // FunctionDetails is the FunctionDetails definition
@@ -109,33 +220,178 @@ type FunctionDetails struct {
 
 // FunctionalCapability is the FunctionalCapability definition
 type FunctionalCapability struct {
-	AttributeInfo   string            `json:"attributeInfo,omitempty"`   //
-	FunctionDetails []FunctionDetails `json:"functionDetails,omitempty"` //
-	FunctionName    string            `json:"functionName,omitempty"`    //
-	FunctionOpState string            `json:"functionOpState,omitempty"` //
-	ID              string            `json:"id,omitempty"`              //
+	AttributeInfo   string `json:"attributeInfo,omitempty"` //
+	FunctionDetails []struct {
+		AttributeInfo string `json:"attributeInfo,omitempty"` //
+		ID            string `json:"id,omitempty"`            //
+		PropertyName  string `json:"propertyName,omitempty"`  //
+		StringValue   string `json:"stringValue,omitempty"`   //
+	} `json:"functionDetails,omitempty"` //
+	FunctionName    string `json:"functionName,omitempty"`    //
+	FunctionOpState string `json:"functionOpState,omitempty"` //
+	ID              string `json:"id,omitempty"`              //
 }
 
 // FunctionalCapabilityListResult is the FunctionalCapabilityListResult definition
 type FunctionalCapabilityListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		AttributeInfo        string `json:"attributeInfo,omitempty"` //
+		DeviceID             string `json:"deviceId,omitempty"`      //
+		FunctionalCapability []struct {
+			AttributeInfo   string `json:"attributeInfo,omitempty"` //
+			FunctionDetails []struct {
+				AttributeInfo string `json:"attributeInfo,omitempty"` //
+				ID            string `json:"id,omitempty"`            //
+				PropertyName  string `json:"propertyName,omitempty"`  //
+				StringValue   string `json:"stringValue,omitempty"`   //
+			} `json:"functionDetails,omitempty"` //
+			FunctionName    string `json:"functionName,omitempty"`    //
+			FunctionOpState string `json:"functionOpState,omitempty"` //
+			ID              string `json:"id,omitempty"`              //
+		} `json:"functionalCapability,omitempty"` //
+		ID string `json:"id,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // FunctionalCapabilityResult is the FunctionalCapabilityResult definition
 type FunctionalCapabilityResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		AttributeInfo   string `json:"attributeInfo,omitempty"` //
+		FunctionDetails []struct {
+			AttributeInfo string `json:"attributeInfo,omitempty"` //
+			ID            string `json:"id,omitempty"`            //
+			PropertyName  string `json:"propertyName,omitempty"`  //
+			StringValue   string `json:"stringValue,omitempty"`   //
+		} `json:"functionDetails,omitempty"` //
+		FunctionName    string `json:"functionName,omitempty"`    //
+		FunctionOpState string `json:"functionOpState,omitempty"` //
+		ID              string `json:"id,omitempty"`              //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetDeviceDetailResponse is the GetDeviceDetailResponse definition
 type GetDeviceDetailResponse struct {
-	Response Response `json:"response,omitempty"` //
+	Response struct {
+		HALastResetReason      string `json:"HALastResetReason,omitempty"`      //
+		HAPrimaryPowerStatus   string `json:"HAPrimaryPowerStatus,omitempty"`   //
+		HASecondaryPowerStatus string `json:"HASecondaryPowerStatus,omitempty"` //
+		AirQuality             string `json:"airQuality,omitempty"`             //
+		AirQualityScore        int    `json:"airQualityScore,omitempty"`        //
+		ClientCount            string `json:"clientCount,omitempty"`            //
+		CollectionStatus       string `json:"collectionStatus,omitempty"`       //
+		CommunicationState     string `json:"communicationState,omitempty"`     //
+		CPU                    string `json:"cpu,omitempty"`                    //
+		CPUScore               int    `json:"cpuScore,omitempty"`               //
+		DeviceSeries           string `json:"deviceSeries,omitempty"`           //
+		FreeMbuf               string `json:"freeMbuf,omitempty"`               //
+		FreeMbufScore          int    `json:"freeMbufScore,omitempty"`          //
+		FreeTimer              string `json:"freeTimer,omitempty"`              //
+		FreeTimerScore         int    `json:"freeTimerScore,omitempty"`         //
+		Interference           string `json:"interference,omitempty"`           //
+		InterferenceScore      int    `json:"interferenceScore,omitempty"`      //
+		Location               string `json:"location,omitempty"`               //
+		MacAddress             string `json:"macAddress,omitempty"`             //
+		ManagementIPAddr       string `json:"managementIpAddr,omitempty"`       //
+		Memory                 string `json:"memory,omitempty"`                 //
+		MemoryScore            int    `json:"memoryScore,omitempty"`            //
+		Noise                  string `json:"noise,omitempty"`                  //
+		NoiseScore             int    `json:"noiseScore,omitempty"`             //
+		NwDeviceFamily         string `json:"nwDeviceFamily,omitempty"`         //
+		NwDeviceID             string `json:"nwDeviceId,omitempty"`             //
+		NwDeviceName           string `json:"nwDeviceName,omitempty"`           //
+		NwDeviceRole           string `json:"nwDeviceRole,omitempty"`           //
+		NwDeviceType           string `json:"nwDeviceType,omitempty"`           //
+		OsType                 string `json:"osType,omitempty"`                 //
+		OverallHealth          int    `json:"overallHealth,omitempty"`          //
+		PacketPool             string `json:"packetPool,omitempty"`             //
+		PacketPoolScore        int    `json:"packetPoolScore,omitempty"`        //
+		PlatformID             string `json:"platformId,omitempty"`             //
+		RedundancyMode         string `json:"redundancyMode,omitempty"`         //
+		RedundancyPeerState    string `json:"redundancyPeerState,omitempty"`    //
+		RedundancyState        string `json:"redundancyState,omitempty"`        //
+		RedundancyUnit         string `json:"redundancyUnit,omitempty"`         //
+		SoftwareVersion        string `json:"softwareVersion,omitempty"`        //
+		Timestamp              string `json:"timestamp,omitempty"`              //
+		Utilization            string `json:"utilization,omitempty"`            //
+		UtilizationScore       int    `json:"utilizationScore,omitempty"`       //
+		Wqe                    string `json:"wqe,omitempty"`                    //
+		WqeScore               int    `json:"wqeScore,omitempty"`               //
+	} `json:"response,omitempty"` //
 }
 
 // GetDeviceEnrichmentDetailsResponse is the GetDeviceEnrichmentDetailsResponse definition
 type GetDeviceEnrichmentDetailsResponse struct {
-	DeviceDetails DeviceDetails `json:"deviceDetails,omitempty"` //
+	DeviceDetails struct {
+		ApManagerInterfaceIP  string `json:"apManagerInterfaceIp,omitempty"`  //
+		AssociatedWlcIP       string `json:"associatedWlcIp,omitempty"`       //
+		BootDateTime          string `json:"bootDateTime,omitempty"`          //
+		CollectionInterval    string `json:"collectionInterval,omitempty"`    //
+		CollectionStatus      string `json:"collectionStatus,omitempty"`      //
+		ErrorCode             string `json:"errorCode,omitempty"`             //
+		ErrorDescription      string `json:"errorDescription,omitempty"`      //
+		Family                string `json:"family,omitempty"`                //
+		Hostname              string `json:"hostname,omitempty"`              //
+		ID                    string `json:"id,omitempty"`                    //
+		InstanceUUID          string `json:"instanceUuid,omitempty"`          //
+		InterfaceCount        string `json:"interfaceCount,omitempty"`        //
+		InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` //
+		LastUpdateTime        int    `json:"lastUpdateTime,omitempty"`        //
+		LastUpdated           string `json:"lastUpdated,omitempty"`           //
+		LineCardCount         string `json:"lineCardCount,omitempty"`         //
+		LineCardID            string `json:"lineCardId,omitempty"`            //
+		Location              string `json:"location,omitempty"`              //
+		LocationName          string `json:"locationName,omitempty"`          //
+		MacAddress            string `json:"macAddress,omitempty"`            //
+		ManagementIPAddress   string `json:"managementIpAddress,omitempty"`   //
+		MemorySize            string `json:"memorySize,omitempty"`            //
+		NeighborTopology      []struct {
+			Links []struct {
+				ID              string   `json:"id,omitempty"`              //
+				Label           []string `json:"label,omitempty"`           //
+				LinkStatus      string   `json:"linkStatus,omitempty"`      //
+				PortUtilization string   `json:"portUtilization,omitempty"` //
+				Source          string   `json:"source,omitempty"`          //
+				Target          string   `json:"target,omitempty"`          //
+			} `json:"links,omitempty"` //
+			Nodes []struct {
+				Clients         string `json:"clients,omitempty"`         //
+				ConnectedDevice string `json:"connectedDevice,omitempty"` //
+				Count           string `json:"count,omitempty"`           //
+				Description     string `json:"description,omitempty"`     //
+				DeviceType      string `json:"deviceType,omitempty"`      //
+				FabricGroup     string `json:"fabricGroup,omitempty"`     //
+				Family          string `json:"family,omitempty"`          //
+				HealthScore     int    `json:"healthScore,omitempty"`     //
+				ID              string `json:"id,omitempty"`              //
+				IP              string `json:"ip,omitempty"`              //
+				Level           int    `json:"level,omitempty"`           //
+				Name            string `json:"name,omitempty"`            //
+				NodeType        string `json:"nodeType,omitempty"`        //
+				PlatformID      string `json:"platformId,omitempty"`      //
+				RadioFrequency  string `json:"radioFrequency,omitempty"`  //
+				Role            string `json:"role,omitempty"`            //
+				SoftwareVersion string `json:"softwareVersion,omitempty"` //
+				UserID          string `json:"userId,omitempty"`          //
+			} `json:"nodes,omitempty"` //
+		} `json:"neighborTopology,omitempty"` //
+		PlatformID                string `json:"platformId,omitempty"`                //
+		ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` //
+		ReachabilityStatus        string `json:"reachabilityStatus,omitempty"`        //
+		Role                      string `json:"role,omitempty"`                      //
+		RoleSource                string `json:"roleSource,omitempty"`                //
+		SerialNumber              string `json:"serialNumber,omitempty"`              //
+		Series                    string `json:"series,omitempty"`                    //
+		SNMPContact               string `json:"snmpContact,omitempty"`               //
+		SNMPLocation              string `json:"snmpLocation,omitempty"`              //
+		SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
+		TagCount                  string `json:"tagCount,omitempty"`                  //
+		TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
+		Type                      string `json:"type,omitempty"`                      //
+		UpTime                    string `json:"upTime,omitempty"`                    //
+		WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
+	} `json:"deviceDetails,omitempty"` //
 }
 
 // InterferenceHealth is the InterferenceHealth definition
@@ -148,32 +404,150 @@ type InterferenceHealth struct {
 
 // ModuleListResult is the ModuleListResult definition
 type ModuleListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		AssemblyNumber           string `json:"assemblyNumber,omitempty"`           //
+		AssemblyRevision         string `json:"assemblyRevision,omitempty"`         //
+		AttributeInfo            string `json:"attributeInfo,omitempty"`            //
+		ContainmentEntity        string `json:"containmentEntity,omitempty"`        //
+		Description              string `json:"description,omitempty"`              //
+		EntityPhysicalIndex      string `json:"entityPhysicalIndex,omitempty"`      //
+		ID                       string `json:"id,omitempty"`                       //
+		IsFieldReplaceable       string `json:"isFieldReplaceable,omitempty"`       //
+		IsReportingAlarmsAllowed string `json:"isReportingAlarmsAllowed,omitempty"` //
+		Manufacturer             string `json:"manufacturer,omitempty"`             //
+		ModuleIndex              int    `json:"moduleIndex,omitempty"`              //
+		Name                     string `json:"name,omitempty"`                     //
+		OperationalStateCode     string `json:"operationalStateCode,omitempty"`     //
+		PartNumber               string `json:"partNumber,omitempty"`               //
+		SerialNumber             string `json:"serialNumber,omitempty"`             //
+		VendorEquipmentType      string `json:"vendorEquipmentType,omitempty"`      //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // ModuleResult is the ModuleResult definition
 type ModuleResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		AssemblyNumber           string `json:"assemblyNumber,omitempty"`           //
+		AssemblyRevision         string `json:"assemblyRevision,omitempty"`         //
+		AttributeInfo            string `json:"attributeInfo,omitempty"`            //
+		ContainmentEntity        string `json:"containmentEntity,omitempty"`        //
+		Description              string `json:"description,omitempty"`              //
+		EntityPhysicalIndex      string `json:"entityPhysicalIndex,omitempty"`      //
+		ID                       string `json:"id,omitempty"`                       //
+		IsFieldReplaceable       string `json:"isFieldReplaceable,omitempty"`       //
+		IsReportingAlarmsAllowed string `json:"isReportingAlarmsAllowed,omitempty"` //
+		Manufacturer             string `json:"manufacturer,omitempty"`             //
+		ModuleIndex              int    `json:"moduleIndex,omitempty"`              //
+		Name                     string `json:"name,omitempty"`                     //
+		OperationalStateCode     string `json:"operationalStateCode,omitempty"`     //
+		PartNumber               string `json:"partNumber,omitempty"`               //
+		SerialNumber             string `json:"serialNumber,omitempty"`             //
+		VendorEquipmentType      string `json:"vendorEquipmentType,omitempty"`      //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // NetworkDeviceBriefNIOResult is the NetworkDeviceBriefNIOResult definition
 type NetworkDeviceBriefNIOResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		ID         string `json:"id,omitempty"`         //
+		Role       string `json:"role,omitempty"`       //
+		RoleSource string `json:"roleSource,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // NetworkDeviceListResult is the NetworkDeviceListResult definition
 type NetworkDeviceListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
+		AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
+		BootDateTime              string `json:"bootDateTime,omitempty"`              //
+		CollectionInterval        string `json:"collectionInterval,omitempty"`        //
+		CollectionStatus          string `json:"collectionStatus,omitempty"`          //
+		ErrorCode                 string `json:"errorCode,omitempty"`                 //
+		ErrorDescription          string `json:"errorDescription,omitempty"`          //
+		Family                    string `json:"family,omitempty"`                    //
+		Hostname                  string `json:"hostname,omitempty"`                  //
+		ID                        string `json:"id,omitempty"`                        //
+		InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
+		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
+		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdated               string `json:"lastUpdated,omitempty"`               //
+		LineCardCount             string `json:"lineCardCount,omitempty"`             //
+		LineCardID                string `json:"lineCardId,omitempty"`                //
+		Location                  string `json:"location,omitempty"`                  //
+		LocationName              string `json:"locationName,omitempty"`              //
+		MacAddress                string `json:"macAddress,omitempty"`                //
+		ManagementIPAddress       string `json:"managementIpAddress,omitempty"`       //
+		MemorySize                string `json:"memorySize,omitempty"`                //
+		PlatformID                string `json:"platformId,omitempty"`                //
+		ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` //
+		ReachabilityStatus        string `json:"reachabilityStatus,omitempty"`        //
+		Role                      string `json:"role,omitempty"`                      //
+		RoleSource                string `json:"roleSource,omitempty"`                //
+		SerialNumber              string `json:"serialNumber,omitempty"`              //
+		Series                    string `json:"series,omitempty"`                    //
+		SNMPContact               string `json:"snmpContact,omitempty"`               //
+		SNMPLocation              string `json:"snmpLocation,omitempty"`              //
+		SoftwareType              string `json:"softwareType,omitempty"`              //
+		SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
+		TagCount                  string `json:"tagCount,omitempty"`                  //
+		TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
+		Type                      string `json:"type,omitempty"`                      //
+		UpTime                    string `json:"upTime,omitempty"`                    //
+		WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // NetworkDeviceResult is the NetworkDeviceResult definition
 type NetworkDeviceResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
+		AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
+		BootDateTime              string `json:"bootDateTime,omitempty"`              //
+		CollectionInterval        string `json:"collectionInterval,omitempty"`        //
+		CollectionStatus          string `json:"collectionStatus,omitempty"`          //
+		ErrorCode                 string `json:"errorCode,omitempty"`                 //
+		ErrorDescription          string `json:"errorDescription,omitempty"`          //
+		Family                    string `json:"family,omitempty"`                    //
+		Hostname                  string `json:"hostname,omitempty"`                  //
+		ID                        string `json:"id,omitempty"`                        //
+		InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
+		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
+		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdated               string `json:"lastUpdated,omitempty"`               //
+		LineCardCount             string `json:"lineCardCount,omitempty"`             //
+		LineCardID                string `json:"lineCardId,omitempty"`                //
+		Location                  string `json:"location,omitempty"`                  //
+		LocationName              string `json:"locationName,omitempty"`              //
+		MacAddress                string `json:"macAddress,omitempty"`                //
+		ManagementIPAddress       string `json:"managementIpAddress,omitempty"`       //
+		MemorySize                string `json:"memorySize,omitempty"`                //
+		PlatformID                string `json:"platformId,omitempty"`                //
+		ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` //
+		ReachabilityStatus        string `json:"reachabilityStatus,omitempty"`        //
+		Role                      string `json:"role,omitempty"`                      //
+		RoleSource                string `json:"roleSource,omitempty"`                //
+		SerialNumber              string `json:"serialNumber,omitempty"`              //
+		Series                    string `json:"series,omitempty"`                    //
+		SNMPContact               string `json:"snmpContact,omitempty"`               //
+		SNMPLocation              string `json:"snmpLocation,omitempty"`              //
+		SoftwareType              string `json:"softwareType,omitempty"`              //
+		SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
+		TagCount                  string `json:"tagCount,omitempty"`                  //
+		TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
+		Type                      string `json:"type,omitempty"`                      //
+		UpTime                    string `json:"upTime,omitempty"`                    //
+		WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // NoiseHealth is the NoiseHealth definition
@@ -184,57 +558,32 @@ type NoiseHealth struct {
 
 // RawCliInfoNIOListResult is the RawCliInfoNIOListResult definition
 type RawCliInfoNIOListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		AttributeInfo   string `json:"attributeInfo,omitempty"`   //
+		CdpNeighbors    string `json:"cdpNeighbors,omitempty"`    //
+		HealthMonitor   string `json:"healthMonitor,omitempty"`   //
+		ID              string `json:"id,omitempty"`              //
+		IntfDescription string `json:"intfDescription,omitempty"` //
+		Inventory       string `json:"inventory,omitempty"`       //
+		IPIntfBrief     string `json:"ipIntfBrief,omitempty"`     //
+		MacAddressTable string `json:"macAddressTable,omitempty"` //
+		RunningConfig   string `json:"runningConfig,omitempty"`   //
+		SNMP            string `json:"snmp,omitempty"`            //
+		Version         string `json:"version,omitempty"`         //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // RegisterNetworkDeviceResult is the RegisterNetworkDeviceResult definition
 type RegisterNetworkDeviceResult struct {
-	Response RegisterNetworkDeviceResponse `json:"response,omitempty"` //
-	Version  string                        `json:"version,omitempty"`  //
-}
-
-// RegisterNetworkDeviceResponse is the Response definition
-type RegisterNetworkDeviceResponse struct {
-	ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
-	AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
-	BootDateTime              string `json:"bootDateTime,omitempty"`              //
-	CollectionInterval        string `json:"collectionInterval,omitempty"`        //
-	CollectionStatus          string `json:"collectionStatus,omitempty"`          //
-	ErrorCode                 string `json:"errorCode,omitempty"`                 //
-	ErrorDescription          string `json:"errorDescription,omitempty"`          //
-	Family                    string `json:"family,omitempty"`                    //
-	Hostname                  string `json:"hostname,omitempty"`                  //
-	ID                        string `json:"id,omitempty"`                        //
-	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
-	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
-	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-	LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
-	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
-	LineCardID                string `json:"lineCardId,omitempty"`                //
-	Location                  string `json:"location,omitempty"`                  //
-	LocationName              string `json:"locationName,omitempty"`              //
-	MacAddress                string `json:"macAddress,omitempty"`                //
-	ManagementIPAddress       string `json:"managementIpAddress,omitempty"`       //
-	MemorySize                string `json:"memorySize,omitempty"`                //
-	PlatformID                string `json:"platformId,omitempty"`                //
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` //
-	ReachabilityStatus        string `json:"reachabilityStatus,omitempty"`        //
-	Role                      string `json:"role,omitempty"`                      //
-	RoleSource                string `json:"roleSource,omitempty"`                //
-	SerialNumber              string `json:"serialNumber,omitempty"`              //
-	Series                    string `json:"series,omitempty"`                    //
-	SNMPContact               string `json:"snmpContact,omitempty"`               //
-	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
-	SoftwareType              string `json:"softwareType,omitempty"`              //
-	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
-	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
-	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
-	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
+	Response struct {
+		MacAddress   string `json:"macAddress,omitempty"`   //
+		ModelNumber  string `json:"modelNumber,omitempty"`  //
+		Name         string `json:"name,omitempty"`         //
+		SerialNumber string `json:"serialNumber,omitempty"` //
+		TenantID     string `json:"tenantId,omitempty"`     //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // SuccessResult is the SuccessResult definition
@@ -259,14 +608,36 @@ type UtilizationHealth struct {
 
 // VlanListResult is the VlanListResult definition
 type VlanListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		InterfaceName  string `json:"interfaceName,omitempty"`  //
+		IPAddress      string `json:"ipAddress,omitempty"`      //
+		Mask           int    `json:"mask,omitempty"`           //
+		NetworkAddress string `json:"networkAddress,omitempty"` //
+		NumberOfIPs    int    `json:"intOfIPs,omitempty"`       //
+		Prefix         string `json:"prefix,omitempty"`         //
+		VlanNumber     int    `json:"vlanNumber,omitempty"`     //
+		VlanType       string `json:"vlanType,omitempty"`       //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // WirelessInfoResult is the WirelessInfoResult definition
 type WirelessInfoResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		AdminEnabledPorts        []int  `json:"adminEnabledPorts,omitempty"`        //
+		ApGroupName              string `json:"apGroupName,omitempty"`              //
+		DeviceID                 string `json:"deviceId,omitempty"`                 //
+		EthMacAddress            string `json:"ethMacAddress,omitempty"`            //
+		FlexGroupName            string `json:"flexGroupName,omitempty"`            //
+		ID                       string `json:"id,omitempty"`                       //
+		InstanceTenantID         string `json:"instanceTenantId,omitempty"`         //
+		InstanceUUID             string `json:"instanceUuid,omitempty"`             //
+		LagModeEnabled           bool   `json:"lagModeEnabled,omitempty"`           //
+		NetconfEnabled           bool   `json:"netconfEnabled,omitempty"`           //
+		WirelessLicenseInfo      string `json:"wirelessLicenseInfo,omitempty"`      //
+		WirelessPackageInstalled bool   `json:"wirelessPackageInstalled,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // AddDevice addDevice
@@ -289,7 +660,7 @@ type WirelessInfoResult struct {
 // 	result := response.Result().(*TaskIDResult)
 // 	return result, response, err
 
-// }
+//}
 
 // DeleteDeviceByIDQueryParams defines the query parameters for this request
 type DeleteDeviceByIDQueryParams struct {
@@ -301,25 +672,25 @@ type DeleteDeviceByIDQueryParams struct {
 @param id Device ID
 @param isForceDelete isForceDelete
 */
-func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams *DeleteDeviceByIDQueryParams) (*resty.Response, error) {
+// func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIdQueryParams *DeleteDeviceByIdQueryParams) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/network-device/{id}"
-	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+// 	path := "/dna/intent/api/v1/network-device/{id}"
+// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	queryString, _ := query.Values(deleteDeviceByIDQueryParams)
+// 	queryString, _ := query.Values(deleteDeviceByIDQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetQueryString(queryString.Encode()).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return response, err
+// 	return response, err
 
-}
+// }
 
 // DevicesQueryParams defines the query parameters for this request
 type DevicesQueryParams struct {
@@ -1418,7 +1789,7 @@ type SyncNetworkDevicesQueryParams struct {
 // 	result := response.Result().(*TaskIDResult)
 // 	return result, response, err
 
-//}
+// }
 
 // UpdateDeviceRole updateDeviceRole
 /* Updates the role of the device as access, core, distribution, border router

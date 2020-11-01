@@ -25,21 +25,36 @@ type AddnDetails struct {
 
 // ClaimDeviceRequest is the ClaimDeviceRequest definition
 type ClaimDeviceRequest struct {
-	ConfigFileURL     string            `json:"configFileUrl,omitempty"`     //
-	ConfigID          string            `json:"configId,omitempty"`          //
-	DeviceClaimList   []DeviceClaimList `json:"deviceClaimList,omitempty"`   //
-	FileServiceID     string            `json:"fileServiceId,omitempty"`     //
-	ImageID           string            `json:"imageId,omitempty"`           //
-	ImageURL          string            `json:"imageUrl,omitempty"`          //
-	PopulateInventory bool              `json:"populateInventory,omitempty"` //
-	ProjectID         string            `json:"projectId,omitempty"`         //
-	WorkflowID        string            `json:"workflowId,omitempty"`        //
+	ConfigFileURL   string `json:"configFileUrl,omitempty"` //
+	ConfigID        string `json:"configId,omitempty"`      //
+	DeviceClaimList []struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		DeviceID               string `json:"deviceId,omitempty"`               //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"deviceClaimList,omitempty"` //
+	FileServiceID     string `json:"fileServiceId,omitempty"`     //
+	ImageID           string `json:"imageId,omitempty"`           //
+	ImageURL          string `json:"imageUrl,omitempty"`          //
+	PopulateInventory bool   `json:"populateInventory,omitempty"` //
+	ProjectID         string `json:"projectId,omitempty"`         //
+	WorkflowID        string `json:"workflowId,omitempty"`        //
 }
 
 // ConfigList is the ConfigList definition
 type ConfigList struct {
-	ConfigID         string             `json:"configId,omitempty"`         //
-	ConfigParameters []ConfigParameters `json:"configParameters,omitempty"` //
+	ConfigID         string `json:"configId,omitempty"` //
+	ConfigParameters []struct {
+		Key   string `json:"key,omitempty"`   //
+		Value string `json:"value,omitempty"` //
+	} `json:"configParameters,omitempty"` //
 }
 
 // ConfigParameters is the ConfigParameters definition
@@ -64,90 +79,455 @@ type DefaultProfile struct {
 
 // Device is the Device definition
 type Device struct {
-	ID                   string              `json:"_id,omitempty"`                  //
-	DayZeroConfig        DayZeroConfig       `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview string              `json:"dayZeroConfigPreview,omitempty"` //
-	DeviceInfo           DeviceInfo          `json:"deviceInfo,omitempty"`           //
-	RunSummaryList       []RunSummaryList    `json:"runSummaryList,omitempty"`       //
-	SystemResetWorkflow  SystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       SystemWorkflow      `json:"systemWorkflow,omitempty"`       //
-	TenantID             string              `json:"tenantId,omitempty"`             //
-	Version              int                 `json:"version,omitempty"`              //
-	Workflow             Workflow            `json:"workflow,omitempty"`             //
-	WorkflowParameters   WorkflowParameters  `json:"workflowParameters,omitempty"`   //
+	IDField       string `json:"_id,omitempty"` //
+	DayZeroConfig struct {
+		Config string `json:"config,omitempty"` //
+	} `json:"dayZeroConfig,omitempty"` //
+	DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+	DeviceInfo           struct {
+		AaaCredentials struct {
+			Password string `json:"password,omitempty"` //
+			Username string `json:"username,omitempty"` //
+		} `json:"aaaCredentials,omitempty"` //
+		AddedOn                   int      `json:"addedOn,omitempty"`                   //
+		AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+		AgentType                 string   `json:"agentType,omitempty"`                 //
+		AuthStatus                string   `json:"authStatus,omitempty"`                //
+		AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+		AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+		CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+		CmState                   string   `json:"cmState,omitempty"`                   //
+		Description               string   `json:"description,omitempty"`               //
+		DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+		DeviceType                string   `json:"deviceType,omitempty"`                //
+		FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+		FileSystemList            []struct {
+			Freespace int    `json:"freespace,omitempty"` //
+			Name      string `json:"name,omitempty"`      //
+			Readable  bool   `json:"readable,omitempty"`  //
+			Size      int    `json:"size,omitempty"`      //
+			Type      string `json:"type,omitempty"`      //
+			Writeable bool   `json:"writeable,omitempty"` //
+		} `json:"fileSystemList,omitempty"` //
+		FirstContact int    `json:"firstContact,omitempty"` //
+		Hostname     string `json:"hostname,omitempty"`     //
+		HTTPHeaders  []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"httpHeaders,omitempty"` //
+		ImageFile    string `json:"imageFile,omitempty"`    //
+		ImageVersion string `json:"imageVersion,omitempty"` //
+		IPInterfaces []struct {
+			IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+			IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+			MacAddress      string   `json:"macAddress,omitempty"`      //
+			Name            string   `json:"name,omitempty"`            //
+			Status          string   `json:"status,omitempty"`          //
+		} `json:"ipInterfaces,omitempty"` //
+		LastContact  int `json:"lastContact,omitempty"`  //
+		LastSyncTime int `json:"lastSyncTime,omitempty"` //
+		LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+		Location     struct {
+			Address   string `json:"address,omitempty"`   //
+			Altitude  string `json:"altitude,omitempty"`  //
+			Latitude  string `json:"latitude,omitempty"`  //
+			Longitude string `json:"longitude,omitempty"` //
+			SiteID    string `json:"siteId,omitempty"`    //
+		} `json:"location,omitempty"` //
+		MacAddress    string `json:"macAddress,omitempty"` //
+		Mode          string `json:"mode,omitempty"`       //
+		Name          string `json:"name,omitempty"`       //
+		NeighborLinks []struct {
+			LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+			LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+			LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+			RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+			RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+			RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+			RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+			RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+			RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+		} `json:"neighborLinks,omitempty"` //
+		OnbState       string `json:"onbState,omitempty"` //
+		Pid            string `json:"pid,omitempty"`      //
+		PnpProfileList []struct {
+			CreatedBy        string `json:"createdBy,omitempty"`        //
+			DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+			PrimaryEndpoint  struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"primaryEndpoint,omitempty"` //
+			ProfileName       string `json:"profileName,omitempty"` //
+			SecondaryEndpoint struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"secondaryEndpoint,omitempty"` //
+		} `json:"pnpProfileList,omitempty"` //
+		PopulateInventory    bool `json:"populateInventory,omitempty"` //
+		PreWorkflowCliOuputs []struct {
+			Cli       string `json:"cli,omitempty"`       //
+			CliOutput string `json:"cliOutput,omitempty"` //
+		} `json:"preWorkflowCliOuputs,omitempty"` //
+		ProjectID       string `json:"projectId,omitempty"`       //
+		ProjectName     string `json:"projectName,omitempty"`     //
+		ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+		SerialNumber    string `json:"serialNumber,omitempty"`    //
+		SiteID          string `json:"siteId,omitempty"`          //
+		SiteName        string `json:"siteName,omitempty"`        //
+		SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+		Source          string `json:"source,omitempty"`          //
+		Stack           bool   `json:"stack,omitempty"`           //
+		StackInfo       struct {
+			IsFullRing      bool `json:"isFullRing,omitempty"` //
+			StackMemberList []struct {
+				HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+				LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+				LicenseType      string `json:"licenseType,omitempty"`      //
+				MacAddress       string `json:"macAddress,omitempty"`       //
+				Pid              string `json:"pid,omitempty"`              //
+				Priority         int    `json:"priority,omitempty"`         //
+				Role             string `json:"role,omitempty"`             //
+				SerialNumber     string `json:"serialNumber,omitempty"`     //
+				SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+				StackNumber      int    `json:"stackNumber,omitempty"`      //
+				State            string `json:"state,omitempty"`            //
+				SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+			} `json:"stackMemberList,omitempty"` //
+			StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+			SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+			TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+			ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+		} `json:"stackInfo,omitempty"` //
+		State             string   `json:"state,omitempty"`             //
+		SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+		Tags              string   `json:"tags,omitempty"`              //
+		UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+		UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+		VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+		WorkflowID        string   `json:"workflowId,omitempty"`        //
+		WorkflowName      string   `json:"workflowName,omitempty"`      //
+	} `json:"deviceInfo,omitempty"` //
+	RunSummaryList []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"runSummaryList,omitempty"` //
+	SystemResetWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemWorkflow,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+	Workflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"workflow,omitempty"` //
+	WorkflowParameters struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"workflowParameters,omitempty"` //
 }
 
 // DeviceClaimList is the DeviceClaimList definition
 type DeviceClaimList struct {
-	ConfigList             []ConfigList `json:"configList,omitempty"`             //
-	DeviceID               string       `json:"deviceId,omitempty"`               //
-	LicenseLevel           string       `json:"licenseLevel,omitempty"`           //
-	LicenseType            string       `json:"licenseType,omitempty"`            //
-	TopOfStackSerialNumber string       `json:"topOfStackSerialNumber,omitempty"` //
+	ConfigList []struct {
+		ConfigID         string `json:"configId,omitempty"` //
+		ConfigParameters []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"configParameters,omitempty"` //
+	} `json:"configList,omitempty"` //
+	DeviceID               string `json:"deviceId,omitempty"`               //
+	LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+	LicenseType            string `json:"licenseType,omitempty"`            //
+	TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
 }
 
 // DeviceInfo is the DeviceInfo definition
 type DeviceInfo struct {
-	AaaCredentials            AaaCredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                    `json:"addedOn,omitempty"`                   //
-	AddnMacAddrs              []string               `json:"addnMacAddrs,omitempty"`              //
-	AgentType                 string                 `json:"agentType,omitempty"`                 //
-	AuthStatus                string                 `json:"authStatus,omitempty"`                //
-	AuthenticatedMicNumber    string                 `json:"authenticatedMicNumber,omitempty"`    //
-	AuthenticatedSudiSerialNo string                 `json:"authenticatedSudiSerialNo,omitempty"` //
-	CapabilitiesSupported     []string               `json:"capabilitiesSupported,omitempty"`     //
-	CmState                   string                 `json:"cmState,omitempty"`                   //
-	Description               string                 `json:"description,omitempty"`               //
-	DeviceSudiSerialNos       []string               `json:"deviceSudiSerialNos,omitempty"`       //
-	DeviceType                string                 `json:"deviceType,omitempty"`                //
-	FeaturesSupported         []string               `json:"featuresSupported,omitempty"`         //
-	FileSystemList            []FileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                    `json:"firstContact,omitempty"`              //
-	Hostname                  string                 `json:"hostname,omitempty"`                  //
-	HTTPHeaders               []HTTPHeaders          `json:"httpHeaders,omitempty"`               //
-	ImageFile                 string                 `json:"imageFile,omitempty"`                 //
-	ImageVersion              string                 `json:"imageVersion,omitempty"`              //
-	IPInterfaces              []IPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                    `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                    `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                    `json:"lastUpdateOn,omitempty"`              //
-	Location                  Location               `json:"location,omitempty"`                  //
-	MacAddress                string                 `json:"macAddress,omitempty"`                //
-	Mode                      string                 `json:"mode,omitempty"`                      //
-	Name                      string                 `json:"name,omitempty"`                      //
-	NeighborLinks             []NeighborLinks        `json:"neighborLinks,omitempty"`             //
-	OnbState                  string                 `json:"onbState,omitempty"`                  //
-	Pid                       string                 `json:"pid,omitempty"`                       //
-	PnpProfileList            []PnpProfileList       `json:"pnpProfileList,omitempty"`            //
-	PopulateInventory         bool                   `json:"populateInventory,omitempty"`         //
-	PreWorkflowCliOuputs      []PreWorkflowCliOuputs `json:"preWorkflowCliOuputs,omitempty"`      //
-	ProjectID                 string                 `json:"projectId,omitempty"`                 //
-	ProjectName               string                 `json:"projectName,omitempty"`               //
-	ReloadRequested           bool                   `json:"reloadRequested,omitempty"`           //
-	SerialNumber              string                 `json:"serialNumber,omitempty"`              //
-	SiteID                    string                 `json:"siteId,omitempty"`                    //
-	SiteName                  string                 `json:"siteName,omitempty"`                  //
-	SmartAccountID            string                 `json:"smartAccountId,omitempty"`            //
-	Source                    string                 `json:"source,omitempty"`                    //
-	Stack                     bool                   `json:"stack,omitempty"`                     //
-	StackInfo                 StackInfo              `json:"stackInfo,omitempty"`                 //
-	State                     string                 `json:"state,omitempty"`                     //
-	SudiRequired              bool                   `json:"sudiRequired,omitempty"`              //
-	Tags                      string                 `json:"tags,omitempty"`                      //
-	UserMicNumbers            []string               `json:"userMicNumbers,omitempty"`            //
-	UserSudiSerialNos         []string               `json:"userSudiSerialNos,omitempty"`         //
-	VirtualAccountID          string                 `json:"virtualAccountId,omitempty"`          //
-	WorkflowID                string                 `json:"workflowId,omitempty"`                //
-	WorkflowName              string                 `json:"workflowName,omitempty"`              //
+	AaaCredentials struct {
+		Password string `json:"password,omitempty"` //
+		Username string `json:"username,omitempty"` //
+	} `json:"aaaCredentials,omitempty"` //
+	AddedOn                   int      `json:"addedOn,omitempty"`                   //
+	AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+	AgentType                 string   `json:"agentType,omitempty"`                 //
+	AuthStatus                string   `json:"authStatus,omitempty"`                //
+	AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+	AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+	CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+	CmState                   string   `json:"cmState,omitempty"`                   //
+	Description               string   `json:"description,omitempty"`               //
+	DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+	DeviceType                string   `json:"deviceType,omitempty"`                //
+	FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+	FileSystemList            []struct {
+		Freespace int    `json:"freespace,omitempty"` //
+		Name      string `json:"name,omitempty"`      //
+		Readable  bool   `json:"readable,omitempty"`  //
+		Size      int    `json:"size,omitempty"`      //
+		Type      string `json:"type,omitempty"`      //
+		Writeable bool   `json:"writeable,omitempty"` //
+	} `json:"fileSystemList,omitempty"` //
+	FirstContact int    `json:"firstContact,omitempty"` //
+	Hostname     string `json:"hostname,omitempty"`     //
+	HTTPHeaders  []struct {
+		Key   string `json:"key,omitempty"`   //
+		Value string `json:"value,omitempty"` //
+	} `json:"httpHeaders,omitempty"` //
+	ImageFile    string `json:"imageFile,omitempty"`    //
+	ImageVersion string `json:"imageVersion,omitempty"` //
+	IPInterfaces []struct {
+		IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+		IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+		MacAddress      string   `json:"macAddress,omitempty"`      //
+		Name            string   `json:"name,omitempty"`            //
+		Status          string   `json:"status,omitempty"`          //
+	} `json:"ipInterfaces,omitempty"` //
+	LastContact  int `json:"lastContact,omitempty"`  //
+	LastSyncTime int `json:"lastSyncTime,omitempty"` //
+	LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+	Location     struct {
+		Address   string `json:"address,omitempty"`   //
+		Altitude  string `json:"altitude,omitempty"`  //
+		Latitude  string `json:"latitude,omitempty"`  //
+		Longitude string `json:"longitude,omitempty"` //
+		SiteID    string `json:"siteId,omitempty"`    //
+	} `json:"location,omitempty"` //
+	MacAddress    string `json:"macAddress,omitempty"` //
+	Mode          string `json:"mode,omitempty"`       //
+	Name          string `json:"name,omitempty"`       //
+	NeighborLinks []struct {
+		LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+		LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+		LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+		RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+		RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+		RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+		RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+		RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+		RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+	} `json:"neighborLinks,omitempty"` //
+	OnbState       string `json:"onbState,omitempty"` //
+	Pid            string `json:"pid,omitempty"`      //
+	PnpProfileList []struct {
+		CreatedBy        string `json:"createdBy,omitempty"`        //
+		DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+		PrimaryEndpoint  struct {
+			Certificate string `json:"certificate,omitempty"` //
+			Fqdn        string `json:"fqdn,omitempty"`        //
+			IPv4Address string `json:"ipv4Address,omitempty"` //
+			IPv6Address string `json:"ipv6Address,omitempty"` //
+			Port        int    `json:"port,omitempty"`        //
+			Protocol    string `json:"protocol,omitempty"`    //
+		} `json:"primaryEndpoint,omitempty"` //
+		ProfileName       string `json:"profileName,omitempty"` //
+		SecondaryEndpoint struct {
+			Certificate string `json:"certificate,omitempty"` //
+			Fqdn        string `json:"fqdn,omitempty"`        //
+			IPv4Address string `json:"ipv4Address,omitempty"` //
+			IPv6Address string `json:"ipv6Address,omitempty"` //
+			Port        int    `json:"port,omitempty"`        //
+			Protocol    string `json:"protocol,omitempty"`    //
+		} `json:"secondaryEndpoint,omitempty"` //
+	} `json:"pnpProfileList,omitempty"` //
+	PopulateInventory    bool `json:"populateInventory,omitempty"` //
+	PreWorkflowCliOuputs []struct {
+		Cli       string `json:"cli,omitempty"`       //
+		CliOutput string `json:"cliOutput,omitempty"` //
+	} `json:"preWorkflowCliOuputs,omitempty"` //
+	ProjectID       string `json:"projectId,omitempty"`       //
+	ProjectName     string `json:"projectName,omitempty"`     //
+	ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+	SerialNumber    string `json:"serialNumber,omitempty"`    //
+	SiteID          string `json:"siteId,omitempty"`          //
+	SiteName        string `json:"siteName,omitempty"`        //
+	SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+	Source          string `json:"source,omitempty"`          //
+	Stack           bool   `json:"stack,omitempty"`           //
+	StackInfo       struct {
+		IsFullRing      bool `json:"isFullRing,omitempty"` //
+		StackMemberList []struct {
+			HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+			LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+			LicenseType      string `json:"licenseType,omitempty"`      //
+			MacAddress       string `json:"macAddress,omitempty"`       //
+			Pid              string `json:"pid,omitempty"`              //
+			Priority         int    `json:"priority,omitempty"`         //
+			Role             string `json:"role,omitempty"`             //
+			SerialNumber     string `json:"serialNumber,omitempty"`     //
+			SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+			StackNumber      int    `json:"stackNumber,omitempty"`      //
+			State            string `json:"state,omitempty"`            //
+			SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+		} `json:"stackMemberList,omitempty"` //
+		StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+		SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+		TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+		ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+	} `json:"stackInfo,omitempty"` //
+	State             string   `json:"state,omitempty"`             //
+	SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+	Tags              string   `json:"tags,omitempty"`              //
+	UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+	UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+	VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+	WorkflowID        string   `json:"workflowId,omitempty"`        //
+	WorkflowName      string   `json:"workflowName,omitempty"`      //
 }
 
 // DeviceResetList is the DeviceResetList definition
 type DeviceResetList struct {
-	ConfigList             []ConfigList `json:"configList,omitempty"`             //
-	DeviceID               string       `json:"deviceId,omitempty"`               //
-	LicenseLevel           string       `json:"licenseLevel,omitempty"`           //
-	LicenseType            string       `json:"licenseType,omitempty"`            //
-	TopOfStackSerialNumber string       `json:"topOfStackSerialNumber,omitempty"` //
+	ConfigList []struct {
+		ConfigID         string `json:"configId,omitempty"` //
+		ConfigParameters []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"configParameters,omitempty"` //
+	} `json:"configList,omitempty"` //
+	DeviceID               string `json:"deviceId,omitempty"`               //
+	LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+	LicenseType            string `json:"licenseType,omitempty"`            //
+	TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
 }
 
 // FileSystemList is the FileSystemList definition
@@ -162,11 +542,21 @@ type FileSystemList struct {
 
 // HistoryTaskInfo is the HistoryTaskInfo definition
 type HistoryTaskInfo struct {
-	AddnDetails  []AddnDetails  `json:"addnDetails,omitempty"`  //
-	Name         string         `json:"name,omitempty"`         //
-	TimeTaken    int            `json:"timeTaken,omitempty"`    //
-	Type         string         `json:"type,omitempty"`         //
-	WorkItemList []WorkItemList `json:"workItemList,omitempty"` //
+	AddnDetails []struct {
+		Key   string `json:"key,omitempty"`   //
+		Value string `json:"value,omitempty"` //
+	} `json:"addnDetails,omitempty"` //
+	Name         string `json:"name,omitempty"`      //
+	TimeTaken    int    `json:"timeTaken,omitempty"` //
+	Type         string `json:"type,omitempty"`      //
+	WorkItemList []struct {
+		Command   string `json:"command,omitempty"`   //
+		EndTime   int    `json:"endTime,omitempty"`   //
+		OutputStr string `json:"outputStr,omitempty"` //
+		StartTime int    `json:"startTime,omitempty"` //
+		State     string `json:"state,omitempty"`     //
+		TimeTaken int    `json:"timeTaken,omitempty"` //
+	} `json:"workItemList,omitempty"` //
 }
 
 // HTTPHeaders is the HttpHeaders definition
@@ -184,15 +574,6 @@ type IPInterfaces struct {
 	Status          string   `json:"status,omitempty"`          //
 }
 
-// DeviceOnBoardingPnPLocation is the Location definition
-type DeviceOnBoardingPnPLocation struct {
-	Address   string `json:"address,omitempty"`   //
-	Altitude  string `json:"altitude,omitempty"`  //
-	Latitude  string `json:"latitude,omitempty"`  //
-	Longitude string `json:"longitude,omitempty"` //
-	SiteID    string `json:"siteId,omitempty"`    //
-}
-
 // NeighborLinks is the NeighborLinks definition
 type NeighborLinks struct {
 	LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
@@ -208,11 +589,25 @@ type NeighborLinks struct {
 
 // PnpProfileList is the PnpProfileList definition
 type PnpProfileList struct {
-	CreatedBy         string            `json:"createdBy,omitempty"`         //
-	DiscoveryCreated  bool              `json:"discoveryCreated,omitempty"`  //
-	PrimaryEndpoint   PrimaryEndpoint   `json:"primaryEndpoint,omitempty"`   //
-	ProfileName       string            `json:"profileName,omitempty"`       //
-	SecondaryEndpoint SecondaryEndpoint `json:"secondaryEndpoint,omitempty"` //
+	CreatedBy        string `json:"createdBy,omitempty"`        //
+	DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+	PrimaryEndpoint  struct {
+		Certificate string `json:"certificate,omitempty"` //
+		Fqdn        string `json:"fqdn,omitempty"`        //
+		IPv4Address string `json:"ipv4Address,omitempty"` //
+		IPv6Address string `json:"ipv6Address,omitempty"` //
+		Port        int    `json:"port,omitempty"`        //
+		Protocol    string `json:"protocol,omitempty"`    //
+	} `json:"primaryEndpoint,omitempty"` //
+	ProfileName       string `json:"profileName,omitempty"` //
+	SecondaryEndpoint struct {
+		Certificate string `json:"certificate,omitempty"` //
+		Fqdn        string `json:"fqdn,omitempty"`        //
+		IPv4Address string `json:"ipv4Address,omitempty"` //
+		IPv6Address string `json:"ipv6Address,omitempty"` //
+		Port        int    `json:"port,omitempty"`        //
+		Protocol    string `json:"protocol,omitempty"`    //
+	} `json:"secondaryEndpoint,omitempty"` //
 }
 
 // PreWorkflowCliOuputs is the PreWorkflowCliOuputs definition
@@ -245,51 +640,109 @@ type Profile struct {
 
 // ResetRequest is the ResetRequest definition
 type ResetRequest struct {
-	DeviceResetList []DeviceResetList `json:"deviceResetList,omitempty"` //
-	ProjectID       string            `json:"projectId,omitempty"`       //
-	WorkflowID      string            `json:"workflowId,omitempty"`      //
+	DeviceResetList []struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		DeviceID               string `json:"deviceId,omitempty"`               //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"deviceResetList,omitempty"` //
+	ProjectID  string `json:"projectId,omitempty"`  //
+	WorkflowID string `json:"workflowId,omitempty"` //
 }
 
 // RunSummaryList is the RunSummaryList definition
 type RunSummaryList struct {
-	Details         string          `json:"details,omitempty"`         //
-	ErrorFlag       bool            `json:"errorFlag,omitempty"`       //
-	HistoryTaskInfo HistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int             `json:"timestamp,omitempty"`       //
+	Details         string `json:"details,omitempty"`   //
+	ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+	HistoryTaskInfo struct {
+		AddnDetails []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"addnDetails,omitempty"` //
+		Name         string `json:"name,omitempty"`      //
+		TimeTaken    int    `json:"timeTaken,omitempty"` //
+		Type         string `json:"type,omitempty"`      //
+		WorkItemList []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"historyTaskInfo,omitempty"` //
+	Timestamp int `json:"timestamp,omitempty"` //
 }
 
 // SAVAMapping is the SAVAMapping definition
 type SAVAMapping struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // SavaMappingList is the SavaMappingList definition
 type SavaMappingList struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // SecondaryEndpoint is the SecondaryEndpoint definition
@@ -302,6 +755,60 @@ type SecondaryEndpoint struct {
 	Protocol    string `json:"protocol,omitempty"`    //
 }
 
+// Settings is the Settings definition
+type Settings struct {
+	IDField        string `json:"_id,omitempty"` //
+	AaaCredentials struct {
+		Password string `json:"password,omitempty"` //
+		Username string `json:"username,omitempty"` //
+	} `json:"aaaCredentials,omitempty"` //
+	AcceptEula     bool `json:"acceptEula,omitempty"` //
+	DefaultProfile struct {
+		Cert          string   `json:"cert,omitempty"`          //
+		FqdnAddresses []string `json:"fqdnAddresses,omitempty"` //
+		IPAddresses   []string `json:"ipAddresses,omitempty"`   //
+		Port          int      `json:"port,omitempty"`          //
+		Proxy         bool     `json:"proxy,omitempty"`         //
+	} `json:"defaultProfile,omitempty"` //
+	SavaMappingList []struct {
+		AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+		CcoUser        string `json:"ccoUser,omitempty"`        //
+		Expiry         int    `json:"expiry,omitempty"`         //
+		LastSync       int    `json:"lastSync,omitempty"`       //
+		Profile        struct {
+			AddressFqdn string `json:"addressFqdn,omitempty"` //
+			AddressIPV4 string `json:"addressIpV4,omitempty"` //
+			Cert        string `json:"cert,omitempty"`        //
+			MakeDefault bool   `json:"makeDefault,omitempty"` //
+			Name        string `json:"name,omitempty"`        //
+			Port        int    `json:"port,omitempty"`        //
+			ProfileID   string `json:"profileId,omitempty"`   //
+			Proxy       bool   `json:"proxy,omitempty"`       //
+		} `json:"profile,omitempty"` //
+		SmartAccountID string `json:"smartAccountId,omitempty"` //
+		SyncResult     struct {
+			SyncList []struct {
+				DeviceSnList []string `json:"deviceSnList,omitempty"` //
+				SyncType     string   `json:"syncType,omitempty"`     //
+			} `json:"syncList,omitempty"` //
+			SyncMsg string `json:"syncMsg,omitempty"` //
+		} `json:"syncResult,omitempty"` //
+		SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+		SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+		SyncStatus       string `json:"syncStatus,omitempty"`       //
+		TenantID         string `json:"tenantId,omitempty"`         //
+		Token            string `json:"token,omitempty"`            //
+		VirtualAccountID string `json:"virtualAccountId,omitempty"` //
+	} `json:"savaMappingList,omitempty"` //
+	TaskTimeOuts struct {
+		ConfigTimeOut        int `json:"configTimeOut,omitempty"`        //
+		GeneralTimeOut       int `json:"generalTimeOut,omitempty"`       //
+		ImageDownloadTimeOut int `json:"imageDownloadTimeOut,omitempty"` //
+	} `json:"taskTimeOuts,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+}
+
 // SiteProvisionRequest is the SiteProvisionRequest definition
 type SiteProvisionRequest struct {
 	DeviceID string `json:"deviceId,omitempty"` //
@@ -311,12 +818,25 @@ type SiteProvisionRequest struct {
 
 // StackInfo is the StackInfo definition
 type StackInfo struct {
-	IsFullRing             bool              `json:"isFullRing,omitempty"`             //
-	StackMemberList        []StackMemberList `json:"stackMemberList,omitempty"`        //
-	StackRingProtocol      string            `json:"stackRingProtocol,omitempty"`      //
-	SupportsStackWorkflows bool              `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int               `json:"totalMemberCount,omitempty"`       //
-	ValidLicenseLevels     []string          `json:"validLicenseLevels,omitempty"`     //
+	IsFullRing      bool `json:"isFullRing,omitempty"` //
+	StackMemberList []struct {
+		HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+		LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+		LicenseType      string `json:"licenseType,omitempty"`      //
+		MacAddress       string `json:"macAddress,omitempty"`       //
+		Pid              string `json:"pid,omitempty"`              //
+		Priority         int    `json:"priority,omitempty"`         //
+		Role             string `json:"role,omitempty"`             //
+		SerialNumber     string `json:"serialNumber,omitempty"`     //
+		SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+		StackNumber      int    `json:"stackNumber,omitempty"`      //
+		State            string `json:"state,omitempty"`            //
+		SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	} `json:"stackMemberList,omitempty"` //
+	StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+	SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+	TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+	ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
 }
 
 // StackMemberList is the StackMemberList definition
@@ -343,54 +863,91 @@ type SyncList struct {
 
 // SyncResult is the SyncResult definition
 type SyncResult struct {
-	SyncList []SyncList `json:"syncList,omitempty"` //
-	SyncMsg  string     `json:"syncMsg,omitempty"`  //
+	SyncList []struct {
+		DeviceSnList []string `json:"deviceSnList,omitempty"` //
+		SyncType     string   `json:"syncType,omitempty"`     //
+	} `json:"syncList,omitempty"` //
+	SyncMsg string `json:"syncMsg,omitempty"` //
 }
 
 // SystemResetWorkflow is the SystemResetWorkflow definition
 type SystemResetWorkflow struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // SystemWorkflow is the SystemWorkflow definition
 type SystemWorkflow struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // TaskTimeOuts is the TaskTimeOuts definition
@@ -402,15 +959,22 @@ type TaskTimeOuts struct {
 
 // Tasks is the Tasks definition
 type Tasks struct {
-	CurrWorkItemIDx int            `json:"currWorkItemIdx,omitempty"` //
-	EndTime         int            `json:"endTime,omitempty"`         //
-	Name            string         `json:"name,omitempty"`            //
-	StartTime       int            `json:"startTime,omitempty"`       //
-	State           string         `json:"state,omitempty"`           //
-	TaskSeqNo       int            `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int            `json:"timeTaken,omitempty"`       //
-	Type            string         `json:"type,omitempty"`            //
-	WorkItemList    []WorkItemList `json:"workItemList,omitempty"`    //
+	CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+	EndTime         int    `json:"endTime,omitempty"`         //
+	Name            string `json:"name,omitempty"`            //
+	StartTime       int    `json:"startTime,omitempty"`       //
+	State           string `json:"state,omitempty"`           //
+	TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       int    `json:"timeTaken,omitempty"`       //
+	Type            string `json:"type,omitempty"`            //
+	WorkItemList    []struct {
+		Command   string `json:"command,omitempty"`   //
+		EndTime   int    `json:"endTime,omitempty"`   //
+		OutputStr string `json:"outputStr,omitempty"` //
+		StartTime int    `json:"startTime,omitempty"` //
+		State     string `json:"state,omitempty"`     //
+		TimeTaken int    `json:"timeTaken,omitempty"` //
+	} `json:"workItemList,omitempty"` //
 }
 
 // UnclaimRequest is the UnclaimRequest definition
@@ -430,73 +994,128 @@ type WorkItemList struct {
 
 // Workflow is the Workflow definition
 type Workflow struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // WorkflowParameters is the WorkflowParameters definition
 type WorkflowParameters struct {
-	ConfigList             []ConfigList `json:"configList,omitempty"`             //
-	LicenseLevel           string       `json:"licenseLevel,omitempty"`           //
-	LicenseType            string       `json:"licenseType,omitempty"`            //
-	TopOfStackSerialNumber string       `json:"topOfStackSerialNumber,omitempty"` //
+	ConfigList []struct {
+		ConfigID         string `json:"configId,omitempty"` //
+		ConfigParameters []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"configParameters,omitempty"` //
+	} `json:"configList,omitempty"` //
+	LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+	LicenseType            string `json:"licenseType,omitempty"`            //
+	TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
 }
 
 // AddAWorkflowResponse is the AddAWorkflowResponse definition
 type AddAWorkflowResponse struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // AddVirtualAccountResponse is the AddVirtualAccountResponse definition
 type AddVirtualAccountResponse struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // ClaimDeviceResponse is the ClaimDeviceResponse definition
@@ -509,63 +1128,381 @@ type ClaimDeviceResponse struct {
 
 // DayZeroConfigPreviewResult is the DayZeroConfigPreviewResult definition
 type DayZeroConfigPreviewResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		Complete      bool   `json:"complete,omitempty"`      //
+		Config        string `json:"config,omitempty"`        //
+		Error         bool   `json:"error,omitempty"`         //
+		ErrorMessage  string `json:"errorMessage,omitempty"`  //
+		ExpiredTime   int    `json:"expiredTime,omitempty"`   //
+		RfProfile     string `json:"rfProfile,omitempty"`     //
+		SensorProfile string `json:"sensorProfile,omitempty"` //
+		SiteID        string `json:"siteId,omitempty"`        //
+		StartTime     int    `json:"startTime,omitempty"`     //
+		TaskID        string `json:"taskId,omitempty"`        //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponse is the DeleteDeviceByIdFromPnPResponse definition
 type DeleteDeviceByIDFromPnPResponse struct {
-	ID                   string              `json:"_id,omitempty"`                  //
-	DayZeroConfig        DayZeroConfig       `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview string              `json:"dayZeroConfigPreview,omitempty"` //
-	DeviceInfo           DeviceInfo          `json:"deviceInfo,omitempty"`           //
-	RunSummaryList       []RunSummaryList    `json:"runSummaryList,omitempty"`       //
-	SystemResetWorkflow  SystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       SystemWorkflow      `json:"systemWorkflow,omitempty"`       //
-	TenantID             string              `json:"tenantId,omitempty"`             //
-	Version              int                 `json:"version,omitempty"`              //
-	Workflow             Workflow            `json:"workflow,omitempty"`             //
-	WorkflowParameters   WorkflowParameters  `json:"workflowParameters,omitempty"`   //
+	IDField       string `json:"_id,omitempty"` //
+	DayZeroConfig struct {
+		Config string `json:"config,omitempty"` //
+	} `json:"dayZeroConfig,omitempty"` //
+	DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+	DeviceInfo           struct {
+		AaaCredentials struct {
+			Password string `json:"password,omitempty"` //
+			Username string `json:"username,omitempty"` //
+		} `json:"aaaCredentials,omitempty"` //
+		AddedOn                   int      `json:"addedOn,omitempty"`                   //
+		AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+		AgentType                 string   `json:"agentType,omitempty"`                 //
+		AuthStatus                string   `json:"authStatus,omitempty"`                //
+		AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+		AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+		CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+		CmState                   string   `json:"cmState,omitempty"`                   //
+		Description               string   `json:"description,omitempty"`               //
+		DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+		DeviceType                string   `json:"deviceType,omitempty"`                //
+		FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+		FileSystemList            []struct {
+			Freespace int    `json:"freespace,omitempty"` //
+			Name      string `json:"name,omitempty"`      //
+			Readable  bool   `json:"readable,omitempty"`  //
+			Size      int    `json:"size,omitempty"`      //
+			Type      string `json:"type,omitempty"`      //
+			Writeable bool   `json:"writeable,omitempty"` //
+		} `json:"fileSystemList,omitempty"` //
+		FirstContact int    `json:"firstContact,omitempty"` //
+		Hostname     string `json:"hostname,omitempty"`     //
+		HTTPHeaders  []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"httpHeaders,omitempty"` //
+		ImageFile    string `json:"imageFile,omitempty"`    //
+		ImageVersion string `json:"imageVersion,omitempty"` //
+		IPInterfaces []struct {
+			IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+			IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+			MacAddress      string   `json:"macAddress,omitempty"`      //
+			Name            string   `json:"name,omitempty"`            //
+			Status          string   `json:"status,omitempty"`          //
+		} `json:"ipInterfaces,omitempty"` //
+		LastContact  int `json:"lastContact,omitempty"`  //
+		LastSyncTime int `json:"lastSyncTime,omitempty"` //
+		LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+		Location     struct {
+			Address   string `json:"address,omitempty"`   //
+			Altitude  string `json:"altitude,omitempty"`  //
+			Latitude  string `json:"latitude,omitempty"`  //
+			Longitude string `json:"longitude,omitempty"` //
+			SiteID    string `json:"siteId,omitempty"`    //
+		} `json:"location,omitempty"` //
+		MacAddress    string `json:"macAddress,omitempty"` //
+		Mode          string `json:"mode,omitempty"`       //
+		Name          string `json:"name,omitempty"`       //
+		NeighborLinks []struct {
+			LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+			LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+			LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+			RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+			RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+			RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+			RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+			RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+			RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+		} `json:"neighborLinks,omitempty"` //
+		OnbState       string `json:"onbState,omitempty"` //
+		Pid            string `json:"pid,omitempty"`      //
+		PnpProfileList []struct {
+			CreatedBy        string `json:"createdBy,omitempty"`        //
+			DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+			PrimaryEndpoint  struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"primaryEndpoint,omitempty"` //
+			ProfileName       string `json:"profileName,omitempty"` //
+			SecondaryEndpoint struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"secondaryEndpoint,omitempty"` //
+		} `json:"pnpProfileList,omitempty"` //
+		PopulateInventory    bool `json:"populateInventory,omitempty"` //
+		PreWorkflowCliOuputs []struct {
+			Cli       string `json:"cli,omitempty"`       //
+			CliOutput string `json:"cliOutput,omitempty"` //
+		} `json:"preWorkflowCliOuputs,omitempty"` //
+		ProjectID       string `json:"projectId,omitempty"`       //
+		ProjectName     string `json:"projectName,omitempty"`     //
+		ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+		SerialNumber    string `json:"serialNumber,omitempty"`    //
+		SiteID          string `json:"siteId,omitempty"`          //
+		SiteName        string `json:"siteName,omitempty"`        //
+		SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+		Source          string `json:"source,omitempty"`          //
+		Stack           bool   `json:"stack,omitempty"`           //
+		StackInfo       struct {
+			IsFullRing      bool `json:"isFullRing,omitempty"` //
+			StackMemberList []struct {
+				HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+				LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+				LicenseType      string `json:"licenseType,omitempty"`      //
+				MacAddress       string `json:"macAddress,omitempty"`       //
+				Pid              string `json:"pid,omitempty"`              //
+				Priority         int    `json:"priority,omitempty"`         //
+				Role             string `json:"role,omitempty"`             //
+				SerialNumber     string `json:"serialNumber,omitempty"`     //
+				SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+				StackNumber      int    `json:"stackNumber,omitempty"`      //
+				State            string `json:"state,omitempty"`            //
+				SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+			} `json:"stackMemberList,omitempty"` //
+			StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+			SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+			TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+			ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+		} `json:"stackInfo,omitempty"` //
+		State             string   `json:"state,omitempty"`             //
+		SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+		Tags              string   `json:"tags,omitempty"`              //
+		UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+		UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+		VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+		WorkflowID        string   `json:"workflowId,omitempty"`        //
+		WorkflowName      string   `json:"workflowName,omitempty"`      //
+	} `json:"deviceInfo,omitempty"` //
+	RunSummaryList []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"runSummaryList,omitempty"` //
+	SystemResetWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemWorkflow,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+	Workflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"workflow,omitempty"` //
+	WorkflowParameters struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"workflowParameters,omitempty"` //
 }
 
 // DeleteWorkflowByIDResponse is the DeleteWorkflowByIdResponse definition
 type DeleteWorkflowByIDResponse struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // DeregisterVirtualAccountResponse is the DeregisterVirtualAccountResponse definition
 type DeregisterVirtualAccountResponse struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // FailureList is the FailureList definition
@@ -578,17 +1515,292 @@ type FailureList struct {
 
 // GetDeviceByIDResponse is the GetDeviceByIdResponse definition
 type GetDeviceByIDResponse struct {
-	ID                   string              `json:"_id,omitempty"`                  //
-	DayZeroConfig        DayZeroConfig       `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview string              `json:"dayZeroConfigPreview,omitempty"` //
-	DeviceInfo           DeviceInfo          `json:"deviceInfo,omitempty"`           //
-	RunSummaryList       []RunSummaryList    `json:"runSummaryList,omitempty"`       //
-	SystemResetWorkflow  SystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       SystemWorkflow      `json:"systemWorkflow,omitempty"`       //
-	TenantID             string              `json:"tenantId,omitempty"`             //
-	Version              int                 `json:"version,omitempty"`              //
-	Workflow             Workflow            `json:"workflow,omitempty"`             //
-	WorkflowParameters   WorkflowParameters  `json:"workflowParameters,omitempty"`   //
+	IDField       string `json:"_id,omitempty"` //
+	DayZeroConfig struct {
+		Config string `json:"config,omitempty"` //
+	} `json:"dayZeroConfig,omitempty"` //
+	DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+	DeviceInfo           struct {
+		AaaCredentials struct {
+			Password string `json:"password,omitempty"` //
+			Username string `json:"username,omitempty"` //
+		} `json:"aaaCredentials,omitempty"` //
+		AddedOn                   int      `json:"addedOn,omitempty"`                   //
+		AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+		AgentType                 string   `json:"agentType,omitempty"`                 //
+		AuthStatus                string   `json:"authStatus,omitempty"`                //
+		AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+		AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+		CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+		CmState                   string   `json:"cmState,omitempty"`                   //
+		Description               string   `json:"description,omitempty"`               //
+		DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+		DeviceType                string   `json:"deviceType,omitempty"`                //
+		FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+		FileSystemList            []struct {
+			Freespace int    `json:"freespace,omitempty"` //
+			Name      string `json:"name,omitempty"`      //
+			Readable  bool   `json:"readable,omitempty"`  //
+			Size      int    `json:"size,omitempty"`      //
+			Type      string `json:"type,omitempty"`      //
+			Writeable bool   `json:"writeable,omitempty"` //
+		} `json:"fileSystemList,omitempty"` //
+		FirstContact int    `json:"firstContact,omitempty"` //
+		Hostname     string `json:"hostname,omitempty"`     //
+		HTTPHeaders  []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"httpHeaders,omitempty"` //
+		ImageFile    string `json:"imageFile,omitempty"`    //
+		ImageVersion string `json:"imageVersion,omitempty"` //
+		IPInterfaces []struct {
+			IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+			IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+			MacAddress      string   `json:"macAddress,omitempty"`      //
+			Name            string   `json:"name,omitempty"`            //
+			Status          string   `json:"status,omitempty"`          //
+		} `json:"ipInterfaces,omitempty"` //
+		LastContact  int `json:"lastContact,omitempty"`  //
+		LastSyncTime int `json:"lastSyncTime,omitempty"` //
+		LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+		Location     struct {
+			Address   string `json:"address,omitempty"`   //
+			Altitude  string `json:"altitude,omitempty"`  //
+			Latitude  string `json:"latitude,omitempty"`  //
+			Longitude string `json:"longitude,omitempty"` //
+			SiteID    string `json:"siteId,omitempty"`    //
+		} `json:"location,omitempty"` //
+		MacAddress    string `json:"macAddress,omitempty"` //
+		Mode          string `json:"mode,omitempty"`       //
+		Name          string `json:"name,omitempty"`       //
+		NeighborLinks []struct {
+			LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+			LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+			LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+			RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+			RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+			RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+			RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+			RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+			RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+		} `json:"neighborLinks,omitempty"` //
+		OnbState       string `json:"onbState,omitempty"` //
+		Pid            string `json:"pid,omitempty"`      //
+		PnpProfileList []struct {
+			CreatedBy        string `json:"createdBy,omitempty"`        //
+			DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+			PrimaryEndpoint  struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"primaryEndpoint,omitempty"` //
+			ProfileName       string `json:"profileName,omitempty"` //
+			SecondaryEndpoint struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"secondaryEndpoint,omitempty"` //
+		} `json:"pnpProfileList,omitempty"` //
+		PopulateInventory    bool `json:"populateInventory,omitempty"` //
+		PreWorkflowCliOuputs []struct {
+			Cli       string `json:"cli,omitempty"`       //
+			CliOutput string `json:"cliOutput,omitempty"` //
+		} `json:"preWorkflowCliOuputs,omitempty"` //
+		ProjectID       string `json:"projectId,omitempty"`       //
+		ProjectName     string `json:"projectName,omitempty"`     //
+		ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+		SerialNumber    string `json:"serialNumber,omitempty"`    //
+		SiteID          string `json:"siteId,omitempty"`          //
+		SiteName        string `json:"siteName,omitempty"`        //
+		SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+		Source          string `json:"source,omitempty"`          //
+		Stack           bool   `json:"stack,omitempty"`           //
+		StackInfo       struct {
+			IsFullRing      bool `json:"isFullRing,omitempty"` //
+			StackMemberList []struct {
+				HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+				LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+				LicenseType      string `json:"licenseType,omitempty"`      //
+				MacAddress       string `json:"macAddress,omitempty"`       //
+				Pid              string `json:"pid,omitempty"`              //
+				Priority         int    `json:"priority,omitempty"`         //
+				Role             string `json:"role,omitempty"`             //
+				SerialNumber     string `json:"serialNumber,omitempty"`     //
+				SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+				StackNumber      int    `json:"stackNumber,omitempty"`      //
+				State            string `json:"state,omitempty"`            //
+				SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+			} `json:"stackMemberList,omitempty"` //
+			StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+			SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+			TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+			ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+		} `json:"stackInfo,omitempty"` //
+		State             string   `json:"state,omitempty"`             //
+		SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+		Tags              string   `json:"tags,omitempty"`              //
+		UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+		UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+		VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+		WorkflowID        string   `json:"workflowId,omitempty"`        //
+		WorkflowName      string   `json:"workflowName,omitempty"`      //
+	} `json:"deviceInfo,omitempty"` //
+	RunSummaryList []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"runSummaryList,omitempty"` //
+	SystemResetWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemWorkflow,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+	Workflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"workflow,omitempty"` //
+	WorkflowParameters struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"workflowParameters,omitempty"` //
 }
 
 // GetDeviceCountResponse is the GetDeviceCountResponse definition
@@ -598,60 +1810,156 @@ type GetDeviceCountResponse struct {
 
 // GetDeviceHistoryResponse is the GetDeviceHistoryResponse definition
 type GetDeviceHistoryResponse struct {
-	Response   []DeviceHistoryResponse `json:"response,omitempty"`   //
-	StatusCode int                     `json:"statusCode,omitempty"` //
+	Response []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"response,omitempty"` //
+	StatusCode int `json:"statusCode,omitempty"` //
 }
 
 // GetPnPGlobalSettingsResponse is the GetPnPGlobalSettingsResponse definition
 type GetPnPGlobalSettingsResponse struct {
-	AaaCredentials  AaaCredentials    `json:"aaaCredentials,omitempty"`  //
-	AcceptEula      bool              `json:"acceptEula,omitempty"`      //
-	DefaultProfile  DefaultProfile    `json:"defaultProfile,omitempty"`  //
-	ID              string            `json:"id,omitempty"`              //
-	SavaMappingList []SavaMappingList `json:"savaMappingList,omitempty"` //
-	TaskTimeOuts    TaskTimeOuts      `json:"taskTimeOuts,omitempty"`    //
-	TenantID        string            `json:"tenantId,omitempty"`        //
-	Version         int               `json:"version,omitempty"`         //
+	IDField        string `json:"_id,omitempty"` //
+	AaaCredentials struct {
+		Password string `json:"password,omitempty"` //
+		Username string `json:"username,omitempty"` //
+	} `json:"aaaCredentials,omitempty"` //
+	AcceptEula     bool `json:"acceptEula,omitempty"` //
+	DefaultProfile struct {
+		Cert          string   `json:"cert,omitempty"`          //
+		FqdnAddresses []string `json:"fqdnAddresses,omitempty"` //
+		IPAddresses   []string `json:"ipAddresses,omitempty"`   //
+		Port          int      `json:"port,omitempty"`          //
+		Proxy         bool     `json:"proxy,omitempty"`         //
+	} `json:"defaultProfile,omitempty"` //
+	ID              string `json:"id,omitempty"` //
+	SavaMappingList []struct {
+		AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+		CcoUser        string `json:"ccoUser,omitempty"`        //
+		Expiry         int    `json:"expiry,omitempty"`         //
+		LastSync       int    `json:"lastSync,omitempty"`       //
+		Profile        struct {
+			AddressFqdn string `json:"addressFqdn,omitempty"` //
+			AddressIPV4 string `json:"addressIpV4,omitempty"` //
+			Cert        string `json:"cert,omitempty"`        //
+			MakeDefault bool   `json:"makeDefault,omitempty"` //
+			Name        string `json:"name,omitempty"`        //
+			Port        int    `json:"port,omitempty"`        //
+			ProfileID   string `json:"profileId,omitempty"`   //
+			Proxy       bool   `json:"proxy,omitempty"`       //
+		} `json:"profile,omitempty"` //
+		SmartAccountID string `json:"smartAccountId,omitempty"` //
+		SyncResult     struct {
+			SyncList []struct {
+				DeviceSnList []string `json:"deviceSnList,omitempty"` //
+				SyncType     string   `json:"syncType,omitempty"`     //
+			} `json:"syncList,omitempty"` //
+			SyncMsg string `json:"syncMsg,omitempty"` //
+		} `json:"syncResult,omitempty"` //
+		SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+		SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+		SyncStatus       string `json:"syncStatus,omitempty"`       //
+		TenantID         string `json:"tenantId,omitempty"`         //
+		Token            string `json:"token,omitempty"`            //
+		VirtualAccountID string `json:"virtualAccountId,omitempty"` //
+	} `json:"savaMappingList,omitempty"` //
+	TaskTimeOuts struct {
+		ConfigTimeOut        int `json:"configTimeOut,omitempty"`        //
+		GeneralTimeOut       int `json:"generalTimeOut,omitempty"`       //
+		ImageDownloadTimeOut int `json:"imageDownloadTimeOut,omitempty"` //
+	} `json:"taskTimeOuts,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // GetSyncResultForVirtualAccountResponse is the GetSyncResultForVirtualAccountResponse definition
 type GetSyncResultForVirtualAccountResponse struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // GetWorkflowByIDResponse is the GetWorkflowByIdResponse definition
 type GetWorkflowByIDResponse struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // GetWorkflowCountResponse is the GetWorkflowCountResponse definition
@@ -661,8 +1969,300 @@ type GetWorkflowCountResponse struct {
 
 // ImportDevicesInBulkResponse is the ImportDevicesInBulkResponse definition
 type ImportDevicesInBulkResponse struct {
-	FailureList []FailureList `json:"failureList,omitempty"` //
-	SuccessList []SuccessList `json:"successList,omitempty"` //
+	FailureList []struct {
+		ID        string `json:"id,omitempty"`        //
+		Index     int    `json:"index,omitempty"`     //
+		Msg       string `json:"msg,omitempty"`       //
+		SerialNum string `json:"serialNum,omitempty"` //
+	} `json:"failureList,omitempty"` //
+	SuccessList []struct {
+		IDField       string `json:"_id,omitempty"` //
+		DayZeroConfig struct {
+			Config string `json:"config,omitempty"` //
+		} `json:"dayZeroConfig,omitempty"` //
+		DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+		DeviceInfo           struct {
+			AaaCredentials struct {
+				Password string `json:"password,omitempty"` //
+				Username string `json:"username,omitempty"` //
+			} `json:"aaaCredentials,omitempty"` //
+			AddedOn                   int      `json:"addedOn,omitempty"`                   //
+			AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+			AgentType                 string   `json:"agentType,omitempty"`                 //
+			AuthStatus                string   `json:"authStatus,omitempty"`                //
+			AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+			AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+			CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+			CmState                   string   `json:"cmState,omitempty"`                   //
+			Description               string   `json:"description,omitempty"`               //
+			DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+			DeviceType                string   `json:"deviceType,omitempty"`                //
+			FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+			FileSystemList            []struct {
+				Freespace int    `json:"freespace,omitempty"` //
+				Name      string `json:"name,omitempty"`      //
+				Readable  bool   `json:"readable,omitempty"`  //
+				Size      int    `json:"size,omitempty"`      //
+				Type      string `json:"type,omitempty"`      //
+				Writeable bool   `json:"writeable,omitempty"` //
+			} `json:"fileSystemList,omitempty"` //
+			FirstContact int    `json:"firstContact,omitempty"` //
+			Hostname     string `json:"hostname,omitempty"`     //
+			HTTPHeaders  []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"httpHeaders,omitempty"` //
+			ImageFile    string `json:"imageFile,omitempty"`    //
+			ImageVersion string `json:"imageVersion,omitempty"` //
+			IPInterfaces []struct {
+				IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+				IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+				MacAddress      string   `json:"macAddress,omitempty"`      //
+				Name            string   `json:"name,omitempty"`            //
+				Status          string   `json:"status,omitempty"`          //
+			} `json:"ipInterfaces,omitempty"` //
+			LastContact  int `json:"lastContact,omitempty"`  //
+			LastSyncTime int `json:"lastSyncTime,omitempty"` //
+			LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+			Location     struct {
+				Address   string `json:"address,omitempty"`   //
+				Altitude  string `json:"altitude,omitempty"`  //
+				Latitude  string `json:"latitude,omitempty"`  //
+				Longitude string `json:"longitude,omitempty"` //
+				SiteID    string `json:"siteId,omitempty"`    //
+			} `json:"location,omitempty"` //
+			MacAddress    string `json:"macAddress,omitempty"` //
+			Mode          string `json:"mode,omitempty"`       //
+			Name          string `json:"name,omitempty"`       //
+			NeighborLinks []struct {
+				LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+				LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+				LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+				RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+				RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+				RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+				RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+				RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+				RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+			} `json:"neighborLinks,omitempty"` //
+			OnbState       string `json:"onbState,omitempty"` //
+			Pid            string `json:"pid,omitempty"`      //
+			PnpProfileList []struct {
+				CreatedBy        string `json:"createdBy,omitempty"`        //
+				DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+				PrimaryEndpoint  struct {
+					Certificate string `json:"certificate,omitempty"` //
+					Fqdn        string `json:"fqdn,omitempty"`        //
+					IPv4Address string `json:"ipv4Address,omitempty"` //
+					IPv6Address string `json:"ipv6Address,omitempty"` //
+					Port        int    `json:"port,omitempty"`        //
+					Protocol    string `json:"protocol,omitempty"`    //
+				} `json:"primaryEndpoint,omitempty"` //
+				ProfileName       string `json:"profileName,omitempty"` //
+				SecondaryEndpoint struct {
+					Certificate string `json:"certificate,omitempty"` //
+					Fqdn        string `json:"fqdn,omitempty"`        //
+					IPv4Address string `json:"ipv4Address,omitempty"` //
+					IPv6Address string `json:"ipv6Address,omitempty"` //
+					Port        int    `json:"port,omitempty"`        //
+					Protocol    string `json:"protocol,omitempty"`    //
+				} `json:"secondaryEndpoint,omitempty"` //
+			} `json:"pnpProfileList,omitempty"` //
+			PopulateInventory    bool `json:"populateInventory,omitempty"` //
+			PreWorkflowCliOuputs []struct {
+				Cli       string `json:"cli,omitempty"`       //
+				CliOutput string `json:"cliOutput,omitempty"` //
+			} `json:"preWorkflowCliOuputs,omitempty"` //
+			ProjectID       string `json:"projectId,omitempty"`       //
+			ProjectName     string `json:"projectName,omitempty"`     //
+			ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+			SerialNumber    string `json:"serialNumber,omitempty"`    //
+			SiteID          string `json:"siteId,omitempty"`          //
+			SiteName        string `json:"siteName,omitempty"`        //
+			SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+			Source          string `json:"source,omitempty"`          //
+			Stack           bool   `json:"stack,omitempty"`           //
+			StackInfo       struct {
+				IsFullRing      bool `json:"isFullRing,omitempty"` //
+				StackMemberList []struct {
+					HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+					LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+					LicenseType      string `json:"licenseType,omitempty"`      //
+					MacAddress       string `json:"macAddress,omitempty"`       //
+					Pid              string `json:"pid,omitempty"`              //
+					Priority         int    `json:"priority,omitempty"`         //
+					Role             string `json:"role,omitempty"`             //
+					SerialNumber     string `json:"serialNumber,omitempty"`     //
+					SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+					StackNumber      int    `json:"stackNumber,omitempty"`      //
+					State            string `json:"state,omitempty"`            //
+					SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+				} `json:"stackMemberList,omitempty"` //
+				StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+				SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+				TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+				ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+			} `json:"stackInfo,omitempty"` //
+			State             string   `json:"state,omitempty"`             //
+			SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+			Tags              string   `json:"tags,omitempty"`              //
+			UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+			UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+			VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+			WorkflowID        string   `json:"workflowId,omitempty"`        //
+			WorkflowName      string   `json:"workflowName,omitempty"`      //
+		} `json:"deviceInfo,omitempty"` //
+		RunSummaryList []struct {
+			Details         string `json:"details,omitempty"`   //
+			ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+			HistoryTaskInfo struct {
+				AddnDetails []struct {
+					Key   string `json:"key,omitempty"`   //
+					Value string `json:"value,omitempty"` //
+				} `json:"addnDetails,omitempty"` //
+				Name         string `json:"name,omitempty"`      //
+				TimeTaken    int    `json:"timeTaken,omitempty"` //
+				Type         string `json:"type,omitempty"`      //
+				WorkItemList []struct {
+					Command   string `json:"command,omitempty"`   //
+					EndTime   int    `json:"endTime,omitempty"`   //
+					OutputStr string `json:"outputStr,omitempty"` //
+					StartTime int    `json:"startTime,omitempty"` //
+					State     string `json:"state,omitempty"`     //
+					TimeTaken int    `json:"timeTaken,omitempty"` //
+				} `json:"workItemList,omitempty"` //
+			} `json:"historyTaskInfo,omitempty"` //
+			Timestamp int `json:"timestamp,omitempty"` //
+		} `json:"runSummaryList,omitempty"` //
+		SystemResetWorkflow struct {
+			IDField        string `json:"_id,omitempty"`            //
+			AddToInventory bool   `json:"addToInventory,omitempty"` //
+			AddedOn        int    `json:"addedOn,omitempty"`        //
+			ConfigID       string `json:"configId,omitempty"`       //
+			CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+			Description    string `json:"description,omitempty"`    //
+			EndTime        int    `json:"endTime,omitempty"`        //
+			ExecTime       int    `json:"execTime,omitempty"`       //
+			ImageID        string `json:"imageId,omitempty"`        //
+			InstanceType   string `json:"instanceType,omitempty"`   //
+			LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+			Name           string `json:"name,omitempty"`           //
+			StartTime      int    `json:"startTime,omitempty"`      //
+			State          string `json:"state,omitempty"`          //
+			Tasks          []struct {
+				CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+				EndTime         int    `json:"endTime,omitempty"`         //
+				Name            string `json:"name,omitempty"`            //
+				StartTime       int    `json:"startTime,omitempty"`       //
+				State           string `json:"state,omitempty"`           //
+				TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+				TimeTaken       int    `json:"timeTaken,omitempty"`       //
+				Type            string `json:"type,omitempty"`            //
+				WorkItemList    []struct {
+					Command   string `json:"command,omitempty"`   //
+					EndTime   int    `json:"endTime,omitempty"`   //
+					OutputStr string `json:"outputStr,omitempty"` //
+					StartTime int    `json:"startTime,omitempty"` //
+					State     string `json:"state,omitempty"`     //
+					TimeTaken int    `json:"timeTaken,omitempty"` //
+				} `json:"workItemList,omitempty"` //
+			} `json:"tasks,omitempty"` //
+			TenantID string `json:"tenantId,omitempty"` //
+			Type     string `json:"type,omitempty"`     //
+			UseState string `json:"useState,omitempty"` //
+			Version  int    `json:"version,omitempty"`  //
+		} `json:"systemResetWorkflow,omitempty"` //
+		SystemWorkflow struct {
+			IDField        string `json:"_id,omitempty"`            //
+			AddToInventory bool   `json:"addToInventory,omitempty"` //
+			AddedOn        int    `json:"addedOn,omitempty"`        //
+			ConfigID       string `json:"configId,omitempty"`       //
+			CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+			Description    string `json:"description,omitempty"`    //
+			EndTime        int    `json:"endTime,omitempty"`        //
+			ExecTime       int    `json:"execTime,omitempty"`       //
+			ImageID        string `json:"imageId,omitempty"`        //
+			InstanceType   string `json:"instanceType,omitempty"`   //
+			LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+			Name           string `json:"name,omitempty"`           //
+			StartTime      int    `json:"startTime,omitempty"`      //
+			State          string `json:"state,omitempty"`          //
+			Tasks          []struct {
+				CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+				EndTime         int    `json:"endTime,omitempty"`         //
+				Name            string `json:"name,omitempty"`            //
+				StartTime       int    `json:"startTime,omitempty"`       //
+				State           string `json:"state,omitempty"`           //
+				TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+				TimeTaken       int    `json:"timeTaken,omitempty"`       //
+				Type            string `json:"type,omitempty"`            //
+				WorkItemList    []struct {
+					Command   string `json:"command,omitempty"`   //
+					EndTime   int    `json:"endTime,omitempty"`   //
+					OutputStr string `json:"outputStr,omitempty"` //
+					StartTime int    `json:"startTime,omitempty"` //
+					State     string `json:"state,omitempty"`     //
+					TimeTaken int    `json:"timeTaken,omitempty"` //
+				} `json:"workItemList,omitempty"` //
+			} `json:"tasks,omitempty"` //
+			TenantID string `json:"tenantId,omitempty"` //
+			Type     string `json:"type,omitempty"`     //
+			UseState string `json:"useState,omitempty"` //
+			Version  int    `json:"version,omitempty"`  //
+		} `json:"systemWorkflow,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+		Workflow struct {
+			IDField        string `json:"_id,omitempty"`            //
+			AddToInventory bool   `json:"addToInventory,omitempty"` //
+			AddedOn        int    `json:"addedOn,omitempty"`        //
+			ConfigID       string `json:"configId,omitempty"`       //
+			CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+			Description    string `json:"description,omitempty"`    //
+			EndTime        int    `json:"endTime,omitempty"`        //
+			ExecTime       int    `json:"execTime,omitempty"`       //
+			ImageID        string `json:"imageId,omitempty"`        //
+			InstanceType   string `json:"instanceType,omitempty"`   //
+			LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+			Name           string `json:"name,omitempty"`           //
+			StartTime      int    `json:"startTime,omitempty"`      //
+			State          string `json:"state,omitempty"`          //
+			Tasks          []struct {
+				CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+				EndTime         int    `json:"endTime,omitempty"`         //
+				Name            string `json:"name,omitempty"`            //
+				StartTime       int    `json:"startTime,omitempty"`       //
+				State           string `json:"state,omitempty"`           //
+				TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+				TimeTaken       int    `json:"timeTaken,omitempty"`       //
+				Type            string `json:"type,omitempty"`            //
+				WorkItemList    []struct {
+					Command   string `json:"command,omitempty"`   //
+					EndTime   int    `json:"endTime,omitempty"`   //
+					OutputStr string `json:"outputStr,omitempty"` //
+					StartTime int    `json:"startTime,omitempty"` //
+					State     string `json:"state,omitempty"`     //
+					TimeTaken int    `json:"timeTaken,omitempty"` //
+				} `json:"workItemList,omitempty"` //
+			} `json:"tasks,omitempty"` //
+			TenantID string `json:"tenantId,omitempty"` //
+			Type     string `json:"type,omitempty"`     //
+			UseState string `json:"useState,omitempty"` //
+			Version  int    `json:"version,omitempty"`  //
+		} `json:"workflow,omitempty"` //
+		WorkflowParameters struct {
+			ConfigList []struct {
+				ConfigID         string `json:"configId,omitempty"` //
+				ConfigParameters []struct {
+					Key   string `json:"key,omitempty"`   //
+					Value string `json:"value,omitempty"` //
+				} `json:"configParameters,omitempty"` //
+			} `json:"configList,omitempty"` //
+			LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+			LicenseType            string `json:"licenseType,omitempty"`            //
+			TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+		} `json:"workflowParameters,omitempty"` //
+	} `json:"successList,omitempty"` //
 }
 
 // ResetDeviceResponse is the ResetDeviceResponse definition
@@ -673,20 +2273,6 @@ type ResetDeviceResponse struct {
 	StatusCode        int      `json:"statusCode,omitempty"`        //
 }
 
-// DeviceHistoryResponse is the Response definition
-type DeviceHistoryResponse struct {
-	Complete      bool   `json:"complete,omitempty"`      //
-	Config        string `json:"config,omitempty"`        //
-	Error         bool   `json:"error,omitempty"`         //
-	ErrorMessage  string `json:"errorMessage,omitempty"`  //
-	ExpiredTime   int    `json:"expiredTime,omitempty"`   //
-	RfProfile     string `json:"rfProfile,omitempty"`     //
-	SensorProfile string `json:"sensorProfile,omitempty"` //
-	SiteID        string `json:"siteId,omitempty"`        //
-	StartTime     int    `json:"startTime,omitempty"`     //
-	TaskID        string `json:"taskId,omitempty"`        //
-}
-
 // SiteClaimResponse is the SiteClaimResponse definition
 type SiteClaimResponse struct {
 	Response string `json:"response,omitempty"` //
@@ -695,17 +2281,324 @@ type SiteClaimResponse struct {
 
 // SuccessList is the SuccessList definition
 type SuccessList struct {
-	ID                   string              `json:"_id,omitempty"`                  //
-	DayZeroConfig        DayZeroConfig       `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview string              `json:"dayZeroConfigPreview,omitempty"` //
-	DeviceInfo           DeviceInfo          `json:"deviceInfo,omitempty"`           //
-	RunSummaryList       []RunSummaryList    `json:"runSummaryList,omitempty"`       //
-	SystemResetWorkflow  SystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       SystemWorkflow      `json:"systemWorkflow,omitempty"`       //
-	TenantID             string              `json:"tenantId,omitempty"`             //
-	Version              int                 `json:"version,omitempty"`              //
-	Workflow             Workflow            `json:"workflow,omitempty"`             //
-	WorkflowParameters   WorkflowParameters  `json:"workflowParameters,omitempty"`   //
+	IDField       string `json:"_id,omitempty"` //
+	DayZeroConfig struct {
+		Config string `json:"config,omitempty"` //
+	} `json:"dayZeroConfig,omitempty"` //
+	DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+	DeviceInfo           struct {
+		AaaCredentials struct {
+			Password string `json:"password,omitempty"` //
+			Username string `json:"username,omitempty"` //
+		} `json:"aaaCredentials,omitempty"` //
+		AddedOn                   int      `json:"addedOn,omitempty"`                   //
+		AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+		AgentType                 string   `json:"agentType,omitempty"`                 //
+		AuthStatus                string   `json:"authStatus,omitempty"`                //
+		AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+		AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+		CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+		CmState                   string   `json:"cmState,omitempty"`                   //
+		Description               string   `json:"description,omitempty"`               //
+		DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+		DeviceType                string   `json:"deviceType,omitempty"`                //
+		FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+		FileSystemList            []struct {
+			Freespace int    `json:"freespace,omitempty"` //
+			Name      string `json:"name,omitempty"`      //
+			Readable  bool   `json:"readable,omitempty"`  //
+			Size      int    `json:"size,omitempty"`      //
+			Type      string `json:"type,omitempty"`      //
+			Writeable bool   `json:"writeable,omitempty"` //
+		} `json:"fileSystemList,omitempty"` //
+		FirstContact int    `json:"firstContact,omitempty"` //
+		Hostname     string `json:"hostname,omitempty"`     //
+		HTTPHeaders  []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"httpHeaders,omitempty"` //
+		ImageFile    string `json:"imageFile,omitempty"`    //
+		ImageVersion string `json:"imageVersion,omitempty"` //
+		IPInterfaces []struct {
+			IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+			IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+			MacAddress      string   `json:"macAddress,omitempty"`      //
+			Name            string   `json:"name,omitempty"`            //
+			Status          string   `json:"status,omitempty"`          //
+		} `json:"ipInterfaces,omitempty"` //
+		LastContact  int `json:"lastContact,omitempty"`  //
+		LastSyncTime int `json:"lastSyncTime,omitempty"` //
+		LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+		Location     struct {
+			Address   string `json:"address,omitempty"`   //
+			Altitude  string `json:"altitude,omitempty"`  //
+			Latitude  string `json:"latitude,omitempty"`  //
+			Longitude string `json:"longitude,omitempty"` //
+			SiteID    string `json:"siteId,omitempty"`    //
+		} `json:"location,omitempty"` //
+		MacAddress    string `json:"macAddress,omitempty"` //
+		Mode          string `json:"mode,omitempty"`       //
+		Name          string `json:"name,omitempty"`       //
+		NeighborLinks []struct {
+			LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+			LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+			LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+			RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+			RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+			RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+			RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+			RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+			RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+		} `json:"neighborLinks,omitempty"` //
+		OnbState       string `json:"onbState,omitempty"` //
+		Pid            string `json:"pid,omitempty"`      //
+		PnpProfileList []struct {
+			CreatedBy        string `json:"createdBy,omitempty"`        //
+			DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+			PrimaryEndpoint  struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"primaryEndpoint,omitempty"` //
+			ProfileName       string `json:"profileName,omitempty"` //
+			SecondaryEndpoint struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"secondaryEndpoint,omitempty"` //
+		} `json:"pnpProfileList,omitempty"` //
+		PopulateInventory    bool `json:"populateInventory,omitempty"` //
+		PreWorkflowCliOuputs []struct {
+			Cli       string `json:"cli,omitempty"`       //
+			CliOutput string `json:"cliOutput,omitempty"` //
+		} `json:"preWorkflowCliOuputs,omitempty"` //
+		ProjectID       string `json:"projectId,omitempty"`       //
+		ProjectName     string `json:"projectName,omitempty"`     //
+		ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+		SerialNumber    string `json:"serialNumber,omitempty"`    //
+		SiteID          string `json:"siteId,omitempty"`          //
+		SiteName        string `json:"siteName,omitempty"`        //
+		SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+		Source          string `json:"source,omitempty"`          //
+		Stack           bool   `json:"stack,omitempty"`           //
+		StackInfo       struct {
+			IsFullRing      bool `json:"isFullRing,omitempty"` //
+			StackMemberList []struct {
+				HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+				LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+				LicenseType      string `json:"licenseType,omitempty"`      //
+				MacAddress       string `json:"macAddress,omitempty"`       //
+				Pid              string `json:"pid,omitempty"`              //
+				Priority         int    `json:"priority,omitempty"`         //
+				Role             string `json:"role,omitempty"`             //
+				SerialNumber     string `json:"serialNumber,omitempty"`     //
+				SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+				StackNumber      int    `json:"stackNumber,omitempty"`      //
+				State            string `json:"state,omitempty"`            //
+				SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+			} `json:"stackMemberList,omitempty"` //
+			StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+			SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+			TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+			ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+		} `json:"stackInfo,omitempty"` //
+		State             string   `json:"state,omitempty"`             //
+		SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+		Tags              string   `json:"tags,omitempty"`              //
+		UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+		UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+		VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+		WorkflowID        string   `json:"workflowId,omitempty"`        //
+		WorkflowName      string   `json:"workflowName,omitempty"`      //
+	} `json:"deviceInfo,omitempty"` //
+	RunSummaryList []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"runSummaryList,omitempty"` //
+	SystemResetWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemWorkflow,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+	Workflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"workflow,omitempty"` //
+	WorkflowParameters struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"workflowParameters,omitempty"` //
+}
+
+// SyncVirtualAccountDevicesResponse is the SyncVirtualAccountDevicesResponse definition
+type SyncVirtualAccountDevicesResponse struct {
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // UnClaimDeviceResponse is the UnClaimDeviceResponse definition
@@ -718,69 +2611,419 @@ type UnClaimDeviceResponse struct {
 
 // UpdateDeviceResponse is the UpdateDeviceResponse definition
 type UpdateDeviceResponse struct {
-	ID                   string              `json:"_id,omitempty"`                  //
-	DayZeroConfig        DayZeroConfig       `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview string              `json:"dayZeroConfigPreview,omitempty"` //
-	DeviceInfo           DeviceInfo          `json:"deviceInfo,omitempty"`           //
-	RunSummaryList       []RunSummaryList    `json:"runSummaryList,omitempty"`       //
-	SystemResetWorkflow  SystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       SystemWorkflow      `json:"systemWorkflow,omitempty"`       //
-	TenantID             string              `json:"tenantId,omitempty"`             //
-	Version              int                 `json:"version,omitempty"`              //
-	Workflow             Workflow            `json:"workflow,omitempty"`             //
-	WorkflowParameters   WorkflowParameters  `json:"workflowParameters,omitempty"`   //
+	IDField       string `json:"_id,omitempty"` //
+	DayZeroConfig struct {
+		Config string `json:"config,omitempty"` //
+	} `json:"dayZeroConfig,omitempty"` //
+	DayZeroConfigPreview string `json:"dayZeroConfigPreview,omitempty"` //
+	DeviceInfo           struct {
+		AaaCredentials struct {
+			Password string `json:"password,omitempty"` //
+			Username string `json:"username,omitempty"` //
+		} `json:"aaaCredentials,omitempty"` //
+		AddedOn                   int      `json:"addedOn,omitempty"`                   //
+		AddnMacAddrs              []string `json:"addnMacAddrs,omitempty"`              //
+		AgentType                 string   `json:"agentType,omitempty"`                 //
+		AuthStatus                string   `json:"authStatus,omitempty"`                //
+		AuthenticatedMicNumber    string   `json:"authenticatedMicNumber,omitempty"`    //
+		AuthenticatedSudiSerialNo string   `json:"authenticatedSudiSerialNo,omitempty"` //
+		CapabilitiesSupported     []string `json:"capabilitiesSupported,omitempty"`     //
+		CmState                   string   `json:"cmState,omitempty"`                   //
+		Description               string   `json:"description,omitempty"`               //
+		DeviceSudiSerialNos       []string `json:"deviceSudiSerialNos,omitempty"`       //
+		DeviceType                string   `json:"deviceType,omitempty"`                //
+		FeaturesSupported         []string `json:"featuresSupported,omitempty"`         //
+		FileSystemList            []struct {
+			Freespace int    `json:"freespace,omitempty"` //
+			Name      string `json:"name,omitempty"`      //
+			Readable  bool   `json:"readable,omitempty"`  //
+			Size      int    `json:"size,omitempty"`      //
+			Type      string `json:"type,omitempty"`      //
+			Writeable bool   `json:"writeable,omitempty"` //
+		} `json:"fileSystemList,omitempty"` //
+		FirstContact int    `json:"firstContact,omitempty"` //
+		Hostname     string `json:"hostname,omitempty"`     //
+		HTTPHeaders  []struct {
+			Key   string `json:"key,omitempty"`   //
+			Value string `json:"value,omitempty"` //
+		} `json:"httpHeaders,omitempty"` //
+		ImageFile    string `json:"imageFile,omitempty"`    //
+		ImageVersion string `json:"imageVersion,omitempty"` //
+		IPInterfaces []struct {
+			IPv4Address     string   `json:"ipv4Address,omitempty"`     //
+			IPv6AddressList []string `json:"ipv6AddressList,omitempty"` //
+			MacAddress      string   `json:"macAddress,omitempty"`      //
+			Name            string   `json:"name,omitempty"`            //
+			Status          string   `json:"status,omitempty"`          //
+		} `json:"ipInterfaces,omitempty"` //
+		LastContact  int `json:"lastContact,omitempty"`  //
+		LastSyncTime int `json:"lastSyncTime,omitempty"` //
+		LastUpdateOn int `json:"lastUpdateOn,omitempty"` //
+		Location     struct {
+			Address   string `json:"address,omitempty"`   //
+			Altitude  string `json:"altitude,omitempty"`  //
+			Latitude  string `json:"latitude,omitempty"`  //
+			Longitude string `json:"longitude,omitempty"` //
+			SiteID    string `json:"siteId,omitempty"`    //
+		} `json:"location,omitempty"` //
+		MacAddress    string `json:"macAddress,omitempty"` //
+		Mode          string `json:"mode,omitempty"`       //
+		Name          string `json:"name,omitempty"`       //
+		NeighborLinks []struct {
+			LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
+			LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
+			LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
+			RemoteDeviceName         string `json:"remoteDeviceName,omitempty"`         //
+			RemoteInterfaceName      string `json:"remoteInterfaceName,omitempty"`      //
+			RemoteMacAddress         string `json:"remoteMacAddress,omitempty"`         //
+			RemotePlatform           string `json:"remotePlatform,omitempty"`           //
+			RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
+			RemoteVersion            string `json:"remoteVersion,omitempty"`            //
+		} `json:"neighborLinks,omitempty"` //
+		OnbState       string `json:"onbState,omitempty"` //
+		Pid            string `json:"pid,omitempty"`      //
+		PnpProfileList []struct {
+			CreatedBy        string `json:"createdBy,omitempty"`        //
+			DiscoveryCreated bool   `json:"discoveryCreated,omitempty"` //
+			PrimaryEndpoint  struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"primaryEndpoint,omitempty"` //
+			ProfileName       string `json:"profileName,omitempty"` //
+			SecondaryEndpoint struct {
+				Certificate string `json:"certificate,omitempty"` //
+				Fqdn        string `json:"fqdn,omitempty"`        //
+				IPv4Address string `json:"ipv4Address,omitempty"` //
+				IPv6Address string `json:"ipv6Address,omitempty"` //
+				Port        int    `json:"port,omitempty"`        //
+				Protocol    string `json:"protocol,omitempty"`    //
+			} `json:"secondaryEndpoint,omitempty"` //
+		} `json:"pnpProfileList,omitempty"` //
+		PopulateInventory    bool `json:"populateInventory,omitempty"` //
+		PreWorkflowCliOuputs []struct {
+			Cli       string `json:"cli,omitempty"`       //
+			CliOutput string `json:"cliOutput,omitempty"` //
+		} `json:"preWorkflowCliOuputs,omitempty"` //
+		ProjectID       string `json:"projectId,omitempty"`       //
+		ProjectName     string `json:"projectName,omitempty"`     //
+		ReloadRequested bool   `json:"reloadRequested,omitempty"` //
+		SerialNumber    string `json:"serialNumber,omitempty"`    //
+		SiteID          string `json:"siteId,omitempty"`          //
+		SiteName        string `json:"siteName,omitempty"`        //
+		SmartAccountID  string `json:"smartAccountId,omitempty"`  //
+		Source          string `json:"source,omitempty"`          //
+		Stack           bool   `json:"stack,omitempty"`           //
+		StackInfo       struct {
+			IsFullRing      bool `json:"isFullRing,omitempty"` //
+			StackMemberList []struct {
+				HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
+				LicenseLevel     string `json:"licenseLevel,omitempty"`     //
+				LicenseType      string `json:"licenseType,omitempty"`      //
+				MacAddress       string `json:"macAddress,omitempty"`       //
+				Pid              string `json:"pid,omitempty"`              //
+				Priority         int    `json:"priority,omitempty"`         //
+				Role             string `json:"role,omitempty"`             //
+				SerialNumber     string `json:"serialNumber,omitempty"`     //
+				SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
+				StackNumber      int    `json:"stackNumber,omitempty"`      //
+				State            string `json:"state,omitempty"`            //
+				SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+			} `json:"stackMemberList,omitempty"` //
+			StackRingProtocol      string   `json:"stackRingProtocol,omitempty"`      //
+			SupportsStackWorkflows bool     `json:"supportsStackWorkflows,omitempty"` //
+			TotalMemberCount       int      `json:"totalMemberCount,omitempty"`       //
+			ValidLicenseLevels     []string `json:"validLicenseLevels,omitempty"`     //
+		} `json:"stackInfo,omitempty"` //
+		State             string   `json:"state,omitempty"`             //
+		SudiRequired      bool     `json:"sudiRequired,omitempty"`      //
+		Tags              string   `json:"tags,omitempty"`              //
+		UserMicNumbers    []string `json:"userMicNumbers,omitempty"`    //
+		UserSudiSerialNos []string `json:"userSudiSerialNos,omitempty"` //
+		VirtualAccountID  string   `json:"virtualAccountId,omitempty"`  //
+		WorkflowID        string   `json:"workflowId,omitempty"`        //
+		WorkflowName      string   `json:"workflowName,omitempty"`      //
+	} `json:"deviceInfo,omitempty"` //
+	RunSummaryList []struct {
+		Details         string `json:"details,omitempty"`   //
+		ErrorFlag       bool   `json:"errorFlag,omitempty"` //
+		HistoryTaskInfo struct {
+			AddnDetails []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"addnDetails,omitempty"` //
+			Name         string `json:"name,omitempty"`      //
+			TimeTaken    int    `json:"timeTaken,omitempty"` //
+			Type         string `json:"type,omitempty"`      //
+			WorkItemList []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"historyTaskInfo,omitempty"` //
+		Timestamp int `json:"timestamp,omitempty"` //
+	} `json:"runSummaryList,omitempty"` //
+	SystemResetWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"systemWorkflow,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
+	Workflow struct {
+		IDField        string `json:"_id,omitempty"`            //
+		AddToInventory bool   `json:"addToInventory,omitempty"` //
+		AddedOn        int    `json:"addedOn,omitempty"`        //
+		ConfigID       string `json:"configId,omitempty"`       //
+		CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+		Description    string `json:"description,omitempty"`    //
+		EndTime        int    `json:"endTime,omitempty"`        //
+		ExecTime       int    `json:"execTime,omitempty"`       //
+		ImageID        string `json:"imageId,omitempty"`        //
+		InstanceType   string `json:"instanceType,omitempty"`   //
+		LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+		Name           string `json:"name,omitempty"`           //
+		StartTime      int    `json:"startTime,omitempty"`      //
+		State          string `json:"state,omitempty"`          //
+		Tasks          []struct {
+			CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+			EndTime         int    `json:"endTime,omitempty"`         //
+			Name            string `json:"name,omitempty"`            //
+			StartTime       int    `json:"startTime,omitempty"`       //
+			State           string `json:"state,omitempty"`           //
+			TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+			TimeTaken       int    `json:"timeTaken,omitempty"`       //
+			Type            string `json:"type,omitempty"`            //
+			WorkItemList    []struct {
+				Command   string `json:"command,omitempty"`   //
+				EndTime   int    `json:"endTime,omitempty"`   //
+				OutputStr string `json:"outputStr,omitempty"` //
+				StartTime int    `json:"startTime,omitempty"` //
+				State     string `json:"state,omitempty"`     //
+				TimeTaken int    `json:"timeTaken,omitempty"` //
+			} `json:"workItemList,omitempty"` //
+		} `json:"tasks,omitempty"` //
+		TenantID string `json:"tenantId,omitempty"` //
+		Type     string `json:"type,omitempty"`     //
+		UseState string `json:"useState,omitempty"` //
+		Version  int    `json:"version,omitempty"`  //
+	} `json:"workflow,omitempty"` //
+	WorkflowParameters struct {
+		ConfigList []struct {
+			ConfigID         string `json:"configId,omitempty"` //
+			ConfigParameters []struct {
+				Key   string `json:"key,omitempty"`   //
+				Value string `json:"value,omitempty"` //
+			} `json:"configParameters,omitempty"` //
+		} `json:"configList,omitempty"` //
+		LicenseLevel           string `json:"licenseLevel,omitempty"`           //
+		LicenseType            string `json:"licenseType,omitempty"`            //
+		TopOfStackSerialNumber string `json:"topOfStackSerialNumber,omitempty"` //
+	} `json:"workflowParameters,omitempty"` //
 }
 
 // UpdatePnPGlobalSettingsResponse is the UpdatePnPGlobalSettingsResponse definition
 type UpdatePnPGlobalSettingsResponse struct {
-	AaaCredentials  AaaCredentials    `json:"aaaCredentials,omitempty"`  //
-	AcceptEula      bool              `json:"acceptEula,omitempty"`      //
-	DefaultProfile  DefaultProfile    `json:"defaultProfile,omitempty"`  //
-	ID              string            `json:"id,omitempty"`              //
-	SavaMappingList []SavaMappingList `json:"savaMappingList,omitempty"` //
-	TaskTimeOuts    TaskTimeOuts      `json:"taskTimeOuts,omitempty"`    //
-	TenantID        string            `json:"tenantId,omitempty"`        //
-	Version         int               `json:"version,omitempty"`         //
+	IDField        string `json:"_id,omitempty"` //
+	AaaCredentials struct {
+		Password string `json:"password,omitempty"` //
+		Username string `json:"username,omitempty"` //
+	} `json:"aaaCredentials,omitempty"` //
+	AcceptEula     bool `json:"acceptEula,omitempty"` //
+	DefaultProfile struct {
+		Cert          string   `json:"cert,omitempty"`          //
+		FqdnAddresses []string `json:"fqdnAddresses,omitempty"` //
+		IPAddresses   []string `json:"ipAddresses,omitempty"`   //
+		Port          int      `json:"port,omitempty"`          //
+		Proxy         bool     `json:"proxy,omitempty"`         //
+	} `json:"defaultProfile,omitempty"` //
+	ID              string `json:"id,omitempty"` //
+	SavaMappingList []struct {
+		AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+		CcoUser        string `json:"ccoUser,omitempty"`        //
+		Expiry         int    `json:"expiry,omitempty"`         //
+		LastSync       int    `json:"lastSync,omitempty"`       //
+		Profile        struct {
+			AddressFqdn string `json:"addressFqdn,omitempty"` //
+			AddressIPV4 string `json:"addressIpV4,omitempty"` //
+			Cert        string `json:"cert,omitempty"`        //
+			MakeDefault bool   `json:"makeDefault,omitempty"` //
+			Name        string `json:"name,omitempty"`        //
+			Port        int    `json:"port,omitempty"`        //
+			ProfileID   string `json:"profileId,omitempty"`   //
+			Proxy       bool   `json:"proxy,omitempty"`       //
+		} `json:"profile,omitempty"` //
+		SmartAccountID string `json:"smartAccountId,omitempty"` //
+		SyncResult     struct {
+			SyncList []struct {
+				DeviceSnList []string `json:"deviceSnList,omitempty"` //
+				SyncType     string   `json:"syncType,omitempty"`     //
+			} `json:"syncList,omitempty"` //
+			SyncMsg string `json:"syncMsg,omitempty"` //
+		} `json:"syncResult,omitempty"` //
+		SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+		SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+		SyncStatus       string `json:"syncStatus,omitempty"`       //
+		TenantID         string `json:"tenantId,omitempty"`         //
+		Token            string `json:"token,omitempty"`            //
+		VirtualAccountID string `json:"virtualAccountId,omitempty"` //
+	} `json:"savaMappingList,omitempty"` //
+	TaskTimeOuts struct {
+		ConfigTimeOut        int `json:"configTimeOut,omitempty"`        //
+		GeneralTimeOut       int `json:"generalTimeOut,omitempty"`       //
+		ImageDownloadTimeOut int `json:"imageDownloadTimeOut,omitempty"` //
+	} `json:"taskTimeOuts,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // UpdatePnPServerProfileResponse is the UpdatePnPServerProfileResponse definition
 type UpdatePnPServerProfileResponse struct {
-	AutoSyncPeriod   int        `json:"autoSyncPeriod,omitempty"`   //
-	CcoUser          string     `json:"ccoUser,omitempty"`          //
-	Expiry           int        `json:"expiry,omitempty"`           //
-	LastSync         int        `json:"lastSync,omitempty"`         //
-	Profile          Profile    `json:"profile,omitempty"`          //
-	SmartAccountID   string     `json:"smartAccountId,omitempty"`   //
-	SyncResult       SyncResult `json:"syncResult,omitempty"`       //
-	SyncResultStr    string     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int        `json:"syncStartTime,omitempty"`    //
-	SyncStatus       string     `json:"syncStatus,omitempty"`       //
-	TenantID         string     `json:"tenantId,omitempty"`         //
-	Token            string     `json:"token,omitempty"`            //
-	VirtualAccountID string     `json:"virtualAccountId,omitempty"` //
+	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
+	CcoUser        string `json:"ccoUser,omitempty"`        //
+	Expiry         int    `json:"expiry,omitempty"`         //
+	LastSync       int    `json:"lastSync,omitempty"`       //
+	Profile        struct {
+		AddressFqdn string `json:"addressFqdn,omitempty"` //
+		AddressIPV4 string `json:"addressIpV4,omitempty"` //
+		Cert        string `json:"cert,omitempty"`        //
+		MakeDefault bool   `json:"makeDefault,omitempty"` //
+		Name        string `json:"name,omitempty"`        //
+		Port        int    `json:"port,omitempty"`        //
+		ProfileID   string `json:"profileId,omitempty"`   //
+		Proxy       bool   `json:"proxy,omitempty"`       //
+	} `json:"profile,omitempty"` //
+	SmartAccountID string `json:"smartAccountId,omitempty"` //
+	SyncResult     struct {
+		SyncList []struct {
+			DeviceSnList []string `json:"deviceSnList,omitempty"` //
+			SyncType     string   `json:"syncType,omitempty"`     //
+		} `json:"syncList,omitempty"` //
+		SyncMsg string `json:"syncMsg,omitempty"` //
+	} `json:"syncResult,omitempty"` //
+	SyncResultStr    string `json:"syncResultStr,omitempty"`    //
+	SyncStartTime    int    `json:"syncStartTime,omitempty"`    //
+	SyncStatus       string `json:"syncStatus,omitempty"`       //
+	TenantID         string `json:"tenantId,omitempty"`         //
+	Token            string `json:"token,omitempty"`            //
+	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
 
 // UpdateWorkflowResponse is the UpdateWorkflowResponse definition
 type UpdateWorkflowResponse struct {
-	ID             string  `json:"_id,omitempty"`            //
-	AddToInventory bool    `json:"addToInventory,omitempty"` //
-	AddedOn        int     `json:"addedOn,omitempty"`        //
-	ConfigID       string  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int     `json:"currTaskIdx,omitempty"`    //
-	Description    string  `json:"description,omitempty"`    //
-	EndTime        int     `json:"endTime,omitempty"`        //
-	ExecTime       int     `json:"execTime,omitempty"`       //
-	ImageID        string  `json:"imageId,omitempty"`        //
-	InstanceType   string  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int     `json:"lastupdateOn,omitempty"`   //
-	Name           string  `json:"name,omitempty"`           //
-	StartTime      int     `json:"startTime,omitempty"`      //
-	State          string  `json:"state,omitempty"`          //
-	Tasks          []Tasks `json:"tasks,omitempty"`          //
-	TenantID       string  `json:"tenantId,omitempty"`       //
-	Type           string  `json:"type,omitempty"`           //
-	UseState       string  `json:"useState,omitempty"`       //
-	Version        int     `json:"version,omitempty"`        //
+	IDField        string `json:"_id,omitempty"`            //
+	AddToInventory bool   `json:"addToInventory,omitempty"` //
+	AddedOn        int    `json:"addedOn,omitempty"`        //
+	ConfigID       string `json:"configId,omitempty"`       //
+	CurrTaskIDx    int    `json:"currTaskIdx,omitempty"`    //
+	Description    string `json:"description,omitempty"`    //
+	EndTime        int    `json:"endTime,omitempty"`        //
+	ExecTime       int    `json:"execTime,omitempty"`       //
+	ImageID        string `json:"imageId,omitempty"`        //
+	InstanceType   string `json:"instanceType,omitempty"`   //
+	LastupdateOn   int    `json:"lastupdateOn,omitempty"`   //
+	Name           string `json:"name,omitempty"`           //
+	StartTime      int    `json:"startTime,omitempty"`      //
+	State          string `json:"state,omitempty"`          //
+	Tasks          []struct {
+		CurrWorkItemIDx int    `json:"currWorkItemIdx,omitempty"` //
+		EndTime         int    `json:"endTime,omitempty"`         //
+		Name            string `json:"name,omitempty"`            //
+		StartTime       int    `json:"startTime,omitempty"`       //
+		State           string `json:"state,omitempty"`           //
+		TaskSeqNo       int    `json:"taskSeqNo,omitempty"`       //
+		TimeTaken       int    `json:"timeTaken,omitempty"`       //
+		Type            string `json:"type,omitempty"`            //
+		WorkItemList    []struct {
+			Command   string `json:"command,omitempty"`   //
+			EndTime   int    `json:"endTime,omitempty"`   //
+			OutputStr string `json:"outputStr,omitempty"` //
+			StartTime int    `json:"startTime,omitempty"` //
+			State     string `json:"state,omitempty"`     //
+			TimeTaken int    `json:"timeTaken,omitempty"` //
+		} `json:"workItemList,omitempty"` //
+	} `json:"tasks,omitempty"` //
+	TenantID string `json:"tenantId,omitempty"` //
+	Type     string `json:"type,omitempty"`     //
+	UseState string `json:"useState,omitempty"` //
+	Version  int    `json:"version,omitempty"`  //
 }
 
 // AddAWorkflow addAWorkflow
@@ -803,7 +3046,7 @@ type UpdateWorkflowResponse struct {
 // 	result := response.Result().(*AddAWorkflowResponse)
 // 	return result, response, err
 
-//}
+// }
 
 // AddDeviceToPnpDatabase addDeviceToPnpDatabase
 /* Adds a device to the PnP database.
@@ -847,7 +3090,7 @@ type UpdateWorkflowResponse struct {
 // 	result := response.Result().(*AddVirtualAccountResponse)
 // 	return result, response, err
 
-// }
+//}
 
 // ClaimADeviceToASite claimADeviceToASite
 /* Claim a device based on DNA-C Site based design process. Different parameters are required for different device platforms.
@@ -969,24 +3212,24 @@ func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualA
 /* Returns device details specified by device id
 @param id id
 */
-func (s *DeviceOnboardingPnPService) GetDeviceByID(id string) (*GetDeviceByIDResponse, *resty.Response, error) {
+// func (s *DeviceOnboardingPnPService) GetDeviceByID(id string) (*GetDeviceByIdResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
-	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+// 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
+// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
-		SetResult(&GetDeviceByIDResponse{}).
-		SetError(&Error{}).
-		Get(path)
+// 	response, err := RestyClient.R().
+// 		SetResult(&GetDeviceByIDResponse{}).
+// 		SetError(&Error{}).
+// 		Get(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	result := response.Result().(*GetDeviceByIDResponse)
-	return result, response, err
+// 	result := response.Result().(*GetDeviceByIDResponse)
+// 	return result, response, err
 
-}
+//}
 
 // GetDeviceHistoryQueryParams defines the query parameters for this request
 type GetDeviceHistoryQueryParams struct {
@@ -1236,7 +3479,7 @@ func (s *DeviceOnboardingPnPService) GetSyncResultForVirtualAccount(domain strin
 // 	result := response.Result().(*GetVirtualAccountListResponse)
 // 	return result, response, err
 
-//}
+// }
 
 // GetWorkflowByID getWorkflowById
 /* Returns a workflow specified by id

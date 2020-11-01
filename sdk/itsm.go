@@ -18,18 +18,23 @@ type EnrichmentInfo struct {
 
 // GetFailedITSMEventsResponse is the GetFailedITSMEventsResponse definition
 type GetFailedITSMEventsResponse struct {
-	Category       string         `json:"category,omitempty"`       //
-	Description    string         `json:"description,omitempty"`    //
-	Domain         string         `json:"domain,omitempty"`         //
-	EnrichmentInfo EnrichmentInfo `json:"enrichmentInfo,omitempty"` //
-	EventID        string         `json:"eventId,omitempty"`        //
-	InstanceID     string         `json:"instanceId,omitempty"`     //
-	Name           string         `json:"name,omitempty"`           //
-	Severity       string         `json:"severity,omitempty"`       //
-	Source         string         `json:"source,omitempty"`         //
-	SubDomain      string         `json:"subDomain,omitempty"`      //
-	Timestamp      int            `json:"timestamp,omitempty"`      //
-	Type           string         `json:"type,omitempty"`           //
+	Category       string `json:"category,omitempty"`    //
+	Description    string `json:"description,omitempty"` //
+	Domain         string `json:"domain,omitempty"`      //
+	EnrichmentInfo struct {
+		ErrorCode                      string `json:"errorCode,omitempty"`                      //
+		ErrorDescription               string `json:"errorDescription,omitempty"`               //
+		EventStatus                    string `json:"eventStatus,omitempty"`                    //
+		ResponseReceivedFromITSMSystem string `json:"responseReceivedFromITSMSystem,omitempty"` //
+	} `json:"enrichmentInfo,omitempty"` //
+	EventID    string `json:"eventId,omitempty"`    //
+	InstanceID string `json:"instanceId,omitempty"` //
+	Name       string `json:"name,omitempty"`       //
+	Severity   string `json:"severity,omitempty"`   //
+	Source     string `json:"source,omitempty"`     //
+	SubDomain  string `json:"subDomain,omitempty"`  //
+	Timestamp  int    `json:"timestamp,omitempty"`  //
+	Type       string `json:"type,omitempty"`       //
 }
 
 // RetryIntegrationEventsResponse is the RetryIntegrationEventsResponse definition

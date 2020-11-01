@@ -22,6 +22,15 @@ type LegitCliKeyResult struct {
 	Version  string   `json:"version,omitempty"`  //
 }
 
+// TaskIDResult is the TaskIDResult definition
+type TaskIDResult struct {
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
 // GetAllKeywordsOfCLIsAcceptedByCommandRunner getAllKeywordsOfCLIsAcceptedByCommandRunner
 /* Get valid keywords
  */
@@ -43,9 +52,9 @@ func (s *CommandRunnerService) GetAllKeywordsOfCLIsAcceptedByCommandRunner() (*L
 
 }
 
-// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration
-/* Submit request for read-only CLIs
- */
+// // RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration
+// /* Submit request for read-only CLIs
+//  */
 // func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest *RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest) (*TaskIDResult, *resty.Response, error) {
 
 // 	path := "/dna/intent/api/v1/network-device-poller/cli/read-request"

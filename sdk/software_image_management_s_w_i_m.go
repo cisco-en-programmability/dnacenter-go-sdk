@@ -42,8 +42,43 @@ type ApplicableDevicesForImage struct {
 
 // ImageInfoListResponse is the ImageInfoListResponse definition
 type ImageInfoListResponse struct {
-	Response []TaskResponse `json:"response,omitempty"` //
-	Version  string         `json:"version,omitempty"`  //
+	Response []struct {
+		ApplicableDevicesForImage []struct {
+			MdfID       string   `json:"mdfId,omitempty"`       //
+			ProductID   []string `json:"productId,omitempty"`   //
+			ProductName string   `json:"productName,omitempty"` //
+		} `json:"applicableDevicesForImage,omitempty"` //
+		ApplicationType      string   `json:"applicationType,omitempty"`      //
+		CreatedTime          string   `json:"createdTime,omitempty"`          //
+		ExtendedAttributes   string   `json:"extendedAttributes,omitempty"`   //
+		Family               string   `json:"family,omitempty"`               //
+		Feature              string   `json:"feature,omitempty"`              //
+		FileServiceID        string   `json:"fileServiceId,omitempty"`        //
+		FileSize             string   `json:"fileSize,omitempty"`             //
+		ImageIntegrityStatus string   `json:"imageIntegrityStatus,omitempty"` //
+		ImageName            string   `json:"imageName,omitempty"`            //
+		ImageSeries          []string `json:"imageSeries,omitempty"`          //
+		ImageSource          string   `json:"imageSource,omitempty"`          //
+		ImageType            string   `json:"imageType,omitempty"`            //
+		ImageUUID            string   `json:"imageUuid,omitempty"`            //
+		ImportSourceType     string   `json:"importSourceType,omitempty"`     //
+		IsTaggedGolden       bool     `json:"isTaggedGolden,omitempty"`       //
+		Md5Checksum          string   `json:"md5Checksum,omitempty"`          //
+		Name                 string   `json:"name,omitempty"`                 //
+		ProfileInfo          []struct {
+			Description        string `json:"description,omitempty"`        //
+			ExtendedAttributes string `json:"extendedAttributes,omitempty"` //
+			Memory             int    `json:"memory,omitempty"`             //
+			ProductType        string `json:"productType,omitempty"`        //
+			ProfileName        string `json:"profileName,omitempty"`        //
+			Shares             int    `json:"shares,omitempty"`             //
+			VCPU               int    `json:"vCpu,omitempty"`               //
+		} `json:"profileInfo,omitempty"` //
+		ShaCheckSum string `json:"shaCheckSum,omitempty"` //
+		Vendor      string `json:"vendor,omitempty"`      //
+		Version     string `json:"version,omitempty"`     //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // ProfileInfo is the ProfileInfo definition

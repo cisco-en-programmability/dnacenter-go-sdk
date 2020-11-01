@@ -23,11 +23,25 @@ type APProvisionRequest struct {
 
 // CreateAndProvisionSSIDRequest is the CreateAndProvisionSSIDRequest definition
 type CreateAndProvisionSSIDRequest struct {
-	EnableFabric       bool        `json:"enableFabric,omitempty"`       //
-	FlexConnect        FlexConnect `json:"flexConnect,omitempty"`        //
-	ManagedAPLocations []string    `json:"managedAPLocations,omitempty"` //
-	SSIDDetails        SSIDDetails `json:"ssidDetails,omitempty"`        //
-	SSIDType           string      `json:"ssidType,omitempty"`           //
+	EnableFabric bool `json:"enableFabric,omitempty"` //
+	FlexConnect  struct {
+		EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+		LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+	} `json:"flexConnect,omitempty"` //
+	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
+	SSIDDetails        struct {
+		EnableBroadcastSSID bool   `json:"enableBroadcastSSID,omitempty"` //
+		EnableFastLane      bool   `json:"enableFastLane,omitempty"`      //
+		EnableMACFiltering  bool   `json:"enableMACFiltering,omitempty"`  //
+		FastTransition      string `json:"fastTransition,omitempty"`      //
+		Name                string `json:"name,omitempty"`                //
+		Passphrase          string `json:"passphrase,omitempty"`          //
+		RadioPolicy         string `json:"radioPolicy,omitempty"`         //
+		SecurityLevel       string `json:"securityLevel,omitempty"`       //
+		TrafficType         string `json:"trafficType,omitempty"`         //
+		WebAuthURL          string `json:"webAuthURL,omitempty"`          //
+	} `json:"ssidDetails,omitempty"` //
+	SSIDType string `json:"ssidType,omitempty"` //
 }
 
 // CreateEnterpriseSSIDRequest is the CreateEnterpriseSSIDRequest definition
@@ -45,20 +59,51 @@ type CreateEnterpriseSSIDRequest struct {
 
 // CreateOrUpdateRFProfileRequest is the CreateOrUpdateRFProfileRequest definition
 type CreateOrUpdateRFProfileRequest struct {
-	ChannelWidth         string               `json:"channelWidth,omitempty"`         //
-	DefaultRfProfile     bool                 `json:"defaultRfProfile,omitempty"`     //
-	EnableBrownField     bool                 `json:"enableBrownField,omitempty"`     //
-	EnableCustom         bool                 `json:"enableCustom,omitempty"`         //
-	EnableRadioTypeA     bool                 `json:"enableRadioTypeA,omitempty"`     //
-	EnableRadioTypeB     bool                 `json:"enableRadioTypeB,omitempty"`     //
-	Name                 string               `json:"name,omitempty"`                 //
-	RadioTypeAProperties RadioTypeAProperties `json:"radioTypeAProperties,omitempty"` //
-	RadioTypeBProperties RadioTypeBProperties `json:"radioTypeBProperties,omitempty"` //
+	ChannelWidth         string `json:"channelWidth,omitempty"`     //
+	DefaultRfProfile     bool   `json:"defaultRfProfile,omitempty"` //
+	EnableBrownField     bool   `json:"enableBrownField,omitempty"` //
+	EnableCustom         bool   `json:"enableCustom,omitempty"`     //
+	EnableRadioTypeA     bool   `json:"enableRadioTypeA,omitempty"` //
+	EnableRadioTypeB     bool   `json:"enableRadioTypeB,omitempty"` //
+	Name                 string `json:"name,omitempty"`             //
+	RadioTypeAProperties struct {
+		DataRates          string `json:"dataRates,omitempty"`          //
+		MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
+		MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
+		MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
+		ParentProfile      string `json:"parentProfile,omitempty"`      //
+		PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
+		RadioChannels      string `json:"radioChannels,omitempty"`      //
+		RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
+	} `json:"radioTypeAProperties,omitempty"` //
+	RadioTypeBProperties struct {
+		DataRates          string `json:"dataRates,omitempty"`          //
+		MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
+		MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
+		MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
+		ParentProfile      string `json:"parentProfile,omitempty"`      //
+		PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
+		RadioChannels      string `json:"radioChannels,omitempty"`      //
+		RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
+	} `json:"radioTypeBProperties,omitempty"` //
 }
 
 // CreateWirelessProfileRequest is the CreateWirelessProfileRequest definition
 type CreateWirelessProfileRequest struct {
-	ProfileDetails ProfileDetails `json:"profileDetails,omitempty"` //
+	ProfileDetails struct {
+		Name        string   `json:"name,omitempty"`  //
+		Sites       []string `json:"sites,omitempty"` //
+		SSIDDetails []struct {
+			EnableFabric bool `json:"enableFabric,omitempty"` //
+			FlexConnect  struct {
+				EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+				LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+			} `json:"flexConnect,omitempty"` //
+			InterfaceName string `json:"interfaceName,omitempty"` //
+			Name          string `json:"name,omitempty"`          //
+			Type          string `json:"type,omitempty"`          //
+		} `json:"ssidDetails,omitempty"` //
+	} `json:"profileDetails,omitempty"` //
 }
 
 // DynamicInterfaces is the DynamicInterfaces definition
@@ -73,24 +118,47 @@ type DynamicInterfaces struct {
 
 // ProfileDetails is the ProfileDetails definition
 type ProfileDetails struct {
-	Name        string        `json:"name,omitempty"`        //
-	Sites       []string      `json:"sites,omitempty"`       //
-	SSIDDetails []SSIDDetails `json:"ssidDetails,omitempty"` //
+	Name        string   `json:"name,omitempty"`  //
+	Sites       []string `json:"sites,omitempty"` //
+	SSIDDetails []struct {
+		EnableFabric bool `json:"enableFabric,omitempty"` //
+		FlexConnect  struct {
+			EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+			LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+		} `json:"flexConnect,omitempty"` //
+		InterfaceName string `json:"interfaceName,omitempty"` //
+		Name          string `json:"name,omitempty"`          //
+		Type          string `json:"type,omitempty"`          //
+	} `json:"ssidDetails,omitempty"` //
 }
 
 // ProvisionRequest is the ProvisionRequest definition
 type ProvisionRequest struct {
-	DeviceName         string              `json:"deviceName,omitempty"`         //
-	DynamicInterfaces  []DynamicInterfaces `json:"dynamicInterfaces,omitempty"`  //
-	ManagedAPLocations []string            `json:"managedAPLocations,omitempty"` //
-	Site               string              `json:"site,omitempty"`               //
+	DeviceName        string `json:"deviceName,omitempty"` //
+	DynamicInterfaces []struct {
+		InterfaceGateway       string `json:"interfaceGateway,omitempty"`       //
+		InterfaceIPAddress     string `json:"interfaceIPAddress,omitempty"`     //
+		InterfaceName          string `json:"interfaceName,omitempty"`          //
+		InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
+		LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
+		VlanID                 int    `json:"vlanId,omitempty"`                 //
+	} `json:"dynamicInterfaces,omitempty"` //
+	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
+	Site               string   `json:"site,omitempty"`               //
 }
 
 // ProvisionUpdateRequest is the ProvisionUpdateRequest definition
 type ProvisionUpdateRequest struct {
-	DeviceName         string              `json:"deviceName,omitempty"`         //
-	DynamicInterfaces  []DynamicInterfaces `json:"dynamicInterfaces,omitempty"`  //
-	ManagedAPLocations []string            `json:"managedAPLocations,omitempty"` //
+	DeviceName        string `json:"deviceName,omitempty"` //
+	DynamicInterfaces []struct {
+		InterfaceGateway       string `json:"interfaceGateway,omitempty"`       //
+		InterfaceIPAddress     string `json:"interfaceIPAddress,omitempty"`     //
+		InterfaceName          string `json:"interfaceName,omitempty"`          //
+		InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
+		LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
+		VlanID                 int    `json:"vlanId,omitempty"`                 //
+	} `json:"dynamicInterfaces,omitempty"` //
+	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
 }
 
 // RadioTypeAProperties is the RadioTypeAProperties definition
@@ -119,30 +187,65 @@ type RadioTypeBProperties struct {
 
 // SSIDDetails is the SSIDDetails definition
 type SSIDDetails struct {
-	EnableFabric  bool        `json:"enableFabric,omitempty"`  //
-	FlexConnect   FlexConnect `json:"flexConnect,omitempty"`   //
-	InterfaceName string      `json:"interfaceName,omitempty"` //
-	Name          string      `json:"name,omitempty"`          //
-	Type          string      `json:"type,omitempty"`          //
+	EnableFabric bool `json:"enableFabric,omitempty"` //
+	FlexConnect  struct {
+		EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+		LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+	} `json:"flexConnect,omitempty"` //
+	InterfaceName string `json:"interfaceName,omitempty"` //
+	Name          string `json:"name,omitempty"`          //
+	Type          string `json:"type,omitempty"`          //
 }
 
 // UpdateWirelessProfileRequest is the UpdateWirelessProfileRequest definition
 type UpdateWirelessProfileRequest struct {
-	ProfileDetails ProfileDetails `json:"profileDetails,omitempty"` //
+	ProfileDetails struct {
+		Name        string   `json:"name,omitempty"`  //
+		Sites       []string `json:"sites,omitempty"` //
+		SSIDDetails []struct {
+			EnableFabric bool `json:"enableFabric,omitempty"` //
+			FlexConnect  struct {
+				EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+				LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+			} `json:"flexConnect,omitempty"` //
+			InterfaceName string `json:"interfaceName,omitempty"` //
+			Name          string `json:"name,omitempty"`          //
+			Type          string `json:"type,omitempty"`          //
+		} `json:"ssidDetails,omitempty"` //
+	} `json:"profileDetails,omitempty"` //
 }
 
 // AppConnectivity is the AppConnectivity definition
 type AppConnectivity struct {
-	FileTransfer     FileTransfer     `json:"FILETRANSFER,omitempty"`      //
-	HostReachability HostReachability `json:"HOST_REACHABILITY,omitempty"` //
-	WebServer        WebServer        `json:"WEBSERVER,omitempty"`         //
+	FileTransfer struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"FileTransfer,omitempty"` //
+	HostReachability struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"HostReachability,omitempty"` //
+	WebServer struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"WebServer,omitempty"` //
 }
 
 // APProvisionResponse is the APProvisionResponse definition
 type APProvisionResponse struct {
-	ExecutionID    string         `json:"executionId,omitempty"`    //
-	ExecutionURL   string         `json:"executionUrl,omitempty"`   //
-	ProvisionTasks ProvisionTasks `json:"provisionTasks,omitempty"` //
+	ExecutionID    string `json:"executionId,omitempty"`  //
+	ExecutionURL   string `json:"executionUrl,omitempty"` //
+	ProvisionTasks struct {
+		Failure struct {
+			FailureReason string `json:"failureReason,omitempty"` //
+			TaskID        string `json:"taskId,omitempty"`        //
+			TaskURL       string `json:"taskUrl,omitempty"`       //
+		} `json:"failure,omitempty"` //
+		Success []struct {
+			TaskID  string `json:"taskId,omitempty"`  //
+			TaskURL string `json:"taskUrl,omitempty"` //
+		} `json:"success,omitempty"` //
+	} `json:"provisionTasks,omitempty"` //
 }
 
 // Assoc is the Assoc definition
@@ -227,7 +330,10 @@ type DeleteWirelessProfileResponse struct {
 
 // Email is the Email definition
 type Email struct {
-	MailServer MailServer `json:"MAILSERVER,omitempty"` //
+	MailServer struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"MailServer,omitempty"` //
 }
 
 // FileTransfer is the FileTransfer definition
@@ -253,12 +359,26 @@ type FailureStats struct {
 
 // GetEnterpriseSSIDResponse is the GetEnterpriseSSIDResponse definition
 type GetEnterpriseSSIDResponse struct {
-	GroupUUID          string        `json:"groupUuid,omitempty"`          //
-	InheritedGroupName string        `json:"inheritedGroupName,omitempty"` //
-	InheritedGroupUUID string        `json:"inheritedGroupUuid,omitempty"` //
-	InstanceUUID       string        `json:"instanceUuid,omitempty"`       //
-	SSIDDetails        []SSIDDetails `json:"ssidDetails,omitempty"`        //
-	Version            int           `json:"version,omitempty"`            //
+	GroupUUID          string `json:"groupUuid,omitempty"`          //
+	InheritedGroupName string `json:"inheritedGroupName,omitempty"` //
+	InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` //
+	InstanceUUID       string `json:"instanceUuid,omitempty"`       //
+	SSIDDetails        []struct {
+		AuthServer          string `json:"authServer,omitempty"`          //
+		EnableBroadcastSSID bool   `json:"enableBroadcastSSID,omitempty"` //
+		EnableFastLane      bool   `json:"enableFastLane,omitempty"`      //
+		EnableMACFiltering  bool   `json:"enableMACFiltering,omitempty"`  //
+		FastTransition      string `json:"fastTransition,omitempty"`      //
+		IsEnabled           bool   `json:"isEnabled,omitempty"`           //
+		IsFabric            bool   `json:"isFabric,omitempty"`            //
+		Name                string `json:"name,omitempty"`                //
+		Passphrase          string `json:"passphrase,omitempty"`          //
+		RadioPolicy         string `json:"radioPolicy,omitempty"`         //
+		SecurityLevel       string `json:"securityLevel,omitempty"`       //
+		TrafficType         string `json:"trafficType,omitempty"`         //
+		WlanType            string `json:"wlanType,omitempty"`            //
+	} `json:"ssidDetails,omitempty"` //
+	Version int `json:"version,omitempty"` //
 }
 
 // HostReachability is the HostReachability definition
@@ -281,39 +401,67 @@ type MailServer struct {
 
 // NetworkServices is the NetworkServices definition
 type NetworkServices struct {
-	DNS DNS `json:"DNS,omitempty"` //
+	DNS struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"DNS,omitempty"` //
 }
 
 // OnBoarding is the OnBoarding definition
 type OnBoarding struct {
-	Assoc Assoc `json:"ASSOC,omitempty"` //
-	Auth  Auth  `json:"AUTH,omitempty"`  //
-	DHCP  DHCP  `json:"DHCP,omitempty"`  //
+	Assoc struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"Assoc,omitempty"` //
+	Auth struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"Auth,omitempty"` //
+	DHCP struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"DHCP,omitempty"` //
 }
 
 // Performance is the Performance definition
 type Performance struct {
-	IPSLASender IPSLASender `json:"IPSLASENDER,omitempty"` //
+	IPSLASender struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"IPSLASender,omitempty"` //
 }
 
 // ProvisionResponse is the ProvisionResponse definition
 type ProvisionResponse struct {
-	ExecutionID       string            `json:"executionId,omitempty"`       //
-	ExecutionURL      string            `json:"executionUrl,omitempty"`      //
-	ProvisioningTasks ProvisioningTasks `json:"provisioningTasks,omitempty"` //
+	ExecutionID       string `json:"executionId,omitempty"`  //
+	ExecutionURL      string `json:"executionUrl,omitempty"` //
+	ProvisioningTasks struct {
+		Failed  []string `json:"failed,omitempty"`  //
+		Success []string `json:"success,omitempty"` //
+	} `json:"provisioningTasks,omitempty"` //
 }
 
 // ProvisionTasks is the ProvisionTasks definition
 type ProvisionTasks struct {
-	Failure Failure   `json:"failure,omitempty"` //
-	Success []Success `json:"success,omitempty"` //
+	Failure struct {
+		FailureReason string `json:"failureReason,omitempty"` //
+		TaskID        string `json:"taskId,omitempty"`        //
+		TaskURL       string `json:"taskUrl,omitempty"`       //
+	} `json:"failure,omitempty"` //
+	Success []struct {
+		TaskID  string `json:"taskId,omitempty"`  //
+		TaskURL string `json:"taskUrl,omitempty"` //
+	} `json:"success,omitempty"` //
 }
 
 // ProvisionUpdateResponse is the ProvisionUpdateResponse definition
 type ProvisionUpdateResponse struct {
-	ExecutionID       string            `json:"executionId,omitempty"`       //
-	ExecutionURL      string            `json:"executionUrl,omitempty"`      //
-	ProvisioningTasks ProvisioningTasks `json:"provisioningTasks,omitempty"` //
+	ExecutionID       string `json:"executionId,omitempty"`  //
+	ExecutionURL      string `json:"executionUrl,omitempty"` //
+	ProvisioningTasks struct {
+		Failed  []string `json:"failed,omitempty"`  //
+		Success []string `json:"success,omitempty"` //
+	} `json:"provisioningTasks,omitempty"` //
 }
 
 // ProvisioningTasks is the ProvisioningTasks definition
@@ -324,40 +472,43 @@ type ProvisioningTasks struct {
 
 // RFAssessment is the RFAssessment definition
 type RFAssessment struct {
-	DataRate DataRate `json:"DATA_RATE,omitempty"` //
-	SNR      SNR      `json:"SNR,omitempty"`       //
-}
-
-// RFProfilesResponse is the Response definition
-type RFProfilesResponse struct {
-	ARadioChannels      string `json:"aRadioChannels,omitempty"`      //
-	BRadioChannels      string `json:"bRadioChannels,omitempty"`      //
-	ChannelWidth        string `json:"channelWidth,omitempty"`        //
-	DataRatesA          string `json:"dataRatesA,omitempty"`          //
-	DataRatesB          string `json:"dataRatesB,omitempty"`          //
-	DefaultRfProfile    bool   `json:"defaultRfProfile,omitempty"`    //
-	EnableARadioType    bool   `json:"enableARadioType,omitempty"`    //
-	EnableBRadioType    bool   `json:"enableBRadioType,omitempty"`    //
-	EnableBrownField    bool   `json:"enableBrownField,omitempty"`    //
-	EnableCustom        bool   `json:"enableCustom,omitempty"`        //
-	MandatoryDataRatesA string `json:"mandatoryDataRatesA,omitempty"` //
-	MandatoryDataRatesB string `json:"mandatoryDataRatesB,omitempty"` //
-	MaxPowerLevelA      string `json:"maxPowerLevelA,omitempty"`      //
-	MaxPowerLevelB      string `json:"maxPowerLevelB,omitempty"`      //
-	MinPowerLevelA      string `json:"minPowerLevelA,omitempty"`      //
-	MinPowerLevelB      string `json:"minPowerLevelB,omitempty"`      //
-	Name                string `json:"name,omitempty"`                //
-	ParentProfileA      string `json:"parentProfileA,omitempty"`      //
-	ParentProfileB      string `json:"parentProfileB,omitempty"`      //
-	PowerThresholdV1A   int    `json:"powerThresholdV1A,omitempty"`   //
-	PowerThresholdV1B   int    `json:"powerThresholdV1B,omitempty"`   //
-	RxSopThresholdA     string `json:"rxSopThresholdA,omitempty"`     //
-	RxSopThresholdB     string `json:"rxSopThresholdB,omitempty"`     //
+	DataRate struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"DataRate,omitempty"` //
+	SNR struct {
+		FailCount int `json:"failCount,omitempty"` //
+		PassCount int `json:"passCount,omitempty"` //
+	} `json:"SNR,omitempty"` //
 }
 
 // RetrieveRFProfilesResponse is the RetrieveRFProfilesResponse definition
 type RetrieveRFProfilesResponse struct {
-	Response []RFProfilesResponse `json:"response,omitempty"` //
+	Response []struct {
+		ARadioChannels      string `json:"aRadioChannels,omitempty"`      //
+		BRadioChannels      string `json:"bRadioChannels,omitempty"`      //
+		ChannelWidth        string `json:"channelWidth,omitempty"`        //
+		DataRatesA          string `json:"dataRatesA,omitempty"`          //
+		DataRatesB          string `json:"dataRatesB,omitempty"`          //
+		DefaultRfProfile    bool   `json:"defaultRfProfile,omitempty"`    //
+		EnableARadioType    bool   `json:"enableARadioType,omitempty"`    //
+		EnableBRadioType    bool   `json:"enableBRadioType,omitempty"`    //
+		EnableBrownField    bool   `json:"enableBrownField,omitempty"`    //
+		EnableCustom        bool   `json:"enableCustom,omitempty"`        //
+		MandatoryDataRatesA string `json:"mandatoryDataRatesA,omitempty"` //
+		MandatoryDataRatesB string `json:"mandatoryDataRatesB,omitempty"` //
+		MaxPowerLevelA      string `json:"maxPowerLevelA,omitempty"`      //
+		MaxPowerLevelB      string `json:"maxPowerLevelB,omitempty"`      //
+		MinPowerLevelA      string `json:"minPowerLevelA,omitempty"`      //
+		MinPowerLevelB      string `json:"minPowerLevelB,omitempty"`      //
+		Name                string `json:"name,omitempty"`                //
+		ParentProfileA      string `json:"parentProfileA,omitempty"`      //
+		ParentProfileB      string `json:"parentProfileB,omitempty"`      //
+		PowerThresholdV1A   int    `json:"powerThresholdV1A,omitempty"`   //
+		PowerThresholdV1B   int    `json:"powerThresholdV1B,omitempty"`   //
+		RxSopThresholdA     string `json:"rxSopThresholdA,omitempty"`     //
+		RxSopThresholdB     string `json:"rxSopThresholdB,omitempty"`     //
+	} `json:"response,omitempty"` //
 }
 
 // SNR is the SNR definition
@@ -368,8 +519,71 @@ type SNR struct {
 
 // SensorTestResultsResponse is the SensorTestResultsResponse definition
 type SensorTestResultsResponse struct {
-	FailureStats []FailureStats `json:"failureStats,omitempty"` //
-	Summary      Summary        `json:"summary,omitempty"`      //
+	FailureStats []struct {
+		ErrorCode    int    `json:"errorCode,omitempty"`    //
+		ErrorTitle   string `json:"errorTitle,omitempty"`   //
+		TestCategory string `json:"testCategory,omitempty"` //
+		TestType     string `json:"testType,omitempty"`     //
+	} `json:"failureStats,omitempty"` //
+	Summary struct {
+		AppConnectivity struct {
+			FileTransfer struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"FileTransfer,omitempty"` //
+			HostReachability struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"HostReachability,omitempty"` //
+			WebServer struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"WebServer,omitempty"` //
+		} `json:"AppConnectivity,omitempty"` //
+		Email struct {
+			MailServer struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"MailServer,omitempty"` //
+		} `json:"Email,omitempty"` //
+		NetworkServices struct {
+			DNS struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"DNS,omitempty"` //
+		} `json:"NetworkServices,omitempty"` //
+		OnBoarding struct {
+			Assoc struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"Assoc,omitempty"` //
+			Auth struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"Auth,omitempty"` //
+			DHCP struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"DHCP,omitempty"` //
+		} `json:"OnBoarding,omitempty"` //
+		Performance struct {
+			IPSLASender struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"IPSLASender,omitempty"` //
+		} `json:"Performance,omitempty"` //
+		RFAssessment struct {
+			DataRate struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"DataRate,omitempty"` //
+			SNR struct {
+				FailCount int `json:"failCount,omitempty"` //
+				PassCount int `json:"passCount,omitempty"` //
+			} `json:"SNR,omitempty"` //
+		} `json:"RFAssessment,omitempty"` //
+		TotalTestCount int `json:"totalTestCount,omitempty"` //
+	} `json:"summary,omitempty"` //
 }
 
 // Success is the Success definition
@@ -380,13 +594,63 @@ type Success struct {
 
 // Summary is the Summary definition
 type Summary struct {
-	AppConnectivity AppConnectivity `json:"APP_CONNECTIVITY,omitempty"` //
-	Email           Email           `json:"EMAIL,omitempty"`            //
-	NetworkServices NetworkServices `json:"NETWORK_SERVICES,omitempty"` //
-	OnBoarding      OnBoarding      `json:"ONBOARDING,omitempty"`       //
-	Performance     Performance     `json:"PERFORMANCE,omitempty"`      //
-	RFAssessment    RFAssessment    `json:"RF_ASSESSMENT,omitempty"`    //
-	TotalTestCount  int             `json:"totalTestCount,omitempty"`   //
+	AppConnectivity struct {
+		FileTransfer struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"FileTransfer,omitempty"` //
+		HostReachability struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"HostReachability,omitempty"` //
+		WebServer struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"WebServer,omitempty"` //
+	} `json:"AppConnectivity,omitempty"` //
+	Email struct {
+		MailServer struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"MailServer,omitempty"` //
+	} `json:"Email,omitempty"` //
+	NetworkServices struct {
+		DNS struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"DNS,omitempty"` //
+	} `json:"NetworkServices,omitempty"` //
+	OnBoarding struct {
+		Assoc struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"Assoc,omitempty"` //
+		Auth struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"Auth,omitempty"` //
+		DHCP struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"DHCP,omitempty"` //
+	} `json:"OnBoarding,omitempty"` //
+	Performance struct {
+		IPSLASender struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"IPSLASender,omitempty"` //
+	} `json:"Performance,omitempty"` //
+	RFAssessment struct {
+		DataRate struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"DataRate,omitempty"` //
+		SNR struct {
+			FailCount int `json:"failCount,omitempty"` //
+			PassCount int `json:"passCount,omitempty"` //
+		} `json:"SNR,omitempty"` //
+	} `json:"RFAssessment,omitempty"` //
+	TotalTestCount int `json:"totalTestCount,omitempty"` //
 }
 
 // UpdateWirelessProfileResponse is the UpdateWirelessProfileResponse definition

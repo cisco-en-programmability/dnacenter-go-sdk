@@ -13,39 +13,80 @@ type SitesService service
 
 // AssignDeviceToSiteRequest is the AssignDeviceToSiteRequest definition
 type AssignDeviceToSiteRequest struct {
-	Device []Device `json:"device,omitempty"` //
+	Device []struct {
+		IP string `json:"ip,omitempty"` //
+	} `json:"device,omitempty"` //
 }
 
 // CreateSiteRequest is the CreateSiteRequest definition
 type CreateSiteRequest struct {
-	Site Site   `json:"site,omitempty"` //
+	Site struct {
+		Area struct {
+			Name       string `json:"name,omitempty"`       //
+			ParentName string `json:"parentName,omitempty"` //
+		} `json:"area,omitempty"` //
+		Building struct {
+			Address    string `json:"address,omitempty"`    //
+			Latitude   int    `json:"latitude,omitempty"`   //
+			Longitude  int    `json:"longitude,omitempty"`  //
+			Name       string `json:"name,omitempty"`       //
+			ParentName string `json:"parentName,omitempty"` //
+		} `json:"building,omitempty"` //
+		Floor struct {
+			Height     int    `json:"height,omitempty"`     //
+			Length     int    `json:"length,omitempty"`     //
+			Name       string `json:"name,omitempty"`       //
+			ParentName string `json:"parentName,omitempty"` //
+			RfModel    string `json:"rfModel,omitempty"`    //
+			Width      int    `json:"width,omitempty"`      //
+		} `json:"floor,omitempty"` //
+	} `json:"site,omitempty"` //
 	Type string `json:"type,omitempty"` //
-}
-
-// SitesDevice is the Device definition
-type SitesDevice struct {
-	IP string `json:"ip,omitempty"` //
-}
-
-// Site is the Site definition
-type Site struct {
-	Area     Area     `json:"area,omitempty"`     //
-	Building Building `json:"building,omitempty"` //
-	Floor    Floor    `json:"floor,omitempty"`    //
 }
 
 // UpdateSiteRequest is the UpdateSiteRequest definition
 type UpdateSiteRequest struct {
-	Site Site   `json:"site,omitempty"` //
+	Site struct {
+		Area struct {
+			Name       string `json:"name,omitempty"`       //
+			ParentName string `json:"parentName,omitempty"` //
+		} `json:"area,omitempty"` //
+		Building struct {
+			Address    string `json:"address,omitempty"`    //
+			Latitude   int    `json:"latitude,omitempty"`   //
+			Longitude  int    `json:"longitude,omitempty"`  //
+			Name       string `json:"name,omitempty"`       //
+			ParentName string `json:"parentName,omitempty"` //
+		} `json:"building,omitempty"` //
+		Floor struct {
+			Height  int    `json:"height,omitempty"`  //
+			Length  int    `json:"length,omitempty"`  //
+			Name    string `json:"name,omitempty"`    //
+			RfModel string `json:"rfModel,omitempty"` //
+			Width   int    `json:"width,omitempty"`   //
+		} `json:"floor,omitempty"` //
+	} `json:"site,omitempty"` //
 	Type string `json:"type,omitempty"` //
 }
 
 // ApplicationHealthStats is the ApplicationHealthStats definition
 type ApplicationHealthStats struct {
-	AppTotalCount              int                        `json:"appTotalCount,omitempty"`              //
-	BusinessIrrelevantAppCount BusinessIrrelevantAppCount `json:"businessIrrelevantAppCount,omitempty"` //
-	BusinessRelevantAppCount   BusinessRelevantAppCount   `json:"businessRelevantAppCount,omitempty"`   //
-	DefaultHealthAppCount      DefaultHealthAppCount      `json:"defaultHealthAppCount,omitempty"`      //
+	AppTotalCount              int `json:"appTotalCount,omitempty"` //
+	BusinessIrrelevantAppCount struct {
+		Fair int `json:"fair,omitempty"` //
+		Good int `json:"good,omitempty"` //
+		Poor int `json:"poor,omitempty"` //
+	} `json:"businessIrrelevantAppCount,omitempty"` //
+	BusinessRelevantAppCount struct {
+		Fair int `json:"fair,omitempty"` //
+		Good int `json:"good,omitempty"` //
+		Poor int `json:"poor,omitempty"` //
+	} `json:"businessRelevantAppCount,omitempty"` //
+	DefaultHealthAppCount struct {
+		Fair int `json:"fair,omitempty"` //
+		Good int `json:"good,omitempty"` //
+		Poor int `json:"poor,omitempty"` //
+	} `json:"defaultHealthAppCount,omitempty"` //
 }
 
 // AssignDeviceToSiteResponse is the AssignDeviceToSiteResponse definition
@@ -89,17 +130,17 @@ type DeleteSiteResponse struct {
 	Status  string `json:"status,omitempty"`  //
 }
 
-// SiteDevice is the Device definition
-type SiteDevice struct {
-	Response []string `json:"response,omitempty"` //
-	SiteID   string   `json:"siteId,omitempty"`   //
-	Version  string   `json:"version,omitempty"`  //
-}
-
 // GetMembershipResponse is the GetMembershipResponse definition
 type GetMembershipResponse struct {
-	Device []SiteDevice `json:"device,omitempty"` //
-	Site   Site         `json:"site,omitempty"`   //
+	Device []struct {
+		Response []string `json:"response,omitempty"` //
+		SiteID   string   `json:"siteId,omitempty"`   //
+		Version  string   `json:"version,omitempty"`  //
+	} `json:"device,omitempty"` //
+	Site struct {
+		Response []string `json:"response,omitempty"` //
+		Version  string   `json:"version,omitempty"`  //
+	} `json:"site,omitempty"` //
 }
 
 // GetSiteCountResponse is the GetSiteCountResponse definition
@@ -110,40 +151,100 @@ type GetSiteCountResponse struct {
 
 // GetSiteHealthResponse is the GetSiteHealthResponse definition
 type GetSiteHealthResponse struct {
-	Response []Response `json:"response,omitempty"` //
+	Response []struct {
+		AccessGoodCount            string `json:"accessGoodCount,omitempty"`            //
+		AccessTotalCount           string `json:"accessTotalCount,omitempty"`           //
+		ApplicationBytesTotalCount string `json:"applicationBytesTotalCount,omitempty"` //
+		ApplicationGoodCount       string `json:"applicationGoodCount,omitempty"`       //
+		ApplicationHealth          string `json:"applicationHealth,omitempty"`          //
+		ApplicationHealthStats     struct {
+			AppTotalCount              int `json:"appTotalCount,omitempty"` //
+			BusinessIrrelevantAppCount struct {
+				Fair int `json:"fair,omitempty"` //
+				Good int `json:"good,omitempty"` //
+				Poor int `json:"poor,omitempty"` //
+			} `json:"businessIrrelevantAppCount,omitempty"` //
+			BusinessRelevantAppCount struct {
+				Fair int `json:"fair,omitempty"` //
+				Good int `json:"good,omitempty"` //
+				Poor int `json:"poor,omitempty"` //
+			} `json:"businessRelevantAppCount,omitempty"` //
+			DefaultHealthAppCount struct {
+				Fair int `json:"fair,omitempty"` //
+				Good int `json:"good,omitempty"` //
+				Poor int `json:"poor,omitempty"` //
+			} `json:"defaultHealthAppCount,omitempty"` //
+		} `json:"applicationHealthStats,omitempty"` //
+		ApplicationTotalCount              string `json:"applicationTotalCount,omitempty"`              //
+		ClientHealthWired                  string `json:"clientHealthWired,omitempty"`                  //
+		ClientHealthWireless               string `json:"clientHealthWireless,omitempty"`               //
+		CoreGoodCount                      string `json:"coreGoodCount,omitempty"`                      //
+		CoreTotalCount                     string `json:"coreTotalCount,omitempty"`                     //
+		DistributionGoodCount              string `json:"distributionGoodCount,omitempty"`              //
+		DistributionTotalCount             string `json:"distributionTotalCount,omitempty"`             //
+		DnacInfo                           string `json:"dnacInfo,omitempty"`                           //
+		HealthyClientsPercentage           string `json:"healthyClientsPercentage,omitempty"`           //
+		HealthyNetworkDevicePercentage     string `json:"healthyNetworkDevicePercentage,omitempty"`     //
+		Latitude                           int    `json:"latitude,omitempty"`                           //
+		Longitude                          int    `json:"longitude,omitempty"`                          //
+		NetworkHealthAccess                string `json:"networkHealthAccess,omitempty"`                //
+		NetworkHealthAverage               string `json:"networkHealthAverage,omitempty"`               //
+		NetworkHealthCore                  string `json:"networkHealthCore,omitempty"`                  //
+		NetworkHealthDistribution          string `json:"networkHealthDistribution,omitempty"`          //
+		NetworkHealthOthers                string `json:"networkHealthOthers,omitempty"`                //
+		NetworkHealthRouter                string `json:"networkHealthRouter,omitempty"`                //
+		NetworkHealthWireless              string `json:"networkHealthWireless,omitempty"`              //
+		NumberOfClients                    string `json:"intOfClients,omitempty"`                    //
+		NumberOfNetworkDevice              string `json:"intOfNetworkDevice,omitempty"`              //
+		NumberOfWiredClients               string `json:"intOfWiredClients,omitempty"`               //
+		NumberOfWirelessClients            string `json:"intOfWirelessClients,omitempty"`            //
+		OverallGoodDevices                 string `json:"overallGoodDevices,omitempty"`                 //
+		ParentSiteID                       string `json:"parentSiteId,omitempty"`                       //
+		ParentSiteName                     string `json:"parentSiteName,omitempty"`                     //
+		RouterGoodCount                    string `json:"routerGoodCount,omitempty"`                    //
+		RouterTotalCount                   string `json:"routerTotalCount,omitempty"`                   //
+		SiteID                             string `json:"siteId,omitempty"`                             //
+		SiteName                           string `json:"siteName,omitempty"`                           //
+		SiteType                           string `json:"siteType,omitempty"`                           //
+		TotalNumberOfActiveWirelessClients string `json:"totalNumberOfActiveWirelessClients,omitempty"` //
+		TotalNumberOfConnectedWiredClients string `json:"totalNumberOfConnectedWiredClients,omitempty"` //
+		WiredGoodClients                   string `json:"wiredGoodClients,omitempty"`                   //
+		WirelessDeviceGoodCount            string `json:"wirelessDeviceGoodCount,omitempty"`            //
+		WirelessDeviceTotalCount           string `json:"wirelessDeviceTotalCount,omitempty"`           //
+		WirelessGoodClients                string `json:"wirelessGoodClients,omitempty"`                //
+	} `json:"response,omitempty"` //
 }
 
 // GetSiteResponse is the GetSiteResponse definition
 type GetSiteResponse struct {
-	Response []SiteResponse `json:"response,omitempty"` //
-}
-
-// SiteResponse is the Response definition
-type SiteResponse struct {
-	Data             string   `json:"data,omitempty"`             //
-	EndTime          string   `json:"endTime,omitempty"`          //
-	ID               string   `json:"id,omitempty"`               //
-	InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
-	IsError          string   `json:"isError,omitempty"`          //
-	OperationIDList  []string `json:"operationIdList,omitempty"`  //
-	Progress         string   `json:"progress,omitempty"`         //
-	RootID           string   `json:"rootId,omitempty"`           //
-	ServiceType      string   `json:"serviceType,omitempty"`      //
-	StartTime        string   `json:"startTime,omitempty"`        //
-	Version          string   `json:"version,omitempty"`          //
-}
-
-// SitesResponse is the Site definition
-type SitesResponse struct {
-	Response []string `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response []struct {
+		AdditionalInfo    []string `json:"additionalInfo,omitempty"`    //
+		ID                string   `json:"id,omitempty"`                //
+		InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  //
+		Name              string   `json:"name,omitempty"`              //
+		ParentID          string   `json:"parentId,omitempty"`          //
+		SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     //
+		SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` //
+	} `json:"response,omitempty"` //
 }
 
 // UpdateSiteResponse is the UpdateSiteResponse definition
 type UpdateSiteResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Result   string   `json:"result,omitempty"`   //
-	Status   string   `json:"status,omitempty"`   //
+	Response struct {
+		Data             string   `json:"data,omitempty"`             //
+		EndTime          string   `json:"endTime,omitempty"`          //
+		ID               string   `json:"id,omitempty"`               //
+		InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
+		IsError          string   `json:"isError,omitempty"`          //
+		OperationIDList  []string `json:"operationIdList,omitempty"`  //
+		Progress         string   `json:"progress,omitempty"`         //
+		RootID           string   `json:"rootId,omitempty"`           //
+		ServiceType      string   `json:"serviceType,omitempty"`      //
+		StartTime        string   `json:"startTime,omitempty"`        //
+		Version          string   `json:"version,omitempty"`          //
+	} `json:"response,omitempty"` //
+	Result string `json:"result,omitempty"` //
+	Status string `json:"status,omitempty"` //
 }
 
 // AssignDeviceToSite assignDeviceToSite

@@ -22,16 +22,39 @@ type CustomParam struct {
 
 // GetOverallNetworkHealthResponse is the GetOverallNetworkHealthResponse definition
 type GetOverallNetworkHealthResponse struct {
-	HealthDistirubution       []HealthDistirubution `json:"healthDistirubution,omitempty"`       //
-	LatestHealthScore         int                   `json:"latestHealthScore,omitempty"`         //
-	LatestMeasuredByEntity    string                `json:"latestMeasuredByEntity,omitempty"`    //
-	MeasuredBy                string                `json:"measuredBy,omitempty"`                //
-	MonitoredDevices          int                   `json:"monitoredDevices,omitempty"`          //
-	MonitoredHealthyDevices   int                   `json:"monitoredHealthyDevices,omitempty"`   //
-	MonitoredUnHealthyDevices int                   `json:"monitoredUnHealthyDevices,omitempty"` //
-	Response                  []Response            `json:"response,omitempty"`                  //
-	UnMonitoredDevices        int                   `json:"unMonitoredDevices,omitempty"`        //
-	Version                   string                `json:"version,omitempty"`                   //
+	HealthDistirubution []struct {
+		BadCount        int      `json:"badCount,omitempty"`        //
+		BadPercentage   int      `json:"badPercentage,omitempty"`   //
+		Category        string   `json:"category,omitempty"`        //
+		FairCount       int      `json:"fairCount,omitempty"`       //
+		FairPercentage  int      `json:"fairPercentage,omitempty"`  //
+		GoodCount       int      `json:"goodCount,omitempty"`       //
+		GoodPercentage  int      `json:"goodPercentage,omitempty"`  //
+		HealthScore     int      `json:"healthScore,omitempty"`     //
+		KpiMetrics      []string `json:"kpiMetrics,omitempty"`      //
+		TotalCount      int      `json:"totalCount,omitempty"`      //
+		UnmonCount      int      `json:"unmonCount,omitempty"`      //
+		UnmonPercentage int      `json:"unmonPercentage,omitempty"` //
+	} `json:"healthDistirubution,omitempty"` //
+	LatestHealthScore         int    `json:"latestHealthScore,omitempty"`         //
+	LatestMeasuredByEntity    string `json:"latestMeasuredByEntity,omitempty"`    //
+	MeasuredBy                string `json:"measuredBy,omitempty"`                //
+	MonitoredDevices          int    `json:"monitoredDevices,omitempty"`          //
+	MonitoredHealthyDevices   int    `json:"monitoredHealthyDevices,omitempty"`   //
+	MonitoredUnHealthyDevices int    `json:"monitoredUnHealthyDevices,omitempty"` //
+	Response                  []struct {
+		BadCount     int    `json:"badCount,omitempty"`     //
+		Entity       string `json:"entity,omitempty"`       //
+		FairCount    int    `json:"fairCount,omitempty"`    //
+		GoodCount    int    `json:"goodCount,omitempty"`    //
+		HealthScore  int    `json:"healthScore,omitempty"`  //
+		Time         string `json:"time,omitempty"`         //
+		TimeinMillis int    `json:"timeinMillis,omitempty"` //
+		TotalCount   int    `json:"totalCount,omitempty"`   //
+		UnmonCount   int    `json:"unmonCount,omitempty"`   //
+	} `json:"response,omitempty"` //
+	UnMonitoredDevices int    `json:"unMonitoredDevices,omitempty"` //
+	Version            string `json:"version,omitempty"`            //
 }
 
 // HealthDistirubution is the HealthDistirubution definition
@@ -50,69 +73,8 @@ type HealthDistirubution struct {
 	UnmonPercentage int      `json:"unmonPercentage,omitempty"` //
 }
 
-// TopologyLinks is the Links definition
-type TopologyLinks struct {
-	AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
-	EndPortID            string `json:"endPortID,omitempty"`            //
-	EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
-	EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
-	EndPortName          string `json:"endPortName,omitempty"`          //
-	EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
-	GreyOut              bool   `json:"greyOut,omitempty"`              //
-	ID                   string `json:"id,omitempty"`                   //
-	LinkStatus           string `json:"linkStatus,omitempty"`           //
-	Source               string `json:"source,omitempty"`               //
-	StartPortID          string `json:"startPortID,omitempty"`          //
-	StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
-	StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
-	StartPortName        string `json:"startPortName,omitempty"`        //
-	StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
-	Tag                  string `json:"tag,omitempty"`                  //
-	Target               string `json:"target,omitempty"`               //
-}
-
-// TopologyNodes is the Nodes definition
-type TopologyNodes struct {
-	ACLApplied      bool        `json:"aclApplied,omitempty"`      //
-	AdditionalInfo  string      `json:"additionalInfo,omitempty"`  //
-	CustomParam     CustomParam `json:"customParam,omitempty"`     //
-	DataPathID      string      `json:"dataPathId,omitempty"`      //
-	DeviceType      string      `json:"deviceType,omitempty"`      //
-	Family          string      `json:"family,omitempty"`          //
-	Fixed           bool        `json:"fixed,omitempty"`           //
-	GreyOut         bool        `json:"greyOut,omitempty"`         //
-	ID              string      `json:"id,omitempty"`              //
-	IP              string      `json:"ip,omitempty"`              //
-	Label           string      `json:"label,omitempty"`           //
-	NetworkType     string      `json:"networkType,omitempty"`     //
-	NodeType        string      `json:"nodeType,omitempty"`        //
-	Order           int         `json:"order,omitempty"`           //
-	OsType          string      `json:"osType,omitempty"`          //
-	PlatformID      string      `json:"platformId,omitempty"`      //
-	Role            string      `json:"role,omitempty"`            //
-	RoleSource      string      `json:"roleSource,omitempty"`      //
-	SoftwareVersion string      `json:"softwareVersion,omitempty"` //
-	Tags            []string    `json:"tags,omitempty"`            //
-	UpperNode       string      `json:"upperNode,omitempty"`       //
-	UserID          string      `json:"userId,omitempty"`          //
-	VlanID          string      `json:"vlanId,omitempty"`          //
-	X               int         `json:"x,omitempty"`               //
-	Y               int         `json:"y,omitempty"`               //
-}
-
-// TopologyResponse is the Response definition
-type TopologyResponse struct {
-	Sites []TopologySites `json:"sites,omitempty"` //
-}
-
-// SiteResult is the SiteResult definition
-type SiteResult struct {
-	Response TopologyResponse `json:"response,omitempty"` //
-	Version  string           `json:"version,omitempty"`  //
-}
-
-// TopologySites is the Sites definition
-type TopologySites struct {
+// Sites is the Sites definition
+type Sites struct {
 	DisplayName        string `json:"displayName,omitempty"`        //
 	GroupNameHierarchy string `json:"groupNameHierarchy,omitempty"` //
 	ID                 string `json:"id,omitempty"`                 //
@@ -125,10 +87,83 @@ type TopologySites struct {
 	ParentID           string `json:"parentId,omitempty"`           //
 }
 
+// SiteResult is the SiteResult definition
+type SiteResult struct {
+	Response struct {
+		Sites []struct {
+			DisplayName        string `json:"displayName,omitempty"`        //
+			GroupNameHierarchy string `json:"groupNameHierarchy,omitempty"` //
+			ID                 string `json:"id,omitempty"`                 //
+			Latitude           string `json:"latitude,omitempty"`           //
+			LocationAddress    string `json:"locationAddress,omitempty"`    //
+			LocationCountry    string `json:"locationCountry,omitempty"`    //
+			LocationType       string `json:"locationType,omitempty"`       //
+			Longitude          string `json:"longitude,omitempty"`          //
+			Name               string `json:"name,omitempty"`               //
+			ParentID           string `json:"parentId,omitempty"`           //
+		} `json:"sites,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
 // TopologyResult is the TopologyResult definition
 type TopologyResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		ID    string `json:"id,omitempty"` //
+		Links []struct {
+			AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
+			EndPortID            string `json:"endPortID,omitempty"`            //
+			EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
+			EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
+			EndPortName          string `json:"endPortName,omitempty"`          //
+			EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
+			GreyOut              bool   `json:"greyOut,omitempty"`              //
+			ID                   string `json:"id,omitempty"`                   //
+			LinkStatus           string `json:"linkStatus,omitempty"`           //
+			Source               string `json:"source,omitempty"`               //
+			StartPortID          string `json:"startPortID,omitempty"`          //
+			StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
+			StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
+			StartPortName        string `json:"startPortName,omitempty"`        //
+			StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
+			Tag                  string `json:"tag,omitempty"`                  //
+			Target               string `json:"target,omitempty"`               //
+		} `json:"links,omitempty"` //
+		Nodes []struct {
+			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
+			AdditionalInfo string `json:"additionalInfo,omitempty"` //
+			CustomParam    struct {
+				ID           string `json:"id,omitempty"`           //
+				Label        string `json:"label,omitempty"`        //
+				ParentNodeID string `json:"parentNodeId,omitempty"` //
+				X            int    `json:"x,omitempty"`            //
+				Y            int    `json:"y,omitempty"`            //
+			} `json:"customParam,omitempty"` //
+			DataPathID      string   `json:"dataPathId,omitempty"`      //
+			DeviceType      string   `json:"deviceType,omitempty"`      //
+			Family          string   `json:"family,omitempty"`          //
+			Fixed           bool     `json:"fixed,omitempty"`           //
+			GreyOut         bool     `json:"greyOut,omitempty"`         //
+			ID              string   `json:"id,omitempty"`              //
+			IP              string   `json:"ip,omitempty"`              //
+			Label           string   `json:"label,omitempty"`           //
+			NetworkType     string   `json:"networkType,omitempty"`     //
+			NodeType        string   `json:"nodeType,omitempty"`        //
+			Order           int      `json:"order,omitempty"`           //
+			OsType          string   `json:"osType,omitempty"`          //
+			PlatformID      string   `json:"platformId,omitempty"`      //
+			Role            string   `json:"role,omitempty"`            //
+			RoleSource      string   `json:"roleSource,omitempty"`      //
+			SoftwareVersion string   `json:"softwareVersion,omitempty"` //
+			Tags            []string `json:"tags,omitempty"`            //
+			UpperNode       string   `json:"upperNode,omitempty"`       //
+			UserID          string   `json:"userId,omitempty"`          //
+			VlanID          string   `json:"vlanId,omitempty"`          //
+			X               int      `json:"x,omitempty"`               //
+			Y               int      `json:"y,omitempty"`               //
+		} `json:"nodes,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // VlanNamesResult is the VlanNamesResult definition

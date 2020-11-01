@@ -12,30 +12,27 @@ type FileService service
 
 // FileObjectListResult is the FileObjectListResult definition
 type FileObjectListResult struct {
-	Response []FileObjectResponse `json:"response,omitempty"` //
-	Version  string               `json:"version,omitempty"`  //
+	Response []struct {
+		AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
+		DownloadPath   string   `json:"downloadPath,omitempty"`   //
+		Encrypted      bool     `json:"encrypted,omitempty"`      //
+		FileFormat     string   `json:"fileFormat,omitempty"`     //
+		FileSize       string   `json:"fileSize,omitempty"`       //
+		ID             string   `json:"id,omitempty"`             //
+		Md5Checksum    string   `json:"md5Checksum,omitempty"`    //
+		Name           string   `json:"name,omitempty"`           //
+		NameSpace      string   `json:"nameSpace,omitempty"`      //
+		SftpServerList []string `json:"sftpServerList,omitempty"` //
+		Sha1Checksum   string   `json:"sha1Checksum,omitempty"`   //
+		TaskID         string   `json:"taskId,omitempty"`         //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // NameSpaceListResult is the NameSpaceListResult definition
 type NameSpaceListResult struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
-}
-
-// FileObjectResponse is the Response definition
-type FileObjectResponse struct {
-	AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
-	DownloadPath   string   `json:"downloadPath,omitempty"`   //
-	Encrypted      bool     `json:"encrypted,omitempty"`      //
-	FileFormat     string   `json:"fileFormat,omitempty"`     //
-	FileSize       string   `json:"fileSize,omitempty"`       //
-	ID             string   `json:"id,omitempty"`             //
-	Md5Checksum    string   `json:"md5Checksum,omitempty"`    //
-	Name           string   `json:"name,omitempty"`           //
-	NameSpace      string   `json:"nameSpace,omitempty"`      //
-	SftpServerList []string `json:"sftpServerList,omitempty"` //
-	Sha1Checksum   string   `json:"sha1Checksum,omitempty"`   //
-	TaskID         string   `json:"taskId,omitempty"`         //
 }
 
 // DownloadAFileByFileID downloadAFileByFileId

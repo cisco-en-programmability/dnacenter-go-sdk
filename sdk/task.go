@@ -11,38 +11,54 @@ import (
 // TaskService is the service to communicate with the Task API endpoint
 type TaskService service
 
-// TaskDTO is the Response definition
-type TaskDTO struct {
-	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
-	Data                string `json:"data,omitempty"`                //
-	EndTime             string `json:"endTime,omitempty"`             //
-	ErrorCode           string `json:"errorCode,omitempty"`           //
-	ErrorKey            string `json:"errorKey,omitempty"`            //
-	FailureReason       string `json:"failureReason,omitempty"`       //
-	ID                  string `json:"id,omitempty"`                  //
-	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
-	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          string `json:"lastUpdate,omitempty"`          //
-	OperationIDList     string `json:"operationIdList,omitempty"`     //
-	ParentID            string `json:"parentId,omitempty"`            //
-	Progress            string `json:"progress,omitempty"`            //
-	RootID              string `json:"rootId,omitempty"`              //
-	ServiceType         string `json:"serviceType,omitempty"`         //
-	StartTime           string `json:"startTime,omitempty"`           //
-	Username            string `json:"username,omitempty"`            //
-	Version             int    `json:"version,omitempty"`             //
-}
-
 // TaskDTOListResponse is the TaskDTOListResponse definition
 type TaskDTOListResponse struct {
-	Response []TaskDTOResponse `json:"response,omitempty"` //
-	Version  string            `json:"version,omitempty"`  //
+	Response []struct {
+		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+		Data                string `json:"data,omitempty"`                //
+		EndTime             string `json:"endTime,omitempty"`             //
+		ErrorCode           string `json:"errorCode,omitempty"`           //
+		ErrorKey            string `json:"errorKey,omitempty"`            //
+		FailureReason       string `json:"failureReason,omitempty"`       //
+		ID                  string `json:"id,omitempty"`                  //
+		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+		IsError             bool   `json:"isError,omitempty"`             //
+		LastUpdate          string `json:"lastUpdate,omitempty"`          //
+		OperationIDList     string `json:"operationIdList,omitempty"`     //
+		ParentID            string `json:"parentId,omitempty"`            //
+		Progress            string `json:"progress,omitempty"`            //
+		RootID              string `json:"rootId,omitempty"`              //
+		ServiceType         string `json:"serviceType,omitempty"`         //
+		StartTime           string `json:"startTime,omitempty"`           //
+		Username            string `json:"username,omitempty"`            //
+		Version             int    `json:"version,omitempty"`             //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // TaskDTOResponse is the TaskDTOResponse definition
 type TaskDTOResponse struct {
-	Response TaskDTO `json:"response,omitempty"` //
-	Version  string  `json:"version,omitempty"`  //
+	Response struct {
+		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+		Data                string `json:"data,omitempty"`                //
+		EndTime             string `json:"endTime,omitempty"`             //
+		ErrorCode           string `json:"errorCode,omitempty"`           //
+		ErrorKey            string `json:"errorKey,omitempty"`            //
+		FailureReason       string `json:"failureReason,omitempty"`       //
+		ID                  string `json:"id,omitempty"`                  //
+		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+		IsError             bool   `json:"isError,omitempty"`             //
+		LastUpdate          string `json:"lastUpdate,omitempty"`          //
+		OperationIDList     string `json:"operationIdList,omitempty"`     //
+		ParentID            string `json:"parentId,omitempty"`            //
+		Progress            string `json:"progress,omitempty"`            //
+		RootID              string `json:"rootId,omitempty"`              //
+		ServiceType         string `json:"serviceType,omitempty"`         //
+		StartTime           string `json:"startTime,omitempty"`           //
+		Username            string `json:"username,omitempty"`            //
+		Version             int    `json:"version,omitempty"`             //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetTaskByID getTaskById

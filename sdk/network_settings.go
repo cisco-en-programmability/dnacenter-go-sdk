@@ -41,22 +41,113 @@ type ClientAndEndpointAAA struct {
 
 // CreateDeviceCredentialsRequest is the CreateDeviceCredentialsRequest definition
 type CreateDeviceCredentialsRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		CliCredential []struct {
+			Description    string `json:"description,omitempty"`    //
+			EnablePassword string `json:"enablePassword,omitempty"` //
+			Password       string `json:"password,omitempty"`       //
+			Username       string `json:"username,omitempty"`       //
+		} `json:"cliCredential,omitempty"` //
+		HTTPSRead []struct {
+			Name     string `json:"name,omitempty"`     //
+			Password string `json:"password,omitempty"` //
+			Port     int    `json:"port,omitempty"`     //
+			Username string `json:"username,omitempty"` //
+		} `json:"httpsRead,omitempty"` //
+		HTTPSWrite []struct {
+			Name     string `json:"name,omitempty"`     //
+			Password string `json:"password,omitempty"` //
+			Port     int    `json:"port,omitempty"`     //
+			Username string `json:"username,omitempty"` //
+		} `json:"httpsWrite,omitempty"` //
+		SNMPV2cRead []struct {
+			Description   string `json:"description,omitempty"`   //
+			ReadCommunity string `json:"readCommunity,omitempty"` //
+		} `json:"snmpV2cRead,omitempty"` //
+		SNMPV2cWrite []struct {
+			Description    string `json:"description,omitempty"`    //
+			WriteCommunity string `json:"writeCommunity,omitempty"` //
+		} `json:"snmpV2cWrite,omitempty"` //
+		SNMPV3 []struct {
+			AuthPassword    string `json:"authPassword,omitempty"`    //
+			AuthType        string `json:"authType,omitempty"`        //
+			Description     string `json:"description,omitempty"`     //
+			PrivacyPassword string `json:"privacyPassword,omitempty"` //
+			PrivacyType     string `json:"privacyType,omitempty"`     //
+			SNMPMode        string `json:"snmpMode,omitempty"`        //
+			Username        string `json:"username,omitempty"`        //
+		} `json:"snmpV3,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // CreateGlobalPoolRequest is the CreateGlobalPoolRequest definition
 type CreateGlobalPoolRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		IPpool []struct {
+			IPAddressSpace string   `json:"IpAddressSpace,omitempty"` //
+			DhcpServerIPs  []string `json:"dhcpServerIps,omitempty"`  //
+			DNSServerIPs   []string `json:"dnsServerIps,omitempty"`   //
+			Gateway        string   `json:"gateway,omitempty"`        //
+			IPPoolCidr     string   `json:"ipPoolCidr,omitempty"`     //
+			IPPoolName     string   `json:"ipPoolName,omitempty"`     //
+			Type           string   `json:"type,omitempty"`           //
+		} `json:"ippool,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // CreateNetworkRequest is the CreateNetworkRequest definition
 type CreateNetworkRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		ClientAndEndpointAaa struct {
+			IPAddress    string `json:"ipAddress,omitempty"`    //
+			Network      string `json:"network,omitempty"`      //
+			Protocol     string `json:"protocol,omitempty"`     //
+			Servers      string `json:"servers,omitempty"`      //
+			SharedSecret string `json:"sharedSecret,omitempty"` //
+		} `json:"clientAndEndpoint_aaa,omitempty"` //
+		DhcpServer []string `json:"dhcpServer,omitempty"` //
+		DNSServer  struct {
+			DomainName         string `json:"domainName,omitempty"`         //
+			PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   //
+			SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` //
+		} `json:"dnsServer,omitempty"` //
+		MessageOfTheday struct {
+			BannerMessage        string `json:"bannerMessage,omitempty"`        //
+			RetainExistingBanner bool   `json:"retainExistingBanner,omitempty"` //
+		} `json:"messageOfTheday,omitempty"` //
+		Netflowcollector struct {
+			IPAddress string `json:"ipAddress,omitempty"` //
+			Port      int    `json:"port,omitempty"`      //
+		} `json:"netflowcollector,omitempty"` //
+		NetworkAaa struct {
+			IPAddress    string `json:"ipAddress,omitempty"`    //
+			Network      string `json:"network,omitempty"`      //
+			Protocol     string `json:"protocol,omitempty"`     //
+			Servers      string `json:"servers,omitempty"`      //
+			SharedSecret string `json:"sharedSecret,omitempty"` //
+		} `json:"network_aaa,omitempty"` //
+		NtpServer  []string `json:"ntpServer,omitempty"` //
+		SNMPServer struct {
+			ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
+			IPAddresses     []string `json:"ipAddresses,omitempty"`     //
+		} `json:"snmpServer,omitempty"` //
+		SyslogServer struct {
+			ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
+			IPAddresses     []string `json:"ipAddresses,omitempty"`     //
+		} `json:"syslogServer,omitempty"` //
+		Timezone string `json:"timezone,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // CreateSPProfileRequest is the CreateSPProfileRequest definition
 type CreateSPProfileRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		Qos []struct {
+			Model       string `json:"model,omitempty"`       //
+			ProfileName string `json:"profileName,omitempty"` //
+			WanProvider string `json:"wanProvider,omitempty"` //
+		} `json:"qos,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // DNSServer is the DnsServer definition
@@ -66,7 +157,7 @@ type DNSServer struct {
 	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` //
 }
 
-// HTTPSRead is the HTTPsRead definition
+// HTTPSRead is the HttpsRead definition
 type HTTPSRead struct {
 	ID       string `json:"id,omitempty"`       //
 	Name     string `json:"name,omitempty"`     //
@@ -75,7 +166,7 @@ type HTTPSRead struct {
 	Username string `json:"username,omitempty"` //
 }
 
-// HTTPSWrite is the HTTPsWrite definition
+// HTTPSWrite is the HttpsWrite definition
 type HTTPSWrite struct {
 	ID       string `json:"id,omitempty"`       //
 	Name     string `json:"name,omitempty"`     //
@@ -122,11 +213,6 @@ type Qos struct {
 	WanProvider    string `json:"wanProvider,omitempty"`    //
 }
 
-// Settings is the Settings definition
-type Settings struct {
-	Qos []Qos `json:"qos,omitempty"` //
-}
-
 // SNMPServer is the SnmpServer definition
 type SNMPServer struct {
 	ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
@@ -167,22 +253,118 @@ type SyslogServer struct {
 
 // UpdateDeviceCredentialsRequest is the UpdateDeviceCredentialsRequest definition
 type UpdateDeviceCredentialsRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		CliCredential struct {
+			Description    string `json:"description,omitempty"`    //
+			EnablePassword string `json:"enablePassword,omitempty"` //
+			ID             string `json:"id,omitempty"`             //
+			Password       string `json:"password,omitempty"`       //
+			Username       string `json:"username,omitempty"`       //
+		} `json:"cliCredential,omitempty"` //
+		HTTPSRead struct {
+			ID       string `json:"id,omitempty"`       //
+			Name     string `json:"name,omitempty"`     //
+			Password string `json:"password,omitempty"` //
+			Port     string `json:"port,omitempty"`     //
+			Username string `json:"username,omitempty"` //
+		} `json:"httpsRead,omitempty"` //
+		HTTPSWrite struct {
+			ID       string `json:"id,omitempty"`       //
+			Name     string `json:"name,omitempty"`     //
+			Password string `json:"password,omitempty"` //
+			Port     string `json:"port,omitempty"`     //
+			Username string `json:"username,omitempty"` //
+		} `json:"httpsWrite,omitempty"` //
+		SNMPV2cRead struct {
+			Description   string `json:"description,omitempty"`   //
+			ID            string `json:"id,omitempty"`            //
+			ReadCommunity string `json:"readCommunity,omitempty"` //
+		} `json:"snmpV2cRead,omitempty"` //
+		SNMPV2cWrite struct {
+			Description    string `json:"description,omitempty"`    //
+			ID             string `json:"id,omitempty"`             //
+			WriteCommunity string `json:"writeCommunity,omitempty"` //
+		} `json:"snmpV2cWrite,omitempty"` //
+		SNMPV3 struct {
+			AuthPassword    string `json:"authPassword,omitempty"`    //
+			AuthType        string `json:"authType,omitempty"`        //
+			Description     string `json:"description,omitempty"`     //
+			ID              string `json:"id,omitempty"`              //
+			PrivacyPassword string `json:"privacyPassword,omitempty"` //
+			PrivacyType     string `json:"privacyType,omitempty"`     //
+			SNMPMode        string `json:"snmpMode,omitempty"`        //
+			Username        string `json:"username,omitempty"`        //
+		} `json:"snmpV3,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // UpdateGlobalPoolRequest is the UpdateGlobalPoolRequest definition
 type UpdateGlobalPoolRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		IPpool []struct {
+			DhcpServerIPs []string `json:"dhcpServerIps,omitempty"` //
+			DNSServerIPs  []string `json:"dnsServerIps,omitempty"`  //
+			Gateway       string   `json:"gateway,omitempty"`       //
+			ID            string   `json:"id,omitempty"`            //
+			IPPoolName    string   `json:"ipPoolName,omitempty"`    //
+		} `json:"ippool,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // UpdateNetworkRequest is the UpdateNetworkRequest definition
 type UpdateNetworkRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		ClientAndEndpointAaa struct {
+			IPAddress    string `json:"ipAddress,omitempty"`    //
+			Network      string `json:"network,omitempty"`      //
+			Protocol     string `json:"protocol,omitempty"`     //
+			Servers      string `json:"servers,omitempty"`      //
+			SharedSecret string `json:"sharedSecret,omitempty"` //
+		} `json:"clientAndEndpoint_aaa,omitempty"` //
+		DhcpServer []string `json:"dhcpServer,omitempty"` //
+		DNSServer  struct {
+			DomainName         string `json:"domainName,omitempty"`         //
+			PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   //
+			SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` //
+		} `json:"dnsServer,omitempty"` //
+		MessageOfTheday struct {
+			BannerMessage        string `json:"bannerMessage,omitempty"`        //
+			RetainExistingBanner bool   `json:"retainExistingBanner,omitempty"` //
+		} `json:"messageOfTheday,omitempty"` //
+		Netflowcollector struct {
+			IPAddress string `json:"ipAddress,omitempty"` //
+			Port      int    `json:"port,omitempty"`      //
+		} `json:"netflowcollector,omitempty"` //
+		NetworkAaa struct {
+			IPAddress    string `json:"ipAddress,omitempty"`    //
+			Network      string `json:"network,omitempty"`      //
+			Protocol     string `json:"protocol,omitempty"`     //
+			Servers      string `json:"servers,omitempty"`      //
+			SharedSecret string `json:"sharedSecret,omitempty"` //
+		} `json:"network_aaa,omitempty"` //
+		NtpServer  []string `json:"ntpServer,omitempty"` //
+		SNMPServer struct {
+			ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
+			IPAddresses     []string `json:"ipAddresses,omitempty"`     //
+		} `json:"snmpServer,omitempty"` //
+		SyslogServer struct {
+			ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
+			IPAddresses     []string `json:"ipAddresses,omitempty"`     //
+		} `json:"syslogServer,omitempty"` //
+		Timezone string `json:"timezone,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // UpdateSPProfileRequest is the UpdateSPProfileRequest definition
 type UpdateSPProfileRequest struct {
-	Settings Settings `json:"settings,omitempty"` //
+	Settings struct {
+		Qos []struct {
+			Model          string `json:"model,omitempty"`          //
+			OldProfileName string `json:"oldProfileName,omitempty"` //
+			ProfileName    string `json:"profileName,omitempty"`    //
+			WanProvider    string `json:"wanProvider,omitempty"`    //
+		} `json:"qos,omitempty"` //
+	} `json:"settings,omitempty"` //
 }
 
 // AssignCredentialToSiteResponse is the AssignCredentialToSiteResponse definition
@@ -263,33 +445,147 @@ type DeleteSPProfileResponse struct {
 
 // GetDeviceCredentialDetailsResponse is the GetDeviceCredentialDetailsResponse definition
 type GetDeviceCredentialDetailsResponse struct {
-	Cli         []Cli         `json:"cli,omitempty"`           //
-	HTTPRead    []HTTPRead    `json:"http_read,omitempty"`     //
-	HTTPWrite   []HTTPWrite   `json:"http_write,omitempty"`    //
-	SNMPV2Read  []SNMPv2Read  `json:"snmp_v2_read,omitempty"`  //
-	SNMPV2Write []SNMPv2Write `json:"snmp_v2_write,omitempty"` //
-	SNMPV3      []SNMPv3      `json:"snmp_v3,omitempty"`       //
+	Cli []struct {
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		EnablePassword   string `json:"enablePassword,omitempty"`   //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		Password         string `json:"password,omitempty"`         //
+		Username         string `json:"username,omitempty"`         //
+	} `json:"cli,omitempty"` //
+	HTTPRead []struct {
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		Password         string `json:"password,omitempty"`         //
+		Port             string `json:"port,omitempty"`             //
+		Secure           string `json:"secure,omitempty"`           //
+		Username         string `json:"username,omitempty"`         //
+	} `json:"http_read,omitempty"` //
+	HTTPWrite []struct {
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		Password         string `json:"password,omitempty"`         //
+		Port             string `json:"port,omitempty"`             //
+		Secure           string `json:"secure,omitempty"`           //
+		Username         string `json:"username,omitempty"`         //
+	} `json:"http_write,omitempty"` //
+	SNMPV2Read []struct {
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		ReadCommunity    string `json:"readCommunity,omitempty"`    //
+	} `json:"snmp_v2_read,omitempty"` //
+	SNMPV2Write []struct {
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		WriteCommunity   string `json:"writeCommunity,omitempty"`   //
+	} `json:"snmp_v2_write,omitempty"` //
+	SNMPV3 []struct {
+		AuthPassword     string `json:"authPassword,omitempty"`     //
+		AuthType         string `json:"authType,omitempty"`         //
+		Comments         string `json:"comments,omitempty"`         //
+		CredentialType   string `json:"credentialType,omitempty"`   //
+		Description      string `json:"description,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+		PrivacyPassword  string `json:"privacyPassword,omitempty"`  //
+		PrivacyType      string `json:"privacyType,omitempty"`      //
+		SNMPMode         string `json:"snmpMode,omitempty"`         //
+		Username         string `json:"username,omitempty"`         //
+	} `json:"snmp_v3,omitempty"` //
 }
 
 // GetGlobalPoolResponse is the GetGlobalPoolResponse definition
 type GetGlobalPoolResponse struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		ClientOptions         string `json:"clientOptions,omitempty"`         //
+		ConfigureExternalDhcp string `json:"configureExternalDhcp,omitempty"` //
+		Context               []struct {
+			ContextKey   string `json:"contextKey,omitempty"`   //
+			ContextValue string `json:"contextValue,omitempty"` //
+			Owner        string `json:"owner,omitempty"`        //
+		} `json:"context,omitempty"` //
+		CreateTime          string   `json:"createTime,omitempty"`          //
+		DhcpServerIPs       []string `json:"dhcpServerIps,omitempty"`       //
+		DNSServerIPs        []string `json:"dnsServerIps,omitempty"`        //
+		Gateways            []string `json:"gateways,omitempty"`            //
+		ID                  string   `json:"id,omitempty"`                  //
+		IPPoolCidr          string   `json:"ipPoolCidr,omitempty"`          //
+		IPPoolName          string   `json:"ipPoolName,omitempty"`          //
+		IPv6                string   `json:"ipv6,omitempty"`                //
+		LastUpdateTime      string   `json:"lastUpdateTime,omitempty"`      //
+		Overlapping         string   `json:"overlapping,omitempty"`         //
+		Owner               string   `json:"owner,omitempty"`               //
+		ParentUUID          string   `json:"parentUuid,omitempty"`          //
+		Shared              string   `json:"shared,omitempty"`              //
+		TotalIPAddressCount string   `json:"totalIpAddressCount,omitempty"` //
+		UsedIPAddressCount  string   `json:"usedIpAddressCount,omitempty"`  //
+		UsedPercentage      string   `json:"usedPercentage,omitempty"`      //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetNetworkResponse is the GetNetworkResponse definition
 type GetNetworkResponse struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		GroupUUID          string `json:"groupUuid,omitempty"`          //
+		InheritedGroupName string `json:"inheritedGroupName,omitempty"` //
+		InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` //
+		InstanceType       string `json:"instanceType,omitempty"`       //
+		InstanceUUID       string `json:"instanceUuid,omitempty"`       //
+		Key                string `json:"key,omitempty"`                //
+		Namespace          string `json:"namespace,omitempty"`          //
+		Type               string `json:"type,omitempty"`               //
+		Value              []struct {
+			ConfigureDnacIP bool     `json:"configureDnacIP,omitempty"` //
+			IPAddresses     []string `json:"ipAddresses,omitempty"`     //
+		} `json:"value,omitempty"` //
+		Version int `json:"version,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetServiceProviderDetailsResponse is the GetServiceProviderDetailsResponse definition
 type GetServiceProviderDetailsResponse struct {
-	Response []ServiceProviderDetailsResponse `json:"response,omitempty"` //
-	Version  string                           `json:"version,omitempty"`  //
+	Response []struct {
+		GroupUUID          string `json:"groupUuid,omitempty"`          //
+		InheritedGroupName string `json:"inheritedGroupName,omitempty"` //
+		InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` //
+		InstanceType       string `json:"instanceType,omitempty"`       //
+		InstanceUUID       string `json:"instanceUuid,omitempty"`       //
+		Key                string `json:"key,omitempty"`                //
+		Namespace          string `json:"namespace,omitempty"`          //
+		Type               string `json:"type,omitempty"`               //
+		Value              []struct {
+			SLAProfileName string `json:"slaProfileName,omitempty"` //
+			SpProfileName  string `json:"spProfileName,omitempty"`  //
+			WanProvider    string `json:"wanProvider,omitempty"`    //
+		} `json:"value,omitempty"` //
+		Version string `json:"version,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
-// HTTPRead is the HTTP_read definition
+// HTTPRead is the Http_read definition
 type HTTPRead struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -303,7 +599,7 @@ type HTTPRead struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// HTTPWrite is the HTTP_write definition
+// HTTPWrite is the Http_write definition
 type HTTPWrite struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -315,20 +611,6 @@ type HTTPWrite struct {
 	Port             string `json:"port,omitempty"`             //
 	Secure           string `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
-}
-
-// ServiceProviderDetailsResponse is the Response definition
-type ServiceProviderDetailsResponse struct {
-	GroupUUID          string  `json:"groupUuid,omitempty"`          //
-	InheritedGroupName string  `json:"inheritedGroupName,omitempty"` //
-	InheritedGroupUUID string  `json:"inheritedGroupUuid,omitempty"` //
-	InstanceType       string  `json:"instanceType,omitempty"`       //
-	InstanceUUID       string  `json:"instanceUuid,omitempty"`       //
-	Key                string  `json:"key,omitempty"`                //
-	Namespace          string  `json:"namespace,omitempty"`          //
-	Type               string  `json:"type,omitempty"`               //
-	Value              []Value `json:"value,omitempty"`              //
-	Version            string  `json:"version,omitempty"`            //
 }
 
 // SNMPv2Read is the Snmp_v2_read definition

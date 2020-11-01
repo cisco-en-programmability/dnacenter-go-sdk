@@ -46,23 +46,31 @@ type Range struct {
 
 // RollbackTemplateParams is the RollbackTemplateParams definition
 type RollbackTemplateParams struct {
-	Binding         string    `json:"binding,omitempty"`         //
-	DataType        string    `json:"dataType,omitempty"`        //
-	DefaultValue    string    `json:"defaultValue,omitempty"`    //
-	Description     string    `json:"description,omitempty"`     //
-	DisplayName     string    `json:"displayName,omitempty"`     //
-	Group           string    `json:"group,omitempty"`           //
-	ID              string    `json:"id,omitempty"`              //
-	InstructionText string    `json:"instructionText,omitempty"` //
-	Key             string    `json:"key,omitempty"`             //
-	NotParam        bool      `json:"notParam,omitempty"`        //
-	Order           int       `json:"order,omitempty"`           //
-	ParamArray      bool      `json:"paramArray,omitempty"`      //
-	ParameterName   string    `json:"parameterName,omitempty"`   //
-	Provider        string    `json:"provider,omitempty"`        //
-	Range           []Range   `json:"range,omitempty"`           //
-	Required        bool      `json:"required,omitempty"`        //
-	Selection       Selection `json:"selection,omitempty"`       //
+	Binding         string `json:"binding,omitempty"`         //
+	DataType        string `json:"dataType,omitempty"`        //
+	DefaultValue    string `json:"defaultValue,omitempty"`    //
+	Description     string `json:"description,omitempty"`     //
+	DisplayName     string `json:"displayName,omitempty"`     //
+	Group           string `json:"group,omitempty"`           //
+	ID              string `json:"id,omitempty"`              //
+	InstructionText string `json:"instructionText,omitempty"` //
+	Key             string `json:"key,omitempty"`             //
+	NotParam        bool   `json:"notParam,omitempty"`        //
+	Order           int    `json:"order,omitempty"`           //
+	ParamArray      bool   `json:"paramArray,omitempty"`      //
+	ParameterName   string `json:"parameterName,omitempty"`   //
+	Provider        string `json:"provider,omitempty"`        //
+	Range           []struct {
+		ID       string `json:"id,omitempty"`       //
+		MaxValue int    `json:"maxValue,omitempty"` //
+		MinValue int    `json:"minValue,omitempty"` //
+	} `json:"range,omitempty"` //
+	Required  bool `json:"required,omitempty"` //
+	Selection struct {
+		ID              string `json:"id,omitempty"`              //
+		SelectionType   string `json:"selectionType,omitempty"`   //
+		SelectionValues string `json:"selectionValues,omitempty"` //
+	} `json:"selection,omitempty"` //
 }
 
 // Selection is the Selection definition
@@ -82,59 +90,133 @@ type TargetInfo struct {
 
 // TemplateDTO is the TemplateDTO definition
 type TemplateDTO struct {
-	Author                  string                   `json:"author,omitempty"`                  //
-	Composite               bool                     `json:"composite,omitempty"`               //
-	ContainingTemplates     []ContainingTemplates    `json:"containingTemplates,omitempty"`     //
-	CreateTime              int                      `json:"createTime,omitempty"`              //
-	Description             string                   `json:"description,omitempty"`             //
-	DeviceTypes             []DeviceTypes            `json:"deviceTypes,omitempty"`             //
-	FailurePolicy           string                   `json:"failurePolicy,omitempty"`           //
-	ID                      string                   `json:"id,omitempty"`                      //
-	LastUpdateTime          int                      `json:"lastUpdateTime,omitempty"`          //
-	Name                    string                   `json:"name,omitempty"`                    //
-	ParentTemplateID        string                   `json:"parentTemplateId,omitempty"`        //
-	ProjectID               string                   `json:"projectId,omitempty"`               //
-	ProjectName             string                   `json:"projectName,omitempty"`             //
-	RollbackTemplateContent string                   `json:"rollbackTemplateContent,omitempty"` //
-	RollbackTemplateParams  []RollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
-	SoftwareType            string                   `json:"softwareType,omitempty"`            //
-	SoftwareVariant         string                   `json:"softwareVariant,omitempty"`         //
-	SoftwareVersion         string                   `json:"softwareVersion,omitempty"`         //
-	Tags                    []string                 `json:"tags,omitempty"`                    //
-	TemplateContent         string                   `json:"templateContent,omitempty"`         //
-	TemplateParams          []TemplateParams         `json:"templateParams,omitempty"`          //
-	Version                 string                   `json:"version,omitempty"`                 //
+	Author              string `json:"author,omitempty"`    //
+	Composite           bool   `json:"composite,omitempty"` //
+	ContainingTemplates []struct {
+		Composite bool   `json:"composite,omitempty"` //
+		ID        string `json:"id,omitempty"`        //
+		Name      string `json:"name,omitempty"`      //
+		Version   string `json:"version,omitempty"`   //
+	} `json:"containingTemplates,omitempty"` //
+	CreateTime  int    `json:"createTime,omitempty"`  //
+	Description string `json:"description,omitempty"` //
+	DeviceTypes []struct {
+		ProductFamily string `json:"productFamily,omitempty"` //
+		ProductSeries string `json:"productSeries,omitempty"` //
+		ProductType   string `json:"productType,omitempty"`   //
+	} `json:"deviceTypes,omitempty"` //
+	FailurePolicy           string `json:"failurePolicy,omitempty"`           //
+	ID                      string `json:"id,omitempty"`                      //
+	LastUpdateTime          int    `json:"lastUpdateTime,omitempty"`          //
+	Name                    string `json:"name,omitempty"`                    //
+	ParentTemplateID        string `json:"parentTemplateId,omitempty"`        //
+	ProjectID               string `json:"projectId,omitempty"`               //
+	ProjectName             string `json:"projectName,omitempty"`             //
+	RollbackTemplateContent string `json:"rollbackTemplateContent,omitempty"` //
+	RollbackTemplateParams  []struct {
+		Binding         string `json:"binding,omitempty"`         //
+		DataType        string `json:"dataType,omitempty"`        //
+		DefaultValue    string `json:"defaultValue,omitempty"`    //
+		Description     string `json:"description,omitempty"`     //
+		DisplayName     string `json:"displayName,omitempty"`     //
+		Group           string `json:"group,omitempty"`           //
+		ID              string `json:"id,omitempty"`              //
+		InstructionText string `json:"instructionText,omitempty"` //
+		Key             string `json:"key,omitempty"`             //
+		NotParam        bool   `json:"notParam,omitempty"`        //
+		Order           int    `json:"order,omitempty"`           //
+		ParamArray      bool   `json:"paramArray,omitempty"`      //
+		ParameterName   string `json:"parameterName,omitempty"`   //
+		Provider        string `json:"provider,omitempty"`        //
+		Range           []struct {
+			ID       string `json:"id,omitempty"`       //
+			MaxValue int    `json:"maxValue,omitempty"` //
+			MinValue int    `json:"minValue,omitempty"` //
+		} `json:"range,omitempty"` //
+		Required  bool `json:"required,omitempty"` //
+		Selection struct {
+			ID              string `json:"id,omitempty"`              //
+			SelectionType   string `json:"selectionType,omitempty"`   //
+			SelectionValues string `json:"selectionValues,omitempty"` //
+		} `json:"selection,omitempty"` //
+	} `json:"rollbackTemplateParams,omitempty"` //
+	SoftwareType    string   `json:"softwareType,omitempty"`    //
+	SoftwareVariant string   `json:"softwareVariant,omitempty"` //
+	SoftwareVersion string   `json:"softwareVersion,omitempty"` //
+	Tags            []string `json:"tags,omitempty"`            //
+	TemplateContent string   `json:"templateContent,omitempty"` //
+	TemplateParams  []struct {
+		Binding         string `json:"binding,omitempty"`         //
+		DataType        string `json:"dataType,omitempty"`        //
+		DefaultValue    string `json:"defaultValue,omitempty"`    //
+		Description     string `json:"description,omitempty"`     //
+		DisplayName     string `json:"displayName,omitempty"`     //
+		Group           string `json:"group,omitempty"`           //
+		ID              string `json:"id,omitempty"`              //
+		InstructionText string `json:"instructionText,omitempty"` //
+		Key             string `json:"key,omitempty"`             //
+		NotParam        bool   `json:"notParam,omitempty"`        //
+		Order           int    `json:"order,omitempty"`           //
+		ParamArray      bool   `json:"paramArray,omitempty"`      //
+		ParameterName   string `json:"parameterName,omitempty"`   //
+		Provider        string `json:"provider,omitempty"`        //
+		Range           []struct {
+			ID       string `json:"id,omitempty"`       //
+			MaxValue int    `json:"maxValue,omitempty"` //
+			MinValue int    `json:"minValue,omitempty"` //
+		} `json:"range,omitempty"` //
+		Required  bool `json:"required,omitempty"` //
+		Selection struct {
+			ID              string `json:"id,omitempty"`              //
+			SelectionType   string `json:"selectionType,omitempty"`   //
+			SelectionValues string `json:"selectionValues,omitempty"` //
+		} `json:"selection,omitempty"` //
+	} `json:"templateParams,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // TemplateDeploymentInfo is the TemplateDeploymentInfo definition
 type TemplateDeploymentInfo struct {
-	ForcePushTemplate            bool         `json:"forcePushTemplate,omitempty"`            //
-	IsComposite                  bool         `json:"isComposite,omitempty"`                  //
-	MainTemplateID               string       `json:"mainTemplateId,omitempty"`               //
-	MemberTemplateDeploymentInfo []string     `json:"memberTemplateDeploymentInfo,omitempty"` //
-	TargetInfo                   []TargetInfo `json:"targetInfo,omitempty"`                   //
-	TemplateID                   string       `json:"templateId,omitempty"`                   //
+	ForcePushTemplate            bool     `json:"forcePushTemplate,omitempty"`            //
+	IsComposite                  bool     `json:"isComposite,omitempty"`                  //
+	MainTemplateID               string   `json:"mainTemplateId,omitempty"`               //
+	MemberTemplateDeploymentInfo []string `json:"memberTemplateDeploymentInfo,omitempty"` //
+	TargetInfo                   []struct {
+		HostName string `json:"hostName,omitempty"` //
+		ID       string `json:"id,omitempty"`       //
+		Params   string `json:"params,omitempty"`   //
+		Type     string `json:"type,omitempty"`     //
+	} `json:"targetInfo,omitempty"` //
+	TemplateID string `json:"templateId,omitempty"` //
 }
 
 // TemplateParams is the TemplateParams definition
 type TemplateParams struct {
-	Binding         string    `json:"binding,omitempty"`         //
-	DataType        string    `json:"dataType,omitempty"`        //
-	DefaultValue    string    `json:"defaultValue,omitempty"`    //
-	Description     string    `json:"description,omitempty"`     //
-	DisplayName     string    `json:"displayName,omitempty"`     //
-	Group           string    `json:"group,omitempty"`           //
-	ID              string    `json:"id,omitempty"`              //
-	InstructionText string    `json:"instructionText,omitempty"` //
-	Key             string    `json:"key,omitempty"`             //
-	NotParam        bool      `json:"notParam,omitempty"`        //
-	Order           int       `json:"order,omitempty"`           //
-	ParamArray      bool      `json:"paramArray,omitempty"`      //
-	ParameterName   string    `json:"parameterName,omitempty"`   //
-	Provider        string    `json:"provider,omitempty"`        //
-	Range           []Range   `json:"range,omitempty"`           //
-	Required        bool      `json:"required,omitempty"`        //
-	Selection       Selection `json:"selection,omitempty"`       //
+	Binding         string `json:"binding,omitempty"`         //
+	DataType        string `json:"dataType,omitempty"`        //
+	DefaultValue    string `json:"defaultValue,omitempty"`    //
+	Description     string `json:"description,omitempty"`     //
+	DisplayName     string `json:"displayName,omitempty"`     //
+	Group           string `json:"group,omitempty"`           //
+	ID              string `json:"id,omitempty"`              //
+	InstructionText string `json:"instructionText,omitempty"` //
+	Key             string `json:"key,omitempty"`             //
+	NotParam        bool   `json:"notParam,omitempty"`        //
+	Order           int    `json:"order,omitempty"`           //
+	ParamArray      bool   `json:"paramArray,omitempty"`      //
+	ParameterName   string `json:"parameterName,omitempty"`   //
+	Provider        string `json:"provider,omitempty"`        //
+	Range           []struct {
+		ID       string `json:"id,omitempty"`       //
+		MaxValue int    `json:"maxValue,omitempty"` //
+		MinValue int    `json:"minValue,omitempty"` //
+	} `json:"range,omitempty"` //
+	Required  bool `json:"required,omitempty"` //
+	Selection struct {
+		ID              string `json:"id,omitempty"`              //
+		SelectionType   string `json:"selectionType,omitempty"`   //
+		SelectionValues string `json:"selectionValues,omitempty"` //
+	} `json:"selection,omitempty"` //
 }
 
 // TemplatePreviewRequestDTO is the TemplatePreviewRequestDTO definition
@@ -151,19 +233,27 @@ type TemplateVersionRequestDTO struct {
 
 // CollectionProjectDTO is the CollectionProjectDTO definition
 type CollectionProjectDTO struct {
-	ID        string      `json:"id,omitempty"`        //
-	Name      string      `json:"name,omitempty"`      //
-	Templates []Templates `json:"templates,omitempty"` //
+	ID        string `json:"id,omitempty"`   //
+	Name      string `json:"name,omitempty"` //
+	Templates []struct {
+		Composite bool   `json:"composite,omitempty"` //
+		ID        string `json:"id,omitempty"`        //
+		Name      string `json:"name,omitempty"`      //
+	} `json:"templates,omitempty"` //
 }
 
 // CollectionTemplateInfo is the CollectionTemplateInfo definition
 type CollectionTemplateInfo struct {
-	Composite    bool           `json:"composite,omitempty"`    //
-	Name         string         `json:"name,omitempty"`         //
-	ProjectID    string         `json:"projectId,omitempty"`    //
-	ProjectName  string         `json:"projectName,omitempty"`  //
-	TemplateID   string         `json:"templateId,omitempty"`   //
-	VersionsInfo []VersionsInfo `json:"versionsInfo,omitempty"` //
+	Composite    bool   `json:"composite,omitempty"`   //
+	Name         string `json:"name,omitempty"`        //
+	ProjectID    string `json:"projectId,omitempty"`   //
+	ProjectName  string `json:"projectName,omitempty"` //
+	TemplateID   string `json:"templateId,omitempty"`  //
+	VersionsInfo []struct {
+		Description string `json:"description,omitempty"` //
+		ID          string `json:"id,omitempty"`          //
+		VersionTime int    `json:"versionTime,omitempty"` //
+	} `json:"versionsInfo,omitempty"` //
 }
 
 // Devices is the Devices definition
@@ -179,16 +269,24 @@ type Devices struct {
 
 // TemplateDeploymentStatusDTO is the TemplateDeploymentStatusDTO definition
 type TemplateDeploymentStatusDTO struct {
-	DeploymentID    string    `json:"deploymentId,omitempty"`    //
-	DeploymentName  string    `json:"deploymentName,omitempty"`  //
-	Devices         []Devices `json:"devices,omitempty"`         //
-	Duration        string    `json:"duration,omitempty"`        //
-	EndTime         string    `json:"endTime,omitempty"`         //
-	ProjectName     string    `json:"projectName,omitempty"`     //
-	StartTime       string    `json:"startTime,omitempty"`       //
-	Status          string    `json:"status,omitempty"`          //
-	TemplateName    string    `json:"templateName,omitempty"`    //
-	TemplateVersion string    `json:"templateVersion,omitempty"` //
+	DeploymentID   string `json:"deploymentId,omitempty"`   //
+	DeploymentName string `json:"deploymentName,omitempty"` //
+	Devices        []struct {
+		DeviceID  string `json:"deviceId,omitempty"`  //
+		Duration  string `json:"duration,omitempty"`  //
+		EndTime   string `json:"endTime,omitempty"`   //
+		IPAddress string `json:"ipAddress,omitempty"` //
+		Name      string `json:"name,omitempty"`      //
+		StartTime string `json:"startTime,omitempty"` //
+		Status    string `json:"status,omitempty"`    //
+	} `json:"devices,omitempty"` //
+	Duration        string `json:"duration,omitempty"`        //
+	EndTime         string `json:"endTime,omitempty"`         //
+	ProjectName     string `json:"projectName,omitempty"`     //
+	StartTime       string `json:"startTime,omitempty"`       //
+	Status          string `json:"status,omitempty"`          //
+	TemplateName    string `json:"templateName,omitempty"`    //
+	TemplateVersion string `json:"templateVersion,omitempty"` //
 }
 
 // TemplatePreviewResponseDTO is the TemplatePreviewResponseDTO definition
@@ -232,7 +330,7 @@ type VersionsInfo struct {
 // 	result := response.Result().(*TaskIDResult)
 // 	return result, response, err
 
-//}
+// }
 
 // CreateTemplate createTemplate
 /* Creates a new template
@@ -320,7 +418,7 @@ func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*rest
 // 	result := response.Result().(*TemplateDeploymentStatusDTO)
 // 	return result, response, err
 
-//}
+// }
 
 // GetProjectsQueryParams defines the query parameters for this request
 type GetProjectsQueryParams struct {
@@ -414,7 +512,7 @@ func (s *ConfigurationTemplatesService) GetTemplateDetails(templateID string, ge
 // func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (*GetTemplateVersionsResponse, *resty.Response, error) {
 
 // 	path := "/dna/intent/api/v1/template-programmer/template/version/{templateID}"
-// 	path = strings.Replace(path, "{"+"templateID"+"}", fmt.Sprintf("%v", templateId), -1)
+// 	path = strings.Replace(path, "{"+"templateID"+"}", fmt.Sprintf("%v", templateID), -1)
 
 // 	response, err := RestyClient.R().
 // 		SetResult(&GetTemplateVersionsResponse{}).

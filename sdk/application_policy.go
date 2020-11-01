@@ -15,10 +15,35 @@ type ApplicationSet struct {
 
 // CreateApplicationRequest is the CreateApplicationRequest definition
 type CreateApplicationRequest struct {
-	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
-	Name                string                `json:"name,omitempty"`                //
-	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	ApplicationSet struct {
+		IDRef string `json:"idRef,omitempty"` //
+	} `json:"applicationSet,omitempty"` //
+	Name                string `json:"name,omitempty"` //
+	NetworkApplications []struct {
+		AppProtocol        string `json:"appProtocol,omitempty"`        //
+		ApplicationSubType string `json:"applicationSubType,omitempty"` //
+		ApplicationType    string `json:"applicationType,omitempty"`    //
+		CategoryID         string `json:"categoryId,omitempty"`         //
+		DisplayName        string `json:"displayName,omitempty"`        //
+		Dscp               string `json:"dscp,omitempty"`               //
+		EngineID           string `json:"engineId,omitempty"`           //
+		HelpString         string `json:"helpString,omitempty"`         //
+		IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
+		LongDescription    string `json:"longDescription,omitempty"`    //
+		Name               string `json:"name,omitempty"`               //
+		Popularity         string `json:"popularity,omitempty"`         //
+		Rank               string `json:"rank,omitempty"`               //
+		ServerName         string `json:"serverName,omitempty"`         //
+		TrafficClass       string `json:"trafficClass,omitempty"`       //
+		URL                string `json:"url,omitempty"`                //
+	} `json:"networkApplications,omitempty"` //
+	NetworkIDentity []struct {
+		DisplayName string `json:"displayName,omitempty"` //
+		LowerPort   string `json:"lowerPort,omitempty"`   //
+		Ports       string `json:"ports,omitempty"`       //
+		Protocol    string `json:"protocol,omitempty"`    //
+		UpperPort   string `json:"upperPort,omitempty"`   //
+	} `json:"networkIDentity,omitempty"` //
 }
 
 // CreateApplicationSetRequest is the CreateApplicationSetRequest definition
@@ -28,11 +53,38 @@ type CreateApplicationSetRequest struct {
 
 // EditApplicationRequest is the EditApplicationRequest definition
 type EditApplicationRequest struct {
-	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
-	ID                  string                `json:"id,omitempty"`                  //
-	Name                string                `json:"name,omitempty"`                //
-	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	ApplicationSet struct {
+		IDRef string `json:"idRef,omitempty"` //
+	} `json:"applicationSet,omitempty"` //
+	ID                  string `json:"id,omitempty"`   //
+	Name                string `json:"name,omitempty"` //
+	NetworkApplications []struct {
+		AppProtocol        string `json:"appProtocol,omitempty"`        //
+		ApplicationSubType string `json:"applicationSubType,omitempty"` //
+		ApplicationType    string `json:"applicationType,omitempty"`    //
+		CategoryID         string `json:"categoryId,omitempty"`         //
+		DisplayName        string `json:"displayName,omitempty"`        //
+		Dscp               string `json:"dscp,omitempty"`               //
+		EngineID           string `json:"engineId,omitempty"`           //
+		HelpString         string `json:"helpString,omitempty"`         //
+		ID                 string `json:"id,omitempty"`                 //
+		IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
+		LongDescription    string `json:"longDescription,omitempty"`    //
+		Name               string `json:"name,omitempty"`               //
+		Popularity         string `json:"popularity,omitempty"`         //
+		Rank               string `json:"rank,omitempty"`               //
+		ServerName         string `json:"serverName,omitempty"`         //
+		TrafficClass       string `json:"trafficClass,omitempty"`       //
+		URL                string `json:"url,omitempty"`                //
+	} `json:"networkApplications,omitempty"` //
+	NetworkIDentity []struct {
+		DisplayName string `json:"displayName,omitempty"` //
+		ID          string `json:"id,omitempty"`          //
+		LowerPort   string `json:"lowerPort,omitempty"`   //
+		Ports       string `json:"ports,omitempty"`       //
+		Protocol    string `json:"protocol,omitempty"`    //
+		UpperPort   string `json:"upperPort,omitempty"`   //
+	} `json:"networkIDentity,omitempty"` //
 }
 
 // NetworkApplications is the NetworkApplications definition
@@ -56,8 +108,8 @@ type NetworkApplications struct {
 	URL                string `json:"url,omitempty"`                //
 }
 
-// NetworkIdentity is the NetworkIdentity definition
-type NetworkIdentity struct {
+// NetworkIDentity is the NetworkIdentity definition
+type NetworkIDentity struct {
 	DisplayName string `json:"displayName,omitempty"` //
 	ID          string `json:"id,omitempty"`          //
 	LowerPort   string `json:"lowerPort,omitempty"`   //
@@ -68,32 +120,47 @@ type NetworkIdentity struct {
 
 // CreateApplicationResponse is the CreateApplicationResponse definition
 type CreateApplicationResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // CreateApplicationSetResponse is the CreateApplicationSetResponse definition
 type CreateApplicationSetResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DeleteApplicationResponse is the DeleteApplicationResponse definition
 type DeleteApplicationResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // DeleteApplicationSetResponse is the DeleteApplicationSetResponse definition
 type DeleteApplicationSetResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // EditApplicationResponse is the EditApplicationResponse definition
 type EditApplicationResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetApplicationSetsCountResponse is the GetApplicationSetsCountResponse definition
@@ -104,7 +171,14 @@ type GetApplicationSetsCountResponse struct {
 
 // GetApplicationSetsResponse is the GetApplicationSetsResponse definition
 type GetApplicationSetsResponse struct {
-	Response []Response `json:"response,omitempty"` //
+	Response []struct {
+		ID             string `json:"id,omitempty"` //
+		IDentitySource struct {
+			ID   string `json:"id,omitempty"`   //
+			Type string `json:"type,omitempty"` //
+		} `json:"identitySource,omitempty"` //
+		Name string `json:"name,omitempty"` //
+	} `json:"response,omitempty"` //
 }
 
 // GetApplicationsCountResponse is the GetApplicationsCountResponse definition
@@ -115,23 +189,44 @@ type GetApplicationsCountResponse struct {
 
 // GetApplicationsResponse is the GetApplicationsResponse definition
 type GetApplicationsResponse struct {
-	ApplicationSet      ApplicationSet        `json:"applicationSet,omitempty"`      //
-	ID                  string                `json:"id,omitempty"`                  //
-	Name                string                `json:"name,omitempty"`                //
-	NetworkApplications []NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     []NetworkIdentity     `json:"networkIdentity,omitempty"`     //
+	ApplicationSet struct {
+		IDRef string `json:"idRef,omitempty"` //
+	} `json:"applicationSet,omitempty"` //
+	ID                  string `json:"id,omitempty"`   //
+	Name                string `json:"name,omitempty"` //
+	NetworkApplications []struct {
+		AppProtocol        string `json:"appProtocol,omitempty"`        //
+		ApplicationSubType string `json:"applicationSubType,omitempty"` //
+		ApplicationType    string `json:"applicationType,omitempty"`    //
+		CategoryID         string `json:"categoryId,omitempty"`         //
+		DisplayName        string `json:"displayName,omitempty"`        //
+		Dscp               string `json:"dscp,omitempty"`               //
+		EngineID           string `json:"engineId,omitempty"`           //
+		HelpString         string `json:"helpString,omitempty"`         //
+		ID                 string `json:"id,omitempty"`                 //
+		IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
+		LongDescription    string `json:"longDescription,omitempty"`    //
+		Name               string `json:"name,omitempty"`               //
+		Popularity         string `json:"popularity,omitempty"`         //
+		Rank               string `json:"rank,omitempty"`               //
+		ServerName         string `json:"serverName,omitempty"`         //
+		TrafficClass       string `json:"trafficClass,omitempty"`       //
+		URL                string `json:"url,omitempty"`                //
+	} `json:"networkApplications,omitempty"` //
+	NetworkIDentity []struct {
+		DisplayName string `json:"displayName,omitempty"` //
+		ID          string `json:"id,omitempty"`          //
+		LowerPort   string `json:"lowerPort,omitempty"`   //
+		Ports       string `json:"ports,omitempty"`       //
+		Protocol    string `json:"protocol,omitempty"`    //
+		UpperPort   string `json:"upperPort,omitempty"`   //
+	} `json:"networkIDentity,omitempty"` //
 }
 
-// IDentitySource is the IdentitySource definition
-type IDentitySource struct {
+// IdentitySource is the IdentitySource definition
+type IdentitySource struct {
 	ID   string `json:"id,omitempty"`   //
 	Type string `json:"type,omitempty"` //
-}
-
-// Response is the Response definition
-type Response struct {
-	TaskID string `json:"taskId,omitempty"` //
-	URL    string `json:"url,omitempty"`    //
 }
 
 // CreateApplication createApplication
@@ -258,8 +353,8 @@ func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *EditA
 
 // GetApplicationSetsQueryParams defines the query parameters for this request
 type GetApplicationSetsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` //
-	Limit  int    `url:"limit,omitempty"`  //
+	Offset int `url:"offset,omitempty"` //
+	Limit  int `url:"limit,omitempty"`  //
 	Name   string `url:"name,omitempty"`   //
 }
 
@@ -313,8 +408,8 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*GetApplicationSet
 
 // GetApplicationsQueryParams defines the query parameters for this request
 type GetApplicationsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` // The offset of the first application to be returned
-	Limit  int    `url:"limit,omitempty"`  // The maximum int of applications to be returned
+	Offset int `url:"offset,omitempty"` // The offset of the first application to be returned
+	Limit  int `url:"limit,omitempty"`  // The maximum int of applications to be returned
 	Name   string `url:"name,omitempty"`   // Application's name
 }
 

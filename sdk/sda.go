@@ -77,14 +77,22 @@ type AddVNInSDAFabricRequest struct {
 
 // AddsBorderDeviceInSDAFabricRequest is the AddsBorderDeviceInSDAFabricRequest definition
 type AddsBorderDeviceInSDAFabricRequest struct {
-	BorderSessionType                 string                         `json:"borderSessionType,omitempty"`                 //
-	ConnectedToInternet               bool                           `json:"connectedToInternet,omitempty"`               //
-	DeviceManagementIPAddress         string                         `json:"deviceManagementIpAddress,omitempty"`         //
-	ExternalConnectivityIPPoolName    string                         `json:"externalConnectivityIpPoolName,omitempty"`    //
-	ExternalConnectivitySettings      []ExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      //
-	ExternalDomainRoutingProtocolName string                         `json:"externalDomainRoutingProtocolName,omitempty"` //
-	InternalAutonomouSystemNumber     string                         `json:"internalAutonomouSystemNumber,omitempty"`     //
-	SiteNameHierarchy                 string                         `json:"siteNameHierarchy,omitempty"`                 //
+	BorderSessionType              string `json:"borderSessionType,omitempty"`              //
+	ConnectedToInternet            bool   `json:"connectedToInternet,omitempty"`            //
+	DeviceManagementIPAddress      string `json:"deviceManagementIpAddress,omitempty"`      //
+	ExternalConnectivityIPPoolName string `json:"externalConnectivityIpPoolName,omitempty"` //
+	ExternalConnectivitySettings   []struct {
+		ExternalAutonomouSystemNumber string `json:"externalAutonomouSystemNumber,omitempty"` //
+		InterfaceName                 string `json:"interfaceName,omitempty"`                 //
+		L3Handoff                     []struct {
+			VirtualNetwork struct {
+				VirtualNetworkName string `json:"virtualNetworkName,omitempty"` //
+			} `json:"virtualNetwork,omitempty"` //
+		} `json:"l3Handoff,omitempty"` //
+	} `json:"externalConnectivitySettings,omitempty"` //
+	ExternalDomainRoutingProtocolName string `json:"externalDomainRoutingProtocolName,omitempty"` //
+	InternalAutonomouSystemNumber     string `json:"internalAutonomouSystemNumber,omitempty"`     //
+	SiteNameHierarchy                 string `json:"siteNameHierarchy,omitempty"`                 //
 }
 
 // DeleteDefaultAuthenticationProfileFromSDAFabricRequest is the DeleteDefaultAuthenticationProfileFromSDAFabricRequest definition
@@ -140,9 +148,20 @@ type DeleteSiteFromSDAFabricRequest struct {
 
 // ExternalConnectivitySettings is the ExternalConnectivitySettings definition
 type ExternalConnectivitySettings struct {
-	ExternalAutonomouSystemNumber string      `json:"externalAutonomouSystemNumber,omitempty"` //
-	InterfaceName                 string      `json:"interfaceName,omitempty"`                 //
-	L3Handoff                     []L3Handoff `json:"l3Handoff,omitempty"`                     //
+	ExternalAutonomouSystemNumber string `json:"externalAutonomouSystemNumber,omitempty"` //
+	InterfaceName                 string `json:"interfaceName,omitempty"`                 //
+	L3Handoff                     []struct {
+		VirtualNetwork struct {
+			VirtualNetworkName string `json:"virtualNetworkName,omitempty"` //
+		} `json:"virtualNetwork,omitempty"` //
+	} `json:"l3Handoff,omitempty"` //
+}
+
+// L3Handoff is the L3Handoff definition
+type L3Handoff struct {
+	VirtualNetwork struct {
+		VirtualNetworkName string `json:"virtualNetworkName,omitempty"` //
+	} `json:"virtualNetwork,omitempty"` //
 }
 
 // UpdateDefaultAuthenticationProfileInSDAFabricRequest is the UpdateDefaultAuthenticationProfileInSDAFabricRequest definition
@@ -304,51 +323,100 @@ type DeletesBorderDeviceFromSDAFabricResponse struct {
 
 // DeviceSettings is the DeviceSettings definition
 type DeviceSettings struct {
-	ConnectedTo                   []string                  `json:"connectedTo,omitempty"`                   //
-	CPU                           int                       `json:"cpu,omitempty"`                           //
-	DeployPending                 string                    `json:"deployPending,omitempty"`                 //
-	DhcpEnabled                   bool                      `json:"dhcpEnabled,omitempty"`                   //
-	DisplayName                   string                    `json:"displayName,omitempty"`                   //
-	ExtConnectivitySettings       []ExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
-	ExternalConnectivityIPPool    string                    `json:"externalConnectivityIpPool,omitempty"`    //
-	ExternalDomainRoutingProtocol string                    `json:"externalDomainRoutingProtocol,omitempty"` //
-	ID                            string                    `json:"id,omitempty"`                            //
-	InstanceID                    int                       `json:"instanceId,omitempty"`                    //
-	InstanceTenantID              string                    `json:"instanceTenantId,omitempty"`              //
-	InstanceVersion               int                       `json:"instanceVersion,omitempty"`               //
-	InternalDomainProtocolNumber  string                    `json:"internalDomainProtocolNumber,omitempty"`  //
-	Memory                        int                       `json:"memory,omitempty"`                        //
-	NodeType                      []string                  `json:"nodeType,omitempty"`                      //
-	Storage                       int                       `json:"storage,omitempty"`                       //
+	ConnectedTo             []string `json:"connectedTo,omitempty"`   //
+	CPU                     int      `json:"cpu,omitempty"`           //
+	DeployPending           string   `json:"deployPending,omitempty"` //
+	DhcpEnabled             bool     `json:"dhcpEnabled,omitempty"`   //
+	DisplayName             string   `json:"displayName,omitempty"`   //
+	ExtConnectivitySettings []struct {
+		DeployPending                string   `json:"deployPending,omitempty"`                //
+		DisplayName                  string   `json:"displayName,omitempty"`                  //
+		ExternalDomainProtocolNumber string   `json:"externalDomainProtocolNumber,omitempty"` //
+		ID                           string   `json:"id,omitempty"`                           //
+		InstanceID                   int      `json:"instanceId,omitempty"`                   //
+		InstanceTenantID             string   `json:"instanceTenantId,omitempty"`             //
+		InstanceVersion              int      `json:"instanceVersion,omitempty"`              //
+		InterfaceUUID                string   `json:"interfaceUuid,omitempty"`                //
+		L2Handoff                    []string `json:"l2Handoff,omitempty"`                    //
+		L3Handoff                    []struct {
+			DeployPending    string `json:"deployPending,omitempty"`    //
+			DisplayName      string `json:"displayName,omitempty"`      //
+			ID               string `json:"id,omitempty"`               //
+			InstanceID       int    `json:"instanceId,omitempty"`       //
+			InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+			InstanceVersion  int    `json:"instanceVersion,omitempty"`  //
+			LocalIPAddress   string `json:"localIpAddress,omitempty"`   //
+			RemoteIPAddress  string `json:"remoteIpAddress,omitempty"`  //
+			VirtualNetwork   struct {
+				IDRef string `json:"idRef,omitempty"` //
+			} `json:"virtualNetwork,omitempty"` //
+			VlanID int `json:"vlanId,omitempty"` //
+		} `json:"l3Handoff,omitempty"` //
+		PolicyPropagationEnabled bool `json:"policyPropagationEnabled,omitempty"` //
+		PolicySgtTag             int  `json:"policySgtTag,omitempty"`             //
+	} `json:"extConnectivitySettings,omitempty"` //
+	ExternalConnectivityIPPool    string   `json:"externalConnectivityIpPool,omitempty"`    //
+	ExternalDomainRoutingProtocol string   `json:"externalDomainRoutingProtocol,omitempty"` //
+	ID                            string   `json:"id,omitempty"`                            //
+	InstanceID                    int      `json:"instanceId,omitempty"`                    //
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              //
+	InstanceVersion               int      `json:"instanceVersion,omitempty"`               //
+	InternalDomainProtocolNumber  string   `json:"internalDomainProtocolNumber,omitempty"`  //
+	Memory                        int      `json:"memory,omitempty"`                        //
+	NodeType                      []string `json:"nodeType,omitempty"`                      //
+	Storage                       int      `json:"storage,omitempty"`                       //
 }
 
 // Dhcp is the Dhcp definition
 type Dhcp struct {
-	ID        string    `json:"id,omitempty"`        //
-	IPAddress IPAddress `json:"ipAddress,omitempty"` //
+	ID        string `json:"id,omitempty"` //
+	IPAddress struct {
+		Address       string `json:"address,omitempty"`       //
+		AddressType   string `json:"addressType,omitempty"`   //
+		ID            string `json:"id,omitempty"`            //
+		PaddedAddress string `json:"paddedAddress,omitempty"` //
+	} `json:"ipAddress,omitempty"` //
 }
 
 // DNS is the Dns definition
 type DNS struct {
 	DomainName string `json:"domainName,omitempty"` //
 	ID         string `json:"id,omitempty"`         //
-	IP         IP     `json:"ip,omitempty"`         //
+	IP         struct {
+		Address       string `json:"address,omitempty"`       //
+		AddressType   string `json:"addressType,omitempty"`   //
+		ID            string `json:"id,omitempty"`            //
+		PaddedAddress string `json:"paddedAddress,omitempty"` //
+	} `json:"ip,omitempty"` //
 }
 
 // ExtConnectivitySettings is the ExtConnectivitySettings definition
 type ExtConnectivitySettings struct {
-	DeployPending                string      `json:"deployPending,omitempty"`                //
-	DisplayName                  string      `json:"displayName,omitempty"`                  //
-	ExternalDomainProtocolNumber string      `json:"externalDomainProtocolNumber,omitempty"` //
-	ID                           string      `json:"id,omitempty"`                           //
-	InstanceID                   int         `json:"instanceId,omitempty"`                   //
-	InstanceTenantID             string      `json:"instanceTenantId,omitempty"`             //
-	InstanceVersion              int         `json:"instanceVersion,omitempty"`              //
-	InterfaceUUID                string      `json:"interfaceUuid,omitempty"`                //
-	L2Handoff                    []string    `json:"l2Handoff,omitempty"`                    //
-	L3Handoff                    []L3Handoff `json:"l3Handoff,omitempty"`                    //
-	PolicyPropagationEnabled     bool        `json:"policyPropagationEnabled,omitempty"`     //
-	PolicySgtTag                 int         `json:"policySgtTag,omitempty"`                 //
+	DeployPending                string   `json:"deployPending,omitempty"`                //
+	DisplayName                  string   `json:"displayName,omitempty"`                  //
+	ExternalDomainProtocolNumber string   `json:"externalDomainProtocolNumber,omitempty"` //
+	ID                           string   `json:"id,omitempty"`                           //
+	InstanceID                   int      `json:"instanceId,omitempty"`                   //
+	InstanceTenantID             string   `json:"instanceTenantId,omitempty"`             //
+	InstanceVersion              int      `json:"instanceVersion,omitempty"`              //
+	InterfaceUUID                string   `json:"interfaceUuid,omitempty"`                //
+	L2Handoff                    []string `json:"l2Handoff,omitempty"`                    //
+	L3Handoff                    []struct {
+		DeployPending    string `json:"deployPending,omitempty"`    //
+		DisplayName      string `json:"displayName,omitempty"`      //
+		ID               string `json:"id,omitempty"`               //
+		InstanceID       int    `json:"instanceId,omitempty"`       //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		InstanceVersion  int    `json:"instanceVersion,omitempty"`  //
+		LocalIPAddress   string `json:"localIpAddress,omitempty"`   //
+		RemoteIPAddress  string `json:"remoteIpAddress,omitempty"`  //
+		VirtualNetwork   struct {
+			IDRef string `json:"idRef,omitempty"` //
+		} `json:"virtualNetwork,omitempty"` //
+		VlanID int `json:"vlanId,omitempty"` //
+	} `json:"l3Handoff,omitempty"` //
+	PolicyPropagationEnabled bool `json:"policyPropagationEnabled,omitempty"` //
+	PolicySgtTag             int  `json:"policySgtTag,omitempty"`             //
 }
 
 // GetControlPlaneDeviceFromSDAFabricResponse is the GetControlPlaneDeviceFromSDAFabricResponse definition
@@ -380,8 +448,12 @@ type GetDeviceInfoFromSDAFabricResponse struct {
 
 // GetDeviceRoleInSDAFabricResponse is the GetDeviceRoleInSDAFabricResponse definition
 type GetDeviceRoleInSDAFabricResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		Description string   `json:"description,omitempty"` //
+		Roles       []string `json:"roles,omitempty"`       //
+		Status      string   `json:"status,omitempty"`      //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetEdgeDeviceFromSDAFabricResponse is the GetEdgeDeviceFromSDAFabricResponse definition
@@ -435,8 +507,12 @@ type GetPortAssignmentForUserDeviceInSDAFabricResponse struct {
 
 // GetSDAFabricCountResponse is the GetSDAFabricCountResponse definition
 type GetSDAFabricCountResponse struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		Description string `json:"description,omitempty"` //
+		FabricCount string `json:"fabricCount,omitempty"` //
+		Status      string `json:"status,omitempty"`      //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // GetSDAFabricInfoResponse is the GetSDAFabricInfoResponse definition
@@ -465,9 +541,124 @@ type GetVNFromSDAFabricResponse struct {
 
 // GetsBorderDeviceDetailFromSDAFabricResponse is the GetsBorderDeviceDetailFromSDAFabricResponse definition
 type GetsBorderDeviceDetailFromSDAFabricResponse struct {
-	Description string  `json:"description,omitempty"` //
-	Payload     Payload `json:"payload,omitempty"`     //
-	Status      string  `json:"status,omitempty"`      //
+	Description string `json:"description,omitempty"` //
+	Payload     struct {
+		AkcSettingsCfs      []string `json:"akcSettingsCfs,omitempty"`      //
+		AuthEntityClass     int      `json:"authEntityClass,omitempty"`     //
+		AuthEntityID        int      `json:"authEntityId,omitempty"`        //
+		CfsChangeInfo       []string `json:"cfsChangeInfo,omitempty"`       //
+		Configs             []string `json:"configs,omitempty"`             //
+		CreateTime          int      `json:"createTime,omitempty"`          //
+		CustomProvisions    []string `json:"customProvisions,omitempty"`    //
+		DeployPending       string   `json:"deployPending,omitempty"`       //
+		Deployed            bool     `json:"deployed,omitempty"`            //
+		DeviceInterfaceInfo []string `json:"deviceInterfaceInfo,omitempty"` //
+		DeviceSettings      struct {
+			ConnectedTo             []string `json:"connectedTo,omitempty"`   //
+			CPU                     int      `json:"cpu,omitempty"`           //
+			DeployPending           string   `json:"deployPending,omitempty"` //
+			DhcpEnabled             bool     `json:"dhcpEnabled,omitempty"`   //
+			DisplayName             string   `json:"displayName,omitempty"`   //
+			ExtConnectivitySettings []struct {
+				DeployPending                string   `json:"deployPending,omitempty"`                //
+				DisplayName                  string   `json:"displayName,omitempty"`                  //
+				ExternalDomainProtocolNumber string   `json:"externalDomainProtocolNumber,omitempty"` //
+				ID                           string   `json:"id,omitempty"`                           //
+				InstanceID                   int      `json:"instanceId,omitempty"`                   //
+				InstanceTenantID             string   `json:"instanceTenantId,omitempty"`             //
+				InstanceVersion              int      `json:"instanceVersion,omitempty"`              //
+				InterfaceUUID                string   `json:"interfaceUuid,omitempty"`                //
+				L2Handoff                    []string `json:"l2Handoff,omitempty"`                    //
+				L3Handoff                    []struct {
+					DeployPending    string `json:"deployPending,omitempty"`    //
+					DisplayName      string `json:"displayName,omitempty"`      //
+					ID               string `json:"id,omitempty"`               //
+					InstanceID       int    `json:"instanceId,omitempty"`       //
+					InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+					InstanceVersion  int    `json:"instanceVersion,omitempty"`  //
+					LocalIPAddress   string `json:"localIpAddress,omitempty"`   //
+					RemoteIPAddress  string `json:"remoteIpAddress,omitempty"`  //
+					VirtualNetwork   struct {
+						IDRef string `json:"idRef,omitempty"` //
+					} `json:"virtualNetwork,omitempty"` //
+					VlanID int `json:"vlanId,omitempty"` //
+				} `json:"l3Handoff,omitempty"` //
+				PolicyPropagationEnabled bool `json:"policyPropagationEnabled,omitempty"` //
+				PolicySgtTag             int  `json:"policySgtTag,omitempty"`             //
+			} `json:"extConnectivitySettings,omitempty"` //
+			ExternalConnectivityIPPool    string   `json:"externalConnectivityIpPool,omitempty"`    //
+			ExternalDomainRoutingProtocol string   `json:"externalDomainRoutingProtocol,omitempty"` //
+			ID                            string   `json:"id,omitempty"`                            //
+			InstanceID                    int      `json:"instanceId,omitempty"`                    //
+			InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              //
+			InstanceVersion               int      `json:"instanceVersion,omitempty"`               //
+			InternalDomainProtocolNumber  string   `json:"internalDomainProtocolNumber,omitempty"`  //
+			Memory                        int      `json:"memory,omitempty"`                        //
+			NodeType                      []string `json:"nodeType,omitempty"`                      //
+			Storage                       int      `json:"storage,omitempty"`                       //
+		} `json:"deviceSettings,omitempty"` //
+		DisplayName         string   `json:"displayName,omitempty"`      //
+		ID                  string   `json:"id,omitempty"`               //
+		InstanceID          int      `json:"instanceId,omitempty"`       //
+		InstanceTenantID    string   `json:"instanceTenantId,omitempty"` //
+		InstanceVersion     int      `json:"instanceVersion,omitempty"`  //
+		IsSeeded            bool     `json:"isSeeded,omitempty"`         //
+		IsStale             bool     `json:"isStale,omitempty"`          //
+		LastUpdateTime      int      `json:"lastUpdateTime,omitempty"`   //
+		ManagedSites        []string `json:"managedSites,omitempty"`     //
+		Name                string   `json:"name,omitempty"`             //
+		Namespace           string   `json:"namespace,omitempty"`        //
+		NetworkDeviceID     string   `json:"networkDeviceId,omitempty"`  //
+		NetworkWideSettings struct {
+			Aaa           []string `json:"aaa,omitempty"`           //
+			Cmx           []string `json:"cmx,omitempty"`           //
+			DeployPending string   `json:"deployPending,omitempty"` //
+			Dhcp          []struct {
+				ID        string `json:"id,omitempty"` //
+				IPAddress struct {
+					Address       string `json:"address,omitempty"`       //
+					AddressType   string `json:"addressType,omitempty"`   //
+					ID            string `json:"id,omitempty"`            //
+					PaddedAddress string `json:"paddedAddress,omitempty"` //
+				} `json:"ipAddress,omitempty"` //
+			} `json:"dhcp,omitempty"` //
+			DisplayName string `json:"displayName,omitempty"` //
+			DNS         []struct {
+				DomainName string `json:"domainName,omitempty"` //
+				ID         string `json:"id,omitempty"`         //
+				IP         struct {
+					Address       string `json:"address,omitempty"`       //
+					AddressType   string `json:"addressType,omitempty"`   //
+					ID            string `json:"id,omitempty"`            //
+					PaddedAddress string `json:"paddedAddress,omitempty"` //
+				} `json:"ip,omitempty"` //
+			} `json:"dns,omitempty"` //
+			ID               string   `json:"id,omitempty"`               //
+			InstanceID       int      `json:"instanceId,omitempty"`       //
+			InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
+			InstanceVersion  int      `json:"instanceVersion,omitempty"`  //
+			Ldap             []string `json:"ldap,omitempty"`             //
+			NativeVlan       []string `json:"nativeVlan,omitempty"`       //
+			Netflow          []string `json:"netflow,omitempty"`          //
+			Ntp              []string `json:"ntp,omitempty"`              //
+			SNMP             []string `json:"snmp,omitempty"`             //
+			Syslogs          []string `json:"syslogs,omitempty"`          //
+		} `json:"networkWideSettings,omitempty"` //
+		OtherDevice                    []string `json:"otherDevice,omitempty"`                    //
+		ProvisioningState              string   `json:"provisioningState,omitempty"`              //
+		ResourceVersion                int      `json:"resourceVersion,omitempty"`                //
+		Roles                          []string `json:"roles,omitempty"`                          //
+		SaveWanConnectivityDetailsOnly bool     `json:"saveWanConnectivityDetailsOnly,omitempty"` //
+		SiteID                         string   `json:"siteId,omitempty"`                         //
+		TargetIDList                   []string `json:"targetIdList,omitempty"`                   //
+		TransitNetworks                []struct {
+			IDRef string `json:"idRef,omitempty"` //
+		} `json:"transitNetworks,omitempty"` //
+		Type           string   `json:"type,omitempty"`           //
+		VirtualNetwork []string `json:"virtualNetwork,omitempty"` //
+		Wlan           []string `json:"wlan,omitempty"`           //
+	} `json:"payload,omitempty"` //
+	Status string `json:"status,omitempty"` //
 }
 
 // IP is the Ip definition
@@ -486,28 +677,31 @@ type IPAddress struct {
 	PaddedAddress string `json:"paddedAddress,omitempty"` //
 }
 
-// L3Handoff is the L3Handoff definition
-type L3Handoff struct {
-	DeployPending    string         `json:"deployPending,omitempty"`    //
-	DisplayName      string         `json:"displayName,omitempty"`      //
-	ID               string         `json:"id,omitempty"`               //
-	InstanceID       int            `json:"instanceId,omitempty"`       //
-	InstanceTenantID string         `json:"instanceTenantId,omitempty"` //
-	InstanceVersion  int            `json:"instanceVersion,omitempty"`  //
-	LocalIPAddress   string         `json:"localIpAddress,omitempty"`   //
-	RemoteIPAddress  string         `json:"remoteIpAddress,omitempty"`  //
-	VirtualNetwork   VirtualNetwork `json:"virtualNetwork,omitempty"`   //
-	VlanID           int            `json:"vlanId,omitempty"`           //
-}
-
 // NetworkWideSettings is the NetworkWideSettings definition
 type NetworkWideSettings struct {
-	Aaa              []string `json:"aaa,omitempty"`              //
-	Cmx              []string `json:"cmx,omitempty"`              //
-	DeployPending    string   `json:"deployPending,omitempty"`    //
-	Dhcp             []DHCP   `json:"dhcp,omitempty"`             //
-	DisplayName      string   `json:"displayName,omitempty"`      //
-	DNS              []DNS    `json:"dns,omitempty"`              //
+	Aaa           []string `json:"aaa,omitempty"`           //
+	Cmx           []string `json:"cmx,omitempty"`           //
+	DeployPending string   `json:"deployPending,omitempty"` //
+	Dhcp          []struct {
+		ID        string `json:"id,omitempty"` //
+		IPAddress struct {
+			Address       string `json:"address,omitempty"`       //
+			AddressType   string `json:"addressType,omitempty"`   //
+			ID            string `json:"id,omitempty"`            //
+			PaddedAddress string `json:"paddedAddress,omitempty"` //
+		} `json:"ipAddress,omitempty"` //
+	} `json:"dhcp,omitempty"` //
+	DisplayName string `json:"displayName,omitempty"` //
+	DNS         []struct {
+		DomainName string `json:"domainName,omitempty"` //
+		ID         string `json:"id,omitempty"`         //
+		IP         struct {
+			Address       string `json:"address,omitempty"`       //
+			AddressType   string `json:"addressType,omitempty"`   //
+			ID            string `json:"id,omitempty"`            //
+			PaddedAddress string `json:"paddedAddress,omitempty"` //
+		} `json:"ip,omitempty"` //
+	} `json:"dns,omitempty"` //
 	ID               string   `json:"id,omitempty"`               //
 	InstanceID       int      `json:"instanceId,omitempty"`       //
 	InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
@@ -522,49 +716,121 @@ type NetworkWideSettings struct {
 
 // Payload is the Payload definition
 type Payload struct {
-	AkcSettingsCfs                 []string            `json:"akcSettingsCfs,omitempty"`                 //
-	AuthEntityClass                int                 `json:"authEntityClass,omitempty"`                //
-	AuthEntityID                   int                 `json:"authEntityId,omitempty"`                   //
-	CfsChangeInfo                  []string            `json:"cfsChangeInfo,omitempty"`                  //
-	Configs                        []string            `json:"configs,omitempty"`                        //
-	CreateTime                     int                 `json:"createTime,omitempty"`                     //
-	CustomProvisions               []string            `json:"customProvisions,omitempty"`               //
-	DeployPending                  string              `json:"deployPending,omitempty"`                  //
-	Deployed                       bool                `json:"deployed,omitempty"`                       //
-	DeviceInterfaceInfo            []string            `json:"deviceInterfaceInfo,omitempty"`            //
-	DeviceSettings                 DeviceSettings      `json:"deviceSettings,omitempty"`                 //
-	DisplayName                    string              `json:"displayName,omitempty"`                    //
-	ID                             string              `json:"id,omitempty"`                             //
-	InstanceID                     int                 `json:"instanceId,omitempty"`                     //
-	InstanceTenantID               string              `json:"instanceTenantId,omitempty"`               //
-	InstanceVersion                int                 `json:"instanceVersion,omitempty"`                //
-	IsSeeded                       bool                `json:"isSeeded,omitempty"`                       //
-	IsStale                        bool                `json:"isStale,omitempty"`                        //
-	LastUpdateTime                 int                 `json:"lastUpdateTime,omitempty"`                 //
-	ManagedSites                   []string            `json:"managedSites,omitempty"`                   //
-	Name                           string              `json:"name,omitempty"`                           //
-	Namespace                      string              `json:"namespace,omitempty"`                      //
-	NetworkDeviceID                string              `json:"networkDeviceId,omitempty"`                //
-	NetworkWideSettings            NetworkWideSettings `json:"networkWideSettings,omitempty"`            //
-	OtherDevice                    []string            `json:"otherDevice,omitempty"`                    //
-	ProvisioningState              string              `json:"provisioningState,omitempty"`              //
-	ResourceVersion                int                 `json:"resourceVersion,omitempty"`                //
-	Roles                          []string            `json:"roles,omitempty"`                          //
-	SaveWanConnectivityDetailsOnly bool                `json:"saveWanConnectivityDetailsOnly,omitempty"` //
-	SiteID                         string              `json:"siteId,omitempty"`                         //
-	TargetIDList                   []string            `json:"targetIdList,omitempty"`                   //
-	TransitNetworks                []TransitNetworks   `json:"transitNetworks,omitempty"`                //
-	Type                           string              `json:"type,omitempty"`                           //
-	VirtualNetwork                 []string            `json:"virtualNetwork,omitempty"`                 //
-	Wlan                           []string            `json:"wlan,omitempty"`                           //
+	AkcSettingsCfs      []string `json:"akcSettingsCfs,omitempty"`      //
+	AuthEntityClass     int      `json:"authEntityClass,omitempty"`     //
+	AuthEntityID        int      `json:"authEntityId,omitempty"`        //
+	CfsChangeInfo       []string `json:"cfsChangeInfo,omitempty"`       //
+	Configs             []string `json:"configs,omitempty"`             //
+	CreateTime          int      `json:"createTime,omitempty"`          //
+	CustomProvisions    []string `json:"customProvisions,omitempty"`    //
+	DeployPending       string   `json:"deployPending,omitempty"`       //
+	Deployed            bool     `json:"deployed,omitempty"`            //
+	DeviceInterfaceInfo []string `json:"deviceInterfaceInfo,omitempty"` //
+	DeviceSettings      struct {
+		ConnectedTo             []string `json:"connectedTo,omitempty"`   //
+		CPU                     int      `json:"cpu,omitempty"`           //
+		DeployPending           string   `json:"deployPending,omitempty"` //
+		DhcpEnabled             bool     `json:"dhcpEnabled,omitempty"`   //
+		DisplayName             string   `json:"displayName,omitempty"`   //
+		ExtConnectivitySettings []struct {
+			DeployPending                string   `json:"deployPending,omitempty"`                //
+			DisplayName                  string   `json:"displayName,omitempty"`                  //
+			ExternalDomainProtocolNumber string   `json:"externalDomainProtocolNumber,omitempty"` //
+			ID                           string   `json:"id,omitempty"`                           //
+			InstanceID                   int      `json:"instanceId,omitempty"`                   //
+			InstanceTenantID             string   `json:"instanceTenantId,omitempty"`             //
+			InstanceVersion              int      `json:"instanceVersion,omitempty"`              //
+			InterfaceUUID                string   `json:"interfaceUuid,omitempty"`                //
+			L2Handoff                    []string `json:"l2Handoff,omitempty"`                    //
+			L3Handoff                    []struct {
+				DeployPending    string `json:"deployPending,omitempty"`    //
+				DisplayName      string `json:"displayName,omitempty"`      //
+				ID               string `json:"id,omitempty"`               //
+				InstanceID       int    `json:"instanceId,omitempty"`       //
+				InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+				InstanceVersion  int    `json:"instanceVersion,omitempty"`  //
+				LocalIPAddress   string `json:"localIpAddress,omitempty"`   //
+				RemoteIPAddress  string `json:"remoteIpAddress,omitempty"`  //
+				VirtualNetwork   struct {
+					IDRef string `json:"idRef,omitempty"` //
+				} `json:"virtualNetwork,omitempty"` //
+				VlanID int `json:"vlanId,omitempty"` //
+			} `json:"l3Handoff,omitempty"` //
+			PolicyPropagationEnabled bool `json:"policyPropagationEnabled,omitempty"` //
+			PolicySgtTag             int  `json:"policySgtTag,omitempty"`             //
+		} `json:"extConnectivitySettings,omitempty"` //
+		ExternalConnectivityIPPool    string   `json:"externalConnectivityIpPool,omitempty"`    //
+		ExternalDomainRoutingProtocol string   `json:"externalDomainRoutingProtocol,omitempty"` //
+		ID                            string   `json:"id,omitempty"`                            //
+		InstanceID                    int      `json:"instanceId,omitempty"`                    //
+		InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              //
+		InstanceVersion               int      `json:"instanceVersion,omitempty"`               //
+		InternalDomainProtocolNumber  string   `json:"internalDomainProtocolNumber,omitempty"`  //
+		Memory                        int      `json:"memory,omitempty"`                        //
+		NodeType                      []string `json:"nodeType,omitempty"`                      //
+		Storage                       int      `json:"storage,omitempty"`                       //
+	} `json:"deviceSettings,omitempty"` //
+	DisplayName         string   `json:"displayName,omitempty"`      //
+	ID                  string   `json:"id,omitempty"`               //
+	InstanceID          int      `json:"instanceId,omitempty"`       //
+	InstanceTenantID    string   `json:"instanceTenantId,omitempty"` //
+	InstanceVersion     int      `json:"instanceVersion,omitempty"`  //
+	IsSeeded            bool     `json:"isSeeded,omitempty"`         //
+	IsStale             bool     `json:"isStale,omitempty"`          //
+	LastUpdateTime      int      `json:"lastUpdateTime,omitempty"`   //
+	ManagedSites        []string `json:"managedSites,omitempty"`     //
+	Name                string   `json:"name,omitempty"`             //
+	Namespace           string   `json:"namespace,omitempty"`        //
+	NetworkDeviceID     string   `json:"networkDeviceId,omitempty"`  //
+	NetworkWideSettings struct {
+		Aaa           []string `json:"aaa,omitempty"`           //
+		Cmx           []string `json:"cmx,omitempty"`           //
+		DeployPending string   `json:"deployPending,omitempty"` //
+		Dhcp          []struct {
+			ID        string `json:"id,omitempty"` //
+			IPAddress struct {
+				Address       string `json:"address,omitempty"`       //
+				AddressType   string `json:"addressType,omitempty"`   //
+				ID            string `json:"id,omitempty"`            //
+				PaddedAddress string `json:"paddedAddress,omitempty"` //
+			} `json:"ipAddress,omitempty"` //
+		} `json:"dhcp,omitempty"` //
+		DisplayName string `json:"displayName,omitempty"` //
+		DNS         []struct {
+			DomainName string `json:"domainName,omitempty"` //
+			ID         string `json:"id,omitempty"`         //
+			IP         struct {
+				Address       string `json:"address,omitempty"`       //
+				AddressType   string `json:"addressType,omitempty"`   //
+				ID            string `json:"id,omitempty"`            //
+				PaddedAddress string `json:"paddedAddress,omitempty"` //
+			} `json:"ip,omitempty"` //
+		} `json:"dns,omitempty"` //
+		ID               string   `json:"id,omitempty"`               //
+		InstanceID       int      `json:"instanceId,omitempty"`       //
+		InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
+		InstanceVersion  int      `json:"instanceVersion,omitempty"`  //
+		Ldap             []string `json:"ldap,omitempty"`             //
+		NativeVlan       []string `json:"nativeVlan,omitempty"`       //
+		Netflow          []string `json:"netflow,omitempty"`          //
+		Ntp              []string `json:"ntp,omitempty"`              //
+		SNMP             []string `json:"snmp,omitempty"`             //
+		Syslogs          []string `json:"syslogs,omitempty"`          //
+	} `json:"networkWideSettings,omitempty"` //
+	OtherDevice                    []string `json:"otherDevice,omitempty"`                    //
+	ProvisioningState              string   `json:"provisioningState,omitempty"`              //
+	ResourceVersion                int      `json:"resourceVersion,omitempty"`                //
+	Roles                          []string `json:"roles,omitempty"`                          //
+	SaveWanConnectivityDetailsOnly bool     `json:"saveWanConnectivityDetailsOnly,omitempty"` //
+	SiteID                         string   `json:"siteId,omitempty"`                         //
+	TargetIDList                   []string `json:"targetIdList,omitempty"`                   //
+	TransitNetworks                []struct {
+		IDRef string `json:"idRef,omitempty"` //
+	} `json:"transitNetworks,omitempty"` //
+	Type           string   `json:"type,omitempty"`           //
+	VirtualNetwork []string `json:"virtualNetwork,omitempty"` //
+	Wlan           []string `json:"wlan,omitempty"`           //
 }
-
-// Response is the Response definition
-// type Response struct {
-// 	Description string `json:"description,omitempty"` //
-// 	FabricCount string `json:"fabricCount,omitempty"` //
-// 	Status      string `json:"status,omitempty"`      //
-// }
 
 // TransitNetworks is the TransitNetworks definition
 type TransitNetworks struct {
@@ -577,11 +843,6 @@ type UpdateDefaultAuthenticationProfileInSDAFabricResponse struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
 }
-
-// VirtualNetwork is the VirtualNetwork definition
-// type VirtualNetwork struct {
-// 	IDRef string `json:"idRef,omitempty"` //
-// }
 
 // AddControlPlaneDeviceInSDAFabric addControlPlaneDeviceInSDAFabric
 /* Add control plane device in SDA Fabric

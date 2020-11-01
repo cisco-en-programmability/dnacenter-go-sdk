@@ -10,25 +10,22 @@ type ApplicationsService service
 
 // ApplicationsResponse is the ApplicationsResponse definition
 type ApplicationsResponse struct {
-	Response   []Applications `json:"response,omitempty"`   //
-	TotalCount int            `json:"totalCount,omitempty"` //
-	Version    string         `json:"version,omitempty"`    //
-}
-
-// Applications is the Applications definition
-type Applications struct {
-	ApplicationServerLatency string `json:"applicationServerLatency,omitempty"` //
-	AverageThroughput        int    `json:"averageThroughput,omitempty"`        //
-	BusinessRelevance        string `json:"businessRelevance,omitempty"`        //
-	ClientNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
-	Health                   string `json:"health,omitempty"`                   //
-	Jitter                   string `json:"jitter,omitempty"`                   //
-	Name                     string `json:"name,omitempty"`                     //
-	NetworkLatency           string `json:"networkLatency,omitempty"`           //
-	PacketLossPercent        string `json:"packetLossPercent,omitempty"`        //
-	ServerNetworkLatency     string `json:"serverNetworkLatency,omitempty"`     //
-	TrafficClass             string `json:"trafficClass,omitempty"`             //
-	UsageBytes               int    `json:"usageBytes,omitempty"`               //
+	Response []struct {
+		ApplicationServerLatency string `json:"applicationServerLatency,omitempty"` //
+		AverageThroughput        int    `json:"averageThroughput,omitempty"`        //
+		BusinessRelevance        string `json:"businessRelevance,omitempty"`        //
+		ClientNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
+		Health                   string `json:"health,omitempty"`                   //
+		Jitter                   string `json:"jitter,omitempty"`                   //
+		Name                     string `json:"name,omitempty"`                     //
+		NetworkLatency           string `json:"networkLatency,omitempty"`           //
+		PacketLossPercent        string `json:"packetLossPercent,omitempty"`        //
+		ServerNetworkLatency     string `json:"serverNetworkLatency,omitempty"`     //
+		TrafficClass             string `json:"trafficClass,omitempty"`             //
+		UsageBytes               int    `json:"usageBytes,omitempty"`               //
+	} `json:"response,omitempty"` //
+	TotalCount int    `json:"totalCount,omitempty"` //
+	Version    string `json:"version,omitempty"`    //
 }
 
 // ApplicationsQueryParams defines the query parameters for this request
@@ -36,11 +33,11 @@ type ApplicationsQueryParams struct {
 	SiteID            string `url:"siteId,omitempty"`            // Assurance site UUID value (Cannot be submitted together with deviceId and clientMac)
 	DeviceID          string `url:"deviceId,omitempty"`          // Assurance device UUID value (Cannot be submitted together with siteId and clientMac)
 	MacAddress        string `url:"macAddress,omitempty"`        // Client device's MAC address (Cannot be submitted together with siteID and deviceId)
-	StartTime         int    `url:"startTime,omitempty"`         // Starting epoch time in milliseconds of time window
-	EndTime           int    `url:"endTime,omitempty"`           // Ending epoch time in milliseconds of time window
+	StartTime         int `url:"startTime,omitempty"`         // Starting epoch time in milliseconds of time window
+	EndTime           int `url:"endTime,omitempty"`           // Ending epoch time in milliseconds of time window
 	ApplicationHealth string `url:"applicationHealth,omitempty"` // Application health category (POOR, FAIR, or GOOD.  Optionally use with siteID only)
-	Offset            int    `url:"offset,omitempty"`            // The offset of the first application in the returned data (optionally used with siteID only)
-	Limit             int    `url:"limit,omitempty"`             // The max int of application entries in returned data [1, 1000] (optionally used with siteID only)
+	Offset            int `url:"offset,omitempty"`            // The offset of the first application in the returned data (optionally used with siteID only)
+	Limit             int `url:"limit,omitempty"`             // The max int of application entries in returned data [1, 1000] (optionally used with siteID only)
 }
 
 // Applications applications

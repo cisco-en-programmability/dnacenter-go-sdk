@@ -14,7 +14,13 @@ type TagService service
 // DynamicRules is the DynamicRules definition
 type DynamicRules struct {
 	MemberType string `json:"memberType,omitempty"` //
-	Rules      Rules  `json:"rules,omitempty"`      //
+	Rules      struct {
+		Items     []string `json:"items,omitempty"`     //
+		Name      string   `json:"name,omitempty"`      //
+		Operation string   `json:"operation,omitempty"` //
+		Value     string   `json:"value,omitempty"`     //
+		Values    []string `json:"values,omitempty"`    //
+	} `json:"rules,omitempty"` //
 }
 
 // MemberToTags is the MemberToTags definition
@@ -33,36 +39,81 @@ type Rules struct {
 
 // TagDTO is the TagDTO definition
 type TagDTO struct {
-	Description      string         `json:"description,omitempty"`      //
-	DynamicRules     []DynamicRules `json:"dynamicRules,omitempty"`     //
-	ID               string         `json:"id,omitempty"`               //
-	InstanceTenantID string         `json:"instanceTenantId,omitempty"` //
-	Name             string         `json:"name,omitempty"`             //
-	SystemTag        bool           `json:"systemTag,omitempty"`        //
+	Description  string `json:"description,omitempty"` //
+	DynamicRules []struct {
+		MemberType string `json:"memberType,omitempty"` //
+		Rules      struct {
+			Items     []string `json:"items,omitempty"`     //
+			Name      string   `json:"name,omitempty"`      //
+			Operation string   `json:"operation,omitempty"` //
+			Value     string   `json:"value,omitempty"`     //
+			Values    []string `json:"values,omitempty"`    //
+		} `json:"rules,omitempty"` //
+	} `json:"dynamicRules,omitempty"` //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	Name             string `json:"name,omitempty"`             //
+	SystemTag        bool   `json:"systemTag,omitempty"`        //
 }
 
 // TagMemberDTO is the TagMemberDTO definition
 type TagMemberDTO struct {
-	MemberToTags []MemberToTags `json:"memberToTags,omitempty"` //
-	MemberType   string         `json:"memberType,omitempty"`   //
+	MemberToTags []struct {
+		Key []string `json:"key,omitempty"` //
+	} `json:"memberToTags,omitempty"` //
+	MemberType string `json:"memberType,omitempty"` //
 }
 
 // TagListResult is the TagListResult definition
 type TagListResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		Description  string `json:"description,omitempty"` //
+		DynamicRules []struct {
+			MemberType string `json:"memberType,omitempty"` //
+			Rules      struct {
+				Items     []string `json:"items,omitempty"`     //
+				Name      string   `json:"name,omitempty"`      //
+				Operation string   `json:"operation,omitempty"` //
+				Value     string   `json:"value,omitempty"`     //
+				Values    []string `json:"values,omitempty"`    //
+			} `json:"rules,omitempty"` //
+		} `json:"dynamicRules,omitempty"` //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		Name             string `json:"name,omitempty"`             //
+		SystemTag        bool   `json:"systemTag,omitempty"`        //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // TagMembersResult is the TagMembersResult definition
 type TagMembersResult struct {
-	Response []Response `json:"response,omitempty"` //
-	Version  string     `json:"version,omitempty"`  //
+	Response []struct {
+		InstanceUUID string `json:"instanceUuid,omitempty"` //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // TagResult is the TagResult definition
 type TagResult struct {
-	Response Response `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response struct {
+		Description  string `json:"description,omitempty"` //
+		DynamicRules []struct {
+			MemberType string `json:"memberType,omitempty"` //
+			Rules      struct {
+				Items     []string `json:"items,omitempty"`     //
+				Name      string   `json:"name,omitempty"`      //
+				Operation string   `json:"operation,omitempty"` //
+				Value     string   `json:"value,omitempty"`     //
+				Values    []string `json:"values,omitempty"`    //
+			} `json:"rules,omitempty"` //
+		} `json:"dynamicRules,omitempty"` //
+		ID               string `json:"id,omitempty"`               //
+		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+		Name             string `json:"name,omitempty"`             //
+		SystemTag        bool   `json:"systemTag,omitempty"`        //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 
 // TagTypesResult is the TagTypesResult definition
