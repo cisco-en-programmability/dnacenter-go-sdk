@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"time"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -195,9 +197,9 @@ func (s *SoftwareImageManagementSWIMService) ImportLocalSoftwareImage(importLoca
 
 // ImportSoftwareImageViaURLQueryParams defines the query parameters for this request
 type ImportSoftwareImageViaURLQueryParams struct {
-	ScheduleAt     string `url:"scheduleAt,omitempty"`     // Epoch Time (The int of milli-seconds since January 1 1970 UTC) at which the distribution should be scheduled (Optional)
-	ScheduleDesc   string `url:"scheduleDesc,omitempty"`   // Custom Description (Optional)
-	ScheduleOrigin string `url:"scheduleOrigin,omitempty"` // Originator of this call (Optional)
+	ScheduleAt     time.Time `url:"scheduleAt,omitempty"`     // Epoch Time (The int of milli-seconds since January 1 1970 UTC) at which the distribution should be scheduled (Optional)
+	ScheduleDesc   string    `url:"scheduleDesc,omitempty"`   // Custom Description (Optional)
+	ScheduleOrigin string    `url:"scheduleOrigin,omitempty"` // Originator of this call (Optional)
 }
 
 // ImportSoftwareImageViaURL importSoftwareImageViaURL

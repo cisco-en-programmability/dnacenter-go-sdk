@@ -24,7 +24,7 @@ type GetUserEnrichmentDetailsResponse struct {
 			InstanceUUID          string `json:"instanceUuid,omitempty"`          //
 			InterfaceCount        string `json:"interfaceCount,omitempty"`        //
 			InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` //
-			LastUpdateTime        int    `json:"lastUpdateTime,omitempty"`        //
+			LastUpdateTime        time.Time    `json:"lastUpdateTime,omitempty"`        //
 			LastUpdated           string `json:"lastUpdated,omitempty"`           //
 			LineCardCount         string `json:"lineCardCount,omitempty"`         //
 			LineCardID            string `json:"lineCardId,omitempty"`            //

@@ -48,7 +48,7 @@ type GetOverallNetworkHealthResponse struct {
 		FairCount    int    `json:"fairCount,omitempty"`    //
 		GoodCount    int    `json:"goodCount,omitempty"`    //
 		HealthScore  int    `json:"healthScore,omitempty"`  //
-		Time         string `json:"time,omitempty"`         //
+		Time         time.Time `json:"time,omitempty"`         //
 		TimeinMillis int    `json:"timeinMillis,omitempty"` //
 		TotalCount   int    `json:"totalCount,omitempty"`   //
 		UnmonCount   int    `json:"unmonCount,omitempty"`   //

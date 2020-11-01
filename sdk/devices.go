@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -324,28 +325,28 @@ type GetDeviceDetailResponse struct {
 // GetDeviceEnrichmentDetailsResponse is the GetDeviceEnrichmentDetailsResponse definition
 type GetDeviceEnrichmentDetailsResponse struct {
 	DeviceDetails struct {
-		ApManagerInterfaceIP  string `json:"apManagerInterfaceIp,omitempty"`  //
-		AssociatedWlcIP       string `json:"associatedWlcIp,omitempty"`       //
-		BootDateTime          string `json:"bootDateTime,omitempty"`          //
-		CollectionInterval    string `json:"collectionInterval,omitempty"`    //
-		CollectionStatus      string `json:"collectionStatus,omitempty"`      //
-		ErrorCode             string `json:"errorCode,omitempty"`             //
-		ErrorDescription      string `json:"errorDescription,omitempty"`      //
-		Family                string `json:"family,omitempty"`                //
-		Hostname              string `json:"hostname,omitempty"`              //
-		ID                    string `json:"id,omitempty"`                    //
-		InstanceUUID          string `json:"instanceUuid,omitempty"`          //
-		InterfaceCount        string `json:"interfaceCount,omitempty"`        //
-		InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` //
-		LastUpdateTime        int    `json:"lastUpdateTime,omitempty"`        //
-		LastUpdated           string `json:"lastUpdated,omitempty"`           //
-		LineCardCount         string `json:"lineCardCount,omitempty"`         //
-		LineCardID            string `json:"lineCardId,omitempty"`            //
-		Location              string `json:"location,omitempty"`              //
-		LocationName          string `json:"locationName,omitempty"`          //
-		MacAddress            string `json:"macAddress,omitempty"`            //
-		ManagementIPAddress   string `json:"managementIpAddress,omitempty"`   //
-		MemorySize            string `json:"memorySize,omitempty"`            //
+		ApManagerInterfaceIP  string    `json:"apManagerInterfaceIp,omitempty"`  //
+		AssociatedWlcIP       string    `json:"associatedWlcIp,omitempty"`       //
+		BootDateTime          string    `json:"bootDateTime,omitempty"`          //
+		CollectionInterval    string    `json:"collectionInterval,omitempty"`    //
+		CollectionStatus      string    `json:"collectionStatus,omitempty"`      //
+		ErrorCode             string    `json:"errorCode,omitempty"`             //
+		ErrorDescription      string    `json:"errorDescription,omitempty"`      //
+		Family                string    `json:"family,omitempty"`                //
+		Hostname              string    `json:"hostname,omitempty"`              //
+		ID                    string    `json:"id,omitempty"`                    //
+		InstanceUUID          string    `json:"instanceUuid,omitempty"`          //
+		InterfaceCount        string    `json:"interfaceCount,omitempty"`        //
+		InventoryStatusDetail string    `json:"inventoryStatusDetail,omitempty"` //
+		LastUpdateTime        time.Time `json:"lastUpdateTime,omitempty"`        //
+		LastUpdated           string    `json:"lastUpdated,omitempty"`           //
+		LineCardCount         string    `json:"lineCardCount,omitempty"`         //
+		LineCardID            string    `json:"lineCardId,omitempty"`            //
+		Location              string    `json:"location,omitempty"`              //
+		LocationName          string    `json:"locationName,omitempty"`          //
+		MacAddress            string    `json:"macAddress,omitempty"`            //
+		ManagementIPAddress   string    `json:"managementIpAddress,omitempty"`   //
+		MemorySize            string    `json:"memorySize,omitempty"`            //
 		NeighborTopology      []struct {
 			Links []struct {
 				ID              string   `json:"id,omitempty"`              //
