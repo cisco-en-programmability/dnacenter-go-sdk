@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -43,15 +44,15 @@ type GetOverallNetworkHealthResponse struct {
 	MonitoredHealthyDevices   int    `json:"monitoredHealthyDevices,omitempty"`   //
 	MonitoredUnHealthyDevices int    `json:"monitoredUnHealthyDevices,omitempty"` //
 	Response                  []struct {
-		BadCount     int    `json:"badCount,omitempty"`     //
-		Entity       string `json:"entity,omitempty"`       //
-		FairCount    int    `json:"fairCount,omitempty"`    //
-		GoodCount    int    `json:"goodCount,omitempty"`    //
-		HealthScore  int    `json:"healthScore,omitempty"`  //
+		BadCount     int       `json:"badCount,omitempty"`     //
+		Entity       string    `json:"entity,omitempty"`       //
+		FairCount    int       `json:"fairCount,omitempty"`    //
+		GoodCount    int       `json:"goodCount,omitempty"`    //
+		HealthScore  int       `json:"healthScore,omitempty"`  //
 		Time         time.Time `json:"time,omitempty"`         //
-		TimeinMillis int    `json:"timeinMillis,omitempty"` //
-		TotalCount   int    `json:"totalCount,omitempty"`   //
-		UnmonCount   int    `json:"unmonCount,omitempty"`   //
+		TimeinMillis int       `json:"timeinMillis,omitempty"` //
+		TotalCount   int       `json:"totalCount,omitempty"`   //
+		UnmonCount   int       `json:"unmonCount,omitempty"`   //
 	} `json:"response,omitempty"` //
 	UnMonitoredDevices int    `json:"unMonitoredDevices,omitempty"` //
 	Version            string `json:"version,omitempty"`            //
