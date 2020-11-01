@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -28,13 +29,13 @@ type DeviceTypes struct {
 
 // ProjectDTO is the ProjectDTO definition
 type ProjectDTO struct {
-	CreateTime     int      `json:"createTime,omitempty"`     //
-	Description    string   `json:"description,omitempty"`    //
-	ID             string   `json:"id,omitempty"`             //
-	LastUpdateTime int      `json:"lastUpdateTime,omitempty"` //
-	Name           string   `json:"name,omitempty"`           //
-	Tags           []string `json:"tags,omitempty"`           //
-	Templates      string   `json:"templates,omitempty"`      //
+	CreateTime     int       `json:"createTime,omitempty"`     //
+	Description    string    `json:"description,omitempty"`    //
+	ID             string    `json:"id,omitempty"`             //
+	LastUpdateTime time.Time `json:"lastUpdateTime,omitempty"` //
+	Name           string    `json:"name,omitempty"`           //
+	Tags           []string  `json:"tags,omitempty"`           //
+	Templates      string    `json:"templates,omitempty"`      //
 }
 
 // Range is the Range definition
@@ -105,14 +106,14 @@ type TemplateDTO struct {
 		ProductSeries string `json:"productSeries,omitempty"` //
 		ProductType   string `json:"productType,omitempty"`   //
 	} `json:"deviceTypes,omitempty"` //
-	FailurePolicy           string `json:"failurePolicy,omitempty"`           //
-	ID                      string `json:"id,omitempty"`                      //
-	LastUpdateTime          int    `json:"lastUpdateTime,omitempty"`          //
-	Name                    string `json:"name,omitempty"`                    //
-	ParentTemplateID        string `json:"parentTemplateId,omitempty"`        //
-	ProjectID               string `json:"projectId,omitempty"`               //
-	ProjectName             string `json:"projectName,omitempty"`             //
-	RollbackTemplateContent string `json:"rollbackTemplateContent,omitempty"` //
+	FailurePolicy           string    `json:"failurePolicy,omitempty"`           //
+	ID                      string    `json:"id,omitempty"`                      //
+	LastUpdateTime          time.Time `json:"lastUpdateTime,omitempty"`          //
+	Name                    string    `json:"name,omitempty"`                    //
+	ParentTemplateID        string    `json:"parentTemplateId,omitempty"`        //
+	ProjectID               string    `json:"projectId,omitempty"`               //
+	ProjectName             string    `json:"projectName,omitempty"`             //
+	RollbackTemplateContent string    `json:"rollbackTemplateContent,omitempty"` //
 	RollbackTemplateParams  []struct {
 		Binding         string `json:"binding,omitempty"`         //
 		DataType        string `json:"dataType,omitempty"`        //
