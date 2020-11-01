@@ -3,7 +3,6 @@ package dnac
 import (
 	"fmt"
 	"strings"
-	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -525,22 +524,22 @@ type GetGlobalPoolResponse struct {
 			ContextValue string `json:"contextValue,omitempty"` //
 			Owner        string `json:"owner,omitempty"`        //
 		} `json:"context,omitempty"` //
-		CreateTime          string    `json:"createTime,omitempty"`          //
-		DhcpServerIPs       []string  `json:"dhcpServerIps,omitempty"`       //
-		DNSServerIPs        []string  `json:"dnsServerIps,omitempty"`        //
-		Gateways            []string  `json:"gateways,omitempty"`            //
-		ID                  string    `json:"id,omitempty"`                  //
-		IPPoolCidr          string    `json:"ipPoolCidr,omitempty"`          //
-		IPPoolName          string    `json:"ipPoolName,omitempty"`          //
-		IPv6                string    `json:"ipv6,omitempty"`                //
-		LastUpdateTime      time.Time `json:"lastUpdateTime,omitempty"`      //
-		Overlapping         string    `json:"overlapping,omitempty"`         //
-		Owner               string    `json:"owner,omitempty"`               //
-		ParentUUID          string    `json:"parentUuid,omitempty"`          //
-		Shared              string    `json:"shared,omitempty"`              //
-		TotalIPAddressCount string    `json:"totalIpAddressCount,omitempty"` //
-		UsedIPAddressCount  string    `json:"usedIpAddressCount,omitempty"`  //
-		UsedPercentage      string    `json:"usedPercentage,omitempty"`      //
+		CreateTime          string   `json:"createTime,omitempty"`          //
+		DhcpServerIPs       []string `json:"dhcpServerIps,omitempty"`       //
+		DNSServerIPs        []string `json:"dnsServerIps,omitempty"`        //
+		Gateways            []string `json:"gateways,omitempty"`            //
+		ID                  string   `json:"id,omitempty"`                  //
+		IPPoolCidr          string   `json:"ipPoolCidr,omitempty"`          //
+		IPPoolName          string   `json:"ipPoolName,omitempty"`          //
+		IPv6                string   `json:"ipv6,omitempty"`                //
+		LastUpdateTime      int      `json:"lastUpdateTime,omitempty"`      //
+		Overlapping         string   `json:"overlapping,omitempty"`         //
+		Owner               string   `json:"owner,omitempty"`               //
+		ParentUUID          string   `json:"parentUuid,omitempty"`          //
+		Shared              string   `json:"shared,omitempty"`              //
+		TotalIPAddressCount string   `json:"totalIpAddressCount,omitempty"` //
+		UsedIPAddressCount  string   `json:"usedIpAddressCount,omitempty"`  //
+		UsedPercentage      string   `json:"usedPercentage,omitempty"`      //
 	} `json:"response,omitempty"` //
 	Version string `json:"version,omitempty"` //
 }

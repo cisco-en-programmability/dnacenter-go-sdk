@@ -1,8 +1,6 @@
 package dnac
 
 import (
-	"time"
-
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -599,18 +597,18 @@ type GetsBorderDeviceDetailFromSDAFabricResponse struct {
 			NodeType                      []string `json:"nodeType,omitempty"`                      //
 			Storage                       int      `json:"storage,omitempty"`                       //
 		} `json:"deviceSettings,omitempty"` //
-		DisplayName         string    `json:"displayName,omitempty"`      //
-		ID                  string    `json:"id,omitempty"`               //
-		InstanceID          int       `json:"instanceId,omitempty"`       //
-		InstanceTenantID    string    `json:"instanceTenantId,omitempty"` //
-		InstanceVersion     int       `json:"instanceVersion,omitempty"`  //
-		IsSeeded            bool      `json:"isSeeded,omitempty"`         //
-		IsStale             bool      `json:"isStale,omitempty"`          //
-		LastUpdateTime      time.Time `json:"lastUpdateTime,omitempty"`   //
-		ManagedSites        []string  `json:"managedSites,omitempty"`     //
-		Name                string    `json:"name,omitempty"`             //
-		Namespace           string    `json:"namespace,omitempty"`        //
-		NetworkDeviceID     string    `json:"networkDeviceId,omitempty"`  //
+		DisplayName         string   `json:"displayName,omitempty"`      //
+		ID                  string   `json:"id,omitempty"`               //
+		InstanceID          int      `json:"instanceId,omitempty"`       //
+		InstanceTenantID    string   `json:"instanceTenantId,omitempty"` //
+		InstanceVersion     int      `json:"instanceVersion,omitempty"`  //
+		IsSeeded            bool     `json:"isSeeded,omitempty"`         //
+		IsStale             bool     `json:"isStale,omitempty"`          //
+		LastUpdateTime      int      `json:"lastUpdateTime,omitempty"`   //
+		ManagedSites        []string `json:"managedSites,omitempty"`     //
+		Name                string   `json:"name,omitempty"`             //
+		Namespace           string   `json:"namespace,omitempty"`        //
+		NetworkDeviceID     string   `json:"networkDeviceId,omitempty"`  //
 		NetworkWideSettings struct {
 			Aaa           []string `json:"aaa,omitempty"`           //
 			Cmx           []string `json:"cmx,omitempty"`           //
@@ -772,18 +770,18 @@ type Payload struct {
 		NodeType                      []string `json:"nodeType,omitempty"`                      //
 		Storage                       int      `json:"storage,omitempty"`                       //
 	} `json:"deviceSettings,omitempty"` //
-	DisplayName         string    `json:"displayName,omitempty"`      //
-	ID                  string    `json:"id,omitempty"`               //
-	InstanceID          int       `json:"instanceId,omitempty"`       //
-	InstanceTenantID    string    `json:"instanceTenantId,omitempty"` //
-	InstanceVersion     int       `json:"instanceVersion,omitempty"`  //
-	IsSeeded            bool      `json:"isSeeded,omitempty"`         //
-	IsStale             bool      `json:"isStale,omitempty"`          //
-	LastUpdateTime      time.Time `json:"lastUpdateTime,omitempty"`   //
-	ManagedSites        []string  `json:"managedSites,omitempty"`     //
-	Name                string    `json:"name,omitempty"`             //
-	Namespace           string    `json:"namespace,omitempty"`        //
-	NetworkDeviceID     string    `json:"networkDeviceId,omitempty"`  //
+	DisplayName         string   `json:"displayName,omitempty"`      //
+	ID                  string   `json:"id,omitempty"`               //
+	InstanceID          int      `json:"instanceId,omitempty"`       //
+	InstanceTenantID    string   `json:"instanceTenantId,omitempty"` //
+	InstanceVersion     int      `json:"instanceVersion,omitempty"`  //
+	IsSeeded            bool     `json:"isSeeded,omitempty"`         //
+	IsStale             bool     `json:"isStale,omitempty"`          //
+	LastUpdateTime      int      `json:"lastUpdateTime,omitempty"`   //
+	ManagedSites        []string `json:"managedSites,omitempty"`     //
+	Name                string   `json:"name,omitempty"`             //
+	Namespace           string   `json:"namespace,omitempty"`        //
+	NetworkDeviceID     string   `json:"networkDeviceId,omitempty"`  //
 	NetworkWideSettings struct {
 		Aaa           []string `json:"aaa,omitempty"`           //
 		Cmx           []string `json:"cmx,omitempty"`           //

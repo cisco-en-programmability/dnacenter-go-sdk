@@ -3,7 +3,6 @@ package dnac
 import (
 	"fmt"
 	"strings"
-	"time"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -406,19 +405,19 @@ type FlexConnect struct {
 // FlowAnalysisListOutput is the FlowAnalysisListOutput definition
 type FlowAnalysisListOutput struct {
 	Response []struct {
-		ControlPath     bool      `json:"controlPath,omitempty"`     //
-		CreateTime      int       `json:"createTime,omitempty"`      //
-		DestIP          string    `json:"destIP,omitempty"`          //
-		DestPort        string    `json:"destPort,omitempty"`        //
-		FailureReason   string    `json:"failureReason,omitempty"`   //
-		ID              string    `json:"id,omitempty"`              //
-		Inclusions      []string  `json:"inclusions,omitempty"`      //
-		LastUpdateTime  time.Time `json:"lastUpdateTime,omitempty"`  //
-		PeriodicRefresh bool      `json:"periodicRefresh,omitempty"` //
-		Protocol        string    `json:"protocol,omitempty"`        //
-		SourceIP        string    `json:"sourceIP,omitempty"`        //
-		SourcePort      string    `json:"sourcePort,omitempty"`      //
-		Status          string    `json:"status,omitempty"`          //
+		ControlPath     bool     `json:"controlPath,omitempty"`     //
+		CreateTime      int      `json:"createTime,omitempty"`      //
+		DestIP          string   `json:"destIP,omitempty"`          //
+		DestPort        string   `json:"destPort,omitempty"`        //
+		FailureReason   string   `json:"failureReason,omitempty"`   //
+		ID              string   `json:"id,omitempty"`              //
+		Inclusions      []string `json:"inclusions,omitempty"`      //
+		LastUpdateTime  int      `json:"lastUpdateTime,omitempty"`  //
+		PeriodicRefresh bool     `json:"periodicRefresh,omitempty"` //
+		Protocol        string   `json:"protocol,omitempty"`        //
+		SourceIP        string   `json:"sourceIP,omitempty"`        //
+		SourcePort      string   `json:"sourcePort,omitempty"`      //
+		Status          string   `json:"status,omitempty"`          //
 	} `json:"response,omitempty"` //
 	Version string `json:"version,omitempty"` //
 }
@@ -2230,19 +2229,19 @@ type PathResponseResult struct {
 		} `json:"networkElementsInfo,omitempty"` //
 		Properties []string `json:"properties,omitempty"` //
 		Request    struct {
-			ControlPath     bool      `json:"controlPath,omitempty"`     //
-			CreateTime      int       `json:"createTime,omitempty"`      //
-			DestIP          string    `json:"destIP,omitempty"`          //
-			DestPort        string    `json:"destPort,omitempty"`        //
-			FailureReason   string    `json:"failureReason,omitempty"`   //
-			ID              string    `json:"id,omitempty"`              //
-			Inclusions      []string  `json:"inclusions,omitempty"`      //
-			LastUpdateTime  time.Time `json:"lastUpdateTime,omitempty"`  //
-			PeriodicRefresh bool      `json:"periodicRefresh,omitempty"` //
-			Protocol        string    `json:"protocol,omitempty"`        //
-			SourceIP        string    `json:"sourceIP,omitempty"`        //
-			SourcePort      string    `json:"sourcePort,omitempty"`      //
-			Status          string    `json:"status,omitempty"`          //
+			ControlPath     bool     `json:"controlPath,omitempty"`     //
+			CreateTime      int      `json:"createTime,omitempty"`      //
+			DestIP          string   `json:"destIP,omitempty"`          //
+			DestPort        string   `json:"destPort,omitempty"`        //
+			FailureReason   string   `json:"failureReason,omitempty"`   //
+			ID              string   `json:"id,omitempty"`              //
+			Inclusions      []string `json:"inclusions,omitempty"`      //
+			LastUpdateTime  int      `json:"lastUpdateTime,omitempty"`  //
+			PeriodicRefresh bool     `json:"periodicRefresh,omitempty"` //
+			Protocol        string   `json:"protocol,omitempty"`        //
+			SourceIP        string   `json:"sourceIP,omitempty"`        //
+			SourcePort      string   `json:"sourcePort,omitempty"`      //
+			Status          string   `json:"status,omitempty"`          //
 		} `json:"request,omitempty"` //
 	} `json:"response,omitempty"` //
 	Version string `json:"version,omitempty"` //
@@ -2382,19 +2381,19 @@ type QosStatistics struct {
 
 // Request is the Request definition
 type Request struct {
-	ControlPath     bool      `json:"controlPath,omitempty"`     //
-	CreateTime      int       `json:"createTime,omitempty"`      //
-	DestIP          string    `json:"destIP,omitempty"`          //
-	DestPort        string    `json:"destPort,omitempty"`        //
-	FailureReason   string    `json:"failureReason,omitempty"`   //
-	ID              string    `json:"id,omitempty"`              //
-	Inclusions      []string  `json:"inclusions,omitempty"`      //
-	LastUpdateTime  time.Time `json:"lastUpdateTime,omitempty"`  //
-	PeriodicRefresh bool      `json:"periodicRefresh,omitempty"` //
-	Protocol        string    `json:"protocol,omitempty"`        //
-	SourceIP        string    `json:"sourceIP,omitempty"`        //
-	SourcePort      string    `json:"sourcePort,omitempty"`      //
-	Status          string    `json:"status,omitempty"`          //
+	ControlPath     bool     `json:"controlPath,omitempty"`     //
+	CreateTime      int      `json:"createTime,omitempty"`      //
+	DestIP          string   `json:"destIP,omitempty"`          //
+	DestPort        string   `json:"destPort,omitempty"`        //
+	FailureReason   string   `json:"failureReason,omitempty"`   //
+	ID              string   `json:"id,omitempty"`              //
+	Inclusions      []string `json:"inclusions,omitempty"`      //
+	LastUpdateTime  int      `json:"lastUpdateTime,omitempty"`  //
+	PeriodicRefresh bool     `json:"periodicRefresh,omitempty"` //
+	Protocol        string   `json:"protocol,omitempty"`        //
+	SourceIP        string   `json:"sourceIP,omitempty"`        //
+	SourcePort      string   `json:"sourcePort,omitempty"`      //
+	Status          string   `json:"status,omitempty"`          //
 }
 
 // VirtualInterface is the VirtualInterface definition
@@ -2539,21 +2538,21 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*P
 
 // RetrivesAllPreviousPathtracesSummaryQueryParams defines the query parameters for this request
 type RetrivesAllPreviousPathtracesSummaryQueryParams struct {
-	PeriodicRefresh bool      `url:"periodicRefresh,omitempty"` // Is analysis periodically refreshed?
-	SourceIP        string    `url:"sourceIP,omitempty"`        // Source IP address
-	DestIP          string    `url:"destIP,omitempty"`          // Destination IP adress
-	SourcePort      string    `url:"sourcePort,omitempty"`      // Source port
-	DestPort        string    `url:"destPort,omitempty"`        // Destination port
-	GtCreateTime    string    `url:"gtCreateTime,omitempty"`    // Analyses requested after this time
-	LtCreateTime    string    `url:"ltCreateTime,omitempty"`    // Analyses requested before this time
-	Protocol        string    `url:"protocol,omitempty"`        // Protocol
-	Status          string    `url:"status,omitempty"`          // Status
-	TaskID          string    `url:"taskId,omitempty"`          // Task ID
-	LastUpdateTime  time.Time `url:"lastUpdateTime,omitempty"`  // Last update time
-	Limit           string    `url:"limit,omitempty"`           // Number of resources returned
-	Offset          string    `url:"offset,omitempty"`          // Start index of resources returned (1-based)
-	Order           string    `url:"order,omitempty"`           // Order by this field
-	SortBy          string    `url:"sortBy,omitempty"`          // Sort by this field
+	PeriodicRefresh bool   `url:"periodicRefresh,omitempty"` // Is analysis periodically refreshed?
+	SourceIP        string `url:"sourceIP,omitempty"`        // Source IP address
+	DestIP          string `url:"destIP,omitempty"`          // Destination IP adress
+	SourcePort      string `url:"sourcePort,omitempty"`      // Source port
+	DestPort        string `url:"destPort,omitempty"`        // Destination port
+	GtCreateTime    string `url:"gtCreateTime,omitempty"`    // Analyses requested after this time
+	LtCreateTime    string `url:"ltCreateTime,omitempty"`    // Analyses requested before this time
+	Protocol        string `url:"protocol,omitempty"`        // Protocol
+	Status          string `url:"status,omitempty"`          // Status
+	TaskID          string `url:"taskId,omitempty"`          // Task ID
+	LastUpdateTime  int    `url:"lastUpdateTime,omitempty"`  // Last update time
+	Limit           string `url:"limit,omitempty"`           // Number of resources returned
+	Offset          string `url:"offset,omitempty"`          // Start index of resources returned (1-based)
+	Order           string `url:"order,omitempty"`           // Order by this field
+	SortBy          string `url:"sortBy,omitempty"`          // Sort by this field
 }
 
 // RetrivesAllPreviousPathtracesSummary retrivesAllPreviousPathtracesSummary
