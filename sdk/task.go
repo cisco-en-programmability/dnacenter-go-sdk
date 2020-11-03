@@ -16,7 +16,7 @@ type GetTaskByIDResponse struct {
 	Response struct {
 		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
+		EndTime             int    `json:"endTime,omitempty"`             //
 		ErrorCode           string `json:"errorCode,omitempty"`           //
 		ErrorKey            string `json:"errorKey,omitempty"`            //
 		FailureReason       string `json:"failureReason,omitempty"`       //
@@ -29,7 +29,7 @@ type GetTaskByIDResponse struct {
 		Progress            string `json:"progress,omitempty"`            //
 		RootID              string `json:"rootId,omitempty"`              //
 		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
+		StartTime           int    `json:"startTime,omitempty"`           //
 		Username            string `json:"username,omitempty"`            //
 		Version             int    `json:"version,omitempty"`             //
 	} `json:"response,omitempty"` //
@@ -41,7 +41,7 @@ type GetTaskByOperationIDResponse struct {
 	Response []struct {
 		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
+		EndTime             int    `json:"endTime,omitempty"`             //
 		ErrorCode           string `json:"errorCode,omitempty"`           //
 		ErrorKey            string `json:"errorKey,omitempty"`            //
 		FailureReason       string `json:"failureReason,omitempty"`       //
@@ -54,7 +54,7 @@ type GetTaskByOperationIDResponse struct {
 		Progress            string `json:"progress,omitempty"`            //
 		RootID              string `json:"rootId,omitempty"`              //
 		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
+		StartTime           int    `json:"startTime,omitempty"`           //
 		Username            string `json:"username,omitempty"`            //
 		Version             int    `json:"version,omitempty"`             //
 	} `json:"response,omitempty"` //
@@ -72,7 +72,7 @@ type GetTaskTreeResponse struct {
 	Response []struct {
 		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
+		EndTime             int    `json:"endTime,omitempty"`             //
 		ErrorCode           string `json:"errorCode,omitempty"`           //
 		ErrorKey            string `json:"errorKey,omitempty"`            //
 		FailureReason       string `json:"failureReason,omitempty"`       //
@@ -85,7 +85,7 @@ type GetTaskTreeResponse struct {
 		Progress            string `json:"progress,omitempty"`            //
 		RootID              string `json:"rootId,omitempty"`              //
 		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
+		StartTime           int    `json:"startTime,omitempty"`           //
 		Username            string `json:"username,omitempty"`            //
 		Version             int    `json:"version,omitempty"`             //
 	} `json:"response,omitempty"` //
