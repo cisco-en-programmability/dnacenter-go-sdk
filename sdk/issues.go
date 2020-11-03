@@ -37,7 +37,7 @@ type IssuesResponse struct {
 	Response []struct {
 		AiDriven            bool   `json:"aiDriven,omitempty"`              //
 		Category            string `json:"category,omitempty"`              //
-		ClientMac           string `json:"clientMac,omitempty"`             //
+		CLIentMac           string `json:"clientMac,omitempty"`             //
 		DeviceID            string `json:"deviceId,omitempty"`              //
 		DeviceRole          string `json:"deviceRole,omitempty"`            //
 		IssueID             string `json:"issueId,omitempty"`               //
@@ -69,22 +69,20 @@ func (s *IssuesService) GetIssueEnrichmentDetails() (*GetIssueEnrichmentDetailsR
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*GetIssueEnrichmentDetailsResponse)
 	return result, response, err
-
 }
 
 // IssuesQueryParams defines the query parameters for this request
 type IssuesQueryParams struct {
-	StartTime   int `url:"startTime,omitempty"`   // Starting epoch time in milliseconds of query time window
-	EndTime     int `url:"endTime,omitempty"`     // Ending epoch time in milliseconds of query time window
+	StartTime   int    `url:"startTime,omitempty"`   // Starting epoch time in milliseconds of query time window
+	EndTime     int    `url:"endTime,omitempty"`     // Ending epoch time in milliseconds of query time window
 	SiteID      string `url:"siteId,omitempty"`      // Assurance UUID value of the site in the issue content
 	DeviceID    string `url:"deviceId,omitempty"`    // Assurance UUID value of the device in the issue content
 	MacAddress  string `url:"macAddress,omitempty"`  // Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
-	Priority    string `url:"priority,omitempty"`    // The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceID are not provided)
-	AiDriven    string `url:"aiDriven,omitempty"`    // The issue's AI driven value (Yes or No)(Use only when macAddress and deviceID are not provided)
-	IssueStatus string `url:"issueStatus,omitempty"` // The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceID are not provided)
+	Priority    string `url:"priority,omitempty"`    // The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
+	AiDriven    string `url:"aiDriven,omitempty"`    // The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
+	IssueStatus string `url:"issueStatus,omitempty"` // The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
 }
 
 // Issues issues
@@ -94,9 +92,9 @@ type IssuesQueryParams struct {
 @param siteID Assurance UUID value of the site in the issue content
 @param deviceID Assurance UUID value of the device in the issue content
 @param macAddress Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
-@param priority The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceID are not provided)
-@param aiDriven The issue's AI driven value (Yes or No)(Use only when macAddress and deviceID are not provided)
-@param issueStatus The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceID are not provided)
+@param priority The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
+@param aiDriven The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
+@param issueStatus The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
 */
 func (s *IssuesService) Issues(issuesQueryParams *IssuesQueryParams) (*IssuesResponse, *resty.Response, error) {
 
@@ -113,8 +111,6 @@ func (s *IssuesService) Issues(issuesQueryParams *IssuesQueryParams) (*IssuesRes
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*IssuesResponse)
 	return result, response, err
-
 }

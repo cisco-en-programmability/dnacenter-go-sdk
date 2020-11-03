@@ -11,18 +11,18 @@ type ConfigurationArchiveService service
 /* Export Device configurations to an encrypted zip file.
 @param Content-Type
 */
-func (s *ConfigurationArchiveService) ExportDeviceConfigurations() (*resty.Response, error) {
+func (s *ConfigurationArchiveService) ExportDeviceConfigurations() (string, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device-archive/cleartext"
 
+	var operationResult string
 	response, err := RestyClient.R().
+		SetResult(&operationResult).
 		SetError(&Error{}).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return "", nil, err
 	}
-
-	return response, err
-
+	return operationResult, response, err
 }

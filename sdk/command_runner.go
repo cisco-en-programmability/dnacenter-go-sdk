@@ -7,8 +7,8 @@ import (
 // CommandRunnerService is the service to communicate with the CommandRunner API endpoint
 type CommandRunnerService service
 
-// CommandRunnerDTO is the CommandRunnerDTO definition
-type CommandRunnerDTO struct {
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest is the RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest definition
+type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest struct {
 	Commands    []string `json:"commands,omitempty"`    //
 	Description string   `json:"description,omitempty"` //
 	DeviceUUIDs []string `json:"deviceUuids,omitempty"` //
@@ -16,14 +16,14 @@ type CommandRunnerDTO struct {
 	Timeout     int      `json:"timeout,omitempty"`     //
 }
 
-// LegitCliKeyResult is the LegitCliKeyResult definition
-type LegitCliKeyResult struct {
+// GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse is the GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse definition
+type GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// TaskIDResult is the TaskIDResult definition
-type TaskIDResult struct {
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse is the RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse definition
+type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse struct {
 	Response struct {
 		TaskID string `json:"taskId,omitempty"` //
 		URL    string `json:"url,omitempty"`    //
@@ -34,42 +34,38 @@ type TaskIDResult struct {
 // GetAllKeywordsOfCLIsAcceptedByCommandRunner getAllKeywordsOfCLIsAcceptedByCommandRunner
 /* Get valid keywords
  */
-func (s *CommandRunnerService) GetAllKeywordsOfCLIsAcceptedByCommandRunner() (*LegitCliKeyResult, *resty.Response, error) {
+func (s *CommandRunnerService) GetAllKeywordsOfCLIsAcceptedByCommandRunner() (*GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device-poller/cli/legit-reads"
 
 	response, err := RestyClient.R().
-		SetResult(&LegitCliKeyResult{}).
+		SetResult(&GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*LegitCliKeyResult)
+	result := response.Result().(*GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse)
 	return result, response, err
-
 }
 
-// // RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration
-// /* Submit request for read-only CLIs
-//  */
-// func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest *RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest) (*TaskIDResult, *resty.Response, error) {
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration
+/* Submit request for read-only CLIs
+ */
+func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest *RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest) (*RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/network-device-poller/cli/read-request"
+	path := "/dna/intent/api/v1/network-device-poller/cli/read-request"
 
-// 	response, err := RestyClient.R().
-// 		SetBody(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest).
-// 		SetResult(&TaskIDResult{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest).
+		SetResult(&RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-
-// 	result := response.Result().(*TaskIDResult)
-// 	return result, response, err
-
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse)
+	return result, response, err
+}

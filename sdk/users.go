@@ -61,7 +61,7 @@ type GetUserEnrichmentDetailsResponse struct {
 		AvgRssi          string   `json:"avgRssi,omitempty"`          //
 		AvgSnr           string   `json:"avgSnr,omitempty"`           //
 		Channel          string   `json:"channel,omitempty"`          //
-		ClientConnection string   `json:"clientConnection,omitempty"` //
+		CLIentConnection string   `json:"clientConnection,omitempty"` //
 		ConnectedDevice  []string `json:"connectedDevice,omitempty"`  //
 		ConnectionStatus string   `json:"connectionStatus,omitempty"` //
 		DataRate         string   `json:"dataRate,omitempty"`         //
@@ -105,7 +105,7 @@ type GetUserEnrichmentDetailsResponse struct {
 		SubType        string `json:"subType,omitempty"`        //
 		TxBytes        string `json:"txBytes,omitempty"`        //
 		UserID         string `json:"userId,omitempty"`         //
-		VlanID         string `json:"vlanId,omitempty"`         //
+		VLANID         string `json:"vlanId,omitempty"`         //
 	} `json:"userDetails,omitempty"` //
 }
 
@@ -126,8 +126,6 @@ func (s *UsersService) GetUserEnrichmentDetails() (*GetUserEnrichmentDetailsResp
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*GetUserEnrichmentDetailsResponse)
 	return result, response, err
-
 }

@@ -8,14 +8,6 @@ import (
 // ITSMService is the service to communicate with the ITSM API endpoint
 type ITSMService service
 
-// EnrichmentInfo is the EnrichmentInfo definition
-type EnrichmentInfo struct {
-	ErrorCode                      string `json:"errorCode,omitempty"`                      //
-	ErrorDescription               string `json:"errorDescription,omitempty"`               //
-	EventStatus                    string `json:"eventStatus,omitempty"`                    //
-	ResponseReceivedFromITSMSystem string `json:"responseReceivedFromITSMSystem,omitempty"` //
-}
-
 // GetFailedITSMEventsResponse is the GetFailedITSMEventsResponse definition
 type GetFailedITSMEventsResponse struct {
 	Category       string `json:"category,omitempty"`    //
@@ -68,14 +60,12 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*GetFailedITSMEventsResponse)
 	return result, response, err
-
 }
 
 // RetryIntegrationEvents retryIntegrationEvents
-/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance ID is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
+/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
  */
 // func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
 
@@ -90,8 +80,6 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 // 	if err != nil {
 // 		return nil, nil, err
 // 	}
-
 // 	result := response.Result().(*RetryIntegrationEventsResponse)
 // 	return result, response, err
-
 // }

@@ -26,7 +26,7 @@ type CreateAndProvisionSSIDRequest struct {
 	EnableFabric bool `json:"enableFabric,omitempty"` //
 	FlexConnect  struct {
 		EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-		LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+		LocalToVLAN       int  `json:"localToVlan,omitempty"`       //
 	} `json:"flexConnect,omitempty"` //
 	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
 	SSIDDetails        struct {
@@ -97,39 +97,13 @@ type CreateWirelessProfileRequest struct {
 			EnableFabric bool `json:"enableFabric,omitempty"` //
 			FlexConnect  struct {
 				EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-				LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+				LocalToVLAN       int  `json:"localToVlan,omitempty"`       //
 			} `json:"flexConnect,omitempty"` //
 			InterfaceName string `json:"interfaceName,omitempty"` //
 			Name          string `json:"name,omitempty"`          //
 			Type          string `json:"type,omitempty"`          //
 		} `json:"ssidDetails,omitempty"` //
 	} `json:"profileDetails,omitempty"` //
-}
-
-// DynamicInterfaces is the DynamicInterfaces definition
-type DynamicInterfaces struct {
-	InterfaceGateway       string `json:"interfaceGateway,omitempty"`       //
-	InterfaceIPAddress     string `json:"interfaceIPAddress,omitempty"`     //
-	InterfaceName          string `json:"interfaceName,omitempty"`          //
-	InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
-	LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
-	VlanID                 int    `json:"vlanId,omitempty"`                 //
-}
-
-// ProfileDetails is the ProfileDetails definition
-type ProfileDetails struct {
-	Name        string   `json:"name,omitempty"`  //
-	Sites       []string `json:"sites,omitempty"` //
-	SSIDDetails []struct {
-		EnableFabric bool `json:"enableFabric,omitempty"` //
-		FlexConnect  struct {
-			EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-			LocalToVlan       int  `json:"localToVlan,omitempty"`       //
-		} `json:"flexConnect,omitempty"` //
-		InterfaceName string `json:"interfaceName,omitempty"` //
-		Name          string `json:"name,omitempty"`          //
-		Type          string `json:"type,omitempty"`          //
-	} `json:"ssidDetails,omitempty"` //
 }
 
 // ProvisionRequest is the ProvisionRequest definition
@@ -141,7 +115,7 @@ type ProvisionRequest struct {
 		InterfaceName          string `json:"interfaceName,omitempty"`          //
 		InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
 		LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
-		VlanID                 int    `json:"vlanId,omitempty"`                 //
+		VLANID                 int    `json:"vlanId,omitempty"`                 //
 	} `json:"dynamicInterfaces,omitempty"` //
 	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
 	Site               string   `json:"site,omitempty"`               //
@@ -156,45 +130,9 @@ type ProvisionUpdateRequest struct {
 		InterfaceName          string `json:"interfaceName,omitempty"`          //
 		InterfaceNetmaskInCIDR int    `json:"interfaceNetmaskInCIDR,omitempty"` //
 		LagOrPortNumber        int    `json:"lagOrPortNumber,omitempty"`        //
-		VlanID                 int    `json:"vlanId,omitempty"`                 //
+		VLANID                 int    `json:"vlanId,omitempty"`                 //
 	} `json:"dynamicInterfaces,omitempty"` //
 	ManagedAPLocations []string `json:"managedAPLocations,omitempty"` //
-}
-
-// RadioTypeAProperties is the RadioTypeAProperties definition
-type RadioTypeAProperties struct {
-	DataRates          string `json:"dataRates,omitempty"`          //
-	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
-	MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
-	MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
-	ParentProfile      string `json:"parentProfile,omitempty"`      //
-	PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
-	RadioChannels      string `json:"radioChannels,omitempty"`      //
-	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
-}
-
-// RadioTypeBProperties is the RadioTypeBProperties definition
-type RadioTypeBProperties struct {
-	DataRates          string `json:"dataRates,omitempty"`          //
-	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
-	MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
-	MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
-	ParentProfile      string `json:"parentProfile,omitempty"`      //
-	PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
-	RadioChannels      string `json:"radioChannels,omitempty"`      //
-	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
-}
-
-// SSIDDetails is the SSIDDetails definition
-type SSIDDetails struct {
-	EnableFabric bool `json:"enableFabric,omitempty"` //
-	FlexConnect  struct {
-		EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-		LocalToVlan       int  `json:"localToVlan,omitempty"`       //
-	} `json:"flexConnect,omitempty"` //
-	InterfaceName string `json:"interfaceName,omitempty"` //
-	Name          string `json:"name,omitempty"`          //
-	Type          string `json:"type,omitempty"`          //
 }
 
 // UpdateWirelessProfileRequest is the UpdateWirelessProfileRequest definition
@@ -206,29 +144,13 @@ type UpdateWirelessProfileRequest struct {
 			EnableFabric bool `json:"enableFabric,omitempty"` //
 			FlexConnect  struct {
 				EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
-				LocalToVlan       int  `json:"localToVlan,omitempty"`       //
+				LocalToVLAN       int  `json:"localToVlan,omitempty"`       //
 			} `json:"flexConnect,omitempty"` //
 			InterfaceName string `json:"interfaceName,omitempty"` //
 			Name          string `json:"name,omitempty"`          //
 			Type          string `json:"type,omitempty"`          //
 		} `json:"ssidDetails,omitempty"` //
 	} `json:"profileDetails,omitempty"` //
-}
-
-// AppConnectivity is the AppConnectivity definition
-type AppConnectivity struct {
-	FileTransfer struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"FileTransfer,omitempty"` //
-	HostReachability struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"HostReachability,omitempty"` //
-	WebServer struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"WebServer,omitempty"` //
 }
 
 // APProvisionResponse is the APProvisionResponse definition
@@ -246,18 +168,6 @@ type APProvisionResponse struct {
 			TaskURL string `json:"taskUrl,omitempty"` //
 		} `json:"success,omitempty"` //
 	} `json:"provisionTasks,omitempty"` //
-}
-
-// Assoc is the Assoc definition
-type Assoc struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// Auth is the Auth definition
-type Auth struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
 }
 
 // CreateAndProvisionSSIDResponse is the CreateAndProvisionSSIDResponse definition
@@ -288,18 +198,6 @@ type CreateWirelessProfileResponse struct {
 	Message            string `json:"message,omitempty"`            //
 }
 
-// DataRate is the DataRate definition
-type DataRate struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// DHCP is the DHCP definition
-type DHCP struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
 // DeleteEnterpriseSSIDResponse is the DeleteEnterpriseSSIDResponse definition
 type DeleteEnterpriseSSIDResponse struct {
 	ExecutionID        string `json:"executionId,omitempty"`        //
@@ -328,35 +226,6 @@ type DeleteWirelessProfileResponse struct {
 	Message            string `json:"message,omitempty"`            //
 }
 
-// Email is the Email definition
-type Email struct {
-	MailServer struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"MailServer,omitempty"` //
-}
-
-// FileTransfer is the FileTransfer definition
-type FileTransfer struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// Failure is the Failure definition
-type Failure struct {
-	FailureReason string `json:"failureReason,omitempty"` //
-	TaskID        string `json:"taskId,omitempty"`        //
-	TaskURL       string `json:"taskUrl,omitempty"`       //
-}
-
-// FailureStats is the FailureStats definition
-type FailureStats struct {
-	ErrorCode    int    `json:"errorCode,omitempty"`    //
-	ErrorTitle   string `json:"errorTitle,omitempty"`   //
-	TestCategory string `json:"testCategory,omitempty"` //
-	TestType     string `json:"testType,omitempty"`     //
-}
-
 // GetEnterpriseSSIDResponse is the GetEnterpriseSSIDResponse definition
 type GetEnterpriseSSIDResponse struct {
 	GroupUUID          string `json:"groupUuid,omitempty"`          //
@@ -376,59 +245,27 @@ type GetEnterpriseSSIDResponse struct {
 		RadioPolicy         string `json:"radioPolicy,omitempty"`         //
 		SecurityLevel       string `json:"securityLevel,omitempty"`       //
 		TrafficType         string `json:"trafficType,omitempty"`         //
-		WlanType            string `json:"wlanType,omitempty"`            //
+		WLANType            string `json:"wlanType,omitempty"`            //
 	} `json:"ssidDetails,omitempty"` //
 	Version int `json:"version,omitempty"` //
 }
 
-// HostReachability is the HostReachability definition
-type HostReachability struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// IPSLASender is the IPSLASender definition
-type IPSLASender struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// MailServer is the MailServer definition
-type MailServer struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
-// NetworkServices is the NetworkServices definition
-type NetworkServices struct {
-	DNS struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"DNS,omitempty"` //
-}
-
-// OnBoarding is the OnBoarding definition
-type OnBoarding struct {
-	Assoc struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"Assoc,omitempty"` //
-	Auth struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"Auth,omitempty"` //
-	DHCP struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"DHCP,omitempty"` //
-}
-
-// Performance is the Performance definition
-type Performance struct {
-	IPSLASender struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"IPSLASender,omitempty"` //
+// GetWirelessProfileResponse is the GetWirelessProfileResponse definition
+type GetWirelessProfileResponse struct {
+	ProfileDetails struct {
+		Name        string   `json:"name,omitempty"`  //
+		Sites       []string `json:"sites,omitempty"` //
+		SSIDDetails []struct {
+			EnableFabric bool `json:"enableFabric,omitempty"` //
+			FlexConnect  struct {
+				EnableFlexConnect bool `json:"enableFlexConnect,omitempty"` //
+				LocalToVLAN       int  `json:"localToVlan,omitempty"`       //
+			} `json:"flexConnect,omitempty"` //
+			InterfaceName string `json:"interfaceName,omitempty"` //
+			Name          string `json:"name,omitempty"`          //
+			Type          string `json:"type,omitempty"`          //
+		} `json:"ssidDetails,omitempty"` //
+	} `json:"profileDetails,omitempty"` //
 }
 
 // ProvisionResponse is the ProvisionResponse definition
@@ -441,19 +278,6 @@ type ProvisionResponse struct {
 	} `json:"provisioningTasks,omitempty"` //
 }
 
-// ProvisionTasks is the ProvisionTasks definition
-type ProvisionTasks struct {
-	Failure struct {
-		FailureReason string `json:"failureReason,omitempty"` //
-		TaskID        string `json:"taskId,omitempty"`        //
-		TaskURL       string `json:"taskUrl,omitempty"`       //
-	} `json:"failure,omitempty"` //
-	Success []struct {
-		TaskID  string `json:"taskId,omitempty"`  //
-		TaskURL string `json:"taskUrl,omitempty"` //
-	} `json:"success,omitempty"` //
-}
-
 // ProvisionUpdateResponse is the ProvisionUpdateResponse definition
 type ProvisionUpdateResponse struct {
 	ExecutionID       string `json:"executionId,omitempty"`  //
@@ -462,24 +286,6 @@ type ProvisionUpdateResponse struct {
 		Failed  []string `json:"failed,omitempty"`  //
 		Success []string `json:"success,omitempty"` //
 	} `json:"provisioningTasks,omitempty"` //
-}
-
-// ProvisioningTasks is the ProvisioningTasks definition
-type ProvisioningTasks struct {
-	Failed  []string `json:"failed,omitempty"`  //
-	Success []string `json:"success,omitempty"` //
-}
-
-// RFAssessment is the RFAssessment definition
-type RFAssessment struct {
-	DataRate struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"DataRate,omitempty"` //
-	SNR struct {
-		FailCount int `json:"failCount,omitempty"` //
-		PassCount int `json:"passCount,omitempty"` //
-	} `json:"SNR,omitempty"` //
 }
 
 // RetrieveRFProfilesResponse is the RetrieveRFProfilesResponse definition
@@ -511,12 +317,6 @@ type RetrieveRFProfilesResponse struct {
 	} `json:"response,omitempty"` //
 }
 
-// SNR is the SNR definition
-type SNR struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
-}
-
 // SensorTestResultsResponse is the SensorTestResultsResponse definition
 type SensorTestResultsResponse struct {
 	FailureStats []struct {
@@ -530,127 +330,60 @@ type SensorTestResultsResponse struct {
 			FileTransfer struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"FileTransfer,omitempty"` //
+			} `json:"FILETRANSFER,omitempty"` //
 			HostReachability struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"HostReachability,omitempty"` //
+			} `json:"HOST_REACHABILITY,omitempty"` //
 			WebServer struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"WebServer,omitempty"` //
-		} `json:"AppConnectivity,omitempty"` //
+			} `json:"WEBSERVER,omitempty"` //
+		} `json:"APP_CONNECTIVITY,omitempty"` //
 		Email struct {
 			MailServer struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"MailServer,omitempty"` //
-		} `json:"Email,omitempty"` //
+			} `json:"MAILSERVER,omitempty"` //
+		} `json:"EMAIL,omitempty"` //
 		NetworkServices struct {
 			DNS struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
 			} `json:"DNS,omitempty"` //
-		} `json:"NetworkServices,omitempty"` //
+		} `json:"NETWORK_SERVICES,omitempty"` //
 		OnBoarding struct {
 			Assoc struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"Assoc,omitempty"` //
+			} `json:"ASSOC,omitempty"` //
 			Auth struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"Auth,omitempty"` //
+			} `json:"AUTH,omitempty"` //
 			DHCP struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
 			} `json:"DHCP,omitempty"` //
-		} `json:"OnBoarding,omitempty"` //
+		} `json:"ONBOARDING,omitempty"` //
 		Performance struct {
 			IPSLASender struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"IPSLASender,omitempty"` //
-		} `json:"Performance,omitempty"` //
+			} `json:"IPSLASENDER,omitempty"` //
+		} `json:"PERFORMANCE,omitempty"` //
 		RFAssessment struct {
 			DataRate struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
-			} `json:"DataRate,omitempty"` //
+			} `json:"DATA_RATE,omitempty"` //
 			SNR struct {
 				FailCount int `json:"failCount,omitempty"` //
 				PassCount int `json:"passCount,omitempty"` //
 			} `json:"SNR,omitempty"` //
-		} `json:"RFAssessment,omitempty"` //
+		} `json:"RF_ASSESSMENT,omitempty"` //
 		TotalTestCount int `json:"totalTestCount,omitempty"` //
 	} `json:"summary,omitempty"` //
-}
-
-// Success is the Success definition
-type Success struct {
-	TaskID  string `json:"taskId,omitempty"`  //
-	TaskURL string `json:"taskUrl,omitempty"` //
-}
-
-// Summary is the Summary definition
-type Summary struct {
-	AppConnectivity struct {
-		FileTransfer struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"FileTransfer,omitempty"` //
-		HostReachability struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"HostReachability,omitempty"` //
-		WebServer struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"WebServer,omitempty"` //
-	} `json:"AppConnectivity,omitempty"` //
-	Email struct {
-		MailServer struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"MailServer,omitempty"` //
-	} `json:"Email,omitempty"` //
-	NetworkServices struct {
-		DNS struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"DNS,omitempty"` //
-	} `json:"NetworkServices,omitempty"` //
-	OnBoarding struct {
-		Assoc struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"Assoc,omitempty"` //
-		Auth struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"Auth,omitempty"` //
-		DHCP struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"DHCP,omitempty"` //
-	} `json:"OnBoarding,omitempty"` //
-	Performance struct {
-		IPSLASender struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"IPSLASender,omitempty"` //
-	} `json:"Performance,omitempty"` //
-	RFAssessment struct {
-		DataRate struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"DataRate,omitempty"` //
-		SNR struct {
-			FailCount int `json:"failCount,omitempty"` //
-			PassCount int `json:"passCount,omitempty"` //
-		} `json:"SNR,omitempty"` //
-	} `json:"RFAssessment,omitempty"` //
-	TotalTestCount int `json:"totalTestCount,omitempty"` //
 }
 
 // UpdateWirelessProfileResponse is the UpdateWirelessProfileResponse definition
@@ -658,12 +391,6 @@ type UpdateWirelessProfileResponse struct {
 	ExecutionID        string `json:"executionId,omitempty"`        //
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
-}
-
-// WebServer is the WebServer definition
-type WebServer struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
 }
 
 // APProvision aPProvision
@@ -683,10 +410,8 @@ func (s *WirelessService) APProvision(aPProvisionRequest *APProvisionRequest) (*
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*APProvisionResponse)
 	return result, response, err
-
 }
 
 // CreateAndProvisionSSID createAndProvisionSSID
@@ -706,10 +431,8 @@ func (s *WirelessService) CreateAndProvisionSSID(createAndProvisionSSIDRequest *
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*CreateAndProvisionSSIDResponse)
 	return result, response, err
-
 }
 
 // CreateEnterpriseSSID createEnterpriseSSID
@@ -728,10 +451,8 @@ func (s *WirelessService) CreateEnterpriseSSID(createEnterpriseSSIDRequest *Crea
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*CreateEnterpriseSSIDResponse)
 	return result, response, err
-
 }
 
 // CreateOrUpdateRFProfile createOrUpdateRFProfile
@@ -750,10 +471,8 @@ func (s *WirelessService) CreateOrUpdateRFProfile(createOrUpdateRFProfileRequest
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*CreateOrUpdateRFProfileResponse)
 	return result, response, err
-
 }
 
 // CreateWirelessProfile createWirelessProfile
@@ -772,10 +491,8 @@ func (s *WirelessService) CreateWirelessProfile(createWirelessProfileRequest *Cr
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*CreateWirelessProfileResponse)
 	return result, response, err
-
 }
 
 // DeleteEnterpriseSSID deleteEnterpriseSSID
@@ -848,23 +565,22 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 /* Delete the Wireless Profile from DNAC whose name is provided.
 @param wirelessProfileName
 */
-// func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string, deleteWirelessProfileRequest *DeleteWirelessProfileRequest) (*resty.Response, error) {
+func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
-// 	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
+	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
+	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
 
-// 	response, err := RestyClient.R().
-// 		SetBody(deleteWirelessProfileRequest).
-// 		SetError(&Error{}).
-// 		Delete(path)
+	response, err := RestyClient.R().
+		SetError(&Error{}).
+		Delete(path)
 
-// 	if err != nil {
-// 		return nil, err
-// 	}
+	if err != nil {
+		return nil, err
+	}
 
-// 	return response, err
+	return response, err
 
-// }
+}
 
 // GetEnterpriseSSIDQueryParams defines the query parameters for this request
 type GetEnterpriseSSIDQueryParams struct {
@@ -890,10 +606,8 @@ func (s *WirelessService) GetEnterpriseSSID(getEnterpriseSSIDQueryParams *GetEnt
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*GetEnterpriseSSIDResponse)
 	return result, response, err
-
 }
 
 // GetWirelessProfileQueryParams defines the query parameters for this request
@@ -905,26 +619,24 @@ type GetWirelessProfileQueryParams struct {
 /* Gets either one or all the wireless network profiles if no name is provided for network-profile.
 @param profileName
 */
-// func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*GetWirelessProfileResponse, *resty.Response, error) {
+func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*GetWirelessProfileResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/wireless/profile"
+	path := "/dna/intent/api/v1/wireless/profile"
 
-// 	queryString, _ := query.Values(getWirelessProfileQueryParams)
+	queryString, _ := query.Values(getWirelessProfileQueryParams)
 
-// 	response, err := RestyClient.R().
-// 		SetQueryString(queryString.Encode()).
-// 		SetResult(&GetWirelessProfileResponse{}).
-// 		SetError(&Error{}).
-// 		Get(path)
+	response, err := RestyClient.R().
+		SetQueryString(queryString.Encode()).
+		SetResult(&GetWirelessProfileResponse{}).
+		SetError(&Error{}).
+		Get(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-
-// 	result := response.Result().(*GetWirelessProfileResponse)
-// 	return result, response, err
-
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*GetWirelessProfileResponse)
+	return result, response, err
+}
 
 // Provision provision
 /* Provision wireless devices
@@ -943,10 +655,8 @@ func (s *WirelessService) Provision(provisionRequest *ProvisionRequest) (*Provis
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*ProvisionResponse)
 	return result, response, err
-
 }
 
 // ProvisionUpdate provisionUpdate
@@ -966,10 +676,8 @@ func (s *WirelessService) ProvisionUpdate(provisionUpdateRequest *ProvisionUpdat
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*ProvisionUpdateResponse)
 	return result, response, err
-
 }
 
 // RetrieveRFProfilesQueryParams defines the query parameters for this request
@@ -996,10 +704,8 @@ func (s *WirelessService) RetrieveRFProfiles(retrieveRFProfilesQueryParams *Retr
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*RetrieveRFProfilesResponse)
 	return result, response, err
-
 }
 
 // SensorTestResultsQueryParams defines the query parameters for this request
@@ -1032,10 +738,8 @@ func (s *WirelessService) SensorTestResults(sensorTestResultsQueryParams *Sensor
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*SensorTestResultsResponse)
 	return result, response, err
-
 }
 
 // UpdateWirelessProfile updateWirelessProfile
@@ -1054,8 +758,6 @@ func (s *WirelessService) UpdateWirelessProfile(updateWirelessProfileRequest *Up
 	if err != nil {
 		return nil, nil, err
 	}
-
 	result := response.Result().(*UpdateWirelessProfileResponse)
 	return result, response, err
-
 }

@@ -8,8 +8,14 @@ import (
 // DeviceReplacementService is the service to communicate with the DeviceReplacement API endpoint
 type DeviceReplacementService service
 
-// DeviceReplacementDataDTO is the DeviceReplacementDataDTO definition
-type DeviceReplacementDataDTO struct {
+// DeployDeviceReplacementWorkflowRequest is the DeployDeviceReplacementWorkflowRequest definition
+type DeployDeviceReplacementWorkflowRequest struct {
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+}
+
+// MarkDeviceForReplacementRequest is the MarkDeviceForReplacementRequest definition
+type MarkDeviceForReplacementRequest struct {
 	CreationTime                  int    `json:"creationTime,omitempty"`                  //
 	Family                        string `json:"family,omitempty"`                        //
 	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
@@ -26,14 +32,44 @@ type DeviceReplacementDataDTO struct {
 	WorkflowID                    string `json:"workflowId,omitempty"`                    //
 }
 
-// DeviceReplacementWorkflowDTO is the DeviceReplacementWorkflowDTO definition
-type DeviceReplacementWorkflowDTO struct {
+// UnMarkDeviceForReplacementRequest is the UnMarkDeviceForReplacementRequest definition
+type UnMarkDeviceForReplacementRequest struct {
+	CreationTime                  int    `json:"creationTime,omitempty"`                  //
+	Family                        string `json:"family,omitempty"`                        //
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
 	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ID                            string `json:"id,omitempty"`                            //
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
 	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
+	ReplacementTime               int    `json:"replacementTime,omitempty"`               //
+	WorkflowID                    string `json:"workflowId,omitempty"`                    //
 }
 
-// DeviceReplacementResult is the DeviceReplacementResult definition
-type DeviceReplacementResult struct {
+// DeployDeviceReplacementWorkflowResponse is the DeployDeviceReplacementWorkflowResponse definition
+type DeployDeviceReplacementWorkflowResponse struct {
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
+// MarkDeviceForReplacementResponse is the MarkDeviceForReplacementResponse definition
+type MarkDeviceForReplacementResponse struct {
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
+// ReturnListOfReplacementDevicesWithReplacementDetailsResponse is the ReturnListOfReplacementDevicesWithReplacementDetailsResponse definition
+type ReturnListOfReplacementDevicesWithReplacementDetailsResponse struct {
 	Response []struct {
 		CreationTime                  int    `json:"creationTime,omitempty"`                  //
 		Family                        string `json:"family,omitempty"`                        //
@@ -53,49 +89,60 @@ type DeviceReplacementResult struct {
 	Version string `json:"version,omitempty"` //
 }
 
+// ReturnReplacementDevicesCountResponse is the ReturnReplacementDevicesCountResponse definition
+type ReturnReplacementDevicesCountResponse struct {
+	Response int    `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
+}
+
+// UnMarkDeviceForReplacementResponse is the UnMarkDeviceForReplacementResponse definition
+type UnMarkDeviceForReplacementResponse struct {
+	Response struct {
+		TaskID string `json:"taskId,omitempty"` //
+		URL    string `json:"url,omitempty"`    //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
 // DeployDeviceReplacementWorkflow deployDeviceReplacementWorkflow
 /* API to trigger RMA workflow that will replace faulty device with replacement device with same configuration and images
  */
-// func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceReplacementWorkflowRequest *DeployDeviceReplacementWorkflowRequest) (*TaskIDResult, *resty.Response, error) {
+func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceReplacementWorkflowRequest *DeployDeviceReplacementWorkflowRequest) (*DeployDeviceReplacementWorkflowResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/device-replacement/workflow"
+	path := "/dna/intent/api/v1/device-replacement/workflow"
 
-// 	response, err := RestyClient.R().
-// 		SetBody(deployDeviceReplacementWorkflowRequest).
-// 		SetResult(&TaskIDResult{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(deployDeviceReplacementWorkflowRequest).
+		SetResult(&DeployDeviceReplacementWorkflowResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-
-// 	result := response.Result().(*TaskIDResult)
-// 	return result, response, err
-
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*DeployDeviceReplacementWorkflowResponse)
+	return result, response, err
+}
 
 // MarkDeviceForReplacement markDeviceForReplacement
 /* Marks device for replacement
  */
-// func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplacementRequest *MarkDeviceForReplacementRequest) (*TaskIDResult, *resty.Response, error) {
+func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplacementRequest *MarkDeviceForReplacementRequest) (*MarkDeviceForReplacementResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/device-replacement"
+	path := "/dna/intent/api/v1/device-replacement"
 
-// 	response, err := RestyClient.R().
-// 		SetBody(markDeviceForReplacementRequest).
-// 		SetResult(&TaskIDResult{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(markDeviceForReplacementRequest).
+		SetResult(&MarkDeviceForReplacementResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-
-// 	result := response.Result().(*TaskIDResult)
-// 	return result, response, err
-
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*MarkDeviceForReplacementResponse)
+	return result, response, err
+}
 
 // ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams defines the query parameters for this request
 type ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams struct {
@@ -126,7 +173,7 @@ type ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams struct {
 @param offset offset
 @param limit limit
 */
-func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacementDetails(returnListOfReplacementDevicesWithReplacementDetailsQueryParams *ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams) (*DeviceReplacementResult, *resty.Response, error) {
+func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacementDetails(returnListOfReplacementDevicesWithReplacementDetailsQueryParams *ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams) (*ReturnListOfReplacementDevicesWithReplacementDetailsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/device-replacement"
 
@@ -134,17 +181,15 @@ func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacement
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&DeviceReplacementResult{}).
+		SetResult(&ReturnListOfReplacementDevicesWithReplacementDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*DeviceReplacementResult)
+	result := response.Result().(*ReturnListOfReplacementDevicesWithReplacementDetailsResponse)
 	return result, response, err
-
 }
 
 // ReturnReplacementDevicesCountQueryParams defines the query parameters for this request
@@ -156,7 +201,7 @@ type ReturnReplacementDevicesCountQueryParams struct {
 /* Get replacement devices count
 @param replacementStatus Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
 */
-func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplacementDevicesCountQueryParams *ReturnReplacementDevicesCountQueryParams) (*CountResult, *resty.Response, error) {
+func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplacementDevicesCountQueryParams *ReturnReplacementDevicesCountQueryParams) (*ReturnReplacementDevicesCountResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/device-replacement/count"
 
@@ -164,37 +209,33 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplaceme
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&CountResult{}).
+		SetResult(&ReturnReplacementDevicesCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*CountResult)
+	result := response.Result().(*ReturnReplacementDevicesCountResponse)
 	return result, response, err
-
 }
 
 // UnMarkDeviceForReplacement unMarkDeviceForReplacement
 /* UnMarks device for replacement
  */
-// func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForReplacementRequest *UnMarkDeviceForReplacementRequest) (*TaskIDResult, *resty.Response, error) {
+func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForReplacementRequest *UnMarkDeviceForReplacementRequest) (*UnMarkDeviceForReplacementResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/device-replacement"
+	path := "/dna/intent/api/v1/device-replacement"
 
-// 	response, err := RestyClient.R().
-// 		SetBody(unMarkDeviceForReplacementRequest).
-// 		SetResult(&TaskIDResult{}).
-// 		SetError(&Error{}).
-// 		Put(path)
+	response, err := RestyClient.R().
+		SetBody(unMarkDeviceForReplacementRequest).
+		SetResult(&UnMarkDeviceForReplacementResponse{}).
+		SetError(&Error{}).
+		Put(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-
-// 	result := response.Result().(*TaskIDResult)
-// 	return result, response, err
-
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*UnMarkDeviceForReplacementResponse)
+	return result, response, err
+}

@@ -11,8 +11,33 @@ import (
 // TaskService is the service to communicate with the Task API endpoint
 type TaskService service
 
-// TaskDTOListResponse is the TaskDTOListResponse definition
-type TaskDTOListResponse struct {
+// GetTaskByIDResponse is the GetTaskByIdResponse definition
+type GetTaskByIDResponse struct {
+	Response struct {
+		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+		Data                string `json:"data,omitempty"`                //
+		EndTime             string `json:"endTime,omitempty"`             //
+		ErrorCode           string `json:"errorCode,omitempty"`           //
+		ErrorKey            string `json:"errorKey,omitempty"`            //
+		FailureReason       string `json:"failureReason,omitempty"`       //
+		ID                  string `json:"id,omitempty"`                  //
+		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+		IsError             bool   `json:"isError,omitempty"`             //
+		LastUpdate          string `json:"lastUpdate,omitempty"`          //
+		OperationIDList     string `json:"operationIdList,omitempty"`     //
+		ParentID            string `json:"parentId,omitempty"`            //
+		Progress            string `json:"progress,omitempty"`            //
+		RootID              string `json:"rootId,omitempty"`              //
+		ServiceType         string `json:"serviceType,omitempty"`         //
+		StartTime           string `json:"startTime,omitempty"`           //
+		Username            string `json:"username,omitempty"`            //
+		Version             int    `json:"version,omitempty"`             //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
+// GetTaskByOperationIDResponse is the GetTaskByOperationIdResponse definition
+type GetTaskByOperationIDResponse struct {
 	Response []struct {
 		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 		Data                string `json:"data,omitempty"`                //
@@ -36,9 +61,40 @@ type TaskDTOListResponse struct {
 	Version string `json:"version,omitempty"` //
 }
 
-// TaskDTOResponse is the TaskDTOResponse definition
-type TaskDTOResponse struct {
-	Response struct {
+// GetTaskCountResponse is the GetTaskCountResponse definition
+type GetTaskCountResponse struct {
+	Response int    `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
+}
+
+// GetTaskTreeResponse is the GetTaskTreeResponse definition
+type GetTaskTreeResponse struct {
+	Response []struct {
+		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+		Data                string `json:"data,omitempty"`                //
+		EndTime             string `json:"endTime,omitempty"`             //
+		ErrorCode           string `json:"errorCode,omitempty"`           //
+		ErrorKey            string `json:"errorKey,omitempty"`            //
+		FailureReason       string `json:"failureReason,omitempty"`       //
+		ID                  string `json:"id,omitempty"`                  //
+		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+		IsError             bool   `json:"isError,omitempty"`             //
+		LastUpdate          string `json:"lastUpdate,omitempty"`          //
+		OperationIDList     string `json:"operationIdList,omitempty"`     //
+		ParentID            string `json:"parentId,omitempty"`            //
+		Progress            string `json:"progress,omitempty"`            //
+		RootID              string `json:"rootId,omitempty"`              //
+		ServiceType         string `json:"serviceType,omitempty"`         //
+		StartTime           string `json:"startTime,omitempty"`           //
+		Username            string `json:"username,omitempty"`            //
+		Version             int    `json:"version,omitempty"`             //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
+// GetTasksResponse is the GetTasksResponse definition
+type GetTasksResponse struct {
+	Response []struct {
 		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 		Data                string `json:"data,omitempty"`                //
 		EndTime             string `json:"endTime,omitempty"`             //
@@ -65,23 +121,21 @@ type TaskDTOResponse struct {
 /* Returns a task by specified id
 @param taskID UUID of the Task
 */
-func (s *TaskService) GetTaskByID(taskID string) (*TaskDTOResponse, *resty.Response, error) {
+func (s *TaskService) GetTaskByID(taskID string) (*GetTaskByIDResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/task/{taskID}"
-	path = strings.Replace(path, "{"+"taskID"+"}", fmt.Sprintf("%v", taskID), -1)
+	path := "/dna/intent/api/v1/task/{taskId}"
+	path = strings.Replace(path, "{"+"taskId"+"}", fmt.Sprintf("%v", taskID), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&TaskDTOResponse{}).
+		SetResult(&GetTaskByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*TaskDTOResponse)
+	result := response.Result().(*GetTaskByIDResponse)
 	return result, response, err
-
 }
 
 // GetTaskByOperationID getTaskByOperationId
@@ -90,25 +144,23 @@ func (s *TaskService) GetTaskByID(taskID string) (*TaskDTOResponse, *resty.Respo
 @param offset Index, minimum value is 0
 @param limit The maximum value of {limit} supported is 500. <br/> Base 1 indexing for {limit}, minimum value is 1
 */
-func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit int) (*TaskDTOListResponse, *resty.Response, error) {
+func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit int) (*GetTaskByOperationIDResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/task/operation/{operationID}/{offset}/{limit}"
-	path = strings.Replace(path, "{"+"operationID"+"}", fmt.Sprintf("%v", operationID), -1)
+	path := "/dna/intent/api/v1/task/operation/{operationId}/{offset}/{limit}"
+	path = strings.Replace(path, "{"+"operationId"+"}", fmt.Sprintf("%v", operationID), -1)
 	path = strings.Replace(path, "{"+"offset"+"}", fmt.Sprintf("%v", offset), -1)
 	path = strings.Replace(path, "{"+"limit"+"}", fmt.Sprintf("%v", limit), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&TaskDTOListResponse{}).
+		SetResult(&GetTaskByOperationIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*TaskDTOListResponse)
+	result := response.Result().(*GetTaskByOperationIDResponse)
 	return result, response, err
-
 }
 
 // GetTaskCountQueryParams defines the query parameters for this request
@@ -138,7 +190,7 @@ type GetTaskCountQueryParams struct {
 @param failureReason Fetch tasks that contains this failure reason
 @param parentID Fetch tasks that have this parent Id
 */
-func (s *TaskService) GetTaskCount(getTaskCountQueryParams *GetTaskCountQueryParams) (*CountResult, *resty.Response, error) {
+func (s *TaskService) GetTaskCount(getTaskCountQueryParams *GetTaskCountQueryParams) (*GetTaskCountResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/task/count"
 
@@ -146,40 +198,36 @@ func (s *TaskService) GetTaskCount(getTaskCountQueryParams *GetTaskCountQueryPar
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&CountResult{}).
+		SetResult(&GetTaskCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*CountResult)
+	result := response.Result().(*GetTaskCountResponse)
 	return result, response, err
-
 }
 
 // GetTaskTree getTaskTree
 /* Returns a task with its children tasks by based on their id
 @param taskID UUID of the Task
 */
-func (s *TaskService) GetTaskTree(taskID string) (*TaskDTOListResponse, *resty.Response, error) {
+func (s *TaskService) GetTaskTree(taskID string) (*GetTaskTreeResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/task/{taskID}/tree"
-	path = strings.Replace(path, "{"+"taskID"+"}", fmt.Sprintf("%v", taskID), -1)
+	path := "/dna/intent/api/v1/task/{taskId}/tree"
+	path = strings.Replace(path, "{"+"taskId"+"}", fmt.Sprintf("%v", taskID), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&TaskDTOListResponse{}).
+		SetResult(&GetTaskTreeResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*TaskDTOListResponse)
+	result := response.Result().(*GetTaskTreeResponse)
 	return result, response, err
-
 }
 
 // GetTasksQueryParams defines the query parameters for this request
@@ -217,7 +265,7 @@ type GetTasksQueryParams struct {
 @param sortBy Sort results by this field
 @param order Sort order - asc or dsc
 */
-func (s *TaskService) GetTasks(getTasksQueryParams *GetTasksQueryParams) (*TaskDTOListResponse, *resty.Response, error) {
+func (s *TaskService) GetTasks(getTasksQueryParams *GetTasksQueryParams) (*GetTasksResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/task"
 
@@ -225,15 +273,13 @@ func (s *TaskService) GetTasks(getTasksQueryParams *GetTasksQueryParams) (*TaskD
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&TaskDTOListResponse{}).
+		SetResult(&GetTasksResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*TaskDTOListResponse)
+	result := response.Result().(*GetTasksResponse)
 	return result, response, err
-
 }

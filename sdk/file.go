@@ -10,8 +10,14 @@ import (
 // FileService is the service to communicate with the File API endpoint
 type FileService service
 
-// FileObjectListResult is the FileObjectListResult definition
-type FileObjectListResult struct {
+// GetListOfAvailableNamespacesResponse is the GetListOfAvailableNamespacesResponse definition
+type GetListOfAvailableNamespacesResponse struct {
+	Response []string `json:"response,omitempty"` //
+	Version  string   `json:"version,omitempty"`  //
+}
+
+// GetListOfFilesResponse is the GetListOfFilesResponse definition
+type GetListOfFilesResponse struct {
 	Response []struct {
 		AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
 		DownloadPath   string   `json:"downloadPath,omitempty"`   //
@@ -29,73 +35,63 @@ type FileObjectListResult struct {
 	Version string `json:"version,omitempty"` //
 }
 
-// NameSpaceListResult is the NameSpaceListResult definition
-type NameSpaceListResult struct {
-	Response []string `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
-}
-
 // DownloadAFileByFileID downloadAFileByFileId
-/* Downloads a file specified by fileID
-@param fileID File Identification int
+/* Downloads a file specified by fileId
+@param fileID File Identification number
 */
-func (s *FileService) DownloadAFileByFileID(fileID string) (*resty.Response, error) {
+func (s *FileService) DownloadAFileByFileID(fileID string) (string, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/file/{fileID}"
-	path = strings.Replace(path, "{"+"fileID"+"}", fmt.Sprintf("%v", fileID), -1)
+	path := "/dna/intent/api/v1/file/{fileId}"
+	path = strings.Replace(path, "{"+"fileId"+"}", fmt.Sprintf("%v", fileID), -1)
 
+	var operationResult string
 	response, err := RestyClient.R().
+		SetResult(&operationResult).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
-		return nil, err
+		return "", nil, err
 	}
-
-	return response, err
-
+	return operationResult, response, err
 }
 
 // GetListOfAvailableNamespaces getListOfAvailableNamespaces
 /* Returns list of available namespaces
  */
-func (s *FileService) GetListOfAvailableNamespaces() (*NameSpaceListResult, *resty.Response, error) {
+func (s *FileService) GetListOfAvailableNamespaces() (*GetListOfAvailableNamespacesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/file/namespace"
 
 	response, err := RestyClient.R().
-		SetResult(&NameSpaceListResult{}).
+		SetResult(&GetListOfAvailableNamespacesResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*NameSpaceListResult)
+	result := response.Result().(*GetListOfAvailableNamespacesResponse)
 	return result, response, err
-
 }
 
 // GetListOfFiles getListOfFiles
 /* Returns list of files under a specific namespace
-@param nameSpace A listing of fileID's
+@param nameSpace A listing of fileId's
 */
-func (s *FileService) GetListOfFiles(nameSpace string) (*FileObjectListResult, *resty.Response, error) {
+func (s *FileService) GetListOfFiles(nameSpace string) (*GetListOfFilesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/file/namespace/{nameSpace}"
 	path = strings.Replace(path, "{"+"nameSpace"+"}", fmt.Sprintf("%v", nameSpace), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&FileObjectListResult{}).
+		SetResult(&GetListOfFilesResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-
-	result := response.Result().(*FileObjectListResult)
+	result := response.Result().(*GetListOfFilesResponse)
 	return result, response, err
-
 }
