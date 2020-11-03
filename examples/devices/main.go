@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("Authenticating")
 	Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
 		"devnetuser", "Cisco123!",
-		"false", "false")
+		"true", "false")
 	fmt.Println("Getting device count")
 	devicesCount, _, err := Client.Devices.GetDeviceCount()
 	if err != nil {
@@ -47,10 +47,10 @@ func main() {
 	}
 
 	fmt.Println("Printing device info by device id...")
-	device, _, err := Client.Devices.GetDeviceByID(devices.Response[0].ID)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(device.Response.ID, device.Response.MacAddress, device.Response.ManagementIPAddress, device.Response.PlatformID)
+	// device, _, err := Client.Devices.GetDeviceByID(devices.Response[0].ID)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
 
 }
