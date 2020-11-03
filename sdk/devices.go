@@ -88,6 +88,9 @@ type SyncDevicesRequest struct {
 	UserName string `json:"userName,omitempty"` //
 }
 
+// SyncNetworkDevicesRequest is the SyncNetworkDevicesRequest definition
+type SyncNetworkDevicesRequest []string
+
 // UpdateDeviceRoleRequest is the UpdateDeviceRoleRequest definition
 type UpdateDeviceRoleRequest struct {
 	ID         string `json:"id,omitempty"`         //
@@ -2073,25 +2076,25 @@ type SyncNetworkDevicesQueryParams struct {
 /* Synchronizes the devices. If forceSync param is false (default) then the sync would run in normal priority thread. If forceSync param is true then the sync would run in high priority thread if available, else the sync will fail. Result can be seen in the child task of each device
 @param forceSync forceSync
 */
-// func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncNetworkDevicesQueryParams, syncNetworkDevicesRequest *SyncNetworkDevicesRequest) (*SyncNetworkDevicesResponse, *resty.Response, error) {
+func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncNetworkDevicesQueryParams, syncNetworkDevicesRequest *SyncNetworkDevicesRequest) (*SyncNetworkDevicesResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/network-device/sync"
+	path := "/dna/intent/api/v1/network-device/sync"
 
-// 	queryString, _ := query.Values(syncNetworkDevicesQueryParams)
+	queryString, _ := query.Values(syncNetworkDevicesQueryParams)
 
-// 	response, err := RestyClient.R().
-// 		SetQueryString(queryString.Encode()).
-// 		SetBody(syncNetworkDevicesRequest).
-// 		SetResult(&SyncNetworkDevicesResponse{}).
-// 		SetError(&Error{}).
-// 		Put(path)
+	response, err := RestyClient.R().
+		SetQueryString(queryString.Encode()).
+		SetBody(syncNetworkDevicesRequest).
+		SetResult(&SyncNetworkDevicesResponse{}).
+		SetError(&Error{}).
+		Put(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*SyncNetworkDevicesResponse)
-// 	return result, response, err
-//}
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*SyncNetworkDevicesResponse)
+	return result, response, err
+}
 
 // UpdateDeviceRole updateDeviceRole
 /* Updates the role of the device as access, core, distribution, border router

@@ -2579,6 +2579,9 @@ type GetPnpDeviceListResponse struct {
 	} `json:"workflowParameters,omitempty"` //
 }
 
+// GetSmartAccountListResponse is the GetSmartAccountListResponse definition
+type GetSmartAccountListResponse []string
+
 // GetSyncResultForVirtualAccountResponse is the GetSyncResultForVirtualAccountResponse definition
 type GetSyncResultForVirtualAccountResponse struct {
 	AutoSyncPeriod int    `json:"autoSyncPeriod,omitempty"` //
@@ -2610,6 +2613,9 @@ type GetSyncResultForVirtualAccountResponse struct {
 	Token            string `json:"token,omitempty"`            //
 	VirtualAccountID string `json:"virtualAccountId,omitempty"` //
 }
+
+// GetVirtualAccountListResponse is the GetVirtualAccountListResponse definition
+type GetVirtualAccountListResponse []string
 
 // GetWorkflowByIDResponse is the GetWorkflowByIdResponse definition
 type GetWorkflowByIDResponse struct {
@@ -3845,21 +3851,21 @@ func (s *DeviceOnboardingPnPService) GetPnpDeviceList(getPnpDeviceListQueryParam
 // GetSmartAccountList getSmartAccountList
 /* Returns the list of Smart Account domains
  */
-// func (s *DeviceOnboardingPnPService) GetSmartAccountList() (*GetSmartAccountListResponse, *resty.Response, error) {
+func (s *DeviceOnboardingPnPService) GetSmartAccountList() (*GetSmartAccountListResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct"
+	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct"
 
-// 	response, err := RestyClient.R().
-// 		SetResult(&GetSmartAccountListResponse{}).
-// 		SetError(&Error{}).
-// 		Get(path)
+	response, err := RestyClient.R().
+		SetResult(&GetSmartAccountListResponse{}).
+		SetError(&Error{}).
+		Get(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*GetSmartAccountListResponse)
-// 	return result, response, err
-//}
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*GetSmartAccountListResponse)
+	return result, response, err
+}
 
 // GetSyncResultForVirtualAccount getSyncResultForVirtualAccount
 /* Returns the summary of devices synced from the given smart account & virtual account with PnP
@@ -3888,22 +3894,22 @@ func (s *DeviceOnboardingPnPService) GetSyncResultForVirtualAccount(domain strin
 /* Returns list of virtual accounts associated with the specified smart account
 @param domain Smart Account Domain
 */
-// func (s *DeviceOnboardingPnPService) GetVirtualAccountList(domain string) (*GetVirtualAccountListResponse, *resty.Response, error) {
+func (s *DeviceOnboardingPnPService) GetVirtualAccountList(domain string) (*GetVirtualAccountListResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct/{domain}/vacct"
-// 	path = strings.Replace(path, "{"+"domain"+"}", fmt.Sprintf("%v", domain), -1)
+	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct/{domain}/vacct"
+	path = strings.Replace(path, "{"+"domain"+"}", fmt.Sprintf("%v", domain), -1)
 
-// 	response, err := RestyClient.R().
-// 		SetResult(&GetVirtualAccountListResponse{}).
-// 		SetError(&Error{}).
-// 		Get(path)
+	response, err := RestyClient.R().
+		SetResult(&GetVirtualAccountListResponse{}).
+		SetError(&Error{}).
+		Get(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*GetVirtualAccountListResponse)
-// 	return result, response, err
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*GetVirtualAccountListResponse)
+	return result, response, err
+}
 
 // GetWorkflowByID getWorkflowById
 /* Returns a workflow specified by id

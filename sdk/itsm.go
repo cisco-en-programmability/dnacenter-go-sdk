@@ -8,6 +8,9 @@ import (
 // ITSMService is the service to communicate with the ITSM API endpoint
 type ITSMService service
 
+// RetryIntegrationEventsRequest is the RetryIntegrationEventsRequest definition
+type RetryIntegrationEventsRequest []string
+
 // GetFailedITSMEventsResponse is the GetFailedITSMEventsResponse definition
 type GetFailedITSMEventsResponse struct {
 	Category       string `json:"category,omitempty"`    //
@@ -67,19 +70,19 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 // RetryIntegrationEvents retryIntegrationEvents
 /* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
  */
-// func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
+func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/integration/events"
+	path := "/dna/intent/api/v1/integration/events"
 
-// 	response, err := RestyClient.R().
-// 		SetBody(retryIntegrationEventsRequest).
-// 		SetResult(&RetryIntegrationEventsResponse{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(retryIntegrationEventsRequest).
+		SetResult(&RetryIntegrationEventsResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*RetryIntegrationEventsResponse)
-// 	return result, response, err
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*RetryIntegrationEventsResponse)
+	return result, response, err
+}
