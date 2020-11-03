@@ -215,6 +215,52 @@ type GetAllInterfacesResponse struct {
 	Version string `json:"version,omitempty"` //
 }
 
+// DevicesGetDeviceByIDResponse is the GetDeviceByIDResponse definition
+type DevicesGetDeviceByIDResponse struct {
+	Response struct {
+		ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
+		AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
+		BootDateTime              string `json:"bootDateTime,omitempty"`              //
+		CollectionInterval        string `json:"collectionInterval,omitempty"`        //
+		CollectionStatus          string `json:"collectionStatus,omitempty"`          //
+		ErrorCode                 string `json:"errorCode,omitempty"`                 //
+		ErrorDescription          string `json:"errorDescription,omitempty"`          //
+		Family                    string `json:"family,omitempty"`                    //
+		Hostname                  string `json:"hostname,omitempty"`                  //
+		ID                        string `json:"id,omitempty"`                        //
+		InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
+		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
+		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdated               string `json:"lastUpdated,omitempty"`               //
+		LineCardCount             string `json:"lineCardCount,omitempty"`             //
+		LineCardID                string `json:"lineCardId,omitempty"`                //
+		Location                  string `json:"location,omitempty"`                  //
+		LocationName              string `json:"locationName,omitempty"`              //
+		MacAddress                string `json:"macAddress,omitempty"`                //
+		ManagementIPAddress       string `json:"managementIpAddress,omitempty"`       //
+		MemorySize                string `json:"memorySize,omitempty"`                //
+		PlatformID                string `json:"platformId,omitempty"`                //
+		ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` //
+		ReachabilityStatus        string `json:"reachabilityStatus,omitempty"`        //
+		Role                      string `json:"role,omitempty"`                      //
+		RoleSource                string `json:"roleSource,omitempty"`                //
+		SerialNumber              string `json:"serialNumber,omitempty"`              //
+		Series                    string `json:"series,omitempty"`                    //
+		SNMPContact               string `json:"snmpContact,omitempty"`               //
+		SNMPLocation              string `json:"snmpLocation,omitempty"`              //
+		SoftwareType              string `json:"softwareType,omitempty"`              //
+		SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
+		TagCount                  string `json:"tagCount,omitempty"`                  //
+		TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
+		Type                      string `json:"type,omitempty"`                      //
+		UpTime                    string `json:"upTime,omitempty"`                    //
+		WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
+	} `json:"response,omitempty"` //
+	Version string `json:"version,omitempty"` //
+}
+
 // GetDeviceBySerialNumberResponse is the GetDeviceBySerialNumberResponse definition
 type GetDeviceBySerialNumberResponse struct {
 	Response struct {
@@ -232,7 +278,7 @@ type GetDeviceBySerialNumberResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -501,7 +547,7 @@ type GetDeviceListResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -833,7 +879,7 @@ type GetNetworkDeviceByIPResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -879,7 +925,7 @@ type GetNetworkDeviceByPaginationRangeResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -1165,20 +1211,20 @@ func (s *DevicesService) GetAllInterfaces(getAllInterfacesQueryParams *GetAllInt
 /* Returns the network device details for the given device ID
 @param id Device ID
 */
-func (s *DevicesService) GetDeviceByID(id string) (*GetDeviceByIDResponse, *resty.Response, error) {
+func (s *DevicesService) GetDeviceByID(id string) (*DevicesGetDeviceByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&GetDeviceByIDResponse{}).
+		SetResult(&DevicesGetDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*GetDeviceByIDResponse)
+	result := response.Result().(*DevicesGetDeviceByIDResponse)
 	return result, response, err
 }
 

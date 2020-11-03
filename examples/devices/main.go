@@ -47,10 +47,10 @@ func main() {
 	}
 
 	fmt.Println("Printing device info by device id...")
-	// device, _, err := Client.Devices.GetDeviceByID(devices.Response[0].ID)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// fmt.Println(device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+	device, _, err := Client.Devices.GetDeviceByID(devices.Response[0].ID)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
 
 }
