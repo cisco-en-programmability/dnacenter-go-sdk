@@ -232,7 +232,7 @@ type DevicesGetDeviceByIDResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -278,7 +278,7 @@ type GetDeviceBySerialNumberResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -547,7 +547,7 @@ type GetDeviceListResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -879,7 +879,7 @@ type GetNetworkDeviceByIPResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -925,7 +925,7 @@ type GetNetworkDeviceByPaginationRangeResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //

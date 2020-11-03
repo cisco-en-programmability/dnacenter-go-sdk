@@ -51,6 +51,6 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+	fmt.Println(device.Response.ID, device.Response.MacAddress, device.Response.ManagementIPAddress, device.Response.PlatformID)
 
 }
