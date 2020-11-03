@@ -35,8 +35,8 @@ type GetL3TopologyDetailsResponse struct {
 			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
-			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
-			AdditionalInfo string `json:"additionalInfo,omitempty"` //
+			ACLApplied     bool                   `json:"aclApplied,omitempty"`     //
+			AdditionalInfo map[string]interface{} `json:"additionalInfo,omitempty"` //
 			CustomParam    struct {
 				ID           string `json:"id,omitempty"`           //
 				Label        string `json:"label,omitempty"`        //
@@ -132,8 +132,8 @@ type GetPhysicalTopologyResponse struct {
 			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
-			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
-			AdditionalInfo string `json:"additionalInfo,omitempty"` //
+			ACLApplied     bool                   `json:"aclApplied,omitempty"`     //
+			AdditionalInfo map[string]interface{} `json:"additionalInfo,omitempty"` //
 			CustomParam    struct {
 				ID           string `json:"id,omitempty"`           //
 				Label        string `json:"label,omitempty"`        //
@@ -211,8 +211,8 @@ type GetTopologyDetailsResponse struct {
 			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
-			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
-			AdditionalInfo string `json:"additionalInfo,omitempty"` //
+			ACLApplied     bool                   `json:"aclApplied,omitempty"`     //
+			AdditionalInfo map[string]interface{} `json:"additionalInfo,omitempty"` //
 			CustomParam    struct {
 				ID           string `json:"id,omitempty"`           //
 				Label        string `json:"label,omitempty"`        //
