@@ -16,23 +16,23 @@ type GetL3TopologyDetailsResponse struct {
 	Response struct {
 		ID    string `json:"id,omitempty"` //
 		Links []struct {
-			AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
-			EndPortID            string `json:"endPortID,omitempty"`            //
-			EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
-			EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
-			EndPortName          string `json:"endPortName,omitempty"`          //
-			EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
-			GreyOut              bool   `json:"greyOut,omitempty"`              //
-			ID                   string `json:"id,omitempty"`                   //
-			LinkStatus           string `json:"linkStatus,omitempty"`           //
-			Source               string `json:"source,omitempty"`               //
-			StartPortID          string `json:"startPortID,omitempty"`          //
-			StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
-			StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
-			StartPortName        string `json:"startPortName,omitempty"`        //
-			StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
-			Tag                  string `json:"tag,omitempty"`                  //
-			Target               string `json:"target,omitempty"`               //
+			AdditionalInfo       map[string]interface{} `json:"additionalInfo,omitempty"`       //
+			EndPortID            string                 `json:"endPortID,omitempty"`            //
+			EndPortIPv4Address   string                 `json:"endPortIpv4Address,omitempty"`   //
+			EndPortIPv4Mask      string                 `json:"endPortIpv4Mask,omitempty"`      //
+			EndPortName          string                 `json:"endPortName,omitempty"`          //
+			EndPortSpeed         string                 `json:"endPortSpeed,omitempty"`         //
+			GreyOut              bool                   `json:"greyOut,omitempty"`              //
+			ID                   string                 `json:"id,omitempty"`                   //
+			LinkStatus           string                 `json:"linkStatus,omitempty"`           //
+			Source               string                 `json:"source,omitempty"`               //
+			StartPortID          string                 `json:"startPortID,omitempty"`          //
+			StartPortIPv4Address string                 `json:"startPortIpv4Address,omitempty"` //
+			StartPortIPv4Mask    string                 `json:"startPortIpv4Mask,omitempty"`    //
+			StartPortName        string                 `json:"startPortName,omitempty"`        //
+			StartPortSpeed       string                 `json:"startPortSpeed,omitempty"`       //
+			Tag                  string                 `json:"tag,omitempty"`                  //
+			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
 			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
@@ -113,23 +113,23 @@ type GetPhysicalTopologyResponse struct {
 	Response struct {
 		ID    string `json:"id,omitempty"` //
 		Links []struct {
-			AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
-			EndPortID            string `json:"endPortID,omitempty"`            //
-			EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
-			EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
-			EndPortName          string `json:"endPortName,omitempty"`          //
-			EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
-			GreyOut              bool   `json:"greyOut,omitempty"`              //
-			ID                   string `json:"id,omitempty"`                   //
-			LinkStatus           string `json:"linkStatus,omitempty"`           //
-			Source               string `json:"source,omitempty"`               //
-			StartPortID          string `json:"startPortID,omitempty"`          //
-			StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
-			StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
-			StartPortName        string `json:"startPortName,omitempty"`        //
-			StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
-			Tag                  string `json:"tag,omitempty"`                  //
-			Target               string `json:"target,omitempty"`               //
+			AdditionalInfo       map[string]interface{} `json:"additionalInfo,omitempty"`       //
+			EndPortID            string                 `json:"endPortID,omitempty"`            //
+			EndPortIPv4Address   string                 `json:"endPortIpv4Address,omitempty"`   //
+			EndPortIPv4Mask      string                 `json:"endPortIpv4Mask,omitempty"`      //
+			EndPortName          string                 `json:"endPortName,omitempty"`          //
+			EndPortSpeed         string                 `json:"endPortSpeed,omitempty"`         //
+			GreyOut              bool                   `json:"greyOut,omitempty"`              //
+			ID                   string                 `json:"id,omitempty"`                   //
+			LinkStatus           string                 `json:"linkStatus,omitempty"`           //
+			Source               string                 `json:"source,omitempty"`               //
+			StartPortID          string                 `json:"startPortID,omitempty"`          //
+			StartPortIPv4Address string                 `json:"startPortIpv4Address,omitempty"` //
+			StartPortIPv4Mask    string                 `json:"startPortIpv4Mask,omitempty"`    //
+			StartPortName        string                 `json:"startPortName,omitempty"`        //
+			StartPortSpeed       string                 `json:"startPortSpeed,omitempty"`       //
+			Tag                  string                 `json:"tag,omitempty"`                  //
+			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
 			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
@@ -192,23 +192,23 @@ type GetTopologyDetailsResponse struct {
 	Response struct {
 		ID    string `json:"id,omitempty"` //
 		Links []struct {
-			AdditionalInfo       string `json:"additionalInfo,omitempty"`       //
-			EndPortID            string `json:"endPortID,omitempty"`            //
-			EndPortIPv4Address   string `json:"endPortIpv4Address,omitempty"`   //
-			EndPortIPv4Mask      string `json:"endPortIpv4Mask,omitempty"`      //
-			EndPortName          string `json:"endPortName,omitempty"`          //
-			EndPortSpeed         string `json:"endPortSpeed,omitempty"`         //
-			GreyOut              bool   `json:"greyOut,omitempty"`              //
-			ID                   string `json:"id,omitempty"`                   //
-			LinkStatus           string `json:"linkStatus,omitempty"`           //
-			Source               string `json:"source,omitempty"`               //
-			StartPortID          string `json:"startPortID,omitempty"`          //
-			StartPortIPv4Address string `json:"startPortIpv4Address,omitempty"` //
-			StartPortIPv4Mask    string `json:"startPortIpv4Mask,omitempty"`    //
-			StartPortName        string `json:"startPortName,omitempty"`        //
-			StartPortSpeed       string `json:"startPortSpeed,omitempty"`       //
-			Tag                  string `json:"tag,omitempty"`                  //
-			Target               string `json:"target,omitempty"`               //
+			AdditionalInfo       map[string]interface{} `json:"additionalInfo,omitempty"`       //
+			EndPortID            string                 `json:"endPortID,omitempty"`            //
+			EndPortIPv4Address   string                 `json:"endPortIpv4Address,omitempty"`   //
+			EndPortIPv4Mask      string                 `json:"endPortIpv4Mask,omitempty"`      //
+			EndPortName          string                 `json:"endPortName,omitempty"`          //
+			EndPortSpeed         string                 `json:"endPortSpeed,omitempty"`         //
+			GreyOut              bool                   `json:"greyOut,omitempty"`              //
+			ID                   string                 `json:"id,omitempty"`                   //
+			LinkStatus           string                 `json:"linkStatus,omitempty"`           //
+			Source               string                 `json:"source,omitempty"`               //
+			StartPortID          string                 `json:"startPortID,omitempty"`          //
+			StartPortIPv4Address string                 `json:"startPortIpv4Address,omitempty"` //
+			StartPortIPv4Mask    string                 `json:"startPortIpv4Mask,omitempty"`    //
+			StartPortName        string                 `json:"startPortName,omitempty"`        //
+			StartPortSpeed       string                 `json:"startPortSpeed,omitempty"`       //
+			Tag                  string                 `json:"tag,omitempty"`                  //
+			Target               string                 `json:"target,omitempty"`               //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
 			ACLApplied     bool   `json:"aclApplied,omitempty"`     //
