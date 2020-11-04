@@ -215,8 +215,8 @@ type GetAllInterfacesResponse struct {
 	Version string `json:"version,omitempty"` //
 }
 
-// GetDeviceByIDResponse is the GetDeviceByIDResponse definition
-type GetDeviceByIDResponse struct {
+// DevicesGetDeviceByIDResponse is the GetDeviceByIDResponse definition
+type DevicesGetDeviceByIDResponse struct {
 	Response struct {
 		ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
 		AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
@@ -1211,20 +1211,20 @@ func (s *DevicesService) GetAllInterfaces(getAllInterfacesQueryParams *GetAllInt
 /* Returns the network device details for the given device ID
 @param id Device ID
 */
-func (s *DevicesService) GetDeviceByID(id string) (*GetDeviceByIDResponse, *resty.Response, error) {
+func (s *DevicesService) GetDeviceByID(id string) (*DevicesGetDeviceByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&GetDeviceByIDResponse{}).
+		SetResult(&DevicesGetDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*GetDeviceByIDResponse)
+	result := response.Result().(*DevicesGetDeviceByIDResponse)
 	return result, response, err
 }
 

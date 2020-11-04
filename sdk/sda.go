@@ -1022,25 +1022,25 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 /* Deletes border device from SDA Fabric
 @param deviceIPAddress Device IP Address
 */
-func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
+// func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
 
-	path := "/dna/intent/api/v1/business/sda/border-device"
+// 	path := "/dna/intent/api/v1/business/sda/border-device"
 
-	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
+// 	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetBody(deletesBorderDeviceFromSDAFabricRequest).
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetQueryString(queryString.Encode()).
+// 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-	return response, err
+// 	return response, err
 
-}
+// }
 
 // GetControlPlaneDeviceFromSDAFabricQueryParams defines the query parameters for this request
 type GetControlPlaneDeviceFromSDAFabricQueryParams struct {
