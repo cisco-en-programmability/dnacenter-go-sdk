@@ -215,8 +215,8 @@ type GetAllInterfacesResponse struct {
 	Version string `json:"version,omitempty"` //
 }
 
-// DevicesGetDeviceByIDResponse is the GetDeviceByIDResponse definition
-type DevicesGetDeviceByIDResponse struct {
+// GetDeviceByIDResponse is the GetDeviceByIDResponse definition
+type GetDeviceByIDResponse struct {
 	Response struct {
 		ApManagerInterfaceIP      string `json:"apManagerInterfaceIp,omitempty"`      //
 		AssociatedWlcIP           string `json:"associatedWlcIp,omitempty"`           //
@@ -232,7 +232,7 @@ type DevicesGetDeviceByIDResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -278,7 +278,7 @@ type GetDeviceBySerialNumberResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -547,7 +547,7 @@ type GetDeviceListResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -879,7 +879,7 @@ type GetNetworkDeviceByIPResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -925,7 +925,7 @@ type GetNetworkDeviceByPaginationRangeResponse struct {
 		InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 		InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 		InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-		LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
+		LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 		LastUpdated               string `json:"lastUpdated,omitempty"`               //
 		LineCardCount             string `json:"lineCardCount,omitempty"`             //
 		LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -1211,20 +1211,20 @@ func (s *DevicesService) GetAllInterfaces(getAllInterfacesQueryParams *GetAllInt
 /* Returns the network device details for the given device ID
 @param id Device ID
 */
-func (s *DevicesService) GetDeviceByID(id string) (*DevicesGetDeviceByIDResponse, *resty.Response, error) {
+func (s *DevicesService) GetDeviceByID(id string) (*GetDeviceByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&DevicesGetDeviceByIDResponse{}).
+		SetResult(&GetDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*DevicesGetDeviceByIDResponse)
+	result := response.Result().(*GetDeviceByIDResponse)
 	return result, response, err
 }
 
@@ -2122,7 +2122,7 @@ type SyncNetworkDevicesQueryParams struct {
 /* Synchronizes the devices. If forceSync param is false (default) then the sync would run in normal priority thread. If forceSync param is true then the sync would run in high priority thread if available, else the sync will fail. Result can be seen in the child task of each device
 @param forceSync forceSync
 */
-func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncNetworkDevicesQueryParams, syncNetworkDevicesRequest *SyncNetworkDevicesRequest) (*SyncNetworkDevicesResponse, *resty.Response, error) {
+func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncNetworkDevicesQueryParams, syncNetworkDevicesRequest *[]SyncNetworkDevicesRequest) (*SyncNetworkDevicesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device/sync"
 

@@ -185,23 +185,23 @@ type UpdatesTagMembershipResponse struct {
 /* Adds members to the tag specified by id
 @param id Tag ID
 */
-// func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
+func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/tag/{id}/member"
-// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	path := "/dna/intent/api/v1/tag/{id}/member"
+	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-// 	response, err := RestyClient.R().
-// 		SetBody(addMembersToTheTagRequest).
-// 		SetResult(&AddMembersToTheTagResponse{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(addMembersToTheTagRequest).
+		SetResult(&AddMembersToTheTagResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*AddMembersToTheTagResponse)
-// 	return result, response, err
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*AddMembersToTheTagResponse)
+	return result, response, err
+}
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes

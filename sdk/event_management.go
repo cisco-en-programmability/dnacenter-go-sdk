@@ -249,7 +249,7 @@ func (s *EventManagementService) CountOfNotifications(countOfNotificationsQueryP
 // CreateEventSubscriptions createEventSubscriptions
 /* Subscribe SubscriptionEndpoint to list of registered events
  */
-func (s *EventManagementService) CreateEventSubscriptions(createEventSubscriptionsRequest *CreateEventSubscriptionsRequest) (*CreateEventSubscriptionsResponse, *resty.Response, error) {
+func (s *EventManagementService) CreateEventSubscriptions(createEventSubscriptionsRequest *[]CreateEventSubscriptionsRequest) (*CreateEventSubscriptionsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/event/subscription"
 
@@ -445,7 +445,7 @@ func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*Get
 // UpdateEventSubscriptions updateEventSubscriptions
 /* Update SubscriptionEndpoint to list of registered events
  */
-func (s *EventManagementService) UpdateEventSubscriptions(updateEventSubscriptionsRequest *UpdateEventSubscriptionsRequest) (*UpdateEventSubscriptionsResponse, *resty.Response, error) {
+func (s *EventManagementService) UpdateEventSubscriptions(updateEventSubscriptionsRequest *[]UpdateEventSubscriptionsRequest) (*UpdateEventSubscriptionsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/event/subscription"
 

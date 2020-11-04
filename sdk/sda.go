@@ -550,7 +550,7 @@ type UpdateDefaultAuthenticationProfileInSDAFabricResponse struct {
 // AddControlPlaneDeviceInSDAFabric addControlPlaneDeviceInSDAFabric
 /* Add control plane device in SDA Fabric
  */
-func (s *SDAService) AddControlPlaneDeviceInSDAFabric(addControlPlaneDeviceInSDAFabricRequest *AddControlPlaneDeviceInSDAFabricRequest) (*AddControlPlaneDeviceInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddControlPlaneDeviceInSDAFabric(addControlPlaneDeviceInSDAFabricRequest *[]AddControlPlaneDeviceInSDAFabricRequest) (*AddControlPlaneDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
 
@@ -570,7 +570,7 @@ func (s *SDAService) AddControlPlaneDeviceInSDAFabric(addControlPlaneDeviceInSDA
 // AddDefaultAuthenticationProfileInSDAFabric addDefaultAuthenticationProfileInSDAFabric
 /* Add default authentication profile in SDA Fabric
  */
-func (s *SDAService) AddDefaultAuthenticationProfileInSDAFabric(addDefaultAuthenticationProfileInSDAFabricRequest *AddDefaultAuthenticationProfileInSDAFabricRequest) (*AddDefaultAuthenticationProfileInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddDefaultAuthenticationProfileInSDAFabric(addDefaultAuthenticationProfileInSDAFabricRequest *[]AddDefaultAuthenticationProfileInSDAFabricRequest) (*AddDefaultAuthenticationProfileInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
@@ -590,7 +590,7 @@ func (s *SDAService) AddDefaultAuthenticationProfileInSDAFabric(addDefaultAuthen
 // AddEdgeDeviceInSDAFabric addEdgeDeviceInSDAFabric
 /* Add edge device in SDA Fabric
  */
-func (s *SDAService) AddEdgeDeviceInSDAFabric(addEdgeDeviceInSDAFabricRequest *AddEdgeDeviceInSDAFabricRequest) (*AddEdgeDeviceInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddEdgeDeviceInSDAFabric(addEdgeDeviceInSDAFabricRequest *[]AddEdgeDeviceInSDAFabricRequest) (*AddEdgeDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/edge-device"
 
@@ -610,7 +610,7 @@ func (s *SDAService) AddEdgeDeviceInSDAFabric(addEdgeDeviceInSDAFabricRequest *A
 // AddFabric addFabric
 /* Add SDA Fabric
  */
-func (s *SDAService) AddFabric(addFabricRequest *AddFabricRequest) (*AddFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddFabric(addFabricRequest *[]AddFabricRequest) (*AddFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric"
 
@@ -630,7 +630,7 @@ func (s *SDAService) AddFabric(addFabricRequest *AddFabricRequest) (*AddFabricRe
 // AddIPPoolInSDAVirtualNetwork addIPPoolInSDAVirtualNetwork
 /* Add IP Pool in SDA Virtual Network
  */
-func (s *SDAService) AddIPPoolInSDAVirtualNetwork(addIPPoolInSDAVirtualNetworkRequest *AddIPPoolInSDAVirtualNetworkRequest) (*AddIPPoolInSDAVirtualNetworkResponse, *resty.Response, error) {
+func (s *SDAService) AddIPPoolInSDAVirtualNetwork(addIPPoolInSDAVirtualNetworkRequest *[]AddIPPoolInSDAVirtualNetworkRequest) (*AddIPPoolInSDAVirtualNetworkResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
@@ -650,7 +650,7 @@ func (s *SDAService) AddIPPoolInSDAVirtualNetwork(addIPPoolInSDAVirtualNetworkRe
 // AddPortAssignmentForAccessPointInSDAFabric addPortAssignmentForAccessPointInSDAFabric
 /* Add Port assignment for access point in SDA Fabric
  */
-func (s *SDAService) AddPortAssignmentForAccessPointInSDAFabric(addPortAssignmentForAccessPointInSDAFabricRequest *AddPortAssignmentForAccessPointInSDAFabricRequest) (*AddPortAssignmentForAccessPointInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddPortAssignmentForAccessPointInSDAFabric(addPortAssignmentForAccessPointInSDAFabricRequest *[]AddPortAssignmentForAccessPointInSDAFabricRequest) (*AddPortAssignmentForAccessPointInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
@@ -670,7 +670,7 @@ func (s *SDAService) AddPortAssignmentForAccessPointInSDAFabric(addPortAssignmen
 // AddPortAssignmentForUserDeviceInSDAFabric addPortAssignmentForUserDeviceInSDAFabric
 /* Add Port assignment for user device in SDA Fabric.
  */
-func (s *SDAService) AddPortAssignmentForUserDeviceInSDAFabric(addPortAssignmentForUserDeviceInSDAFabricRequest *AddPortAssignmentForUserDeviceInSDAFabricRequest) (*AddPortAssignmentForUserDeviceInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddPortAssignmentForUserDeviceInSDAFabric(addPortAssignmentForUserDeviceInSDAFabricRequest *[]AddPortAssignmentForUserDeviceInSDAFabricRequest) (*AddPortAssignmentForUserDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
@@ -690,7 +690,7 @@ func (s *SDAService) AddPortAssignmentForUserDeviceInSDAFabric(addPortAssignment
 // AddSiteInSDAFabric addSiteInSDAFabric
 /* Add Site in SDA Fabric
  */
-func (s *SDAService) AddSiteInSDAFabric(addSiteInSDAFabricRequest *AddSiteInSDAFabricRequest) (*AddSiteInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddSiteInSDAFabric(addSiteInSDAFabricRequest *[]AddSiteInSDAFabricRequest) (*AddSiteInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
@@ -710,7 +710,7 @@ func (s *SDAService) AddSiteInSDAFabric(addSiteInSDAFabricRequest *AddSiteInSDAF
 // AddVNInSDAFabric addVNInSDAFabric
 /* Add virtual network (VN) in SDA Fabric
  */
-func (s *SDAService) AddVNInSDAFabric(addVNInSDAFabricRequest *AddVNInSDAFabricRequest) (*AddVNInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddVNInSDAFabric(addVNInSDAFabricRequest *[]AddVNInSDAFabricRequest) (*AddVNInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
 
@@ -730,7 +730,7 @@ func (s *SDAService) AddVNInSDAFabric(addVNInSDAFabricRequest *AddVNInSDAFabricR
 // AddsBorderDeviceInSDAFabric addsBorderDeviceInSDAFabric
 /* Adds border device in SDA Fabric
  */
-func (s *SDAService) AddsBorderDeviceInSDAFabric(addsBorderDeviceInSDAFabricRequest *AddsBorderDeviceInSDAFabricRequest) (*AddsBorderDeviceInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) AddsBorderDeviceInSDAFabric(addsBorderDeviceInSDAFabricRequest *[]AddsBorderDeviceInSDAFabricRequest) (*AddsBorderDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/border-device"
 
@@ -784,7 +784,7 @@ type DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams struct {
 /* Add default authentication profile in SDA Fabric
 @param siteNameHierarchy siteNameHierarchy
 */
-func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams, deleteDefaultAuthenticationProfileFromSDAFabricRequest *DeleteDefaultAuthenticationProfileFromSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams, deleteDefaultAuthenticationProfileFromSDAFabricRequest *[]DeleteDefaultAuthenticationProfileFromSDAFabricRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
@@ -843,7 +843,7 @@ type DeleteIPPoolFromSDAVirtualNetworkQueryParams struct {
 @param ipPoolName ipPoolName
 @param virtualNetworkName virtualNetworkName
 */
-func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSDAVirtualNetworkQueryParams, deleteIPPoolFromSDAVirtualNetworkRequest *DeleteIPPoolFromSDAVirtualNetworkRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSDAVirtualNetworkQueryParams, deleteIPPoolFromSDAVirtualNetworkRequest *[]DeleteIPPoolFromSDAVirtualNetworkRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
@@ -874,7 +874,7 @@ type DeletePortAssignmentForAccessPointInSDAFabricQueryParams struct {
 @param device-ip device-ip
 @param interfaceName interfaceName
 */
-func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSDAFabricQueryParams, deletePortAssignmentForAccessPointInSDAFabricRequest *DeletePortAssignmentForAccessPointInSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSDAFabricQueryParams, deletePortAssignmentForAccessPointInSDAFabricRequest *[]DeletePortAssignmentForAccessPointInSDAFabricRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
@@ -905,7 +905,7 @@ type DeletePortAssignmentForUserDeviceInSDAFabricQueryParams struct {
 @param device-ip device-ip
 @param interfaceName interfaceName
 */
-func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSDAFabricQueryParams, deletePortAssignmentForUserDeviceInSDAFabricRequest *DeletePortAssignmentForUserDeviceInSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSDAFabricQueryParams, deletePortAssignmentForUserDeviceInSDAFabricRequest *[]DeletePortAssignmentForUserDeviceInSDAFabricRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
@@ -934,7 +934,7 @@ type DeleteSDAFabricQueryParams struct {
 /* Delete SDA Fabric
 @param fabricName Fabric Name
 */
-func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabricQueryParams, deleteSDAFabricRequest *DeleteSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabricQueryParams, deleteSDAFabricRequest *[]DeleteSDAFabricRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric"
 
@@ -963,7 +963,7 @@ type DeleteSiteFromSDAFabricQueryParams struct {
 /* Delete Site from SDA Fabric
 @param siteNameHierarchy Site Name Hierarchy
 */
-func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams *DeleteSiteFromSDAFabricQueryParams, deleteSiteFromSDAFabricRequest *DeleteSiteFromSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams *DeleteSiteFromSDAFabricQueryParams, deleteSiteFromSDAFabricRequest *[]DeleteSiteFromSDAFabricRequest) (*resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
@@ -1022,25 +1022,25 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 /* Deletes border device from SDA Fabric
 @param deviceIPAddress Device IP Address
 */
-// func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/business/sda/border-device"
+	path := "/dna/intent/api/v1/business/sda/border-device"
 
-// 	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
+	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
 
-// 	response, err := RestyClient.R().
-// 		SetQueryString(queryString.Encode()).
-// 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
-// 		SetError(&Error{}).
-// 		Delete(path)
+	response, err := RestyClient.R().
+		SetQueryString(queryString.Encode()).
+		SetBody(deletesBorderDeviceFromSDAFabricRequest).
+		SetError(&Error{}).
+		Delete(path)
 
-// 	if err != nil {
-// 		return nil, err
-// 	}
+	if err != nil {
+		return nil, err
+	}
 
-// 	return response, err
+	return response, err
 
-// }
+}
 
 // GetControlPlaneDeviceFromSDAFabricQueryParams defines the query parameters for this request
 type GetControlPlaneDeviceFromSDAFabricQueryParams struct {
@@ -1408,7 +1408,7 @@ func (s *SDAService) GetsBorderDeviceDetailFromSDAFabric(getsBorderDeviceDetailF
 // UpdateDefaultAuthenticationProfileInSDAFabric updateDefaultAuthenticationProfileInSDAFabric
 /* Update default authentication profile in SDA Fabric
  */
-func (s *SDAService) UpdateDefaultAuthenticationProfileInSDAFabric(updateDefaultAuthenticationProfileInSDAFabricRequest *UpdateDefaultAuthenticationProfileInSDAFabricRequest) (*UpdateDefaultAuthenticationProfileInSDAFabricResponse, *resty.Response, error) {
+func (s *SDAService) UpdateDefaultAuthenticationProfileInSDAFabric(updateDefaultAuthenticationProfileInSDAFabricRequest *[]UpdateDefaultAuthenticationProfileInSDAFabricRequest) (*UpdateDefaultAuthenticationProfileInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 

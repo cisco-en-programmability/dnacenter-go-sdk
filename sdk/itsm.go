@@ -70,7 +70,7 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 // RetryIntegrationEvents retryIntegrationEvents
 /* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
  */
-func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
+func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *[]RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/integration/events"
 

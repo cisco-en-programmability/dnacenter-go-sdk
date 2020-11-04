@@ -177,13 +177,13 @@ type GetSiteHealthResponse struct {
 // GetSiteResponse is the GetSiteResponse definition
 type GetSiteResponse struct {
 	Response []struct {
-		AdditionalInfo    map[string]interface{} `json:"additionalInfo,omitempty"`    //
-		ID                string                 `json:"id,omitempty"`                //
-		InstanceTenantID  string                 `json:"instanceTenantId,omitempty"`  //
-		Name              string                 `json:"name,omitempty"`              //
-		ParentID          string                 `json:"parentId,omitempty"`          //
-		SiteHierarchy     string                 `json:"siteHierarchy,omitempty"`     //
-		SiteNameHierarchy string                 `json:"siteNameHierarchy,omitempty"` //
+		AdditionalInfo    []string `json:"additionalInfo,omitempty"`    //
+		ID                string   `json:"id,omitempty"`                //
+		InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  //
+		Name              string   `json:"name,omitempty"`              //
+		ParentID          string   `json:"parentId,omitempty"`          //
+		SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     //
+		SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` //
 	} `json:"response,omitempty"` //
 }
 

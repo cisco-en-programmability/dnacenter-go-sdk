@@ -220,7 +220,7 @@ type ImportSoftwareImageViaURLQueryParams struct {
 @param scheduleDesc Custom Description (Optional)
 @param scheduleOrigin Originator of this call (Optional)
 */
-func (s *SoftwareImageManagementSWIMService) ImportSoftwareImageViaURL(importSoftwareImageViaURLQueryParams *ImportSoftwareImageViaURLQueryParams, importSoftwareImageViaURLRequest *ImportSoftwareImageViaURLRequest) (*ImportSoftwareImageViaURLResponse, *resty.Response, error) {
+func (s *SoftwareImageManagementSWIMService) ImportSoftwareImageViaURL(importSoftwareImageViaURLQueryParams *ImportSoftwareImageViaURLQueryParams, importSoftwareImageViaURLRequest *[]ImportSoftwareImageViaURLRequest) (*ImportSoftwareImageViaURLResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/image/importation/source/url"
 
@@ -251,7 +251,7 @@ type TriggerSoftwareImageActivationQueryParams struct {
 @param CLIent-URL Client-url (Optional)
 @param scheduleValidate scheduleValidate, validates data before schedule (Optional)
 */
-func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(triggerSoftwareImageActivationQueryParams *TriggerSoftwareImageActivationQueryParams, triggerSoftwareImageActivationRequest *TriggerSoftwareImageActivationRequest) (*TriggerSoftwareImageActivationResponse, *resty.Response, error) {
+func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(triggerSoftwareImageActivationQueryParams *TriggerSoftwareImageActivationQueryParams, triggerSoftwareImageActivationRequest *[]TriggerSoftwareImageActivationRequest) (*TriggerSoftwareImageActivationResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/image/activation/device"
 
@@ -274,7 +274,7 @@ func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(trig
 // TriggerSoftwareImageDistribution triggerSoftwareImageDistribution
 /* Distributes a software image on a given device. Software image must be imported successfully into DNA Center before it can be distributed
  */
-func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageDistribution(triggerSoftwareImageDistributionRequest *TriggerSoftwareImageDistributionRequest) (*TriggerSoftwareImageDistributionResponse, *resty.Response, error) {
+func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageDistribution(triggerSoftwareImageDistributionRequest *[]TriggerSoftwareImageDistributionRequest) (*TriggerSoftwareImageDistributionResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/image/distribution"
 

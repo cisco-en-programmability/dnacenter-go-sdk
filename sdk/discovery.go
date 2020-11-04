@@ -877,7 +877,7 @@ func (s *DiscoveryService) CreateCLICredentials(createCLICredentialsRequest *Cre
 // CreateHTTPReadCredentials createHTTPReadCredentials
 /* Adds HTTP read credentials
  */
-func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRequest *CreateHTTPReadCredentialsRequest) (*CreateHTTPReadCredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRequest *[]CreateHTTPReadCredentialsRequest) (*CreateHTTPReadCredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/http-read"
 
@@ -937,7 +937,7 @@ func (s *DiscoveryService) CreateNetconfCredentials(createNetconfCredentialsRequ
 // CreateSNMPReadCommunity createSNMPReadCommunity
 /* Adds global SNMP read community
  */
-func (s *DiscoveryService) CreateSNMPReadCommunity(createSNMPReadCommunityRequest *CreateSNMPReadCommunityRequest) (*CreateSNMPReadCommunityResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateSNMPReadCommunity(createSNMPReadCommunityRequest *[]CreateSNMPReadCommunityRequest) (*CreateSNMPReadCommunityResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
 
@@ -957,7 +957,7 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(createSNMPReadCommunityReques
 // CreateSNMPWriteCommunity createSNMPWriteCommunity
 /* Adds global SNMP write community
  */
-func (s *DiscoveryService) CreateSNMPWriteCommunity(createSNMPWriteCommunityRequest *CreateSNMPWriteCommunityRequest) (*CreateSNMPWriteCommunityResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateSNMPWriteCommunity(createSNMPWriteCommunityRequest *[]CreateSNMPWriteCommunityRequest) (*CreateSNMPWriteCommunityResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
 
@@ -977,7 +977,7 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(createSNMPWriteCommunityRequ
 // CreateSNMPv3Credentials createSNMPv3Credentials
 /* Adds global SNMPv3 credentials
  */
-func (s *DiscoveryService) CreateSNMPv3Credentials(createSNMPv3CredentialsRequest *CreateSNMPv3CredentialsRequest) (*CreateSNMPv3CredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateSNMPv3Credentials(createSNMPv3CredentialsRequest *[]CreateSNMPv3CredentialsRequest) (*CreateSNMPv3CredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
 
@@ -997,7 +997,7 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(createSNMPv3CredentialsReques
 // CreateUpdateSNMPProperties createUpdateSNMPProperties
 /* Adds SNMP properties
  */
-func (s *DiscoveryService) CreateUpdateSNMPProperties(createUpdateSNMPPropertiesRequest *CreateUpdateSNMPPropertiesRequest) (*CreateUpdateSNMPPropertiesResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateUpdateSNMPProperties(createUpdateSNMPPropertiesRequest *[]CreateUpdateSNMPPropertiesRequest) (*CreateUpdateSNMPPropertiesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/snmp-property"
 
@@ -1506,7 +1506,7 @@ func (s *DiscoveryService) UpdateGlobalCredentials(globalCredentialID string, up
 // UpdateHTTPReadCredential updateHTTPReadCredential
 /* Updates global HTTP Read credential
  */
-func (s *DiscoveryService) UpdateHTTPReadCredential(updateHTTPReadCredentialRequest *UpdateHTTPReadCredentialRequest) (*UpdateHTTPReadCredentialResponse, *resty.Response, error) {
+func (s *DiscoveryService) UpdateHTTPReadCredential(updateHTTPReadCredentialRequest *[]UpdateHTTPReadCredentialRequest) (*UpdateHTTPReadCredentialResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/http-read"
 
@@ -1566,7 +1566,7 @@ func (s *DiscoveryService) UpdateNetconfCredentials(updateNetconfCredentialsRequ
 // UpdateSNMPReadCommunity updateSNMPReadCommunity
 /* Updates global SNMP read community
  */
-func (s *DiscoveryService) UpdateSNMPReadCommunity(updateSNMPReadCommunityRequest *UpdateSNMPReadCommunityRequest) (*UpdateSNMPReadCommunityResponse, *resty.Response, error) {
+func (s *DiscoveryService) UpdateSNMPReadCommunity(updateSNMPReadCommunityRequest *[]UpdateSNMPReadCommunityRequest) (*UpdateSNMPReadCommunityResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
 
@@ -1586,7 +1586,7 @@ func (s *DiscoveryService) UpdateSNMPReadCommunity(updateSNMPReadCommunityReques
 // UpdateSNMPWriteCommunity updateSNMPWriteCommunity
 /* Updates global SNMP write community
  */
-func (s *DiscoveryService) UpdateSNMPWriteCommunity(updateSNMPWriteCommunityRequest *UpdateSNMPWriteCommunityRequest) (*UpdateSNMPWriteCommunityResponse, *resty.Response, error) {
+func (s *DiscoveryService) UpdateSNMPWriteCommunity(updateSNMPWriteCommunityRequest *[]UpdateSNMPWriteCommunityRequest) (*UpdateSNMPWriteCommunityResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
 
@@ -1606,7 +1606,7 @@ func (s *DiscoveryService) UpdateSNMPWriteCommunity(updateSNMPWriteCommunityRequ
 // UpdateSNMPv3Credentials updateSNMPv3Credentials
 /* Updates global SNMPv3 credential
  */
-func (s *DiscoveryService) UpdateSNMPv3Credentials(updateSNMPv3CredentialsRequest *UpdateSNMPv3CredentialsRequest) (*UpdateSNMPv3CredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) UpdateSNMPv3Credentials(updateSNMPv3CredentialsRequest *[]UpdateSNMPv3CredentialsRequest) (*UpdateSNMPv3CredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
 

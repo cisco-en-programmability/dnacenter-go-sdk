@@ -397,7 +397,7 @@ type UpdateWirelessProfileResponse struct {
 /* Provision wireless Access points
 @param __persistbapioutput
 */
-func (s *WirelessService) APProvision(aPProvisionRequest *APProvisionRequest) (*APProvisionResponse, *resty.Response, error) {
+func (s *WirelessService) APProvision(aPProvisionRequest *[]APProvisionRequest) (*APProvisionResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/wireless/ap-provision"
 
@@ -642,7 +642,7 @@ func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetW
 /* Provision wireless devices
 @param __persistbapioutput Enable this parameter to execute the API and return a response asynchronously.
 */
-func (s *WirelessService) Provision(provisionRequest *ProvisionRequest) (*ProvisionResponse, *resty.Response, error) {
+func (s *WirelessService) Provision(provisionRequest *[]ProvisionRequest) (*ProvisionResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/wireless/provision"
 
@@ -663,7 +663,7 @@ func (s *WirelessService) Provision(provisionRequest *ProvisionRequest) (*Provis
 /* Updates wireless provisioning
 @param __persistbapioutput Enable this parameter to execute the API and return a response asynchronously.
 */
-func (s *WirelessService) ProvisionUpdate(provisionUpdateRequest *ProvisionUpdateRequest) (*ProvisionUpdateResponse, *resty.Response, error) {
+func (s *WirelessService) ProvisionUpdate(provisionUpdateRequest *[]ProvisionUpdateRequest) (*ProvisionUpdateResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/wireless/provision"
 

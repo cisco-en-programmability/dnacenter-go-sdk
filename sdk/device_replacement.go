@@ -127,7 +127,7 @@ func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceR
 // MarkDeviceForReplacement markDeviceForReplacement
 /* Marks device for replacement
  */
-func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplacementRequest *MarkDeviceForReplacementRequest) (*MarkDeviceForReplacementResponse, *resty.Response, error) {
+func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplacementRequest *[]MarkDeviceForReplacementRequest) (*MarkDeviceForReplacementResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/device-replacement"
 
@@ -223,7 +223,7 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplaceme
 // UnMarkDeviceForReplacement unMarkDeviceForReplacement
 /* UnMarks device for replacement
  */
-func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForReplacementRequest *UnMarkDeviceForReplacementRequest) (*UnMarkDeviceForReplacementResponse, *resty.Response, error) {
+func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForReplacementRequest *[]UnMarkDeviceForReplacementRequest) (*UnMarkDeviceForReplacementResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/device-replacement"
 

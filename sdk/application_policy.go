@@ -190,7 +190,7 @@ type GetApplicationsResponse struct {
 // CreateApplication createApplication
 /* Create new Custom application
  */
-func (s *ApplicationPolicyService) CreateApplication(createApplicationRequest *CreateApplicationRequest) (*CreateApplicationResponse, *resty.Response, error) {
+func (s *ApplicationPolicyService) CreateApplication(createApplicationRequest *[]CreateApplicationRequest) (*CreateApplicationResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/applications"
 
@@ -210,7 +210,7 @@ func (s *ApplicationPolicyService) CreateApplication(createApplicationRequest *C
 // CreateApplicationSet createApplicationSet
 /* Create new custom application-set/s
  */
-func (s *ApplicationPolicyService) CreateApplicationSet(createApplicationSetRequest *CreateApplicationSetRequest) (*CreateApplicationSetResponse, *resty.Response, error) {
+func (s *ApplicationPolicyService) CreateApplicationSet(createApplicationSetRequest *[]CreateApplicationSetRequest) (*CreateApplicationSetResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
@@ -286,7 +286,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQuer
 // EditApplication editApplication
 /* Edit the attributes of an existing application
  */
-func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *EditApplicationRequest) (*EditApplicationResponse, *resty.Response, error) {
+func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *[]EditApplicationRequest) (*EditApplicationResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/applications"
 
