@@ -897,7 +897,7 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRe
 // CreateHTTPWriteCredentials createHTTPWriteCredentials
 /* Adds global HTTP write credentials
  */
-func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *[]CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/http-write"
 

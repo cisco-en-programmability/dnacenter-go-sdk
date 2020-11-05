@@ -111,11 +111,11 @@ type GetSiteCountResponse struct {
 // GetSiteHealthResponse is the GetSiteHealthResponse definition
 type GetSiteHealthResponse struct {
 	Response []struct {
-		AccessGoodCount            string `json:"accessGoodCount,omitempty"`            //
-		AccessTotalCount           string `json:"accessTotalCount,omitempty"`           //
-		ApplicationBytesTotalCount string `json:"applicationBytesTotalCount,omitempty"` //
-		ApplicationGoodCount       string `json:"applicationGoodCount,omitempty"`       //
-		ApplicationHealth          string `json:"applicationHealth,omitempty"`          //
+		AccessGoodCount            int `json:"accessGoodCount,omitempty"`            //
+		AccessTotalCount           int `json:"accessTotalCount,omitempty"`           //
+		ApplicationBytesTotalCount int `json:"applicationBytesTotalCount,omitempty"` //
+		ApplicationGoodCount       int `json:"applicationGoodCount,omitempty"`       //
+		ApplicationHealth          int `json:"applicationHealth,omitempty"`          //
 		ApplicationHealthStats     struct {
 			AppTotalCount              int `json:"appTotalCount,omitempty"` //
 			BusinessIrrelevantAppCount struct {
@@ -134,43 +134,43 @@ type GetSiteHealthResponse struct {
 				Poor int `json:"poor,omitempty"` //
 			} `json:"defaultHealthAppCount,omitempty"` //
 		} `json:"applicationHealthStats,omitempty"` //
-		ApplicationTotalCount              string `json:"applicationTotalCount,omitempty"`              //
-		CLIentHealthWired                  string `json:"clientHealthWired,omitempty"`                  //
-		CLIentHealthWireless               string `json:"clientHealthWireless,omitempty"`               //
-		CoreGoodCount                      string `json:"coreGoodCount,omitempty"`                      //
-		CoreTotalCount                     string `json:"coreTotalCount,omitempty"`                     //
-		DistributionGoodCount              string `json:"distributionGoodCount,omitempty"`              //
-		DistributionTotalCount             string `json:"distributionTotalCount,omitempty"`             //
-		DnacInfo                           string `json:"dnacInfo,omitempty"`                           //
-		HealthyCLIentsPercentage           string `json:"healthyClientsPercentage,omitempty"`           //
-		HealthyNetworkDevicePercentage     string `json:"healthyNetworkDevicePercentage,omitempty"`     //
-		Latitude                           int    `json:"latitude,omitempty"`                           //
-		Longitude                          int    `json:"longitude,omitempty"`                          //
-		NetworkHealthAccess                string `json:"networkHealthAccess,omitempty"`                //
-		NetworkHealthAverage               string `json:"networkHealthAverage,omitempty"`               //
-		NetworkHealthCore                  string `json:"networkHealthCore,omitempty"`                  //
-		NetworkHealthDistribution          string `json:"networkHealthDistribution,omitempty"`          //
-		NetworkHealthOthers                string `json:"networkHealthOthers,omitempty"`                //
-		NetworkHealthRouter                string `json:"networkHealthRouter,omitempty"`                //
-		NetworkHealthWireless              string `json:"networkHealthWireless,omitempty"`              //
-		NumberOfCLIents                    string `json:"numberOfClients,omitempty"`                    //
-		NumberOfNetworkDevice              string `json:"numberOfNetworkDevice,omitempty"`              //
-		NumberOfWiredCLIents               string `json:"numberOfWiredClients,omitempty"`               //
-		NumberOfWirelessCLIents            string `json:"numberOfWirelessClients,omitempty"`            //
-		OverallGoodDevices                 string `json:"overallGoodDevices,omitempty"`                 //
-		ParentSiteID                       string `json:"parentSiteId,omitempty"`                       //
-		ParentSiteName                     string `json:"parentSiteName,omitempty"`                     //
-		RouterGoodCount                    string `json:"routerGoodCount,omitempty"`                    //
-		RouterTotalCount                   string `json:"routerTotalCount,omitempty"`                   //
-		SiteID                             string `json:"siteId,omitempty"`                             //
-		SiteName                           string `json:"siteName,omitempty"`                           //
-		SiteType                           string `json:"siteType,omitempty"`                           //
-		TotalNumberOfActiveWirelessCLIents string `json:"totalNumberOfActiveWirelessClients,omitempty"` //
-		TotalNumberOfConnectedWiredCLIents string `json:"totalNumberOfConnectedWiredClients,omitempty"` //
-		WiredGoodCLIents                   string `json:"wiredGoodClients,omitempty"`                   //
-		WirelessDeviceGoodCount            string `json:"wirelessDeviceGoodCount,omitempty"`            //
-		WirelessDeviceTotalCount           string `json:"wirelessDeviceTotalCount,omitempty"`           //
-		WirelessGoodCLIents                string `json:"wirelessGoodClients,omitempty"`                //
+		ApplicationTotalCount              int     `json:"applicationTotalCount,omitempty"`              //
+		ClientHealthWired                  int     `json:"clientHealthWired,omitempty"`                  //
+		ClientHealthWireless               int     `json:"clientHealthWireless,omitempty"`               //
+		CoreGoodCount                      int     `json:"coreGoodCount,omitempty"`                      //
+		CoreTotalCount                     int     `json:"coreTotalCount,omitempty"`                     //
+		DistributionGoodCount              int     `json:"distributionGoodCount,omitempty"`              //
+		DistributionTotalCount             int     `json:"distributionTotalCount,omitempty"`             //
+		DnacInfo                           int     `json:"dnacInfo,omitempty"`                           //
+		HealthyClientsPercentage           int     `json:"healthyClientsPercentage,omitempty"`           //
+		HealthyNetworkDevicePercentage     int     `json:"healthyNetworkDevicePercentage,omitempty"`     //
+		Latitude                           float64 `json:"latitude,omitempty"`                           //
+		Longitude                          float64 `json:"longitude,omitempty"`                          //
+		NetworkHealthAccess                int     `json:"networkHealthAccess,omitempty"`                //
+		NetworkHealthAverage               int     `json:"networkHealthAverage,omitempty"`               //
+		NetworkHealthCore                  int     `json:"networkHealthCore,omitempty"`                  //
+		NetworkHealthDistribution          int     `json:"networkHealthDistribution,omitempty"`          //
+		NetworkHealthOthers                int     `json:"networkHealthOthers,omitempty"`                //
+		NetworkHealthRouter                int     `json:"networkHealthRouter,omitempty"`                //
+		NetworkHealthWireless              int     `json:"networkHealthWireless,omitempty"`              //
+		NumberOfClients                    int     `json:"numberOfClients,omitempty"`                    //
+		NumberOfNetworkDevice              int     `json:"numberOfNetworkDevice,omitempty"`              //
+		NumberOfWiredClients               int     `json:"numberOfWiredClients,omitempty"`               //
+		NumberOfWirelessClients            int     `json:"numberOfWirelessClients,omitempty"`            //
+		OverallGoodDevices                 int     `json:"overallGoodDevices,omitempty"`                 //
+		ParentSiteID                       string  `json:"parentSiteId,omitempty"`                       //
+		ParentSiteName                     string  `json:"parentSiteName,omitempty"`                     //
+		RouterGoodCount                    int     `json:"routerGoodCount,omitempty"`                    //
+		RouterTotalCount                   int     `json:"routerTotalCount,omitempty"`                   //
+		SiteID                             string  `json:"siteId,omitempty"`                             //
+		SiteName                           string  `json:"siteName,omitempty"`                           //
+		SiteType                           string  `json:"siteType,omitempty"`                           //
+		TotalNumberOfActiveWirelessClients int     `json:"totalNumberOfActiveWirelessClients,omitempty"` //
+		TotalNumberOfConnectedWiredClients int     `json:"totalNumberOfConnectedWiredClients,omitempty"` //
+		WiredGoodCLIents                   int     `json:"wiredGoodClients,omitempty"`                   //
+		WirelessDeviceGoodCount            int     `json:"wirelessDeviceGoodCount,omitempty"`            //
+		WirelessDeviceTotalCount           int     `json:"wirelessDeviceTotalCount,omitempty"`           //
+		WirelessGoodCLIents                int     `json:"wirelessGoodClients,omitempty"`                //
 	} `json:"response,omitempty"` //
 }
 
