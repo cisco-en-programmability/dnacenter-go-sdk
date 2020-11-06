@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("Authenticating")
 	Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
 		"devnetuser", "Cisco123!",
-		"true", "false")
+		"false", "false")
 	fmt.Println("Getting device count")
 	devicesCount, _, err := Client.Devices.GetDeviceCount()
 	if err != nil {
