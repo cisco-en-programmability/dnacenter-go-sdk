@@ -247,8 +247,8 @@ type TriggerSoftwareImageActivationQueryParams struct {
 
 // TriggerSoftwareImageActivation triggerSoftwareImageActivation
 /* Activates a software image on a given device. Software image must be present in the device flash
-@param CLIent-Type Client-type (Optional)
-@param CLIent-URL Client-url (Optional)
+@param Client-Type Client-type (Optional)
+@param Client-URL Client-url (Optional)
 @param scheduleValidate scheduleValidate, validates data before schedule (Optional)
 */
 func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(triggerSoftwareImageActivationQueryParams *TriggerSoftwareImageActivationQueryParams, triggerSoftwareImageActivationRequest *[]TriggerSoftwareImageActivationRequest) (*TriggerSoftwareImageActivationResponse, *resty.Response, error) {

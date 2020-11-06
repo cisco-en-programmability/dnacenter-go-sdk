@@ -37,7 +37,7 @@ type IssuesResponse struct {
 	Response []struct {
 		AiDriven            bool   `json:"aiDriven,omitempty"`              //
 		Category            string `json:"category,omitempty"`              //
-		CLIentMac           string `json:"clientMac,omitempty"`             //
+		ClientMac           string `json:"clientMac,omitempty"`             //
 		DeviceID            string `json:"deviceId,omitempty"`              //
 		DeviceRole          string `json:"deviceRole,omitempty"`            //
 		IssueID             string `json:"issueId,omitempty"`               //

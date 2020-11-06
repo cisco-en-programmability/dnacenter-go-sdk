@@ -167,10 +167,10 @@ type GetSiteHealthResponse struct {
 		SiteType                           string  `json:"siteType,omitempty"`                           //
 		TotalNumberOfActiveWirelessClients int     `json:"totalNumberOfActiveWirelessClients,omitempty"` //
 		TotalNumberOfConnectedWiredClients int     `json:"totalNumberOfConnectedWiredClients,omitempty"` //
-		WiredGoodCLIents                   int     `json:"wiredGoodClients,omitempty"`                   //
+		WiredGoodClients                   int     `json:"wiredGoodClients,omitempty"`                   //
 		WirelessDeviceGoodCount            int     `json:"wirelessDeviceGoodCount,omitempty"`            //
 		WirelessDeviceTotalCount           int     `json:"wirelessDeviceTotalCount,omitempty"`           //
-		WirelessGoodCLIents                int     `json:"wirelessGoodClients,omitempty"`                //
+		WirelessGoodClients                int     `json:"wirelessGoodClients,omitempty"`                //
 	} `json:"response,omitempty"` //
 }
 

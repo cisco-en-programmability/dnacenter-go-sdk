@@ -61,7 +61,7 @@ type GetUserEnrichmentDetailsResponse struct {
 		AvgRssi          string   `json:"avgRssi,omitempty"`          //
 		AvgSnr           string   `json:"avgSnr,omitempty"`           //
 		Channel          string   `json:"channel,omitempty"`          //
-		CLIentConnection string   `json:"clientConnection,omitempty"` //
+		ClientConnection string   `json:"clientConnection,omitempty"` //
 		ConnectedDevice  []string `json:"connectedDevice,omitempty"`  //
 		ConnectionStatus string   `json:"connectionStatus,omitempty"` //
 		DataRate         string   `json:"dataRate,omitempty"`         //

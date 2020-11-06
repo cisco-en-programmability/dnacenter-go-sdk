@@ -80,7 +80,7 @@ type CreateGlobalPoolRequest struct {
 // CreateNetworkRequest is the CreateNetworkRequest definition
 type CreateNetworkRequest struct {
 	Settings struct {
-		CLIentAndEndpointAaa struct {
+		ClientAndEndpointAaa struct {
 			IPAddress    string `json:"ipAddress,omitempty"`    //
 			Network      string `json:"network,omitempty"`      //
 			Protocol     string `json:"protocol,omitempty"`     //
@@ -195,7 +195,7 @@ type UpdateGlobalPoolRequest struct {
 // UpdateNetworkRequest is the UpdateNetworkRequest definition
 type UpdateNetworkRequest struct {
 	Settings struct {
-		CLIentAndEndpointAaa struct {
+		ClientAndEndpointAaa struct {
 			IPAddress    string `json:"ipAddress,omitempty"`    //
 			Network      string `json:"network,omitempty"`      //
 			Protocol     string `json:"protocol,omitempty"`     //
@@ -378,7 +378,7 @@ type GetDeviceCredentialDetailsResponse struct {
 // GetGlobalPoolResponse is the GetGlobalPoolResponse definition
 type GetGlobalPoolResponse struct {
 	Response []struct {
-		CLIentOptions         string `json:"clientOptions,omitempty"`         //
+		ClientOptions         string `json:"clientOptions,omitempty"`         //
 		ConfigureExternalDhcp string `json:"configureExternalDhcp,omitempty"` //
 		Context               []struct {
 			ContextKey   string `json:"contextKey,omitempty"`   //

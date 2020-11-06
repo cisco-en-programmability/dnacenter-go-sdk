@@ -125,7 +125,7 @@ type DevicesResponse struct {
 			Radio0 int `json:"radio0,omitempty"` //
 			Radio1 int `json:"radio1,omitempty"` //
 		} `json:"airQualityHealth,omitempty"` //
-		CLIentCount struct {
+		ClientCount struct {
 			Ghz24  int `json:"Ghz24,omitempty"`  //
 			Ghz50  int `json:"Ghz50,omitempty"`  //
 			Radio0 int `json:"radio0,omitempty"` //
@@ -351,7 +351,7 @@ type GetDeviceDetailResponse struct {
 		HASecondaryPowerStatus string `json:"HASecondaryPowerStatus,omitempty"` //
 		AirQuality             string `json:"airQuality,omitempty"`             //
 		AirQualityScore        int    `json:"airQualityScore,omitempty"`        //
-		CLIentCount            string `json:"clientCount,omitempty"`            //
+		ClientCount            string `json:"clientCount,omitempty"`            //
 		CollectionStatus       string `json:"collectionStatus,omitempty"`       //
 		CommunicationState     string `json:"communicationState,omitempty"`     //
 		CPU                    string `json:"cpu,omitempty"`                    //
@@ -428,7 +428,7 @@ type GetDeviceEnrichmentDetailsResponse struct {
 				Target          string   `json:"target,omitempty"`          //
 			} `json:"links,omitempty"` //
 			Nodes []struct {
-				CLIents         string `json:"clients,omitempty"`         //
+				Clients         string `json:"clients,omitempty"`         //
 				ConnectedDevice string `json:"connectedDevice,omitempty"` //
 				Count           string `json:"count,omitempty"`           //
 				Description     string `json:"description,omitempty"`     //

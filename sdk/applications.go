@@ -14,7 +14,7 @@ type ApplicationsResponse struct {
 		ApplicationServerLatency string `json:"applicationServerLatency,omitempty"` //
 		AverageThroughput        int    `json:"averageThroughput,omitempty"`        //
 		BusinessRelevance        string `json:"businessRelevance,omitempty"`        //
-		CLIentNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
+		ClientNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
 		Health                   string `json:"health,omitempty"`                   //
 		Jitter                   string `json:"jitter,omitempty"`                   //
 		Name                     string `json:"name,omitempty"`                     //

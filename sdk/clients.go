@@ -8,8 +8,8 @@ import (
 // ClientsService is the service to communicate with the Clients API endpoint
 type ClientsService service
 
-// GetCLIentDetailResponse is the GetClientDetailResponse definition
-type GetCLIentDetailResponse struct {
+// GetClientDetailResponse is the GetClientDetailResponse definition
+type GetClientDetailResponse struct {
 	ConnectionInfo struct {
 		Band          string `json:"band,omitempty"`          //
 		Channel       string `json:"channel,omitempty"`       //
@@ -29,8 +29,8 @@ type GetCLIentDetailResponse struct {
 		AvgRssi          string   `json:"avgRssi,omitempty"`          //
 		AvgSnr           string   `json:"avgSnr,omitempty"`           //
 		Channel          string   `json:"channel,omitempty"`          //
-		CLIentConnection string   `json:"clientConnection,omitempty"` //
-		CLIentType       string   `json:"clientType,omitempty"`       //
+		ClientConnection string   `json:"clientConnection,omitempty"` //
+		ClientType       string   `json:"clientType,omitempty"`       //
 		ConnectedDevice  []string `json:"connectedDevice,omitempty"`  //
 		ConnectionStatus string   `json:"connectionStatus,omitempty"` //
 		DataRate         string   `json:"dataRate,omitempty"`         //
@@ -95,7 +95,7 @@ type GetCLIentDetailResponse struct {
 			Target          string   `json:"target,omitempty"`          //
 		} `json:"links,omitempty"` //
 		Nodes []struct {
-			CLIents         string `json:"clients,omitempty"`         //
+			Clients         string `json:"clients,omitempty"`         //
 			ConnectedDevice string `json:"connectedDevice,omitempty"` //
 			Count           string `json:"count,omitempty"`           //
 			Description     string `json:"description,omitempty"`     //
@@ -117,8 +117,8 @@ type GetCLIentDetailResponse struct {
 	} `json:"topology,omitempty"` //
 }
 
-// GetCLIentEnrichmentDetailsResponse is the GetClientEnrichmentDetailsResponse definition
-type GetCLIentEnrichmentDetailsResponse struct {
+// GetClientEnrichmentDetailsResponse is the GetClientEnrichmentDetailsResponse definition
+type GetClientEnrichmentDetailsResponse struct {
 	ConnectedDevice []struct {
 		DeviceDetails struct {
 			ApManagerInterfaceIP  string `json:"apManagerInterfaceIp,omitempty"`  //
@@ -154,7 +154,7 @@ type GetCLIentEnrichmentDetailsResponse struct {
 					Target          string   `json:"target,omitempty"`          //
 				} `json:"links,omitempty"` //
 				Nodes []struct {
-					CLIents         int    `json:"clients,omitempty"`         //
+					Clients         int    `json:"clients,omitempty"`         //
 					Count           string `json:"count,omitempty"`           //
 					Description     string `json:"description,omitempty"`     //
 					DeviceType      string `json:"deviceType,omitempty"`      //
@@ -229,7 +229,7 @@ type GetCLIentEnrichmentDetailsResponse struct {
 	} `json:"issueDetails,omitempty"` //
 	UserDetails struct {
 		AuthType         string   `json:"authType,omitempty"`         //
-		CLIentConnection string   `json:"clientConnection,omitempty"` //
+		ClientConnection string   `json:"clientConnection,omitempty"` //
 		ConnectedDevice  []string `json:"connectedDevice,omitempty"`  //
 		ConnectionStatus string   `json:"connectionStatus,omitempty"` //
 		DataRate         string   `json:"dataRate,omitempty"`         //
@@ -259,28 +259,28 @@ type GetCLIentEnrichmentDetailsResponse struct {
 	} `json:"userDetails,omitempty"` //
 }
 
-// GetOverallCLIentHealthResponse is the GetOverallClientHealthResponse definition
-type GetOverallCLIentHealthResponse struct {
+// GetOverallClientHealthResponse is the GetOverallClientHealthResponse definition
+type GetOverallClientHealthResponse struct {
 	Response []struct {
 		ScoreDetail []struct {
-			CLIentCount       int `json:"clientCount,omitempty"`       //
-			CLIentUniqueCount int `json:"clientUniqueCount,omitempty"` //
+			ClientCount       int `json:"clientCount,omitempty"`       //
+			ClientUniqueCount int `json:"clientUniqueCount,omitempty"` //
 			Endtime           int `json:"endtime,omitempty"`           //
 			ScoreCategory     struct {
 				ScoreCategory string `json:"scoreCategory,omitempty"` //
 				Value         string `json:"value,omitempty"`         //
 			} `json:"scoreCategory,omitempty"` //
 			ScoreList []struct {
-				CLIentCount       int `json:"clientCount,omitempty"`       //
-				CLIentUniqueCount int `json:"clientUniqueCount,omitempty"` //
+				ClientCount       int `json:"clientCount,omitempty"`       //
+				ClientUniqueCount int `json:"clientUniqueCount,omitempty"` //
 				Endtime           int `json:"endtime,omitempty"`           //
 				ScoreCategory     struct {
 					ScoreCategory string `json:"scoreCategory,omitempty"` //
 					Value         string `json:"value,omitempty"`         //
 				} `json:"scoreCategory,omitempty"` //
 				ScoreList []struct {
-					CLIentCount       int    `json:"clientCount,omitempty"`       //
-					CLIentUniqueCount string `json:"clientUniqueCount,omitempty"` //
+					ClientCount       int    `json:"clientCount,omitempty"`       //
+					ClientUniqueCount string `json:"clientUniqueCount,omitempty"` //
 					Endtime           int    `json:"endtime,omitempty"`           //
 					ScoreCategory     struct {
 						ScoreCategory string `json:"scoreCategory,omitempty"` //
@@ -299,82 +299,82 @@ type GetOverallCLIentHealthResponse struct {
 	} `json:"response,omitempty"` //
 }
 
-// GetCLIentDetailQueryParams defines the query parameters for this request
-type GetCLIentDetailQueryParams struct {
+// GetClientDetailQueryParams defines the query parameters for this request
+type GetClientDetailQueryParams struct {
 	Timestamp  string `url:"timestamp,omitempty"`  // Epoch time(in milliseconds) when the Client health data is required
 	MacAddress string `url:"macAddress,omitempty"` // MAC Address of the client
 }
 
-// GetCLIentDetail getClientDetail
+// GetClientDetail getClientDetail
 /* Returns detailed Client information retrieved by Mac Address for any given point of time.
 @param timestamp Epoch time(in milliseconds) when the Client health data is required
 @param macAddress MAC Address of the client
 */
-func (s *ClientsService) GetCLIentDetail(getCLIentDetailQueryParams *GetCLIentDetailQueryParams) (*GetCLIentDetailResponse, *resty.Response, error) {
+func (s *ClientsService) GetClientDetail(getClientDetailQueryParams *GetClientDetailQueryParams) (*GetClientDetailResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/client-detail"
 
-	queryString, _ := query.Values(getCLIentDetailQueryParams)
+	queryString, _ := query.Values(getClientDetailQueryParams)
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&GetCLIentDetailResponse{}).
+		SetResult(&GetClientDetailResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*GetCLIentDetailResponse)
+	result := response.Result().(*GetClientDetailResponse)
 	return result, response, err
 }
 
-// GetCLIentEnrichmentDetails getClientEnrichmentDetails
+// GetClientEnrichmentDetails getClientEnrichmentDetails
 /* Enriches a given network End User context (a network user-id or end user’s device Mac Address) with details about the user, the devices that the user is connected to and the assurance issues that the user is impacted by
 @param entity_type Client enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
 @param entity_value Contains the actual value for the entity type that has been defined
 @param issueCategory The category of the DNA event based on which the underlying issues need to be fetched
 */
-func (s *ClientsService) GetCLIentEnrichmentDetails() (*GetCLIentEnrichmentDetailsResponse, *resty.Response, error) {
+func (s *ClientsService) GetClientEnrichmentDetails() (*GetClientEnrichmentDetailsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/client-enrichment-details"
 
 	response, err := RestyClient.R().
-		SetResult(&GetCLIentEnrichmentDetailsResponse{}).
+		SetResult(&GetClientEnrichmentDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*GetCLIentEnrichmentDetailsResponse)
+	result := response.Result().(*GetClientEnrichmentDetailsResponse)
 	return result, response, err
 }
 
-// GetOverallCLIentHealthQueryParams defines the query parameters for this request
-type GetOverallCLIentHealthQueryParams struct {
+// GetOverallClientHealthQueryParams defines the query parameters for this request
+type GetOverallClientHealthQueryParams struct {
 	Timestamp string `url:"timestamp,omitempty"` // Epoch time(in milliseconds) when the Client health data is required
 }
 
-// GetOverallCLIentHealth getOverallClientHealth
+// GetOverallClientHealth getOverallClientHealth
 /* Returns Overall Client Health information by Client type (Wired and Wireless) for any given point of time
 @param timestamp Epoch time(in milliseconds) when the Client health data is required
 */
-func (s *ClientsService) GetOverallCLIentHealth(getOverallCLIentHealthQueryParams *GetOverallCLIentHealthQueryParams) (*GetOverallCLIentHealthResponse, *resty.Response, error) {
+func (s *ClientsService) GetOverallClientHealth(getOverallClientHealthQueryParams *GetOverallClientHealthQueryParams) (*GetOverallClientHealthResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/client-health"
 
-	queryString, _ := query.Values(getOverallCLIentHealthQueryParams)
+	queryString, _ := query.Values(getOverallClientHealthQueryParams)
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&GetOverallCLIentHealthResponse{}).
+		SetResult(&GetOverallClientHealthResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
 	}
-	result := response.Result().(*GetOverallCLIentHealthResponse)
+	result := response.Result().(*GetOverallClientHealthResponse)
 	return result, response, err
 }
