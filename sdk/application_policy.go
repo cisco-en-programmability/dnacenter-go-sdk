@@ -147,7 +147,7 @@ type GetApplicationSetsResponse struct {
 
 // GetApplicationsCountResponse is the GetApplicationsCountResponse definition
 type GetApplicationsCountResponse struct {
-	Response string `json:"response,omitempty"` //
+	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
