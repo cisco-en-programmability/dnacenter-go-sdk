@@ -43,4 +43,22 @@ func main() {
 	for _, network := range networkHealth.Response {
 		fmt.Println(fmt.Sprintf("Network Health --> Good Count: %d, Bad Count: %d, Health Score: %d", network.GoodCount, network.BadCount, network.HealthScore))
 	}
+
+	getOverallClientHealthQueryParams := &dnac.GetOverallClientHealthQueryParams{
+		Timestamp: strconv.Itoa(int(sec) / 1000000),
+	}
+
+	clientHealth, _, err := client.Clients.GetOverallClientHealth(getOverallClientHealthQueryParams)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	for id := range clientHealth.Response {
+		fmt.Println(id)
+		for item := range clientHealth.Response[id] {
+			fmt.Println(fmt.Sprintf("Client Health --> ", item))
+		}
+	}
+	fmt.Println(clientHealth.Response[0])
+
 }
