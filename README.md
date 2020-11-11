@@ -6,6 +6,11 @@ dnacenter-go-sdk is a Go client library for [DNA Center Platform](https://develo
 
 ```go
 import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/sdk"
+```
+
+## Examples
+
+```go
 Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
     "devnetuser", "Cisco123!",
     "false", "false")
