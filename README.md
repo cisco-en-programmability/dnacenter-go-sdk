@@ -23,7 +23,7 @@ if err != nil {
     fmt.Println(err)
 }
 for id, device := range devices.Response {
-    fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+    fmt.Println("GET:", id, device.ID, device.ManagementIPAddress, device.PlatformID)
 }
 ```
 
