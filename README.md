@@ -16,7 +16,10 @@ It supports version 2.1.2, but it is backward compatible with other versions as 
 
 ## Getting started
 
-The first think you need to do is to generate an API client. There are two options to do it: using parameters or environment variables
+The first think you need to do is to generate an API client. There are two options to do it:
+
+1. Parameters
+2. Environment variables
 
 ### Parameters
 
