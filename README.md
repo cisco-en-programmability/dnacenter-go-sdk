@@ -20,7 +20,13 @@ The first think you need to do is to generate an API client. There are two optio
 
 ### Parameters
 
-The client could be generated with parameters:
+The client could be generated with the following parameters:
+
+- `baseURL`: The base URL, FQDN or IP, of the DNA instance.
+- `username`: The username for the API authentication and authorization.
+- `password`: The password for the API authentication and authorization.
+- `debug`: Boolean to enable debugging
+- `sslVerify`: Boolean to enable or disable SSL certificate verification.
 
 ```go
 Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
