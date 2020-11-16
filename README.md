@@ -33,11 +33,11 @@ devicesCount, _, err := Client.Devices.GetDeviceCount()
 
 The client can be configured with the following environment variables:
 
-- DNAC_BASE_URL: The base URL, FQDN or IP, of the DNA instance.
-- DNAC_USERNAME: The username for the API authentication and authorization.
-- DNAC_PASSWORD: The password for the API authentication and authorization.
-- DNAC_DEBUG: Boolean to enable debugging
-- DNAC_SSL_VERIFY: Boolean to enable or disable SSL certificate verification.
+- `DNAC_BASE_URL`: The base URL, FQDN or IP, of the DNA instance.
+- `DNAC_USERNAME`: The username for the API authentication and authorization.
+- `DNAC_PASSWORD`: The password for the API authentication and authorization.
+- `DNAC_DEBUG`: Boolean to enable debugging
+- `DNAC_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
 
 ```go
 Client = dnac.NewClient()
