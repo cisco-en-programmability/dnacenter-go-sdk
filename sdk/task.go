@@ -11,110 +11,122 @@ import (
 // TaskService is the service to communicate with the Task API endpoint
 type TaskService service
 
-// GetTaskByIDResponse is the GetTaskByIdResponse definition
+// GetTaskByIDResponseResponse is the getTaskByIDResponseResponse definition
+type GetTaskByIDResponseResponse struct {
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+	Data                string `json:"data,omitempty"`                //
+	EndTime             int    `json:"endTime,omitempty"`             //
+	ErrorCode           string `json:"errorCode,omitempty"`           //
+	ErrorKey            string `json:"errorKey,omitempty"`            //
+	FailureReason       string `json:"failureReason,omitempty"`       //
+	ID                  string `json:"id,omitempty"`                  //
+	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+	IsError             bool   `json:"isError,omitempty"`             //
+	LastUpdate          int    `json:"lastUpdate,omitempty"`          //
+	OperationIDList     string `json:"operationIdList,omitempty"`     //
+	ParentID            string `json:"parentId,omitempty"`            //
+	Progress            string `json:"progress,omitempty"`            //
+	RootID              string `json:"rootId,omitempty"`              //
+	ServiceType         string `json:"serviceType,omitempty"`         //
+	StartTime           int    `json:"startTime,omitempty"`           //
+	Username            string `json:"username,omitempty"`            //
+	Version             int    `json:"version,omitempty"`             //
+}
+
+// GetTaskByIDResponse is the getTaskByIdResponse definition
 type GetTaskByIDResponse struct {
-	Response struct {
-		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
-		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
-		ErrorCode           string `json:"errorCode,omitempty"`           //
-		ErrorKey            string `json:"errorKey,omitempty"`            //
-		FailureReason       string `json:"failureReason,omitempty"`       //
-		ID                  string `json:"id,omitempty"`                  //
-		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
-		IsError             bool   `json:"isError,omitempty"`             //
-		LastUpdate          string `json:"lastUpdate,omitempty"`          //
-		OperationIDList     string `json:"operationIdList,omitempty"`     //
-		ParentID            string `json:"parentId,omitempty"`            //
-		Progress            string `json:"progress,omitempty"`            //
-		RootID              string `json:"rootId,omitempty"`              //
-		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
-		Username            string `json:"username,omitempty"`            //
-		Version             int    `json:"version,omitempty"`             //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response GetTaskByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                      `json:"version,omitempty"`  //
 }
 
-// GetTaskByOperationIDResponse is the GetTaskByOperationIdResponse definition
+// GetTaskByOperationIDResponseResponse is the getTaskByOperationIDResponseResponse definition
+type GetTaskByOperationIDResponseResponse struct {
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+	Data                string `json:"data,omitempty"`                //
+	EndTime             int    `json:"endTime,omitempty"`             //
+	ErrorCode           string `json:"errorCode,omitempty"`           //
+	ErrorKey            string `json:"errorKey,omitempty"`            //
+	FailureReason       string `json:"failureReason,omitempty"`       //
+	ID                  string `json:"id,omitempty"`                  //
+	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+	IsError             bool   `json:"isError,omitempty"`             //
+	LastUpdate          int    `json:"lastUpdate,omitempty"`          //
+	OperationIDList     string `json:"operationIdList,omitempty"`     //
+	ParentID            string `json:"parentId,omitempty"`            //
+	Progress            string `json:"progress,omitempty"`            //
+	RootID              string `json:"rootId,omitempty"`              //
+	ServiceType         string `json:"serviceType,omitempty"`         //
+	StartTime           int    `json:"startTime,omitempty"`           //
+	Username            string `json:"username,omitempty"`            //
+	Version             int    `json:"version,omitempty"`             //
+}
+
+// GetTaskByOperationIDResponse is the getTaskByOperationIdResponse definition
 type GetTaskByOperationIDResponse struct {
-	Response []struct {
-		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
-		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
-		ErrorCode           string `json:"errorCode,omitempty"`           //
-		ErrorKey            string `json:"errorKey,omitempty"`            //
-		FailureReason       string `json:"failureReason,omitempty"`       //
-		ID                  string `json:"id,omitempty"`                  //
-		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
-		IsError             bool   `json:"isError,omitempty"`             //
-		LastUpdate          string `json:"lastUpdate,omitempty"`          //
-		OperationIDList     string `json:"operationIdList,omitempty"`     //
-		ParentID            string `json:"parentId,omitempty"`            //
-		Progress            string `json:"progress,omitempty"`            //
-		RootID              string `json:"rootId,omitempty"`              //
-		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
-		Username            string `json:"username,omitempty"`            //
-		Version             int    `json:"version,omitempty"`             //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetTaskByOperationIDResponseResponse `json:"response,omitempty"` //
+	Version  string                                 `json:"version,omitempty"`  //
 }
 
-// GetTaskCountResponse is the GetTaskCountResponse definition
+// GetTaskCountResponse is the getTaskCountResponse definition
 type GetTaskCountResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetTaskTreeResponse is the GetTaskTreeResponse definition
+// GetTaskTreeResponse is the getTaskTreeResponse definition
 type GetTaskTreeResponse struct {
-	Response []struct {
-		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
-		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
-		ErrorCode           string `json:"errorCode,omitempty"`           //
-		ErrorKey            string `json:"errorKey,omitempty"`            //
-		FailureReason       string `json:"failureReason,omitempty"`       //
-		ID                  string `json:"id,omitempty"`                  //
-		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
-		IsError             bool   `json:"isError,omitempty"`             //
-		LastUpdate          string `json:"lastUpdate,omitempty"`          //
-		OperationIDList     string `json:"operationIdList,omitempty"`     //
-		ParentID            string `json:"parentId,omitempty"`            //
-		Progress            string `json:"progress,omitempty"`            //
-		RootID              string `json:"rootId,omitempty"`              //
-		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
-		Username            string `json:"username,omitempty"`            //
-		Version             int    `json:"version,omitempty"`             //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetTaskTreeResponseResponse `json:"response,omitempty"` //
+	Version  string                        `json:"version,omitempty"`  //
 }
 
-// GetTasksResponse is the GetTasksResponse definition
+// GetTaskTreeResponseResponse is the getTaskTreeResponseResponse definition
+type GetTaskTreeResponseResponse struct {
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+	Data                string `json:"data,omitempty"`                //
+	EndTime             string `json:"endTime,omitempty"`             //
+	ErrorCode           string `json:"errorCode,omitempty"`           //
+	ErrorKey            string `json:"errorKey,omitempty"`            //
+	FailureReason       string `json:"failureReason,omitempty"`       //
+	ID                  string `json:"id,omitempty"`                  //
+	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+	IsError             bool   `json:"isError,omitempty"`             //
+	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	OperationIDList     string `json:"operationIdList,omitempty"`     //
+	ParentID            string `json:"parentId,omitempty"`            //
+	Progress            string `json:"progress,omitempty"`            //
+	RootID              string `json:"rootId,omitempty"`              //
+	ServiceType         string `json:"serviceType,omitempty"`         //
+	StartTime           string `json:"startTime,omitempty"`           //
+	Username            string `json:"username,omitempty"`            //
+	Version             int    `json:"version,omitempty"`             //
+}
+
+// GetTasksResponse is the getTasksResponse definition
 type GetTasksResponse struct {
-	Response []struct {
-		AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
-		Data                string `json:"data,omitempty"`                //
-		EndTime             string `json:"endTime,omitempty"`             //
-		ErrorCode           string `json:"errorCode,omitempty"`           //
-		ErrorKey            string `json:"errorKey,omitempty"`            //
-		FailureReason       string `json:"failureReason,omitempty"`       //
-		ID                  string `json:"id,omitempty"`                  //
-		InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
-		IsError             bool   `json:"isError,omitempty"`             //
-		LastUpdate          string `json:"lastUpdate,omitempty"`          //
-		OperationIDList     string `json:"operationIdList,omitempty"`     //
-		ParentID            string `json:"parentId,omitempty"`            //
-		Progress            string `json:"progress,omitempty"`            //
-		RootID              string `json:"rootId,omitempty"`              //
-		ServiceType         string `json:"serviceType,omitempty"`         //
-		StartTime           string `json:"startTime,omitempty"`           //
-		Username            string `json:"username,omitempty"`            //
-		Version             int    `json:"version,omitempty"`             //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetTasksResponseResponse `json:"response,omitempty"` //
+	Version  string                     `json:"version,omitempty"`  //
+}
+
+// GetTasksResponseResponse is the getTasksResponseResponse definition
+type GetTasksResponseResponse struct {
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+	Data                string `json:"data,omitempty"`                //
+	EndTime             string `json:"endTime,omitempty"`             //
+	ErrorCode           string `json:"errorCode,omitempty"`           //
+	ErrorKey            string `json:"errorKey,omitempty"`            //
+	FailureReason       string `json:"failureReason,omitempty"`       //
+	ID                  string `json:"id,omitempty"`                  //
+	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
+	IsError             bool   `json:"isError,omitempty"`             //
+	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	OperationIDList     string `json:"operationIdList,omitempty"`     //
+	ParentID            string `json:"parentId,omitempty"`            //
+	Progress            string `json:"progress,omitempty"`            //
+	RootID              string `json:"rootId,omitempty"`              //
+	ServiceType         string `json:"serviceType,omitempty"`         //
+	StartTime           string `json:"startTime,omitempty"`           //
+	Username            string `json:"username,omitempty"`            //
+	Version             int    `json:"version,omitempty"`             //
 }
 
 // GetTaskByID getTaskById

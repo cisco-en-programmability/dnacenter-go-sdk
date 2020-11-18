@@ -8,48 +8,66 @@ import (
 // IssuesService is the service to communicate with the Issues API endpoint
 type IssuesService service
 
-// GetIssueEnrichmentDetailsResponse is the GetIssueEnrichmentDetailsResponse definition
+// GetIssueEnrichmentDetailsResponse is the getIssueEnrichmentDetailsResponse definition
 type GetIssueEnrichmentDetailsResponse struct {
-	IssueDetails struct {
-		Issue []struct {
-			ImpactedHosts    []string `json:"impactedHosts,omitempty"`    //
-			IssueCategory    string   `json:"issueCategory,omitempty"`    //
-			IssueDescription string   `json:"issueDescription,omitempty"` //
-			IssueEntity      string   `json:"issueEntity,omitempty"`      //
-			IssueEntityValue string   `json:"issueEntityValue,omitempty"` //
-			IssueID          string   `json:"issueId,omitempty"`          //
-			IssueName        string   `json:"issueName,omitempty"`        //
-			IssuePriority    string   `json:"issuePriority,omitempty"`    //
-			IssueSeverity    string   `json:"issueSeverity,omitempty"`    //
-			IssueSource      string   `json:"issueSource,omitempty"`      //
-			IssueSummary     string   `json:"issueSummary,omitempty"`     //
-			IssueTimestamp   int      `json:"issueTimestamp,omitempty"`   //
-			SuggestedActions []struct {
-				Message string   `json:"message,omitempty"` //
-				Steps   []string `json:"steps,omitempty"`   //
-			} `json:"suggestedActions,omitempty"` //
-		} `json:"issue,omitempty"` //
-	} `json:"issueDetails,omitempty"` //
+	IssueDetails GetIssueEnrichmentDetailsResponseIssueDetails `json:"issueDetails,omitempty"` //
 }
 
-// IssuesResponse is the IssuesResponse definition
+// GetIssueEnrichmentDetailsResponseIssueDetails is the getIssueEnrichmentDetailsResponseIssueDetails definition
+type GetIssueEnrichmentDetailsResponseIssueDetails struct {
+	Issue []GetIssueEnrichmentDetailsResponseIssueDetailsIssue `json:"issue,omitempty"` //
+}
+
+// GetIssueEnrichmentDetailsResponseIssueDetailsIssue is the getIssueEnrichmentDetailsResponseIssueDetailsIssue definition
+type GetIssueEnrichmentDetailsResponseIssueDetailsIssue struct {
+	ImpactedHosts    []string                                                             `json:"impactedHosts,omitempty"`    //
+	IssueCategory    string                                                               `json:"issueCategory,omitempty"`    //
+	IssueDescription string                                                               `json:"issueDescription,omitempty"` //
+	IssueEntity      string                                                               `json:"issueEntity,omitempty"`      //
+	IssueEntityValue string                                                               `json:"issueEntityValue,omitempty"` //
+	IssueID          string                                                               `json:"issueId,omitempty"`          //
+	IssueName        string                                                               `json:"issueName,omitempty"`        //
+	IssuePriority    string                                                               `json:"issuePriority,omitempty"`    //
+	IssueSeverity    string                                                               `json:"issueSeverity,omitempty"`    //
+	IssueSource      string                                                               `json:"issueSource,omitempty"`      //
+	IssueSummary     string                                                               `json:"issueSummary,omitempty"`     //
+	IssueTimestamp   int                                                                  `json:"issueTimestamp,omitempty"`   //
+	SuggestedActions []GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions `json:"suggestedActions,omitempty"` //
+}
+
+// GetIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts is the getIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts definition
+type GetIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts []string
+
+// GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions is the getIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions definition
+type GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions struct {
+	Message string   `json:"message,omitempty"` //
+	Steps   []string `json:"steps,omitempty"`   //
+}
+
+// GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps is the getIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps definition
+type GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps []string
+
+// IssuesResponse is the issuesResponse definition
 type IssuesResponse struct {
-	Response []struct {
-		AiDriven            bool   `json:"aiDriven,omitempty"`              //
-		Category            string `json:"category,omitempty"`              //
-		ClientMac           string `json:"clientMac,omitempty"`             //
-		DeviceID            string `json:"deviceId,omitempty"`              //
-		DeviceRole          string `json:"deviceRole,omitempty"`            //
-		IssueID             string `json:"issueId,omitempty"`               //
-		IssueOccurenceCount int    `json:"issue_occurence_count,omitempty"` //
-		LastOccurenceTime   int    `json:"last_occurence_time,omitempty"`   //
-		Name                string `json:"name,omitempty"`                  //
-		Priority            string `json:"priority,omitempty"`              //
-		SiteID              string `json:"siteId,omitempty"`                //
-		Status              string `json:"status,omitempty"`                //
-	} `json:"response,omitempty"` //
-	TotalCount int    `json:"totalCount,omitempty"` //
-	Version    string `json:"version,omitempty"`    //
+	Response   []IssuesResponseResponse `json:"response,omitempty"`   //
+	TotalCount int                      `json:"totalCount,omitempty"` //
+	Version    string                   `json:"version,omitempty"`    //
+}
+
+// IssuesResponseResponse is the issuesResponseResponse definition
+type IssuesResponseResponse struct {
+	AiDriven            bool   `json:"aiDriven,omitempty"`              //
+	Category            string `json:"category,omitempty"`              //
+	ClientMac           string `json:"clientMac,omitempty"`             //
+	DeviceID            string `json:"deviceId,omitempty"`              //
+	DeviceRole          string `json:"deviceRole,omitempty"`            //
+	IssueID             string `json:"issueId,omitempty"`               //
+	IssueOccurenceCount int    `json:"issue_occurence_count,omitempty"` //
+	LastOccurenceTime   int    `json:"last_occurence_time,omitempty"`   //
+	Name                string `json:"name,omitempty"`                  //
+	Priority            string `json:"priority,omitempty"`              //
+	SiteID              string `json:"siteId,omitempty"`                //
+	Status              string `json:"status,omitempty"`                //
 }
 
 // GetIssueEnrichmentDetails getIssueEnrichmentDetails

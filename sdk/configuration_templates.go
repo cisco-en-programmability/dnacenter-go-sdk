@@ -11,7 +11,7 @@ import (
 // ConfigurationTemplatesService is the service to communicate with the ConfigurationTemplates API endpoint
 type ConfigurationTemplatesService service
 
-// CreateProjectRequest is the CreateProjectRequest definition
+// CreateProjectRequest is the createProjectRequest definition
 type CreateProjectRequest struct {
 	CreateTime     int      `json:"createTime,omitempty"`     //
 	Description    string   `json:"description,omitempty"`    //
@@ -22,115 +22,151 @@ type CreateProjectRequest struct {
 	Templates      string   `json:"templates,omitempty"`      //
 }
 
-// CreateTemplateRequest is the CreateTemplateRequest definition
+// CreateProjectRequestTags is the createProjectRequestTags definition
+type CreateProjectRequestTags []string
+
+// CreateTemplateRequest is the createTemplateRequest definition
 type CreateTemplateRequest struct {
-	Author              string `json:"author,omitempty"`    //
-	Composite           bool   `json:"composite,omitempty"` //
-	ContainingTemplates []struct {
-		Composite bool   `json:"composite,omitempty"` //
-		ID        string `json:"id,omitempty"`        //
-		Name      string `json:"name,omitempty"`      //
-		Version   string `json:"version,omitempty"`   //
-	} `json:"containingTemplates,omitempty"` //
-	CreateTime  int    `json:"createTime,omitempty"`  //
-	Description string `json:"description,omitempty"` //
-	DeviceTypes []struct {
-		ProductFamily string `json:"productFamily,omitempty"` //
-		ProductSeries string `json:"productSeries,omitempty"` //
-		ProductType   string `json:"productType,omitempty"`   //
-	} `json:"deviceTypes,omitempty"` //
-	FailurePolicy           string `json:"failurePolicy,omitempty"`           //
-	ID                      string `json:"id,omitempty"`                      //
-	LastUpdateTime          int    `json:"lastUpdateTime,omitempty"`          //
-	Name                    string `json:"name,omitempty"`                    //
-	ParentTemplateID        string `json:"parentTemplateId,omitempty"`        //
-	ProjectID               string `json:"projectId,omitempty"`               //
-	ProjectName             string `json:"projectName,omitempty"`             //
-	RollbackTemplateContent string `json:"rollbackTemplateContent,omitempty"` //
-	RollbackTemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"rollbackTemplateParams,omitempty"` //
-	SoftwareType    string   `json:"softwareType,omitempty"`    //
-	SoftwareVariant string   `json:"softwareVariant,omitempty"` //
-	SoftwareVersion string   `json:"softwareVersion,omitempty"` //
-	Tags            []string `json:"tags,omitempty"`            //
-	TemplateContent string   `json:"templateContent,omitempty"` //
-	TemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"templateParams,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Author                  string                                        `json:"author,omitempty"`                  //
+	Composite               bool                                          `json:"composite,omitempty"`               //
+	ContainingTemplates     []CreateTemplateRequestContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              int                                           `json:"createTime,omitempty"`              //
+	Description             string                                        `json:"description,omitempty"`             //
+	DeviceTypes             []CreateTemplateRequestDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                        `json:"failurePolicy,omitempty"`           //
+	ID                      string                                        `json:"id,omitempty"`                      //
+	LastUpdateTime          int                                           `json:"lastUpdateTime,omitempty"`          //
+	Name                    string                                        `json:"name,omitempty"`                    //
+	ParentTemplateID        string                                        `json:"parentTemplateId,omitempty"`        //
+	ProjectID               string                                        `json:"projectId,omitempty"`               //
+	ProjectName             string                                        `json:"projectName,omitempty"`             //
+	RollbackTemplateContent string                                        `json:"rollbackTemplateContent,omitempty"` //
+	RollbackTemplateParams  []CreateTemplateRequestRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                        `json:"softwareType,omitempty"`            //
+	SoftwareVariant         string                                        `json:"softwareVariant,omitempty"`         //
+	SoftwareVersion         string                                        `json:"softwareVersion,omitempty"`         //
+	Tags                    []string                                      `json:"tags,omitempty"`                    //
+	TemplateContent         string                                        `json:"templateContent,omitempty"`         //
+	TemplateParams          []CreateTemplateRequestTemplateParams         `json:"templateParams,omitempty"`          //
+	Version                 string                                        `json:"version,omitempty"`                 //
 }
 
-// DeployTemplateRequest is the DeployTemplateRequest definition
+// CreateTemplateRequestContainingTemplates is the createTemplateRequestContainingTemplates definition
+type CreateTemplateRequestContainingTemplates struct {
+	Composite bool   `json:"composite,omitempty"` //
+	ID        string `json:"id,omitempty"`        //
+	Name      string `json:"name,omitempty"`      //
+	Version   string `json:"version,omitempty"`   //
+}
+
+// CreateTemplateRequestDeviceTypes is the createTemplateRequestDeviceTypes definition
+type CreateTemplateRequestDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` //
+	ProductSeries string `json:"productSeries,omitempty"` //
+	ProductType   string `json:"productType,omitempty"`   //
+}
+
+// CreateTemplateRequestRollbackTemplateParams is the createTemplateRequestRollbackTemplateParams definition
+type CreateTemplateRequestRollbackTemplateParams struct {
+	Binding         string                                               `json:"binding,omitempty"`         //
+	DataType        string                                               `json:"dataType,omitempty"`        //
+	DefaultValue    string                                               `json:"defaultValue,omitempty"`    //
+	Description     string                                               `json:"description,omitempty"`     //
+	DisplayName     string                                               `json:"displayName,omitempty"`     //
+	Group           string                                               `json:"group,omitempty"`           //
+	ID              string                                               `json:"id,omitempty"`              //
+	InstructionText string                                               `json:"instructionText,omitempty"` //
+	Key             string                                               `json:"key,omitempty"`             //
+	NotParam        bool                                                 `json:"notParam,omitempty"`        //
+	Order           int                                                  `json:"order,omitempty"`           //
+	ParamArray      bool                                                 `json:"paramArray,omitempty"`      //
+	ParameterName   string                                               `json:"parameterName,omitempty"`   //
+	Provider        string                                               `json:"provider,omitempty"`        //
+	Range           []CreateTemplateRequestRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                                 `json:"required,omitempty"`        //
+	Selection       CreateTemplateRequestRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// CreateTemplateRequestRollbackTemplateParamsRange is the createTemplateRequestRollbackTemplateParamsRange definition
+type CreateTemplateRequestRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// CreateTemplateRequestRollbackTemplateParamsSelection is the createTemplateRequestRollbackTemplateParamsSelection definition
+type CreateTemplateRequestRollbackTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// CreateTemplateRequestTags is the createTemplateRequestTags definition
+type CreateTemplateRequestTags []string
+
+// CreateTemplateRequestTemplateParams is the createTemplateRequestTemplateParams definition
+type CreateTemplateRequestTemplateParams struct {
+	Binding         string                                       `json:"binding,omitempty"`         //
+	DataType        string                                       `json:"dataType,omitempty"`        //
+	DefaultValue    string                                       `json:"defaultValue,omitempty"`    //
+	Description     string                                       `json:"description,omitempty"`     //
+	DisplayName     string                                       `json:"displayName,omitempty"`     //
+	Group           string                                       `json:"group,omitempty"`           //
+	ID              string                                       `json:"id,omitempty"`              //
+	InstructionText string                                       `json:"instructionText,omitempty"` //
+	Key             string                                       `json:"key,omitempty"`             //
+	NotParam        bool                                         `json:"notParam,omitempty"`        //
+	Order           int                                          `json:"order,omitempty"`           //
+	ParamArray      bool                                         `json:"paramArray,omitempty"`      //
+	ParameterName   string                                       `json:"parameterName,omitempty"`   //
+	Provider        string                                       `json:"provider,omitempty"`        //
+	Range           []CreateTemplateRequestTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                         `json:"required,omitempty"`        //
+	Selection       CreateTemplateRequestTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// CreateTemplateRequestTemplateParamsRange is the createTemplateRequestTemplateParamsRange definition
+type CreateTemplateRequestTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// CreateTemplateRequestTemplateParamsSelection is the createTemplateRequestTemplateParamsSelection definition
+type CreateTemplateRequestTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// DeployTemplateRequest is the deployTemplateRequest definition
 type DeployTemplateRequest struct {
-	ForcePushTemplate            bool     `json:"forcePushTemplate,omitempty"`            //
-	IsComposite                  bool     `json:"isComposite,omitempty"`                  //
-	MainTemplateID               string   `json:"mainTemplateId,omitempty"`               //
-	MemberTemplateDeploymentInfo []string `json:"memberTemplateDeploymentInfo,omitempty"` //
-	TargetInfo                   []struct {
-		HostName string `json:"hostName,omitempty"` //
-		ID       string `json:"id,omitempty"`       //
-		Params   string `json:"params,omitempty"`   //
-		Type     string `json:"type,omitempty"`     //
-	} `json:"targetInfo,omitempty"` //
-	TemplateID string `json:"templateId,omitempty"` //
+	ForcePushTemplate            bool                              `json:"forcePushTemplate,omitempty"`            //
+	IsComposite                  bool                              `json:"isComposite,omitempty"`                  //
+	MainTemplateID               string                            `json:"mainTemplateId,omitempty"`               //
+	MemberTemplateDeploymentInfo []string                          `json:"memberTemplateDeploymentInfo,omitempty"` //
+	TargetInfo                   []DeployTemplateRequestTargetInfo `json:"targetInfo,omitempty"`                   //
+	TemplateID                   string                            `json:"templateId,omitempty"`                   //
 }
 
-// PreviewTemplateRequest is the PreviewTemplateRequest definition
+// DeployTemplateRequestMemberTemplateDeploymentInfo is the deployTemplateRequestMemberTemplateDeploymentInfo definition
+type DeployTemplateRequestMemberTemplateDeploymentInfo []string
+
+// DeployTemplateRequestTargetInfo is the deployTemplateRequestTargetInfo definition
+type DeployTemplateRequestTargetInfo struct {
+	HostName string `json:"hostName,omitempty"` //
+	ID       string `json:"id,omitempty"`       //
+	Params   string `json:"params,omitempty"`   //
+	Type     string `json:"type,omitempty"`     //
+}
+
+// PreviewTemplateRequest is the previewTemplateRequest definition
 type PreviewTemplateRequest struct {
 	Params     string `json:"params,omitempty"`     //
 	TemplateID string `json:"templateId,omitempty"` //
 }
 
-// UpdateProjectRequest is the UpdateProjectRequest definition
+// UpdateProjectRequest is the updateProjectRequest definition
 type UpdateProjectRequest struct {
 	CreateTime     int      `json:"createTime,omitempty"`     //
 	Description    string   `json:"description,omitempty"`    //
@@ -141,337 +177,430 @@ type UpdateProjectRequest struct {
 	Templates      string   `json:"templates,omitempty"`      //
 }
 
-// UpdateTemplateRequest is the UpdateTemplateRequest definition
+// UpdateProjectRequestTags is the updateProjectRequestTags definition
+type UpdateProjectRequestTags []string
+
+// UpdateTemplateRequest is the updateTemplateRequest definition
 type UpdateTemplateRequest struct {
-	Author              string `json:"author,omitempty"`    //
-	Composite           bool   `json:"composite,omitempty"` //
-	ContainingTemplates []struct {
-		Composite bool   `json:"composite,omitempty"` //
-		ID        string `json:"id,omitempty"`        //
-		Name      string `json:"name,omitempty"`      //
-		Version   string `json:"version,omitempty"`   //
-	} `json:"containingTemplates,omitempty"` //
-	CreateTime  int    `json:"createTime,omitempty"`  //
-	Description string `json:"description,omitempty"` //
-	DeviceTypes []struct {
-		ProductFamily string `json:"productFamily,omitempty"` //
-		ProductSeries string `json:"productSeries,omitempty"` //
-		ProductType   string `json:"productType,omitempty"`   //
-	} `json:"deviceTypes,omitempty"` //
-	FailurePolicy           string `json:"failurePolicy,omitempty"`           //
-	ID                      string `json:"id,omitempty"`                      //
-	LastUpdateTime          int    `json:"lastUpdateTime,omitempty"`          //
-	Name                    string `json:"name,omitempty"`                    //
-	ParentTemplateID        string `json:"parentTemplateId,omitempty"`        //
-	ProjectID               string `json:"projectId,omitempty"`               //
-	ProjectName             string `json:"projectName,omitempty"`             //
-	RollbackTemplateContent string `json:"rollbackTemplateContent,omitempty"` //
-	RollbackTemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"rollbackTemplateParams,omitempty"` //
-	SoftwareType    string   `json:"softwareType,omitempty"`    //
-	SoftwareVariant string   `json:"softwareVariant,omitempty"` //
-	SoftwareVersion string   `json:"softwareVersion,omitempty"` //
-	Tags            []string `json:"tags,omitempty"`            //
-	TemplateContent string   `json:"templateContent,omitempty"` //
-	TemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"templateParams,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Author                  string                                        `json:"author,omitempty"`                  //
+	Composite               bool                                          `json:"composite,omitempty"`               //
+	ContainingTemplates     []UpdateTemplateRequestContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              int                                           `json:"createTime,omitempty"`              //
+	Description             string                                        `json:"description,omitempty"`             //
+	DeviceTypes             []UpdateTemplateRequestDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                        `json:"failurePolicy,omitempty"`           //
+	ID                      string                                        `json:"id,omitempty"`                      //
+	LastUpdateTime          int                                           `json:"lastUpdateTime,omitempty"`          //
+	Name                    string                                        `json:"name,omitempty"`                    //
+	ParentTemplateID        string                                        `json:"parentTemplateId,omitempty"`        //
+	ProjectID               string                                        `json:"projectId,omitempty"`               //
+	ProjectName             string                                        `json:"projectName,omitempty"`             //
+	RollbackTemplateContent string                                        `json:"rollbackTemplateContent,omitempty"` //
+	RollbackTemplateParams  []UpdateTemplateRequestRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                        `json:"softwareType,omitempty"`            //
+	SoftwareVariant         string                                        `json:"softwareVariant,omitempty"`         //
+	SoftwareVersion         string                                        `json:"softwareVersion,omitempty"`         //
+	Tags                    []string                                      `json:"tags,omitempty"`                    //
+	TemplateContent         string                                        `json:"templateContent,omitempty"`         //
+	TemplateParams          []UpdateTemplateRequestTemplateParams         `json:"templateParams,omitempty"`          //
+	Version                 string                                        `json:"version,omitempty"`                 //
 }
 
-// VersionTemplateRequest is the VersionTemplateRequest definition
+// UpdateTemplateRequestContainingTemplates is the updateTemplateRequestContainingTemplates definition
+type UpdateTemplateRequestContainingTemplates struct {
+	Composite bool   `json:"composite,omitempty"` //
+	ID        string `json:"id,omitempty"`        //
+	Name      string `json:"name,omitempty"`      //
+	Version   string `json:"version,omitempty"`   //
+}
+
+// UpdateTemplateRequestDeviceTypes is the updateTemplateRequestDeviceTypes definition
+type UpdateTemplateRequestDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` //
+	ProductSeries string `json:"productSeries,omitempty"` //
+	ProductType   string `json:"productType,omitempty"`   //
+}
+
+// UpdateTemplateRequestRollbackTemplateParams is the updateTemplateRequestRollbackTemplateParams definition
+type UpdateTemplateRequestRollbackTemplateParams struct {
+	Binding         string                                               `json:"binding,omitempty"`         //
+	DataType        string                                               `json:"dataType,omitempty"`        //
+	DefaultValue    string                                               `json:"defaultValue,omitempty"`    //
+	Description     string                                               `json:"description,omitempty"`     //
+	DisplayName     string                                               `json:"displayName,omitempty"`     //
+	Group           string                                               `json:"group,omitempty"`           //
+	ID              string                                               `json:"id,omitempty"`              //
+	InstructionText string                                               `json:"instructionText,omitempty"` //
+	Key             string                                               `json:"key,omitempty"`             //
+	NotParam        bool                                                 `json:"notParam,omitempty"`        //
+	Order           int                                                  `json:"order,omitempty"`           //
+	ParamArray      bool                                                 `json:"paramArray,omitempty"`      //
+	ParameterName   string                                               `json:"parameterName,omitempty"`   //
+	Provider        string                                               `json:"provider,omitempty"`        //
+	Range           []UpdateTemplateRequestRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                                 `json:"required,omitempty"`        //
+	Selection       UpdateTemplateRequestRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// UpdateTemplateRequestRollbackTemplateParamsRange is the updateTemplateRequestRollbackTemplateParamsRange definition
+type UpdateTemplateRequestRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// UpdateTemplateRequestRollbackTemplateParamsSelection is the updateTemplateRequestRollbackTemplateParamsSelection definition
+type UpdateTemplateRequestRollbackTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// UpdateTemplateRequestTags is the updateTemplateRequestTags definition
+type UpdateTemplateRequestTags []string
+
+// UpdateTemplateRequestTemplateParams is the updateTemplateRequestTemplateParams definition
+type UpdateTemplateRequestTemplateParams struct {
+	Binding         string                                       `json:"binding,omitempty"`         //
+	DataType        string                                       `json:"dataType,omitempty"`        //
+	DefaultValue    string                                       `json:"defaultValue,omitempty"`    //
+	Description     string                                       `json:"description,omitempty"`     //
+	DisplayName     string                                       `json:"displayName,omitempty"`     //
+	Group           string                                       `json:"group,omitempty"`           //
+	ID              string                                       `json:"id,omitempty"`              //
+	InstructionText string                                       `json:"instructionText,omitempty"` //
+	Key             string                                       `json:"key,omitempty"`             //
+	NotParam        bool                                         `json:"notParam,omitempty"`        //
+	Order           int                                          `json:"order,omitempty"`           //
+	ParamArray      bool                                         `json:"paramArray,omitempty"`      //
+	ParameterName   string                                       `json:"parameterName,omitempty"`   //
+	Provider        string                                       `json:"provider,omitempty"`        //
+	Range           []UpdateTemplateRequestTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                         `json:"required,omitempty"`        //
+	Selection       UpdateTemplateRequestTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// UpdateTemplateRequestTemplateParamsRange is the updateTemplateRequestTemplateParamsRange definition
+type UpdateTemplateRequestTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// UpdateTemplateRequestTemplateParamsSelection is the updateTemplateRequestTemplateParamsSelection definition
+type UpdateTemplateRequestTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// VersionTemplateRequest is the versionTemplateRequest definition
 type VersionTemplateRequest struct {
 	Comments   string `json:"comments,omitempty"`   //
 	TemplateID string `json:"templateId,omitempty"` //
 }
 
-// CreateProjectResponse is the CreateProjectResponse definition
+// CreateProjectResponse is the createProjectResponse definition
 type CreateProjectResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateProjectResponseResponse `json:"response,omitempty"` //
+	Version  string                        `json:"version,omitempty"`  //
 }
 
-// CreateTemplateResponse is the CreateTemplateResponse definition
+// CreateProjectResponseResponse is the createProjectResponseResponse definition
+type CreateProjectResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateTemplateResponse is the createTemplateResponse definition
 type CreateTemplateResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateTemplateResponseResponse `json:"response,omitempty"` //
+	Version  string                         `json:"version,omitempty"`  //
 }
 
-// DeleteProjectResponse is the DeleteProjectResponse definition
+// CreateTemplateResponseResponse is the createTemplateResponseResponse definition
+type CreateTemplateResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteProjectResponse is the deleteProjectResponse definition
 type DeleteProjectResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteProjectResponseResponse `json:"response,omitempty"` //
+	Version  string                        `json:"version,omitempty"`  //
 }
 
-// DeleteTemplateResponse is the DeleteTemplateResponse definition
+// DeleteProjectResponseResponse is the deleteProjectResponseResponse definition
+type DeleteProjectResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteTemplateResponse is the deleteTemplateResponse definition
 type DeleteTemplateResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteTemplateResponseResponse `json:"response,omitempty"` //
+	Version  string                         `json:"version,omitempty"`  //
 }
 
-// DeployTemplateResponse is the DeployTemplateResponse definition
+// DeleteTemplateResponseResponse is the deleteTemplateResponseResponse definition
+type DeleteTemplateResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeployTemplateResponse is the deployTemplateResponse definition
 type DeployTemplateResponse struct {
-	DeploymentID   string `json:"deploymentId,omitempty"`   //
-	DeploymentName string `json:"deploymentName,omitempty"` //
-	Devices        []struct {
-		DeviceID  string `json:"deviceId,omitempty"`  //
-		Duration  string `json:"duration,omitempty"`  //
-		EndTime   string `json:"endTime,omitempty"`   //
-		IPAddress string `json:"ipAddress,omitempty"` //
-		Name      string `json:"name,omitempty"`      //
-		StartTime string `json:"startTime,omitempty"` //
-		Status    string `json:"status,omitempty"`    //
-	} `json:"devices,omitempty"` //
-	Duration        string `json:"duration,omitempty"`        //
-	EndTime         string `json:"endTime,omitempty"`         //
-	ProjectName     string `json:"projectName,omitempty"`     //
-	StartTime       string `json:"startTime,omitempty"`       //
-	Status          string `json:"status,omitempty"`          //
-	TemplateName    string `json:"templateName,omitempty"`    //
-	TemplateVersion string `json:"templateVersion,omitempty"` //
+	DeploymentID    string                          `json:"deploymentId,omitempty"`    //
+	DeploymentName  string                          `json:"deploymentName,omitempty"`  //
+	Devices         []DeployTemplateResponseDevices `json:"devices,omitempty"`         //
+	Duration        string                          `json:"duration,omitempty"`        //
+	EndTime         string                          `json:"endTime,omitempty"`         //
+	ProjectName     string                          `json:"projectName,omitempty"`     //
+	StartTime       string                          `json:"startTime,omitempty"`       //
+	Status          string                          `json:"status,omitempty"`          //
+	TemplateName    string                          `json:"templateName,omitempty"`    //
+	TemplateVersion string                          `json:"templateVersion,omitempty"` //
 }
 
-// GetProjectsResponse is the GetProjectsResponse definition
+// DeployTemplateResponseDevices is the deployTemplateResponseDevices definition
+type DeployTemplateResponseDevices struct {
+	DeviceID  string `json:"deviceId,omitempty"`  //
+	Duration  string `json:"duration,omitempty"`  //
+	EndTime   string `json:"endTime,omitempty"`   //
+	IPAddress string `json:"ipAddress,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	StartTime string `json:"startTime,omitempty"` //
+	Status    string `json:"status,omitempty"`    //
+}
+
+// GetProjectsResponse is the getProjectsResponse definition
 type GetProjectsResponse struct {
-	ID        string `json:"id,omitempty"`   //
-	Name      string `json:"name,omitempty"` //
-	Templates []struct {
-		Composite bool   `json:"composite,omitempty"` //
-		ID        string `json:"id,omitempty"`        //
-		Name      string `json:"name,omitempty"`      //
-	} `json:"templates,omitempty"` //
+	ID        string                         `json:"id,omitempty"`        //
+	Name      string                         `json:"name,omitempty"`      //
+	Templates []GetProjectsResponseTemplates `json:"templates,omitempty"` //
 }
 
-// GetTemplateDeploymentStatusResponse is the GetTemplateDeploymentStatusResponse definition
+// GetProjectsResponseTemplates is the getProjectsResponseTemplates definition
+type GetProjectsResponseTemplates struct {
+	Composite bool   `json:"composite,omitempty"` //
+	ID        string `json:"id,omitempty"`        //
+	Name      string `json:"name,omitempty"`      //
+}
+
+// GetTemplateDeploymentStatusResponse is the getTemplateDeploymentStatusResponse definition
 type GetTemplateDeploymentStatusResponse struct {
-	DeploymentID   string `json:"deploymentId,omitempty"`   //
-	DeploymentName string `json:"deploymentName,omitempty"` //
-	Devices        []struct {
-		DeviceID  string `json:"deviceId,omitempty"`  //
-		Duration  string `json:"duration,omitempty"`  //
-		EndTime   string `json:"endTime,omitempty"`   //
-		IPAddress string `json:"ipAddress,omitempty"` //
-		Name      string `json:"name,omitempty"`      //
-		StartTime string `json:"startTime,omitempty"` //
-		Status    string `json:"status,omitempty"`    //
-	} `json:"devices,omitempty"` //
-	Duration        string `json:"duration,omitempty"`        //
-	EndTime         string `json:"endTime,omitempty"`         //
-	ProjectName     string `json:"projectName,omitempty"`     //
-	StartTime       string `json:"startTime,omitempty"`       //
-	Status          string `json:"status,omitempty"`          //
-	TemplateName    string `json:"templateName,omitempty"`    //
-	TemplateVersion string `json:"templateVersion,omitempty"` //
+	DeploymentID    string                                       `json:"deploymentId,omitempty"`    //
+	DeploymentName  string                                       `json:"deploymentName,omitempty"`  //
+	Devices         []GetTemplateDeploymentStatusResponseDevices `json:"devices,omitempty"`         //
+	Duration        string                                       `json:"duration,omitempty"`        //
+	EndTime         string                                       `json:"endTime,omitempty"`         //
+	ProjectName     string                                       `json:"projectName,omitempty"`     //
+	StartTime       string                                       `json:"startTime,omitempty"`       //
+	Status          string                                       `json:"status,omitempty"`          //
+	TemplateName    string                                       `json:"templateName,omitempty"`    //
+	TemplateVersion string                                       `json:"templateVersion,omitempty"` //
 }
 
-// GetTemplateDetailsResponse is the GetTemplateDetailsResponse definition
+// GetTemplateDeploymentStatusResponseDevices is the getTemplateDeploymentStatusResponseDevices definition
+type GetTemplateDeploymentStatusResponseDevices struct {
+	DeviceID  string `json:"deviceId,omitempty"`  //
+	Duration  string `json:"duration,omitempty"`  //
+	EndTime   string `json:"endTime,omitempty"`   //
+	IPAddress string `json:"ipAddress,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	StartTime string `json:"startTime,omitempty"` //
+	Status    string `json:"status,omitempty"`    //
+}
+
+// GetTemplateDetailsResponse is the getTemplateDetailsResponse definition
 type GetTemplateDetailsResponse struct {
-	Author              string `json:"author,omitempty"`    //
-	Composite           bool   `json:"composite,omitempty"` //
-	ContainingTemplates []struct {
-		Composite bool   `json:"composite,omitempty"` //
-		ID        string `json:"id,omitempty"`        //
-		Name      string `json:"name,omitempty"`      //
-		Version   string `json:"version,omitempty"`   //
-	} `json:"containingTemplates,omitempty"` //
-	CreateTime  int    `json:"createTime,omitempty"`  //
-	Description string `json:"description,omitempty"` //
-	DeviceTypes []struct {
-		ProductFamily string `json:"productFamily,omitempty"` //
-		ProductSeries string `json:"productSeries,omitempty"` //
-		ProductType   string `json:"productType,omitempty"`   //
-	} `json:"deviceTypes,omitempty"` //
-	FailurePolicy           string `json:"failurePolicy,omitempty"`           //
-	ID                      string `json:"id,omitempty"`                      //
-	LastUpdateTime          int    `json:"lastUpdateTime,omitempty"`          //
-	Name                    string `json:"name,omitempty"`                    //
-	ParentTemplateID        string `json:"parentTemplateId,omitempty"`        //
-	ProjectID               string `json:"projectId,omitempty"`               //
-	ProjectName             string `json:"projectName,omitempty"`             //
-	RollbackTemplateContent string `json:"rollbackTemplateContent,omitempty"` //
-	RollbackTemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"rollbackTemplateParams,omitempty"` //
-	SoftwareType    string   `json:"softwareType,omitempty"`    //
-	SoftwareVariant string   `json:"softwareVariant,omitempty"` //
-	SoftwareVersion string   `json:"softwareVersion,omitempty"` //
-	Tags            []string `json:"tags,omitempty"`            //
-	TemplateContent string   `json:"templateContent,omitempty"` //
-	TemplateParams  []struct {
-		Binding         string `json:"binding,omitempty"`         //
-		DataType        string `json:"dataType,omitempty"`        //
-		DefaultValue    string `json:"defaultValue,omitempty"`    //
-		Description     string `json:"description,omitempty"`     //
-		DisplayName     string `json:"displayName,omitempty"`     //
-		Group           string `json:"group,omitempty"`           //
-		ID              string `json:"id,omitempty"`              //
-		InstructionText string `json:"instructionText,omitempty"` //
-		Key             string `json:"key,omitempty"`             //
-		NotParam        bool   `json:"notParam,omitempty"`        //
-		Order           int    `json:"order,omitempty"`           //
-		ParamArray      bool   `json:"paramArray,omitempty"`      //
-		ParameterName   string `json:"parameterName,omitempty"`   //
-		Provider        string `json:"provider,omitempty"`        //
-		Range           []struct {
-			ID       string `json:"id,omitempty"`       //
-			MaxValue int    `json:"maxValue,omitempty"` //
-			MinValue int    `json:"minValue,omitempty"` //
-		} `json:"range,omitempty"` //
-		Required  bool `json:"required,omitempty"` //
-		Selection struct {
-			ID              string `json:"id,omitempty"`              //
-			SelectionType   string `json:"selectionType,omitempty"`   //
-			SelectionValues string `json:"selectionValues,omitempty"` //
-		} `json:"selection,omitempty"` //
-	} `json:"templateParams,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Author                  string                                             `json:"author,omitempty"`                  //
+	Composite               bool                                               `json:"composite,omitempty"`               //
+	ContainingTemplates     []GetTemplateDetailsResponseContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              int                                                `json:"createTime,omitempty"`              //
+	Description             string                                             `json:"description,omitempty"`             //
+	DeviceTypes             []GetTemplateDetailsResponseDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                             `json:"failurePolicy,omitempty"`           //
+	ID                      string                                             `json:"id,omitempty"`                      //
+	LastUpdateTime          int                                                `json:"lastUpdateTime,omitempty"`          //
+	Name                    string                                             `json:"name,omitempty"`                    //
+	ParentTemplateID        string                                             `json:"parentTemplateId,omitempty"`        //
+	ProjectID               string                                             `json:"projectId,omitempty"`               //
+	ProjectName             string                                             `json:"projectName,omitempty"`             //
+	RollbackTemplateContent string                                             `json:"rollbackTemplateContent,omitempty"` //
+	RollbackTemplateParams  []GetTemplateDetailsResponseRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                             `json:"softwareType,omitempty"`            //
+	SoftwareVariant         string                                             `json:"softwareVariant,omitempty"`         //
+	SoftwareVersion         string                                             `json:"softwareVersion,omitempty"`         //
+	Tags                    []string                                           `json:"tags,omitempty"`                    //
+	TemplateContent         string                                             `json:"templateContent,omitempty"`         //
+	TemplateParams          []GetTemplateDetailsResponseTemplateParams         `json:"templateParams,omitempty"`          //
+	Version                 string                                             `json:"version,omitempty"`                 //
 }
 
-// GetTemplateVersionsResponse is the GetTemplateVersionsResponse definition
+// GetTemplateDetailsResponseContainingTemplates is the getTemplateDetailsResponseContainingTemplates definition
+type GetTemplateDetailsResponseContainingTemplates struct {
+	Composite bool   `json:"composite,omitempty"` //
+	ID        string `json:"id,omitempty"`        //
+	Name      string `json:"name,omitempty"`      //
+	Version   string `json:"version,omitempty"`   //
+}
+
+// GetTemplateDetailsResponseDeviceTypes is the getTemplateDetailsResponseDeviceTypes definition
+type GetTemplateDetailsResponseDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` //
+	ProductSeries string `json:"productSeries,omitempty"` //
+	ProductType   string `json:"productType,omitempty"`   //
+}
+
+// GetTemplateDetailsResponseRollbackTemplateParams is the getTemplateDetailsResponseRollbackTemplateParams definition
+type GetTemplateDetailsResponseRollbackTemplateParams struct {
+	Binding         string                                                    `json:"binding,omitempty"`         //
+	DataType        string                                                    `json:"dataType,omitempty"`        //
+	DefaultValue    string                                                    `json:"defaultValue,omitempty"`    //
+	Description     string                                                    `json:"description,omitempty"`     //
+	DisplayName     string                                                    `json:"displayName,omitempty"`     //
+	Group           string                                                    `json:"group,omitempty"`           //
+	ID              string                                                    `json:"id,omitempty"`              //
+	InstructionText string                                                    `json:"instructionText,omitempty"` //
+	Key             string                                                    `json:"key,omitempty"`             //
+	NotParam        bool                                                      `json:"notParam,omitempty"`        //
+	Order           int                                                       `json:"order,omitempty"`           //
+	ParamArray      bool                                                      `json:"paramArray,omitempty"`      //
+	ParameterName   string                                                    `json:"parameterName,omitempty"`   //
+	Provider        string                                                    `json:"provider,omitempty"`        //
+	Range           []GetTemplateDetailsResponseRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                                      `json:"required,omitempty"`        //
+	Selection       GetTemplateDetailsResponseRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// GetTemplateDetailsResponseRollbackTemplateParamsRange is the getTemplateDetailsResponseRollbackTemplateParamsRange definition
+type GetTemplateDetailsResponseRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// GetTemplateDetailsResponseRollbackTemplateParamsSelection is the getTemplateDetailsResponseRollbackTemplateParamsSelection definition
+type GetTemplateDetailsResponseRollbackTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// GetTemplateDetailsResponseTags is the getTemplateDetailsResponseTags definition
+type GetTemplateDetailsResponseTags []string
+
+// GetTemplateDetailsResponseTemplateParams is the getTemplateDetailsResponseTemplateParams definition
+type GetTemplateDetailsResponseTemplateParams struct {
+	Binding         string                                            `json:"binding,omitempty"`         //
+	DataType        string                                            `json:"dataType,omitempty"`        //
+	DefaultValue    string                                            `json:"defaultValue,omitempty"`    //
+	Description     string                                            `json:"description,omitempty"`     //
+	DisplayName     string                                            `json:"displayName,omitempty"`     //
+	Group           string                                            `json:"group,omitempty"`           //
+	ID              string                                            `json:"id,omitempty"`              //
+	InstructionText string                                            `json:"instructionText,omitempty"` //
+	Key             string                                            `json:"key,omitempty"`             //
+	NotParam        bool                                              `json:"notParam,omitempty"`        //
+	Order           int                                               `json:"order,omitempty"`           //
+	ParamArray      bool                                              `json:"paramArray,omitempty"`      //
+	ParameterName   string                                            `json:"parameterName,omitempty"`   //
+	Provider        string                                            `json:"provider,omitempty"`        //
+	Range           []GetTemplateDetailsResponseTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        bool                                              `json:"required,omitempty"`        //
+	Selection       GetTemplateDetailsResponseTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+
+// GetTemplateDetailsResponseTemplateParamsRange is the getTemplateDetailsResponseTemplateParamsRange definition
+type GetTemplateDetailsResponseTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       //
+	MaxValue int    `json:"maxValue,omitempty"` //
+	MinValue int    `json:"minValue,omitempty"` //
+}
+
+// GetTemplateDetailsResponseTemplateParamsSelection is the getTemplateDetailsResponseTemplateParamsSelection definition
+type GetTemplateDetailsResponseTemplateParamsSelection struct {
+	ID              string `json:"id,omitempty"`              //
+	SelectionType   string `json:"selectionType,omitempty"`   //
+	SelectionValues string `json:"selectionValues,omitempty"` //
+}
+
+// GetTemplateVersionsResponse is the getTemplateVersionsResponse definition
 type GetTemplateVersionsResponse struct {
-	Composite    bool   `json:"composite,omitempty"`   //
-	Name         string `json:"name,omitempty"`        //
-	ProjectID    string `json:"projectId,omitempty"`   //
-	ProjectName  string `json:"projectName,omitempty"` //
-	TemplateID   string `json:"templateId,omitempty"`  //
-	VersionsInfo []struct {
-		Description string `json:"description,omitempty"` //
-		ID          string `json:"id,omitempty"`          //
-		VersionTime int    `json:"versionTime,omitempty"` //
-	} `json:"versionsInfo,omitempty"` //
+	Composite    bool                                      `json:"composite,omitempty"`    //
+	Name         string                                    `json:"name,omitempty"`         //
+	ProjectID    string                                    `json:"projectId,omitempty"`    //
+	ProjectName  string                                    `json:"projectName,omitempty"`  //
+	TemplateID   string                                    `json:"templateId,omitempty"`   //
+	VersionsInfo []GetTemplateVersionsResponseVersionsInfo `json:"versionsInfo,omitempty"` //
 }
 
-// GetsTheTemplatesAvailableResponse is the GetsTheTemplatesAvailableResponse definition
+// GetTemplateVersionsResponseVersionsInfo is the getTemplateVersionsResponseVersionsInfo definition
+type GetTemplateVersionsResponseVersionsInfo struct {
+	Description string `json:"description,omitempty"` //
+	ID          string `json:"id,omitempty"`          //
+	VersionTime int    `json:"versionTime,omitempty"` //
+}
+
+// GetsTheTemplatesAvailableResponse is the getsTheTemplatesAvailableResponse definition
 type GetsTheTemplatesAvailableResponse struct {
-	Composite    bool   `json:"composite,omitempty"`   //
-	Name         string `json:"name,omitempty"`        //
-	ProjectID    string `json:"projectId,omitempty"`   //
-	ProjectName  string `json:"projectName,omitempty"` //
-	TemplateID   string `json:"templateId,omitempty"`  //
-	VersionsInfo []struct {
-		Description string `json:"description,omitempty"` //
-		ID          string `json:"id,omitempty"`          //
-		VersionTime int    `json:"versionTime,omitempty"` //
-	} `json:"versionsInfo,omitempty"` //
+	Composite    bool                                            `json:"composite,omitempty"`    //
+	Name         string                                          `json:"name,omitempty"`         //
+	ProjectID    string                                          `json:"projectId,omitempty"`    //
+	ProjectName  string                                          `json:"projectName,omitempty"`  //
+	TemplateID   string                                          `json:"templateId,omitempty"`   //
+	VersionsInfo []GetsTheTemplatesAvailableResponseVersionsInfo `json:"versionsInfo,omitempty"` //
 }
 
-// PreviewTemplateResponse is the PreviewTemplateResponse definition
+// GetsTheTemplatesAvailableResponseVersionsInfo is the getsTheTemplatesAvailableResponseVersionsInfo definition
+type GetsTheTemplatesAvailableResponseVersionsInfo struct {
+	Description string `json:"description,omitempty"` //
+	ID          string `json:"id,omitempty"`          //
+	VersionTime int    `json:"versionTime,omitempty"` //
+}
+
+// PreviewTemplateResponse is the previewTemplateResponse definition
 type PreviewTemplateResponse struct {
-	CLIPreview       string `json:"cliPreview,omitempty"`       //
+	CliPreview       string `json:"cliPreview,omitempty"`       //
 	TemplateID       string `json:"templateId,omitempty"`       //
 	ValidationErrors string `json:"validationErrors,omitempty"` //
 }
 
-// UpdateProjectResponse is the UpdateProjectResponse definition
+// UpdateProjectResponse is the updateProjectResponse definition
 type UpdateProjectResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateProjectResponseResponse `json:"response,omitempty"` //
+	Version  string                        `json:"version,omitempty"`  //
 }
 
-// UpdateTemplateResponse is the UpdateTemplateResponse definition
+// UpdateProjectResponseResponse is the updateProjectResponseResponse definition
+type UpdateProjectResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateTemplateResponse is the updateTemplateResponse definition
 type UpdateTemplateResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateTemplateResponseResponse `json:"response,omitempty"` //
+	Version  string                         `json:"version,omitempty"`  //
 }
 
-// VersionTemplateResponse is the VersionTemplateResponse definition
+// UpdateTemplateResponseResponse is the updateTemplateResponseResponse definition
+type UpdateTemplateResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// VersionTemplateResponse is the versionTemplateResponse definition
 type VersionTemplateResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response VersionTemplateResponseResponse `json:"response,omitempty"` //
+	Version  string                          `json:"version,omitempty"`  //
+}
+
+// VersionTemplateResponseResponse is the versionTemplateResponseResponse definition
+type VersionTemplateResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // CreateProject createProject

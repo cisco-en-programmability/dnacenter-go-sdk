@@ -54,10 +54,7 @@ func main() {
 	}
 
 	for id := range clientHealth.Response {
-		fmt.Println(id)
-		for item := range clientHealth.Response[id] {
-			fmt.Println(fmt.Sprintf("Client Health --> ", item))
-		}
+		fmt.Println(id, clientHealth.Response[id])
 	}
 	fmt.Println(clientHealth.Response[0])
 

@@ -8,13 +8,13 @@ import (
 // DeviceReplacementService is the service to communicate with the DeviceReplacement API endpoint
 type DeviceReplacementService service
 
-// DeployDeviceReplacementWorkflowRequest is the DeployDeviceReplacementWorkflowRequest definition
+// DeployDeviceReplacementWorkflowRequest is the deployDeviceReplacementWorkflowRequest definition
 type DeployDeviceReplacementWorkflowRequest struct {
 	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
 	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
 }
 
-// MarkDeviceForReplacementRequest is the MarkDeviceForReplacementRequest definition
+// MarkDeviceForReplacementRequest is the markDeviceForReplacementRequest definition
 type MarkDeviceForReplacementRequest struct {
 	CreationTime                  int    `json:"creationTime,omitempty"`                  //
 	Family                        string `json:"family,omitempty"`                        //
@@ -32,7 +32,7 @@ type MarkDeviceForReplacementRequest struct {
 	WorkflowID                    string `json:"workflowId,omitempty"`                    //
 }
 
-// UnMarkDeviceForReplacementRequest is the UnMarkDeviceForReplacementRequest definition
+// UnMarkDeviceForReplacementRequest is the unMarkDeviceForReplacementRequest definition
 type UnMarkDeviceForReplacementRequest struct {
 	CreationTime                  int    `json:"creationTime,omitempty"`                  //
 	Family                        string `json:"family,omitempty"`                        //
@@ -50,58 +50,70 @@ type UnMarkDeviceForReplacementRequest struct {
 	WorkflowID                    string `json:"workflowId,omitempty"`                    //
 }
 
-// DeployDeviceReplacementWorkflowResponse is the DeployDeviceReplacementWorkflowResponse definition
+// DeployDeviceReplacementWorkflowResponse is the deployDeviceReplacementWorkflowResponse definition
 type DeployDeviceReplacementWorkflowResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeployDeviceReplacementWorkflowResponseResponse `json:"response,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  //
 }
 
-// MarkDeviceForReplacementResponse is the MarkDeviceForReplacementResponse definition
+// DeployDeviceReplacementWorkflowResponseResponse is the deployDeviceReplacementWorkflowResponseResponse definition
+type DeployDeviceReplacementWorkflowResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// MarkDeviceForReplacementResponse is the markDeviceForReplacementResponse definition
 type MarkDeviceForReplacementResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response MarkDeviceForReplacementResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// ReturnListOfReplacementDevicesWithReplacementDetailsResponse is the ReturnListOfReplacementDevicesWithReplacementDetailsResponse definition
+// MarkDeviceForReplacementResponseResponse is the markDeviceForReplacementResponseResponse definition
+type MarkDeviceForReplacementResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// ReturnListOfReplacementDevicesWithReplacementDetailsResponse is the returnListOfReplacementDevicesWithReplacementDetailsResponse definition
 type ReturnListOfReplacementDevicesWithReplacementDetailsResponse struct {
-	Response []struct {
-		CreationTime                  int    `json:"creationTime,omitempty"`                  //
-		Family                        string `json:"family,omitempty"`                        //
-		FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-		FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-		FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-		FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-		ID                            string `json:"id,omitempty"`                            //
-		NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-		NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-		ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-		ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-		ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-		ReplacementTime               int    `json:"replacementTime,omitempty"`               //
-		WorkflowID                    string `json:"workflowId,omitempty"`                    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse `json:"response,omitempty"` //
+	Version  string                                                                 `json:"version,omitempty"`  //
 }
 
-// ReturnReplacementDevicesCountResponse is the ReturnReplacementDevicesCountResponse definition
+// ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse is the returnListOfReplacementDevicesWithReplacementDetailsResponseResponse definition
+type ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse struct {
+	CreationTime                  int    `json:"creationTime,omitempty"`                  //
+	Family                        string `json:"family,omitempty"`                        //
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ID                            string `json:"id,omitempty"`                            //
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
+	ReplacementTime               int    `json:"replacementTime,omitempty"`               //
+	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+}
+
+// ReturnReplacementDevicesCountResponse is the returnReplacementDevicesCountResponse definition
 type ReturnReplacementDevicesCountResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// UnMarkDeviceForReplacementResponse is the UnMarkDeviceForReplacementResponse definition
+// UnMarkDeviceForReplacementResponse is the unMarkDeviceForReplacementResponse definition
 type UnMarkDeviceForReplacementResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UnMarkDeviceForReplacementResponseResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
+}
+
+// UnMarkDeviceForReplacementResponseResponse is the unMarkDeviceForReplacementResponseResponse definition
+type UnMarkDeviceForReplacementResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // DeployDeviceReplacementWorkflow deployDeviceReplacementWorkflow

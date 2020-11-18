@@ -11,200 +11,266 @@ import (
 // SitesService is the service to communicate with the Sites API endpoint
 type SitesService service
 
-// AssignDeviceToSiteRequest is the AssignDeviceToSiteRequest definition
+// AssignDeviceToSiteRequest is the assignDeviceToSiteRequest definition
 type AssignDeviceToSiteRequest struct {
-	Device []struct {
-		IP string `json:"ip,omitempty"` //
-	} `json:"device,omitempty"` //
+	Device []AssignDeviceToSiteRequestDevice `json:"device,omitempty"` //
 }
 
-// CreateSiteRequest is the CreateSiteRequest definition
+// AssignDeviceToSiteRequestDevice is the assignDeviceToSiteRequestDevice definition
+type AssignDeviceToSiteRequestDevice struct {
+	IP string `json:"ip,omitempty"` //
+}
+
+// CreateSiteRequest is the createSiteRequest definition
 type CreateSiteRequest struct {
-	Site struct {
-		Area struct {
-			Name       string `json:"name,omitempty"`       //
-			ParentName string `json:"parentName,omitempty"` //
-		} `json:"area,omitempty"` //
-		Building struct {
-			Address    string `json:"address,omitempty"`    //
-			Latitude   int    `json:"latitude,omitempty"`   //
-			Longitude  int    `json:"longitude,omitempty"`  //
-			Name       string `json:"name,omitempty"`       //
-			ParentName string `json:"parentName,omitempty"` //
-		} `json:"building,omitempty"` //
-		Floor struct {
-			Height     int    `json:"height,omitempty"`     //
-			Length     int    `json:"length,omitempty"`     //
-			Name       string `json:"name,omitempty"`       //
-			ParentName string `json:"parentName,omitempty"` //
-			RfModel    string `json:"rfModel,omitempty"`    //
-			Width      int    `json:"width,omitempty"`      //
-		} `json:"floor,omitempty"` //
-	} `json:"site,omitempty"` //
-	Type string `json:"type,omitempty"` //
+	Site CreateSiteRequestSite `json:"site,omitempty"` //
+	Type string                `json:"type,omitempty"` //
 }
 
-// UpdateSiteRequest is the UpdateSiteRequest definition
+// CreateSiteRequestSite is the createSiteRequestSite definition
+type CreateSiteRequestSite struct {
+	Area     CreateSiteRequestSiteArea     `json:"area,omitempty"`     //
+	Building CreateSiteRequestSiteBuilding `json:"building,omitempty"` //
+	Floor    CreateSiteRequestSiteFloor    `json:"floor,omitempty"`    //
+}
+
+// CreateSiteRequestSiteArea is the createSiteRequestSiteArea definition
+type CreateSiteRequestSiteArea struct {
+	Name       string `json:"name,omitempty"`       //
+	ParentName string `json:"parentName,omitempty"` //
+}
+
+// CreateSiteRequestSiteBuilding is the createSiteRequestSiteBuilding definition
+type CreateSiteRequestSiteBuilding struct {
+	Address    string `json:"address,omitempty"`    //
+	Latitude   int    `json:"latitude,omitempty"`   //
+	Longitude  int    `json:"longitude,omitempty"`  //
+	Name       string `json:"name,omitempty"`       //
+	ParentName string `json:"parentName,omitempty"` //
+}
+
+// CreateSiteRequestSiteFloor is the createSiteRequestSiteFloor definition
+type CreateSiteRequestSiteFloor struct {
+	Height     int    `json:"height,omitempty"`     //
+	Length     int    `json:"length,omitempty"`     //
+	Name       string `json:"name,omitempty"`       //
+	ParentName string `json:"parentName,omitempty"` //
+	RfModel    string `json:"rfModel,omitempty"`    //
+	Width      int    `json:"width,omitempty"`      //
+}
+
+// UpdateSiteRequest is the updateSiteRequest definition
 type UpdateSiteRequest struct {
-	Site struct {
-		Area struct {
-			Name       string `json:"name,omitempty"`       //
-			ParentName string `json:"parentName,omitempty"` //
-		} `json:"area,omitempty"` //
-		Building struct {
-			Address    string `json:"address,omitempty"`    //
-			Latitude   int    `json:"latitude,omitempty"`   //
-			Longitude  int    `json:"longitude,omitempty"`  //
-			Name       string `json:"name,omitempty"`       //
-			ParentName string `json:"parentName,omitempty"` //
-		} `json:"building,omitempty"` //
-		Floor struct {
-			Height  int    `json:"height,omitempty"`  //
-			Length  int    `json:"length,omitempty"`  //
-			Name    string `json:"name,omitempty"`    //
-			RfModel string `json:"rfModel,omitempty"` //
-			Width   int    `json:"width,omitempty"`   //
-		} `json:"floor,omitempty"` //
-	} `json:"site,omitempty"` //
-	Type string `json:"type,omitempty"` //
+	Site UpdateSiteRequestSite `json:"site,omitempty"` //
+	Type string                `json:"type,omitempty"` //
 }
 
-// AssignDeviceToSiteResponse is the AssignDeviceToSiteResponse definition
+// UpdateSiteRequestSite is the updateSiteRequestSite definition
+type UpdateSiteRequestSite struct {
+	Area     UpdateSiteRequestSiteArea     `json:"area,omitempty"`     //
+	Building UpdateSiteRequestSiteBuilding `json:"building,omitempty"` //
+	Floor    UpdateSiteRequestSiteFloor    `json:"floor,omitempty"`    //
+}
+
+// UpdateSiteRequestSiteArea is the updateSiteRequestSiteArea definition
+type UpdateSiteRequestSiteArea struct {
+	Name       string `json:"name,omitempty"`       //
+	ParentName string `json:"parentName,omitempty"` //
+}
+
+// UpdateSiteRequestSiteBuilding is the updateSiteRequestSiteBuilding definition
+type UpdateSiteRequestSiteBuilding struct {
+	Address    string `json:"address,omitempty"`    //
+	Latitude   int    `json:"latitude,omitempty"`   //
+	Longitude  int    `json:"longitude,omitempty"`  //
+	Name       string `json:"name,omitempty"`       //
+	ParentName string `json:"parentName,omitempty"` //
+}
+
+// UpdateSiteRequestSiteFloor is the updateSiteRequestSiteFloor definition
+type UpdateSiteRequestSiteFloor struct {
+	Height  int    `json:"height,omitempty"`  //
+	Length  int    `json:"length,omitempty"`  //
+	Name    string `json:"name,omitempty"`    //
+	RfModel string `json:"rfModel,omitempty"` //
+	Width   int    `json:"width,omitempty"`   //
+}
+
+// AssignDeviceToSiteResponse is the assignDeviceToSiteResponse definition
 type AssignDeviceToSiteResponse struct {
 	ExecutionID        string `json:"executionId,omitempty"`        //
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// CreateSiteResponse is the CreateSiteResponse definition
+// CreateSiteResponse is the createSiteResponse definition
 type CreateSiteResponse struct {
 	ExecutionID        string `json:"executionId,omitempty"`        //
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Message            string `json:"message,omitempty"`            //
 }
 
-// DeleteSiteResponse is the DeleteSiteResponse definition
+// DeleteSiteResponse is the deleteSiteResponse definition
 type DeleteSiteResponse struct {
 	Message string `json:"message,omitempty"` //
 	Status  string `json:"status,omitempty"`  //
 }
 
-// GetMembershipResponse is the GetMembershipResponse definition
+// GetMembershipResponse is the getMembershipResponse definition
 type GetMembershipResponse struct {
-	Device []struct {
-		Response []string `json:"response,omitempty"` //
-		SiteID   string   `json:"siteId,omitempty"`   //
-		Version  string   `json:"version,omitempty"`  //
-	} `json:"device,omitempty"` //
-	Site struct {
-		Response []string `json:"response,omitempty"` //
-		Version  string   `json:"version,omitempty"`  //
-	} `json:"site,omitempty"` //
+	Device []GetMembershipResponseDevice `json:"device,omitempty"` //
+	Site   GetMembershipResponseSite     `json:"site,omitempty"`   //
 }
 
-// GetSiteCountResponse is the GetSiteCountResponse definition
+// GetMembershipResponseDevice is the getMembershipResponseDevice definition
+type GetMembershipResponseDevice struct {
+	Response []string `json:"response,omitempty"` //
+	SiteID   string   `json:"siteId,omitempty"`   //
+	Version  string   `json:"version,omitempty"`  //
+}
+
+// GetMembershipResponseDeviceResponse is the getMembershipResponseDeviceResponse definition
+type GetMembershipResponseDeviceResponse []string
+
+// GetMembershipResponseSite is the getMembershipResponseSite definition
+type GetMembershipResponseSite struct {
+	Response []string `json:"response,omitempty"` //
+	Version  string   `json:"version,omitempty"`  //
+}
+
+// GetMembershipResponseSiteResponse is the getMembershipResponseSiteResponse definition
+type GetMembershipResponseSiteResponse []string
+
+// GetSiteCountResponse is the getSiteCountResponse definition
 type GetSiteCountResponse struct {
 	Response string `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetSiteHealthResponse is the GetSiteHealthResponse definition
+// GetSiteHealthResponse is the getSiteHealthResponse definition
 type GetSiteHealthResponse struct {
-	Response []struct {
-		AccessGoodCount            int `json:"accessGoodCount,omitempty"`            //
-		AccessTotalCount           int `json:"accessTotalCount,omitempty"`           //
-		ApplicationBytesTotalCount int `json:"applicationBytesTotalCount,omitempty"` //
-		ApplicationGoodCount       int `json:"applicationGoodCount,omitempty"`       //
-		ApplicationHealth          int `json:"applicationHealth,omitempty"`          //
-		ApplicationHealthStats     struct {
-			AppTotalCount              int `json:"appTotalCount,omitempty"` //
-			BusinessIrrelevantAppCount struct {
-				Fair int `json:"fair,omitempty"` //
-				Good int `json:"good,omitempty"` //
-				Poor int `json:"poor,omitempty"` //
-			} `json:"businessIrrelevantAppCount,omitempty"` //
-			BusinessRelevantAppCount struct {
-				Fair int `json:"fair,omitempty"` //
-				Good int `json:"good,omitempty"` //
-				Poor int `json:"poor,omitempty"` //
-			} `json:"businessRelevantAppCount,omitempty"` //
-			DefaultHealthAppCount struct {
-				Fair int `json:"fair,omitempty"` //
-				Good int `json:"good,omitempty"` //
-				Poor int `json:"poor,omitempty"` //
-			} `json:"defaultHealthAppCount,omitempty"` //
-		} `json:"applicationHealthStats,omitempty"` //
-		ApplicationTotalCount              int     `json:"applicationTotalCount,omitempty"`              //
-		ClientHealthWired                  int     `json:"clientHealthWired,omitempty"`                  //
-		ClientHealthWireless               int     `json:"clientHealthWireless,omitempty"`               //
-		CoreGoodCount                      int     `json:"coreGoodCount,omitempty"`                      //
-		CoreTotalCount                     int     `json:"coreTotalCount,omitempty"`                     //
-		DistributionGoodCount              int     `json:"distributionGoodCount,omitempty"`              //
-		DistributionTotalCount             int     `json:"distributionTotalCount,omitempty"`             //
-		DnacInfo                           int     `json:"dnacInfo,omitempty"`                           //
-		HealthyClientsPercentage           int     `json:"healthyClientsPercentage,omitempty"`           //
-		HealthyNetworkDevicePercentage     int     `json:"healthyNetworkDevicePercentage,omitempty"`     //
-		Latitude                           float64 `json:"latitude,omitempty"`                           //
-		Longitude                          float64 `json:"longitude,omitempty"`                          //
-		NetworkHealthAccess                int     `json:"networkHealthAccess,omitempty"`                //
-		NetworkHealthAverage               int     `json:"networkHealthAverage,omitempty"`               //
-		NetworkHealthCore                  int     `json:"networkHealthCore,omitempty"`                  //
-		NetworkHealthDistribution          int     `json:"networkHealthDistribution,omitempty"`          //
-		NetworkHealthOthers                int     `json:"networkHealthOthers,omitempty"`                //
-		NetworkHealthRouter                int     `json:"networkHealthRouter,omitempty"`                //
-		NetworkHealthWireless              int     `json:"networkHealthWireless,omitempty"`              //
-		NumberOfClients                    int     `json:"numberOfClients,omitempty"`                    //
-		NumberOfNetworkDevice              int     `json:"numberOfNetworkDevice,omitempty"`              //
-		NumberOfWiredClients               int     `json:"numberOfWiredClients,omitempty"`               //
-		NumberOfWirelessClients            int     `json:"numberOfWirelessClients,omitempty"`            //
-		OverallGoodDevices                 int     `json:"overallGoodDevices,omitempty"`                 //
-		ParentSiteID                       string  `json:"parentSiteId,omitempty"`                       //
-		ParentSiteName                     string  `json:"parentSiteName,omitempty"`                     //
-		RouterGoodCount                    int     `json:"routerGoodCount,omitempty"`                    //
-		RouterTotalCount                   int     `json:"routerTotalCount,omitempty"`                   //
-		SiteID                             string  `json:"siteId,omitempty"`                             //
-		SiteName                           string  `json:"siteName,omitempty"`                           //
-		SiteType                           string  `json:"siteType,omitempty"`                           //
-		TotalNumberOfActiveWirelessClients int     `json:"totalNumberOfActiveWirelessClients,omitempty"` //
-		TotalNumberOfConnectedWiredClients int     `json:"totalNumberOfConnectedWiredClients,omitempty"` //
-		WiredGoodClients                   int     `json:"wiredGoodClients,omitempty"`                   //
-		WirelessDeviceGoodCount            int     `json:"wirelessDeviceGoodCount,omitempty"`            //
-		WirelessDeviceTotalCount           int     `json:"wirelessDeviceTotalCount,omitempty"`           //
-		WirelessGoodClients                int     `json:"wirelessGoodClients,omitempty"`                //
-	} `json:"response,omitempty"` //
+	Response []GetSiteHealthResponseResponse `json:"response,omitempty"` //
 }
 
-// GetSiteResponse is the GetSiteResponse definition
+// GetSiteHealthResponseResponse is the getSiteHealthResponseResponse definition
+type GetSiteHealthResponseResponse struct {
+	AccessGoodCount                    int                                                 `json:"accessGoodCount,omitempty"`                    //
+	AccessTotalCount                   int                                                 `json:"accessTotalCount,omitempty"`                   //
+	ApplicationBytesTotalCount         int                                                 `json:"applicationBytesTotalCount,omitempty"`         //
+	ApplicationGoodCount               int                                                 `json:"applicationGoodCount,omitempty"`               //
+	ApplicationHealth                  int                                                 `json:"applicationHealth,omitempty"`                  //
+	ApplicationHealthStats             GetSiteHealthResponseResponseApplicationHealthStats `json:"applicationHealthStats,omitempty"`             //
+	ApplicationTotalCount              int                                                 `json:"applicationTotalCount,omitempty"`              //
+	ClientHealthWired                  int                                                 `json:"clientHealthWired,omitempty"`                  //
+	ClientHealthWireless               int                                                 `json:"clientHealthWireless,omitempty"`               //
+	CoreGoodCount                      int                                                 `json:"coreGoodCount,omitempty"`                      //
+	CoreTotalCount                     int                                                 `json:"coreTotalCount,omitempty"`                     //
+	DistributionGoodCount              int                                                 `json:"distributionGoodCount,omitempty"`              //
+	DistributionTotalCount             int                                                 `json:"distributionTotalCount,omitempty"`             //
+	DnacInfo                           int                                                 `json:"dnacInfo,omitempty"`                           //
+	HealthyClientsPercentage           int                                                 `json:"healthyClientsPercentage,omitempty"`           //
+	HealthyNetworkDevicePercentage     int                                                 `json:"healthyNetworkDevicePercentage,omitempty"`     //
+	Latitude                           float32                                             `json:"latitude,omitempty"`                           //
+	Longitude                          float32                                             `json:"longitude,omitempty"`                          //
+	NetworkHealthAccess                int                                                 `json:"networkHealthAccess,omitempty"`                //
+	NetworkHealthAverage               int                                                 `json:"networkHealthAverage,omitempty"`               //
+	NetworkHealthCore                  int                                                 `json:"networkHealthCore,omitempty"`                  //
+	NetworkHealthDistribution          int                                                 `json:"networkHealthDistribution,omitempty"`          //
+	NetworkHealthOthers                int                                                 `json:"networkHealthOthers,omitempty"`                //
+	NetworkHealthRouter                int                                                 `json:"networkHealthRouter,omitempty"`                //
+	NetworkHealthWireless              int                                                 `json:"networkHealthWireless,omitempty"`              //
+	NumberOfClients                    int                                                 `json:"numberOfClients,omitempty"`                    //
+	NumberOfNetworkDevice              int                                                 `json:"numberOfNetworkDevice,omitempty"`              //
+	NumberOfWiredClients               int                                                 `json:"numberOfWiredClients,omitempty"`               //
+	NumberOfWirelessClients            int                                                 `json:"numberOfWirelessClients,omitempty"`            //
+	OverallGoodDevices                 int                                                 `json:"overallGoodDevices,omitempty"`                 //
+	ParentSiteID                       string                                              `json:"parentSiteId,omitempty"`                       //
+	ParentSiteName                     string                                              `json:"parentSiteName,omitempty"`                     //
+	RouterGoodCount                    int                                                 `json:"routerGoodCount,omitempty"`                    //
+	RouterTotalCount                   int                                                 `json:"routerTotalCount,omitempty"`                   //
+	SiteID                             string                                              `json:"siteId,omitempty"`                             //
+	SiteName                           string                                              `json:"siteName,omitempty"`                           //
+	SiteType                           string                                              `json:"siteType,omitempty"`                           //
+	TotalNumberOfActiveWirelessClients int                                                 `json:"totalNumberOfActiveWirelessClients,omitempty"` //
+	TotalNumberOfConnectedWiredClients int                                                 `json:"totalNumberOfConnectedWiredClients,omitempty"` //
+	WiredGoodClients                   int                                                 `json:"wiredGoodClients,omitempty"`                   //
+	WirelessDeviceGoodCount            int                                                 `json:"wirelessDeviceGoodCount,omitempty"`            //
+	WirelessDeviceTotalCount           int                                                 `json:"wirelessDeviceTotalCount,omitempty"`           //
+	WirelessGoodClients                int                                                 `json:"wirelessGoodClients,omitempty"`                //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStats is the getSiteHealthResponseResponseApplicationHealthStats definition
+type GetSiteHealthResponseResponseApplicationHealthStats struct {
+	AppTotalCount              int                                                                           `json:"appTotalCount,omitempty"`              //
+	BusinessIrrelevantAppCount GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount `json:"businessIrrelevantAppCount,omitempty"` //
+	BusinessRelevantAppCount   GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount   `json:"businessRelevantAppCount,omitempty"`   //
+	DefaultHealthAppCount      GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount      `json:"defaultHealthAppCount,omitempty"`      //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount struct {
+	Fair int `json:"fair,omitempty"` //
+	Good int `json:"good,omitempty"` //
+	Poor int `json:"poor,omitempty"` //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount struct {
+	Fair int `json:"fair,omitempty"` //
+	Good int `json:"good,omitempty"` //
+	Poor int `json:"poor,omitempty"` //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount is the getSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount struct {
+	Fair int `json:"fair,omitempty"` //
+	Good int `json:"good,omitempty"` //
+	Poor int `json:"poor,omitempty"` //
+}
+
+// GetSiteResponse is the getSiteResponse definition
 type GetSiteResponse struct {
-	Response []struct {
-		AdditionalInfo    []string `json:"additionalInfo,omitempty"`    //
-		ID                string   `json:"id,omitempty"`                //
-		InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  //
-		Name              string   `json:"name,omitempty"`              //
-		ParentID          string   `json:"parentId,omitempty"`          //
-		SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     //
-		SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` //
-	} `json:"response,omitempty"` //
+	Response []GetSiteResponseResponse `json:"response,omitempty"` //
 }
 
-// UpdateSiteResponse is the UpdateSiteResponse definition
-type UpdateSiteResponse struct {
-	Response struct {
-		Data             string   `json:"data,omitempty"`             //
-		EndTime          string   `json:"endTime,omitempty"`          //
-		ID               string   `json:"id,omitempty"`               //
-		InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
-		IsError          string   `json:"isError,omitempty"`          //
-		OperationIDList  []string `json:"operationIdList,omitempty"`  //
-		Progress         string   `json:"progress,omitempty"`         //
-		RootID           string   `json:"rootId,omitempty"`           //
-		ServiceType      string   `json:"serviceType,omitempty"`      //
-		StartTime        string   `json:"startTime,omitempty"`        //
-		Version          string   `json:"version,omitempty"`          //
-	} `json:"response,omitempty"` //
-	Result string `json:"result,omitempty"` //
-	Status string `json:"status,omitempty"` //
+// GetSiteResponseResponse is the getSiteResponseResponse definition
+type GetSiteResponseResponse struct {
+	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    //
+	ID                string   `json:"id,omitempty"`                //
+	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  //
+	Name              string   `json:"name,omitempty"`              //
+	ParentID          string   `json:"parentId,omitempty"`          //
+	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     //
+	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` //
 }
+
+// GetSiteResponseResponseAdditionalInfo is the getSiteResponseResponseAdditionalInfo definition
+type GetSiteResponseResponseAdditionalInfo []string
+
+// UpdateSiteResponse is the updateSiteResponse definition
+type UpdateSiteResponse struct {
+	Response UpdateSiteResponseResponse `json:"response,omitempty"` //
+	Result   string                     `json:"result,omitempty"`   //
+	Status   string                     `json:"status,omitempty"`   //
+}
+
+// UpdateSiteResponseResponse is the updateSiteResponseResponse definition
+type UpdateSiteResponseResponse struct {
+	Data             string   `json:"data,omitempty"`             //
+	EndTime          string   `json:"endTime,omitempty"`          //
+	ID               string   `json:"id,omitempty"`               //
+	InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
+	IsError          string   `json:"isError,omitempty"`          //
+	OperationIDList  []string `json:"operationIdList,omitempty"`  //
+	Progress         string   `json:"progress,omitempty"`         //
+	RootID           string   `json:"rootId,omitempty"`           //
+	ServiceType      string   `json:"serviceType,omitempty"`      //
+	StartTime        string   `json:"startTime,omitempty"`        //
+	Version          string   `json:"version,omitempty"`          //
+}
+
+// UpdateSiteResponseResponseOperationIDList is the updateSiteResponseResponseOperationIDList definition
+type UpdateSiteResponseResponseOperationIDList []string
 
 // AssignDeviceToSite assignDeviceToSite
 /* Assigns list of devices to a site

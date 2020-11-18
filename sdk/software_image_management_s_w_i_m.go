@@ -8,7 +8,7 @@ import (
 // SoftwareImageManagementSWIMService is the service to communicate with the SoftwareImageManagementSWIM API endpoint
 type SoftwareImageManagementSWIMService service
 
-// ImportSoftwareImageViaURLRequest is the ImportSoftwareImageViaURLRequest definition
+// ImportSoftwareImageViaURLRequest is the importSoftwareImageViaURLRequest definition
 type ImportSoftwareImageViaURLRequest struct {
 	ApplicationType string `json:"applicationType,omitempty"` //
 	ImageFamily     string `json:"imageFamily,omitempty"`     //
@@ -17,7 +17,7 @@ type ImportSoftwareImageViaURLRequest struct {
 	Vendor          string `json:"vendor,omitempty"`          //
 }
 
-// TriggerSoftwareImageActivationRequest is the TriggerSoftwareImageActivationRequest definition
+// TriggerSoftwareImageActivationRequest is the triggerSoftwareImageActivationRequest definition
 type TriggerSoftwareImageActivationRequest struct {
 	ActivateLowerImageVersion bool     `json:"activateLowerImageVersion,omitempty"` //
 	DeviceUpgradeMode         string   `json:"deviceUpgradeMode,omitempty"`         //
@@ -27,87 +27,120 @@ type TriggerSoftwareImageActivationRequest struct {
 	SmuImageUUIDList          []string `json:"smuImageUuidList,omitempty"`          //
 }
 
-// TriggerSoftwareImageDistributionRequest is the TriggerSoftwareImageDistributionRequest definition
+// TriggerSoftwareImageActivationRequestImageUUIDList is the triggerSoftwareImageActivationRequestImageUUIDList definition
+type TriggerSoftwareImageActivationRequestImageUUIDList []string
+
+// TriggerSoftwareImageActivationRequestSmuImageUUIDList is the triggerSoftwareImageActivationRequestSmuImageUUIDList definition
+type TriggerSoftwareImageActivationRequestSmuImageUUIDList []string
+
+// TriggerSoftwareImageDistributionRequest is the triggerSoftwareImageDistributionRequest definition
 type TriggerSoftwareImageDistributionRequest struct {
 	DeviceUUID string `json:"deviceUuid,omitempty"` //
 	ImageUUID  string `json:"imageUuid,omitempty"`  //
 }
 
-// GetSoftwareImageDetailsResponse is the GetSoftwareImageDetailsResponse definition
+// GetSoftwareImageDetailsResponse is the getSoftwareImageDetailsResponse definition
 type GetSoftwareImageDetailsResponse struct {
-	Response []struct {
-		ApplicableDevicesForImage []struct {
-			MdfID       string   `json:"mdfId,omitempty"`       //
-			ProductID   []string `json:"productId,omitempty"`   //
-			ProductName string   `json:"productName,omitempty"` //
-		} `json:"applicableDevicesForImage,omitempty"` //
-		ApplicationType      string   `json:"applicationType,omitempty"`      //
-		CreatedTime          string   `json:"createdTime,omitempty"`          //
-		ExtendedAttributes   string   `json:"extendedAttributes,omitempty"`   //
-		Family               string   `json:"family,omitempty"`               //
-		Feature              string   `json:"feature,omitempty"`              //
-		FileServiceID        string   `json:"fileServiceId,omitempty"`        //
-		FileSize             string   `json:"fileSize,omitempty"`             //
-		ImageIntegrityStatus string   `json:"imageIntegrityStatus,omitempty"` //
-		ImageName            string   `json:"imageName,omitempty"`            //
-		ImageSeries          []string `json:"imageSeries,omitempty"`          //
-		ImageSource          string   `json:"imageSource,omitempty"`          //
-		ImageType            string   `json:"imageType,omitempty"`            //
-		ImageUUID            string   `json:"imageUuid,omitempty"`            //
-		ImportSourceType     string   `json:"importSourceType,omitempty"`     //
-		IsTaggedGolden       bool     `json:"isTaggedGolden,omitempty"`       //
-		Md5Checksum          string   `json:"md5Checksum,omitempty"`          //
-		Name                 string   `json:"name,omitempty"`                 //
-		ProfileInfo          []struct {
-			Description        string `json:"description,omitempty"`        //
-			ExtendedAttributes string `json:"extendedAttributes,omitempty"` //
-			Memory             int    `json:"memory,omitempty"`             //
-			ProductType        string `json:"productType,omitempty"`        //
-			ProfileName        string `json:"profileName,omitempty"`        //
-			Shares             int    `json:"shares,omitempty"`             //
-			VCPU               int    `json:"vCpu,omitempty"`               //
-		} `json:"profileInfo,omitempty"` //
-		ShaCheckSum string `json:"shaCheckSum,omitempty"` //
-		Vendor      string `json:"vendor,omitempty"`      //
-		Version     string `json:"version,omitempty"`     //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetSoftwareImageDetailsResponseResponse `json:"response,omitempty"` //
+	Version  string                                    `json:"version,omitempty"`  //
 }
 
-// ImportLocalSoftwareImageResponse is the ImportLocalSoftwareImageResponse definition
+// GetSoftwareImageDetailsResponseResponse is the getSoftwareImageDetailsResponseResponse definition
+type GetSoftwareImageDetailsResponseResponse struct {
+	ApplicableDevicesForImage []GetSoftwareImageDetailsResponseResponseApplicableDevicesForImage `json:"applicableDevicesForImage,omitempty"` //
+	ApplicationType           string                                                             `json:"applicationType,omitempty"`           //
+	CreatedTime               string                                                             `json:"createdTime,omitempty"`               //
+	ExtendedAttributes        string                                                             `json:"extendedAttributes,omitempty"`        //
+	Family                    string                                                             `json:"family,omitempty"`                    //
+	Feature                   string                                                             `json:"feature,omitempty"`                   //
+	FileServiceID             string                                                             `json:"fileServiceId,omitempty"`             //
+	FileSize                  string                                                             `json:"fileSize,omitempty"`                  //
+	ImageIntegrityStatus      string                                                             `json:"imageIntegrityStatus,omitempty"`      //
+	ImageName                 string                                                             `json:"imageName,omitempty"`                 //
+	ImageSeries               []string                                                           `json:"imageSeries,omitempty"`               //
+	ImageSource               string                                                             `json:"imageSource,omitempty"`               //
+	ImageType                 string                                                             `json:"imageType,omitempty"`                 //
+	ImageUUID                 string                                                             `json:"imageUuid,omitempty"`                 //
+	ImportSourceType          string                                                             `json:"importSourceType,omitempty"`          //
+	IsTaggedGolden            bool                                                               `json:"isTaggedGolden,omitempty"`            //
+	Md5Checksum               string                                                             `json:"md5Checksum,omitempty"`               //
+	Name                      string                                                             `json:"name,omitempty"`                      //
+	ProfileInfo               []GetSoftwareImageDetailsResponseResponseProfileInfo               `json:"profileInfo,omitempty"`               //
+	ShaCheckSum               string                                                             `json:"shaCheckSum,omitempty"`               //
+	Vendor                    string                                                             `json:"vendor,omitempty"`                    //
+	Version                   string                                                             `json:"version,omitempty"`                   //
+}
+
+// GetSoftwareImageDetailsResponseResponseApplicableDevicesForImage is the getSoftwareImageDetailsResponseResponseApplicableDevicesForImage definition
+type GetSoftwareImageDetailsResponseResponseApplicableDevicesForImage struct {
+	MdfID       string   `json:"mdfId,omitempty"`       //
+	ProductID   []string `json:"productId,omitempty"`   //
+	ProductName string   `json:"productName,omitempty"` //
+}
+
+// GetSoftwareImageDetailsResponseResponseApplicableDevicesForImageProductID is the getSoftwareImageDetailsResponseResponseApplicableDevicesForImageProductID definition
+type GetSoftwareImageDetailsResponseResponseApplicableDevicesForImageProductID []string
+
+// GetSoftwareImageDetailsResponseResponseImageSeries is the getSoftwareImageDetailsResponseResponseImageSeries definition
+type GetSoftwareImageDetailsResponseResponseImageSeries []string
+
+// GetSoftwareImageDetailsResponseResponseProfileInfo is the getSoftwareImageDetailsResponseResponseProfileInfo definition
+type GetSoftwareImageDetailsResponseResponseProfileInfo struct {
+	Description        string `json:"description,omitempty"`        //
+	ExtendedAttributes string `json:"extendedAttributes,omitempty"` //
+	Memory             int    `json:"memory,omitempty"`             //
+	ProductType        string `json:"productType,omitempty"`        //
+	ProfileName        string `json:"profileName,omitempty"`        //
+	Shares             int    `json:"shares,omitempty"`             //
+	VCPU               int    `json:"vCpu,omitempty"`               //
+}
+
+// ImportLocalSoftwareImageResponse is the importLocalSoftwareImageResponse definition
 type ImportLocalSoftwareImageResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response ImportLocalSoftwareImageResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// ImportSoftwareImageViaURLResponse is the ImportSoftwareImageViaURLResponse definition
+// ImportLocalSoftwareImageResponseResponse is the importLocalSoftwareImageResponseResponse definition
+type ImportLocalSoftwareImageResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// ImportSoftwareImageViaURLResponse is the importSoftwareImageViaURLResponse definition
 type ImportSoftwareImageViaURLResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response ImportSoftwareImageViaURLResponseResponse `json:"response,omitempty"` //
+	Version  string                                    `json:"version,omitempty"`  //
 }
 
-// TriggerSoftwareImageActivationResponse is the TriggerSoftwareImageActivationResponse definition
+// ImportSoftwareImageViaURLResponseResponse is the importSoftwareImageViaURLResponseResponse definition
+type ImportSoftwareImageViaURLResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// TriggerSoftwareImageActivationResponse is the triggerSoftwareImageActivationResponse definition
 type TriggerSoftwareImageActivationResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response TriggerSoftwareImageActivationResponseResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  //
 }
 
-// TriggerSoftwareImageDistributionResponse is the TriggerSoftwareImageDistributionResponse definition
+// TriggerSoftwareImageActivationResponseResponse is the triggerSoftwareImageActivationResponseResponse definition
+type TriggerSoftwareImageActivationResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// TriggerSoftwareImageDistributionResponse is the triggerSoftwareImageDistributionResponse definition
 type TriggerSoftwareImageDistributionResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response TriggerSoftwareImageDistributionResponseResponse `json:"response,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  //
+}
+
+// TriggerSoftwareImageDistributionResponseResponse is the triggerSoftwareImageDistributionResponseResponse definition
+type TriggerSoftwareImageDistributionResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // GetSoftwareImageDetailsQueryParams defines the query parameters for this request

@@ -11,92 +11,128 @@ import (
 // EventManagementService is the service to communicate with the EventManagement API endpoint
 type EventManagementService service
 
-// CreateEventSubscriptionsRequest is the CreateEventSubscriptionsRequest definition
+// CreateEventSubscriptionsRequest is the createEventSubscriptionsRequest definition
 type CreateEventSubscriptionsRequest struct {
-	Description string `json:"description,omitempty"` //
-	Filter      struct {
-		EventIDs []string `json:"eventIds,omitempty"` //
-	} `json:"filter,omitempty"` //
-	Name                  string `json:"name,omitempty"` //
-	SubscriptionEndpoints []struct {
-		InstanceID          string `json:"instanceId,omitempty"` //
-		SubscriptionDetails struct {
-			ConnectorType string `json:"connectorType,omitempty"` //
-			Method        string `json:"method,omitempty"`        //
-			Name          string `json:"name,omitempty"`          //
-			URL           string `json:"url,omitempty"`           //
-		} `json:"subscriptionDetails,omitempty"` //
-	} `json:"subscriptionEndpoints,omitempty"` //
-	SubscriptionID string `json:"subscriptionId,omitempty"` //
-	Version        string `json:"version,omitempty"`        //
+	Description           string                                                 `json:"description,omitempty"`           //
+	Filter                CreateEventSubscriptionsRequestFilter                  `json:"filter,omitempty"`                //
+	Name                  string                                                 `json:"name,omitempty"`                  //
+	SubscriptionEndpoints []CreateEventSubscriptionsRequestSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
+	SubscriptionID        string                                                 `json:"subscriptionId,omitempty"`        //
+	Version               string                                                 `json:"version,omitempty"`               //
 }
 
-// UpdateEventSubscriptionsRequest is the UpdateEventSubscriptionsRequest definition
+// CreateEventSubscriptionsRequestFilter is the createEventSubscriptionsRequestFilter definition
+type CreateEventSubscriptionsRequestFilter struct {
+	EventIDs []string `json:"eventIds,omitempty"` //
+}
+
+// CreateEventSubscriptionsRequestFilterEventIDs is the createEventSubscriptionsRequestFilterEventIDs definition
+type CreateEventSubscriptionsRequestFilterEventIDs []string
+
+// CreateEventSubscriptionsRequestSubscriptionEndpoints is the createEventSubscriptionsRequestSubscriptionEndpoints definition
+type CreateEventSubscriptionsRequestSubscriptionEndpoints struct {
+	InstanceID          string                                                                  `json:"instanceId,omitempty"`          //
+	SubscriptionDetails CreateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails `json:"subscriptionDetails,omitempty"` //
+}
+
+// CreateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails is the createEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails definition
+type CreateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails struct {
+	ConnectorType string `json:"connectorType,omitempty"` //
+	Method        string `json:"method,omitempty"`        //
+	Name          string `json:"name,omitempty"`          //
+	URL           string `json:"url,omitempty"`           //
+}
+
+// UpdateEventSubscriptionsRequest is the updateEventSubscriptionsRequest definition
 type UpdateEventSubscriptionsRequest struct {
-	Description string `json:"description,omitempty"` //
-	Filter      struct {
-		EventIDs []string `json:"eventIds,omitempty"` //
-	} `json:"filter,omitempty"` //
-	Name                  string `json:"name,omitempty"` //
-	SubscriptionEndpoints []struct {
-		InstanceID          string `json:"instanceId,omitempty"` //
-		SubscriptionDetails struct {
-			ConnectorType string `json:"connectorType,omitempty"` //
-			Method        string `json:"method,omitempty"`        //
-			Name          string `json:"name,omitempty"`          //
-			URL           string `json:"url,omitempty"`           //
-		} `json:"subscriptionDetails,omitempty"` //
-	} `json:"subscriptionEndpoints,omitempty"` //
-	SubscriptionID string `json:"subscriptionId,omitempty"` //
-	Version        string `json:"version,omitempty"`        //
+	Description           string                                                 `json:"description,omitempty"`           //
+	Filter                UpdateEventSubscriptionsRequestFilter                  `json:"filter,omitempty"`                //
+	Name                  string                                                 `json:"name,omitempty"`                  //
+	SubscriptionEndpoints []UpdateEventSubscriptionsRequestSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
+	SubscriptionID        string                                                 `json:"subscriptionId,omitempty"`        //
+	Version               string                                                 `json:"version,omitempty"`               //
 }
 
-// CountOfEventSubscriptionsResponse is the CountOfEventSubscriptionsResponse definition
+// UpdateEventSubscriptionsRequestFilter is the updateEventSubscriptionsRequestFilter definition
+type UpdateEventSubscriptionsRequestFilter struct {
+	EventIDs []string `json:"eventIds,omitempty"` //
+}
+
+// UpdateEventSubscriptionsRequestFilterEventIDs is the updateEventSubscriptionsRequestFilterEventIDs definition
+type UpdateEventSubscriptionsRequestFilterEventIDs []string
+
+// UpdateEventSubscriptionsRequestSubscriptionEndpoints is the updateEventSubscriptionsRequestSubscriptionEndpoints definition
+type UpdateEventSubscriptionsRequestSubscriptionEndpoints struct {
+	InstanceID          string                                                                  `json:"instanceId,omitempty"`          //
+	SubscriptionDetails UpdateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails `json:"subscriptionDetails,omitempty"` //
+}
+
+// UpdateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails is the updateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails definition
+type UpdateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails struct {
+	ConnectorType string `json:"connectorType,omitempty"` //
+	Method        string `json:"method,omitempty"`        //
+	Name          string `json:"name,omitempty"`          //
+	URL           string `json:"url,omitempty"`           //
+}
+
+// CountOfEventSubscriptionsResponse is the countOfEventSubscriptionsResponse definition
 type CountOfEventSubscriptionsResponse struct {
 	Response int `json:"response,omitempty"` //
 }
 
-// CountOfEventsResponse is the CountOfEventsResponse definition
+// CountOfEventsResponse is the countOfEventsResponse definition
 type CountOfEventsResponse struct {
 	Response int `json:"response,omitempty"` //
 }
 
-// CountOfNotificationsResponse is the CountOfNotificationsResponse definition
+// CountOfNotificationsResponse is the countOfNotificationsResponse definition
 type CountOfNotificationsResponse struct {
 	Response int `json:"response,omitempty"` //
 }
 
-// CreateEventSubscriptionsResponse is the CreateEventSubscriptionsResponse definition
+// CreateEventSubscriptionsResponse is the createEventSubscriptionsResponse definition
 type CreateEventSubscriptionsResponse struct {
 	StatusURI string `json:"statusUri,omitempty"` //
 }
 
-// DeleteEventSubscriptionsResponse is the DeleteEventSubscriptionsResponse definition
+// DeleteEventSubscriptionsResponse is the deleteEventSubscriptionsResponse definition
 type DeleteEventSubscriptionsResponse struct {
 	StatusURI string `json:"statusUri,omitempty"` //
 }
 
-// GetEventSubscriptionsResponse is the GetEventSubscriptionsResponse definition
+// GetEventSubscriptionsResponse is the getEventSubscriptionsResponse definition
 type GetEventSubscriptionsResponse struct {
-	Description string `json:"description,omitempty"` //
-	Filter      struct {
-		EventIDs []string `json:"eventIds,omitempty"` //
-	} `json:"filter,omitempty"` //
-	Name                  string `json:"name,omitempty"` //
-	SubscriptionEndpoints []struct {
-		ID                  string `json:"id,omitempty"`         //
-		InstanceID          string `json:"instanceId,omitempty"` //
-		SubscriptionDetails struct {
-			ConnectorType string `json:"connectorType,omitempty"` //
-			Method        string `json:"method,omitempty"`        //
-			Name          string `json:"name,omitempty"`          //
-			URL           string `json:"url,omitempty"`           //
-		} `json:"subscriptionDetails,omitempty"` //
-	} `json:"subscriptionEndpoints,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Description           string                                               `json:"description,omitempty"`           //
+	Filter                GetEventSubscriptionsResponseFilter                  `json:"filter,omitempty"`                //
+	Name                  string                                               `json:"name,omitempty"`                  //
+	SubscriptionEndpoints []GetEventSubscriptionsResponseSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
+	Version               string                                               `json:"version,omitempty"`               //
 }
 
-// GetEventsResponse is the GetEventsResponse definition
+// GetEventSubscriptionsResponseFilter is the getEventSubscriptionsResponseFilter definition
+type GetEventSubscriptionsResponseFilter struct {
+	EventIDs []string `json:"eventIds,omitempty"` //
+}
+
+// GetEventSubscriptionsResponseFilterEventIDs is the getEventSubscriptionsResponseFilterEventIDs definition
+type GetEventSubscriptionsResponseFilterEventIDs []string
+
+// GetEventSubscriptionsResponseSubscriptionEndpoints is the getEventSubscriptionsResponseSubscriptionEndpoints definition
+type GetEventSubscriptionsResponseSubscriptionEndpoints struct {
+	ID                  string                                                                `json:"id,omitempty"`                  //
+	InstanceID          string                                                                `json:"instanceId,omitempty"`          //
+	SubscriptionDetails GetEventSubscriptionsResponseSubscriptionEndpointsSubscriptionDetails `json:"subscriptionDetails,omitempty"` //
+}
+
+// GetEventSubscriptionsResponseSubscriptionEndpointsSubscriptionDetails is the getEventSubscriptionsResponseSubscriptionEndpointsSubscriptionDetails definition
+type GetEventSubscriptionsResponseSubscriptionEndpointsSubscriptionDetails struct {
+	ConnectorType string `json:"connectorType,omitempty"` //
+	Method        string `json:"method,omitempty"`        //
+	Name          string `json:"name,omitempty"`          //
+	URL           string `json:"url,omitempty"`           //
+}
+
+// GetEventsResponse is the getEventsResponse definition
 type GetEventsResponse struct {
 	Category          string   `json:"category,omitempty"`          //
 	Description       string   `json:"description,omitempty"`       //
@@ -113,7 +149,13 @@ type GetEventsResponse struct {
 	Version           string   `json:"version,omitempty"`           //
 }
 
-// GetNotificationsResponse is the GetNotificationsResponse definition
+// GetEventsResponseSubscriptionTypes is the getEventsResponseSubscriptionTypes definition
+type GetEventsResponseSubscriptionTypes []string
+
+// GetEventsResponseTags is the getEventsResponseTags definition
+type GetEventsResponseTags []string
+
+// GetNotificationsResponse is the getNotificationsResponse definition
 type GetNotificationsResponse struct {
 	Category    string `json:"category,omitempty"`    //
 	Context     string `json:"context,omitempty"`     //
@@ -132,14 +174,14 @@ type GetNotificationsResponse struct {
 	Type        string `json:"type,omitempty"`        //
 }
 
-// GetStatusAPIForEventsResponse is the GetStatusAPIForEventsResponse definition
+// GetStatusAPIForEventsResponse is the getStatusAPIForEventsResponse definition
 type GetStatusAPIForEventsResponse struct {
 	APIStatus     string `json:"apiStatus,omitempty"`     //
 	ErrorMessage  string `json:"errorMessage,omitempty"`  //
 	StatusMessage string `json:"statusMessage,omitempty"` //
 }
 
-// UpdateEventSubscriptionsResponse is the UpdateEventSubscriptionsResponse definition
+// UpdateEventSubscriptionsResponse is the updateEventSubscriptionsResponse definition
 type UpdateEventSubscriptionsResponse struct {
 	StatusURI string `json:"statusUri,omitempty"` //
 }

@@ -11,7 +11,7 @@ import (
 // DiscoveryService is the service to communicate with the Discovery API endpoint
 type DiscoveryService service
 
-// CreateCLICredentialsRequest is the CreateCLICredentialsRequest definition
+// CreateCLICredentialsRequest is the createCLICredentialsRequest definition
 type CreateCLICredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -24,7 +24,7 @@ type CreateCLICredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// CreateHTTPReadCredentialsRequest is the CreateHTTPReadCredentialsRequest definition
+// CreateHTTPReadCredentialsRequest is the createHTTPReadCredentialsRequest definition
 type CreateHTTPReadCredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -38,7 +38,7 @@ type CreateHTTPReadCredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// CreateHTTPWriteCredentialsRequest is the CreateHTTPWriteCredentialsRequest definition
+// CreateHTTPWriteCredentialsRequest is the createHTTPWriteCredentialsRequest definition
 type CreateHTTPWriteCredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -52,7 +52,7 @@ type CreateHTTPWriteCredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// CreateNetconfCredentialsRequest is the CreateNetconfCredentialsRequest definition
+// CreateNetconfCredentialsRequest is the createNetconfCredentialsRequest definition
 type CreateNetconfCredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -63,7 +63,7 @@ type CreateNetconfCredentialsRequest struct {
 	NetconfPort      string `json:"netconfPort,omitempty"`      //
 }
 
-// CreateSNMPReadCommunityRequest is the CreateSNMPReadCommunityRequest definition
+// CreateSNMPReadCommunityRequest is the createSNMPReadCommunityRequest definition
 type CreateSNMPReadCommunityRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -74,7 +74,7 @@ type CreateSNMPReadCommunityRequest struct {
 	ReadCommunity    string `json:"readCommunity,omitempty"`    //
 }
 
-// CreateSNMPWriteCommunityRequest is the CreateSNMPWriteCommunityRequest definition
+// CreateSNMPWriteCommunityRequest is the createSNMPWriteCommunityRequest definition
 type CreateSNMPWriteCommunityRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -85,7 +85,7 @@ type CreateSNMPWriteCommunityRequest struct {
 	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
 }
 
-// CreateSNMPv3CredentialsRequest is the CreateSNMPv3CredentialsRequest definition
+// CreateSNMPv3CredentialsRequest is the createSNMPv3CredentialsRequest definition
 type CreateSNMPv3CredentialsRequest struct {
 	AuthPassword     string `json:"authPassword,omitempty"`     //
 	AuthType         string `json:"authType,omitempty"`         //
@@ -101,7 +101,7 @@ type CreateSNMPv3CredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// CreateUpdateSNMPPropertiesRequest is the CreateUpdateSNMPPropertiesRequest definition
+// CreateUpdateSNMPPropertiesRequest is the createUpdateSNMPPropertiesRequest definition
 type CreateUpdateSNMPPropertiesRequest struct {
 	ID                 string `json:"id,omitempty"`                 //
 	InstanceTenantID   string `json:"instanceTenantId,omitempty"`   //
@@ -110,65 +110,86 @@ type CreateUpdateSNMPPropertiesRequest struct {
 	SystemPropertyName string `json:"systemPropertyName,omitempty"` //
 }
 
-// StartDiscoveryRequest is the StartDiscoveryRequest definition
+// StartDiscoveryRequest is the startDiscoveryRequest definition
 type StartDiscoveryRequest struct {
-	CdpLevel               int      `json:"cdpLevel,omitempty"`               //
-	DiscoveryType          string   `json:"discoveryType,omitempty"`          //
-	EnablePasswordList     []string `json:"enablePasswordList,omitempty"`     //
-	GlobalCredentialIDList []string `json:"globalCredentialIdList,omitempty"` //
-	HTTPReadCredential     struct {
-		Comments         string `json:"comments,omitempty"`         //
-		CredentialType   string `json:"credentialType,omitempty"`   //
-		Description      string `json:"description,omitempty"`      //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-		Password         string `json:"password,omitempty"`         //
-		Port             int    `json:"port,omitempty"`             //
-		Secure           bool   `json:"secure,omitempty"`           //
-		Username         string `json:"username,omitempty"`         //
-	} `json:"httpReadCredential,omitempty"` //
-	HTTPWriteCredential struct {
-		Comments         string `json:"comments,omitempty"`         //
-		CredentialType   string `json:"credentialType,omitempty"`   //
-		Description      string `json:"description,omitempty"`      //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-		Password         string `json:"password,omitempty"`         //
-		Port             int    `json:"port,omitempty"`             //
-		Secure           bool   `json:"secure,omitempty"`           //
-		Username         string `json:"username,omitempty"`         //
-	} `json:"httpWriteCredential,omitempty"` //
-	IPAddressList         string   `json:"ipAddressList,omitempty"`         //
-	IPFilterList          []string `json:"ipFilterList,omitempty"`          //
-	LldpLevel             int      `json:"lldpLevel,omitempty"`             //
-	Name                  string   `json:"name,omitempty"`                  //
-	NetconfPort           string   `json:"netconfPort,omitempty"`           //
-	NoAddNewDevice        bool     `json:"noAddNewDevice,omitempty"`        //
-	ParentDiscoveryID     string   `json:"parentDiscoveryId,omitempty"`     //
-	PasswordList          []string `json:"passwordList,omitempty"`          //
-	PreferredMgmtIPMethod string   `json:"preferredMgmtIPMethod,omitempty"` //
-	ProtocolOrder         string   `json:"protocolOrder,omitempty"`         //
-	ReDiscovery           bool     `json:"reDiscovery,omitempty"`           //
-	Retry                 int      `json:"retry,omitempty"`                 //
-	SNMPAuthPassphrase    string   `json:"snmpAuthPassphrase,omitempty"`    //
-	SNMPAuthProtocol      string   `json:"snmpAuthProtocol,omitempty"`      //
-	SNMPMode              string   `json:"snmpMode,omitempty"`              //
-	SNMPPrivPassphrase    string   `json:"snmpPrivPassphrase,omitempty"`    //
-	SNMPPrivProtocol      string   `json:"snmpPrivProtocol,omitempty"`      //
-	SNMPROCommunity       string   `json:"snmpROCommunity,omitempty"`       //
-	SNMPROCommunityDesc   string   `json:"snmpROCommunityDesc,omitempty"`   //
-	SNMPRWCommunity       string   `json:"snmpRWCommunity,omitempty"`       //
-	SNMPRWCommunityDesc   string   `json:"snmpRWCommunityDesc,omitempty"`   //
-	SNMPUserName          string   `json:"snmpUserName,omitempty"`          //
-	SNMPVersion           string   `json:"snmpVersion,omitempty"`           //
-	Timeout               int      `json:"timeout,omitempty"`               //
-	UpdateMgmtIP          bool     `json:"updateMgmtIp,omitempty"`          //
-	UserNameList          []string `json:"userNameList,omitempty"`          //
+	CdpLevel               int                                      `json:"cdpLevel,omitempty"`               //
+	DiscoveryType          string                                   `json:"discoveryType,omitempty"`          //
+	EnablePasswordList     []string                                 `json:"enablePasswordList,omitempty"`     //
+	GlobalCredentialIDList []string                                 `json:"globalCredentialIdList,omitempty"` //
+	HTTPReadCredential     StartDiscoveryRequestHTTPReadCredential  `json:"httpReadCredential,omitempty"`     //
+	HTTPWriteCredential    StartDiscoveryRequestHTTPWriteCredential `json:"httpWriteCredential,omitempty"`    //
+	IPAddressList          string                                   `json:"ipAddressList,omitempty"`          //
+	IPFilterList           []string                                 `json:"ipFilterList,omitempty"`           //
+	LldpLevel              int                                      `json:"lldpLevel,omitempty"`              //
+	Name                   string                                   `json:"name,omitempty"`                   //
+	NetconfPort            string                                   `json:"netconfPort,omitempty"`            //
+	NoAddNewDevice         bool                                     `json:"noAddNewDevice,omitempty"`         //
+	ParentDiscoveryID      string                                   `json:"parentDiscoveryId,omitempty"`      //
+	PasswordList           []string                                 `json:"passwordList,omitempty"`           //
+	PreferredMgmtIPMethod  string                                   `json:"preferredMgmtIPMethod,omitempty"`  //
+	ProtocolOrder          string                                   `json:"protocolOrder,omitempty"`          //
+	ReDiscovery            bool                                     `json:"reDiscovery,omitempty"`            //
+	Retry                  int                                      `json:"retry,omitempty"`                  //
+	SNMPAuthPassphrase     string                                   `json:"snmpAuthPassphrase,omitempty"`     //
+	SNMPAuthProtocol       string                                   `json:"snmpAuthProtocol,omitempty"`       //
+	SNMPMode               string                                   `json:"snmpMode,omitempty"`               //
+	SNMPPrivPassphrase     string                                   `json:"snmpPrivPassphrase,omitempty"`     //
+	SNMPPrivProtocol       string                                   `json:"snmpPrivProtocol,omitempty"`       //
+	SNMPROCommunity        string                                   `json:"snmpROCommunity,omitempty"`        //
+	SNMPROCommunityDesc    string                                   `json:"snmpROCommunityDesc,omitempty"`    //
+	SNMPRWCommunity        string                                   `json:"snmpRWCommunity,omitempty"`        //
+	SNMPRWCommunityDesc    string                                   `json:"snmpRWCommunityDesc,omitempty"`    //
+	SNMPUserName           string                                   `json:"snmpUserName,omitempty"`           //
+	SNMPVersion            string                                   `json:"snmpVersion,omitempty"`            //
+	Timeout                int                                      `json:"timeout,omitempty"`                //
+	UpdateMgmtIP           bool                                     `json:"updateMgmtIp,omitempty"`           //
+	UserNameList           []string                                 `json:"userNameList,omitempty"`           //
 }
 
-// UpdateCLICredentialsRequest is the UpdateCLICredentialsRequest definition
+// StartDiscoveryRequestEnablePasswordList is the startDiscoveryRequestEnablePasswordList definition
+type StartDiscoveryRequestEnablePasswordList []string
+
+// StartDiscoveryRequestGlobalCredentialIDList is the startDiscoveryRequestGlobalCredentialIDList definition
+type StartDiscoveryRequestGlobalCredentialIDList []string
+
+// StartDiscoveryRequestHTTPReadCredential is the startDiscoveryRequestHTTPReadCredential definition
+type StartDiscoveryRequestHTTPReadCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// StartDiscoveryRequestHTTPWriteCredential is the startDiscoveryRequestHTTPWriteCredential definition
+type StartDiscoveryRequestHTTPWriteCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// StartDiscoveryRequestIPFilterList is the startDiscoveryRequestIPFilterList definition
+type StartDiscoveryRequestIPFilterList []string
+
+// StartDiscoveryRequestPasswordList is the startDiscoveryRequestPasswordList definition
+type StartDiscoveryRequestPasswordList []string
+
+// StartDiscoveryRequestUserNameList is the startDiscoveryRequestUserNameList definition
+type StartDiscoveryRequestUserNameList []string
+
+// UpdateCLICredentialsRequest is the updateCLICredentialsRequest definition
 type UpdateCLICredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -181,12 +202,15 @@ type UpdateCLICredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// UpdateGlobalCredentialsRequest is the UpdateGlobalCredentialsRequest definition
+// UpdateGlobalCredentialsRequest is the updateGlobalCredentialsRequest definition
 type UpdateGlobalCredentialsRequest struct {
 	SiteUUIDs []string `json:"siteUuids,omitempty"` //
 }
 
-// UpdateHTTPReadCredentialRequest is the UpdateHTTPReadCredentialRequest definition
+// UpdateGlobalCredentialsRequestSiteUUIDs is the updateGlobalCredentialsRequestSiteUUIDs definition
+type UpdateGlobalCredentialsRequestSiteUUIDs []string
+
+// UpdateHTTPReadCredentialRequest is the updateHTTPReadCredentialRequest definition
 type UpdateHTTPReadCredentialRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -200,7 +224,7 @@ type UpdateHTTPReadCredentialRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// UpdateHTTPWriteCredentialsRequest is the UpdateHTTPWriteCredentialsRequest definition
+// UpdateHTTPWriteCredentialsRequest is the updateHTTPWriteCredentialsRequest definition
 type UpdateHTTPWriteCredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -214,7 +238,7 @@ type UpdateHTTPWriteCredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// UpdateNetconfCredentialsRequest is the UpdateNetconfCredentialsRequest definition
+// UpdateNetconfCredentialsRequest is the updateNetconfCredentialsRequest definition
 type UpdateNetconfCredentialsRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -225,7 +249,7 @@ type UpdateNetconfCredentialsRequest struct {
 	NetconfPort      string `json:"netconfPort,omitempty"`      //
 }
 
-// UpdateSNMPReadCommunityRequest is the UpdateSNMPReadCommunityRequest definition
+// UpdateSNMPReadCommunityRequest is the updateSNMPReadCommunityRequest definition
 type UpdateSNMPReadCommunityRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -236,7 +260,7 @@ type UpdateSNMPReadCommunityRequest struct {
 	ReadCommunity    string `json:"readCommunity,omitempty"`    //
 }
 
-// UpdateSNMPWriteCommunityRequest is the UpdateSNMPWriteCommunityRequest definition
+// UpdateSNMPWriteCommunityRequest is the updateSNMPWriteCommunityRequest definition
 type UpdateSNMPWriteCommunityRequest struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -247,7 +271,7 @@ type UpdateSNMPWriteCommunityRequest struct {
 	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
 }
 
-// UpdateSNMPv3CredentialsRequest is the UpdateSNMPv3CredentialsRequest definition
+// UpdateSNMPv3CredentialsRequest is the updateSNMPv3CredentialsRequest definition
 type UpdateSNMPv3CredentialsRequest struct {
 	AuthPassword     string `json:"authPassword,omitempty"`     //
 	AuthType         string `json:"authType,omitempty"`         //
@@ -263,595 +287,712 @@ type UpdateSNMPv3CredentialsRequest struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// UpdatesAnExistingDiscoveryBySpecifiedIDRequest is the UpdatesAnExistingDiscoveryBySpecifiedIdRequest definition
+// UpdatesAnExistingDiscoveryBySpecifiedIDRequestGlobalCredentialIDList is the updatesAnExistingDiscoveryBySpecifiedIDRequestGlobalCredentialIDList definition
+type UpdatesAnExistingDiscoveryBySpecifiedIDRequestGlobalCredentialIDList []string
+
+// UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPReadCredential is the updatesAnExistingDiscoveryBySpecifiedIDRequestHTTPReadCredential definition
+type UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPReadCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPWriteCredential is the updatesAnExistingDiscoveryBySpecifiedIDRequestHTTPWriteCredential definition
+type UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPWriteCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// UpdatesAnExistingDiscoveryBySpecifiedIDRequest is the updatesAnExistingDiscoveryBySpecifiedIdRequest definition
 type UpdatesAnExistingDiscoveryBySpecifiedIDRequest struct {
-	AttributeInfo          string   `json:"attributeInfo,omitempty"`          //
-	CdpLevel               int      `json:"cdpLevel,omitempty"`               //
-	DeviceIDs              string   `json:"deviceIds,omitempty"`              //
-	DiscoveryCondition     string   `json:"discoveryCondition,omitempty"`     //
-	DiscoveryStatus        string   `json:"discoveryStatus,omitempty"`        //
-	DiscoveryType          string   `json:"discoveryType,omitempty"`          //
-	EnablePasswordList     string   `json:"enablePasswordList,omitempty"`     //
-	GlobalCredentialIDList []string `json:"globalCredentialIdList,omitempty"` //
-	HTTPReadCredential     struct {
-		Comments         string `json:"comments,omitempty"`         //
-		CredentialType   string `json:"credentialType,omitempty"`   //
-		Description      string `json:"description,omitempty"`      //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-		Password         string `json:"password,omitempty"`         //
-		Port             int    `json:"port,omitempty"`             //
-		Secure           bool   `json:"secure,omitempty"`           //
-		Username         string `json:"username,omitempty"`         //
-	} `json:"httpReadCredential,omitempty"` //
-	HTTPWriteCredential struct {
-		Comments         string `json:"comments,omitempty"`         //
-		CredentialType   string `json:"credentialType,omitempty"`   //
-		Description      string `json:"description,omitempty"`      //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-		Password         string `json:"password,omitempty"`         //
-		Port             int    `json:"port,omitempty"`             //
-		Secure           bool   `json:"secure,omitempty"`           //
-		Username         string `json:"username,omitempty"`         //
-	} `json:"httpWriteCredential,omitempty"` //
-	ID                    string `json:"id,omitempty"`                    //
-	IPAddressList         string `json:"ipAddressList,omitempty"`         //
-	IPFilterList          string `json:"ipFilterList,omitempty"`          //
-	IsAutoCdp             bool   `json:"isAutoCdp,omitempty"`             //
-	LldpLevel             int    `json:"lldpLevel,omitempty"`             //
-	Name                  string `json:"name,omitempty"`                  //
-	NetconfPort           string `json:"netconfPort,omitempty"`           //
-	NumDevices            int    `json:"numDevices,omitempty"`            //
-	ParentDiscoveryID     string `json:"parentDiscoveryId,omitempty"`     //
-	PasswordList          string `json:"passwordList,omitempty"`          //
-	PreferredMgmtIPMethod string `json:"preferredMgmtIPMethod,omitempty"` //
-	ProtocolOrder         string `json:"protocolOrder,omitempty"`         //
-	RetryCount            int    `json:"retryCount,omitempty"`            //
-	SNMPAuthPassphrase    string `json:"snmpAuthPassphrase,omitempty"`    //
-	SNMPAuthProtocol      string `json:"snmpAuthProtocol,omitempty"`      //
-	SNMPMode              string `json:"snmpMode,omitempty"`              //
-	SNMPPrivPassphrase    string `json:"snmpPrivPassphrase,omitempty"`    //
-	SNMPPrivProtocol      string `json:"snmpPrivProtocol,omitempty"`      //
-	SNMPRoCommunity       string `json:"snmpRoCommunity,omitempty"`       //
-	SNMPRoCommunityDesc   string `json:"snmpRoCommunityDesc,omitempty"`   //
-	SNMPRwCommunity       string `json:"snmpRwCommunity,omitempty"`       //
-	SNMPRwCommunityDesc   string `json:"snmpRwCommunityDesc,omitempty"`   //
-	SNMPUserName          string `json:"snmpUserName,omitempty"`          //
-	TimeOut               int    `json:"timeOut,omitempty"`               //
-	UpdateMgmtIP          bool   `json:"updateMgmtIp,omitempty"`          //
-	UserNameList          string `json:"userNameList,omitempty"`          //
+	AttributeInfo          string                                                            `json:"attributeInfo,omitempty"`          //
+	CdpLevel               int                                                               `json:"cdpLevel,omitempty"`               //
+	DeviceIDs              string                                                            `json:"deviceIds,omitempty"`              //
+	DiscoveryCondition     string                                                            `json:"discoveryCondition,omitempty"`     //
+	DiscoveryStatus        string                                                            `json:"discoveryStatus,omitempty"`        //
+	DiscoveryType          string                                                            `json:"discoveryType,omitempty"`          //
+	EnablePasswordList     string                                                            `json:"enablePasswordList,omitempty"`     //
+	GlobalCredentialIDList []string                                                          `json:"globalCredentialIdList,omitempty"` //
+	HTTPReadCredential     UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPReadCredential  `json:"httpReadCredential,omitempty"`     //
+	HTTPWriteCredential    UpdatesAnExistingDiscoveryBySpecifiedIDRequestHTTPWriteCredential `json:"httpWriteCredential,omitempty"`    //
+	ID                     string                                                            `json:"id,omitempty"`                     //
+	IPAddressList          string                                                            `json:"ipAddressList,omitempty"`          //
+	IPFilterList           string                                                            `json:"ipFilterList,omitempty"`           //
+	IsAutoCdp              bool                                                              `json:"isAutoCdp,omitempty"`              //
+	LldpLevel              int                                                               `json:"lldpLevel,omitempty"`              //
+	Name                   string                                                            `json:"name,omitempty"`                   //
+	NetconfPort            string                                                            `json:"netconfPort,omitempty"`            //
+	NumDevices             int                                                               `json:"numDevices,omitempty"`             //
+	ParentDiscoveryID      string                                                            `json:"parentDiscoveryId,omitempty"`      //
+	PasswordList           string                                                            `json:"passwordList,omitempty"`           //
+	PreferredMgmtIPMethod  string                                                            `json:"preferredMgmtIPMethod,omitempty"`  //
+	ProtocolOrder          string                                                            `json:"protocolOrder,omitempty"`          //
+	RetryCount             int                                                               `json:"retryCount,omitempty"`             //
+	SNMPAuthPassphrase     string                                                            `json:"snmpAuthPassphrase,omitempty"`     //
+	SNMPAuthProtocol       string                                                            `json:"snmpAuthProtocol,omitempty"`       //
+	SNMPMode               string                                                            `json:"snmpMode,omitempty"`               //
+	SNMPPrivPassphrase     string                                                            `json:"snmpPrivPassphrase,omitempty"`     //
+	SNMPPrivProtocol       string                                                            `json:"snmpPrivProtocol,omitempty"`       //
+	SNMPRoCommunity        string                                                            `json:"snmpRoCommunity,omitempty"`        //
+	SNMPRoCommunityDesc    string                                                            `json:"snmpRoCommunityDesc,omitempty"`    //
+	SNMPRwCommunity        string                                                            `json:"snmpRwCommunity,omitempty"`        //
+	SNMPRwCommunityDesc    string                                                            `json:"snmpRwCommunityDesc,omitempty"`    //
+	SNMPUserName           string                                                            `json:"snmpUserName,omitempty"`           //
+	TimeOut                int                                                               `json:"timeOut,omitempty"`                //
+	UpdateMgmtIP           bool                                                              `json:"updateMgmtIp,omitempty"`           //
+	UserNameList           string                                                            `json:"userNameList,omitempty"`           //
 }
 
-// CreateCLICredentialsResponse is the CreateCLICredentialsResponse definition
+// CreateCLICredentialsResponse is the createCLICredentialsResponse definition
 type CreateCLICredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateCLICredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                               `json:"version,omitempty"`  //
 }
 
-// CreateHTTPReadCredentialsResponse is the CreateHTTPReadCredentialsResponse definition
+// CreateCLICredentialsResponseResponse is the createCLICredentialsResponseResponse definition
+type CreateCLICredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateHTTPReadCredentialsResponse is the createHTTPReadCredentialsResponse definition
 type CreateHTTPReadCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateHTTPReadCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                    `json:"version,omitempty"`  //
 }
 
-// CreateHTTPWriteCredentialsResponse is the CreateHTTPWriteCredentialsResponse definition
+// CreateHTTPReadCredentialsResponseResponse is the createHTTPReadCredentialsResponseResponse definition
+type CreateHTTPReadCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateHTTPWriteCredentialsResponse is the createHTTPWriteCredentialsResponse definition
 type CreateHTTPWriteCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateHTTPWriteCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
 }
 
-// CreateNetconfCredentialsResponse is the CreateNetconfCredentialsResponse definition
+// CreateHTTPWriteCredentialsResponseResponse is the createHTTPWriteCredentialsResponseResponse definition
+type CreateHTTPWriteCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateNetconfCredentialsResponse is the createNetconfCredentialsResponse definition
 type CreateNetconfCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateNetconfCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// CreateSNMPReadCommunityResponse is the CreateSNMPReadCommunityResponse definition
+// CreateNetconfCredentialsResponseResponse is the createNetconfCredentialsResponseResponse definition
+type CreateNetconfCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateSNMPReadCommunityResponse is the createSNMPReadCommunityResponse definition
 type CreateSNMPReadCommunityResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateSNMPReadCommunityResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// CreateSNMPWriteCommunityResponse is the CreateSNMPWriteCommunityResponse definition
+// CreateSNMPReadCommunityResponseResponse is the createSNMPReadCommunityResponseResponse definition
+type CreateSNMPReadCommunityResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateSNMPWriteCommunityResponse is the createSNMPWriteCommunityResponse definition
 type CreateSNMPWriteCommunityResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateSNMPWriteCommunityResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// CreateSNMPv3CredentialsResponse is the CreateSNMPv3CredentialsResponse definition
+// CreateSNMPWriteCommunityResponseResponse is the createSNMPWriteCommunityResponseResponse definition
+type CreateSNMPWriteCommunityResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateSNMPv3CredentialsResponse is the createSNMPv3CredentialsResponse definition
 type CreateSNMPv3CredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateSNMPv3CredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// CreateUpdateSNMPPropertiesResponse is the CreateUpdateSNMPPropertiesResponse definition
+// CreateSNMPv3CredentialsResponseResponse is the createSNMPv3CredentialsResponseResponse definition
+type CreateSNMPv3CredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateUpdateSNMPPropertiesResponse is the createUpdateSNMPPropertiesResponse definition
 type CreateUpdateSNMPPropertiesResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateUpdateSNMPPropertiesResponseResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
 }
 
-// DeleteAllDiscoveryResponse is the DeleteAllDiscoveryResponse definition
+// CreateUpdateSNMPPropertiesResponseResponse is the createUpdateSNMPPropertiesResponseResponse definition
+type CreateUpdateSNMPPropertiesResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteAllDiscoveryResponse is the deleteAllDiscoveryResponse definition
 type DeleteAllDiscoveryResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteAllDiscoveryResponseResponse `json:"response,omitempty"` //
+	Version  string                             `json:"version,omitempty"`  //
 }
 
-// DeleteDiscoveryByIDResponse is the DeleteDiscoveryByIdResponse definition
+// DeleteAllDiscoveryResponseResponse is the deleteAllDiscoveryResponseResponse definition
+type DeleteAllDiscoveryResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteDiscoveryByIDResponseResponse is the deleteDiscoveryByIDResponseResponse definition
+type DeleteDiscoveryByIDResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteDiscoveryByIDResponse is the deleteDiscoveryByIdResponse definition
 type DeleteDiscoveryByIDResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteDiscoveryByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                              `json:"version,omitempty"`  //
 }
 
-// DeleteDiscoveryBySpecifiedRangeResponse is the DeleteDiscoveryBySpecifiedRangeResponse definition
+// DeleteDiscoveryBySpecifiedRangeResponse is the deleteDiscoveryBySpecifiedRangeResponse definition
 type DeleteDiscoveryBySpecifiedRangeResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteDiscoveryBySpecifiedRangeResponseResponse `json:"response,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  //
 }
 
-// DeleteGlobalCredentialsByIDResponse is the DeleteGlobalCredentialsByIdResponse definition
+// DeleteDiscoveryBySpecifiedRangeResponseResponse is the deleteDiscoveryBySpecifiedRangeResponseResponse definition
+type DeleteDiscoveryBySpecifiedRangeResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteGlobalCredentialsByIDResponseResponse is the deleteGlobalCredentialsByIDResponseResponse definition
+type DeleteGlobalCredentialsByIDResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteGlobalCredentialsByIDResponse is the deleteGlobalCredentialsByIdResponse definition
 type DeleteGlobalCredentialsByIDResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteGlobalCredentialsByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  //
 }
 
-// GetCountOfAllDiscoveryJobsResponse is the GetCountOfAllDiscoveryJobsResponse definition
+// GetCountOfAllDiscoveryJobsResponse is the getCountOfAllDiscoveryJobsResponse definition
 type GetCountOfAllDiscoveryJobsResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetCredentialSubTypeByCredentialIDResponse is the GetCredentialSubTypeByCredentialIdResponse definition
+// GetCredentialSubTypeByCredentialIDResponse is the getCredentialSubTypeByCredentialIdResponse definition
 type GetCredentialSubTypeByCredentialIDResponse struct {
 	Response string `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetDevicesDiscoveredByIDResponse is the GetDevicesDiscoveredByIdResponse definition
+// GetDevicesDiscoveredByIDResponse is the getDevicesDiscoveredByIdResponse definition
 type GetDevicesDiscoveredByIDResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetDiscoveredDevicesByRangeResponse is the GetDiscoveredDevicesByRangeResponse definition
+// GetDiscoveredDevicesByRangeResponse is the getDiscoveredDevicesByRangeResponse definition
 type GetDiscoveredDevicesByRangeResponse struct {
-	Response []struct {
-		AnchorWlcForAp              string `json:"anchorWlcForAp,omitempty"`              //
-		AuthModelID                 string `json:"authModelId,omitempty"`                 //
-		AvgUpdateFrequency          int    `json:"avgUpdateFrequency,omitempty"`          //
-		BootDateTime                string `json:"bootDateTime,omitempty"`                //
-		CLIStatus                   string `json:"cliStatus,omitempty"`                   //
-		DuplicateDeviceID           string `json:"duplicateDeviceId,omitempty"`           //
-		ErrorCode                   string `json:"errorCode,omitempty"`                   //
-		ErrorDescription            string `json:"errorDescription,omitempty"`            //
-		Family                      string `json:"family,omitempty"`                      //
-		Hostname                    string `json:"hostname,omitempty"`                    //
-		HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
-		ID                          string `json:"id,omitempty"`                          //
-		ImageName                   string `json:"imageName,omitempty"`                   //
-		IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-		InterfaceCount              string `json:"interfaceCount,omitempty"`              //
-		InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
-		InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
-		LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-		LineCardCount               string `json:"lineCardCount,omitempty"`               //
-		LineCardID                  string `json:"lineCardId,omitempty"`                  //
-		Location                    string `json:"location,omitempty"`                    //
-		LocationName                string `json:"locationName,omitempty"`                //
-		MacAddress                  string `json:"macAddress,omitempty"`                  //
-		ManagementIPAddress         string `json:"managementIpAddress,omitempty"`         //
-		MemorySize                  string `json:"memorySize,omitempty"`                  //
-		NetconfStatus               string `json:"netconfStatus,omitempty"`               //
-		NumUpdates                  int    `json:"numUpdates,omitempty"`                  //
-		PingStatus                  string `json:"pingStatus,omitempty"`                  //
-		PlatformID                  string `json:"platformId,omitempty"`                  //
-		PortRange                   string `json:"portRange,omitempty"`                   //
-		QosStatus                   string `json:"qosStatus,omitempty"`                   //
-		ReachabilityFailureReason   string `json:"reachabilityFailureReason,omitempty"`   //
-		ReachabilityStatus          string `json:"reachabilityStatus,omitempty"`          //
-		Role                        string `json:"role,omitempty"`                        //
-		RoleSource                  string `json:"roleSource,omitempty"`                  //
-		SerialNumber                string `json:"serialNumber,omitempty"`                //
-		SNMPContact                 string `json:"snmpContact,omitempty"`                 //
-		SNMPLocation                string `json:"snmpLocation,omitempty"`                //
-		SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-		SoftwareVersion             string `json:"softwareVersion,omitempty"`             //
-		Tag                         string `json:"tag,omitempty"`                         //
-		TagCount                    int    `json:"tagCount,omitempty"`                    //
-		Type                        string `json:"type,omitempty"`                        //
-		UpTime                      string `json:"upTime,omitempty"`                      //
-		Vendor                      string `json:"vendor,omitempty"`                      //
-		WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetDiscoveredDevicesByRangeResponseResponse `json:"response,omitempty"` //
+	Version  string                                        `json:"version,omitempty"`  //
 }
 
-// GetDiscoveredNetworkDevicesByDiscoveryIDResponse is the GetDiscoveredNetworkDevicesByDiscoveryIdResponse definition
+// GetDiscoveredDevicesByRangeResponseResponse is the getDiscoveredDevicesByRangeResponseResponse definition
+type GetDiscoveredDevicesByRangeResponseResponse struct {
+	AnchorWlcForAp              string `json:"anchorWlcForAp,omitempty"`              //
+	AuthModelID                 string `json:"authModelId,omitempty"`                 //
+	AvgUpdateFrequency          int    `json:"avgUpdateFrequency,omitempty"`          //
+	BootDateTime                string `json:"bootDateTime,omitempty"`                //
+	CliStatus                   string `json:"cliStatus,omitempty"`                   //
+	DuplicateDeviceID           string `json:"duplicateDeviceId,omitempty"`           //
+	ErrorCode                   string `json:"errorCode,omitempty"`                   //
+	ErrorDescription            string `json:"errorDescription,omitempty"`            //
+	Family                      string `json:"family,omitempty"`                      //
+	Hostname                    string `json:"hostname,omitempty"`                    //
+	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
+	ID                          string `json:"id,omitempty"`                          //
+	ImageName                   string `json:"imageName,omitempty"`                   //
+	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
+	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
+	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
+	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
+	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
+	LineCardCount               string `json:"lineCardCount,omitempty"`               //
+	LineCardID                  string `json:"lineCardId,omitempty"`                  //
+	Location                    string `json:"location,omitempty"`                    //
+	LocationName                string `json:"locationName,omitempty"`                //
+	MacAddress                  string `json:"macAddress,omitempty"`                  //
+	ManagementIPAddress         string `json:"managementIpAddress,omitempty"`         //
+	MemorySize                  string `json:"memorySize,omitempty"`                  //
+	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
+	NumUpdates                  int    `json:"numUpdates,omitempty"`                  //
+	PingStatus                  string `json:"pingStatus,omitempty"`                  //
+	PlatformID                  string `json:"platformId,omitempty"`                  //
+	PortRange                   string `json:"portRange,omitempty"`                   //
+	QosStatus                   string `json:"qosStatus,omitempty"`                   //
+	ReachabilityFailureReason   string `json:"reachabilityFailureReason,omitempty"`   //
+	ReachabilityStatus          string `json:"reachabilityStatus,omitempty"`          //
+	Role                        string `json:"role,omitempty"`                        //
+	RoleSource                  string `json:"roleSource,omitempty"`                  //
+	SerialNumber                string `json:"serialNumber,omitempty"`                //
+	SNMPContact                 string `json:"snmpContact,omitempty"`                 //
+	SNMPLocation                string `json:"snmpLocation,omitempty"`                //
+	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
+	SoftwareVersion             string `json:"softwareVersion,omitempty"`             //
+	Tag                         string `json:"tag,omitempty"`                         //
+	TagCount                    int    `json:"tagCount,omitempty"`                    //
+	Type                        string `json:"type,omitempty"`                        //
+	UpTime                      string `json:"upTime,omitempty"`                      //
+	Vendor                      string `json:"vendor,omitempty"`                      //
+	WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
+}
+
+// GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse is the getDiscoveredNetworkDevicesByDiscoveryIDResponseResponse definition
+type GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse struct {
+	AnchorWlcForAp              string `json:"anchorWlcForAp,omitempty"`              //
+	AuthModelID                 string `json:"authModelId,omitempty"`                 //
+	AvgUpdateFrequency          int    `json:"avgUpdateFrequency,omitempty"`          //
+	BootDateTime                string `json:"bootDateTime,omitempty"`                //
+	CliStatus                   string `json:"cliStatus,omitempty"`                   //
+	DuplicateDeviceID           string `json:"duplicateDeviceId,omitempty"`           //
+	ErrorCode                   string `json:"errorCode,omitempty"`                   //
+	ErrorDescription            string `json:"errorDescription,omitempty"`            //
+	Family                      string `json:"family,omitempty"`                      //
+	Hostname                    string `json:"hostname,omitempty"`                    //
+	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
+	ID                          string `json:"id,omitempty"`                          //
+	ImageName                   string `json:"imageName,omitempty"`                   //
+	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
+	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
+	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
+	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
+	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
+	LineCardCount               string `json:"lineCardCount,omitempty"`               //
+	LineCardID                  string `json:"lineCardId,omitempty"`                  //
+	Location                    string `json:"location,omitempty"`                    //
+	LocationName                string `json:"locationName,omitempty"`                //
+	MacAddress                  string `json:"macAddress,omitempty"`                  //
+	ManagementIPAddress         string `json:"managementIpAddress,omitempty"`         //
+	MemorySize                  string `json:"memorySize,omitempty"`                  //
+	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
+	NumUpdates                  int    `json:"numUpdates,omitempty"`                  //
+	PingStatus                  string `json:"pingStatus,omitempty"`                  //
+	PlatformID                  string `json:"platformId,omitempty"`                  //
+	PortRange                   string `json:"portRange,omitempty"`                   //
+	QosStatus                   string `json:"qosStatus,omitempty"`                   //
+	ReachabilityFailureReason   string `json:"reachabilityFailureReason,omitempty"`   //
+	ReachabilityStatus          string `json:"reachabilityStatus,omitempty"`          //
+	Role                        string `json:"role,omitempty"`                        //
+	RoleSource                  string `json:"roleSource,omitempty"`                  //
+	SerialNumber                string `json:"serialNumber,omitempty"`                //
+	SNMPContact                 string `json:"snmpContact,omitempty"`                 //
+	SNMPLocation                string `json:"snmpLocation,omitempty"`                //
+	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
+	SoftwareVersion             string `json:"softwareVersion,omitempty"`             //
+	Tag                         string `json:"tag,omitempty"`                         //
+	TagCount                    int    `json:"tagCount,omitempty"`                    //
+	Type                        string `json:"type,omitempty"`                        //
+	UpTime                      string `json:"upTime,omitempty"`                      //
+	Vendor                      string `json:"vendor,omitempty"`                      //
+	WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
+}
+
+// GetDiscoveredNetworkDevicesByDiscoveryIDResponse is the getDiscoveredNetworkDevicesByDiscoveryIdResponse definition
 type GetDiscoveredNetworkDevicesByDiscoveryIDResponse struct {
-	Response []struct {
-		AnchorWlcForAp              string `json:"anchorWlcForAp,omitempty"`              //
-		AuthModelID                 string `json:"authModelId,omitempty"`                 //
-		AvgUpdateFrequency          int    `json:"avgUpdateFrequency,omitempty"`          //
-		BootDateTime                string `json:"bootDateTime,omitempty"`                //
-		CLIStatus                   string `json:"cliStatus,omitempty"`                   //
-		DuplicateDeviceID           string `json:"duplicateDeviceId,omitempty"`           //
-		ErrorCode                   string `json:"errorCode,omitempty"`                   //
-		ErrorDescription            string `json:"errorDescription,omitempty"`            //
-		Family                      string `json:"family,omitempty"`                      //
-		Hostname                    string `json:"hostname,omitempty"`                    //
-		HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
-		ID                          string `json:"id,omitempty"`                          //
-		ImageName                   string `json:"imageName,omitempty"`                   //
-		IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-		InterfaceCount              string `json:"interfaceCount,omitempty"`              //
-		InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
-		InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
-		LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-		LineCardCount               string `json:"lineCardCount,omitempty"`               //
-		LineCardID                  string `json:"lineCardId,omitempty"`                  //
-		Location                    string `json:"location,omitempty"`                    //
-		LocationName                string `json:"locationName,omitempty"`                //
-		MacAddress                  string `json:"macAddress,omitempty"`                  //
-		ManagementIPAddress         string `json:"managementIpAddress,omitempty"`         //
-		MemorySize                  string `json:"memorySize,omitempty"`                  //
-		NetconfStatus               string `json:"netconfStatus,omitempty"`               //
-		NumUpdates                  int    `json:"numUpdates,omitempty"`                  //
-		PingStatus                  string `json:"pingStatus,omitempty"`                  //
-		PlatformID                  string `json:"platformId,omitempty"`                  //
-		PortRange                   string `json:"portRange,omitempty"`                   //
-		QosStatus                   string `json:"qosStatus,omitempty"`                   //
-		ReachabilityFailureReason   string `json:"reachabilityFailureReason,omitempty"`   //
-		ReachabilityStatus          string `json:"reachabilityStatus,omitempty"`          //
-		Role                        string `json:"role,omitempty"`                        //
-		RoleSource                  string `json:"roleSource,omitempty"`                  //
-		SerialNumber                string `json:"serialNumber,omitempty"`                //
-		SNMPContact                 string `json:"snmpContact,omitempty"`                 //
-		SNMPLocation                string `json:"snmpLocation,omitempty"`                //
-		SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-		SoftwareVersion             string `json:"softwareVersion,omitempty"`             //
-		Tag                         string `json:"tag,omitempty"`                         //
-		TagCount                    int    `json:"tagCount,omitempty"`                    //
-		Type                        string `json:"type,omitempty"`                        //
-		UpTime                      string `json:"upTime,omitempty"`                      //
-		Vendor                      string `json:"vendor,omitempty"`                      //
-		WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  //
 }
 
-// GetDiscoveriesByRangeResponse is the GetDiscoveriesByRangeResponse definition
+// GetDiscoveriesByRangeResponse is the getDiscoveriesByRangeResponse definition
 type GetDiscoveriesByRangeResponse struct {
-	Response []struct {
-		AttributeInfo          string   `json:"attributeInfo,omitempty"`          //
-		CdpLevel               int      `json:"cdpLevel,omitempty"`               //
-		DeviceIDs              string   `json:"deviceIds,omitempty"`              //
-		DiscoveryCondition     string   `json:"discoveryCondition,omitempty"`     //
-		DiscoveryStatus        string   `json:"discoveryStatus,omitempty"`        //
-		DiscoveryType          string   `json:"discoveryType,omitempty"`          //
-		EnablePasswordList     string   `json:"enablePasswordList,omitempty"`     //
-		GlobalCredentialIDList []string `json:"globalCredentialIdList,omitempty"` //
-		HTTPReadCredential     struct {
-			Comments         string `json:"comments,omitempty"`         //
-			CredentialType   string `json:"credentialType,omitempty"`   //
-			Description      string `json:"description,omitempty"`      //
-			ID               string `json:"id,omitempty"`               //
-			InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-			InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-			Password         string `json:"password,omitempty"`         //
-			Port             int    `json:"port,omitempty"`             //
-			Secure           bool   `json:"secure,omitempty"`           //
-			Username         string `json:"username,omitempty"`         //
-		} `json:"httpReadCredential,omitempty"` //
-		HTTPWriteCredential struct {
-			Comments         string `json:"comments,omitempty"`         //
-			CredentialType   string `json:"credentialType,omitempty"`   //
-			Description      string `json:"description,omitempty"`      //
-			ID               string `json:"id,omitempty"`               //
-			InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-			InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-			Password         string `json:"password,omitempty"`         //
-			Port             int    `json:"port,omitempty"`             //
-			Secure           bool   `json:"secure,omitempty"`           //
-			Username         string `json:"username,omitempty"`         //
-		} `json:"httpWriteCredential,omitempty"` //
-		ID                    string `json:"id,omitempty"`                    //
-		IPAddressList         string `json:"ipAddressList,omitempty"`         //
-		IPFilterList          string `json:"ipFilterList,omitempty"`          //
-		IsAutoCdp             bool   `json:"isAutoCdp,omitempty"`             //
-		LldpLevel             int    `json:"lldpLevel,omitempty"`             //
-		Name                  string `json:"name,omitempty"`                  //
-		NetconfPort           string `json:"netconfPort,omitempty"`           //
-		NumDevices            int    `json:"numDevices,omitempty"`            //
-		ParentDiscoveryID     string `json:"parentDiscoveryId,omitempty"`     //
-		PasswordList          string `json:"passwordList,omitempty"`          //
-		PreferredMgmtIPMethod string `json:"preferredMgmtIPMethod,omitempty"` //
-		ProtocolOrder         string `json:"protocolOrder,omitempty"`         //
-		RetryCount            int    `json:"retryCount,omitempty"`            //
-		SNMPAuthPassphrase    string `json:"snmpAuthPassphrase,omitempty"`    //
-		SNMPAuthProtocol      string `json:"snmpAuthProtocol,omitempty"`      //
-		SNMPMode              string `json:"snmpMode,omitempty"`              //
-		SNMPPrivPassphrase    string `json:"snmpPrivPassphrase,omitempty"`    //
-		SNMPPrivProtocol      string `json:"snmpPrivProtocol,omitempty"`      //
-		SNMPRoCommunity       string `json:"snmpRoCommunity,omitempty"`       //
-		SNMPRoCommunityDesc   string `json:"snmpRoCommunityDesc,omitempty"`   //
-		SNMPRwCommunity       string `json:"snmpRwCommunity,omitempty"`       //
-		SNMPRwCommunityDesc   string `json:"snmpRwCommunityDesc,omitempty"`   //
-		SNMPUserName          string `json:"snmpUserName,omitempty"`          //
-		TimeOut               int    `json:"timeOut,omitempty"`               //
-		UpdateMgmtIP          bool   `json:"updateMgmtIp,omitempty"`          //
-		UserNameList          string `json:"userNameList,omitempty"`          //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetDiscoveriesByRangeResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// GetDiscoveryByIDResponse is the GetDiscoveryByIdResponse definition
+// GetDiscoveriesByRangeResponseResponse is the getDiscoveriesByRangeResponseResponse definition
+type GetDiscoveriesByRangeResponseResponse struct {
+	AttributeInfo          string                                                   `json:"attributeInfo,omitempty"`          //
+	CdpLevel               int                                                      `json:"cdpLevel,omitempty"`               //
+	DeviceIDs              string                                                   `json:"deviceIds,omitempty"`              //
+	DiscoveryCondition     string                                                   `json:"discoveryCondition,omitempty"`     //
+	DiscoveryStatus        string                                                   `json:"discoveryStatus,omitempty"`        //
+	DiscoveryType          string                                                   `json:"discoveryType,omitempty"`          //
+	EnablePasswordList     string                                                   `json:"enablePasswordList,omitempty"`     //
+	GlobalCredentialIDList []string                                                 `json:"globalCredentialIdList,omitempty"` //
+	HTTPReadCredential     GetDiscoveriesByRangeResponseResponseHTTPReadCredential  `json:"httpReadCredential,omitempty"`     //
+	HTTPWriteCredential    GetDiscoveriesByRangeResponseResponseHTTPWriteCredential `json:"httpWriteCredential,omitempty"`    //
+	ID                     string                                                   `json:"id,omitempty"`                     //
+	IPAddressList          string                                                   `json:"ipAddressList,omitempty"`          //
+	IPFilterList           string                                                   `json:"ipFilterList,omitempty"`           //
+	IsAutoCdp              bool                                                     `json:"isAutoCdp,omitempty"`              //
+	LldpLevel              int                                                      `json:"lldpLevel,omitempty"`              //
+	Name                   string                                                   `json:"name,omitempty"`                   //
+	NetconfPort            string                                                   `json:"netconfPort,omitempty"`            //
+	NumDevices             int                                                      `json:"numDevices,omitempty"`             //
+	ParentDiscoveryID      string                                                   `json:"parentDiscoveryId,omitempty"`      //
+	PasswordList           string                                                   `json:"passwordList,omitempty"`           //
+	PreferredMgmtIPMethod  string                                                   `json:"preferredMgmtIPMethod,omitempty"`  //
+	ProtocolOrder          string                                                   `json:"protocolOrder,omitempty"`          //
+	RetryCount             int                                                      `json:"retryCount,omitempty"`             //
+	SNMPAuthPassphrase     string                                                   `json:"snmpAuthPassphrase,omitempty"`     //
+	SNMPAuthProtocol       string                                                   `json:"snmpAuthProtocol,omitempty"`       //
+	SNMPMode               string                                                   `json:"snmpMode,omitempty"`               //
+	SNMPPrivPassphrase     string                                                   `json:"snmpPrivPassphrase,omitempty"`     //
+	SNMPPrivProtocol       string                                                   `json:"snmpPrivProtocol,omitempty"`       //
+	SNMPRoCommunity        string                                                   `json:"snmpRoCommunity,omitempty"`        //
+	SNMPRoCommunityDesc    string                                                   `json:"snmpRoCommunityDesc,omitempty"`    //
+	SNMPRwCommunity        string                                                   `json:"snmpRwCommunity,omitempty"`        //
+	SNMPRwCommunityDesc    string                                                   `json:"snmpRwCommunityDesc,omitempty"`    //
+	SNMPUserName           string                                                   `json:"snmpUserName,omitempty"`           //
+	TimeOut                int                                                      `json:"timeOut,omitempty"`                //
+	UpdateMgmtIP           bool                                                     `json:"updateMgmtIp,omitempty"`           //
+	UserNameList           string                                                   `json:"userNameList,omitempty"`           //
+}
+
+// GetDiscoveriesByRangeResponseResponseGlobalCredentialIDList is the getDiscoveriesByRangeResponseResponseGlobalCredentialIDList definition
+type GetDiscoveriesByRangeResponseResponseGlobalCredentialIDList []string
+
+// GetDiscoveriesByRangeResponseResponseHTTPReadCredential is the getDiscoveriesByRangeResponseResponseHTTPReadCredential definition
+type GetDiscoveriesByRangeResponseResponseHTTPReadCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// GetDiscoveriesByRangeResponseResponseHTTPWriteCredential is the getDiscoveriesByRangeResponseResponseHTTPWriteCredential definition
+type GetDiscoveriesByRangeResponseResponseHTTPWriteCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// GetDiscoveryByIDResponseResponse is the getDiscoveryByIDResponseResponse definition
+type GetDiscoveryByIDResponseResponse struct {
+	AttributeInfo          string                                              `json:"attributeInfo,omitempty"`          //
+	CdpLevel               int                                                 `json:"cdpLevel,omitempty"`               //
+	DeviceIDs              string                                              `json:"deviceIds,omitempty"`              //
+	DiscoveryCondition     string                                              `json:"discoveryCondition,omitempty"`     //
+	DiscoveryStatus        string                                              `json:"discoveryStatus,omitempty"`        //
+	DiscoveryType          string                                              `json:"discoveryType,omitempty"`          //
+	EnablePasswordList     string                                              `json:"enablePasswordList,omitempty"`     //
+	GlobalCredentialIDList []string                                            `json:"globalCredentialIdList,omitempty"` //
+	HTTPReadCredential     GetDiscoveryByIDResponseResponseHTTPReadCredential  `json:"httpReadCredential,omitempty"`     //
+	HTTPWriteCredential    GetDiscoveryByIDResponseResponseHTTPWriteCredential `json:"httpWriteCredential,omitempty"`    //
+	ID                     string                                              `json:"id,omitempty"`                     //
+	IPAddressList          string                                              `json:"ipAddressList,omitempty"`          //
+	IPFilterList           string                                              `json:"ipFilterList,omitempty"`           //
+	IsAutoCdp              bool                                                `json:"isAutoCdp,omitempty"`              //
+	LldpLevel              int                                                 `json:"lldpLevel,omitempty"`              //
+	Name                   string                                              `json:"name,omitempty"`                   //
+	NetconfPort            string                                              `json:"netconfPort,omitempty"`            //
+	NumDevices             int                                                 `json:"numDevices,omitempty"`             //
+	ParentDiscoveryID      string                                              `json:"parentDiscoveryId,omitempty"`      //
+	PasswordList           string                                              `json:"passwordList,omitempty"`           //
+	PreferredMgmtIPMethod  string                                              `json:"preferredMgmtIPMethod,omitempty"`  //
+	ProtocolOrder          string                                              `json:"protocolOrder,omitempty"`          //
+	RetryCount             int                                                 `json:"retryCount,omitempty"`             //
+	SNMPAuthPassphrase     string                                              `json:"snmpAuthPassphrase,omitempty"`     //
+	SNMPAuthProtocol       string                                              `json:"snmpAuthProtocol,omitempty"`       //
+	SNMPMode               string                                              `json:"snmpMode,omitempty"`               //
+	SNMPPrivPassphrase     string                                              `json:"snmpPrivPassphrase,omitempty"`     //
+	SNMPPrivProtocol       string                                              `json:"snmpPrivProtocol,omitempty"`       //
+	SNMPRoCommunity        string                                              `json:"snmpRoCommunity,omitempty"`        //
+	SNMPRoCommunityDesc    string                                              `json:"snmpRoCommunityDesc,omitempty"`    //
+	SNMPRwCommunity        string                                              `json:"snmpRwCommunity,omitempty"`        //
+	SNMPRwCommunityDesc    string                                              `json:"snmpRwCommunityDesc,omitempty"`    //
+	SNMPUserName           string                                              `json:"snmpUserName,omitempty"`           //
+	TimeOut                int                                                 `json:"timeOut,omitempty"`                //
+	UpdateMgmtIP           bool                                                `json:"updateMgmtIp,omitempty"`           //
+	UserNameList           string                                              `json:"userNameList,omitempty"`           //
+}
+
+// GetDiscoveryByIDResponseResponseGlobalCredentialIDList is the getDiscoveryByIDResponseResponseGlobalCredentialIDList definition
+type GetDiscoveryByIDResponseResponseGlobalCredentialIDList []string
+
+// GetDiscoveryByIDResponseResponseHTTPReadCredential is the getDiscoveryByIDResponseResponseHTTPReadCredential definition
+type GetDiscoveryByIDResponseResponseHTTPReadCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// GetDiscoveryByIDResponseResponseHTTPWriteCredential is the getDiscoveryByIDResponseResponseHTTPWriteCredential definition
+type GetDiscoveryByIDResponseResponseHTTPWriteCredential struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+}
+
+// GetDiscoveryByIDResponse is the getDiscoveryByIdResponse definition
 type GetDiscoveryByIDResponse struct {
-	Response struct {
-		AttributeInfo          string   `json:"attributeInfo,omitempty"`          //
-		CdpLevel               int      `json:"cdpLevel,omitempty"`               //
-		DeviceIDs              string   `json:"deviceIds,omitempty"`              //
-		DiscoveryCondition     string   `json:"discoveryCondition,omitempty"`     //
-		DiscoveryStatus        string   `json:"discoveryStatus,omitempty"`        //
-		DiscoveryType          string   `json:"discoveryType,omitempty"`          //
-		EnablePasswordList     string   `json:"enablePasswordList,omitempty"`     //
-		GlobalCredentialIDList []string `json:"globalCredentialIdList,omitempty"` //
-		HTTPReadCredential     struct {
-			Comments         string `json:"comments,omitempty"`         //
-			CredentialType   string `json:"credentialType,omitempty"`   //
-			Description      string `json:"description,omitempty"`      //
-			ID               string `json:"id,omitempty"`               //
-			InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-			InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-			Password         string `json:"password,omitempty"`         //
-			Port             int    `json:"port,omitempty"`             //
-			Secure           bool   `json:"secure,omitempty"`           //
-			Username         string `json:"username,omitempty"`         //
-		} `json:"httpReadCredential,omitempty"` //
-		HTTPWriteCredential struct {
-			Comments         string `json:"comments,omitempty"`         //
-			CredentialType   string `json:"credentialType,omitempty"`   //
-			Description      string `json:"description,omitempty"`      //
-			ID               string `json:"id,omitempty"`               //
-			InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-			InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-			Password         string `json:"password,omitempty"`         //
-			Port             int    `json:"port,omitempty"`             //
-			Secure           bool   `json:"secure,omitempty"`           //
-			Username         string `json:"username,omitempty"`         //
-		} `json:"httpWriteCredential,omitempty"` //
-		ID                    string `json:"id,omitempty"`                    //
-		IPAddressList         string `json:"ipAddressList,omitempty"`         //
-		IPFilterList          string `json:"ipFilterList,omitempty"`          //
-		IsAutoCdp             bool   `json:"isAutoCdp,omitempty"`             //
-		LldpLevel             int    `json:"lldpLevel,omitempty"`             //
-		Name                  string `json:"name,omitempty"`                  //
-		NetconfPort           string `json:"netconfPort,omitempty"`           //
-		NumDevices            int    `json:"numDevices,omitempty"`            //
-		ParentDiscoveryID     string `json:"parentDiscoveryId,omitempty"`     //
-		PasswordList          string `json:"passwordList,omitempty"`          //
-		PreferredMgmtIPMethod string `json:"preferredMgmtIPMethod,omitempty"` //
-		ProtocolOrder         string `json:"protocolOrder,omitempty"`         //
-		RetryCount            int    `json:"retryCount,omitempty"`            //
-		SNMPAuthPassphrase    string `json:"snmpAuthPassphrase,omitempty"`    //
-		SNMPAuthProtocol      string `json:"snmpAuthProtocol,omitempty"`      //
-		SNMPMode              string `json:"snmpMode,omitempty"`              //
-		SNMPPrivPassphrase    string `json:"snmpPrivPassphrase,omitempty"`    //
-		SNMPPrivProtocol      string `json:"snmpPrivProtocol,omitempty"`      //
-		SNMPRoCommunity       string `json:"snmpRoCommunity,omitempty"`       //
-		SNMPRoCommunityDesc   string `json:"snmpRoCommunityDesc,omitempty"`   //
-		SNMPRwCommunity       string `json:"snmpRwCommunity,omitempty"`       //
-		SNMPRwCommunityDesc   string `json:"snmpRwCommunityDesc,omitempty"`   //
-		SNMPUserName          string `json:"snmpUserName,omitempty"`          //
-		TimeOut               int    `json:"timeOut,omitempty"`               //
-		UpdateMgmtIP          bool   `json:"updateMgmtIp,omitempty"`          //
-		UserNameList          string `json:"userNameList,omitempty"`          //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response GetDiscoveryByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                           `json:"version,omitempty"`  //
 }
 
-// GetDiscoveryJobsByIPResponse is the GetDiscoveryJobsByIPResponse definition
+// GetDiscoveryJobsByIPResponse is the getDiscoveryJobsByIPResponse definition
 type GetDiscoveryJobsByIPResponse struct {
-	Response []struct {
-		AttributeInfo               string `json:"attributeInfo,omitempty"`               //
-		CLIStatus                   string `json:"cliStatus,omitempty"`                   //
-		DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
-		EndTime                     string `json:"endTime,omitempty"`                     //
-		HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
-		ID                          string `json:"id,omitempty"`                          //
-		InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
-		InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
-		IPAddress                   string `json:"ipAddress,omitempty"`                   //
-		JobStatus                   string `json:"jobStatus,omitempty"`                   //
-		Name                        string `json:"name,omitempty"`                        //
-		NetconfStatus               string `json:"netconfStatus,omitempty"`               //
-		PingStatus                  string `json:"pingStatus,omitempty"`                  //
-		SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-		StartTime                   string `json:"startTime,omitempty"`                   //
-		TaskID                      string `json:"taskId,omitempty"`                      //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetDiscoveryJobsByIPResponseResponse `json:"response,omitempty"` //
+	Version  string                                 `json:"version,omitempty"`  //
 }
 
-// GetGlobalCredentialsResponse is the GetGlobalCredentialsResponse definition
+// GetDiscoveryJobsByIPResponseResponse is the getDiscoveryJobsByIPResponseResponse definition
+type GetDiscoveryJobsByIPResponseResponse struct {
+	AttributeInfo               string `json:"attributeInfo,omitempty"`               //
+	CliStatus                   string `json:"cliStatus,omitempty"`                   //
+	DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
+	EndTime                     string `json:"endTime,omitempty"`                     //
+	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
+	ID                          string `json:"id,omitempty"`                          //
+	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
+	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
+	IPAddress                   string `json:"ipAddress,omitempty"`                   //
+	JobStatus                   string `json:"jobStatus,omitempty"`                   //
+	Name                        string `json:"name,omitempty"`                        //
+	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
+	PingStatus                  string `json:"pingStatus,omitempty"`                  //
+	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
+	StartTime                   string `json:"startTime,omitempty"`                   //
+	TaskID                      string `json:"taskId,omitempty"`                      //
+}
+
+// GetGlobalCredentialsResponse is the getGlobalCredentialsResponse definition
 type GetGlobalCredentialsResponse struct {
-	Response []struct {
-		Comments         string `json:"comments,omitempty"`         //
-		CredentialType   string `json:"credentialType,omitempty"`   //
-		Description      string `json:"description,omitempty"`      //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetGlobalCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                 `json:"version,omitempty"`  //
 }
 
-// GetListOfDiscoveriesByDiscoveryIDResponse is the GetListOfDiscoveriesByDiscoveryIdResponse definition
+// GetGlobalCredentialsResponseResponse is the getGlobalCredentialsResponseResponse definition
+type GetGlobalCredentialsResponseResponse struct {
+	Comments         string `json:"comments,omitempty"`         //
+	CredentialType   string `json:"credentialType,omitempty"`   //
+	Description      string `json:"description,omitempty"`      //
+	ID               string `json:"id,omitempty"`               //
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+}
+
+// GetListOfDiscoveriesByDiscoveryIDResponseResponse is the getListOfDiscoveriesByDiscoveryIDResponseResponse definition
+type GetListOfDiscoveriesByDiscoveryIDResponseResponse struct {
+	AttributeInfo               string `json:"attributeInfo,omitempty"`               //
+	CliStatus                   string `json:"cliStatus,omitempty"`                   //
+	DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
+	EndTime                     string `json:"endTime,omitempty"`                     //
+	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
+	ID                          string `json:"id,omitempty"`                          //
+	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
+	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
+	IPAddress                   string `json:"ipAddress,omitempty"`                   //
+	JobStatus                   string `json:"jobStatus,omitempty"`                   //
+	Name                        string `json:"name,omitempty"`                        //
+	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
+	PingStatus                  string `json:"pingStatus,omitempty"`                  //
+	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
+	StartTime                   string `json:"startTime,omitempty"`                   //
+	TaskID                      string `json:"taskId,omitempty"`                      //
+}
+
+// GetListOfDiscoveriesByDiscoveryIDResponse is the getListOfDiscoveriesByDiscoveryIdResponse definition
 type GetListOfDiscoveriesByDiscoveryIDResponse struct {
-	Response []struct {
-		AttributeInfo               string `json:"attributeInfo,omitempty"`               //
-		CLIStatus                   string `json:"cliStatus,omitempty"`                   //
-		DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
-		EndTime                     string `json:"endTime,omitempty"`                     //
-		HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
-		ID                          string `json:"id,omitempty"`                          //
-		InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
-		InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
-		IPAddress                   string `json:"ipAddress,omitempty"`                   //
-		JobStatus                   string `json:"jobStatus,omitempty"`                   //
-		Name                        string `json:"name,omitempty"`                        //
-		NetconfStatus               string `json:"netconfStatus,omitempty"`               //
-		PingStatus                  string `json:"pingStatus,omitempty"`                  //
-		SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-		StartTime                   string `json:"startTime,omitempty"`                   //
-		TaskID                      string `json:"taskId,omitempty"`                      //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetListOfDiscoveriesByDiscoveryIDResponseResponse `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  //
 }
 
-// GetNetworkDevicesFromDiscoveryResponse is the GetNetworkDevicesFromDiscoveryResponse definition
+// GetNetworkDevicesFromDiscoveryResponse is the getNetworkDevicesFromDiscoveryResponse definition
 type GetNetworkDevicesFromDiscoveryResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetSNMPPropertiesResponse is the GetSNMPPropertiesResponse definition
+// GetSNMPPropertiesResponse is the getSNMPPropertiesResponse definition
 type GetSNMPPropertiesResponse struct {
-	Response []struct {
-		ID                 string `json:"id,omitempty"`                 //
-		InstanceTenantID   string `json:"instanceTenantId,omitempty"`   //
-		InstanceUUID       string `json:"instanceUuid,omitempty"`       //
-		IntValue           int    `json:"intValue,omitempty"`           //
-		SystemPropertyName string `json:"systemPropertyName,omitempty"` //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetSNMPPropertiesResponseResponse `json:"response,omitempty"` //
+	Version  string                              `json:"version,omitempty"`  //
 }
 
-// StartDiscoveryResponse is the StartDiscoveryResponse definition
+// GetSNMPPropertiesResponseResponse is the getSNMPPropertiesResponseResponse definition
+type GetSNMPPropertiesResponseResponse struct {
+	ID                 string `json:"id,omitempty"`                 //
+	InstanceTenantID   string `json:"instanceTenantId,omitempty"`   //
+	InstanceUUID       string `json:"instanceUuid,omitempty"`       //
+	IntValue           int    `json:"intValue,omitempty"`           //
+	SystemPropertyName string `json:"systemPropertyName,omitempty"` //
+}
+
+// StartDiscoveryResponse is the startDiscoveryResponse definition
 type StartDiscoveryResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response StartDiscoveryResponseResponse `json:"response,omitempty"` //
+	Version  string                         `json:"version,omitempty"`  //
 }
 
-// UpdateCLICredentialsResponse is the UpdateCLICredentialsResponse definition
+// StartDiscoveryResponseResponse is the startDiscoveryResponseResponse definition
+type StartDiscoveryResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateCLICredentialsResponse is the updateCLICredentialsResponse definition
 type UpdateCLICredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateCLICredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                               `json:"version,omitempty"`  //
 }
 
-// UpdateGlobalCredentialsResponse is the UpdateGlobalCredentialsResponse definition
+// UpdateCLICredentialsResponseResponse is the updateCLICredentialsResponseResponse definition
+type UpdateCLICredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateGlobalCredentialsResponse is the updateGlobalCredentialsResponse definition
 type UpdateGlobalCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateGlobalCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// UpdateHTTPReadCredentialResponse is the UpdateHTTPReadCredentialResponse definition
+// UpdateGlobalCredentialsResponseResponse is the updateGlobalCredentialsResponseResponse definition
+type UpdateGlobalCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateHTTPReadCredentialResponse is the updateHTTPReadCredentialResponse definition
 type UpdateHTTPReadCredentialResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateHTTPReadCredentialResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// UpdateHTTPWriteCredentialsResponse is the UpdateHTTPWriteCredentialsResponse definition
+// UpdateHTTPReadCredentialResponseResponse is the updateHTTPReadCredentialResponseResponse definition
+type UpdateHTTPReadCredentialResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateHTTPWriteCredentialsResponse is the updateHTTPWriteCredentialsResponse definition
 type UpdateHTTPWriteCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateHTTPWriteCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
 }
 
-// UpdateNetconfCredentialsResponse is the UpdateNetconfCredentialsResponse definition
+// UpdateHTTPWriteCredentialsResponseResponse is the updateHTTPWriteCredentialsResponseResponse definition
+type UpdateHTTPWriteCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateNetconfCredentialsResponse is the updateNetconfCredentialsResponse definition
 type UpdateNetconfCredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateNetconfCredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// UpdateSNMPReadCommunityResponse is the UpdateSNMPReadCommunityResponse definition
+// UpdateNetconfCredentialsResponseResponse is the updateNetconfCredentialsResponseResponse definition
+type UpdateNetconfCredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateSNMPReadCommunityResponse is the updateSNMPReadCommunityResponse definition
 type UpdateSNMPReadCommunityResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateSNMPReadCommunityResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// UpdateSNMPWriteCommunityResponse is the UpdateSNMPWriteCommunityResponse definition
+// UpdateSNMPReadCommunityResponseResponse is the updateSNMPReadCommunityResponseResponse definition
+type UpdateSNMPReadCommunityResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateSNMPWriteCommunityResponse is the updateSNMPWriteCommunityResponse definition
 type UpdateSNMPWriteCommunityResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateSNMPWriteCommunityResponseResponse `json:"response,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 
-// UpdateSNMPv3CredentialsResponse is the UpdateSNMPv3CredentialsResponse definition
+// UpdateSNMPWriteCommunityResponseResponse is the updateSNMPWriteCommunityResponseResponse definition
+type UpdateSNMPWriteCommunityResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateSNMPv3CredentialsResponse is the updateSNMPv3CredentialsResponse definition
 type UpdateSNMPv3CredentialsResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateSNMPv3CredentialsResponseResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  //
 }
 
-// UpdatesAnExistingDiscoveryBySpecifiedIDResponse is the UpdatesAnExistingDiscoveryBySpecifiedIdResponse definition
+// UpdateSNMPv3CredentialsResponseResponse is the updateSNMPv3CredentialsResponseResponse definition
+type UpdateSNMPv3CredentialsResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdatesAnExistingDiscoveryBySpecifiedIDResponseResponse is the updatesAnExistingDiscoveryBySpecifiedIDResponseResponse definition
+type UpdatesAnExistingDiscoveryBySpecifiedIDResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdatesAnExistingDiscoveryBySpecifiedIDResponse is the updatesAnExistingDiscoveryBySpecifiedIdResponse definition
 type UpdatesAnExistingDiscoveryBySpecifiedIDResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdatesAnExistingDiscoveryBySpecifiedIDResponseResponse `json:"response,omitempty"` //
+	Version  string                                                  `json:"version,omitempty"`  //
 }
 
 // CreateCLICredentials createCLICredentials
@@ -1384,7 +1525,7 @@ type GetNetworkDevicesFromDiscoveryQueryParams struct {
 	IPAddress     []string `url:"ipAddress,omitempty"`     // ipAddress
 	PingStatus    []string `url:"pingStatus,omitempty"`    // pingStatus
 	SNMPStatus    []string `url:"snmpStatus,omitempty"`    // snmpStatus
-	CLIStatus     []string `url:"cliStatus,omitempty"`     // cliStatus
+	CliStatus     []string `url:"cliStatus,omitempty"`     // cliStatus
 	NetconfStatus []string `url:"netconfStatus,omitempty"` // netconfStatus
 	HTTPStatus    []string `url:"httpStatus,omitempty"`    // httpStatus
 }

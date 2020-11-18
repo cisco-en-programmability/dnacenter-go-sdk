@@ -14,7 +14,7 @@ func main() {
 	fmt.Println("Authenticating")
 	client = dnac.NewClientWithOptions("https://192.168.196.2/",
 		"altus", "Altus123",
-		"false", "false")
+		"true", "false")
 	if err != nil {
 		fmt.Println(err)
 		return

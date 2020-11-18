@@ -7,7 +7,7 @@ import (
 // CommandRunnerService is the service to communicate with the CommandRunner API endpoint
 type CommandRunnerService service
 
-// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest is the RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest definition
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest is the runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest definition
 type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest struct {
 	Commands    []string `json:"commands,omitempty"`    //
 	Description string   `json:"description,omitempty"` //
@@ -16,19 +16,31 @@ type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest struct {
 	Timeout     int      `json:"timeout,omitempty"`     //
 }
 
-// GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse is the GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse definition
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestCommands is the runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestCommands definition
+type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestCommands []string
+
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestDeviceUUIDs is the runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestDeviceUUIDs definition
+type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequestDeviceUUIDs []string
+
+// GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse is the getAllKeywordsOfCLIsAcceptedByCommandRunnerResponse definition
 type GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse is the RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse definition
+// GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponseResponse is the getAllKeywordsOfCLIsAcceptedByCommandRunnerResponseResponse definition
+type GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponseResponse []string
+
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse is the runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse definition
 type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponseResponse `json:"response,omitempty"` //
+	Version  string                                                                      `json:"version,omitempty"`  //
+}
+
+// RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponseResponse is the runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponseResponse definition
+type RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // GetAllKeywordsOfCLIsAcceptedByCommandRunner getAllKeywordsOfCLIsAcceptedByCommandRunner

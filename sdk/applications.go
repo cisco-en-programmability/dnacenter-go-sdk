@@ -8,24 +8,27 @@ import (
 // ApplicationsService is the service to communicate with the Applications API endpoint
 type ApplicationsService service
 
-// ApplicationsResponse is the ApplicationsResponse definition
+// ApplicationsResponse is the applicationsResponse definition
 type ApplicationsResponse struct {
-	Response []struct {
-		ApplicationServerLatency string `json:"applicationServerLatency,omitempty"` //
-		AverageThroughput        int    `json:"averageThroughput,omitempty"`        //
-		BusinessRelevance        string `json:"businessRelevance,omitempty"`        //
-		ClientNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
-		Health                   string `json:"health,omitempty"`                   //
-		Jitter                   string `json:"jitter,omitempty"`                   //
-		Name                     string `json:"name,omitempty"`                     //
-		NetworkLatency           string `json:"networkLatency,omitempty"`           //
-		PacketLossPercent        string `json:"packetLossPercent,omitempty"`        //
-		ServerNetworkLatency     string `json:"serverNetworkLatency,omitempty"`     //
-		TrafficClass             string `json:"trafficClass,omitempty"`             //
-		UsageBytes               int    `json:"usageBytes,omitempty"`               //
-	} `json:"response,omitempty"` //
-	TotalCount int    `json:"totalCount,omitempty"` //
-	Version    string `json:"version,omitempty"`    //
+	Response   []ApplicationsResponseResponse `json:"response,omitempty"`   //
+	TotalCount int                            `json:"totalCount,omitempty"` //
+	Version    string                         `json:"version,omitempty"`    //
+}
+
+// ApplicationsResponseResponse is the applicationsResponseResponse definition
+type ApplicationsResponseResponse struct {
+	ApplicationServerLatency string `json:"applicationServerLatency,omitempty"` //
+	AverageThroughput        int    `json:"averageThroughput,omitempty"`        //
+	BusinessRelevance        string `json:"businessRelevance,omitempty"`        //
+	ClientNetworkLatency     string `json:"clientNetworkLatency,omitempty"`     //
+	Health                   string `json:"health,omitempty"`                   //
+	Jitter                   string `json:"jitter,omitempty"`                   //
+	Name                     string `json:"name,omitempty"`                     //
+	NetworkLatency           string `json:"networkLatency,omitempty"`           //
+	PacketLossPercent        string `json:"packetLossPercent,omitempty"`        //
+	ServerNetworkLatency     string `json:"serverNetworkLatency,omitempty"`     //
+	TrafficClass             string `json:"trafficClass,omitempty"`             //
+	UsageBytes               int    `json:"usageBytes,omitempty"`               //
 }
 
 // ApplicationsQueryParams defines the query parameters for this request

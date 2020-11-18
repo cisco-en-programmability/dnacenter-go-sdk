@@ -11,197 +11,284 @@ import (
 // TagService is the service to communicate with the Tag API endpoint
 type TagService service
 
-// CreateTagRequest is the CreateTagRequest definition
+// AddMembersToTheTagRequest is the AddMembersToTheTagRequest definition
+type AddMembersToTheTagRequest []string
+
+// CreateTagRequest is the createTagRequest definition
 type CreateTagRequest struct {
-	Description  string `json:"description,omitempty"` //
-	DynamicRules []struct {
-		MemberType string `json:"memberType,omitempty"` //
-		Rules      struct {
-			Items     []string `json:"items,omitempty"`     //
-			Name      string   `json:"name,omitempty"`      //
-			Operation string   `json:"operation,omitempty"` //
-			Value     string   `json:"value,omitempty"`     //
-			Values    []string `json:"values,omitempty"`    //
-		} `json:"rules,omitempty"` //
-	} `json:"dynamicRules,omitempty"` //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	Name             string `json:"name,omitempty"`             //
-	SystemTag        bool   `json:"systemTag,omitempty"`        //
+	Description      string                         `json:"description,omitempty"`      //
+	DynamicRules     []CreateTagRequestDynamicRules `json:"dynamicRules,omitempty"`     //
+	ID               string                         `json:"id,omitempty"`               //
+	InstanceTenantID string                         `json:"instanceTenantId,omitempty"` //
+	Name             string                         `json:"name,omitempty"`             //
+	SystemTag        bool                           `json:"systemTag,omitempty"`        //
 }
 
-// UpdateTagRequest is the UpdateTagRequest definition
+// CreateTagRequestDynamicRules is the createTagRequestDynamicRules definition
+type CreateTagRequestDynamicRules struct {
+	MemberType string                            `json:"memberType,omitempty"` //
+	Rules      CreateTagRequestDynamicRulesRules `json:"rules,omitempty"`      //
+}
+
+// CreateTagRequestDynamicRulesRules is the createTagRequestDynamicRulesRules definition
+type CreateTagRequestDynamicRulesRules struct {
+	Items     []string `json:"items,omitempty"`     //
+	Name      string   `json:"name,omitempty"`      //
+	Operation string   `json:"operation,omitempty"` //
+	Value     string   `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+}
+
+// CreateTagRequestDynamicRulesRulesItems is the createTagRequestDynamicRulesRulesItems definition
+type CreateTagRequestDynamicRulesRulesItems []string
+
+// CreateTagRequestDynamicRulesRulesValues is the createTagRequestDynamicRulesRulesValues definition
+type CreateTagRequestDynamicRulesRulesValues []string
+
+// UpdateTagRequest is the updateTagRequest definition
 type UpdateTagRequest struct {
-	Description  string `json:"description,omitempty"` //
-	DynamicRules []struct {
-		MemberType string `json:"memberType,omitempty"` //
-		Rules      struct {
-			Items     []string `json:"items,omitempty"`     //
-			Name      string   `json:"name,omitempty"`      //
-			Operation string   `json:"operation,omitempty"` //
-			Value     string   `json:"value,omitempty"`     //
-			Values    []string `json:"values,omitempty"`    //
-		} `json:"rules,omitempty"` //
-	} `json:"dynamicRules,omitempty"` //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	Name             string `json:"name,omitempty"`             //
-	SystemTag        bool   `json:"systemTag,omitempty"`        //
+	Description      string                         `json:"description,omitempty"`      //
+	DynamicRules     []UpdateTagRequestDynamicRules `json:"dynamicRules,omitempty"`     //
+	ID               string                         `json:"id,omitempty"`               //
+	InstanceTenantID string                         `json:"instanceTenantId,omitempty"` //
+	Name             string                         `json:"name,omitempty"`             //
+	SystemTag        bool                           `json:"systemTag,omitempty"`        //
 }
 
-// UpdatesTagMembershipRequest is the UpdatesTagMembershipRequest definition
+// UpdateTagRequestDynamicRules is the updateTagRequestDynamicRules definition
+type UpdateTagRequestDynamicRules struct {
+	MemberType string                            `json:"memberType,omitempty"` //
+	Rules      UpdateTagRequestDynamicRulesRules `json:"rules,omitempty"`      //
+}
+
+// UpdateTagRequestDynamicRulesRules is the updateTagRequestDynamicRulesRules definition
+type UpdateTagRequestDynamicRulesRules struct {
+	Items     []string `json:"items,omitempty"`     //
+	Name      string   `json:"name,omitempty"`      //
+	Operation string   `json:"operation,omitempty"` //
+	Value     string   `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+}
+
+// UpdateTagRequestDynamicRulesRulesItems is the updateTagRequestDynamicRulesRulesItems definition
+type UpdateTagRequestDynamicRulesRulesItems []string
+
+// UpdateTagRequestDynamicRulesRulesValues is the updateTagRequestDynamicRulesRulesValues definition
+type UpdateTagRequestDynamicRulesRulesValues []string
+
+// UpdatesTagMembershipRequest is the updatesTagMembershipRequest definition
 type UpdatesTagMembershipRequest struct {
-	MemberToTags []struct {
-		Key []string `json:"key,omitempty"` //
-	} `json:"memberToTags,omitempty"` //
-	MemberType string `json:"memberType,omitempty"` //
+	MemberToTags []UpdatesTagMembershipRequestMemberToTags `json:"memberToTags,omitempty"` //
+	MemberType   string                                    `json:"memberType,omitempty"`   //
 }
 
-// AddMembersToTheTagResponse is the AddMembersToTheTagResponse definition
+// UpdatesTagMembershipRequestMemberToTags is the updatesTagMembershipRequestMemberToTags definition
+type UpdatesTagMembershipRequestMemberToTags struct {
+	Key []string `json:"key,omitempty"` //
+}
+
+// UpdatesTagMembershipRequestMemberToTagsKey is the updatesTagMembershipRequestMemberToTagsKey definition
+type UpdatesTagMembershipRequestMemberToTagsKey []string
+
+// AddMembersToTheTagResponse is the addMembersToTheTagResponse definition
 type AddMembersToTheTagResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response AddMembersToTheTagResponseResponse `json:"response,omitempty"` //
+	Version  string                             `json:"version,omitempty"`  //
 }
 
-// CreateTagResponse is the CreateTagResponse definition
+// AddMembersToTheTagResponseResponse is the addMembersToTheTagResponseResponse definition
+type AddMembersToTheTagResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// CreateTagResponse is the createTagResponse definition
 type CreateTagResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response CreateTagResponseResponse `json:"response,omitempty"` //
+	Version  string                    `json:"version,omitempty"`  //
 }
 
-// DeleteTagResponse is the DeleteTagResponse definition
+// CreateTagResponseResponse is the createTagResponseResponse definition
+type CreateTagResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// DeleteTagResponse is the deleteTagResponse definition
 type DeleteTagResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response DeleteTagResponseResponse `json:"response,omitempty"` //
+	Version  string                    `json:"version,omitempty"`  //
 }
 
-// GetTagByIDResponse is the GetTagByIdResponse definition
+// DeleteTagResponseResponse is the deleteTagResponseResponse definition
+type DeleteTagResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// GetTagByIDResponseResponse is the getTagByIDResponseResponse definition
+type GetTagByIDResponseResponse struct {
+	Description      string                                   `json:"description,omitempty"`      //
+	DynamicRules     []GetTagByIDResponseResponseDynamicRules `json:"dynamicRules,omitempty"`     //
+	ID               string                                   `json:"id,omitempty"`               //
+	InstanceTenantID string                                   `json:"instanceTenantId,omitempty"` //
+	Name             string                                   `json:"name,omitempty"`             //
+	SystemTag        bool                                     `json:"systemTag,omitempty"`        //
+}
+
+// GetTagByIDResponseResponseDynamicRules is the getTagByIDResponseResponseDynamicRules definition
+type GetTagByIDResponseResponseDynamicRules struct {
+	MemberType string                                      `json:"memberType,omitempty"` //
+	Rules      GetTagByIDResponseResponseDynamicRulesRules `json:"rules,omitempty"`      //
+}
+
+// GetTagByIDResponseResponseDynamicRulesRules is the getTagByIDResponseResponseDynamicRulesRules definition
+type GetTagByIDResponseResponseDynamicRulesRules struct {
+	Items     []string `json:"items,omitempty"`     //
+	Name      string   `json:"name,omitempty"`      //
+	Operation string   `json:"operation,omitempty"` //
+	Value     string   `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+}
+
+// GetTagByIDResponseResponseDynamicRulesRulesItems is the getTagByIDResponseResponseDynamicRulesRulesItems definition
+type GetTagByIDResponseResponseDynamicRulesRulesItems []string
+
+// GetTagByIDResponseResponseDynamicRulesRulesValues is the getTagByIDResponseResponseDynamicRulesRulesValues definition
+type GetTagByIDResponseResponseDynamicRulesRulesValues []string
+
+// GetTagByIDResponse is the getTagByIdResponse definition
 type GetTagByIDResponse struct {
-	Response struct {
-		Description  string `json:"description,omitempty"` //
-		DynamicRules []struct {
-			MemberType string `json:"memberType,omitempty"` //
-			Rules      struct {
-				Items     []string `json:"items,omitempty"`     //
-				Name      string   `json:"name,omitempty"`      //
-				Operation string   `json:"operation,omitempty"` //
-				Value     string   `json:"value,omitempty"`     //
-				Values    []string `json:"values,omitempty"`    //
-			} `json:"rules,omitempty"` //
-		} `json:"dynamicRules,omitempty"` //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		Name             string `json:"name,omitempty"`             //
-		SystemTag        bool   `json:"systemTag,omitempty"`        //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response GetTagByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                     `json:"version,omitempty"`  //
 }
 
-// GetTagCountResponse is the GetTagCountResponse definition
+// GetTagCountResponse is the getTagCountResponse definition
 type GetTagCountResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetTagMemberCountResponse is the GetTagMemberCountResponse definition
+// GetTagMemberCountResponse is the getTagMemberCountResponse definition
 type GetTagMemberCountResponse struct {
 	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
-// GetTagMembersByIDResponse is the GetTagMembersByIdResponse definition
-type GetTagMembersByIDResponse struct {
-	Response []struct {
-		InstanceUUID string `json:"instanceUuid,omitempty"` //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+// GetTagMembersByIDResponseResponse is the getTagMembersByIDResponseResponse definition
+type GetTagMembersByIDResponseResponse struct {
+	InstanceUUID string `json:"instanceUuid,omitempty"` //
 }
 
-// GetTagResourceTypesResponse is the GetTagResourceTypesResponse definition
+// GetTagMembersByIDResponse is the getTagMembersByIdResponse definition
+type GetTagMembersByIDResponse struct {
+	Response []GetTagMembersByIDResponseResponse `json:"response,omitempty"` //
+	Version  string                              `json:"version,omitempty"`  //
+}
+
+// GetTagResourceTypesResponse is the getTagResourceTypesResponse definition
 type GetTagResourceTypesResponse struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// GetTagResponse is the GetTagResponse definition
+// GetTagResourceTypesResponseResponse is the getTagResourceTypesResponseResponse definition
+type GetTagResourceTypesResponseResponse []string
+
+// GetTagResponse is the getTagResponse definition
 type GetTagResponse struct {
-	Response []struct {
-		Description  string `json:"description,omitempty"` //
-		DynamicRules []struct {
-			MemberType string `json:"memberType,omitempty"` //
-			Rules      struct {
-				Items     []string `json:"items,omitempty"`     //
-				Name      string   `json:"name,omitempty"`      //
-				Operation string   `json:"operation,omitempty"` //
-				Value     string   `json:"value,omitempty"`     //
-				Values    []string `json:"values,omitempty"`    //
-			} `json:"rules,omitempty"` //
-		} `json:"dynamicRules,omitempty"` //
-		ID               string `json:"id,omitempty"`               //
-		InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-		Name             string `json:"name,omitempty"`             //
-		SystemTag        bool   `json:"systemTag,omitempty"`        //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetTagResponseResponse `json:"response,omitempty"` //
+	Version  string                   `json:"version,omitempty"`  //
 }
 
-// RemoveTagMemberResponse is the RemoveTagMemberResponse definition
+// GetTagResponseResponse is the getTagResponseResponse definition
+type GetTagResponseResponse struct {
+	Description      string                               `json:"description,omitempty"`      //
+	DynamicRules     []GetTagResponseResponseDynamicRules `json:"dynamicRules,omitempty"`     //
+	ID               string                               `json:"id,omitempty"`               //
+	InstanceTenantID string                               `json:"instanceTenantId,omitempty"` //
+	Name             string                               `json:"name,omitempty"`             //
+	SystemTag        bool                                 `json:"systemTag,omitempty"`        //
+}
+
+// GetTagResponseResponseDynamicRules is the getTagResponseResponseDynamicRules definition
+type GetTagResponseResponseDynamicRules struct {
+	MemberType string                                  `json:"memberType,omitempty"` //
+	Rules      GetTagResponseResponseDynamicRulesRules `json:"rules,omitempty"`      //
+}
+
+// GetTagResponseResponseDynamicRulesRules is the getTagResponseResponseDynamicRulesRules definition
+type GetTagResponseResponseDynamicRulesRules struct {
+	Items     []string `json:"items,omitempty"`     //
+	Name      string   `json:"name,omitempty"`      //
+	Operation string   `json:"operation,omitempty"` //
+	Value     string   `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+}
+
+// GetTagResponseResponseDynamicRulesRulesItems is the getTagResponseResponseDynamicRulesRulesItems definition
+type GetTagResponseResponseDynamicRulesRulesItems []string
+
+// GetTagResponseResponseDynamicRulesRulesValues is the getTagResponseResponseDynamicRulesRulesValues definition
+type GetTagResponseResponseDynamicRulesRulesValues []string
+
+// RemoveTagMemberResponse is the removeTagMemberResponse definition
 type RemoveTagMemberResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response RemoveTagMemberResponseResponse `json:"response,omitempty"` //
+	Version  string                          `json:"version,omitempty"`  //
 }
 
-// UpdateTagResponse is the UpdateTagResponse definition
+// RemoveTagMemberResponseResponse is the removeTagMemberResponseResponse definition
+type RemoveTagMemberResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdateTagResponse is the updateTagResponse definition
 type UpdateTagResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdateTagResponseResponse `json:"response,omitempty"` //
+	Version  string                    `json:"version,omitempty"`  //
 }
 
-// UpdatesTagMembershipResponse is the UpdatesTagMembershipResponse definition
+// UpdateTagResponseResponse is the updateTagResponseResponse definition
+type UpdateTagResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+
+// UpdatesTagMembershipResponse is the updatesTagMembershipResponse definition
 type UpdatesTagMembershipResponse struct {
-	Response struct {
-		TaskID string `json:"taskId,omitempty"` //
-		URL    string `json:"url,omitempty"`    //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response UpdatesTagMembershipResponseResponse `json:"response,omitempty"` //
+	Version  string                               `json:"version,omitempty"`  //
+}
+
+// UpdatesTagMembershipResponseResponse is the updatesTagMembershipResponseResponse definition
+type UpdatesTagMembershipResponseResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 
 // AddMembersToTheTag addMembersToTheTag
 /* Adds members to the tag specified by id
 @param id Tag ID
 */
-// func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
+func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
 
-// 	path := "/dna/intent/api/v1/tag/{id}/member"
-// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+	path := "/dna/intent/api/v1/tag/{id}/member"
+	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-// 	response, err := RestyClient.R().
-// 		SetBody(addMembersToTheTagRequest).
-// 		SetResult(&AddMembersToTheTagResponse{}).
-// 		SetError(&Error{}).
-// 		Post(path)
+	response, err := RestyClient.R().
+		SetBody(addMembersToTheTagRequest).
+		SetResult(&AddMembersToTheTagResponse{}).
+		SetError(&Error{}).
+		Post(path)
 
-// 	if err != nil {
-// 		return nil, nil, err
-// 	}
-// 	result := response.Result().(*AddMembersToTheTagResponse)
-// 	return result, response, err
-// }
+	if err != nil {
+		return nil, nil, err
+	}
+	result := response.Result().(*AddMembersToTheTagResponse)
+	return result, response, err
+}
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes

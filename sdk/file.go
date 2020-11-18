@@ -10,30 +10,39 @@ import (
 // FileService is the service to communicate with the File API endpoint
 type FileService service
 
-// GetListOfAvailableNamespacesResponse is the GetListOfAvailableNamespacesResponse definition
+// GetListOfAvailableNamespacesResponse is the getListOfAvailableNamespacesResponse definition
 type GetListOfAvailableNamespacesResponse struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
 
-// GetListOfFilesResponse is the GetListOfFilesResponse definition
+// GetListOfAvailableNamespacesResponseResponse is the getListOfAvailableNamespacesResponseResponse definition
+type GetListOfAvailableNamespacesResponseResponse []string
+
+// GetListOfFilesResponse is the getListOfFilesResponse definition
 type GetListOfFilesResponse struct {
-	Response []struct {
-		AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
-		DownloadPath   string   `json:"downloadPath,omitempty"`   //
-		Encrypted      bool     `json:"encrypted,omitempty"`      //
-		FileFormat     string   `json:"fileFormat,omitempty"`     //
-		FileSize       string   `json:"fileSize,omitempty"`       //
-		ID             string   `json:"id,omitempty"`             //
-		Md5Checksum    string   `json:"md5Checksum,omitempty"`    //
-		Name           string   `json:"name,omitempty"`           //
-		NameSpace      string   `json:"nameSpace,omitempty"`      //
-		SftpServerList []string `json:"sftpServerList,omitempty"` //
-		Sha1Checksum   string   `json:"sha1Checksum,omitempty"`   //
-		TaskID         string   `json:"taskId,omitempty"`         //
-	} `json:"response,omitempty"` //
-	Version string `json:"version,omitempty"` //
+	Response []GetListOfFilesResponseResponse `json:"response,omitempty"` //
+	Version  string                           `json:"version,omitempty"`  //
 }
+
+// GetListOfFilesResponseResponse is the getListOfFilesResponseResponse definition
+type GetListOfFilesResponseResponse struct {
+	AttributeInfo  string   `json:"attributeInfo,omitempty"`  //
+	DownloadPath   string   `json:"downloadPath,omitempty"`   //
+	Encrypted      bool     `json:"encrypted,omitempty"`      //
+	FileFormat     string   `json:"fileFormat,omitempty"`     //
+	FileSize       string   `json:"fileSize,omitempty"`       //
+	ID             string   `json:"id,omitempty"`             //
+	Md5Checksum    string   `json:"md5Checksum,omitempty"`    //
+	Name           string   `json:"name,omitempty"`           //
+	NameSpace      string   `json:"nameSpace,omitempty"`      //
+	SftpServerList []string `json:"sftpServerList,omitempty"` //
+	Sha1Checksum   string   `json:"sha1Checksum,omitempty"`   //
+	TaskID         string   `json:"taskId,omitempty"`         //
+}
+
+// GetListOfFilesResponseResponseSftpServerList is the getListOfFilesResponseResponseSftpServerList definition
+type GetListOfFilesResponseResponseSftpServerList []string
 
 // DownloadAFileByFileID downloadAFileByFileId
 /* Downloads a file specified by fileId

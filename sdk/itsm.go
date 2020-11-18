@@ -8,31 +8,34 @@ import (
 // ITSMService is the service to communicate with the ITSM API endpoint
 type ITSMService service
 
-// RetryIntegrationEventsRequest is the RetryIntegrationEventsRequest definition
+// RetryIntegrationEventsRequest is the retryIntegrationEventsRequest definition
 type RetryIntegrationEventsRequest []string
 
-// GetFailedITSMEventsResponse is the GetFailedITSMEventsResponse definition
+// GetFailedITSMEventsResponse is the getFailedITSMEventsResponse definition
 type GetFailedITSMEventsResponse struct {
-	Category       string `json:"category,omitempty"`    //
-	Description    string `json:"description,omitempty"` //
-	Domain         string `json:"domain,omitempty"`      //
-	EnrichmentInfo struct {
-		ErrorCode                      string `json:"errorCode,omitempty"`                      //
-		ErrorDescription               string `json:"errorDescription,omitempty"`               //
-		EventStatus                    string `json:"eventStatus,omitempty"`                    //
-		ResponseReceivedFromITSMSystem string `json:"responseReceivedFromITSMSystem,omitempty"` //
-	} `json:"enrichmentInfo,omitempty"` //
-	EventID    string `json:"eventId,omitempty"`    //
-	InstanceID string `json:"instanceId,omitempty"` //
-	Name       string `json:"name,omitempty"`       //
-	Severity   string `json:"severity,omitempty"`   //
-	Source     string `json:"source,omitempty"`     //
-	SubDomain  string `json:"subDomain,omitempty"`  //
-	Timestamp  int    `json:"timestamp,omitempty"`  //
-	Type       string `json:"type,omitempty"`       //
+	Category       string                                    `json:"category,omitempty"`       //
+	Description    string                                    `json:"description,omitempty"`    //
+	Domain         string                                    `json:"domain,omitempty"`         //
+	EnrichmentInfo GetFailedITSMEventsResponseEnrichmentInfo `json:"enrichmentInfo,omitempty"` //
+	EventID        string                                    `json:"eventId,omitempty"`        //
+	InstanceID     string                                    `json:"instanceId,omitempty"`     //
+	Name           string                                    `json:"name,omitempty"`           //
+	Severity       string                                    `json:"severity,omitempty"`       //
+	Source         string                                    `json:"source,omitempty"`         //
+	SubDomain      string                                    `json:"subDomain,omitempty"`      //
+	Timestamp      int                                       `json:"timestamp,omitempty"`      //
+	Type           string                                    `json:"type,omitempty"`           //
 }
 
-// RetryIntegrationEventsResponse is the RetryIntegrationEventsResponse definition
+// GetFailedITSMEventsResponseEnrichmentInfo is the getFailedITSMEventsResponseEnrichmentInfo definition
+type GetFailedITSMEventsResponseEnrichmentInfo struct {
+	ErrorCode                      string `json:"errorCode,omitempty"`                      //
+	ErrorDescription               string `json:"errorDescription,omitempty"`               //
+	EventStatus                    string `json:"eventStatus,omitempty"`                    //
+	ResponseReceivedFromITSMSystem string `json:"responseReceivedFromITSMSystem,omitempty"` //
+}
+
+// RetryIntegrationEventsResponse is the retryIntegrationEventsResponse definition
 type RetryIntegrationEventsResponse struct {
 	ExecutionID        string `json:"executionId,omitempty"`        //
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
