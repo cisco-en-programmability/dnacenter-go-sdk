@@ -59,7 +59,7 @@ func (s *Client) SetAuthToken(accessToken string) {
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
-func NewClient() *Client {
+func NewClient() (*Client, error) {
 	var username = ""
 	var password = ""
 	client := resty.New()
@@ -113,19 +113,18 @@ func NewClient() *Client {
 
 	result, response, err := c.Authentication.AuthenticationAPI(username, password)
 	if err != nil {
-		return c
+		return c, err
 	}
 	if response.StatusCode() > 399 {
 		error := response.Error()
-		fmt.Println(error)
-	} else {
-		client.SetHeader("X-Auth-Token", result.Token)
+		return c, fmt.Errorf("%s", error)
 	}
-	return c
+	client.SetHeader("X-Auth-Token", result.Token)
+	return c, nil
 }
 
 //NewClientWithOptions is the client with options passed with parameters
-func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) *Client {
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
 	os.Setenv("DNAC_BASE_URL", baseURL)
 	os.Setenv("DNAC_USERNAME", username)
 	os.Setenv("DNAC_PASSWORD", password)

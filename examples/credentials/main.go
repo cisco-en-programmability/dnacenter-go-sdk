@@ -11,9 +11,14 @@ var client *dnac.Client
 
 func main() {
 	fmt.Println("Authenticating...")
-	client = dnac.NewClientWithOptions("https://192.168.196.2/",
+	var err error
+	client, err = dnac.NewClientWithOptions("https://192.168.196.2/",
 		"altus", "Altus123",
 		"false", "false")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	fmt.Println("Creating new SNMPv3 credentials...")
 	snmpv3Credentials := &[]dnac.CreateSNMPv3CredentialsRequest{

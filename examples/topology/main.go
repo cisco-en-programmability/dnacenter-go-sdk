@@ -11,9 +11,14 @@ var Client *dnac.Client
 
 func main() {
 	fmt.Println("Authenticating...")
-	Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
+	var err error
+	Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
 		"devnetuser", "Cisco123!",
 		"false", "false")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	fmt.Println("Printing site topology...")
 	topology, _, err := Client.Topology.GetSiteTopology()

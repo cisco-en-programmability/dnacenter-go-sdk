@@ -314,21 +314,22 @@ func (s *TagService) CreateTag(createTagRequest *CreateTagRequest) (*CreateTagRe
 /* Deletes a tag specified by id
 @param id Tag ID
 */
-func (s *TagService) DeleteTag(id string) (*resty.Response, error) {
+func (s *TagService) DeleteTag(id string) (*DeleteTagResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/tag/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteTagResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
-
+	result := response.Result().(*DeleteTagResponse)
+	return result, response, err
 }
 
 // GetTagQueryParams defines the query parameters for this request
@@ -396,6 +397,11 @@ func (s *TagService) GetTagByID(id string) (*GetTagByIDResponse, *resty.Response
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, nil, fmt.Errorf("Unable to get tag by id %s", id)
+	}
+
 	result := response.Result().(*GetTagByIDResponse)
 	return result, response, err
 }

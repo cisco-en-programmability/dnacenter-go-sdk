@@ -42,21 +42,21 @@ type CreateSiteRequestSiteArea struct {
 
 // CreateSiteRequestSiteBuilding is the createSiteRequestSiteBuilding definition
 type CreateSiteRequestSiteBuilding struct {
-	Address    string `json:"address,omitempty"`    //
-	Latitude   int    `json:"latitude,omitempty"`   //
-	Longitude  int    `json:"longitude,omitempty"`  //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
+	Address    string  `json:"address,omitempty"`    //
+	Latitude   float64 `json:"latitude,omitempty"`   //
+	Longitude  float64 `json:"longitude,omitempty"`  //
+	Name       string  `json:"name,omitempty"`       //
+	ParentName string  `json:"parentName,omitempty"` //
 }
 
 // CreateSiteRequestSiteFloor is the createSiteRequestSiteFloor definition
 type CreateSiteRequestSiteFloor struct {
-	Height     int    `json:"height,omitempty"`     //
-	Length     int    `json:"length,omitempty"`     //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-	RfModel    string `json:"rfModel,omitempty"`    //
-	Width      int    `json:"width,omitempty"`      //
+	Height     float64 `json:"height,omitempty"`     //
+	Length     float64 `json:"length,omitempty"`     //
+	Name       string  `json:"name,omitempty"`       //
+	ParentName string  `json:"parentName,omitempty"` //
+	RfModel    string  `json:"rfModel,omitempty"`    //
+	Width      float64 `json:"width,omitempty"`      //
 }
 
 // UpdateSiteRequest is the updateSiteRequest definition
@@ -80,20 +80,20 @@ type UpdateSiteRequestSiteArea struct {
 
 // UpdateSiteRequestSiteBuilding is the updateSiteRequestSiteBuilding definition
 type UpdateSiteRequestSiteBuilding struct {
-	Address    string `json:"address,omitempty"`    //
-	Latitude   int    `json:"latitude,omitempty"`   //
-	Longitude  int    `json:"longitude,omitempty"`  //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
+	Address    string  `json:"address,omitempty"`    //
+	Latitude   float64 `json:"latitude,omitempty"`   //
+	Longitude  float64 `json:"longitude,omitempty"`  //
+	Name       string  `json:"name,omitempty"`       //
+	ParentName string  `json:"parentName,omitempty"` //
 }
 
 // UpdateSiteRequestSiteFloor is the updateSiteRequestSiteFloor definition
 type UpdateSiteRequestSiteFloor struct {
-	Height  int    `json:"height,omitempty"`  //
-	Length  int    `json:"length,omitempty"`  //
-	Name    string `json:"name,omitempty"`    //
-	RfModel string `json:"rfModel,omitempty"` //
-	Width   int    `json:"width,omitempty"`   //
+	Height  float64 `json:"height,omitempty"`  //
+	Length  float64 `json:"length,omitempty"`  //
+	Name    string  `json:"name,omitempty"`    //
+	RfModel string  `json:"rfModel,omitempty"` //
+	Width   float64 `json:"width,omitempty"`   //
 }
 
 // AssignDeviceToSiteResponse is the assignDeviceToSiteResponse definition
@@ -233,19 +233,22 @@ type GetSiteResponse struct {
 	Response []GetSiteResponseResponse `json:"response,omitempty"` //
 }
 
-// GetSiteResponseResponse is the getSiteResponseResponse definition
-type GetSiteResponseResponse struct {
-	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    //
-	ID                string   `json:"id,omitempty"`                //
-	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  //
-	Name              string   `json:"name,omitempty"`              //
-	ParentID          string   `json:"parentId,omitempty"`          //
-	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     //
-	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` //
+//GetSiteResponseResponseAdditionalInfo is the getSiteResponseResponseAdditionalInfo definition
+type GetSiteResponseResponseAdditionalInfo struct {
+	NameSpace  string            `json:"nameSpace,omitempty"`  //
+	Attributes map[string]string `json:"attributes,omitempty"` //
 }
 
-// GetSiteResponseResponseAdditionalInfo is the getSiteResponseResponseAdditionalInfo definition
-type GetSiteResponseResponseAdditionalInfo []string
+// GetSiteResponseResponse is the getSiteResponseResponse definition
+type GetSiteResponseResponse struct {
+	AdditionalInfo    []GetSiteResponseResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	ID                string                                  `json:"id,omitempty"`                //
+	InstanceTenantID  string                                  `json:"instanceTenantId,omitempty"`  //
+	Name              string                                  `json:"name,omitempty"`              //
+	ParentID          string                                  `json:"parentId,omitempty"`          //
+	SiteHierarchy     string                                  `json:"siteHierarchy,omitempty"`     //
+	SiteNameHierarchy string                                  `json:"siteNameHierarchy,omitempty"` //
+}
 
 // UpdateSiteResponse is the updateSiteResponse definition
 type UpdateSiteResponse struct {
@@ -324,21 +327,22 @@ func (s *SitesService) CreateSite(createSiteRequest *CreateSiteRequest) (*Create
 /* Delete site with area/building/floor by siteId.
 @param siteID Site id to which site details to be deleted.
 */
-func (s *SitesService) DeleteSite(siteID string) (*resty.Response, error) {
+func (s *SitesService) DeleteSite(siteID string) (*DeleteSiteResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/site/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
 	response, err := RestyClient.R().
 		SetError(&Error{}).
+		SetResult(&DeleteSiteResponse{}).
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
-
+	result := response.Result().(*DeleteSiteResponse)
+	return result, response, err
 }
 
 // GetMembershipQueryParams defines the query parameters for this request
@@ -409,6 +413,11 @@ func (s *SitesService) GetSite(getSiteQueryParams *GetSiteQueryParams) (*GetSite
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, nil, fmt.Errorf("Unable to get site with query params %v", getSiteQueryParams)
+	}
+
 	result := response.Result().(*GetSiteResponse)
 	return result, response, err
 }
