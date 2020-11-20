@@ -450,14 +450,14 @@ type SensorTestResultsResponseSummaryAppConnectivity struct {
 
 // SensorTestResultsResponseSummaryAppConnectivityFileTransfer is the sensorTestResultsResponseSummaryAppConnectivityFileTransfer definition
 type SensorTestResultsResponseSummaryAppConnectivityFileTransfer struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount int     `json:"failCount,omitempty"` //
+	PassCount float64 `json:"passCount,omitempty"` //
 }
 
 // SensorTestResultsResponseSummaryAppConnectivityHostReachability is the sensorTestResultsResponseSummaryAppConnectivityHostReachability definition
 type SensorTestResultsResponseSummaryAppConnectivityHostReachability struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount float64 `json:"failCount,omitempty"` //
+	PassCount int     `json:"passCount,omitempty"` //
 }
 
 // SensorTestResultsResponseSummaryAppConnectivityWebServer is the sensorTestResultsResponseSummaryAppConnectivityWebServer definition
@@ -473,8 +473,8 @@ type SensorTestResultsResponseSummaryEmail struct {
 
 // SensorTestResultsResponseSummaryEmailMailServer is the sensorTestResultsResponseSummaryEmailMailServer definition
 type SensorTestResultsResponseSummaryEmailMailServer struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount int     `json:"failCount,omitempty"` //
+	PassCount float64 `json:"passCount,omitempty"` //
 }
 
 // SensorTestResultsResponseSummaryNetworkServices is the sensorTestResultsResponseSummaryNetworkServices definition
@@ -484,8 +484,8 @@ type SensorTestResultsResponseSummaryNetworkServices struct {
 
 // SensorTestResultsResponseSummaryNetworkServicesDNS is the sensorTestResultsResponseSummaryNetworkServicesDNS definition
 type SensorTestResultsResponseSummaryNetworkServicesDNS struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount float64 `json:"failCount,omitempty"` //
+	PassCount int     `json:"passCount,omitempty"` //
 }
 
 // SensorTestResultsResponseSummaryOnBoarding is the sensorTestResultsResponseSummaryOnBoarding definition
@@ -509,8 +509,8 @@ type SensorTestResultsResponseSummaryOnBoardingAuth struct {
 
 // SensorTestResultsResponseSummaryOnBoardingDHCP is the sensorTestResultsResponseSummaryOnBoardingDHCP definition
 type SensorTestResultsResponseSummaryOnBoardingDHCP struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount float64 `json:"failCount,omitempty"` //
+	PassCount int     `json:"passCount,omitempty"` //
 }
 
 // SensorTestResultsResponseSummaryPerformance is the sensorTestResultsResponseSummaryPerformance definition
@@ -538,8 +538,8 @@ type SensorTestResultsResponseSummaryRFAssessmentDataRate struct {
 
 // SensorTestResultsResponseSummaryRFAssessmentSNR is the sensorTestResultsResponseSummaryRFAssessmentSNR definition
 type SensorTestResultsResponseSummaryRFAssessmentSNR struct {
-	FailCount int `json:"failCount,omitempty"` //
-	PassCount int `json:"passCount,omitempty"` //
+	FailCount float64 `json:"failCount,omitempty"` //
+	PassCount int     `json:"passCount,omitempty"` //
 }
 
 // UpdateWirelessProfileResponse is the updateWirelessProfileResponse definition

@@ -567,8 +567,8 @@ type GetGlobalPoolResponseResponse struct {
 	Owner                 string                                 `json:"owner,omitempty"`                 //
 	ParentUUID            string                                 `json:"parentUuid,omitempty"`            //
 	Shared                string                                 `json:"shared,omitempty"`                //
-	TotalIPAddressCount   int                                    `json:"totalIpAddressCount,omitempty"`   //
-	UsedIPAddressCount    int                                    `json:"usedIpAddressCount,omitempty"`    //
+	TotalIPAddressCount   string                                 `json:"totalIpAddressCount,omitempty"`   //
+	UsedIPAddressCount    string                                 `json:"usedIpAddressCount,omitempty"`    //
 	UsedPercentage        int                                    `json:"usedPercentage,omitempty"`        //
 }
 

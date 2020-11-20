@@ -542,11 +542,11 @@ type GetDiscoveredDevicesByRangeResponseResponse struct {
 	ID                          string `json:"id,omitempty"`                          //
 	ImageName                   string `json:"imageName,omitempty"`                   //
 	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-	InterfaceCount              int    `json:"interfaceCount,omitempty"`              //
+	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
 	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
 	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-	LineCardCount               int    `json:"lineCardCount,omitempty"`               //
+	LineCardCount               string `json:"lineCardCount,omitempty"`               //
 	LineCardID                  string `json:"lineCardId,omitempty"`                  //
 	Location                    string `json:"location,omitempty"`                    //
 	LocationName                string `json:"locationName,omitempty"`                //
@@ -592,11 +592,11 @@ type GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse struct {
 	ID                          string `json:"id,omitempty"`                          //
 	ImageName                   string `json:"imageName,omitempty"`                   //
 	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-	InterfaceCount              int    `json:"interfaceCount,omitempty"`              //
+	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
 	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
 	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-	LineCardCount               int    `json:"lineCardCount,omitempty"`               //
+	LineCardCount               string `json:"lineCardCount,omitempty"`               //
 	LineCardID                  string `json:"lineCardId,omitempty"`                  //
 	Location                    string `json:"location,omitempty"`                    //
 	LocationName                string `json:"locationName,omitempty"`                //

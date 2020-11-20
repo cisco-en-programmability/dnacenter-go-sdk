@@ -156,7 +156,7 @@ type DevicesResponse struct {
 // DevicesResponseResponse is the devicesResponseResponse definition
 type DevicesResponseResponse struct {
 	AirQualityHealth           DevicesResponseResponseAirQualityHealth   `json:"airQualityHealth,omitempty"`           //
-	ClientCount                int                                       `json:"clientCount,omitempty"`                //
+	ClientCount                DevicesResponseResponseClientCount        `json:"clientCount,omitempty"`                //
 	CPUHealth                  int                                       `json:"cpuHealth,omitempty"`                  //
 	CPUUlitilization           int                                       `json:"cpuUlitilization,omitempty"`           //
 	DeviceFamily               string                                    `json:"deviceFamily,omitempty"`               //
@@ -165,7 +165,7 @@ type DevicesResponseResponse struct {
 	InterfaceLinkErrHealth     int                                       `json:"interfaceLinkErrHealth,omitempty"`     //
 	InterferenceHealth         DevicesResponseResponseInterferenceHealth `json:"interferenceHealth,omitempty"`         //
 	IPAddress                  string                                    `json:"ipAddress,omitempty"`                  //
-	IssueCount                 int                                       `json:"issueCount,omitempty"`                 //
+	IssueCount                 float64                                   `json:"issueCount,omitempty"`                 //
 	Location                   string                                    `json:"location,omitempty"`                   //
 	MacAddress                 string                                    `json:"macAddress,omitempty"`                 //
 	MemoryUtilization          int                                       `json:"memoryUtilization,omitempty"`          //
@@ -185,6 +185,14 @@ type DevicesResponseResponseAirQualityHealth struct {
 	Ghz50  int `json:"Ghz50,omitempty"`  //
 	Radio0 int `json:"radio0,omitempty"` //
 	Radio1 int `json:"radio1,omitempty"` //
+}
+
+// DevicesResponseResponseClientCount is the devicesResponseResponseClientCount definition
+type DevicesResponseResponseClientCount struct {
+	Ghz24  float64 `json:"Ghz24,omitempty"`  //
+	Ghz50  int     `json:"Ghz50,omitempty"`  //
+	Radio0 float64 `json:"radio0,omitempty"` //
+	Radio1 int     `json:"radio1,omitempty"` //
 }
 
 // DevicesResponseResponseInterferenceHealth is the devicesResponseResponseInterferenceHealth definition
@@ -281,11 +289,11 @@ type DevicesGetDeviceByIDResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -303,10 +311,10 @@ type DevicesGetDeviceByIDResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  int    `json:"tagCount,omitempty"`                  //
+	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    int    `json:"upTime,omitempty"`                    //
+	UpTime                    string    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -330,11 +338,11 @@ type GetDeviceBySerialNumberResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -352,10 +360,10 @@ type GetDeviceBySerialNumberResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  int    `json:"tagCount,omitempty"`                  //
+	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    int    `json:"upTime,omitempty"`                    //
+	UpTime                    string    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -410,7 +418,7 @@ type GetDeviceDetailResponseResponse struct {
 	HASecondaryPowerStatus string `json:"HASecondaryPowerStatus,omitempty"` //
 	AirQuality             string `json:"airQuality,omitempty"`             //
 	AirQualityScore        int    `json:"airQualityScore,omitempty"`        //
-	ClientCount            int    `json:"clientCount,omitempty"`            //
+	ClientCount            string `json:"clientCount,omitempty"`            //
 	CollectionStatus       string `json:"collectionStatus,omitempty"`       //
 	CommunicationState     string `json:"communicationState,omitempty"`     //
 	CPU                    string `json:"cpu,omitempty"`                    //
@@ -469,11 +477,11 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetails struct {
 	Hostname                  string                                                            `json:"hostname,omitempty"`                  //
 	ID                        string                                                            `json:"id,omitempty"`                        //
 	InstanceUUID              string                                                            `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int                                                               `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string                                                            `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string                                                            `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int                                                               `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string                                                            `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int                                                               `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string                                                            `json:"lineCardCount,omitempty"`             //
 	LineCardID                string                                                            `json:"lineCardId,omitempty"`                //
 	Location                  string                                                            `json:"location,omitempty"`                  //
 	LocationName              string                                                            `json:"locationName,omitempty"`              //
@@ -491,10 +499,10 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetails struct {
 	SNMPContact               string                                                            `json:"snmpContact,omitempty"`               //
 	SNMPLocation              string                                                            `json:"snmpLocation,omitempty"`              //
 	SoftwareVersion           string                                                            `json:"softwareVersion,omitempty"`           //
-	TagCount                  int                                                               `json:"tagCount,omitempty"`                  //
+	TagCount                  string                                                            `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                            `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                            `json:"type,omitempty"`                      //
-	UpTime                    int                                                               `json:"upTime,omitempty"`                    //
+	UpTime                    string                                                               `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                            `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -629,11 +637,11 @@ type GetDeviceListResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -651,10 +659,10 @@ type GetDeviceListResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  int    `json:"tagCount,omitempty"`                  //
+	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    int    `json:"upTime,omitempty"`                    //
+	UpTime                    string    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1003,11 +1011,11 @@ type GetNetworkDeviceByIPResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -1025,10 +1033,10 @@ type GetNetworkDeviceByIPResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  int    `json:"tagCount,omitempty"`                  //
+	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    int    `json:"upTime,omitempty"`                    //
+	UpTime                    string    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1052,11 +1060,11 @@ type GetNetworkDeviceByPaginationRangeResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
+	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -1074,10 +1082,10 @@ type GetNetworkDeviceByPaginationRangeResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  int    `json:"tagCount,omitempty"`                  //
+	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    int    `json:"upTime,omitempty"`                    //
+	UpTime                    string    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 

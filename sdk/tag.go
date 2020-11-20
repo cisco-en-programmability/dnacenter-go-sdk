@@ -290,7 +290,7 @@ type UpdatesTagMembershipResponseResponse struct {
 
 // 	result := response.Result().(*AddMembersToTheTagResponse)
 // 	return result, response, err
-// }
+//}
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes

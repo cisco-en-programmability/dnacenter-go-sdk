@@ -425,7 +425,7 @@ type GetSDAFabricCountResponse struct {
 // GetSDAFabricCountResponseResponse is the getSDAFabricCountResponseResponse definition
 type GetSDAFabricCountResponseResponse struct {
 	Description string `json:"description,omitempty"` //
-	FabricCount int    `json:"fabricCount,omitempty"` //
+	FabricCount string `json:"fabricCount,omitempty"` //
 	Status      string `json:"status,omitempty"`      //
 }
 

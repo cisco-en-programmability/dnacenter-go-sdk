@@ -241,7 +241,7 @@ type AddDeviceToPnpDatabaseRequestDeviceInfoStackInfo struct {
 	StackMemberList        []AddDeviceToPnpDatabaseRequestDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                            `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                              `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                               `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                           `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                          `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -730,7 +730,7 @@ type ImportDevicesInBulkRequestDeviceInfoStackInfo struct {
 	StackMemberList        []ImportDevicesInBulkRequestDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                         `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                           `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                            `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                        `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                       `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -1221,7 +1221,7 @@ type UpdateDeviceRequestDeviceInfoStackInfo struct {
 	StackMemberList        []UpdateDeviceRequestDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                  `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                    `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                     `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                 `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -1845,7 +1845,7 @@ type AddDeviceToPnpDatabaseResponseDeviceInfoStackInfo struct {
 	StackMemberList        []AddDeviceToPnpDatabaseResponseDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                             `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                               `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                                `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                            `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                           `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -2295,7 +2295,7 @@ type DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfo struct {
 	StackMemberList        []DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                              `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                                `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                                 `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                             `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                            `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -2789,7 +2789,7 @@ type GetDeviceByIDResponseDeviceInfoStackInfo struct {
 	StackMemberList        []GetDeviceByIDResponseDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                    `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                      `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                       `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                   `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                  `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -3337,7 +3337,7 @@ type GetPnpDeviceListResponseDeviceInfoStackInfo struct {
 	StackMemberList        []GetPnpDeviceListResponseDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                       `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                         `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                          `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                      `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                     `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -3902,7 +3902,7 @@ type ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfo struct {
 	StackMemberList        []ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                                     `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                                       `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                                        `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                                    `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                                   `json:"validLicenseLevels,omitempty"`     //
 }
 
@@ -4392,7 +4392,7 @@ type UpdateDeviceResponseDeviceInfoStackInfo struct {
 	StackMemberList        []UpdateDeviceResponseDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
 	StackRingProtocol      string                                                   `json:"stackRingProtocol,omitempty"`      //
 	SupportsStackWorkflows bool                                                     `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       int                                                      `json:"totalMemberCount,omitempty"`       //
+	TotalMemberCount       float64                                                  `json:"totalMemberCount,omitempty"`       //
 	ValidLicenseLevels     []string                                                 `json:"validLicenseLevels,omitempty"`     //
 }
 

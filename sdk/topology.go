@@ -102,17 +102,17 @@ type GetOverallNetworkHealthResponse struct {
 
 // GetOverallNetworkHealthResponseHealthDistirubution is the getOverallNetworkHealthResponseHealthDistirubution definition
 type GetOverallNetworkHealthResponseHealthDistirubution struct {
-	BadCount        int      `json:"badCount,omitempty"`        //
+	BadCount        float64  `json:"badCount,omitempty"`        //
 	BadPercentage   int      `json:"badPercentage,omitempty"`   //
 	Category        string   `json:"category,omitempty"`        //
-	FairCount       int      `json:"fairCount,omitempty"`       //
+	FairCount       float64  `json:"fairCount,omitempty"`       //
 	FairPercentage  int      `json:"fairPercentage,omitempty"`  //
 	GoodCount       int      `json:"goodCount,omitempty"`       //
 	GoodPercentage  int      `json:"goodPercentage,omitempty"`  //
 	HealthScore     int      `json:"healthScore,omitempty"`     //
 	KpiMetrics      []string `json:"kpiMetrics,omitempty"`      //
 	TotalCount      int      `json:"totalCount,omitempty"`      //
-	UnmonCount      int      `json:"unmonCount,omitempty"`      //
+	UnmonCount      float64  `json:"unmonCount,omitempty"`      //
 	UnmonPercentage int      `json:"unmonPercentage,omitempty"` //
 }
 
@@ -121,15 +121,15 @@ type GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics []string
 
 // GetOverallNetworkHealthResponseResponse is the getOverallNetworkHealthResponseResponse definition
 type GetOverallNetworkHealthResponseResponse struct {
-	BadCount     int    `json:"badCount,omitempty"`     //
-	Entity       string `json:"entity,omitempty"`       //
-	FairCount    int    `json:"fairCount,omitempty"`    //
-	GoodCount    int    `json:"goodCount,omitempty"`    //
-	HealthScore  int    `json:"healthScore,omitempty"`  //
-	Time         string `json:"time,omitempty"`         //
-	TimeinMillis int    `json:"timeinMillis,omitempty"` //
-	TotalCount   int    `json:"totalCount,omitempty"`   //
-	UnmonCount   int    `json:"unmonCount,omitempty"`   //
+	BadCount     float64 `json:"badCount,omitempty"`     //
+	Entity       string  `json:"entity,omitempty"`       //
+	FairCount    int     `json:"fairCount,omitempty"`    //
+	GoodCount    int     `json:"goodCount,omitempty"`    //
+	HealthScore  int     `json:"healthScore,omitempty"`  //
+	Time         string  `json:"time,omitempty"`         //
+	TimeinMillis int     `json:"timeinMillis,omitempty"` //
+	TotalCount   int     `json:"totalCount,omitempty"`   //
+	UnmonCount   float64 `json:"unmonCount,omitempty"`   //
 }
 
 // GetPhysicalTopologyResponse is the getPhysicalTopologyResponse definition
@@ -225,7 +225,7 @@ type GetSiteTopologyResponseResponseSites struct {
 	ID                 string `json:"id,omitempty"`                 //
 	Latitude           string `json:"latitude,omitempty"`           //
 	LocationAddress    string `json:"locationAddress,omitempty"`    //
-	LocationCountry    int    `json:"locationCountry,omitempty"`    //
+	LocationCountry    string `json:"locationCountry,omitempty"`    //
 	LocationType       string `json:"locationType,omitempty"`       //
 	Longitude          string `json:"longitude,omitempty"`          //
 	Name               string `json:"name,omitempty"`               //

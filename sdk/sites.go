@@ -154,19 +154,19 @@ type GetSiteHealthResponse struct {
 
 // GetSiteHealthResponseResponse is the getSiteHealthResponseResponse definition
 type GetSiteHealthResponseResponse struct {
-	AccessGoodCount                    int                                                 `json:"accessGoodCount,omitempty"`                    //
-	AccessTotalCount                   int                                                 `json:"accessTotalCount,omitempty"`                   //
-	ApplicationBytesTotalCount         int                                                 `json:"applicationBytesTotalCount,omitempty"`         //
-	ApplicationGoodCount               int                                                 `json:"applicationGoodCount,omitempty"`               //
+	AccessGoodCount                    string                                              `json:"accessGoodCount,omitempty"`                    //
+	AccessTotalCount                   string                                              `json:"accessTotalCount,omitempty"`                   //
+	ApplicationBytesTotalCount         string                                              `json:"applicationBytesTotalCount,omitempty"`         //
+	ApplicationGoodCount               string                                              `json:"applicationGoodCount,omitempty"`               //
 	ApplicationHealth                  string                                              `json:"applicationHealth,omitempty"`                  //
 	ApplicationHealthStats             GetSiteHealthResponseResponseApplicationHealthStats `json:"applicationHealthStats,omitempty"`             //
-	ApplicationTotalCount              int                                                 `json:"applicationTotalCount,omitempty"`              //
+	ApplicationTotalCount              string                                              `json:"applicationTotalCount,omitempty"`              //
 	ClientHealthWired                  string                                              `json:"clientHealthWired,omitempty"`                  //
 	ClientHealthWireless               string                                              `json:"clientHealthWireless,omitempty"`               //
-	CoreGoodCount                      int                                                 `json:"coreGoodCount,omitempty"`                      //
-	CoreTotalCount                     int                                                 `json:"coreTotalCount,omitempty"`                     //
-	DistributionGoodCount              int                                                 `json:"distributionGoodCount,omitempty"`              //
-	DistributionTotalCount             int                                                 `json:"distributionTotalCount,omitempty"`             //
+	CoreGoodCount                      string                                              `json:"coreGoodCount,omitempty"`                      //
+	CoreTotalCount                     string                                              `json:"coreTotalCount,omitempty"`                     //
+	DistributionGoodCount              string                                              `json:"distributionGoodCount,omitempty"`              //
+	DistributionTotalCount             string                                              `json:"distributionTotalCount,omitempty"`             //
 	DnacInfo                           string                                              `json:"dnacInfo,omitempty"`                           //
 	HealthyClientsPercentage           int                                                 `json:"healthyClientsPercentage,omitempty"`           //
 	HealthyNetworkDevicePercentage     int                                                 `json:"healthyNetworkDevicePercentage,omitempty"`     //
@@ -186,25 +186,46 @@ type GetSiteHealthResponseResponse struct {
 	OverallGoodDevices                 string                                              `json:"overallGoodDevices,omitempty"`                 //
 	ParentSiteID                       string                                              `json:"parentSiteId,omitempty"`                       //
 	ParentSiteName                     string                                              `json:"parentSiteName,omitempty"`                     //
-	RouterGoodCount                    int                                                 `json:"routerGoodCount,omitempty"`                    //
-	RouterTotalCount                   int                                                 `json:"routerTotalCount,omitempty"`                   //
+	RouterGoodCount                    string                                              `json:"routerGoodCount,omitempty"`                    //
+	RouterTotalCount                   string                                              `json:"routerTotalCount,omitempty"`                   //
 	SiteID                             string                                              `json:"siteId,omitempty"`                             //
 	SiteName                           string                                              `json:"siteName,omitempty"`                           //
 	SiteType                           string                                              `json:"siteType,omitempty"`                           //
 	TotalNumberOfActiveWirelessClients string                                              `json:"totalNumberOfActiveWirelessClients,omitempty"` //
 	TotalNumberOfConnectedWiredClients string                                              `json:"totalNumberOfConnectedWiredClients,omitempty"` //
 	WiredGoodClients                   string                                              `json:"wiredGoodClients,omitempty"`                   //
-	WirelessDeviceGoodCount            int                                                 `json:"wirelessDeviceGoodCount,omitempty"`            //
-	WirelessDeviceTotalCount           int                                                 `json:"wirelessDeviceTotalCount,omitempty"`           //
+	WirelessDeviceGoodCount            string                                              `json:"wirelessDeviceGoodCount,omitempty"`            //
+	WirelessDeviceTotalCount           string                                              `json:"wirelessDeviceTotalCount,omitempty"`           //
 	WirelessGoodClients                string                                              `json:"wirelessGoodClients,omitempty"`                //
 }
 
 // GetSiteHealthResponseResponseApplicationHealthStats is the getSiteHealthResponseResponseApplicationHealthStats definition
 type GetSiteHealthResponseResponseApplicationHealthStats struct {
-	AppTotalCount              int `json:"appTotalCount,omitempty"`              //
-	BusinessIrrelevantAppCount int `json:"businessIrrelevantAppCount,omitempty"` //
-	BusinessRelevantAppCount   int `json:"businessRelevantAppCount,omitempty"`   //
-	DefaultHealthAppCount      int `json:"defaultHealthAppCount,omitempty"`      //
+	AppTotalCount              float64                                                                       `json:"appTotalCount,omitempty"`              //
+	BusinessIrrelevantAppCount GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount `json:"businessIrrelevantAppCount,omitempty"` //
+	BusinessRelevantAppCount   GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount   `json:"businessRelevantAppCount,omitempty"`   //
+	DefaultHealthAppCount      GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount      `json:"defaultHealthAppCount,omitempty"`      //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount struct {
+	Fair float64 `json:"fair,omitempty"` //
+	Good float64 `json:"good,omitempty"` //
+	Poor float64 `json:"poor,omitempty"` //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount struct {
+	Fair float64 `json:"fair,omitempty"` //
+	Good float64 `json:"good,omitempty"` //
+	Poor float64 `json:"poor,omitempty"` //
+}
+
+// GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount is the getSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount definition
+type GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount struct {
+	Fair float64 `json:"fair,omitempty"` //
+	Good float64 `json:"good,omitempty"` //
+	Poor float64 `json:"poor,omitempty"` //
 }
 
 // GetSiteResponse is the getSiteResponse definition

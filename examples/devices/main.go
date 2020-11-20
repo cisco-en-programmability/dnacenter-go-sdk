@@ -14,7 +14,7 @@ func main() {
 	var err error
 	Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
 		"devnetuser", "Cisco123!",
-		"false", "false")
+		"true", "false")
 	if err != nil {
 		fmt.Println(err)
 		return
