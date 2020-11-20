@@ -235,18 +235,36 @@ type GetSiteResponse struct {
 
 // GetSiteResponseResponse is the getSiteResponseResponse definition
 type GetSiteResponseResponse struct {
-	AdditionalInfo    GetSiteResponseResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
-	ID                string                                `json:"id,omitempty"`                //
-	InstanceTenantID  string                                `json:"instanceTenantId,omitempty"`  //
-	Name              string                                `json:"name,omitempty"`              //
-	ParentID          string                                `json:"parentId,omitempty"`          //
-	SiteHierarchy     string                                `json:"siteHierarchy,omitempty"`     //
-	SiteNameHierarchy string                                `json:"siteNameHierarchy,omitempty"` //
+	AdditionalInfo    []GetSiteResponseResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	ID                string                                  `json:"id,omitempty"`                //
+	InstanceTenantID  string                                  `json:"instanceTenantId,omitempty"`  //
+	Name              string                                  `json:"name,omitempty"`              //
+	ParentID          string                                  `json:"parentId,omitempty"`          //
+	SiteHierarchy     string                                  `json:"siteHierarchy,omitempty"`     //
+	SiteNameHierarchy string                                  `json:"siteNameHierarchy,omitempty"` //
 }
 
 // GetSiteResponseResponseAdditionalInfo is the getSiteResponseResponseAdditionalInfo definition
 type GetSiteResponseResponseAdditionalInfo struct {
-	Namespace string `json:"namespace,omitempty"` //
+	Namespace  string                                          `json:"nameSpace,omitempty"`  //
+	Attributes GetSiteResponseResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
+}
+
+// GetSiteResponseResponseAdditionalInfoAttributes is the getSiteResponseResponseAdditionalInfoAttributes definition
+type GetSiteResponseResponseAdditionalInfoAttributes struct {
+	Country              string `json:"country,omitempty"`
+	Address              string `json:"address,omitempty"`
+	Latitude             string `json:"latitude,omitempty"`
+	AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"`
+	Type                 string `json:"type,omitempty"`
+	Longitude            string `json:"longitude,omitempty"`
+	OffsetX              string `json:"offsetX,omitempty"`
+	OffsetY              string `json:"offsetY,omitempty"`
+	Length               string `json:"length,omitempty"`
+	Width                string `json:"width,omitempty"`
+	Height               string `json:"height,omitempty"`
+	RfModel              string `json:"rfModel,omitempty"`
+	FloorIndex           string `json:"floorIndex,omitempty"`
 }
 
 // UpdateSiteResponse is the updateSiteResponse definition
