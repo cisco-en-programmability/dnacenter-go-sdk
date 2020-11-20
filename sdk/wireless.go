@@ -686,6 +686,7 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*DeleteEnterpri
 	path = strings.Replace(path, "{"+"ssidName"+"}", fmt.Sprintf("%v", ssidName), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteEnterpriseSSIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -711,6 +712,7 @@ func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*DeleteRFProfi
 	path = strings.Replace(path, "{"+"rfProfileName"+"}", fmt.Sprintf("%v", rfProfileName), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteRFProfilesResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -739,6 +741,7 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 	path = strings.Replace(path, "{"+"managedAPLocations"+"}", fmt.Sprintf("%v", managedAPLocations), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteSSIDAndProvisionItToDevicesResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -765,6 +768,7 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 
 // 	response, err := RestyClient.R().
 // 		SetBody(deleteWirelessProfileRequest).
+// 		SetResult(&DeleteWirelessProfileResponse{}).
 // 		SetError(&Error{}).
 // 		Delete(path)
 

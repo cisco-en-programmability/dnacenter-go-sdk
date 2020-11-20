@@ -627,6 +627,7 @@ func (s *SensorsService) DeleteSensorTest(deleteSensorTestQueryParams *DeleteSen
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteSensorTestResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

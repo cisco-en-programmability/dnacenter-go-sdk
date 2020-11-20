@@ -168,31 +168,31 @@ type GetPhysicalTopologyResponseResponseLinks struct {
 
 // GetPhysicalTopologyResponseResponseNodes is the getPhysicalTopologyResponseResponseNodes definition
 type GetPhysicalTopologyResponseResponseNodes struct {
-	ACLApplied      bool                                                `json:"aclApplied,omitempty"`      //
-	AdditionalInfo  string                                              `json:"additionalInfo,omitempty"`  //
-	CustomParam     GetPhysicalTopologyResponseResponseNodesCustomParam `json:"customParam,omitempty"`     //
-	DataPathID      string                                              `json:"dataPathId,omitempty"`      //
-	DeviceType      string                                              `json:"deviceType,omitempty"`      //
-	Family          string                                              `json:"family,omitempty"`          //
-	Fixed           bool                                                `json:"fixed,omitempty"`           //
-	GreyOut         bool                                                `json:"greyOut,omitempty"`         //
-	ID              string                                              `json:"id,omitempty"`              //
-	IP              string                                              `json:"ip,omitempty"`              //
-	Label           string                                              `json:"label,omitempty"`           //
-	NetworkType     string                                              `json:"networkType,omitempty"`     //
-	NodeType        string                                              `json:"nodeType,omitempty"`        //
-	Order           int                                                 `json:"order,omitempty"`           //
-	OsType          string                                              `json:"osType,omitempty"`          //
-	PlatformID      string                                              `json:"platformId,omitempty"`      //
-	Role            string                                              `json:"role,omitempty"`            //
-	RoleSource      string                                              `json:"roleSource,omitempty"`      //
-	SoftwareVersion string                                              `json:"softwareVersion,omitempty"` //
-	Tags            []string                                            `json:"tags,omitempty"`            //
-	UpperNode       string                                              `json:"upperNode,omitempty"`       //
-	UserID          string                                              `json:"userId,omitempty"`          //
-	VLANID          string                                              `json:"vlanId,omitempty"`          //
-	X               int                                                 `json:"x,omitempty"`               //
-	Y               int                                                 `json:"y,omitempty"`               //
+	ACLApplied      bool                                                   `json:"aclApplied,omitempty"`      //
+	AdditionalInfo  GetPhysicalTopologyResponseResponseNodesAdditionalInfo `json:"additionalInfo,omitempty"`  //
+	CustomParam     GetPhysicalTopologyResponseResponseNodesCustomParam    `json:"customParam,omitempty"`     //
+	DataPathID      string                                                 `json:"dataPathId,omitempty"`      //
+	DeviceType      string                                                 `json:"deviceType,omitempty"`      //
+	Family          string                                                 `json:"family,omitempty"`          //
+	Fixed           bool                                                   `json:"fixed,omitempty"`           //
+	GreyOut         bool                                                   `json:"greyOut,omitempty"`         //
+	ID              string                                                 `json:"id,omitempty"`              //
+	IP              string                                                 `json:"ip,omitempty"`              //
+	Label           string                                                 `json:"label,omitempty"`           //
+	NetworkType     string                                                 `json:"networkType,omitempty"`     //
+	NodeType        string                                                 `json:"nodeType,omitempty"`        //
+	Order           int                                                    `json:"order,omitempty"`           //
+	OsType          string                                                 `json:"osType,omitempty"`          //
+	PlatformID      string                                                 `json:"platformId,omitempty"`      //
+	Role            string                                                 `json:"role,omitempty"`            //
+	RoleSource      string                                                 `json:"roleSource,omitempty"`      //
+	SoftwareVersion string                                                 `json:"softwareVersion,omitempty"` //
+	Tags            []string                                               `json:"tags,omitempty"`            //
+	UpperNode       string                                                 `json:"upperNode,omitempty"`       //
+	UserID          string                                                 `json:"userId,omitempty"`          //
+	VLANID          string                                                 `json:"vlanId,omitempty"`          //
+	X               int                                                    `json:"x,omitempty"`               //
+	Y               int                                                    `json:"y,omitempty"`               //
 }
 
 // GetPhysicalTopologyResponseResponseNodesCustomParam is the getPhysicalTopologyResponseResponseNodesCustomParam definition
@@ -202,6 +202,15 @@ type GetPhysicalTopologyResponseResponseNodesCustomParam struct {
 	ParentNodeID string `json:"parentNodeId,omitempty"` //
 	X            int    `json:"x,omitempty"`            //
 	Y            int    `json:"y,omitempty"`            //
+}
+
+// GetPhysicalTopologyResponseResponseNodesAdditionalInfo is the getPhysicalTopologyResponseResponseNodesAdditionalInfo definition
+type GetPhysicalTopologyResponseResponseNodesAdditionalInfo struct {
+	MACAddress string `json:"macAddress,omitempty"`
+	Latitude   string `json:"latitude,omitempty"`
+	SiteID     string `json:"siteid,omitempty"`
+	Longitude  string `json:"longitude,omitemtpy"`
+	HasHosts   bool   `json:"hasHosts,omitempty"`
 }
 
 // GetPhysicalTopologyResponseResponseNodesTags is the getPhysicalTopologyResponseResponseNodesTags definition
@@ -268,31 +277,31 @@ type GetTopologyDetailsResponseResponseLinks struct {
 
 // GetTopologyDetailsResponseResponseNodes is the getTopologyDetailsResponseResponseNodes definition
 type GetTopologyDetailsResponseResponseNodes struct {
-	ACLApplied      bool                                               `json:"aclApplied,omitempty"`      //
-	AdditionalInfo  string                                             `json:"additionalInfo,omitempty"`  //
-	CustomParam     GetTopologyDetailsResponseResponseNodesCustomParam `json:"customParam,omitempty"`     //
-	DataPathID      string                                             `json:"dataPathId,omitempty"`      //
-	DeviceType      string                                             `json:"deviceType,omitempty"`      //
-	Family          string                                             `json:"family,omitempty"`          //
-	Fixed           bool                                               `json:"fixed,omitempty"`           //
-	GreyOut         bool                                               `json:"greyOut,omitempty"`         //
-	ID              string                                             `json:"id,omitempty"`              //
-	IP              string                                             `json:"ip,omitempty"`              //
-	Label           string                                             `json:"label,omitempty"`           //
-	NetworkType     string                                             `json:"networkType,omitempty"`     //
-	NodeType        string                                             `json:"nodeType,omitempty"`        //
-	Order           int                                                `json:"order,omitempty"`           //
-	OsType          string                                             `json:"osType,omitempty"`          //
-	PlatformID      string                                             `json:"platformId,omitempty"`      //
-	Role            string                                             `json:"role,omitempty"`            //
-	RoleSource      string                                             `json:"roleSource,omitempty"`      //
-	SoftwareVersion string                                             `json:"softwareVersion,omitempty"` //
-	Tags            []string                                           `json:"tags,omitempty"`            //
-	UpperNode       string                                             `json:"upperNode,omitempty"`       //
-	UserID          string                                             `json:"userId,omitempty"`          //
-	VLANID          string                                             `json:"vlanId,omitempty"`          //
-	X               int                                                `json:"x,omitempty"`               //
-	Y               int                                                `json:"y,omitempty"`               //
+	ACLApplied      bool                                                  `json:"aclApplied,omitempty"`      //
+	AdditionalInfo  GetTopologyDetailsResponseResponseNodesAdditionalInfo `json:"additionalInfo,omitempty"`  //
+	CustomParam     GetTopologyDetailsResponseResponseNodesCustomParam    `json:"customParam,omitempty"`     //
+	DataPathID      string                                                `json:"dataPathId,omitempty"`      //
+	DeviceType      string                                                `json:"deviceType,omitempty"`      //
+	Family          string                                                `json:"family,omitempty"`          //
+	Fixed           bool                                                  `json:"fixed,omitempty"`           //
+	GreyOut         bool                                                  `json:"greyOut,omitempty"`         //
+	ID              string                                                `json:"id,omitempty"`              //
+	IP              string                                                `json:"ip,omitempty"`              //
+	Label           string                                                `json:"label,omitempty"`           //
+	NetworkType     string                                                `json:"networkType,omitempty"`     //
+	NodeType        string                                                `json:"nodeType,omitempty"`        //
+	Order           int                                                   `json:"order,omitempty"`           //
+	OsType          string                                                `json:"osType,omitempty"`          //
+	PlatformID      string                                                `json:"platformId,omitempty"`      //
+	Role            string                                                `json:"role,omitempty"`            //
+	RoleSource      string                                                `json:"roleSource,omitempty"`      //
+	SoftwareVersion string                                                `json:"softwareVersion,omitempty"` //
+	Tags            []string                                              `json:"tags,omitempty"`            //
+	UpperNode       string                                                `json:"upperNode,omitempty"`       //
+	UserID          string                                                `json:"userId,omitempty"`          //
+	VLANID          string                                                `json:"vlanId,omitempty"`          //
+	X               int                                                   `json:"x,omitempty"`               //
+	Y               int                                                   `json:"y,omitempty"`               //
 }
 
 // GetTopologyDetailsResponseResponseNodesCustomParam is the getTopologyDetailsResponseResponseNodesCustomParam definition
@@ -302,6 +311,15 @@ type GetTopologyDetailsResponseResponseNodesCustomParam struct {
 	ParentNodeID string `json:"parentNodeId,omitempty"` //
 	X            int    `json:"x,omitempty"`            //
 	Y            int    `json:"y,omitempty"`            //
+}
+
+// GetTopologyDetailsResponseResponseNodesAdditionalInfo is the getTopologyDetailsResponseResponseNodesAdditionalInfo definition
+type GetTopologyDetailsResponseResponseNodesAdditionalInfo struct {
+	MACAddress string `json:"macAddress,omitempty"`
+	Latitude   string `json:"latitude,omitempty"`
+	SiteID     string `json:"siteid,omitempty"`
+	Longitude  string `json:"longitude,omitemtpy"`
+	HasHosts   bool   `json:"hasHosts,omitempty"`
 }
 
 // GetTopologyDetailsResponseResponseNodesTags is the getTopologyDetailsResponseResponseNodesTags definition

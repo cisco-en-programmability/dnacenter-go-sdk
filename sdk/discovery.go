@@ -1048,7 +1048,7 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRe
 // CreateHTTPWriteCredentials createHTTPWriteCredentials
 /* Adds global HTTP write credentials
  */
-func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *[]CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/http-write"
 
@@ -1203,6 +1203,7 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*DeleteAllDiscoveryResponse, *r
 	path := "/dna/intent/api/v1/discovery"
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteAllDiscoveryResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1228,6 +1229,7 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*DeleteDiscoveryByIDR
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteDiscoveryByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1255,6 +1257,7 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 	path = strings.Replace(path, "{"+"recordsToDelete"+"}", fmt.Sprintf("%v", recordsToDelete), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteDiscoveryBySpecifiedRangeResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1280,6 +1283,7 @@ func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string
 	path = strings.Replace(path, "{"+"globalCredentialId"+"}", fmt.Sprintf("%v", globalCredentialID), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteGlobalCredentialsByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

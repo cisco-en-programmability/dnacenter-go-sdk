@@ -290,7 +290,7 @@ type UpdatesTagMembershipResponseResponse struct {
 
 // 	result := response.Result().(*AddMembersToTheTagResponse)
 // 	return result, response, err
-//}
+// }
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes
@@ -327,6 +327,7 @@ func (s *TagService) DeleteTag(id string) (*DeleteTagResponse, *resty.Response, 
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteTagResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -582,6 +583,7 @@ func (s *TagService) RemoveTagMember(id string, memberID string) (*RemoveTagMemb
 	path = strings.Replace(path, "{"+"memberId"+"}", fmt.Sprintf("%v", memberID), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&RemoveTagMemberResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

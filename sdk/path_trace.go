@@ -60,7 +60,7 @@ type RetrievesPreviousPathtraceResponse struct {
 // RetrievesPreviousPathtraceResponseResponse is the retrievesPreviousPathtraceResponseResponse definition
 type RetrievesPreviousPathtraceResponseResponse struct {
 	DetailedStatus      RetrievesPreviousPathtraceResponseResponseDetailedStatus        `json:"detailedStatus,omitempty"`      //
-	LastUpdate          string                                                          `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int                                                          `json:"lastUpdate,omitempty"`          //
 	NetworkElements     []RetrievesPreviousPathtraceResponseResponseNetworkElements     `json:"networkElements,omitempty"`     //
 	NetworkElementsInfo []RetrievesPreviousPathtraceResponseResponseNetworkElementsInfo `json:"networkElementsInfo,omitempty"` //
 	Properties          []string                                                        `json:"properties,omitempty"`          //
@@ -1242,6 +1242,7 @@ func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*Deletes
 	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeletesPathtraceByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

@@ -4922,6 +4922,7 @@ func (s *DeviceOnboardingPnPService) DeleteDeviceByIDFromPnP(id string) (*Delete
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteDeviceByIDFromPnPResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -4947,6 +4948,7 @@ func (s *DeviceOnboardingPnPService) DeleteWorkflowByID(id string) (*DeleteWorkf
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteWorkflowByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -4981,6 +4983,7 @@ func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualA
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeregisterVirtualAccountResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

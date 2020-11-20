@@ -1270,6 +1270,7 @@ func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

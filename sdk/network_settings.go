@@ -814,6 +814,7 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*DeleteDevic
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteDeviceCredentialResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -839,6 +840,7 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*DeleteGlobalIPP
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteGlobalIPPoolResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -864,6 +866,7 @@ func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*DeleteS
 	path = strings.Replace(path, "{"+"spProfileName"+"}", fmt.Sprintf("%v", spProfileName), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteSPProfileResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

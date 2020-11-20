@@ -188,7 +188,7 @@ type GetApplicationSetsResponseResponseIDentitySource struct {
 
 // GetApplicationsCountResponse is the getApplicationsCountResponse definition
 type GetApplicationsCountResponse struct {
-	Response string `json:"response,omitempty"` //
+	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
@@ -304,6 +304,7 @@ func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParam
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteApplicationResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -336,6 +337,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQuer
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteApplicationSetResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

@@ -22,7 +22,7 @@ type GetTaskByIDResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //
@@ -50,7 +50,7 @@ type GetTaskByOperationIDResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //
@@ -90,7 +90,7 @@ type GetTaskTreeResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //
@@ -118,7 +118,7 @@ type GetTasksResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          string `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //

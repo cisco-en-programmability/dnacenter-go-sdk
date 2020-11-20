@@ -665,6 +665,7 @@ func (s *ConfigurationTemplatesService) DeleteProject(projectID string) (*Delete
 	path = strings.Replace(path, "{"+"projectId"+"}", fmt.Sprintf("%v", projectID), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteProjectResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -690,6 +691,7 @@ func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*Dele
 	path = strings.Replace(path, "{"+"templateId"+"}", fmt.Sprintf("%v", templateID), -1)
 
 	response, err := RestyClient.R().
+		SetResult(&DeleteTemplateResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 

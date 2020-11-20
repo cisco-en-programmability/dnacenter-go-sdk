@@ -951,6 +951,7 @@ func (s *SDAService) DeleteControlPlaneDeviceInSDAFabric(deleteControlPlaneDevic
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteControlPlaneDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -984,6 +985,7 @@ func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefau
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteDefaultAuthenticationProfileFromSDAFabricRequest).
+		SetResult(&DeleteDefaultAuthenticationProfileFromSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1016,6 +1018,7 @@ func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabric
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteEdgeDeviceFromSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1051,6 +1054,7 @@ func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtua
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteIPPoolFromSDAVirtualNetworkRequest).
+		SetResult(&DeleteIPPoolFromSDAVirtualNetworkResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1086,6 +1090,7 @@ func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAss
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deletePortAssignmentForAccessPointInSDAFabricRequest).
+		SetResult(&DeletePortAssignmentForAccessPointInSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1121,6 +1126,7 @@ func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssi
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deletePortAssignmentForUserDeviceInSDAFabricRequest).
+		SetResult(&DeletePortAssignmentForUserDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1154,6 +1160,7 @@ func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabric
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteSDAFabricRequest).
+		SetResult(&DeleteSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1187,6 +1194,7 @@ func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteSiteFromSDAFabricRequest).
+		SetResult(&DeleteSiteFromSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1221,6 +1229,7 @@ func (s *SDAService) DeleteVNFromSDAFabric(deleteVNFromSDAFabricQueryParams *Del
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteVNFromSDAFabricResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
@@ -1254,6 +1263,7 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 // 	response, err := RestyClient.R().
 // 		SetQueryString(queryString.Encode()).
 // 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
+// 		SetResult(&DeletesBorderDeviceFromSDAFabricResponse{}).
 // 		SetError(&Error{}).
 // 		Delete(path)
 

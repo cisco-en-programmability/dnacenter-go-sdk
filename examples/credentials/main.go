@@ -69,7 +69,7 @@ func main() {
 	}
 	fmt.Println(httpWriteCredentialsResponse)
 
-	fmt.Println("Printing SNMPv3 credentials...")
+	fmt.Println("Printing HTTP Write credentials...")
 	getGlobalCredentialsQueryParams = &dnac.GetGlobalCredentialsQueryParams{
 		CredentialSubType: "HTTP_WRITE",
 	}

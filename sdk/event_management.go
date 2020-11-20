@@ -346,6 +346,7 @@ func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptio
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
+		SetResult(&DeleteEventSubscriptionsResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
