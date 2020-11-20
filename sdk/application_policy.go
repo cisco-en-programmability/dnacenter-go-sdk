@@ -194,6 +194,12 @@ type GetApplicationsCountResponse struct {
 
 // GetApplicationsResponse is the getApplicationsResponse definition
 type GetApplicationsResponse struct {
+	Response []GetApplicationsResponseResponse `json:"response,omitempty"` //
+	Version  string                            `json:"version,omitempty"`  //
+}
+
+// GetApplicationsResponseResponse is the getApplicationsResponseResponse definition
+type GetApplicationsResponseResponse struct {
 	ApplicationSet      GetApplicationsResponseApplicationSet        `json:"applicationSet,omitempty"`      //
 	ID                  string                                       `json:"id,omitempty"`                  //
 	Name                string                                       `json:"name,omitempty"`                //
