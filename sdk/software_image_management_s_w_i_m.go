@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -201,6 +203,11 @@ func (s *SoftwareImageManagementSWIMService) GetSoftwareImageDetails(getSoftware
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSoftwareImageDetails")
+	}
+
 	result := response.Result().(*GetSoftwareImageDetailsResponse)
 	return result, response, err
 }
@@ -236,6 +243,11 @@ func (s *SoftwareImageManagementSWIMService) ImportLocalSoftwareImage(importLoca
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation importLocalSoftwareImage")
+	}
+
 	result := response.Result().(*ImportLocalSoftwareImageResponse)
 	return result, response, err
 }
@@ -269,6 +281,11 @@ func (s *SoftwareImageManagementSWIMService) ImportSoftwareImageViaURL(importSof
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation importSoftwareImageViaURL")
+	}
+
 	result := response.Result().(*ImportSoftwareImageViaURLResponse)
 	return result, response, err
 }
@@ -300,6 +317,11 @@ func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(trig
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation triggerSoftwareImageActivation")
+	}
+
 	result := response.Result().(*TriggerSoftwareImageActivationResponse)
 	return result, response, err
 }
@@ -320,6 +342,11 @@ func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageDistribution(tr
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation triggerSoftwareImageDistribution")
+	}
+
 	result := response.Result().(*TriggerSoftwareImageDistributionResponse)
 	return result, response, err
 }

@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -34,8 +36,8 @@ type CreateApplicationRequestNetworkApplications struct {
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
 	LongDescription    string `json:"longDescription,omitempty"`    //
 	Name               string `json:"name,omitempty"`               //
-	Popularity         int    `json:"popularity,omitempty"`         //
-	Rank               int    `json:"rank,omitempty"`               //
+	Popularity         string `json:"popularity,omitempty"`         //
+	Rank               string `json:"rank,omitempty"`               //
 	ServerName         string `json:"serverName,omitempty"`         //
 	TrafficClass       string `json:"trafficClass,omitempty"`       //
 	URL                string `json:"url,omitempty"`                //
@@ -44,10 +46,10 @@ type CreateApplicationRequestNetworkApplications struct {
 // CreateApplicationRequestNetworkIDentity is the createApplicationRequestNetworkIDentity definition
 type CreateApplicationRequestNetworkIDentity struct {
 	DisplayName string `json:"displayName,omitempty"` //
-	LowerPort   int    `json:"lowerPort,omitempty"`   //
+	LowerPort   string `json:"lowerPort,omitempty"`   //
 	Ports       string `json:"ports,omitempty"`       //
 	Protocol    string `json:"protocol,omitempty"`    //
-	UpperPort   int    `json:"upperPort,omitempty"`   //
+	UpperPort   string `json:"upperPort,omitempty"`   //
 }
 
 // CreateApplicationSetRequest is the createApplicationSetRequest definition
@@ -83,8 +85,8 @@ type EditApplicationRequestNetworkApplications struct {
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
 	LongDescription    string `json:"longDescription,omitempty"`    //
 	Name               string `json:"name,omitempty"`               //
-	Popularity         int    `json:"popularity,omitempty"`         //
-	Rank               int    `json:"rank,omitempty"`               //
+	Popularity         string `json:"popularity,omitempty"`         //
+	Rank               string `json:"rank,omitempty"`               //
 	ServerName         string `json:"serverName,omitempty"`         //
 	TrafficClass       string `json:"trafficClass,omitempty"`       //
 	URL                string `json:"url,omitempty"`                //
@@ -94,10 +96,10 @@ type EditApplicationRequestNetworkApplications struct {
 type EditApplicationRequestNetworkIDentity struct {
 	DisplayName string `json:"displayName,omitempty"` //
 	ID          string `json:"id,omitempty"`          //
-	LowerPort   int    `json:"lowerPort,omitempty"`   //
+	LowerPort   string `json:"lowerPort,omitempty"`   //
 	Ports       string `json:"ports,omitempty"`       //
 	Protocol    string `json:"protocol,omitempty"`    //
-	UpperPort   int    `json:"upperPort,omitempty"`   //
+	UpperPort   string `json:"upperPort,omitempty"`   //
 }
 
 // CreateApplicationResponse is the createApplicationResponse definition
@@ -186,17 +188,12 @@ type GetApplicationSetsResponseResponseIDentitySource struct {
 
 // GetApplicationsCountResponse is the getApplicationsCountResponse definition
 type GetApplicationsCountResponse struct {
-	Response int    `json:"response,omitempty"` //
+	Response string `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
 // GetApplicationsResponse is the getApplicationsResponse definition
 type GetApplicationsResponse struct {
-	Response []GetApplicationResponse `json:"response,omitempty"`
-}
-
-// GetApplicationResponse is the getApplicationResponse definition
-type GetApplicationResponse struct {
 	ApplicationSet      GetApplicationsResponseApplicationSet        `json:"applicationSet,omitempty"`      //
 	ID                  string                                       `json:"id,omitempty"`                  //
 	Name                string                                       `json:"name,omitempty"`                //
@@ -223,8 +220,8 @@ type GetApplicationsResponseNetworkApplications struct {
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     //
 	LongDescription    string `json:"longDescription,omitempty"`    //
 	Name               string `json:"name,omitempty"`               //
-	Popularity         int    `json:"popularity,omitempty"`         //
-	Rank               int    `json:"rank,omitempty"`               //
+	Popularity         string `json:"popularity,omitempty"`         //
+	Rank               string `json:"rank,omitempty"`               //
 	ServerName         string `json:"serverName,omitempty"`         //
 	TrafficClass       string `json:"trafficClass,omitempty"`       //
 	URL                string `json:"url,omitempty"`                //
@@ -234,10 +231,10 @@ type GetApplicationsResponseNetworkApplications struct {
 type GetApplicationsResponseNetworkIDentity struct {
 	DisplayName string `json:"displayName,omitempty"` //
 	ID          string `json:"id,omitempty"`          //
-	LowerPort   int    `json:"lowerPort,omitempty"`   //
+	LowerPort   string `json:"lowerPort,omitempty"`   //
 	Ports       string `json:"ports,omitempty"`       //
 	Protocol    string `json:"protocol,omitempty"`    //
-	UpperPort   int    `json:"upperPort,omitempty"`   //
+	UpperPort   string `json:"upperPort,omitempty"`   //
 }
 
 // CreateApplication createApplication
@@ -256,6 +253,11 @@ func (s *ApplicationPolicyService) CreateApplication(createApplicationRequest *[
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createApplication")
+	}
+
 	result := response.Result().(*CreateApplicationResponse)
 	return result, response, err
 }
@@ -276,6 +278,11 @@ func (s *ApplicationPolicyService) CreateApplicationSet(createApplicationSetRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createApplicationSet")
+	}
+
 	result := response.Result().(*CreateApplicationSetResponse)
 	return result, response, err
 }
@@ -289,7 +296,7 @@ type DeleteApplicationQueryParams struct {
 /* Delete existing application by its id
 @param id Application's Id
 */
-func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParams *DeleteApplicationQueryParams) (*resty.Response, error) {
+func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParams *DeleteApplicationQueryParams) (*DeleteApplicationResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/applications"
 
@@ -301,11 +308,15 @@ func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParam
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteApplication")
+	}
 
+	result := response.Result().(*DeleteApplicationResponse)
+	return result, response, err
 }
 
 // DeleteApplicationSetQueryParams defines the query parameters for this request
@@ -317,7 +328,7 @@ type DeleteApplicationSetQueryParams struct {
 /* Delete existing application-set by it's id
 @param id
 */
-func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*resty.Response, error) {
+func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*DeleteApplicationSetResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
@@ -329,11 +340,15 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQuer
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteApplicationSet")
+	}
 
+	result := response.Result().(*DeleteApplicationSetResponse)
+	return result, response, err
 }
 
 // EditApplication editApplication
@@ -352,15 +367,20 @@ func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *[]Edi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation editApplication")
+	}
+
 	result := response.Result().(*EditApplicationResponse)
 	return result, response, err
 }
 
 // GetApplicationSetsQueryParams defines the query parameters for this request
 type GetApplicationSetsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` //
-	Limit  int    `url:"limit,omitempty"`  //
-	Name   string `url:"name,omitempty"`   //
+	Offset float64 `url:"offset,omitempty"` //
+	Limit  float64 `url:"limit,omitempty"`  //
+	Name   string  `url:"name,omitempty"`   //
 }
 
 // GetApplicationSets getApplicationSets
@@ -384,6 +404,11 @@ func (s *ApplicationPolicyService) GetApplicationSets(getApplicationSetsQueryPar
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getApplicationSets")
+	}
+
 	result := response.Result().(*GetApplicationSetsResponse)
 	return result, response, err
 }
@@ -403,15 +428,20 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*GetApplicationSet
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getApplicationSetsCount")
+	}
+
 	result := response.Result().(*GetApplicationSetsCountResponse)
 	return result, response, err
 }
 
 // GetApplicationsQueryParams defines the query parameters for this request
 type GetApplicationsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` // The offset of the first application to be returned
-	Limit  int    `url:"limit,omitempty"`  // The maximum number of applications to be returned
-	Name   string `url:"name,omitempty"`   // Application's name
+	Offset float64 `url:"offset,omitempty"` // The offset of the first application to be returned
+	Limit  float64 `url:"limit,omitempty"`  // The maximum number of applications to be returned
+	Name   string  `url:"name,omitempty"`   // Application's name
 }
 
 // GetApplications getApplications
@@ -435,6 +465,11 @@ func (s *ApplicationPolicyService) GetApplications(getApplicationsQueryParams *G
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getApplications")
+	}
+
 	result := response.Result().(*GetApplicationsResponse)
 	return result, response, err
 }
@@ -454,6 +489,11 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*GetApplicationsCount
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getApplicationsCount")
+	}
+
 	result := response.Result().(*GetApplicationsCountResponse)
 	return result, response, err
 }

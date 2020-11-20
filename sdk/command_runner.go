@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 )
 
@@ -58,6 +60,11 @@ func (s *CommandRunnerService) GetAllKeywordsOfCLIsAcceptedByCommandRunner() (*G
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getAllKeywordsOfCLIsAcceptedByCommandRunner")
+	}
+
 	result := response.Result().(*GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse)
 	return result, response, err
 }
@@ -78,6 +85,11 @@ func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeCon
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration")
+	}
+
 	result := response.Result().(*RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse)
 	return result, response, err
 }

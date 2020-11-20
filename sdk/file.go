@@ -80,6 +80,11 @@ func (s *FileService) GetListOfAvailableNamespaces() (*GetListOfAvailableNamespa
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getListOfAvailableNamespaces")
+	}
+
 	result := response.Result().(*GetListOfAvailableNamespacesResponse)
 	return result, response, err
 }
@@ -101,6 +106,11 @@ func (s *FileService) GetListOfFiles(nameSpace string) (*GetListOfFilesResponse,
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getListOfFiles")
+	}
+
 	result := response.Result().(*GetListOfFilesResponse)
 	return result, response, err
 }

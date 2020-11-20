@@ -156,7 +156,7 @@ type DevicesResponse struct {
 // DevicesResponseResponse is the devicesResponseResponse definition
 type DevicesResponseResponse struct {
 	AirQualityHealth           DevicesResponseResponseAirQualityHealth   `json:"airQualityHealth,omitempty"`           //
-	ClientCount                DevicesResponseResponseClientCount        `json:"clientCount,omitempty"`                //
+	ClientCount                int                                       `json:"clientCount,omitempty"`                //
 	CPUHealth                  int                                       `json:"cpuHealth,omitempty"`                  //
 	CPUUlitilization           int                                       `json:"cpuUlitilization,omitempty"`           //
 	DeviceFamily               string                                    `json:"deviceFamily,omitempty"`               //
@@ -181,14 +181,6 @@ type DevicesResponseResponse struct {
 
 // DevicesResponseResponseAirQualityHealth is the devicesResponseResponseAirQualityHealth definition
 type DevicesResponseResponseAirQualityHealth struct {
-	Ghz24  int `json:"Ghz24,omitempty"`  //
-	Ghz50  int `json:"Ghz50,omitempty"`  //
-	Radio0 int `json:"radio0,omitempty"` //
-	Radio1 int `json:"radio1,omitempty"` //
-}
-
-// DevicesResponseResponseClientCount is the devicesResponseResponseClientCount definition
-type DevicesResponseResponseClientCount struct {
 	Ghz24  int `json:"Ghz24,omitempty"`  //
 	Ghz50  int `json:"Ghz50,omitempty"`  //
 	Radio0 int `json:"radio0,omitempty"` //
@@ -289,11 +281,11 @@ type DevicesGetDeviceByIDResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -311,10 +303,10 @@ type DevicesGetDeviceByIDResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
+	TagCount                  int    `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
+	UpTime                    int    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -338,11 +330,11 @@ type GetDeviceBySerialNumberResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -360,10 +352,10 @@ type GetDeviceBySerialNumberResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
+	TagCount                  int    `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
+	UpTime                    int    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -418,7 +410,7 @@ type GetDeviceDetailResponseResponse struct {
 	HASecondaryPowerStatus string `json:"HASecondaryPowerStatus,omitempty"` //
 	AirQuality             string `json:"airQuality,omitempty"`             //
 	AirQualityScore        int    `json:"airQualityScore,omitempty"`        //
-	ClientCount            string `json:"clientCount,omitempty"`            //
+	ClientCount            int    `json:"clientCount,omitempty"`            //
 	CollectionStatus       string `json:"collectionStatus,omitempty"`       //
 	CommunicationState     string `json:"communicationState,omitempty"`     //
 	CPU                    string `json:"cpu,omitempty"`                    //
@@ -477,11 +469,11 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetails struct {
 	Hostname                  string                                                            `json:"hostname,omitempty"`                  //
 	ID                        string                                                            `json:"id,omitempty"`                        //
 	InstanceUUID              string                                                            `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string                                                            `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int                                                               `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string                                                            `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int                                                               `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string                                                            `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string                                                            `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int                                                               `json:"lineCardCount,omitempty"`             //
 	LineCardID                string                                                            `json:"lineCardId,omitempty"`                //
 	Location                  string                                                            `json:"location,omitempty"`                  //
 	LocationName              string                                                            `json:"locationName,omitempty"`              //
@@ -499,10 +491,10 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetails struct {
 	SNMPContact               string                                                            `json:"snmpContact,omitempty"`               //
 	SNMPLocation              string                                                            `json:"snmpLocation,omitempty"`              //
 	SoftwareVersion           string                                                            `json:"softwareVersion,omitempty"`           //
-	TagCount                  string                                                            `json:"tagCount,omitempty"`                  //
+	TagCount                  int                                                               `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                            `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                            `json:"type,omitempty"`                      //
-	UpTime                    string                                                            `json:"upTime,omitempty"`                    //
+	UpTime                    int                                                               `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                            `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -527,24 +519,24 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetailsNeighborTopologyLinksLabel [
 
 // GetDeviceEnrichmentDetailsResponseDeviceDetailsNeighborTopologyNodes is the getDeviceEnrichmentDetailsResponseDeviceDetailsNeighborTopologyNodes definition
 type GetDeviceEnrichmentDetailsResponseDeviceDetailsNeighborTopologyNodes struct {
-	Clients         string `json:"clients,omitempty"`         //
-	ConnectedDevice string `json:"connectedDevice,omitempty"` //
-	Count           string `json:"count,omitempty"`           //
-	Description     string `json:"description,omitempty"`     //
-	DeviceType      string `json:"deviceType,omitempty"`      //
-	FabricGroup     string `json:"fabricGroup,omitempty"`     //
-	Family          string `json:"family,omitempty"`          //
-	HealthScore     int    `json:"healthScore,omitempty"`     //
-	ID              string `json:"id,omitempty"`              //
-	IP              string `json:"ip,omitempty"`              //
-	Level           int    `json:"level,omitempty"`           //
-	Name            string `json:"name,omitempty"`            //
-	NodeType        string `json:"nodeType,omitempty"`        //
-	PlatformID      string `json:"platformId,omitempty"`      //
-	RadioFrequency  string `json:"radioFrequency,omitempty"`  //
-	Role            string `json:"role,omitempty"`            //
-	SoftwareVersion string `json:"softwareVersion,omitempty"` //
-	UserID          string `json:"userId,omitempty"`          //
+	Clients         string  `json:"clients,omitempty"`         //
+	ConnectedDevice string  `json:"connectedDevice,omitempty"` //
+	Count           string  `json:"count,omitempty"`           //
+	Description     string  `json:"description,omitempty"`     //
+	DeviceType      string  `json:"deviceType,omitempty"`      //
+	FabricGroup     string  `json:"fabricGroup,omitempty"`     //
+	Family          string  `json:"family,omitempty"`          //
+	HealthScore     int     `json:"healthScore,omitempty"`     //
+	ID              string  `json:"id,omitempty"`              //
+	IP              string  `json:"ip,omitempty"`              //
+	Level           float64 `json:"level,omitempty"`           //
+	Name            string  `json:"name,omitempty"`            //
+	NodeType        string  `json:"nodeType,omitempty"`        //
+	PlatformID      string  `json:"platformId,omitempty"`      //
+	RadioFrequency  string  `json:"radioFrequency,omitempty"`  //
+	Role            string  `json:"role,omitempty"`            //
+	SoftwareVersion string  `json:"softwareVersion,omitempty"` //
+	UserID          string  `json:"userId,omitempty"`          //
 }
 
 // GetDeviceInterfaceCountByDeviceIDResponse is the getDeviceInterfaceCountByDeviceIdResponse definition
@@ -637,11 +629,11 @@ type GetDeviceListResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -659,10 +651,10 @@ type GetDeviceListResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
+	TagCount                  int    `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
+	UpTime                    int    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1011,11 +1003,11 @@ type GetNetworkDeviceByIPResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -1033,10 +1025,10 @@ type GetNetworkDeviceByIPResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
+	TagCount                  int    `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
+	UpTime                    int    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1060,11 +1052,11 @@ type GetNetworkDeviceByPaginationRangeResponseResponse struct {
 	ID                        string `json:"id,omitempty"`                        //
 	InstanceTenantID          string `json:"instanceTenantId,omitempty"`          //
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int    `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int    `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int    `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
 	Location                  string `json:"location,omitempty"`                  //
 	LocationName              string `json:"locationName,omitempty"`              //
@@ -1082,10 +1074,10 @@ type GetNetworkDeviceByPaginationRangeResponseResponse struct {
 	SNMPLocation              string `json:"snmpLocation,omitempty"`              //
 	SoftwareType              string `json:"softwareType,omitempty"`              //
 	SoftwareVersion           string `json:"softwareVersion,omitempty"`           //
-	TagCount                  string `json:"tagCount,omitempty"`                  //
+	TagCount                  int    `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string `json:"upTime,omitempty"`                    //
+	UpTime                    int    `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1242,6 +1234,11 @@ func (s *DevicesService) AddDevice(addDeviceRequest *AddDeviceRequest) (*AddDevi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addDevice")
+	}
+
 	result := response.Result().(*AddDeviceResponse)
 	return result, response, err
 }
@@ -1256,7 +1253,7 @@ type DeleteDeviceByIDQueryParams struct {
 @param id Device ID
 @param isForceDelete isForceDelete
 */
-func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams *DeleteDeviceByIDQueryParams) (*resty.Response, error) {
+func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams *DeleteDeviceByIDQueryParams) (*DeleteDeviceByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -1269,22 +1266,26 @@ func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDeviceById")
+	}
 
+	result := response.Result().(*DeleteDeviceByIDResponse)
+	return result, response, err
 }
 
 // DevicesQueryParams defines the query parameters for this request
 type DevicesQueryParams struct {
-	DeviceRole string `url:"deviceRole,omitempty"` // The device role (One of CORE, ACCESS, DISTRIBUTION, ROUTER, WLC, AP)
-	SiteID     string `url:"siteId,omitempty"`     // Assurance site UUID value
-	Health     string `url:"health,omitempty"`     // The device overall health (One of POOR, FAIR, GOOD)
-	StartTime  int    `url:"startTime,omitempty"`  // UTC epoch time in milliseconds
-	EndTime    int    `url:"endTime,omitempty"`    // UTC epoch time in miliseconds
-	Limit      int    `url:"limit,omitempty"`      // Max number of device entries in the response (default to 50.  Max at 1000)
-	Offset     int    `url:"offset,omitempty"`     // The offset of the first device in the returned data
+	DeviceRole string  `url:"deviceRole,omitempty"` // The device role (One of CORE, ACCESS, DISTRIBUTION, ROUTER, WLC, AP)
+	SiteID     string  `url:"siteId,omitempty"`     // Assurance site UUID value
+	Health     string  `url:"health,omitempty"`     // The device overall health (One of POOR, FAIR, GOOD)
+	StartTime  float64 `url:"startTime,omitempty"`  // UTC epoch time in milliseconds
+	EndTime    float64 `url:"endTime,omitempty"`    // UTC epoch time in miliseconds
+	Limit      float64 `url:"limit,omitempty"`      // Max number of device entries in the response (default to 50.  Max at 1000)
+	Offset     float64 `url:"offset,omitempty"`     // The offset of the first device in the returned data
 }
 
 // Devices devices
@@ -1312,6 +1313,11 @@ func (s *DevicesService) Devices(devicesQueryParams *DevicesQueryParams) (*Devic
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation devices")
+	}
+
 	result := response.Result().(*DevicesResponse)
 	return result, response, err
 }
@@ -1332,14 +1338,19 @@ func (s *DevicesService) ExportDeviceList(exportDeviceListRequest *ExportDeviceL
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation exportDeviceList")
+	}
+
 	result := response.Result().(*ExportDeviceListResponse)
 	return result, response, err
 }
 
 // GetAllInterfacesQueryParams defines the query parameters for this request
 type GetAllInterfacesQueryParams struct {
-	Offset int `url:"offset,omitempty"` // offset
-	Limit  int `url:"limit,omitempty"`  // limit
+	Offset float64 `url:"offset,omitempty"` // offset
+	Limit  float64 `url:"limit,omitempty"`  // limit
 }
 
 // GetAllInterfaces getAllInterfaces
@@ -1362,6 +1373,11 @@ func (s *DevicesService) GetAllInterfaces(getAllInterfacesQueryParams *GetAllInt
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getAllInterfaces")
+	}
+
 	result := response.Result().(*GetAllInterfacesResponse)
 	return result, response, err
 }
@@ -1383,6 +1399,11 @@ func (s *DevicesService) GetDeviceByID(id string) (*DevicesGetDeviceByIDResponse
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceByID")
+	}
+
 	result := response.Result().(*DevicesGetDeviceByIDResponse)
 	return result, response, err
 }
@@ -1404,6 +1425,11 @@ func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*GetDevic
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceBySerialNumber")
+	}
+
 	result := response.Result().(*GetDeviceBySerialNumberResponse)
 	return result, response, err
 }
@@ -1425,6 +1451,11 @@ func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*GetDevice
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceConfigById")
+	}
+
 	result := response.Result().(*GetDeviceConfigByIDResponse)
 	return result, response, err
 }
@@ -1444,6 +1475,11 @@ func (s *DevicesService) GetDeviceConfigCount() (*GetDeviceConfigCountResponse, 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceConfigCount")
+	}
+
 	result := response.Result().(*GetDeviceConfigCountResponse)
 	return result, response, err
 }
@@ -1463,6 +1499,11 @@ func (s *DevicesService) GetDeviceConfigForAllDevices() (*GetDeviceConfigForAllD
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceConfigForAllDevices")
+	}
+
 	result := response.Result().(*GetDeviceConfigForAllDevicesResponse)
 	return result, response, err
 }
@@ -1482,6 +1523,11 @@ func (s *DevicesService) GetDeviceCount() (*GetDeviceCountResponse, *resty.Respo
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceCount")
+	}
+
 	result := response.Result().(*GetDeviceCountResponse)
 	return result, response, err
 }
@@ -1514,6 +1560,11 @@ func (s *DevicesService) GetDeviceDetail(getDeviceDetailQueryParams *GetDeviceDe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceDetail")
+	}
+
 	result := response.Result().(*GetDeviceDetailResponse)
 	return result, response, err
 }
@@ -1535,6 +1586,11 @@ func (s *DevicesService) GetDeviceEnrichmentDetails() (*GetDeviceEnrichmentDetai
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceEnrichmentDetails")
+	}
+
 	result := response.Result().(*GetDeviceEnrichmentDetailsResponse)
 	return result, response, err
 }
@@ -1554,6 +1610,11 @@ func (s *DevicesService) GetDeviceInterfaceCount() (*GetDeviceInterfaceCountResp
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceInterfaceCount")
+	}
+
 	result := response.Result().(*GetDeviceInterfaceCountResponse)
 	return result, response, err
 }
@@ -1575,6 +1636,11 @@ func (s *DevicesService) GetDeviceInterfaceCountByDeviceID(deviceID string) (*Ge
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceInterfaceCountByDeviceId")
+	}
+
 	result := response.Result().(*GetDeviceInterfaceCountByDeviceIDResponse)
 	return result, response, err
 }
@@ -1605,6 +1671,11 @@ func (s *DevicesService) GetDeviceInterfaceVLANs(id string, getDeviceInterfaceVL
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceInterfaceVLANs")
+	}
+
 	result := response.Result().(*GetDeviceInterfaceVLANsResponse)
 	return result, response, err
 }
@@ -1630,6 +1701,11 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceInterfacesBySpecifiedRange")
+	}
+
 	result := response.Result().(*GetDeviceInterfacesBySpecifiedRangeResponse)
 	return result, response, err
 }
@@ -1722,6 +1798,11 @@ func (s *DevicesService) GetDeviceList(getDeviceListQueryParams *GetDeviceListQu
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceList")
+	}
+
 	result := response.Result().(*GetDeviceListResponse)
 	return result, response, err
 }
@@ -1743,6 +1824,11 @@ func (s *DevicesService) GetDeviceSummary(id string) (*GetDeviceSummaryResponse,
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceSummary")
+	}
+
 	result := response.Result().(*GetDeviceSummaryResponse)
 	return result, response, err
 }
@@ -1764,6 +1850,11 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*GetFunctionalC
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getFunctionalCapabilityById")
+	}
+
 	result := response.Result().(*GetFunctionalCapabilityByIDResponse)
 	return result, response, err
 }
@@ -1794,6 +1885,11 @@ func (s *DevicesService) GetFunctionalCapabilityForDevices(getFunctionalCapabili
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getFunctionalCapabilityForDevices")
+	}
+
 	result := response.Result().(*GetFunctionalCapabilityForDevicesResponse)
 	return result, response, err
 }
@@ -1813,6 +1909,11 @@ func (s *DevicesService) GetISISInterfaces() (*GetISISInterfacesResponse, *resty
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getISISInterfaces")
+	}
+
 	result := response.Result().(*GetISISInterfacesResponse)
 	return result, response, err
 }
@@ -1834,6 +1935,11 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*GetInterfaceByIPRe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getInterfaceByIP")
+	}
+
 	result := response.Result().(*GetInterfaceByIPResponse)
 	return result, response, err
 }
@@ -1855,6 +1961,11 @@ func (s *DevicesService) GetInterfaceByID(id string) (*GetInterfaceByIDResponse,
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getInterfaceById")
+	}
+
 	result := response.Result().(*GetInterfaceByIDResponse)
 	return result, response, err
 }
@@ -1885,6 +1996,11 @@ func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getInterfaceDetailsByDeviceIdAndInterfaceName")
+	}
+
 	result := response.Result().(*GetInterfaceDetailsByDeviceIDAndInterfaceNameResponse)
 	return result, response, err
 }
@@ -1906,6 +2022,11 @@ func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*GetInterfaceInf
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getInterfaceInfoById")
+	}
+
 	result := response.Result().(*GetInterfaceInfoByIDResponse)
 	return result, response, err
 }
@@ -1942,6 +2063,11 @@ func (s *DevicesService) GetModuleCount(getModuleCountQueryParams *GetModuleCoun
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getModuleCount")
+	}
+
 	result := response.Result().(*GetModuleCountResponse)
 	return result, response, err
 }
@@ -1963,6 +2089,11 @@ func (s *DevicesService) GetModuleInfoByID(id string) (*GetModuleInfoByIDRespons
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getModuleInfoById")
+	}
+
 	result := response.Result().(*GetModuleInfoByIDResponse)
 	return result, response, err
 }
@@ -2003,6 +2134,11 @@ func (s *DevicesService) GetModules(getModulesQueryParams *GetModulesQueryParams
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getModules")
+	}
+
 	result := response.Result().(*GetModulesResponse)
 	return result, response, err
 }
@@ -2024,6 +2160,11 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*GetNetworkDevi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNetworkDeviceByIP")
+	}
+
 	result := response.Result().(*GetNetworkDeviceByIPResponse)
 	return result, response, err
 }
@@ -2047,6 +2188,11 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNetworkDeviceByPaginationRange")
+	}
+
 	result := response.Result().(*GetNetworkDeviceByPaginationRangeResponse)
 	return result, response, err
 }
@@ -2066,6 +2212,11 @@ func (s *DevicesService) GetOSPFInterfaces() (*GetOSPFInterfacesResponse, *resty
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getOSPFInterfaces")
+	}
+
 	result := response.Result().(*GetOSPFInterfacesResponse)
 	return result, response, err
 }
@@ -2087,6 +2238,11 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*GetOrganizati
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getOrganizationListForMeraki")
+	}
+
 	result := response.Result().(*GetOrganizationListForMerakiResponse)
 	return result, response, err
 }
@@ -2108,6 +2264,11 @@ func (s *DevicesService) GetPollingIntervalByID(id string) (*GetPollingIntervalB
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPollingIntervalById")
+	}
+
 	result := response.Result().(*GetPollingIntervalByIDResponse)
 	return result, response, err
 }
@@ -2127,6 +2288,11 @@ func (s *DevicesService) GetPollingIntervalForAllDevices() (*GetPollingIntervalF
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPollingIntervalForAllDevices")
+	}
+
 	result := response.Result().(*GetPollingIntervalForAllDevicesResponse)
 	return result, response, err
 }
@@ -2148,6 +2314,11 @@ func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*GetWir
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getWirelessLanControllerDetailsById")
+	}
+
 	result := response.Result().(*GetWirelessLanControllerDetailsByIDResponse)
 	return result, response, err
 }
@@ -2178,6 +2349,11 @@ func (s *DevicesService) RegisterDeviceForWSA(registerDeviceForWSAQueryParams *R
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation registerDeviceForWSA")
+	}
+
 	result := response.Result().(*RegisterDeviceForWSAResponse)
 	return result, response, err
 }
@@ -2268,6 +2444,11 @@ func (s *DevicesService) SyncDevices(syncDevicesRequest *SyncDevicesRequest) (*S
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation syncDevices")
+	}
+
 	result := response.Result().(*SyncDevicesResponse)
 	return result, response, err
 }
@@ -2297,6 +2478,11 @@ func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncN
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation syncNetworkDevices")
+	}
+
 	result := response.Result().(*SyncNetworkDevicesResponse)
 	return result, response, err
 }
@@ -2317,6 +2503,11 @@ func (s *DevicesService) UpdateDeviceRole(updateDeviceRoleRequest *UpdateDeviceR
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateDeviceRole")
+	}
+
 	result := response.Result().(*UpdateDeviceRoleResponse)
 	return result, response, err
 }

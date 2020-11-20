@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 )
 
@@ -31,11 +33,11 @@ type GetUserEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	Hostname                  string                                                                         `json:"hostname,omitempty"`                  //
 	ID                        string                                                                         `json:"id,omitempty"`                        //
 	InstanceUUID              string                                                                         `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string                                                                         `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int                                                                            `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string                                                                         `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int                                                                            `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string                                                                         `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string                                                                         `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int                                                                            `json:"lineCardCount,omitempty"`             //
 	LineCardID                string                                                                         `json:"lineCardId,omitempty"`                //
 	Location                  string                                                                         `json:"location,omitempty"`                  //
 	LocationName              string                                                                         `json:"locationName,omitempty"`              //
@@ -53,10 +55,10 @@ type GetUserEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	SNMPContact               string                                                                         `json:"snmpContact,omitempty"`               //
 	SNMPLocation              string                                                                         `json:"snmpLocation,omitempty"`              //
 	SoftwareVersion           string                                                                         `json:"softwareVersion,omitempty"`           //
-	TagCount                  string                                                                         `json:"tagCount,omitempty"`                  //
+	TagCount                  int                                                                            `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                                         `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                                         `json:"type,omitempty"`                      //
-	UpTime                    string                                                                         `json:"upTime,omitempty"`                    //
+	UpTime                    int                                                                            `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                                         `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -150,6 +152,11 @@ func (s *UsersService) GetUserEnrichmentDetails() (*GetUserEnrichmentDetailsResp
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getUserEnrichmentDetails")
+	}
+
 	result := response.Result().(*GetUserEnrichmentDetailsResponse)
 	return result, response, err
 }

@@ -77,17 +77,17 @@ type UpdateEventSubscriptionsRequestSubscriptionEndpointsSubscriptionDetails str
 
 // CountOfEventSubscriptionsResponse is the countOfEventSubscriptionsResponse definition
 type CountOfEventSubscriptionsResponse struct {
-	Response int `json:"response,omitempty"` //
+	Response float64 `json:"response,omitempty"` //
 }
 
 // CountOfEventsResponse is the countOfEventsResponse definition
 type CountOfEventsResponse struct {
-	Response int `json:"response,omitempty"` //
+	Response float64 `json:"response,omitempty"` //
 }
 
 // CountOfNotificationsResponse is the countOfNotificationsResponse definition
 type CountOfNotificationsResponse struct {
-	Response int `json:"response,omitempty"` //
+	Response float64 `json:"response,omitempty"` //
 }
 
 // CreateEventSubscriptionsResponse is the createEventSubscriptionsResponse definition
@@ -141,7 +141,7 @@ type GetEventsResponse struct {
 	EventID           string   `json:"eventId,omitempty"`           //
 	Name              string   `json:"name,omitempty"`              //
 	NameSpace         string   `json:"nameSpace,omitempty"`         //
-	Severity          int      `json:"severity,omitempty"`          //
+	Severity          float64  `json:"severity,omitempty"`          //
 	SubDomain         string   `json:"subDomain,omitempty"`         //
 	SubscriptionTypes []string `json:"subscriptionTypes,omitempty"` //
 	Tags              []string `json:"tags,omitempty"`              //
@@ -157,21 +157,21 @@ type GetEventsResponseTags []string
 
 // GetNotificationsResponse is the getNotificationsResponse definition
 type GetNotificationsResponse struct {
-	Category    string `json:"category,omitempty"`    //
-	Context     string `json:"context,omitempty"`     //
-	Description string `json:"description,omitempty"` //
-	Details     string `json:"details,omitempty"`     //
-	Domain      string `json:"domain,omitempty"`      //
-	EventID     string `json:"eventId,omitempty"`     //
-	InstanceID  string `json:"instanceId,omitempty"`  //
-	Name        string `json:"name,omitempty"`        //
-	Namespace   string `json:"namespace,omitempty"`   //
-	Severity    int    `json:"severity,omitempty"`    //
-	Source      string `json:"source,omitempty"`      //
-	SubDomain   string `json:"subDomain,omitempty"`   //
-	TenantID    string `json:"tenantId,omitempty"`    //
-	Timestamp   int    `json:"timestamp,omitempty"`   //
-	Type        string `json:"type,omitempty"`        //
+	Category    string  `json:"category,omitempty"`    //
+	Context     string  `json:"context,omitempty"`     //
+	Description string  `json:"description,omitempty"` //
+	Details     string  `json:"details,omitempty"`     //
+	Domain      string  `json:"domain,omitempty"`      //
+	EventID     string  `json:"eventId,omitempty"`     //
+	InstanceID  string  `json:"instanceId,omitempty"`  //
+	Name        string  `json:"name,omitempty"`        //
+	Namespace   string  `json:"namespace,omitempty"`   //
+	Severity    float64 `json:"severity,omitempty"`    //
+	Source      string  `json:"source,omitempty"`      //
+	SubDomain   string  `json:"subDomain,omitempty"`   //
+	TenantID    string  `json:"tenantId,omitempty"`    //
+	Timestamp   float64 `json:"timestamp,omitempty"`   //
+	Type        string  `json:"type,omitempty"`        //
 }
 
 // GetStatusAPIForEventsResponse is the getStatusAPIForEventsResponse definition
@@ -210,6 +210,11 @@ func (s *EventManagementService) CountOfEventSubscriptions(countOfEventSubscript
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation countOfEventSubscriptions")
+	}
+
 	result := response.Result().(*CountOfEventSubscriptionsResponse)
 	return result, response, err
 }
@@ -240,6 +245,11 @@ func (s *EventManagementService) CountOfEvents(countOfEventsQueryParams *CountOf
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation countOfEvents")
+	}
+
 	result := response.Result().(*CountOfEventsResponse)
 	return result, response, err
 }
@@ -284,6 +294,11 @@ func (s *EventManagementService) CountOfNotifications(countOfNotificationsQueryP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation countOfNotifications")
+	}
+
 	result := response.Result().(*CountOfNotificationsResponse)
 	return result, response, err
 }
@@ -304,6 +319,11 @@ func (s *EventManagementService) CreateEventSubscriptions(createEventSubscriptio
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createEventSubscriptions")
+	}
+
 	result := response.Result().(*CreateEventSubscriptionsResponse)
 	return result, response, err
 }
@@ -318,7 +338,7 @@ type DeleteEventSubscriptionsQueryParams struct {
 @param Content-Type Content Type
 @param subscriptions List of EventSubscriptionId's for removal
 */
-func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptionsQueryParams *DeleteEventSubscriptionsQueryParams) (*resty.Response, error) {
+func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptionsQueryParams *DeleteEventSubscriptionsQueryParams) (*DeleteEventSubscriptionsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/event/subscription"
 
@@ -330,20 +350,24 @@ func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptio
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteEventSubscriptions")
+	}
 
+	result := response.Result().(*DeleteEventSubscriptionsResponse)
+	return result, response, err
 }
 
 // GetEventSubscriptionsQueryParams defines the query parameters for this request
 type GetEventSubscriptionsQueryParams struct {
-	EventIDs string `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
-	Offset   int    `url:"offset,omitempty"`   // The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit    int    `url:"limit,omitempty"`    // The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy   string `url:"sortBy,omitempty"`   // SortBy field name
-	Order    string `url:"order,omitempty"`    // order(asc/desc)
+	EventIDs string  `url:"eventIds,omitempty"` // List of subscriptions related to the respective eventIds
+	Offset   float64 `url:"offset,omitempty"`   // The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit    float64 `url:"limit,omitempty"`    // The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy   string  `url:"sortBy,omitempty"`   // SortBy field name
+	Order    string  `url:"order,omitempty"`    // order(asc/desc)
 }
 
 // GetEventSubscriptions getEventSubscriptions
@@ -369,18 +393,23 @@ func (s *EventManagementService) GetEventSubscriptions(getEventSubscriptionsQuer
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getEventSubscriptions")
+	}
+
 	result := response.Result().(*GetEventSubscriptionsResponse)
 	return result, response, err
 }
 
 // GetEventsQueryParams defines the query parameters for this request
 type GetEventsQueryParams struct {
-	EventID string `url:"eventId,omitempty"` // The registered EventId should be provided
-	Tags    string `url:"tags,omitempty"`    // The registered Tags should be provided
-	Offset  int    `url:"offset,omitempty"`  // The number of Registries to offset in the resultset whose default value 0
-	Limit   int    `url:"limit,omitempty"`   // The number of Registries to limit in the resultset whose default value 10
-	SortBy  string `url:"sortBy,omitempty"`  // SortBy field name
-	Order   string `url:"order,omitempty"`   // order(asc/desc)
+	EventID string  `url:"eventId,omitempty"` // The registered EventId should be provided
+	Tags    string  `url:"tags,omitempty"`    // The registered Tags should be provided
+	Offset  float64 `url:"offset,omitempty"`  // The number of Registries to offset in the resultset whose default value 0
+	Limit   float64 `url:"limit,omitempty"`   // The number of Registries to limit in the resultset whose default value 10
+	SortBy  string  `url:"sortBy,omitempty"`  // SortBy field name
+	Order   string  `url:"order,omitempty"`   // order(asc/desc)
 }
 
 // GetEvents getEvents
@@ -407,25 +436,30 @@ func (s *EventManagementService) GetEvents(getEventsQueryParams *GetEventsQueryP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getEvents")
+	}
+
 	result := response.Result().(*GetEventsResponse)
 	return result, response, err
 }
 
 // GetNotificationsQueryParams defines the query parameters for this request
 type GetNotificationsQueryParams struct {
-	EventIDs  string `url:"eventIds,omitempty"`  // The registered EventIds should be provided
-	StartTime string `url:"startTime,omitempty"` // StartTime
-	EndTime   string `url:"endTime,omitempty"`   // endTime
-	Category  string `url:"category,omitempty"`  // category
-	Type      string `url:"type,omitempty"`      // type
-	Severity  string `url:"severity,omitempty"`  // severity
-	Domain    string `url:"domain,omitempty"`    // domain
-	SubDomain string `url:"subDomain,omitempty"` // subDomain
-	Source    string `url:"source,omitempty"`    // source
-	Offset    int    `url:"offset,omitempty"`    // Offset whose default value 0
-	Limit     int    `url:"limit,omitempty"`     // Limit whose default value 10
-	SortBy    string `url:"sortBy,omitempty"`    // SortBy field name
-	Order     string `url:"order,omitempty"`     // order(asc/desc)
+	EventIDs  string  `url:"eventIds,omitempty"`  // The registered EventIds should be provided
+	StartTime string  `url:"startTime,omitempty"` // StartTime
+	EndTime   string  `url:"endTime,omitempty"`   // endTime
+	Category  string  `url:"category,omitempty"`  // category
+	Type      string  `url:"type,omitempty"`      // type
+	Severity  string  `url:"severity,omitempty"`  // severity
+	Domain    string  `url:"domain,omitempty"`    // domain
+	SubDomain string  `url:"subDomain,omitempty"` // subDomain
+	Source    string  `url:"source,omitempty"`    // source
+	Offset    float64 `url:"offset,omitempty"`    // Offset whose default value 0
+	Limit     float64 `url:"limit,omitempty"`     // Limit whose default value 10
+	SortBy    string  `url:"sortBy,omitempty"`    // SortBy field name
+	Order     string  `url:"order,omitempty"`     // order(asc/desc)
 }
 
 // GetNotifications getNotifications
@@ -459,6 +493,11 @@ func (s *EventManagementService) GetNotifications(getNotificationsQueryParams *G
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNotifications")
+	}
+
 	result := response.Result().(*GetNotificationsResponse)
 	return result, response, err
 }
@@ -480,6 +519,11 @@ func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*Get
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getStatusAPIForEvents")
+	}
+
 	result := response.Result().(*GetStatusAPIForEventsResponse)
 	return result, response, err
 }
@@ -500,6 +544,11 @@ func (s *EventManagementService) UpdateEventSubscriptions(updateEventSubscriptio
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateEventSubscriptions")
+	}
+
 	result := response.Result().(*UpdateEventSubscriptionsResponse)
 	return result, response, err
 }

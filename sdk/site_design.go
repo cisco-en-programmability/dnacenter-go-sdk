@@ -34,7 +34,7 @@ type CreateNFVProfileRequestDeviceCustomNetworks struct {
 	ConnectionType    string                                                         `json:"connectionType,omitempty"`    //
 	NetworkName       string                                                         `json:"networkName,omitempty"`       //
 	ServicesToConnect []CreateNFVProfileRequestDeviceCustomNetworksServicesToConnect `json:"servicesToConnect,omitempty"` //
-	VLANID            int                                                            `json:"vlanId,omitempty"`            //
+	VLANID            float64                                                        `json:"vlanId,omitempty"`            //
 	VLANMode          string                                                         `json:"vlanMode,omitempty"`          //
 }
 
@@ -76,9 +76,9 @@ type CreateNFVProfileRequestDeviceServicesVNicMapping struct {
 
 // CreateNFVProfileRequestDeviceVLANForL2 is the createNFVProfileRequestDeviceVLANForL2 definition
 type CreateNFVProfileRequestDeviceVLANForL2 struct {
-	VLANDescription string `json:"vlanDescription,omitempty"` //
-	VLANID          int    `json:"vlanId,omitempty"`          //
-	VLANType        string `json:"vlanType,omitempty"`        //
+	VLANDescription string  `json:"vlanDescription,omitempty"` //
+	VLANID          float64 `json:"vlanId,omitempty"`          //
+	VLANType        string  `json:"vlanType,omitempty"`        //
 }
 
 // NFVProvisioningDetailRequest is the nFVProvisioningDetailRequest definition
@@ -194,21 +194,21 @@ type ProvisionNFVRequestProvisioningSiteArea struct {
 
 // ProvisionNFVRequestProvisioningSiteBuilding is the provisionNFVRequestProvisioningSiteBuilding definition
 type ProvisionNFVRequestProvisioningSiteBuilding struct {
-	Address    string `json:"address,omitempty"`    //
-	Latitude   int    `json:"latitude,omitempty"`   //
-	Longitude  int    `json:"longitude,omitempty"`  //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
+	Address    string  `json:"address,omitempty"`    //
+	Latitude   float64 `json:"latitude,omitempty"`   //
+	Longitude  float64 `json:"longitude,omitempty"`  //
+	Name       string  `json:"name,omitempty"`       //
+	ParentName string  `json:"parentName,omitempty"` //
 }
 
 // ProvisionNFVRequestProvisioningSiteFloor is the provisionNFVRequestProvisioningSiteFloor definition
 type ProvisionNFVRequestProvisioningSiteFloor struct {
-	Height     int    `json:"height,omitempty"`     //
-	Length     int    `json:"length,omitempty"`     //
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-	RfModel    string `json:"rfModel,omitempty"`    //
-	Width      int    `json:"width,omitempty"`      //
+	Height     float64 `json:"height,omitempty"`     //
+	Length     float64 `json:"length,omitempty"`     //
+	Name       string  `json:"name,omitempty"`       //
+	ParentName string  `json:"parentName,omitempty"` //
+	RfModel    string  `json:"rfModel,omitempty"`    //
+	Width      float64 `json:"width,omitempty"`      //
 }
 
 // ProvisionNFVRequestSiteProfile is the provisionNFVRequestSiteProfile definition
@@ -318,7 +318,7 @@ type UpdateNFVProfileRequestDeviceCustomNetworks struct {
 	ConnectionType    string                                                         `json:"connectionType,omitempty"`    //
 	NetworkName       string                                                         `json:"networkName,omitempty"`       //
 	ServicesToConnect []UpdateNFVProfileRequestDeviceCustomNetworksServicesToConnect `json:"servicesToConnect,omitempty"` //
-	VLANID            int                                                            `json:"vlanId,omitempty"`            //
+	VLANID            float64                                                        `json:"vlanId,omitempty"`            //
 	VLANMode          string                                                         `json:"vlanMode,omitempty"`          //
 }
 
@@ -352,9 +352,9 @@ type UpdateNFVProfileRequestDeviceServicesVNicMapping struct {
 
 // UpdateNFVProfileRequestDeviceVLANForL2 is the updateNFVProfileRequestDeviceVLANForL2 definition
 type UpdateNFVProfileRequestDeviceVLANForL2 struct {
-	VLANDescription string `json:"vlanDescription,omitempty"` //
-	VLANID          int    `json:"vlanId,omitempty"`          //
-	VLANType        string `json:"vlanType,omitempty"`        //
+	VLANDescription string  `json:"vlanDescription,omitempty"` //
+	VLANID          float64 `json:"vlanId,omitempty"`          //
+	VLANType        string  `json:"vlanType,omitempty"`        //
 }
 
 // CreateNFVProfileResponse is the createNFVProfileResponse definition
@@ -373,8 +373,8 @@ type GetDeviceDetailsByIPResponse struct {
 type GetDeviceDetailsByIPResponseProvisionDetails struct {
 	BeginStep     string                                                  `json:"beginStep,omitempty"`     //
 	Duration      string                                                  `json:"duration,omitempty"`      //
-	EndTime       string                                                  `json:"endTime,omitempty"`       //
-	StartTime     string                                                  `json:"startTime,omitempty"`     //
+	EndTime       int                                                     `json:"endTime,omitempty"`       //
+	StartTime     int                                                     `json:"startTime,omitempty"`     //
 	Status        string                                                  `json:"status,omitempty"`        //
 	StatusMessage string                                                  `json:"statusMessage,omitempty"` //
 	TaskNodes     []GetDeviceDetailsByIPResponseProvisionDetailsTaskNodes `json:"taskNodes,omitempty"`     //
@@ -385,14 +385,14 @@ type GetDeviceDetailsByIPResponseProvisionDetails struct {
 type GetDeviceDetailsByIPResponseProvisionDetailsTaskNodes struct {
 	CliTemplateUserMessageDTO string `json:"cliTemplateUserMessageDTO,omitempty"` //
 	Duration                  string `json:"duration,omitempty"`                  //
-	EndTime                   string `json:"endTime,omitempty"`                   //
+	EndTime                   int    `json:"endTime,omitempty"`                   //
 	ErrorPayload              string `json:"errorPayload,omitempty"`              //
 	Name                      string `json:"name,omitempty"`                      //
 	NextTask                  string `json:"nextTask,omitempty"`                  //
 	ParentTask                string `json:"parentTask,omitempty"`                //
 	Payload                   string `json:"payload,omitempty"`                   //
 	ProvisionedNames          string `json:"provisionedNames,omitempty"`          //
-	StartTime                 string `json:"startTime,omitempty"`                 //
+	StartTime                 int    `json:"startTime,omitempty"`                 //
 	Status                    string `json:"status,omitempty"`                    //
 	StatusMessage             string `json:"statusMessage,omitempty"`             //
 	StepRan                   string `json:"stepRan,omitempty"`                   //
@@ -512,6 +512,11 @@ func (s *SiteDesignService) CreateNFVProfile(createNFVProfileRequest *CreateNFVP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createNFVProfile")
+	}
+
 	result := response.Result().(*CreateNFVProfileResponse)
 	return result, response, err
 }
@@ -540,6 +545,11 @@ func (s *SiteDesignService) GetDeviceDetailsByIP(getDeviceDetailsByIPQueryParams
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceDetailsByIP")
+	}
+
 	result := response.Result().(*GetDeviceDetailsByIPResponse)
 	return result, response, err
 }
@@ -574,6 +584,11 @@ func (s *SiteDesignService) GetNFVProfile(id string, getNFVProfileQueryParams *G
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNFVProfile")
+	}
+
 	result := response.Result().(*GetNFVProfileResponse)
 	return result, response, err
 }
@@ -597,6 +612,11 @@ func (s *SiteDesignService) NFVProvisioningDetail(nFVProvisioningDetailRequest *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation nFVProvisioningDetail")
+	}
+
 	result := response.Result().(*NFVProvisioningDetailResponse)
 	return result, response, err
 }
@@ -620,6 +640,11 @@ func (s *SiteDesignService) ProvisionNFV(provisionNFVRequest *ProvisionNFVReques
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation provisionNFV")
+	}
+
 	result := response.Result().(*ProvisionNFVResponse)
 	return result, response, err
 }
@@ -651,6 +676,11 @@ func (s *SiteDesignService) UpdateNFVProfile(id string, updateNFVProfileQueryPar
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateNFVProfile")
+	}
+
 	result := response.Result().(*UpdateNFVProfileResponse)
 	return result, response, err
 }

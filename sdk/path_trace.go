@@ -1236,7 +1236,7 @@ type RetrivesAllPreviousPathtracesSummaryResponseResponseInclusions []string
 /* Deletes a flow analysis request by its id
 @param flowAnalysisID Flow analysis request id
 */
-func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*resty.Response, error) {
+func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*DeletesPathtraceByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
 	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
@@ -1246,11 +1246,15 @@ func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*resty.R
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deletesPathtraceById")
+	}
 
+	result := response.Result().(*DeletesPathtraceByIDResponse)
+	return result, response, err
 }
 
 // InitiateANewPathtrace initiateANewPathtrace
@@ -1269,6 +1273,11 @@ func (s *PathTraceService) InitiateANewPathtrace(initiateANewPathtraceRequest *I
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation initiateANewPathtrace")
+	}
+
 	result := response.Result().(*InitiateANewPathtraceResponse)
 	return result, response, err
 }
@@ -1290,6 +1299,11 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*R
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation retrievesPreviousPathtrace")
+	}
+
 	result := response.Result().(*RetrievesPreviousPathtraceResponse)
 	return result, response, err
 }
@@ -1346,6 +1360,11 @@ func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(retrivesAllPrevi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation retrivesAllPreviousPathtracesSummary")
+	}
+
 	result := response.Result().(*RetrivesAllPreviousPathtracesSummaryResponse)
 	return result, response, err
 }

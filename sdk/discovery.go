@@ -542,11 +542,11 @@ type GetDiscoveredDevicesByRangeResponseResponse struct {
 	ID                          string `json:"id,omitempty"`                          //
 	ImageName                   string `json:"imageName,omitempty"`                   //
 	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
+	InterfaceCount              int    `json:"interfaceCount,omitempty"`              //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
 	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
 	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-	LineCardCount               string `json:"lineCardCount,omitempty"`               //
+	LineCardCount               int    `json:"lineCardCount,omitempty"`               //
 	LineCardID                  string `json:"lineCardId,omitempty"`                  //
 	Location                    string `json:"location,omitempty"`                    //
 	LocationName                string `json:"locationName,omitempty"`                //
@@ -571,7 +571,7 @@ type GetDiscoveredDevicesByRangeResponseResponse struct {
 	Tag                         string `json:"tag,omitempty"`                         //
 	TagCount                    int    `json:"tagCount,omitempty"`                    //
 	Type                        string `json:"type,omitempty"`                        //
-	UpTime                      string `json:"upTime,omitempty"`                      //
+	UpTime                      int    `json:"upTime,omitempty"`                      //
 	Vendor                      string `json:"vendor,omitempty"`                      //
 	WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
 }
@@ -592,11 +592,11 @@ type GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse struct {
 	ID                          string `json:"id,omitempty"`                          //
 	ImageName                   string `json:"imageName,omitempty"`                   //
 	IngressQueueConfig          string `json:"ingressQueueConfig,omitempty"`          //
-	InterfaceCount              string `json:"interfaceCount,omitempty"`              //
+	InterfaceCount              int    `json:"interfaceCount,omitempty"`              //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
 	InventoryReachabilityStatus string `json:"inventoryReachabilityStatus,omitempty"` //
 	LastUpdated                 string `json:"lastUpdated,omitempty"`                 //
-	LineCardCount               string `json:"lineCardCount,omitempty"`               //
+	LineCardCount               int    `json:"lineCardCount,omitempty"`               //
 	LineCardID                  string `json:"lineCardId,omitempty"`                  //
 	Location                    string `json:"location,omitempty"`                    //
 	LocationName                string `json:"locationName,omitempty"`                //
@@ -621,7 +621,7 @@ type GetDiscoveredNetworkDevicesByDiscoveryIDResponseResponse struct {
 	Tag                         string `json:"tag,omitempty"`                         //
 	TagCount                    int    `json:"tagCount,omitempty"`                    //
 	Type                        string `json:"type,omitempty"`                        //
-	UpTime                      string `json:"upTime,omitempty"`                      //
+	UpTime                      int    `json:"upTime,omitempty"`                      //
 	Vendor                      string `json:"vendor,omitempty"`                      //
 	WlcApDeviceStatus           string `json:"wlcApDeviceStatus,omitempty"`           //
 }
@@ -797,7 +797,7 @@ type GetDiscoveryJobsByIPResponseResponse struct {
 	AttributeInfo               string `json:"attributeInfo,omitempty"`               //
 	CliStatus                   string `json:"cliStatus,omitempty"`                   //
 	DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
-	EndTime                     string `json:"endTime,omitempty"`                     //
+	EndTime                     int    `json:"endTime,omitempty"`                     //
 	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
 	ID                          string `json:"id,omitempty"`                          //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
@@ -808,7 +808,7 @@ type GetDiscoveryJobsByIPResponseResponse struct {
 	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
 	PingStatus                  string `json:"pingStatus,omitempty"`                  //
 	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-	StartTime                   string `json:"startTime,omitempty"`                   //
+	StartTime                   int    `json:"startTime,omitempty"`                   //
 	TaskID                      string `json:"taskId,omitempty"`                      //
 }
 
@@ -833,7 +833,7 @@ type GetListOfDiscoveriesByDiscoveryIDResponseResponse struct {
 	AttributeInfo               string `json:"attributeInfo,omitempty"`               //
 	CliStatus                   string `json:"cliStatus,omitempty"`                   //
 	DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
-	EndTime                     string `json:"endTime,omitempty"`                     //
+	EndTime                     int    `json:"endTime,omitempty"`                     //
 	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
 	ID                          string `json:"id,omitempty"`                          //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
@@ -844,7 +844,7 @@ type GetListOfDiscoveriesByDiscoveryIDResponseResponse struct {
 	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
 	PingStatus                  string `json:"pingStatus,omitempty"`                  //
 	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-	StartTime                   string `json:"startTime,omitempty"`                   //
+	StartTime                   int    `json:"startTime,omitempty"`                   //
 	TaskID                      string `json:"taskId,omitempty"`                      //
 }
 
@@ -1011,6 +1011,11 @@ func (s *DiscoveryService) CreateCLICredentials(createCLICredentialsRequest *Cre
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createCLICredentials")
+	}
+
 	result := response.Result().(*CreateCLICredentialsResponse)
 	return result, response, err
 }
@@ -1031,6 +1036,11 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createHTTPReadCredentials")
+	}
+
 	result := response.Result().(*CreateHTTPReadCredentialsResponse)
 	return result, response, err
 }
@@ -1038,7 +1048,7 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRe
 // CreateHTTPWriteCredentials createHTTPWriteCredentials
 /* Adds global HTTP write credentials
  */
-func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *[]CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
+func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentialsRequest *CreateHTTPWriteCredentialsRequest) (*CreateHTTPWriteCredentialsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/http-write"
 
@@ -1051,6 +1061,11 @@ func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentials
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createHTTPWriteCredentials")
+	}
+
 	result := response.Result().(*CreateHTTPWriteCredentialsResponse)
 	return result, response, err
 }
@@ -1071,6 +1086,11 @@ func (s *DiscoveryService) CreateNetconfCredentials(createNetconfCredentialsRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createNetconfCredentials")
+	}
+
 	result := response.Result().(*CreateNetconfCredentialsResponse)
 	return result, response, err
 }
@@ -1091,6 +1111,11 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(createSNMPReadCommunityReques
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createSNMPReadCommunity")
+	}
+
 	result := response.Result().(*CreateSNMPReadCommunityResponse)
 	return result, response, err
 }
@@ -1111,6 +1136,11 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(createSNMPWriteCommunityRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createSNMPWriteCommunity")
+	}
+
 	result := response.Result().(*CreateSNMPWriteCommunityResponse)
 	return result, response, err
 }
@@ -1131,6 +1161,11 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(createSNMPv3CredentialsReques
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createSNMPv3Credentials")
+	}
+
 	result := response.Result().(*CreateSNMPv3CredentialsResponse)
 	return result, response, err
 }
@@ -1151,6 +1186,11 @@ func (s *DiscoveryService) CreateUpdateSNMPProperties(createUpdateSNMPProperties
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createUpdateSNMPProperties")
+	}
+
 	result := response.Result().(*CreateUpdateSNMPPropertiesResponse)
 	return result, response, err
 }
@@ -1158,7 +1198,7 @@ func (s *DiscoveryService) CreateUpdateSNMPProperties(createUpdateSNMPProperties
 // DeleteAllDiscovery deleteAllDiscovery
 /* Stops all the discoveries and removes them
  */
-func (s *DiscoveryService) DeleteAllDiscovery() (*resty.Response, error) {
+func (s *DiscoveryService) DeleteAllDiscovery() (*DeleteAllDiscoveryResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/discovery"
 
@@ -1167,18 +1207,22 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*resty.Response, error) {
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteAllDiscovery")
+	}
 
+	result := response.Result().(*DeleteAllDiscoveryResponse)
+	return result, response, err
 }
 
 // DeleteDiscoveryByID deleteDiscoveryById
 /* Stops the discovery for the given Discovery ID and removes it. Discovery ID can be obtained using the "Get Discoveries by range" API.
 @param id Discovery ID
 */
-func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*resty.Response, error) {
+func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*DeleteDiscoveryByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/discovery/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -1188,11 +1232,15 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*resty.Response, erro
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDiscoveryById")
+	}
 
+	result := response.Result().(*DeleteDiscoveryByIDResponse)
+	return result, response, err
 }
 
 // DeleteDiscoveryBySpecifiedRange deleteDiscoveryBySpecifiedRange
@@ -1200,7 +1248,7 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*resty.Response, erro
 @param startIndex Start index
 @param recordsToDelete Number of records to delete
 */
-func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recordsToDelete int) (*resty.Response, error) {
+func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recordsToDelete int) (*DeleteDiscoveryBySpecifiedRangeResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/discovery/{startIndex}/{recordsToDelete}"
 	path = strings.Replace(path, "{"+"startIndex"+"}", fmt.Sprintf("%v", startIndex), -1)
@@ -1211,18 +1259,22 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDiscoveryBySpecifiedRange")
+	}
 
+	result := response.Result().(*DeleteDiscoveryBySpecifiedRangeResponse)
+	return result, response, err
 }
 
 // DeleteGlobalCredentialsByID deleteGlobalCredentialsById
 /* Deletes global credential for the given ID
 @param globalCredentialID ID of global-credential
 */
-func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string) (*resty.Response, error) {
+func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string) (*DeleteGlobalCredentialsByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-credential/{globalCredentialId}"
 	path = strings.Replace(path, "{"+"globalCredentialId"+"}", fmt.Sprintf("%v", globalCredentialID), -1)
@@ -1232,11 +1284,15 @@ func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteGlobalCredentialsById")
+	}
 
+	result := response.Result().(*DeleteGlobalCredentialsByIDResponse)
+	return result, response, err
 }
 
 // GetCountOfAllDiscoveryJobs getCountOfAllDiscoveryJobs
@@ -1254,6 +1310,11 @@ func (s *DiscoveryService) GetCountOfAllDiscoveryJobs() (*GetCountOfAllDiscovery
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getCountOfAllDiscoveryJobs")
+	}
+
 	result := response.Result().(*GetCountOfAllDiscoveryJobsResponse)
 	return result, response, err
 }
@@ -1275,6 +1336,11 @@ func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*GetCr
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getCredentialSubTypeByCredentialId")
+	}
+
 	result := response.Result().(*GetCredentialSubTypeByCredentialIDResponse)
 	return result, response, err
 }
@@ -1305,6 +1371,11 @@ func (s *DiscoveryService) GetDevicesDiscoveredByID(id string, getDevicesDiscove
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDevicesDiscoveredById")
+	}
+
 	result := response.Result().(*GetDevicesDiscoveredByIDResponse)
 	return result, response, err
 }
@@ -1339,6 +1410,11 @@ func (s *DiscoveryService) GetDiscoveredDevicesByRange(id string, startIndex int
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDiscoveredDevicesByRange")
+	}
+
 	result := response.Result().(*GetDiscoveredDevicesByRangeResponse)
 	return result, response, err
 }
@@ -1369,6 +1445,11 @@ func (s *DiscoveryService) GetDiscoveredNetworkDevicesByDiscoveryID(id string, g
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDiscoveredNetworkDevicesByDiscoveryId")
+	}
+
 	result := response.Result().(*GetDiscoveredNetworkDevicesByDiscoveryIDResponse)
 	return result, response, err
 }
@@ -1392,6 +1473,11 @@ func (s *DiscoveryService) GetDiscoveriesByRange(startIndex int, recordsToReturn
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDiscoveriesByRange")
+	}
+
 	result := response.Result().(*GetDiscoveriesByRangeResponse)
 	return result, response, err
 }
@@ -1413,6 +1499,11 @@ func (s *DiscoveryService) GetDiscoveryByID(id string) (*GetDiscoveryByIDRespons
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDiscoveryById")
+	}
+
 	result := response.Result().(*GetDiscoveryByIDResponse)
 	return result, response, err
 }
@@ -1447,6 +1538,11 @@ func (s *DiscoveryService) GetDiscoveryJobsByIP(getDiscoveryJobsByIPQueryParams 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDiscoveryJobsByIP")
+	}
+
 	result := response.Result().(*GetDiscoveryJobsByIPResponse)
 	return result, response, err
 }
@@ -1479,6 +1575,11 @@ func (s *DiscoveryService) GetGlobalCredentials(getGlobalCredentialsQueryParams 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getGlobalCredentials")
+	}
+
 	result := response.Result().(*GetGlobalCredentialsResponse)
 	return result, response, err
 }
@@ -1513,6 +1614,11 @@ func (s *DiscoveryService) GetListOfDiscoveriesByDiscoveryID(id string, getListO
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getListOfDiscoveriesByDiscoveryId")
+	}
+
 	result := response.Result().(*GetListOfDiscoveriesByDiscoveryIDResponse)
 	return result, response, err
 }
@@ -1559,6 +1665,11 @@ func (s *DiscoveryService) GetNetworkDevicesFromDiscovery(id string, getNetworkD
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNetworkDevicesFromDiscovery")
+	}
+
 	result := response.Result().(*GetNetworkDevicesFromDiscoveryResponse)
 	return result, response, err
 }
@@ -1578,6 +1689,11 @@ func (s *DiscoveryService) GetSNMPProperties() (*GetSNMPPropertiesResponse, *res
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSNMPProperties")
+	}
+
 	result := response.Result().(*GetSNMPPropertiesResponse)
 	return result, response, err
 }
@@ -1598,6 +1714,11 @@ func (s *DiscoveryService) StartDiscovery(startDiscoveryRequest *StartDiscoveryR
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation startDiscovery")
+	}
+
 	result := response.Result().(*StartDiscoveryResponse)
 	return result, response, err
 }
@@ -1618,6 +1739,11 @@ func (s *DiscoveryService) UpdateCLICredentials(updateCLICredentialsRequest *Upd
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateCLICredentials")
+	}
+
 	result := response.Result().(*UpdateCLICredentialsResponse)
 	return result, response, err
 }
@@ -1640,6 +1766,11 @@ func (s *DiscoveryService) UpdateGlobalCredentials(globalCredentialID string, up
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateGlobalCredentials")
+	}
+
 	result := response.Result().(*UpdateGlobalCredentialsResponse)
 	return result, response, err
 }
@@ -1660,6 +1791,11 @@ func (s *DiscoveryService) UpdateHTTPReadCredential(updateHTTPReadCredentialRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateHTTPReadCredential")
+	}
+
 	result := response.Result().(*UpdateHTTPReadCredentialResponse)
 	return result, response, err
 }
@@ -1680,6 +1816,11 @@ func (s *DiscoveryService) UpdateHTTPWriteCredentials(updateHTTPWriteCredentials
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateHTTPWriteCredentials")
+	}
+
 	result := response.Result().(*UpdateHTTPWriteCredentialsResponse)
 	return result, response, err
 }
@@ -1700,6 +1841,11 @@ func (s *DiscoveryService) UpdateNetconfCredentials(updateNetconfCredentialsRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateNetconfCredentials")
+	}
+
 	result := response.Result().(*UpdateNetconfCredentialsResponse)
 	return result, response, err
 }
@@ -1720,6 +1866,11 @@ func (s *DiscoveryService) UpdateSNMPReadCommunity(updateSNMPReadCommunityReques
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateSNMPReadCommunity")
+	}
+
 	result := response.Result().(*UpdateSNMPReadCommunityResponse)
 	return result, response, err
 }
@@ -1740,6 +1891,11 @@ func (s *DiscoveryService) UpdateSNMPWriteCommunity(updateSNMPWriteCommunityRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateSNMPWriteCommunity")
+	}
+
 	result := response.Result().(*UpdateSNMPWriteCommunityResponse)
 	return result, response, err
 }
@@ -1760,6 +1916,11 @@ func (s *DiscoveryService) UpdateSNMPv3Credentials(updateSNMPv3CredentialsReques
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateSNMPv3Credentials")
+	}
+
 	result := response.Result().(*UpdateSNMPv3CredentialsResponse)
 	return result, response, err
 }
@@ -1780,6 +1941,11 @@ func (s *DiscoveryService) UpdatesAnExistingDiscoveryBySpecifiedID(updatesAnExis
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updatesAnExistingDiscoveryBySpecifiedId")
+	}
+
 	result := response.Result().(*UpdatesAnExistingDiscoveryBySpecifiedIDResponse)
 	return result, response, err
 }

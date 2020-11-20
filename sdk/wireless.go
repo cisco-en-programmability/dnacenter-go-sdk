@@ -84,26 +84,26 @@ type CreateOrUpdateRFProfileRequest struct {
 
 // CreateOrUpdateRFProfileRequestRadioTypeAProperties is the createOrUpdateRFProfileRequestRadioTypeAProperties definition
 type CreateOrUpdateRFProfileRequestRadioTypeAProperties struct {
-	DataRates          string `json:"dataRates,omitempty"`          //
-	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
-	MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
-	MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
-	ParentProfile      string `json:"parentProfile,omitempty"`      //
-	PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
-	RadioChannels      string `json:"radioChannels,omitempty"`      //
-	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
+	DataRates          string  `json:"dataRates,omitempty"`          //
+	MandatoryDataRates string  `json:"mandatoryDataRates,omitempty"` //
+	MaxPowerLevel      float64 `json:"maxPowerLevel,omitempty"`      //
+	MinPowerLevel      float64 `json:"minPowerLevel,omitempty"`      //
+	ParentProfile      string  `json:"parentProfile,omitempty"`      //
+	PowerThresholdV1   float64 `json:"powerThresholdV1,omitempty"`   //
+	RadioChannels      string  `json:"radioChannels,omitempty"`      //
+	RxSopThreshold     string  `json:"rxSopThreshold,omitempty"`     //
 }
 
 // CreateOrUpdateRFProfileRequestRadioTypeBProperties is the createOrUpdateRFProfileRequestRadioTypeBProperties definition
 type CreateOrUpdateRFProfileRequestRadioTypeBProperties struct {
-	DataRates          string `json:"dataRates,omitempty"`          //
-	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` //
-	MaxPowerLevel      int    `json:"maxPowerLevel,omitempty"`      //
-	MinPowerLevel      int    `json:"minPowerLevel,omitempty"`      //
-	ParentProfile      string `json:"parentProfile,omitempty"`      //
-	PowerThresholdV1   int    `json:"powerThresholdV1,omitempty"`   //
-	RadioChannels      string `json:"radioChannels,omitempty"`      //
-	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     //
+	DataRates          string  `json:"dataRates,omitempty"`          //
+	MandatoryDataRates string  `json:"mandatoryDataRates,omitempty"` //
+	MaxPowerLevel      float64 `json:"maxPowerLevel,omitempty"`      //
+	MinPowerLevel      float64 `json:"minPowerLevel,omitempty"`      //
+	ParentProfile      string  `json:"parentProfile,omitempty"`      //
+	PowerThresholdV1   float64 `json:"powerThresholdV1,omitempty"`   //
+	RadioChannels      string  `json:"radioChannels,omitempty"`      //
+	RxSopThreshold     string  `json:"rxSopThreshold,omitempty"`     //
 }
 
 // CreateWirelessProfileRequest is the createWirelessProfileRequest definition
@@ -566,6 +566,11 @@ func (s *WirelessService) APProvision(aPProvisionRequest *[]APProvisionRequest) 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation aPProvision")
+	}
+
 	result := response.Result().(*APProvisionResponse)
 	return result, response, err
 }
@@ -587,6 +592,11 @@ func (s *WirelessService) CreateAndProvisionSSID(createAndProvisionSSIDRequest *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createAndProvisionSSID")
+	}
+
 	result := response.Result().(*CreateAndProvisionSSIDResponse)
 	return result, response, err
 }
@@ -607,6 +617,11 @@ func (s *WirelessService) CreateEnterpriseSSID(createEnterpriseSSIDRequest *Crea
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createEnterpriseSSID")
+	}
+
 	result := response.Result().(*CreateEnterpriseSSIDResponse)
 	return result, response, err
 }
@@ -627,6 +642,11 @@ func (s *WirelessService) CreateOrUpdateRFProfile(createOrUpdateRFProfileRequest
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createOrUpdateRFProfile")
+	}
+
 	result := response.Result().(*CreateOrUpdateRFProfileResponse)
 	return result, response, err
 }
@@ -647,6 +667,11 @@ func (s *WirelessService) CreateWirelessProfile(createWirelessProfileRequest *Cr
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createWirelessProfile")
+	}
+
 	result := response.Result().(*CreateWirelessProfileResponse)
 	return result, response, err
 }
@@ -655,7 +680,7 @@ func (s *WirelessService) CreateWirelessProfile(createWirelessProfileRequest *Cr
 /* Deletes given enterprise SSID
 @param ssidName Enter the SSID name to be deleted
 */
-func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*resty.Response, error) {
+func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*DeleteEnterpriseSSIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/enterprise-ssid/{ssidName}"
 	path = strings.Replace(path, "{"+"ssidName"+"}", fmt.Sprintf("%v", ssidName), -1)
@@ -665,18 +690,22 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*resty.Response
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteEnterpriseSSID")
+	}
 
+	result := response.Result().(*DeleteEnterpriseSSIDResponse)
+	return result, response, err
 }
 
 // DeleteRFProfiles deleteRFProfiles
 /* Delete RF profile(s)
 @param rfProfileName
 */
-func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*resty.Response, error) {
+func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*DeleteRFProfilesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/wireless/rf-profile/{rfProfileName}"
 	path = strings.Replace(path, "{"+"rfProfileName"+"}", fmt.Sprintf("%v", rfProfileName), -1)
@@ -686,11 +715,15 @@ func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*resty.Respons
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteRFProfiles")
+	}
 
+	result := response.Result().(*DeleteRFProfilesResponse)
+	return result, response, err
 }
 
 // DeleteSSIDAndProvisionItToDevices deleteSSIDAndProvisionItToDevices
@@ -699,7 +732,7 @@ func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*resty.Respons
 @param ssidName
 @param managedAPLocations
 */
-func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, managedAPLocations string) (*resty.Response, error) {
+func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, managedAPLocations string) (*DeleteSSIDAndProvisionItToDevicesResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/ssid/{ssidName}/{managedAPLocations}"
 	path = strings.Replace(path, "{"+"ssidName"+"}", fmt.Sprintf("%v", ssidName), -1)
@@ -710,33 +743,42 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteSSIDAndProvisionItToDevices")
+	}
 
+	result := response.Result().(*DeleteSSIDAndProvisionItToDevicesResponse)
+	return result, response, err
 }
 
 // DeleteWirelessProfile deleteWirelessProfile
 /* Delete the Wireless Profile from DNAC whose name is provided.
 @param wirelessProfileName
 */
-func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*resty.Response, error) {
+// func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string, deleteWirelessProfileRequest *DeleteWirelessProfileRequest) (*DeleteWirelessProfileResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
-	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
+// 	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
+// 	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
 
-	response, err := RestyClient.R().
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(deleteWirelessProfileRequest).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	return response, err
+// 	if response.IsError() {
+// 		return nil, response, fmt.Errorf("Error with operation deleteWirelessProfile")
+// 	}
 
-}
+// 	result := response.Result().(*DeleteWirelessProfileResponse)
+// 	return result, response, err
+// }
 
 // GetEnterpriseSSIDQueryParams defines the query parameters for this request
 type GetEnterpriseSSIDQueryParams struct {
@@ -762,6 +804,11 @@ func (s *WirelessService) GetEnterpriseSSID(getEnterpriseSSIDQueryParams *GetEnt
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getEnterpriseSSID")
+	}
+
 	result := response.Result().(*GetEnterpriseSSIDResponse)
 	return result, response, err
 }
@@ -790,6 +837,11 @@ func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetW
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getWirelessProfile")
+	}
+
 	result := response.Result().(*GetWirelessProfileResponse)
 	return result, response, err
 }
@@ -811,6 +863,11 @@ func (s *WirelessService) Provision(provisionRequest *[]ProvisionRequest) (*Prov
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation provision")
+	}
+
 	result := response.Result().(*ProvisionResponse)
 	return result, response, err
 }
@@ -832,6 +889,11 @@ func (s *WirelessService) ProvisionUpdate(provisionUpdateRequest *[]ProvisionUpd
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation provisionUpdate")
+	}
+
 	result := response.Result().(*ProvisionUpdateResponse)
 	return result, response, err
 }
@@ -860,16 +922,21 @@ func (s *WirelessService) RetrieveRFProfiles(retrieveRFProfilesQueryParams *Retr
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation retrieveRFProfiles")
+	}
+
 	result := response.Result().(*RetrieveRFProfilesResponse)
 	return result, response, err
 }
 
 // SensorTestResultsQueryParams defines the query parameters for this request
 type SensorTestResultsQueryParams struct {
-	SiteID        string `url:"siteId,omitempty"`        // Assurance site UUID
-	StartTime     int    `url:"startTime,omitempty"`     // The epoch time in milliseconds
-	EndTime       int    `url:"endTime,omitempty"`       // The epoch time in milliseconds
-	TestFailureBy string `url:"testFailureBy,omitempty"` // Obtain failure statistics group by "area", "building", or "floor"
+	SiteID        string  `url:"siteId,omitempty"`        // Assurance site UUID
+	StartTime     float64 `url:"startTime,omitempty"`     // The epoch time in milliseconds
+	EndTime       float64 `url:"endTime,omitempty"`       // The epoch time in milliseconds
+	TestFailureBy string  `url:"testFailureBy,omitempty"` // Obtain failure statistics group by "area", "building", or "floor"
 }
 
 // SensorTestResults sensorTestResults
@@ -894,6 +961,11 @@ func (s *WirelessService) SensorTestResults(sensorTestResultsQueryParams *Sensor
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation sensorTestResults")
+	}
+
 	result := response.Result().(*SensorTestResultsResponse)
 	return result, response, err
 }
@@ -914,6 +986,11 @@ func (s *WirelessService) UpdateWirelessProfile(updateWirelessProfileRequest *Up
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateWirelessProfile")
+	}
+
 	result := response.Result().(*UpdateWirelessProfileResponse)
 	return result, response, err
 }

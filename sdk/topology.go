@@ -96,7 +96,7 @@ type GetOverallNetworkHealthResponse struct {
 	MonitoredHealthyDevices   int                                                  `json:"monitoredHealthyDevices,omitempty"`   //
 	MonitoredUnHealthyDevices int                                                  `json:"monitoredUnHealthyDevices,omitempty"` //
 	Response                  []GetOverallNetworkHealthResponseResponse            `json:"response,omitempty"`                  //
-	UnMonitoredDevices        int                                                  `json:"unMonitoredDevices,omitempty"`        //
+	UnMonitoredDevices        float64                                              `json:"unMonitoredDevices,omitempty"`        //
 	Version                   string                                               `json:"version,omitempty"`                   //
 }
 
@@ -225,7 +225,7 @@ type GetSiteTopologyResponseResponseSites struct {
 	ID                 string `json:"id,omitempty"`                 //
 	Latitude           string `json:"latitude,omitempty"`           //
 	LocationAddress    string `json:"locationAddress,omitempty"`    //
-	LocationCountry    string `json:"locationCountry,omitempty"`    //
+	LocationCountry    int    `json:"locationCountry,omitempty"`    //
 	LocationType       string `json:"locationType,omitempty"`       //
 	Longitude          string `json:"longitude,omitempty"`          //
 	Name               string `json:"name,omitempty"`               //
@@ -333,6 +333,11 @@ func (s *TopologyService) GetL3TopologyDetails(topologyType string) (*GetL3Topol
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getL3TopologyDetails")
+	}
+
 	result := response.Result().(*GetL3TopologyDetailsResponse)
 	return result, response, err
 }
@@ -361,6 +366,11 @@ func (s *TopologyService) GetOverallNetworkHealth(getOverallNetworkHealthQueryPa
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getOverallNetworkHealth")
+	}
+
 	result := response.Result().(*GetOverallNetworkHealthResponse)
 	return result, response, err
 }
@@ -389,6 +399,11 @@ func (s *TopologyService) GetPhysicalTopology(getPhysicalTopologyQueryParams *Ge
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPhysicalTopology")
+	}
+
 	result := response.Result().(*GetPhysicalTopologyResponse)
 	return result, response, err
 }
@@ -408,6 +423,11 @@ func (s *TopologyService) GetSiteTopology() (*GetSiteTopologyResponse, *resty.Re
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSiteTopology")
+	}
+
 	result := response.Result().(*GetSiteTopologyResponse)
 	return result, response, err
 }
@@ -429,6 +449,11 @@ func (s *TopologyService) GetTopologyDetails(vlanID string) (*GetTopologyDetails
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTopologyDetails")
+	}
+
 	result := response.Result().(*GetTopologyDetailsResponse)
 	return result, response, err
 }
@@ -448,6 +473,11 @@ func (s *TopologyService) GetVLANDetails() (*GetVLANDetailsResponse, *resty.Resp
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getVLANDetails")
+	}
+
 	result := response.Result().(*GetVLANDetailsResponse)
 	return result, response, err
 }

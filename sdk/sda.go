@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -423,7 +425,7 @@ type GetSDAFabricCountResponse struct {
 // GetSDAFabricCountResponseResponse is the getSDAFabricCountResponseResponse definition
 type GetSDAFabricCountResponseResponse struct {
 	Description string `json:"description,omitempty"` //
-	FabricCount string `json:"fabricCount,omitempty"` //
+	FabricCount int    `json:"fabricCount,omitempty"` //
 	Status      string `json:"status,omitempty"`      //
 }
 
@@ -518,7 +520,7 @@ type GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceInterfaceInfo []str
 // GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettings is the getsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettings definition
 type GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettings struct {
 	ConnectedTo                   []string                                                                                  `json:"connectedTo,omitempty"`                   //
-	CPU                           int                                                                                       `json:"cpu,omitempty"`                           //
+	CPU                           float64                                                                                   `json:"cpu,omitempty"`                           //
 	DeployPending                 string                                                                                    `json:"deployPending,omitempty"`                 //
 	DhcpEnabled                   bool                                                                                      `json:"dhcpEnabled,omitempty"`                   //
 	DisplayName                   string                                                                                    `json:"displayName,omitempty"`                   //
@@ -530,9 +532,9 @@ type GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettings struct {
 	InstanceTenantID              string                                                                                    `json:"instanceTenantId,omitempty"`              //
 	InstanceVersion               int                                                                                       `json:"instanceVersion,omitempty"`               //
 	InternalDomainProtocolNumber  string                                                                                    `json:"internalDomainProtocolNumber,omitempty"`  //
-	Memory                        int                                                                                       `json:"memory,omitempty"`                        //
+	Memory                        float64                                                                                   `json:"memory,omitempty"`                        //
 	NodeType                      []string                                                                                  `json:"nodeType,omitempty"`                      //
-	Storage                       int                                                                                       `json:"storage,omitempty"`                       //
+	Storage                       float64                                                                                   `json:"storage,omitempty"`                       //
 }
 
 // GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsConnectedTo is the getsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsConnectedTo definition
@@ -551,7 +553,7 @@ type GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnecti
 	L2Handoff                    []string                                                                                           `json:"l2Handoff,omitempty"`                    //
 	L3Handoff                    []GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                    //
 	PolicyPropagationEnabled     bool                                                                                               `json:"policyPropagationEnabled,omitempty"`     //
-	PolicySgtTag                 int                                                                                                `json:"policySgtTag,omitempty"`                 //
+	PolicySgtTag                 float64                                                                                            `json:"policySgtTag,omitempty"`                 //
 }
 
 // GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnectivitySettingsL2Handoff is the getsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnectivitySettingsL2Handoff definition
@@ -564,7 +566,7 @@ type GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnecti
 	ID               string                                                                                                         `json:"id,omitempty"`               //
 	InstanceID       int                                                                                                            `json:"instanceId,omitempty"`       //
 	InstanceTenantID string                                                                                                         `json:"instanceTenantId,omitempty"` //
-	InstanceVersion  int                                                                                                            `json:"instanceVersion,omitempty"`  //
+	InstanceVersion  float64                                                                                                        `json:"instanceVersion,omitempty"`  //
 	LocalIPAddress   string                                                                                                         `json:"localIpAddress,omitempty"`   //
 	RemoteIPAddress  string                                                                                                         `json:"remoteIpAddress,omitempty"`  //
 	VirtualNetwork   GetsBorderDeviceDetailFromSDAFabricResponsePayloadDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"`   //
@@ -682,9 +684,6 @@ type UpdateDefaultAuthenticationProfileInSDAFabricResponse struct {
 	Status             string `json:"status,omitempty"`             //
 }
 
-// DeletesBorderDeviceFromSDAFabricRequest is the DeletesBorderDeviceFromSDAFabricRequest definition
-type DeletesBorderDeviceFromSDAFabricRequest []string
-
 // AddControlPlaneDeviceInSDAFabric addControlPlaneDeviceInSDAFabric
 /* Add control plane device in SDA Fabric
  */
@@ -701,6 +700,11 @@ func (s *SDAService) AddControlPlaneDeviceInSDAFabric(addControlPlaneDeviceInSDA
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addControlPlaneDeviceInSDAFabric")
+	}
+
 	result := response.Result().(*AddControlPlaneDeviceInSDAFabricResponse)
 	return result, response, err
 }
@@ -721,6 +725,11 @@ func (s *SDAService) AddDefaultAuthenticationProfileInSDAFabric(addDefaultAuthen
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addDefaultAuthenticationProfileInSDAFabric")
+	}
+
 	result := response.Result().(*AddDefaultAuthenticationProfileInSDAFabricResponse)
 	return result, response, err
 }
@@ -741,6 +750,11 @@ func (s *SDAService) AddEdgeDeviceInSDAFabric(addEdgeDeviceInSDAFabricRequest *[
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addEdgeDeviceInSDAFabric")
+	}
+
 	result := response.Result().(*AddEdgeDeviceInSDAFabricResponse)
 	return result, response, err
 }
@@ -761,6 +775,11 @@ func (s *SDAService) AddFabric(addFabricRequest *[]AddFabricRequest) (*AddFabric
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addFabric")
+	}
+
 	result := response.Result().(*AddFabricResponse)
 	return result, response, err
 }
@@ -781,6 +800,11 @@ func (s *SDAService) AddIPPoolInSDAVirtualNetwork(addIPPoolInSDAVirtualNetworkRe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addIPPoolInSDAVirtualNetwork")
+	}
+
 	result := response.Result().(*AddIPPoolInSDAVirtualNetworkResponse)
 	return result, response, err
 }
@@ -801,6 +825,11 @@ func (s *SDAService) AddPortAssignmentForAccessPointInSDAFabric(addPortAssignmen
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addPortAssignmentForAccessPointInSDAFabric")
+	}
+
 	result := response.Result().(*AddPortAssignmentForAccessPointInSDAFabricResponse)
 	return result, response, err
 }
@@ -821,6 +850,11 @@ func (s *SDAService) AddPortAssignmentForUserDeviceInSDAFabric(addPortAssignment
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addPortAssignmentForUserDeviceInSDAFabric")
+	}
+
 	result := response.Result().(*AddPortAssignmentForUserDeviceInSDAFabricResponse)
 	return result, response, err
 }
@@ -841,6 +875,11 @@ func (s *SDAService) AddSiteInSDAFabric(addSiteInSDAFabricRequest *[]AddSiteInSD
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addSiteInSDAFabric")
+	}
+
 	result := response.Result().(*AddSiteInSDAFabricResponse)
 	return result, response, err
 }
@@ -861,6 +900,11 @@ func (s *SDAService) AddVNInSDAFabric(addVNInSDAFabricRequest *[]AddVNInSDAFabri
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addVNInSDAFabric")
+	}
+
 	result := response.Result().(*AddVNInSDAFabricResponse)
 	return result, response, err
 }
@@ -881,6 +925,11 @@ func (s *SDAService) AddsBorderDeviceInSDAFabric(addsBorderDeviceInSDAFabricRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addsBorderDeviceInSDAFabric")
+	}
+
 	result := response.Result().(*AddsBorderDeviceInSDAFabricResponse)
 	return result, response, err
 }
@@ -894,7 +943,7 @@ type DeleteControlPlaneDeviceInSDAFabricQueryParams struct {
 /* Delete control plane device in SDA Fabric
 @param deviceIPAddress Device IP Address
 */
-func (s *SDAService) DeleteControlPlaneDeviceInSDAFabric(deleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSDAFabricQueryParams) (*resty.Response, error) {
+func (s *SDAService) DeleteControlPlaneDeviceInSDAFabric(deleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSDAFabricQueryParams) (*DeleteControlPlaneDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
 
@@ -906,11 +955,15 @@ func (s *SDAService) DeleteControlPlaneDeviceInSDAFabric(deleteControlPlaneDevic
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteControlPlaneDeviceInSDAFabric")
+	}
 
+	result := response.Result().(*DeleteControlPlaneDeviceInSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams defines the query parameters for this request
@@ -922,7 +975,7 @@ type DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams struct {
 /* Add default authentication profile in SDA Fabric
 @param siteNameHierarchy siteNameHierarchy
 */
-func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams, deleteDefaultAuthenticationProfileFromSDAFabricRequest *[]DeleteDefaultAuthenticationProfileFromSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams, deleteDefaultAuthenticationProfileFromSDAFabricRequest *[]DeleteDefaultAuthenticationProfileFromSDAFabricRequest) (*DeleteDefaultAuthenticationProfileFromSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
@@ -935,11 +988,15 @@ func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefau
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDefaultAuthenticationProfileFromSDAFabric")
+	}
 
+	result := response.Result().(*DeleteDefaultAuthenticationProfileFromSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteEdgeDeviceFromSDAFabricQueryParams defines the query parameters for this request
@@ -951,7 +1008,7 @@ type DeleteEdgeDeviceFromSDAFabricQueryParams struct {
 /* Delete edge device from SDA Fabric.
 @param deviceIPAddress Device IP Address
 */
-func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSDAFabricQueryParams) (*resty.Response, error) {
+func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSDAFabricQueryParams) (*DeleteEdgeDeviceFromSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/edge-device"
 
@@ -963,11 +1020,15 @@ func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabric
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteEdgeDeviceFromSDAFabric")
+	}
 
+	result := response.Result().(*DeleteEdgeDeviceFromSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteIPPoolFromSDAVirtualNetworkQueryParams defines the query parameters for this request
@@ -981,7 +1042,7 @@ type DeleteIPPoolFromSDAVirtualNetworkQueryParams struct {
 @param ipPoolName ipPoolName
 @param virtualNetworkName virtualNetworkName
 */
-func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSDAVirtualNetworkQueryParams, deleteIPPoolFromSDAVirtualNetworkRequest *[]DeleteIPPoolFromSDAVirtualNetworkRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSDAVirtualNetworkQueryParams, deleteIPPoolFromSDAVirtualNetworkRequest *[]DeleteIPPoolFromSDAVirtualNetworkRequest) (*DeleteIPPoolFromSDAVirtualNetworkResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
@@ -994,11 +1055,15 @@ func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtua
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteIPPoolFromSDAVirtualNetwork")
+	}
 
+	result := response.Result().(*DeleteIPPoolFromSDAVirtualNetworkResponse)
+	return result, response, err
 }
 
 // DeletePortAssignmentForAccessPointInSDAFabricQueryParams defines the query parameters for this request
@@ -1012,7 +1077,7 @@ type DeletePortAssignmentForAccessPointInSDAFabricQueryParams struct {
 @param device-ip device-ip
 @param interfaceName interfaceName
 */
-func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSDAFabricQueryParams, deletePortAssignmentForAccessPointInSDAFabricRequest *[]DeletePortAssignmentForAccessPointInSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSDAFabricQueryParams, deletePortAssignmentForAccessPointInSDAFabricRequest *[]DeletePortAssignmentForAccessPointInSDAFabricRequest) (*DeletePortAssignmentForAccessPointInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
@@ -1025,11 +1090,15 @@ func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAss
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deletePortAssignmentForAccessPointInSDAFabric")
+	}
 
+	result := response.Result().(*DeletePortAssignmentForAccessPointInSDAFabricResponse)
+	return result, response, err
 }
 
 // DeletePortAssignmentForUserDeviceInSDAFabricQueryParams defines the query parameters for this request
@@ -1043,7 +1112,7 @@ type DeletePortAssignmentForUserDeviceInSDAFabricQueryParams struct {
 @param device-ip device-ip
 @param interfaceName interfaceName
 */
-func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSDAFabricQueryParams, deletePortAssignmentForUserDeviceInSDAFabricRequest *[]DeletePortAssignmentForUserDeviceInSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSDAFabricQueryParams, deletePortAssignmentForUserDeviceInSDAFabricRequest *[]DeletePortAssignmentForUserDeviceInSDAFabricRequest) (*DeletePortAssignmentForUserDeviceInSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
@@ -1056,11 +1125,15 @@ func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssi
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deletePortAssignmentForUserDeviceInSDAFabric")
+	}
 
+	result := response.Result().(*DeletePortAssignmentForUserDeviceInSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteSDAFabricQueryParams defines the query parameters for this request
@@ -1072,7 +1145,7 @@ type DeleteSDAFabricQueryParams struct {
 /* Delete SDA Fabric
 @param fabricName Fabric Name
 */
-func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabricQueryParams, deleteSDAFabricRequest *[]DeleteSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabricQueryParams, deleteSDAFabricRequest *[]DeleteSDAFabricRequest) (*DeleteSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric"
 
@@ -1085,11 +1158,15 @@ func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabric
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteSDAFabric")
+	}
 
+	result := response.Result().(*DeleteSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteSiteFromSDAFabricQueryParams defines the query parameters for this request
@@ -1101,7 +1178,7 @@ type DeleteSiteFromSDAFabricQueryParams struct {
 /* Delete Site from SDA Fabric
 @param siteNameHierarchy Site Name Hierarchy
 */
-func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams *DeleteSiteFromSDAFabricQueryParams, deleteSiteFromSDAFabricRequest *[]DeleteSiteFromSDAFabricRequest) (*resty.Response, error) {
+func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams *DeleteSiteFromSDAFabricQueryParams, deleteSiteFromSDAFabricRequest *[]DeleteSiteFromSDAFabricRequest) (*DeleteSiteFromSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
@@ -1114,11 +1191,15 @@ func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams 
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteSiteFromSDAFabric")
+	}
 
+	result := response.Result().(*DeleteSiteFromSDAFabricResponse)
+	return result, response, err
 }
 
 // DeleteVNFromSDAFabricQueryParams defines the query parameters for this request
@@ -1132,7 +1213,7 @@ type DeleteVNFromSDAFabricQueryParams struct {
 @param virtualNetworkName virtualNetworkName
 @param siteNameHierarchy siteNameHierarchy
 */
-func (s *SDAService) DeleteVNFromSDAFabric(deleteVNFromSDAFabricQueryParams *DeleteVNFromSDAFabricQueryParams) (*resty.Response, error) {
+func (s *SDAService) DeleteVNFromSDAFabric(deleteVNFromSDAFabricQueryParams *DeleteVNFromSDAFabricQueryParams) (*DeleteVNFromSDAFabricResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
 
@@ -1144,11 +1225,15 @@ func (s *SDAService) DeleteVNFromSDAFabric(deleteVNFromSDAFabricQueryParams *Del
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteVNFromSDAFabric")
+	}
 
+	result := response.Result().(*DeleteVNFromSDAFabricResponse)
+	return result, response, err
 }
 
 // DeletesBorderDeviceFromSDAFabricQueryParams defines the query parameters for this request
@@ -1160,25 +1245,29 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 /* Deletes border device from SDA Fabric
 @param deviceIPAddress Device IP Address
 */
-func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*resty.Response, error) {
+// func (s *SDAService) DeletesBorderDeviceFromSDAFabric(deletesBorderDeviceFromSDAFabricQueryParams *DeletesBorderDeviceFromSDAFabricQueryParams, deletesBorderDeviceFromSDAFabricRequest *DeletesBorderDeviceFromSDAFabricRequest) (*DeletesBorderDeviceFromSDAFabricResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/business/sda/border-device"
+// 	path := "/dna/intent/api/v1/business/sda/border-device"
 
-	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
+// 	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetBody(deletesBorderDeviceFromSDAFabricRequest).
-		SetError(&Error{}).
-		Delete(path)
+// 	response, err := RestyClient.R().
+// 		SetQueryString(queryString.Encode()).
+// 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
+// 		SetError(&Error{}).
+// 		Delete(path)
 
-	if err != nil {
-		return nil, err
-	}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
 
-	return response, err
+// 	if response.IsError() {
+// 		return nil, response, fmt.Errorf("Error with operation deletesBorderDeviceFromSDAFabric")
+// 	}
 
-}
+// 	result := response.Result().(*DeletesBorderDeviceFromSDAFabricResponse)
+// 	return result, response, err
+// }
 
 // GetControlPlaneDeviceFromSDAFabricQueryParams defines the query parameters for this request
 type GetControlPlaneDeviceFromSDAFabricQueryParams struct {
@@ -1204,6 +1293,11 @@ func (s *SDAService) GetControlPlaneDeviceFromSDAFabric(getControlPlaneDeviceFro
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getControlPlaneDeviceFromSDAFabric")
+	}
+
 	result := response.Result().(*GetControlPlaneDeviceFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1232,6 +1326,11 @@ func (s *SDAService) GetDefaultAuthenticationProfileFromSDAFabric(getDefaultAuth
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDefaultAuthenticationProfileFromSDAFabric")
+	}
+
 	result := response.Result().(*GetDefaultAuthenticationProfileFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1260,6 +1359,11 @@ func (s *SDAService) GetDeviceInfoFromSDAFabric(getDeviceInfoFromSDAFabricQueryP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceInfoFromSDAFabric")
+	}
+
 	result := response.Result().(*GetDeviceInfoFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1288,6 +1392,11 @@ func (s *SDAService) GetDeviceRoleInSDAFabric(getDeviceRoleInSDAFabricQueryParam
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceRoleInSDAFabric")
+	}
+
 	result := response.Result().(*GetDeviceRoleInSDAFabricResponse)
 	return result, response, err
 }
@@ -1316,6 +1425,11 @@ func (s *SDAService) GetEdgeDeviceFromSDAFabric(getEdgeDeviceFromSDAFabricQueryP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getEdgeDeviceFromSDAFabric")
+	}
+
 	result := response.Result().(*GetEdgeDeviceFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1346,6 +1460,11 @@ func (s *SDAService) GetIPPoolFromSDAVirtualNetwork(getIPPoolFromSDAVirtualNetwo
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getIPPoolFromSDAVirtualNetwork")
+	}
+
 	result := response.Result().(*GetIPPoolFromSDAVirtualNetworkResponse)
 	return result, response, err
 }
@@ -1376,6 +1495,11 @@ func (s *SDAService) GetPortAssignmentForAccessPointInSDAFabric(getPortAssignmen
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPortAssignmentForAccessPointInSDAFabric")
+	}
+
 	result := response.Result().(*GetPortAssignmentForAccessPointInSDAFabricResponse)
 	return result, response, err
 }
@@ -1406,6 +1530,11 @@ func (s *SDAService) GetPortAssignmentForUserDeviceInSDAFabric(getPortAssignment
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPortAssignmentForUserDeviceInSDAFabric")
+	}
+
 	result := response.Result().(*GetPortAssignmentForUserDeviceInSDAFabricResponse)
 	return result, response, err
 }
@@ -1425,6 +1554,11 @@ func (s *SDAService) GetSDAFabricCount() (*GetSDAFabricCountResponse, *resty.Res
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSDAFabricCount")
+	}
+
 	result := response.Result().(*GetSDAFabricCountResponse)
 	return result, response, err
 }
@@ -1453,6 +1587,11 @@ func (s *SDAService) GetSDAFabricInfo(getSDAFabricInfoQueryParams *GetSDAFabricI
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSDAFabricInfo")
+	}
+
 	result := response.Result().(*GetSDAFabricInfoResponse)
 	return result, response, err
 }
@@ -1481,6 +1620,11 @@ func (s *SDAService) GetSiteFromSDAFabric(getSiteFromSDAFabricQueryParams *GetSi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSiteFromSDAFabric")
+	}
+
 	result := response.Result().(*GetSiteFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1511,6 +1655,11 @@ func (s *SDAService) GetVNFromSDAFabric(getVNFromSDAFabricQueryParams *GetVNFrom
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getVNFromSDAFabric")
+	}
+
 	result := response.Result().(*GetVNFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1539,6 +1688,11 @@ func (s *SDAService) GetsBorderDeviceDetailFromSDAFabric(getsBorderDeviceDetailF
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getsBorderDeviceDetailFromSDAFabric")
+	}
+
 	result := response.Result().(*GetsBorderDeviceDetailFromSDAFabricResponse)
 	return result, response, err
 }
@@ -1559,6 +1713,11 @@ func (s *SDAService) UpdateDefaultAuthenticationProfileInSDAFabric(updateDefault
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateDefaultAuthenticationProfileInSDAFabric")
+	}
+
 	result := response.Result().(*UpdateDefaultAuthenticationProfileInSDAFabricResponse)
 	return result, response, err
 }

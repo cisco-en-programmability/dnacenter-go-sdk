@@ -354,9 +354,9 @@ type DeployTemplateResponse struct {
 	DeploymentName  string                          `json:"deploymentName,omitempty"`  //
 	Devices         []DeployTemplateResponseDevices `json:"devices,omitempty"`         //
 	Duration        string                          `json:"duration,omitempty"`        //
-	EndTime         string                          `json:"endTime,omitempty"`         //
+	EndTime         int                             `json:"endTime,omitempty"`         //
 	ProjectName     string                          `json:"projectName,omitempty"`     //
-	StartTime       string                          `json:"startTime,omitempty"`       //
+	StartTime       int                             `json:"startTime,omitempty"`       //
 	Status          string                          `json:"status,omitempty"`          //
 	TemplateName    string                          `json:"templateName,omitempty"`    //
 	TemplateVersion string                          `json:"templateVersion,omitempty"` //
@@ -366,10 +366,10 @@ type DeployTemplateResponse struct {
 type DeployTemplateResponseDevices struct {
 	DeviceID  string `json:"deviceId,omitempty"`  //
 	Duration  string `json:"duration,omitempty"`  //
-	EndTime   string `json:"endTime,omitempty"`   //
+	EndTime   int    `json:"endTime,omitempty"`   //
 	IPAddress string `json:"ipAddress,omitempty"` //
 	Name      string `json:"name,omitempty"`      //
-	StartTime string `json:"startTime,omitempty"` //
+	StartTime int    `json:"startTime,omitempty"` //
 	Status    string `json:"status,omitempty"`    //
 }
 
@@ -393,9 +393,9 @@ type GetTemplateDeploymentStatusResponse struct {
 	DeploymentName  string                                       `json:"deploymentName,omitempty"`  //
 	Devices         []GetTemplateDeploymentStatusResponseDevices `json:"devices,omitempty"`         //
 	Duration        string                                       `json:"duration,omitempty"`        //
-	EndTime         string                                       `json:"endTime,omitempty"`         //
+	EndTime         int                                          `json:"endTime,omitempty"`         //
 	ProjectName     string                                       `json:"projectName,omitempty"`     //
-	StartTime       string                                       `json:"startTime,omitempty"`       //
+	StartTime       int                                          `json:"startTime,omitempty"`       //
 	Status          string                                       `json:"status,omitempty"`          //
 	TemplateName    string                                       `json:"templateName,omitempty"`    //
 	TemplateVersion string                                       `json:"templateVersion,omitempty"` //
@@ -405,10 +405,10 @@ type GetTemplateDeploymentStatusResponse struct {
 type GetTemplateDeploymentStatusResponseDevices struct {
 	DeviceID  string `json:"deviceId,omitempty"`  //
 	Duration  string `json:"duration,omitempty"`  //
-	EndTime   string `json:"endTime,omitempty"`   //
+	EndTime   int    `json:"endTime,omitempty"`   //
 	IPAddress string `json:"ipAddress,omitempty"` //
 	Name      string `json:"name,omitempty"`      //
-	StartTime string `json:"startTime,omitempty"` //
+	StartTime int    `json:"startTime,omitempty"` //
 	Status    string `json:"status,omitempty"`    //
 }
 
@@ -538,9 +538,9 @@ type GetTemplateVersionsResponse struct {
 
 // GetTemplateVersionsResponseVersionsInfo is the getTemplateVersionsResponseVersionsInfo definition
 type GetTemplateVersionsResponseVersionsInfo struct {
-	Description string `json:"description,omitempty"` //
-	ID          string `json:"id,omitempty"`          //
-	VersionTime int    `json:"versionTime,omitempty"` //
+	Description string  `json:"description,omitempty"` //
+	ID          string  `json:"id,omitempty"`          //
+	VersionTime float64 `json:"versionTime,omitempty"` //
 }
 
 // GetsTheTemplatesAvailableResponse is the getsTheTemplatesAvailableResponse definition
@@ -555,9 +555,9 @@ type GetsTheTemplatesAvailableResponse struct {
 
 // GetsTheTemplatesAvailableResponseVersionsInfo is the getsTheTemplatesAvailableResponseVersionsInfo definition
 type GetsTheTemplatesAvailableResponseVersionsInfo struct {
-	Description string `json:"description,omitempty"` //
-	ID          string `json:"id,omitempty"`          //
-	VersionTime int    `json:"versionTime,omitempty"` //
+	Description string  `json:"description,omitempty"` //
+	ID          string  `json:"id,omitempty"`          //
+	VersionTime float64 `json:"versionTime,omitempty"` //
 }
 
 // PreviewTemplateResponse is the previewTemplateResponse definition
@@ -619,6 +619,11 @@ func (s *ConfigurationTemplatesService) CreateProject(createProjectRequest *Crea
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createProject")
+	}
+
 	result := response.Result().(*CreateProjectResponse)
 	return result, response, err
 }
@@ -641,6 +646,11 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, createT
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createTemplate")
+	}
+
 	result := response.Result().(*CreateTemplateResponse)
 	return result, response, err
 }
@@ -649,7 +659,7 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, createT
 /* Deletes an existing Project
 @param projectID projectId
 */
-func (s *ConfigurationTemplatesService) DeleteProject(projectID string) (*resty.Response, error) {
+func (s *ConfigurationTemplatesService) DeleteProject(projectID string) (*DeleteProjectResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}"
 	path = strings.Replace(path, "{"+"projectId"+"}", fmt.Sprintf("%v", projectID), -1)
@@ -659,18 +669,22 @@ func (s *ConfigurationTemplatesService) DeleteProject(projectID string) (*resty.
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteProject")
+	}
 
+	result := response.Result().(*DeleteProjectResponse)
+	return result, response, err
 }
 
 // DeleteTemplate deleteTemplate
 /* Deletes an existing template
 @param templateID templateId
 */
-func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*resty.Response, error) {
+func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*DeleteTemplateResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/template-programmer/template/{templateId}"
 	path = strings.Replace(path, "{"+"templateId"+"}", fmt.Sprintf("%v", templateID), -1)
@@ -680,11 +694,15 @@ func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*rest
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteTemplate")
+	}
 
+	result := response.Result().(*DeleteTemplateResponse)
+	return result, response, err
 }
 
 // DeployTemplate deployTemplate
@@ -703,6 +721,11 @@ func (s *ConfigurationTemplatesService) DeployTemplate(deployTemplateRequest *De
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deployTemplate")
+	}
+
 	result := response.Result().(*DeployTemplateResponse)
 	return result, response, err
 }
@@ -731,6 +754,11 @@ func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetP
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getProjects")
+	}
+
 	result := response.Result().(*GetProjectsResponse)
 	return result, response, err
 }
@@ -752,6 +780,11 @@ func (s *ConfigurationTemplatesService) GetTemplateDeploymentStatus(deploymentID
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTemplateDeploymentStatus")
+	}
+
 	result := response.Result().(*GetTemplateDeploymentStatusResponse)
 	return result, response, err
 }
@@ -782,6 +815,11 @@ func (s *ConfigurationTemplatesService) GetTemplateDetails(templateID string, ge
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTemplateDetails")
+	}
+
 	result := response.Result().(*GetTemplateDetailsResponse)
 	return result, response, err
 }
@@ -803,6 +841,11 @@ func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTemplateVersions")
+	}
+
 	result := response.Result().(*GetTemplateVersionsResponse)
 	return result, response, err
 }
@@ -843,6 +886,11 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplat
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getsTheTemplatesAvailable")
+	}
+
 	result := response.Result().(*GetsTheTemplatesAvailableResponse)
 	return result, response, err
 }
@@ -863,6 +911,11 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(previewTemplateRequest *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation previewTemplate")
+	}
+
 	result := response.Result().(*PreviewTemplateResponse)
 	return result, response, err
 }
@@ -883,6 +936,11 @@ func (s *ConfigurationTemplatesService) UpdateProject(updateProjectRequest *Upda
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateProject")
+	}
+
 	result := response.Result().(*UpdateProjectResponse)
 	return result, response, err
 }
@@ -903,6 +961,11 @@ func (s *ConfigurationTemplatesService) UpdateTemplate(updateTemplateRequest *Up
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateTemplate")
+	}
+
 	result := response.Result().(*UpdateTemplateResponse)
 	return result, response, err
 }
@@ -923,6 +986,11 @@ func (s *ConfigurationTemplatesService) VersionTemplate(versionTemplateRequest *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation versionTemplate")
+	}
+
 	result := response.Result().(*VersionTemplateResponse)
 	return result, response, err
 }

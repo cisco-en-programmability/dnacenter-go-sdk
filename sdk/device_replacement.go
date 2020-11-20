@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -132,6 +134,11 @@ func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceR
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deployDeviceReplacementWorkflow")
+	}
+
 	result := response.Result().(*DeployDeviceReplacementWorkflowResponse)
 	return result, response, err
 }
@@ -152,6 +159,11 @@ func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplace
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation markDeviceForReplacement")
+	}
+
 	result := response.Result().(*MarkDeviceForReplacementResponse)
 	return result, response, err
 }
@@ -200,6 +212,11 @@ func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacement
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation returnListOfReplacementDevicesWithReplacementDetails")
+	}
+
 	result := response.Result().(*ReturnListOfReplacementDevicesWithReplacementDetailsResponse)
 	return result, response, err
 }
@@ -228,6 +245,11 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplaceme
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation returnReplacementDevicesCount")
+	}
+
 	result := response.Result().(*ReturnReplacementDevicesCountResponse)
 	return result, response, err
 }
@@ -248,6 +270,11 @@ func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForRep
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation unMarkDeviceForReplacement")
+	}
+
 	result := response.Result().(*UnMarkDeviceForReplacementResponse)
 	return result, response, err
 }

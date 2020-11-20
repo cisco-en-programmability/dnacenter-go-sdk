@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -87,20 +89,25 @@ func (s *IssuesService) GetIssueEnrichmentDetails() (*GetIssueEnrichmentDetailsR
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getIssueEnrichmentDetails")
+	}
+
 	result := response.Result().(*GetIssueEnrichmentDetailsResponse)
 	return result, response, err
 }
 
 // IssuesQueryParams defines the query parameters for this request
 type IssuesQueryParams struct {
-	StartTime   int    `url:"startTime,omitempty"`   // Starting epoch time in milliseconds of query time window
-	EndTime     int    `url:"endTime,omitempty"`     // Ending epoch time in milliseconds of query time window
-	SiteID      string `url:"siteId,omitempty"`      // Assurance UUID value of the site in the issue content
-	DeviceID    string `url:"deviceId,omitempty"`    // Assurance UUID value of the device in the issue content
-	MacAddress  string `url:"macAddress,omitempty"`  // Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
-	Priority    string `url:"priority,omitempty"`    // The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
-	AiDriven    string `url:"aiDriven,omitempty"`    // The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
-	IssueStatus string `url:"issueStatus,omitempty"` // The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
+	StartTime   float64 `url:"startTime,omitempty"`   // Starting epoch time in milliseconds of query time window
+	EndTime     float64 `url:"endTime,omitempty"`     // Ending epoch time in milliseconds of query time window
+	SiteID      string  `url:"siteId,omitempty"`      // Assurance UUID value of the site in the issue content
+	DeviceID    string  `url:"deviceId,omitempty"`    // Assurance UUID value of the device in the issue content
+	MacAddress  string  `url:"macAddress,omitempty"`  // Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
+	Priority    string  `url:"priority,omitempty"`    // The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
+	AiDriven    string  `url:"aiDriven,omitempty"`    // The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
+	IssueStatus string  `url:"issueStatus,omitempty"` // The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
 }
 
 // Issues issues
@@ -129,6 +136,11 @@ func (s *IssuesService) Issues(issuesQueryParams *IssuesQueryParams) (*IssuesRes
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation issues")
+	}
+
 	result := response.Result().(*IssuesResponse)
 	return result, response, err
 }

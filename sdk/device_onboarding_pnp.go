@@ -67,7 +67,7 @@ type AddDeviceToPnpDatabaseRequest struct {
 	SystemResetWorkflow  AddDeviceToPnpDatabaseRequestSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       AddDeviceToPnpDatabaseRequestSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                           `json:"tenantId,omitempty"`             //
-	Version              int                                              `json:"version,omitempty"`              //
+	Version              float64                                          `json:"version,omitempty"`              //
 	Workflow             AddDeviceToPnpDatabaseRequestWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   AddDeviceToPnpDatabaseRequestWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -80,7 +80,7 @@ type AddDeviceToPnpDatabaseRequestDayZeroConfig struct {
 // AddDeviceToPnpDatabaseRequestDeviceInfo is the addDeviceToPnpDatabaseRequestDeviceInfo definition
 type AddDeviceToPnpDatabaseRequestDeviceInfo struct {
 	AAACredentials            AddDeviceToPnpDatabaseRequestDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                           `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                       `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                      `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                        `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                        `json:"authStatus,omitempty"`                //
@@ -93,15 +93,15 @@ type AddDeviceToPnpDatabaseRequestDeviceInfo struct {
 	DeviceType                string                                                        `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                      `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []AddDeviceToPnpDatabaseRequestDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                           `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                       `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                        `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []AddDeviceToPnpDatabaseRequestDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                        `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                        `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []AddDeviceToPnpDatabaseRequestDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                           `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                           `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                           `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                       `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                       `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                       `json:"lastUpdateOn,omitempty"`              //
 	Location                  AddDeviceToPnpDatabaseRequestDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                        `json:"macAddress,omitempty"`                //
 	Mode                      string                                                        `json:"mode,omitempty"`                      //
@@ -152,12 +152,12 @@ type AddDeviceToPnpDatabaseRequestDeviceInfoFeaturesSupported []string
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoFileSystemList is the addDeviceToPnpDatabaseRequestDeviceInfoFileSystemList definition
 type AddDeviceToPnpDatabaseRequestDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoHTTPHeaders is the addDeviceToPnpDatabaseRequestDeviceInfoHTTPHeaders definition
@@ -211,22 +211,22 @@ type AddDeviceToPnpDatabaseRequestDeviceInfoPnpProfileList struct {
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListPrimaryEndpoint is the addDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListPrimaryEndpoint definition
 type AddDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListSecondaryEndpoint is the addDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListSecondaryEndpoint definition
 type AddDeviceToPnpDatabaseRequestDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoPreWorkflowCliOuputs is the addDeviceToPnpDatabaseRequestDeviceInfoPreWorkflowCliOuputs definition
@@ -247,18 +247,18 @@ type AddDeviceToPnpDatabaseRequestDeviceInfoStackInfo struct {
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoStackInfoStackMemberList is the addDeviceToPnpDatabaseRequestDeviceInfoStackInfoStackMemberList definition
 type AddDeviceToPnpDatabaseRequestDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseRequestDeviceInfoStackInfoValidLicenseLevels is the addDeviceToPnpDatabaseRequestDeviceInfoStackInfoValidLicenseLevels definition
@@ -275,14 +275,14 @@ type AddDeviceToPnpDatabaseRequestRunSummaryList struct {
 	Details         string                                                     `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                       `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                        `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                                    `json:"timestamp,omitempty"`       //
 }
 
 // AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfo is the addDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfo definition
 type AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                                   `json:"name,omitempty"`         //
-	TimeTaken    int                                                                      `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                                  `json:"timeTaken,omitempty"`    //
 	Type         string                                                                   `json:"type,omitempty"`         //
 	WorkItemList []AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -295,27 +295,27 @@ type AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoAddnDetails struc
 
 // AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoWorkItemList is the addDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoWorkItemList definition
 type AddDeviceToPnpDatabaseRequestRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemResetWorkflow is the addDeviceToPnpDatabaseRequestSystemResetWorkflow definition
 type AddDeviceToPnpDatabaseRequestSystemResetWorkflow struct {
 	TypeID         string                                                  `json:"_id,omitempty"`            //
 	AddToInventory bool                                                    `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                     `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                                 `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                     `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                                 `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                  `json:"description,omitempty"`    //
 	EndTime        int                                                     `json:"endTime,omitempty"`        //
-	ExecTime       int                                                     `json:"execTime,omitempty"`       //
+	ExecTime       float64                                                 `json:"execTime,omitempty"`       //
 	ImageID        string                                                  `json:"imageId,omitempty"`        //
 	InstanceType   string                                                  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                     `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                                 `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                  `json:"name,omitempty"`           //
 	StartTime      int                                                     `json:"startTime,omitempty"`      //
 	State          string                                                  `json:"state,omitempty"`          //
@@ -323,45 +323,45 @@ type AddDeviceToPnpDatabaseRequestSystemResetWorkflow struct {
 	TenantID       string                                                  `json:"tenantId,omitempty"`       //
 	Type           string                                                  `json:"type,omitempty"`           //
 	UseState       string                                                  `json:"useState,omitempty"`       //
-	Version        int                                                     `json:"version,omitempty"`        //
+	Version        float64                                                 `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemResetWorkflowTasks is the addDeviceToPnpDatabaseRequestSystemResetWorkflowTasks definition
 type AddDeviceToPnpDatabaseRequestSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                                 `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                             `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                                 `json:"endTime,omitempty"`         //
 	Name            string                                                              `json:"name,omitempty"`            //
 	StartTime       int                                                                 `json:"startTime,omitempty"`       //
 	State           string                                                              `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                                 `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                                 `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                             `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                             `json:"timeTaken,omitempty"`       //
 	Type            string                                                              `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseRequestSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemResetWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseRequestSystemResetWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseRequestSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemWorkflow is the addDeviceToPnpDatabaseRequestSystemWorkflow definition
 type AddDeviceToPnpDatabaseRequestSystemWorkflow struct {
 	TypeID         string                                             `json:"_id,omitempty"`            //
 	AddToInventory bool                                               `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                            `json:"addedOn,omitempty"`        //
 	ConfigID       string                                             `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                            `json:"currTaskIdx,omitempty"`    //
 	Description    string                                             `json:"description,omitempty"`    //
 	EndTime        int                                                `json:"endTime,omitempty"`        //
-	ExecTime       int                                                `json:"execTime,omitempty"`       //
+	ExecTime       float64                                            `json:"execTime,omitempty"`       //
 	ImageID        string                                             `json:"imageId,omitempty"`        //
 	InstanceType   string                                             `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                            `json:"lastupdateOn,omitempty"`   //
 	Name           string                                             `json:"name,omitempty"`           //
 	StartTime      int                                                `json:"startTime,omitempty"`      //
 	State          string                                             `json:"state,omitempty"`          //
@@ -369,45 +369,45 @@ type AddDeviceToPnpDatabaseRequestSystemWorkflow struct {
 	TenantID       string                                             `json:"tenantId,omitempty"`       //
 	Type           string                                             `json:"type,omitempty"`           //
 	UseState       string                                             `json:"useState,omitempty"`       //
-	Version        int                                                `json:"version,omitempty"`        //
+	Version        float64                                            `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemWorkflowTasks is the addDeviceToPnpDatabaseRequestSystemWorkflowTasks definition
 type AddDeviceToPnpDatabaseRequestSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                            `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                        `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                            `json:"endTime,omitempty"`         //
 	Name            string                                                         `json:"name,omitempty"`            //
 	StartTime       int                                                            `json:"startTime,omitempty"`       //
 	State           string                                                         `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                            `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                            `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                        `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                        `json:"timeTaken,omitempty"`       //
 	Type            string                                                         `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseRequestSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseRequestSystemWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseRequestSystemWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseRequestSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseRequestWorkflow is the addDeviceToPnpDatabaseRequestWorkflow definition
 type AddDeviceToPnpDatabaseRequestWorkflow struct {
 	TypeID         string                                       `json:"_id,omitempty"`            //
 	AddToInventory bool                                         `json:"addToInventory,omitempty"` //
-	AddedOn        int                                          `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                      `json:"addedOn,omitempty"`        //
 	ConfigID       string                                       `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                          `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                      `json:"currTaskIdx,omitempty"`    //
 	Description    string                                       `json:"description,omitempty"`    //
 	EndTime        int                                          `json:"endTime,omitempty"`        //
-	ExecTime       int                                          `json:"execTime,omitempty"`       //
+	ExecTime       float64                                      `json:"execTime,omitempty"`       //
 	ImageID        string                                       `json:"imageId,omitempty"`        //
 	InstanceType   string                                       `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                          `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                      `json:"lastupdateOn,omitempty"`   //
 	Name           string                                       `json:"name,omitempty"`           //
 	StartTime      int                                          `json:"startTime,omitempty"`      //
 	State          string                                       `json:"state,omitempty"`          //
@@ -415,7 +415,7 @@ type AddDeviceToPnpDatabaseRequestWorkflow struct {
 	TenantID       string                                       `json:"tenantId,omitempty"`       //
 	Type           string                                       `json:"type,omitempty"`           //
 	UseState       string                                       `json:"useState,omitempty"`       //
-	Version        int                                          `json:"version,omitempty"`        //
+	Version        float64                                      `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseRequestWorkflowParameters is the addDeviceToPnpDatabaseRequestWorkflowParameters definition
@@ -440,25 +440,25 @@ type AddDeviceToPnpDatabaseRequestWorkflowParametersConfigListConfigParameters s
 
 // AddDeviceToPnpDatabaseRequestWorkflowTasks is the addDeviceToPnpDatabaseRequestWorkflowTasks definition
 type AddDeviceToPnpDatabaseRequestWorkflowTasks struct {
-	CurrWorkItemIDx int                                                      `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                  `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                      `json:"endTime,omitempty"`         //
 	Name            string                                                   `json:"name,omitempty"`            //
 	StartTime       int                                                      `json:"startTime,omitempty"`       //
 	State           string                                                   `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                      `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                      `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                  `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                  `json:"timeTaken,omitempty"`       //
 	Type            string                                                   `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseRequestWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseRequestWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseRequestWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseRequestWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddVirtualAccountRequest is the addVirtualAccountRequest definition
@@ -556,7 +556,7 @@ type ImportDevicesInBulkRequest struct {
 	SystemResetWorkflow  ImportDevicesInBulkRequestSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       ImportDevicesInBulkRequestSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                        `json:"tenantId,omitempty"`             //
-	Version              int                                           `json:"version,omitempty"`              //
+	Version              float64                                       `json:"version,omitempty"`              //
 	Workflow             ImportDevicesInBulkRequestWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   ImportDevicesInBulkRequestWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -569,7 +569,7 @@ type ImportDevicesInBulkRequestDayZeroConfig struct {
 // ImportDevicesInBulkRequestDeviceInfo is the importDevicesInBulkRequestDeviceInfo definition
 type ImportDevicesInBulkRequestDeviceInfo struct {
 	AAACredentials            ImportDevicesInBulkRequestDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                        `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                    `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                   `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                     `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                     `json:"authStatus,omitempty"`                //
@@ -582,15 +582,15 @@ type ImportDevicesInBulkRequestDeviceInfo struct {
 	DeviceType                string                                                     `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                   `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []ImportDevicesInBulkRequestDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                        `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                    `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                     `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []ImportDevicesInBulkRequestDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                     `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                     `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []ImportDevicesInBulkRequestDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                        `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                        `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                        `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                    `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                    `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                    `json:"lastUpdateOn,omitempty"`              //
 	Location                  ImportDevicesInBulkRequestDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                     `json:"macAddress,omitempty"`                //
 	Mode                      string                                                     `json:"mode,omitempty"`                      //
@@ -641,12 +641,12 @@ type ImportDevicesInBulkRequestDeviceInfoFeaturesSupported []string
 
 // ImportDevicesInBulkRequestDeviceInfoFileSystemList is the importDevicesInBulkRequestDeviceInfoFileSystemList definition
 type ImportDevicesInBulkRequestDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // ImportDevicesInBulkRequestDeviceInfoHTTPHeaders is the importDevicesInBulkRequestDeviceInfoHTTPHeaders definition
@@ -700,22 +700,22 @@ type ImportDevicesInBulkRequestDeviceInfoPnpProfileList struct {
 
 // ImportDevicesInBulkRequestDeviceInfoPnpProfileListPrimaryEndpoint is the importDevicesInBulkRequestDeviceInfoPnpProfileListPrimaryEndpoint definition
 type ImportDevicesInBulkRequestDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // ImportDevicesInBulkRequestDeviceInfoPnpProfileListSecondaryEndpoint is the importDevicesInBulkRequestDeviceInfoPnpProfileListSecondaryEndpoint definition
 type ImportDevicesInBulkRequestDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // ImportDevicesInBulkRequestDeviceInfoPreWorkflowCliOuputs is the importDevicesInBulkRequestDeviceInfoPreWorkflowCliOuputs definition
@@ -736,18 +736,18 @@ type ImportDevicesInBulkRequestDeviceInfoStackInfo struct {
 
 // ImportDevicesInBulkRequestDeviceInfoStackInfoStackMemberList is the importDevicesInBulkRequestDeviceInfoStackInfoStackMemberList definition
 type ImportDevicesInBulkRequestDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // ImportDevicesInBulkRequestDeviceInfoStackInfoValidLicenseLevels is the importDevicesInBulkRequestDeviceInfoStackInfoValidLicenseLevels definition
@@ -764,14 +764,14 @@ type ImportDevicesInBulkRequestRunSummaryList struct {
 	Details         string                                                  `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                    `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                     `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                                 `json:"timestamp,omitempty"`       //
 }
 
 // ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfo is the importDevicesInBulkRequestRunSummaryListHistoryTaskInfo definition
 type ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                                `json:"name,omitempty"`         //
-	TimeTaken    int                                                                   `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                               `json:"timeTaken,omitempty"`    //
 	Type         string                                                                `json:"type,omitempty"`         //
 	WorkItemList []ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -784,27 +784,27 @@ type ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfoAddnDetails struct {
 
 // ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfoWorkItemList is the importDevicesInBulkRequestRunSummaryListHistoryTaskInfoWorkItemList definition
 type ImportDevicesInBulkRequestRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkRequestSystemResetWorkflow is the importDevicesInBulkRequestSystemResetWorkflow definition
 type ImportDevicesInBulkRequestSystemResetWorkflow struct {
 	TypeID         string                                               `json:"_id,omitempty"`            //
 	AddToInventory bool                                                 `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                  `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                              `json:"addedOn,omitempty"`        //
 	ConfigID       string                                               `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                  `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                              `json:"currTaskIdx,omitempty"`    //
 	Description    string                                               `json:"description,omitempty"`    //
 	EndTime        int                                                  `json:"endTime,omitempty"`        //
-	ExecTime       int                                                  `json:"execTime,omitempty"`       //
+	ExecTime       float64                                              `json:"execTime,omitempty"`       //
 	ImageID        string                                               `json:"imageId,omitempty"`        //
 	InstanceType   string                                               `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                  `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                              `json:"lastupdateOn,omitempty"`   //
 	Name           string                                               `json:"name,omitempty"`           //
 	StartTime      int                                                  `json:"startTime,omitempty"`      //
 	State          string                                               `json:"state,omitempty"`          //
@@ -812,45 +812,45 @@ type ImportDevicesInBulkRequestSystemResetWorkflow struct {
 	TenantID       string                                               `json:"tenantId,omitempty"`       //
 	Type           string                                               `json:"type,omitempty"`           //
 	UseState       string                                               `json:"useState,omitempty"`       //
-	Version        int                                                  `json:"version,omitempty"`        //
+	Version        float64                                              `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkRequestSystemResetWorkflowTasks is the importDevicesInBulkRequestSystemResetWorkflowTasks definition
 type ImportDevicesInBulkRequestSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                              `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                          `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                              `json:"endTime,omitempty"`         //
 	Name            string                                                           `json:"name,omitempty"`            //
 	StartTime       int                                                              `json:"startTime,omitempty"`       //
 	State           string                                                           `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                              `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                              `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                          `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                          `json:"timeTaken,omitempty"`       //
 	Type            string                                                           `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkRequestSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkRequestSystemResetWorkflowTasksWorkItemList is the importDevicesInBulkRequestSystemResetWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkRequestSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkRequestSystemWorkflow is the importDevicesInBulkRequestSystemWorkflow definition
 type ImportDevicesInBulkRequestSystemWorkflow struct {
 	TypeID         string                                          `json:"_id,omitempty"`            //
 	AddToInventory bool                                            `json:"addToInventory,omitempty"` //
-	AddedOn        int                                             `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                         `json:"addedOn,omitempty"`        //
 	ConfigID       string                                          `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                             `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                         `json:"currTaskIdx,omitempty"`    //
 	Description    string                                          `json:"description,omitempty"`    //
 	EndTime        int                                             `json:"endTime,omitempty"`        //
-	ExecTime       int                                             `json:"execTime,omitempty"`       //
+	ExecTime       float64                                         `json:"execTime,omitempty"`       //
 	ImageID        string                                          `json:"imageId,omitempty"`        //
 	InstanceType   string                                          `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                             `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                         `json:"lastupdateOn,omitempty"`   //
 	Name           string                                          `json:"name,omitempty"`           //
 	StartTime      int                                             `json:"startTime,omitempty"`      //
 	State          string                                          `json:"state,omitempty"`          //
@@ -858,45 +858,45 @@ type ImportDevicesInBulkRequestSystemWorkflow struct {
 	TenantID       string                                          `json:"tenantId,omitempty"`       //
 	Type           string                                          `json:"type,omitempty"`           //
 	UseState       string                                          `json:"useState,omitempty"`       //
-	Version        int                                             `json:"version,omitempty"`        //
+	Version        float64                                         `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkRequestSystemWorkflowTasks is the importDevicesInBulkRequestSystemWorkflowTasks definition
 type ImportDevicesInBulkRequestSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                         `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                     `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                         `json:"endTime,omitempty"`         //
 	Name            string                                                      `json:"name,omitempty"`            //
 	StartTime       int                                                         `json:"startTime,omitempty"`       //
 	State           string                                                      `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                         `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                         `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                     `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                     `json:"timeTaken,omitempty"`       //
 	Type            string                                                      `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkRequestSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkRequestSystemWorkflowTasksWorkItemList is the importDevicesInBulkRequestSystemWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkRequestSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkRequestWorkflow is the importDevicesInBulkRequestWorkflow definition
 type ImportDevicesInBulkRequestWorkflow struct {
 	TypeID         string                                    `json:"_id,omitempty"`            //
 	AddToInventory bool                                      `json:"addToInventory,omitempty"` //
-	AddedOn        int                                       `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                   `json:"addedOn,omitempty"`        //
 	ConfigID       string                                    `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                       `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                   `json:"currTaskIdx,omitempty"`    //
 	Description    string                                    `json:"description,omitempty"`    //
 	EndTime        int                                       `json:"endTime,omitempty"`        //
-	ExecTime       int                                       `json:"execTime,omitempty"`       //
+	ExecTime       float64                                   `json:"execTime,omitempty"`       //
 	ImageID        string                                    `json:"imageId,omitempty"`        //
 	InstanceType   string                                    `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                       `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                   `json:"lastupdateOn,omitempty"`   //
 	Name           string                                    `json:"name,omitempty"`           //
 	StartTime      int                                       `json:"startTime,omitempty"`      //
 	State          string                                    `json:"state,omitempty"`          //
@@ -904,7 +904,7 @@ type ImportDevicesInBulkRequestWorkflow struct {
 	TenantID       string                                    `json:"tenantId,omitempty"`       //
 	Type           string                                    `json:"type,omitempty"`           //
 	UseState       string                                    `json:"useState,omitempty"`       //
-	Version        int                                       `json:"version,omitempty"`        //
+	Version        float64                                   `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkRequestWorkflowParameters is the importDevicesInBulkRequestWorkflowParameters definition
@@ -929,25 +929,25 @@ type ImportDevicesInBulkRequestWorkflowParametersConfigListConfigParameters stru
 
 // ImportDevicesInBulkRequestWorkflowTasks is the importDevicesInBulkRequestWorkflowTasks definition
 type ImportDevicesInBulkRequestWorkflowTasks struct {
-	CurrWorkItemIDx int                                                   `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                               `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                   `json:"endTime,omitempty"`         //
 	Name            string                                                `json:"name,omitempty"`            //
 	StartTime       int                                                   `json:"startTime,omitempty"`       //
 	State           string                                                `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                   `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                   `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                               `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                               `json:"timeTaken,omitempty"`       //
 	Type            string                                                `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkRequestWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkRequestWorkflowTasksWorkItemList is the importDevicesInBulkRequestWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkRequestWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // PreviewConfigRequest is the previewConfigRequest definition
@@ -1047,7 +1047,7 @@ type UpdateDeviceRequest struct {
 	SystemResetWorkflow  UpdateDeviceRequestSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       UpdateDeviceRequestSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                 `json:"tenantId,omitempty"`             //
-	Version              int                                    `json:"version,omitempty"`              //
+	Version              float64                                `json:"version,omitempty"`              //
 	Workflow             UpdateDeviceRequestWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   UpdateDeviceRequestWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -1060,7 +1060,7 @@ type UpdateDeviceRequestDayZeroConfig struct {
 // UpdateDeviceRequestDeviceInfo is the updateDeviceRequestDeviceInfo definition
 type UpdateDeviceRequestDeviceInfo struct {
 	AAACredentials            UpdateDeviceRequestDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                 `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                             `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                            `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                              `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                              `json:"authStatus,omitempty"`                //
@@ -1073,15 +1073,15 @@ type UpdateDeviceRequestDeviceInfo struct {
 	DeviceType                string                                              `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                            `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []UpdateDeviceRequestDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                 `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                             `json:"firstContact,omitempty"`              //
 	Hostname                  string                                              `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []UpdateDeviceRequestDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                              `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                              `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []UpdateDeviceRequestDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                 `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                 `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                 `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                             `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                             `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                             `json:"lastUpdateOn,omitempty"`              //
 	Location                  UpdateDeviceRequestDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                              `json:"macAddress,omitempty"`                //
 	Mode                      string                                              `json:"mode,omitempty"`                      //
@@ -1132,12 +1132,12 @@ type UpdateDeviceRequestDeviceInfoFeaturesSupported []string
 
 // UpdateDeviceRequestDeviceInfoFileSystemList is the updateDeviceRequestDeviceInfoFileSystemList definition
 type UpdateDeviceRequestDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // UpdateDeviceRequestDeviceInfoHTTPHeaders is the updateDeviceRequestDeviceInfoHTTPHeaders definition
@@ -1191,22 +1191,22 @@ type UpdateDeviceRequestDeviceInfoPnpProfileList struct {
 
 // UpdateDeviceRequestDeviceInfoPnpProfileListPrimaryEndpoint is the updateDeviceRequestDeviceInfoPnpProfileListPrimaryEndpoint definition
 type UpdateDeviceRequestDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // UpdateDeviceRequestDeviceInfoPnpProfileListSecondaryEndpoint is the updateDeviceRequestDeviceInfoPnpProfileListSecondaryEndpoint definition
 type UpdateDeviceRequestDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // UpdateDeviceRequestDeviceInfoPreWorkflowCliOuputs is the updateDeviceRequestDeviceInfoPreWorkflowCliOuputs definition
@@ -1227,18 +1227,18 @@ type UpdateDeviceRequestDeviceInfoStackInfo struct {
 
 // UpdateDeviceRequestDeviceInfoStackInfoStackMemberList is the updateDeviceRequestDeviceInfoStackInfoStackMemberList definition
 type UpdateDeviceRequestDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // UpdateDeviceRequestDeviceInfoStackInfoValidLicenseLevels is the updateDeviceRequestDeviceInfoStackInfoValidLicenseLevels definition
@@ -1255,14 +1255,14 @@ type UpdateDeviceRequestRunSummaryList struct {
 	Details         string                                           `json:"details,omitempty"`         //
 	ErrorFlag       bool                                             `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo UpdateDeviceRequestRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                              `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                          `json:"timestamp,omitempty"`       //
 }
 
 // UpdateDeviceRequestRunSummaryListHistoryTaskInfo is the updateDeviceRequestRunSummaryListHistoryTaskInfo definition
 type UpdateDeviceRequestRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []UpdateDeviceRequestRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                         `json:"name,omitempty"`         //
-	TimeTaken    int                                                            `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                        `json:"timeTaken,omitempty"`    //
 	Type         string                                                         `json:"type,omitempty"`         //
 	WorkItemList []UpdateDeviceRequestRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -1275,27 +1275,27 @@ type UpdateDeviceRequestRunSummaryListHistoryTaskInfoAddnDetails struct {
 
 // UpdateDeviceRequestRunSummaryListHistoryTaskInfoWorkItemList is the updateDeviceRequestRunSummaryListHistoryTaskInfoWorkItemList definition
 type UpdateDeviceRequestRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceRequestSystemResetWorkflow is the updateDeviceRequestSystemResetWorkflow definition
 type UpdateDeviceRequestSystemResetWorkflow struct {
 	TypeID         string                                        `json:"_id,omitempty"`            //
 	AddToInventory bool                                          `json:"addToInventory,omitempty"` //
-	AddedOn        int                                           `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                       `json:"addedOn,omitempty"`        //
 	ConfigID       string                                        `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                           `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                       `json:"currTaskIdx,omitempty"`    //
 	Description    string                                        `json:"description,omitempty"`    //
 	EndTime        int                                           `json:"endTime,omitempty"`        //
-	ExecTime       int                                           `json:"execTime,omitempty"`       //
+	ExecTime       float64                                       `json:"execTime,omitempty"`       //
 	ImageID        string                                        `json:"imageId,omitempty"`        //
 	InstanceType   string                                        `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                           `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                       `json:"lastupdateOn,omitempty"`   //
 	Name           string                                        `json:"name,omitempty"`           //
 	StartTime      int                                           `json:"startTime,omitempty"`      //
 	State          string                                        `json:"state,omitempty"`          //
@@ -1303,45 +1303,45 @@ type UpdateDeviceRequestSystemResetWorkflow struct {
 	TenantID       string                                        `json:"tenantId,omitempty"`       //
 	Type           string                                        `json:"type,omitempty"`           //
 	UseState       string                                        `json:"useState,omitempty"`       //
-	Version        int                                           `json:"version,omitempty"`        //
+	Version        float64                                       `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceRequestSystemResetWorkflowTasks is the updateDeviceRequestSystemResetWorkflowTasks definition
 type UpdateDeviceRequestSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                       `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                   `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                       `json:"endTime,omitempty"`         //
 	Name            string                                                    `json:"name,omitempty"`            //
 	StartTime       int                                                       `json:"startTime,omitempty"`       //
 	State           string                                                    `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                       `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                       `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                   `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                   `json:"timeTaken,omitempty"`       //
 	Type            string                                                    `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceRequestSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceRequestSystemResetWorkflowTasksWorkItemList is the updateDeviceRequestSystemResetWorkflowTasksWorkItemList definition
 type UpdateDeviceRequestSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceRequestSystemWorkflow is the updateDeviceRequestSystemWorkflow definition
 type UpdateDeviceRequestSystemWorkflow struct {
 	TypeID         string                                   `json:"_id,omitempty"`            //
 	AddToInventory bool                                     `json:"addToInventory,omitempty"` //
-	AddedOn        int                                      `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                  `json:"addedOn,omitempty"`        //
 	ConfigID       string                                   `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                      `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                  `json:"currTaskIdx,omitempty"`    //
 	Description    string                                   `json:"description,omitempty"`    //
 	EndTime        int                                      `json:"endTime,omitempty"`        //
-	ExecTime       int                                      `json:"execTime,omitempty"`       //
+	ExecTime       float64                                  `json:"execTime,omitempty"`       //
 	ImageID        string                                   `json:"imageId,omitempty"`        //
 	InstanceType   string                                   `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                      `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                  `json:"lastupdateOn,omitempty"`   //
 	Name           string                                   `json:"name,omitempty"`           //
 	StartTime      int                                      `json:"startTime,omitempty"`      //
 	State          string                                   `json:"state,omitempty"`          //
@@ -1349,45 +1349,45 @@ type UpdateDeviceRequestSystemWorkflow struct {
 	TenantID       string                                   `json:"tenantId,omitempty"`       //
 	Type           string                                   `json:"type,omitempty"`           //
 	UseState       string                                   `json:"useState,omitempty"`       //
-	Version        int                                      `json:"version,omitempty"`        //
+	Version        float64                                  `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceRequestSystemWorkflowTasks is the updateDeviceRequestSystemWorkflowTasks definition
 type UpdateDeviceRequestSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                  `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                              `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                  `json:"endTime,omitempty"`         //
 	Name            string                                               `json:"name,omitempty"`            //
 	StartTime       int                                                  `json:"startTime,omitempty"`       //
 	State           string                                               `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                  `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                  `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                              `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                              `json:"timeTaken,omitempty"`       //
 	Type            string                                               `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceRequestSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceRequestSystemWorkflowTasksWorkItemList is the updateDeviceRequestSystemWorkflowTasksWorkItemList definition
 type UpdateDeviceRequestSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceRequestWorkflow is the updateDeviceRequestWorkflow definition
 type UpdateDeviceRequestWorkflow struct {
 	TypeID         string                             `json:"_id,omitempty"`            //
 	AddToInventory bool                               `json:"addToInventory,omitempty"` //
-	AddedOn        int                                `json:"addedOn,omitempty"`        //
+	AddedOn        float64                            `json:"addedOn,omitempty"`        //
 	ConfigID       string                             `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                            `json:"currTaskIdx,omitempty"`    //
 	Description    string                             `json:"description,omitempty"`    //
 	EndTime        int                                `json:"endTime,omitempty"`        //
-	ExecTime       int                                `json:"execTime,omitempty"`       //
+	ExecTime       float64                            `json:"execTime,omitempty"`       //
 	ImageID        string                             `json:"imageId,omitempty"`        //
 	InstanceType   string                             `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                            `json:"lastupdateOn,omitempty"`   //
 	Name           string                             `json:"name,omitempty"`           //
 	StartTime      int                                `json:"startTime,omitempty"`      //
 	State          string                             `json:"state,omitempty"`          //
@@ -1395,7 +1395,7 @@ type UpdateDeviceRequestWorkflow struct {
 	TenantID       string                             `json:"tenantId,omitempty"`       //
 	Type           string                             `json:"type,omitempty"`           //
 	UseState       string                             `json:"useState,omitempty"`       //
-	Version        int                                `json:"version,omitempty"`        //
+	Version        float64                            `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceRequestWorkflowParameters is the updateDeviceRequestWorkflowParameters definition
@@ -1420,25 +1420,25 @@ type UpdateDeviceRequestWorkflowParametersConfigListConfigParameters struct {
 
 // UpdateDeviceRequestWorkflowTasks is the updateDeviceRequestWorkflowTasks definition
 type UpdateDeviceRequestWorkflowTasks struct {
-	CurrWorkItemIDx int                                            `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                        `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                            `json:"endTime,omitempty"`         //
 	Name            string                                         `json:"name,omitempty"`            //
 	StartTime       int                                            `json:"startTime,omitempty"`       //
 	State           string                                         `json:"state,omitempty"`           //
-	TaskSeqNo       int                                            `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                            `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                        `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                        `json:"timeTaken,omitempty"`       //
 	Type            string                                         `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceRequestWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceRequestWorkflowTasksWorkItemList is the updateDeviceRequestWorkflowTasksWorkItemList definition
 type UpdateDeviceRequestWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdatePnPGlobalSettingsRequest is the updatePnPGlobalSettingsRequest definition
@@ -1619,15 +1619,15 @@ type UpdateWorkflowRequestTasksWorkItemList struct {
 type AddAWorkflowResponse struct {
 	TypeID         string                      `json:"_id,omitempty"`            //
 	AddToInventory bool                        `json:"addToInventory,omitempty"` //
-	AddedOn        int                         `json:"addedOn,omitempty"`        //
+	AddedOn        float64                     `json:"addedOn,omitempty"`        //
 	ConfigID       string                      `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                         `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                     `json:"currTaskIdx,omitempty"`    //
 	Description    string                      `json:"description,omitempty"`    //
 	EndTime        int                         `json:"endTime,omitempty"`        //
-	ExecTime       int                         `json:"execTime,omitempty"`       //
+	ExecTime       float64                     `json:"execTime,omitempty"`       //
 	ImageID        string                      `json:"imageId,omitempty"`        //
 	InstanceType   string                      `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                         `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                     `json:"lastupdateOn,omitempty"`   //
 	Name           string                      `json:"name,omitempty"`           //
 	StartTime      int                         `json:"startTime,omitempty"`      //
 	State          string                      `json:"state,omitempty"`          //
@@ -1635,30 +1635,30 @@ type AddAWorkflowResponse struct {
 	TenantID       string                      `json:"tenantId,omitempty"`       //
 	Type           string                      `json:"type,omitempty"`           //
 	UseState       string                      `json:"useState,omitempty"`       //
-	Version        int                         `json:"version,omitempty"`        //
+	Version        float64                     `json:"version,omitempty"`        //
 }
 
 // AddAWorkflowResponseTasks is the addAWorkflowResponseTasks definition
 type AddAWorkflowResponseTasks struct {
-	CurrWorkItemIDx int                                     `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                 `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                     `json:"endTime,omitempty"`         //
 	Name            string                                  `json:"name,omitempty"`            //
 	StartTime       int                                     `json:"startTime,omitempty"`       //
 	State           string                                  `json:"state,omitempty"`           //
-	TaskSeqNo       int                                     `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                     `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                 `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                 `json:"timeTaken,omitempty"`       //
 	Type            string                                  `json:"type,omitempty"`            //
 	WorkItemList    []AddAWorkflowResponseTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddAWorkflowResponseTasksWorkItemList is the addAWorkflowResponseTasksWorkItemList definition
 type AddAWorkflowResponseTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponse is the addDeviceToPnpDatabaseResponse definition
@@ -1671,7 +1671,7 @@ type AddDeviceToPnpDatabaseResponse struct {
 	SystemResetWorkflow  AddDeviceToPnpDatabaseResponseSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       AddDeviceToPnpDatabaseResponseSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                            `json:"tenantId,omitempty"`             //
-	Version              int                                               `json:"version,omitempty"`              //
+	Version              float64                                           `json:"version,omitempty"`              //
 	Workflow             AddDeviceToPnpDatabaseResponseWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   AddDeviceToPnpDatabaseResponseWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -1684,7 +1684,7 @@ type AddDeviceToPnpDatabaseResponseDayZeroConfig struct {
 // AddDeviceToPnpDatabaseResponseDeviceInfo is the addDeviceToPnpDatabaseResponseDeviceInfo definition
 type AddDeviceToPnpDatabaseResponseDeviceInfo struct {
 	AAACredentials            AddDeviceToPnpDatabaseResponseDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                            `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                        `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                       `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                         `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                         `json:"authStatus,omitempty"`                //
@@ -1697,15 +1697,15 @@ type AddDeviceToPnpDatabaseResponseDeviceInfo struct {
 	DeviceType                string                                                         `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                       `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []AddDeviceToPnpDatabaseResponseDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                            `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                        `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                         `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []AddDeviceToPnpDatabaseResponseDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                         `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                         `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []AddDeviceToPnpDatabaseResponseDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                            `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                            `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                            `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                        `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                        `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                        `json:"lastUpdateOn,omitempty"`              //
 	Location                  AddDeviceToPnpDatabaseResponseDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                         `json:"macAddress,omitempty"`                //
 	Mode                      string                                                         `json:"mode,omitempty"`                      //
@@ -1756,12 +1756,12 @@ type AddDeviceToPnpDatabaseResponseDeviceInfoFeaturesSupported []string
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoFileSystemList is the addDeviceToPnpDatabaseResponseDeviceInfoFileSystemList definition
 type AddDeviceToPnpDatabaseResponseDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoHTTPHeaders is the addDeviceToPnpDatabaseResponseDeviceInfoHTTPHeaders definition
@@ -1815,22 +1815,22 @@ type AddDeviceToPnpDatabaseResponseDeviceInfoPnpProfileList struct {
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListPrimaryEndpoint is the addDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListPrimaryEndpoint definition
 type AddDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListSecondaryEndpoint is the addDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListSecondaryEndpoint definition
 type AddDeviceToPnpDatabaseResponseDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoPreWorkflowCliOuputs is the addDeviceToPnpDatabaseResponseDeviceInfoPreWorkflowCliOuputs definition
@@ -1851,18 +1851,18 @@ type AddDeviceToPnpDatabaseResponseDeviceInfoStackInfo struct {
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoStackInfoStackMemberList is the addDeviceToPnpDatabaseResponseDeviceInfoStackInfoStackMemberList definition
 type AddDeviceToPnpDatabaseResponseDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponseDeviceInfoStackInfoValidLicenseLevels is the addDeviceToPnpDatabaseResponseDeviceInfoStackInfoValidLicenseLevels definition
@@ -1879,14 +1879,14 @@ type AddDeviceToPnpDatabaseResponseRunSummaryList struct {
 	Details         string                                                      `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                        `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                         `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                                     `json:"timestamp,omitempty"`       //
 }
 
 // AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfo is the addDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfo definition
 type AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                                    `json:"name,omitempty"`         //
-	TimeTaken    int                                                                       `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                                   `json:"timeTaken,omitempty"`    //
 	Type         string                                                                    `json:"type,omitempty"`         //
 	WorkItemList []AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -1899,27 +1899,27 @@ type AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoAddnDetails stru
 
 // AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoWorkItemList is the addDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoWorkItemList definition
 type AddDeviceToPnpDatabaseResponseRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemResetWorkflow is the addDeviceToPnpDatabaseResponseSystemResetWorkflow definition
 type AddDeviceToPnpDatabaseResponseSystemResetWorkflow struct {
 	TypeID         string                                                   `json:"_id,omitempty"`            //
 	AddToInventory bool                                                     `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                      `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                                  `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                   `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                      `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                                  `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                   `json:"description,omitempty"`    //
 	EndTime        int                                                      `json:"endTime,omitempty"`        //
-	ExecTime       int                                                      `json:"execTime,omitempty"`       //
+	ExecTime       float64                                                  `json:"execTime,omitempty"`       //
 	ImageID        string                                                   `json:"imageId,omitempty"`        //
 	InstanceType   string                                                   `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                      `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                                  `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                   `json:"name,omitempty"`           //
 	StartTime      int                                                      `json:"startTime,omitempty"`      //
 	State          string                                                   `json:"state,omitempty"`          //
@@ -1927,45 +1927,45 @@ type AddDeviceToPnpDatabaseResponseSystemResetWorkflow struct {
 	TenantID       string                                                   `json:"tenantId,omitempty"`       //
 	Type           string                                                   `json:"type,omitempty"`           //
 	UseState       string                                                   `json:"useState,omitempty"`       //
-	Version        int                                                      `json:"version,omitempty"`        //
+	Version        float64                                                  `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemResetWorkflowTasks is the addDeviceToPnpDatabaseResponseSystemResetWorkflowTasks definition
 type AddDeviceToPnpDatabaseResponseSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                                  `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                              `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                                  `json:"endTime,omitempty"`         //
 	Name            string                                                               `json:"name,omitempty"`            //
 	StartTime       int                                                                  `json:"startTime,omitempty"`       //
 	State           string                                                               `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                                  `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                                  `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                              `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                              `json:"timeTaken,omitempty"`       //
 	Type            string                                                               `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseResponseSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemResetWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseResponseSystemResetWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseResponseSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemWorkflow is the addDeviceToPnpDatabaseResponseSystemWorkflow definition
 type AddDeviceToPnpDatabaseResponseSystemWorkflow struct {
 	TypeID         string                                              `json:"_id,omitempty"`            //
 	AddToInventory bool                                                `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                 `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                             `json:"addedOn,omitempty"`        //
 	ConfigID       string                                              `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                 `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                             `json:"currTaskIdx,omitempty"`    //
 	Description    string                                              `json:"description,omitempty"`    //
 	EndTime        int                                                 `json:"endTime,omitempty"`        //
-	ExecTime       int                                                 `json:"execTime,omitempty"`       //
+	ExecTime       float64                                             `json:"execTime,omitempty"`       //
 	ImageID        string                                              `json:"imageId,omitempty"`        //
 	InstanceType   string                                              `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                 `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                             `json:"lastupdateOn,omitempty"`   //
 	Name           string                                              `json:"name,omitempty"`           //
 	StartTime      int                                                 `json:"startTime,omitempty"`      //
 	State          string                                              `json:"state,omitempty"`          //
@@ -1973,45 +1973,45 @@ type AddDeviceToPnpDatabaseResponseSystemWorkflow struct {
 	TenantID       string                                              `json:"tenantId,omitempty"`       //
 	Type           string                                              `json:"type,omitempty"`           //
 	UseState       string                                              `json:"useState,omitempty"`       //
-	Version        int                                                 `json:"version,omitempty"`        //
+	Version        float64                                             `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemWorkflowTasks is the addDeviceToPnpDatabaseResponseSystemWorkflowTasks definition
 type AddDeviceToPnpDatabaseResponseSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                             `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                         `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                             `json:"endTime,omitempty"`         //
 	Name            string                                                          `json:"name,omitempty"`            //
 	StartTime       int                                                             `json:"startTime,omitempty"`       //
 	State           string                                                          `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                             `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                             `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                         `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                         `json:"timeTaken,omitempty"`       //
 	Type            string                                                          `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseResponseSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseResponseSystemWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseResponseSystemWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseResponseSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddDeviceToPnpDatabaseResponseWorkflow is the addDeviceToPnpDatabaseResponseWorkflow definition
 type AddDeviceToPnpDatabaseResponseWorkflow struct {
 	TypeID         string                                        `json:"_id,omitempty"`            //
 	AddToInventory bool                                          `json:"addToInventory,omitempty"` //
-	AddedOn        int                                           `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                       `json:"addedOn,omitempty"`        //
 	ConfigID       string                                        `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                           `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                       `json:"currTaskIdx,omitempty"`    //
 	Description    string                                        `json:"description,omitempty"`    //
 	EndTime        int                                           `json:"endTime,omitempty"`        //
-	ExecTime       int                                           `json:"execTime,omitempty"`       //
+	ExecTime       float64                                       `json:"execTime,omitempty"`       //
 	ImageID        string                                        `json:"imageId,omitempty"`        //
 	InstanceType   string                                        `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                           `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                       `json:"lastupdateOn,omitempty"`   //
 	Name           string                                        `json:"name,omitempty"`           //
 	StartTime      int                                           `json:"startTime,omitempty"`      //
 	State          string                                        `json:"state,omitempty"`          //
@@ -2019,7 +2019,7 @@ type AddDeviceToPnpDatabaseResponseWorkflow struct {
 	TenantID       string                                        `json:"tenantId,omitempty"`       //
 	Type           string                                        `json:"type,omitempty"`           //
 	UseState       string                                        `json:"useState,omitempty"`       //
-	Version        int                                           `json:"version,omitempty"`        //
+	Version        float64                                       `json:"version,omitempty"`        //
 }
 
 // AddDeviceToPnpDatabaseResponseWorkflowParameters is the addDeviceToPnpDatabaseResponseWorkflowParameters definition
@@ -2044,38 +2044,38 @@ type AddDeviceToPnpDatabaseResponseWorkflowParametersConfigListConfigParameters 
 
 // AddDeviceToPnpDatabaseResponseWorkflowTasks is the addDeviceToPnpDatabaseResponseWorkflowTasks definition
 type AddDeviceToPnpDatabaseResponseWorkflowTasks struct {
-	CurrWorkItemIDx int                                                       `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                   `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                       `json:"endTime,omitempty"`         //
 	Name            string                                                    `json:"name,omitempty"`            //
 	StartTime       int                                                       `json:"startTime,omitempty"`       //
 	State           string                                                    `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                       `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                       `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                   `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                   `json:"timeTaken,omitempty"`       //
 	Type            string                                                    `json:"type,omitempty"`            //
 	WorkItemList    []AddDeviceToPnpDatabaseResponseWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // AddDeviceToPnpDatabaseResponseWorkflowTasksWorkItemList is the addDeviceToPnpDatabaseResponseWorkflowTasksWorkItemList definition
 type AddDeviceToPnpDatabaseResponseWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddVirtualAccountResponse is the addVirtualAccountResponse definition
 type AddVirtualAccountResponse struct {
-	AutoSyncPeriod   int                                 `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                             `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                              `json:"ccoUser,omitempty"`          //
-	Expiry           int                                 `json:"expiry,omitempty"`           //
-	LastSync         int                                 `json:"lastSync,omitempty"`         //
+	Expiry           float64                             `json:"expiry,omitempty"`           //
+	LastSync         float64                             `json:"lastSync,omitempty"`         //
 	Profile          AddVirtualAccountResponseProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                              `json:"smartAccountId,omitempty"`   //
 	SyncResult       AddVirtualAccountResponseSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                              `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                 `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                             `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                              `json:"syncStatus,omitempty"`       //
 	TenantID         string                              `json:"tenantId,omitempty"`         //
 	Token            string                              `json:"token,omitempty"`            //
@@ -2084,14 +2084,14 @@ type AddVirtualAccountResponse struct {
 
 // AddVirtualAccountResponseProfile is the addVirtualAccountResponseProfile definition
 type AddVirtualAccountResponseProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // AddVirtualAccountResponseSyncResult is the addVirtualAccountResponseSyncResult definition
@@ -2120,7 +2120,7 @@ type ClaimDeviceResponse struct {
 	JSONArrayResponse []string `json:"jsonArrayResponse,omitempty"` //
 	JSONResponse      string   `json:"jsonResponse,omitempty"`      //
 	Message           string   `json:"message,omitempty"`           //
-	StatusCode        int      `json:"statusCode,omitempty"`        //
+	StatusCode        float64  `json:"statusCode,omitempty"`        //
 }
 
 // ClaimDeviceResponseJSONArrayResponse is the claimDeviceResponseJSONArrayResponse definition
@@ -2134,7 +2134,7 @@ type DeleteDeviceByIDFromPnPResponseDayZeroConfig struct {
 // DeleteDeviceByIDFromPnPResponseDeviceInfo is the deleteDeviceByIDFromPnPResponseDeviceInfo definition
 type DeleteDeviceByIDFromPnPResponseDeviceInfo struct {
 	AAACredentials            DeleteDeviceByIDFromPnPResponseDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                             `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                         `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                        `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                          `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                          `json:"authStatus,omitempty"`                //
@@ -2147,15 +2147,15 @@ type DeleteDeviceByIDFromPnPResponseDeviceInfo struct {
 	DeviceType                string                                                          `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                        `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []DeleteDeviceByIDFromPnPResponseDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                             `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                         `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                          `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []DeleteDeviceByIDFromPnPResponseDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                          `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                          `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []DeleteDeviceByIDFromPnPResponseDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                             `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                             `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                             `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                         `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                         `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                         `json:"lastUpdateOn,omitempty"`              //
 	Location                  DeleteDeviceByIDFromPnPResponseDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                          `json:"macAddress,omitempty"`                //
 	Mode                      string                                                          `json:"mode,omitempty"`                      //
@@ -2206,12 +2206,12 @@ type DeleteDeviceByIDFromPnPResponseDeviceInfoFeaturesSupported []string
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoFileSystemList is the deleteDeviceByIDFromPnPResponseDeviceInfoFileSystemList definition
 type DeleteDeviceByIDFromPnPResponseDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoHTTPHeaders is the deleteDeviceByIDFromPnPResponseDeviceInfoHTTPHeaders definition
@@ -2265,22 +2265,22 @@ type DeleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileList struct {
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListPrimaryEndpoint is the deleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListPrimaryEndpoint definition
 type DeleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListSecondaryEndpoint is the deleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListSecondaryEndpoint definition
 type DeleteDeviceByIDFromPnPResponseDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoPreWorkflowCliOuputs is the deleteDeviceByIDFromPnPResponseDeviceInfoPreWorkflowCliOuputs definition
@@ -2301,18 +2301,18 @@ type DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfo struct {
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfoStackMemberList is the deleteDeviceByIDFromPnPResponseDeviceInfoStackInfoStackMemberList definition
 type DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponseDeviceInfoStackInfoValidLicenseLevels is the deleteDeviceByIDFromPnPResponseDeviceInfoStackInfoValidLicenseLevels definition
@@ -2329,14 +2329,14 @@ type DeleteDeviceByIDFromPnPResponseRunSummaryList struct {
 	Details         string                                                       `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                         `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                          `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                                      `json:"timestamp,omitempty"`       //
 }
 
 // DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfo is the deleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfo definition
 type DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                                     `json:"name,omitempty"`         //
-	TimeTaken    int                                                                        `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                                    `json:"timeTaken,omitempty"`    //
 	Type         string                                                                     `json:"type,omitempty"`         //
 	WorkItemList []DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -2349,27 +2349,27 @@ type DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoAddnDetails str
 
 // DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoWorkItemList is the deleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoWorkItemList definition
 type DeleteDeviceByIDFromPnPResponseRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemResetWorkflow is the deleteDeviceByIDFromPnPResponseSystemResetWorkflow definition
 type DeleteDeviceByIDFromPnPResponseSystemResetWorkflow struct {
 	TypeID         string                                                    `json:"_id,omitempty"`            //
 	AddToInventory bool                                                      `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                       `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                                   `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                    `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                       `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                                   `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                    `json:"description,omitempty"`    //
 	EndTime        int                                                       `json:"endTime,omitempty"`        //
-	ExecTime       int                                                       `json:"execTime,omitempty"`       //
+	ExecTime       float64                                                   `json:"execTime,omitempty"`       //
 	ImageID        string                                                    `json:"imageId,omitempty"`        //
 	InstanceType   string                                                    `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                       `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                                   `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                    `json:"name,omitempty"`           //
 	StartTime      int                                                       `json:"startTime,omitempty"`      //
 	State          string                                                    `json:"state,omitempty"`          //
@@ -2377,45 +2377,45 @@ type DeleteDeviceByIDFromPnPResponseSystemResetWorkflow struct {
 	TenantID       string                                                    `json:"tenantId,omitempty"`       //
 	Type           string                                                    `json:"type,omitempty"`           //
 	UseState       string                                                    `json:"useState,omitempty"`       //
-	Version        int                                                       `json:"version,omitempty"`        //
+	Version        float64                                                   `json:"version,omitempty"`        //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemResetWorkflowTasks is the deleteDeviceByIDFromPnPResponseSystemResetWorkflowTasks definition
 type DeleteDeviceByIDFromPnPResponseSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                                   `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                               `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                                   `json:"endTime,omitempty"`         //
 	Name            string                                                                `json:"name,omitempty"`            //
 	StartTime       int                                                                   `json:"startTime,omitempty"`       //
 	State           string                                                                `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                                   `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                                   `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                               `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                               `json:"timeTaken,omitempty"`       //
 	Type            string                                                                `json:"type,omitempty"`            //
 	WorkItemList    []DeleteDeviceByIDFromPnPResponseSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemResetWorkflowTasksWorkItemList is the deleteDeviceByIDFromPnPResponseSystemResetWorkflowTasksWorkItemList definition
 type DeleteDeviceByIDFromPnPResponseSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemWorkflow is the deleteDeviceByIDFromPnPResponseSystemWorkflow definition
 type DeleteDeviceByIDFromPnPResponseSystemWorkflow struct {
 	TypeID         string                                               `json:"_id,omitempty"`            //
 	AddToInventory bool                                                 `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                  `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                              `json:"addedOn,omitempty"`        //
 	ConfigID       string                                               `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                  `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                              `json:"currTaskIdx,omitempty"`    //
 	Description    string                                               `json:"description,omitempty"`    //
 	EndTime        int                                                  `json:"endTime,omitempty"`        //
-	ExecTime       int                                                  `json:"execTime,omitempty"`       //
+	ExecTime       float64                                              `json:"execTime,omitempty"`       //
 	ImageID        string                                               `json:"imageId,omitempty"`        //
 	InstanceType   string                                               `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                  `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                              `json:"lastupdateOn,omitempty"`   //
 	Name           string                                               `json:"name,omitempty"`           //
 	StartTime      int                                                  `json:"startTime,omitempty"`      //
 	State          string                                               `json:"state,omitempty"`          //
@@ -2423,45 +2423,45 @@ type DeleteDeviceByIDFromPnPResponseSystemWorkflow struct {
 	TenantID       string                                               `json:"tenantId,omitempty"`       //
 	Type           string                                               `json:"type,omitempty"`           //
 	UseState       string                                               `json:"useState,omitempty"`       //
-	Version        int                                                  `json:"version,omitempty"`        //
+	Version        float64                                              `json:"version,omitempty"`        //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemWorkflowTasks is the deleteDeviceByIDFromPnPResponseSystemWorkflowTasks definition
 type DeleteDeviceByIDFromPnPResponseSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                              `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                          `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                              `json:"endTime,omitempty"`         //
 	Name            string                                                           `json:"name,omitempty"`            //
 	StartTime       int                                                              `json:"startTime,omitempty"`       //
 	State           string                                                           `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                              `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                              `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                          `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                          `json:"timeTaken,omitempty"`       //
 	Type            string                                                           `json:"type,omitempty"`            //
 	WorkItemList    []DeleteDeviceByIDFromPnPResponseSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // DeleteDeviceByIDFromPnPResponseSystemWorkflowTasksWorkItemList is the deleteDeviceByIDFromPnPResponseSystemWorkflowTasksWorkItemList definition
 type DeleteDeviceByIDFromPnPResponseSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponseWorkflow is the deleteDeviceByIDFromPnPResponseWorkflow definition
 type DeleteDeviceByIDFromPnPResponseWorkflow struct {
 	TypeID         string                                         `json:"_id,omitempty"`            //
 	AddToInventory bool                                           `json:"addToInventory,omitempty"` //
-	AddedOn        int                                            `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                        `json:"addedOn,omitempty"`        //
 	ConfigID       string                                         `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                            `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                        `json:"currTaskIdx,omitempty"`    //
 	Description    string                                         `json:"description,omitempty"`    //
 	EndTime        int                                            `json:"endTime,omitempty"`        //
-	ExecTime       int                                            `json:"execTime,omitempty"`       //
+	ExecTime       float64                                        `json:"execTime,omitempty"`       //
 	ImageID        string                                         `json:"imageId,omitempty"`        //
 	InstanceType   string                                         `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                            `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                        `json:"lastupdateOn,omitempty"`   //
 	Name           string                                         `json:"name,omitempty"`           //
 	StartTime      int                                            `json:"startTime,omitempty"`      //
 	State          string                                         `json:"state,omitempty"`          //
@@ -2469,7 +2469,7 @@ type DeleteDeviceByIDFromPnPResponseWorkflow struct {
 	TenantID       string                                         `json:"tenantId,omitempty"`       //
 	Type           string                                         `json:"type,omitempty"`           //
 	UseState       string                                         `json:"useState,omitempty"`       //
-	Version        int                                            `json:"version,omitempty"`        //
+	Version        float64                                        `json:"version,omitempty"`        //
 }
 
 // DeleteDeviceByIDFromPnPResponseWorkflowParameters is the deleteDeviceByIDFromPnPResponseWorkflowParameters definition
@@ -2494,25 +2494,25 @@ type DeleteDeviceByIDFromPnPResponseWorkflowParametersConfigListConfigParameters
 
 // DeleteDeviceByIDFromPnPResponseWorkflowTasks is the deleteDeviceByIDFromPnPResponseWorkflowTasks definition
 type DeleteDeviceByIDFromPnPResponseWorkflowTasks struct {
-	CurrWorkItemIDx int                                                        `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                    `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                        `json:"endTime,omitempty"`         //
 	Name            string                                                     `json:"name,omitempty"`            //
 	StartTime       int                                                        `json:"startTime,omitempty"`       //
 	State           string                                                     `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                        `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                        `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                    `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                    `json:"timeTaken,omitempty"`       //
 	Type            string                                                     `json:"type,omitempty"`            //
 	WorkItemList    []DeleteDeviceByIDFromPnPResponseWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // DeleteDeviceByIDFromPnPResponseWorkflowTasksWorkItemList is the deleteDeviceByIDFromPnPResponseWorkflowTasksWorkItemList definition
 type DeleteDeviceByIDFromPnPResponseWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // DeleteDeviceByIDFromPnPResponse is the deleteDeviceByIdFromPnPResponse definition
@@ -2525,47 +2525,47 @@ type DeleteDeviceByIDFromPnPResponse struct {
 	SystemResetWorkflow  DeleteDeviceByIDFromPnPResponseSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       DeleteDeviceByIDFromPnPResponseSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                             `json:"tenantId,omitempty"`             //
-	Version              int                                                `json:"version,omitempty"`              //
+	Version              float64                                            `json:"version,omitempty"`              //
 	Workflow             DeleteDeviceByIDFromPnPResponseWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   DeleteDeviceByIDFromPnPResponseWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
 
 // DeleteWorkflowByIDResponseTasks is the deleteWorkflowByIDResponseTasks definition
 type DeleteWorkflowByIDResponseTasks struct {
-	CurrWorkItemIDx int                                           `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                       `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                           `json:"endTime,omitempty"`         //
 	Name            string                                        `json:"name,omitempty"`            //
 	StartTime       int                                           `json:"startTime,omitempty"`       //
 	State           string                                        `json:"state,omitempty"`           //
-	TaskSeqNo       int                                           `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                           `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                       `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                       `json:"timeTaken,omitempty"`       //
 	Type            string                                        `json:"type,omitempty"`            //
 	WorkItemList    []DeleteWorkflowByIDResponseTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // DeleteWorkflowByIDResponseTasksWorkItemList is the deleteWorkflowByIDResponseTasksWorkItemList definition
 type DeleteWorkflowByIDResponseTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // DeleteWorkflowByIDResponse is the deleteWorkflowByIdResponse definition
 type DeleteWorkflowByIDResponse struct {
 	TypeID         string                            `json:"_id,omitempty"`            //
 	AddToInventory bool                              `json:"addToInventory,omitempty"` //
-	AddedOn        int                               `json:"addedOn,omitempty"`        //
+	AddedOn        float64                           `json:"addedOn,omitempty"`        //
 	ConfigID       string                            `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                               `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                           `json:"currTaskIdx,omitempty"`    //
 	Description    string                            `json:"description,omitempty"`    //
 	EndTime        int                               `json:"endTime,omitempty"`        //
-	ExecTime       int                               `json:"execTime,omitempty"`       //
+	ExecTime       float64                           `json:"execTime,omitempty"`       //
 	ImageID        string                            `json:"imageId,omitempty"`        //
 	InstanceType   string                            `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                               `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                           `json:"lastupdateOn,omitempty"`   //
 	Name           string                            `json:"name,omitempty"`           //
 	StartTime      int                               `json:"startTime,omitempty"`      //
 	State          string                            `json:"state,omitempty"`          //
@@ -2573,20 +2573,20 @@ type DeleteWorkflowByIDResponse struct {
 	TenantID       string                            `json:"tenantId,omitempty"`       //
 	Type           string                            `json:"type,omitempty"`           //
 	UseState       string                            `json:"useState,omitempty"`       //
-	Version        int                               `json:"version,omitempty"`        //
+	Version        float64                           `json:"version,omitempty"`        //
 }
 
 // DeregisterVirtualAccountResponse is the deregisterVirtualAccountResponse definition
 type DeregisterVirtualAccountResponse struct {
-	AutoSyncPeriod   int                                        `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                    `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                     `json:"ccoUser,omitempty"`          //
-	Expiry           int                                        `json:"expiry,omitempty"`           //
-	LastSync         int                                        `json:"lastSync,omitempty"`         //
+	Expiry           float64                                    `json:"expiry,omitempty"`           //
+	LastSync         float64                                    `json:"lastSync,omitempty"`         //
 	Profile          DeregisterVirtualAccountResponseProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                     `json:"smartAccountId,omitempty"`   //
 	SyncResult       DeregisterVirtualAccountResponseSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                     `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                        `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                    `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                     `json:"syncStatus,omitempty"`       //
 	TenantID         string                                     `json:"tenantId,omitempty"`         //
 	Token            string                                     `json:"token,omitempty"`            //
@@ -2595,14 +2595,14 @@ type DeregisterVirtualAccountResponse struct {
 
 // DeregisterVirtualAccountResponseProfile is the deregisterVirtualAccountResponseProfile definition
 type DeregisterVirtualAccountResponseProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // DeregisterVirtualAccountResponseSyncResult is the deregisterVirtualAccountResponseSyncResult definition
@@ -2628,7 +2628,7 @@ type GetDeviceByIDResponseDayZeroConfig struct {
 // GetDeviceByIDResponseDeviceInfo is the getDeviceByIDResponseDeviceInfo definition
 type GetDeviceByIDResponseDeviceInfo struct {
 	AAACredentials            GetDeviceByIDResponseDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                   `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                               `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                              `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                `json:"authStatus,omitempty"`                //
@@ -2641,15 +2641,15 @@ type GetDeviceByIDResponseDeviceInfo struct {
 	DeviceType                string                                                `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                              `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []GetDeviceByIDResponseDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                   `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                               `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []GetDeviceByIDResponseDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []GetDeviceByIDResponseDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                   `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                   `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                   `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                               `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                               `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                               `json:"lastUpdateOn,omitempty"`              //
 	Location                  GetDeviceByIDResponseDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                `json:"macAddress,omitempty"`                //
 	Mode                      string                                                `json:"mode,omitempty"`                      //
@@ -2700,12 +2700,12 @@ type GetDeviceByIDResponseDeviceInfoFeaturesSupported []string
 
 // GetDeviceByIDResponseDeviceInfoFileSystemList is the getDeviceByIDResponseDeviceInfoFileSystemList definition
 type GetDeviceByIDResponseDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // GetDeviceByIDResponseDeviceInfoHTTPHeaders is the getDeviceByIDResponseDeviceInfoHTTPHeaders definition
@@ -2759,22 +2759,22 @@ type GetDeviceByIDResponseDeviceInfoPnpProfileList struct {
 
 // GetDeviceByIDResponseDeviceInfoPnpProfileListPrimaryEndpoint is the getDeviceByIDResponseDeviceInfoPnpProfileListPrimaryEndpoint definition
 type GetDeviceByIDResponseDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // GetDeviceByIDResponseDeviceInfoPnpProfileListSecondaryEndpoint is the getDeviceByIDResponseDeviceInfoPnpProfileListSecondaryEndpoint definition
 type GetDeviceByIDResponseDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // GetDeviceByIDResponseDeviceInfoPreWorkflowCliOuputs is the getDeviceByIDResponseDeviceInfoPreWorkflowCliOuputs definition
@@ -2795,18 +2795,18 @@ type GetDeviceByIDResponseDeviceInfoStackInfo struct {
 
 // GetDeviceByIDResponseDeviceInfoStackInfoStackMemberList is the getDeviceByIDResponseDeviceInfoStackInfoStackMemberList definition
 type GetDeviceByIDResponseDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // GetDeviceByIDResponseDeviceInfoStackInfoValidLicenseLevels is the getDeviceByIDResponseDeviceInfoStackInfoValidLicenseLevels definition
@@ -2823,14 +2823,14 @@ type GetDeviceByIDResponseRunSummaryList struct {
 	Details         string                                             `json:"details,omitempty"`         //
 	ErrorFlag       bool                                               `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo GetDeviceByIDResponseRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                            `json:"timestamp,omitempty"`       //
 }
 
 // GetDeviceByIDResponseRunSummaryListHistoryTaskInfo is the getDeviceByIDResponseRunSummaryListHistoryTaskInfo definition
 type GetDeviceByIDResponseRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []GetDeviceByIDResponseRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                           `json:"name,omitempty"`         //
-	TimeTaken    int                                                              `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                          `json:"timeTaken,omitempty"`    //
 	Type         string                                                           `json:"type,omitempty"`         //
 	WorkItemList []GetDeviceByIDResponseRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -2843,27 +2843,27 @@ type GetDeviceByIDResponseRunSummaryListHistoryTaskInfoAddnDetails struct {
 
 // GetDeviceByIDResponseRunSummaryListHistoryTaskInfoWorkItemList is the getDeviceByIDResponseRunSummaryListHistoryTaskInfoWorkItemList definition
 type GetDeviceByIDResponseRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetDeviceByIDResponseSystemResetWorkflow is the getDeviceByIDResponseSystemResetWorkflow definition
 type GetDeviceByIDResponseSystemResetWorkflow struct {
 	TypeID         string                                          `json:"_id,omitempty"`            //
 	AddToInventory bool                                            `json:"addToInventory,omitempty"` //
-	AddedOn        int                                             `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                         `json:"addedOn,omitempty"`        //
 	ConfigID       string                                          `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                             `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                         `json:"currTaskIdx,omitempty"`    //
 	Description    string                                          `json:"description,omitempty"`    //
 	EndTime        int                                             `json:"endTime,omitempty"`        //
-	ExecTime       int                                             `json:"execTime,omitempty"`       //
+	ExecTime       float64                                         `json:"execTime,omitempty"`       //
 	ImageID        string                                          `json:"imageId,omitempty"`        //
 	InstanceType   string                                          `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                             `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                         `json:"lastupdateOn,omitempty"`   //
 	Name           string                                          `json:"name,omitempty"`           //
 	StartTime      int                                             `json:"startTime,omitempty"`      //
 	State          string                                          `json:"state,omitempty"`          //
@@ -2871,45 +2871,45 @@ type GetDeviceByIDResponseSystemResetWorkflow struct {
 	TenantID       string                                          `json:"tenantId,omitempty"`       //
 	Type           string                                          `json:"type,omitempty"`           //
 	UseState       string                                          `json:"useState,omitempty"`       //
-	Version        int                                             `json:"version,omitempty"`        //
+	Version        float64                                         `json:"version,omitempty"`        //
 }
 
 // GetDeviceByIDResponseSystemResetWorkflowTasks is the getDeviceByIDResponseSystemResetWorkflowTasks definition
 type GetDeviceByIDResponseSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                         `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                     `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                         `json:"endTime,omitempty"`         //
 	Name            string                                                      `json:"name,omitempty"`            //
 	StartTime       int                                                         `json:"startTime,omitempty"`       //
 	State           string                                                      `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                         `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                         `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                     `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                     `json:"timeTaken,omitempty"`       //
 	Type            string                                                      `json:"type,omitempty"`            //
 	WorkItemList    []GetDeviceByIDResponseSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetDeviceByIDResponseSystemResetWorkflowTasksWorkItemList is the getDeviceByIDResponseSystemResetWorkflowTasksWorkItemList definition
 type GetDeviceByIDResponseSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetDeviceByIDResponseSystemWorkflow is the getDeviceByIDResponseSystemWorkflow definition
 type GetDeviceByIDResponseSystemWorkflow struct {
 	TypeID         string                                     `json:"_id,omitempty"`            //
 	AddToInventory bool                                       `json:"addToInventory,omitempty"` //
-	AddedOn        int                                        `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                    `json:"addedOn,omitempty"`        //
 	ConfigID       string                                     `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                        `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                    `json:"currTaskIdx,omitempty"`    //
 	Description    string                                     `json:"description,omitempty"`    //
 	EndTime        int                                        `json:"endTime,omitempty"`        //
-	ExecTime       int                                        `json:"execTime,omitempty"`       //
+	ExecTime       float64                                    `json:"execTime,omitempty"`       //
 	ImageID        string                                     `json:"imageId,omitempty"`        //
 	InstanceType   string                                     `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                        `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                    `json:"lastupdateOn,omitempty"`   //
 	Name           string                                     `json:"name,omitempty"`           //
 	StartTime      int                                        `json:"startTime,omitempty"`      //
 	State          string                                     `json:"state,omitempty"`          //
@@ -2917,45 +2917,45 @@ type GetDeviceByIDResponseSystemWorkflow struct {
 	TenantID       string                                     `json:"tenantId,omitempty"`       //
 	Type           string                                     `json:"type,omitempty"`           //
 	UseState       string                                     `json:"useState,omitempty"`       //
-	Version        int                                        `json:"version,omitempty"`        //
+	Version        float64                                    `json:"version,omitempty"`        //
 }
 
 // GetDeviceByIDResponseSystemWorkflowTasks is the getDeviceByIDResponseSystemWorkflowTasks definition
 type GetDeviceByIDResponseSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                    `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                    `json:"endTime,omitempty"`         //
 	Name            string                                                 `json:"name,omitempty"`            //
 	StartTime       int                                                    `json:"startTime,omitempty"`       //
 	State           string                                                 `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                    `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                    `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                `json:"timeTaken,omitempty"`       //
 	Type            string                                                 `json:"type,omitempty"`            //
 	WorkItemList    []GetDeviceByIDResponseSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetDeviceByIDResponseSystemWorkflowTasksWorkItemList is the getDeviceByIDResponseSystemWorkflowTasksWorkItemList definition
 type GetDeviceByIDResponseSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetDeviceByIDResponseWorkflow is the getDeviceByIDResponseWorkflow definition
 type GetDeviceByIDResponseWorkflow struct {
 	TypeID         string                               `json:"_id,omitempty"`            //
 	AddToInventory bool                                 `json:"addToInventory,omitempty"` //
-	AddedOn        int                                  `json:"addedOn,omitempty"`        //
+	AddedOn        float64                              `json:"addedOn,omitempty"`        //
 	ConfigID       string                               `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                  `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                              `json:"currTaskIdx,omitempty"`    //
 	Description    string                               `json:"description,omitempty"`    //
 	EndTime        int                                  `json:"endTime,omitempty"`        //
-	ExecTime       int                                  `json:"execTime,omitempty"`       //
+	ExecTime       float64                              `json:"execTime,omitempty"`       //
 	ImageID        string                               `json:"imageId,omitempty"`        //
 	InstanceType   string                               `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                  `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                              `json:"lastupdateOn,omitempty"`   //
 	Name           string                               `json:"name,omitempty"`           //
 	StartTime      int                                  `json:"startTime,omitempty"`      //
 	State          string                               `json:"state,omitempty"`          //
@@ -2963,7 +2963,7 @@ type GetDeviceByIDResponseWorkflow struct {
 	TenantID       string                               `json:"tenantId,omitempty"`       //
 	Type           string                               `json:"type,omitempty"`           //
 	UseState       string                               `json:"useState,omitempty"`       //
-	Version        int                                  `json:"version,omitempty"`        //
+	Version        float64                              `json:"version,omitempty"`        //
 }
 
 // GetDeviceByIDResponseWorkflowParameters is the getDeviceByIDResponseWorkflowParameters definition
@@ -2988,25 +2988,25 @@ type GetDeviceByIDResponseWorkflowParametersConfigListConfigParameters struct {
 
 // GetDeviceByIDResponseWorkflowTasks is the getDeviceByIDResponseWorkflowTasks definition
 type GetDeviceByIDResponseWorkflowTasks struct {
-	CurrWorkItemIDx int                                              `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                          `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                              `json:"endTime,omitempty"`         //
 	Name            string                                           `json:"name,omitempty"`            //
 	StartTime       int                                              `json:"startTime,omitempty"`       //
 	State           string                                           `json:"state,omitempty"`           //
-	TaskSeqNo       int                                              `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                              `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                          `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                          `json:"timeTaken,omitempty"`       //
 	Type            string                                           `json:"type,omitempty"`            //
 	WorkItemList    []GetDeviceByIDResponseWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetDeviceByIDResponseWorkflowTasksWorkItemList is the getDeviceByIDResponseWorkflowTasksWorkItemList definition
 type GetDeviceByIDResponseWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetDeviceByIDResponse is the getDeviceByIdResponse definition
@@ -3019,7 +3019,7 @@ type GetDeviceByIDResponse struct {
 	SystemResetWorkflow  GetDeviceByIDResponseSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       GetDeviceByIDResponseSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                   `json:"tenantId,omitempty"`             //
-	Version              int                                      `json:"version,omitempty"`              //
+	Version              float64                                  `json:"version,omitempty"`              //
 	Workflow             GetDeviceByIDResponseWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   GetDeviceByIDResponseWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -3027,7 +3027,7 @@ type GetDeviceByIDResponse struct {
 // GetDeviceHistoryResponse is the getDeviceHistoryResponse definition
 type GetDeviceHistoryResponse struct {
 	Response   []GetDeviceHistoryResponseResponse `json:"response,omitempty"`   //
-	StatusCode int                                `json:"statusCode,omitempty"` //
+	StatusCode float64                            `json:"statusCode,omitempty"` //
 }
 
 // GetDeviceHistoryResponseResponse is the getDeviceHistoryResponseResponse definition
@@ -3035,14 +3035,14 @@ type GetDeviceHistoryResponseResponse struct {
 	Details         string                                          `json:"details,omitempty"`         //
 	ErrorFlag       bool                                            `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo GetDeviceHistoryResponseResponseHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                             `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                         `json:"timestamp,omitempty"`       //
 }
 
 // GetDeviceHistoryResponseResponseHistoryTaskInfo is the getDeviceHistoryResponseResponseHistoryTaskInfo definition
 type GetDeviceHistoryResponseResponseHistoryTaskInfo struct {
 	AddnDetails  []GetDeviceHistoryResponseResponseHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                        `json:"name,omitempty"`         //
-	TimeTaken    int                                                           `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                       `json:"timeTaken,omitempty"`    //
 	Type         string                                                        `json:"type,omitempty"`         //
 	WorkItemList []GetDeviceHistoryResponseResponseHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -3055,12 +3055,12 @@ type GetDeviceHistoryResponseResponseHistoryTaskInfoAddnDetails struct {
 
 // GetDeviceHistoryResponseResponseHistoryTaskInfoWorkItemList is the getDeviceHistoryResponseResponseHistoryTaskInfoWorkItemList definition
 type GetDeviceHistoryResponseResponseHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetPnPGlobalSettingsResponse is the getPnPGlobalSettingsResponse definition
@@ -3073,7 +3073,7 @@ type GetPnPGlobalSettingsResponse struct {
 	SavaMappingList []GetPnPGlobalSettingsResponseSavaMappingList `json:"savaMappingList,omitempty"` //
 	TaskTimeOuts    GetPnPGlobalSettingsResponseTaskTimeOuts      `json:"taskTimeOuts,omitempty"`    //
 	TenantID        string                                        `json:"tenantId,omitempty"`        //
-	Version         int                                           `json:"version,omitempty"`         //
+	Version         float64                                       `json:"version,omitempty"`         //
 }
 
 // GetPnPGlobalSettingsResponseAAACredentials is the getPnPGlobalSettingsResponseAAACredentials definition
@@ -3087,7 +3087,7 @@ type GetPnPGlobalSettingsResponseDefaultProfile struct {
 	Cert          string   `json:"cert,omitempty"`          //
 	FqdnAddresses []string `json:"fqdnAddresses,omitempty"` //
 	IPAddresses   []string `json:"ipAddresses,omitempty"`   //
-	Port          int      `json:"port,omitempty"`          //
+	Port          float64  `json:"port,omitempty"`          //
 	Proxy         bool     `json:"proxy,omitempty"`         //
 }
 
@@ -3099,15 +3099,15 @@ type GetPnPGlobalSettingsResponseDefaultProfileIPAddresses []string
 
 // GetPnPGlobalSettingsResponseSavaMappingList is the getPnPGlobalSettingsResponseSavaMappingList definition
 type GetPnPGlobalSettingsResponseSavaMappingList struct {
-	AutoSyncPeriod   int                                                   `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                               `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                                `json:"ccoUser,omitempty"`          //
-	Expiry           int                                                   `json:"expiry,omitempty"`           //
-	LastSync         int                                                   `json:"lastSync,omitempty"`         //
+	Expiry           float64                                               `json:"expiry,omitempty"`           //
+	LastSync         float64                                               `json:"lastSync,omitempty"`         //
 	Profile          GetPnPGlobalSettingsResponseSavaMappingListProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                                `json:"smartAccountId,omitempty"`   //
 	SyncResult       GetPnPGlobalSettingsResponseSavaMappingListSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                                `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                                   `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                               `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                                `json:"syncStatus,omitempty"`       //
 	TenantID         string                                                `json:"tenantId,omitempty"`         //
 	Token            string                                                `json:"token,omitempty"`            //
@@ -3116,14 +3116,14 @@ type GetPnPGlobalSettingsResponseSavaMappingList struct {
 
 // GetPnPGlobalSettingsResponseSavaMappingListProfile is the getPnPGlobalSettingsResponseSavaMappingListProfile definition
 type GetPnPGlobalSettingsResponseSavaMappingListProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // GetPnPGlobalSettingsResponseSavaMappingListSyncResult is the getPnPGlobalSettingsResponseSavaMappingListSyncResult definition
@@ -3143,14 +3143,14 @@ type GetPnPGlobalSettingsResponseSavaMappingListSyncResultSyncListDeviceSnList [
 
 // GetPnPGlobalSettingsResponseTaskTimeOuts is the getPnPGlobalSettingsResponseTaskTimeOuts definition
 type GetPnPGlobalSettingsResponseTaskTimeOuts struct {
-	ConfigTimeOut        int `json:"configTimeOut,omitempty"`        //
-	GeneralTimeOut       int `json:"generalTimeOut,omitempty"`       //
-	ImageDownloadTimeOut int `json:"imageDownloadTimeOut,omitempty"` //
+	ConfigTimeOut        float64 `json:"configTimeOut,omitempty"`        //
+	GeneralTimeOut       float64 `json:"generalTimeOut,omitempty"`       //
+	ImageDownloadTimeOut float64 `json:"imageDownloadTimeOut,omitempty"` //
 }
 
 // GetPnpDeviceCountResponse is the getPnpDeviceCountResponse definition
 type GetPnpDeviceCountResponse struct {
-	Response int `json:"response,omitempty"` //
+	Response float64 `json:"response,omitempty"` //
 }
 
 // GetPnpDeviceListResponse is the getPnpDeviceListResponse definition
@@ -3163,7 +3163,7 @@ type GetPnpDeviceListResponse struct {
 	SystemResetWorkflow  GetPnpDeviceListResponseSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       GetPnpDeviceListResponseSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                      `json:"tenantId,omitempty"`             //
-	Version              int                                         `json:"version,omitempty"`              //
+	Version              float64                                     `json:"version,omitempty"`              //
 	Workflow             GetPnpDeviceListResponseWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   GetPnpDeviceListResponseWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -3176,7 +3176,7 @@ type GetPnpDeviceListResponseDayZeroConfig struct {
 // GetPnpDeviceListResponseDeviceInfo is the getPnpDeviceListResponseDeviceInfo definition
 type GetPnpDeviceListResponseDeviceInfo struct {
 	AAACredentials            GetPnpDeviceListResponseDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                      `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                  `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                 `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                   `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                   `json:"authStatus,omitempty"`                //
@@ -3189,15 +3189,15 @@ type GetPnpDeviceListResponseDeviceInfo struct {
 	DeviceType                string                                                   `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                 `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []GetPnpDeviceListResponseDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                      `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                  `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                   `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []GetPnpDeviceListResponseDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                   `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                   `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []GetPnpDeviceListResponseDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                      `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                      `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                      `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                  `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                  `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                  `json:"lastUpdateOn,omitempty"`              //
 	Location                  GetPnpDeviceListResponseDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                   `json:"macAddress,omitempty"`                //
 	Mode                      string                                                   `json:"mode,omitempty"`                      //
@@ -3248,12 +3248,12 @@ type GetPnpDeviceListResponseDeviceInfoFeaturesSupported []string
 
 // GetPnpDeviceListResponseDeviceInfoFileSystemList is the getPnpDeviceListResponseDeviceInfoFileSystemList definition
 type GetPnpDeviceListResponseDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // GetPnpDeviceListResponseDeviceInfoHTTPHeaders is the getPnpDeviceListResponseDeviceInfoHTTPHeaders definition
@@ -3307,22 +3307,22 @@ type GetPnpDeviceListResponseDeviceInfoPnpProfileList struct {
 
 // GetPnpDeviceListResponseDeviceInfoPnpProfileListPrimaryEndpoint is the getPnpDeviceListResponseDeviceInfoPnpProfileListPrimaryEndpoint definition
 type GetPnpDeviceListResponseDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // GetPnpDeviceListResponseDeviceInfoPnpProfileListSecondaryEndpoint is the getPnpDeviceListResponseDeviceInfoPnpProfileListSecondaryEndpoint definition
 type GetPnpDeviceListResponseDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // GetPnpDeviceListResponseDeviceInfoPreWorkflowCliOuputs is the getPnpDeviceListResponseDeviceInfoPreWorkflowCliOuputs definition
@@ -3343,18 +3343,18 @@ type GetPnpDeviceListResponseDeviceInfoStackInfo struct {
 
 // GetPnpDeviceListResponseDeviceInfoStackInfoStackMemberList is the getPnpDeviceListResponseDeviceInfoStackInfoStackMemberList definition
 type GetPnpDeviceListResponseDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // GetPnpDeviceListResponseDeviceInfoStackInfoValidLicenseLevels is the getPnpDeviceListResponseDeviceInfoStackInfoValidLicenseLevels definition
@@ -3371,14 +3371,14 @@ type GetPnpDeviceListResponseRunSummaryList struct {
 	Details         string                                                `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                  `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo GetPnpDeviceListResponseRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                   `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                               `json:"timestamp,omitempty"`       //
 }
 
 // GetPnpDeviceListResponseRunSummaryListHistoryTaskInfo is the getPnpDeviceListResponseRunSummaryListHistoryTaskInfo definition
 type GetPnpDeviceListResponseRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []GetPnpDeviceListResponseRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                              `json:"name,omitempty"`         //
-	TimeTaken    int                                                                 `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                             `json:"timeTaken,omitempty"`    //
 	Type         string                                                              `json:"type,omitempty"`         //
 	WorkItemList []GetPnpDeviceListResponseRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -3391,27 +3391,27 @@ type GetPnpDeviceListResponseRunSummaryListHistoryTaskInfoAddnDetails struct {
 
 // GetPnpDeviceListResponseRunSummaryListHistoryTaskInfoWorkItemList is the getPnpDeviceListResponseRunSummaryListHistoryTaskInfoWorkItemList definition
 type GetPnpDeviceListResponseRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetPnpDeviceListResponseSystemResetWorkflow is the getPnpDeviceListResponseSystemResetWorkflow definition
 type GetPnpDeviceListResponseSystemResetWorkflow struct {
 	TypeID         string                                             `json:"_id,omitempty"`            //
 	AddToInventory bool                                               `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                            `json:"addedOn,omitempty"`        //
 	ConfigID       string                                             `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                            `json:"currTaskIdx,omitempty"`    //
 	Description    string                                             `json:"description,omitempty"`    //
 	EndTime        int                                                `json:"endTime,omitempty"`        //
-	ExecTime       int                                                `json:"execTime,omitempty"`       //
+	ExecTime       float64                                            `json:"execTime,omitempty"`       //
 	ImageID        string                                             `json:"imageId,omitempty"`        //
 	InstanceType   string                                             `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                            `json:"lastupdateOn,omitempty"`   //
 	Name           string                                             `json:"name,omitempty"`           //
 	StartTime      int                                                `json:"startTime,omitempty"`      //
 	State          string                                             `json:"state,omitempty"`          //
@@ -3419,45 +3419,45 @@ type GetPnpDeviceListResponseSystemResetWorkflow struct {
 	TenantID       string                                             `json:"tenantId,omitempty"`       //
 	Type           string                                             `json:"type,omitempty"`           //
 	UseState       string                                             `json:"useState,omitempty"`       //
-	Version        int                                                `json:"version,omitempty"`        //
+	Version        float64                                            `json:"version,omitempty"`        //
 }
 
 // GetPnpDeviceListResponseSystemResetWorkflowTasks is the getPnpDeviceListResponseSystemResetWorkflowTasks definition
 type GetPnpDeviceListResponseSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                            `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                        `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                            `json:"endTime,omitempty"`         //
 	Name            string                                                         `json:"name,omitempty"`            //
 	StartTime       int                                                            `json:"startTime,omitempty"`       //
 	State           string                                                         `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                            `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                            `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                        `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                        `json:"timeTaken,omitempty"`       //
 	Type            string                                                         `json:"type,omitempty"`            //
 	WorkItemList    []GetPnpDeviceListResponseSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetPnpDeviceListResponseSystemResetWorkflowTasksWorkItemList is the getPnpDeviceListResponseSystemResetWorkflowTasksWorkItemList definition
 type GetPnpDeviceListResponseSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetPnpDeviceListResponseSystemWorkflow is the getPnpDeviceListResponseSystemWorkflow definition
 type GetPnpDeviceListResponseSystemWorkflow struct {
 	TypeID         string                                        `json:"_id,omitempty"`            //
 	AddToInventory bool                                          `json:"addToInventory,omitempty"` //
-	AddedOn        int                                           `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                       `json:"addedOn,omitempty"`        //
 	ConfigID       string                                        `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                           `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                       `json:"currTaskIdx,omitempty"`    //
 	Description    string                                        `json:"description,omitempty"`    //
 	EndTime        int                                           `json:"endTime,omitempty"`        //
-	ExecTime       int                                           `json:"execTime,omitempty"`       //
+	ExecTime       float64                                       `json:"execTime,omitempty"`       //
 	ImageID        string                                        `json:"imageId,omitempty"`        //
 	InstanceType   string                                        `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                           `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                       `json:"lastupdateOn,omitempty"`   //
 	Name           string                                        `json:"name,omitempty"`           //
 	StartTime      int                                           `json:"startTime,omitempty"`      //
 	State          string                                        `json:"state,omitempty"`          //
@@ -3465,45 +3465,45 @@ type GetPnpDeviceListResponseSystemWorkflow struct {
 	TenantID       string                                        `json:"tenantId,omitempty"`       //
 	Type           string                                        `json:"type,omitempty"`           //
 	UseState       string                                        `json:"useState,omitempty"`       //
-	Version        int                                           `json:"version,omitempty"`        //
+	Version        float64                                       `json:"version,omitempty"`        //
 }
 
 // GetPnpDeviceListResponseSystemWorkflowTasks is the getPnpDeviceListResponseSystemWorkflowTasks definition
 type GetPnpDeviceListResponseSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                       `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                   `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                       `json:"endTime,omitempty"`         //
 	Name            string                                                    `json:"name,omitempty"`            //
 	StartTime       int                                                       `json:"startTime,omitempty"`       //
 	State           string                                                    `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                       `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                       `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                   `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                   `json:"timeTaken,omitempty"`       //
 	Type            string                                                    `json:"type,omitempty"`            //
 	WorkItemList    []GetPnpDeviceListResponseSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetPnpDeviceListResponseSystemWorkflowTasksWorkItemList is the getPnpDeviceListResponseSystemWorkflowTasksWorkItemList definition
 type GetPnpDeviceListResponseSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetPnpDeviceListResponseWorkflow is the getPnpDeviceListResponseWorkflow definition
 type GetPnpDeviceListResponseWorkflow struct {
 	TypeID         string                                  `json:"_id,omitempty"`            //
 	AddToInventory bool                                    `json:"addToInventory,omitempty"` //
-	AddedOn        int                                     `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                 `json:"addedOn,omitempty"`        //
 	ConfigID       string                                  `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                     `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                 `json:"currTaskIdx,omitempty"`    //
 	Description    string                                  `json:"description,omitempty"`    //
 	EndTime        int                                     `json:"endTime,omitempty"`        //
-	ExecTime       int                                     `json:"execTime,omitempty"`       //
+	ExecTime       float64                                 `json:"execTime,omitempty"`       //
 	ImageID        string                                  `json:"imageId,omitempty"`        //
 	InstanceType   string                                  `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                     `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                 `json:"lastupdateOn,omitempty"`   //
 	Name           string                                  `json:"name,omitempty"`           //
 	StartTime      int                                     `json:"startTime,omitempty"`      //
 	State          string                                  `json:"state,omitempty"`          //
@@ -3511,7 +3511,7 @@ type GetPnpDeviceListResponseWorkflow struct {
 	TenantID       string                                  `json:"tenantId,omitempty"`       //
 	Type           string                                  `json:"type,omitempty"`           //
 	UseState       string                                  `json:"useState,omitempty"`       //
-	Version        int                                     `json:"version,omitempty"`        //
+	Version        float64                                 `json:"version,omitempty"`        //
 }
 
 // GetPnpDeviceListResponseWorkflowParameters is the getPnpDeviceListResponseWorkflowParameters definition
@@ -3536,25 +3536,25 @@ type GetPnpDeviceListResponseWorkflowParametersConfigListConfigParameters struct
 
 // GetPnpDeviceListResponseWorkflowTasks is the getPnpDeviceListResponseWorkflowTasks definition
 type GetPnpDeviceListResponseWorkflowTasks struct {
-	CurrWorkItemIDx int                                                 `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                             `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                 `json:"endTime,omitempty"`         //
 	Name            string                                              `json:"name,omitempty"`            //
 	StartTime       int                                                 `json:"startTime,omitempty"`       //
 	State           string                                              `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                 `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                 `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                             `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                             `json:"timeTaken,omitempty"`       //
 	Type            string                                              `json:"type,omitempty"`            //
 	WorkItemList    []GetPnpDeviceListResponseWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetPnpDeviceListResponseWorkflowTasksWorkItemList is the getPnpDeviceListResponseWorkflowTasksWorkItemList definition
 type GetPnpDeviceListResponseWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetSmartAccountListResponse is the getSmartAccountListResponse definition
@@ -3562,15 +3562,15 @@ type GetSmartAccountListResponse []string
 
 // GetSyncResultForVirtualAccountResponse is the getSyncResultForVirtualAccountResponse definition
 type GetSyncResultForVirtualAccountResponse struct {
-	AutoSyncPeriod   int                                              `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                          `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                           `json:"ccoUser,omitempty"`          //
-	Expiry           int                                              `json:"expiry,omitempty"`           //
-	LastSync         int                                              `json:"lastSync,omitempty"`         //
+	Expiry           float64                                          `json:"expiry,omitempty"`           //
+	LastSync         float64                                          `json:"lastSync,omitempty"`         //
 	Profile          GetSyncResultForVirtualAccountResponseProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                           `json:"smartAccountId,omitempty"`   //
 	SyncResult       GetSyncResultForVirtualAccountResponseSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                           `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                              `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                          `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                           `json:"syncStatus,omitempty"`       //
 	TenantID         string                                           `json:"tenantId,omitempty"`         //
 	Token            string                                           `json:"token,omitempty"`            //
@@ -3579,14 +3579,14 @@ type GetSyncResultForVirtualAccountResponse struct {
 
 // GetSyncResultForVirtualAccountResponseProfile is the getSyncResultForVirtualAccountResponseProfile definition
 type GetSyncResultForVirtualAccountResponseProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // GetSyncResultForVirtualAccountResponseSyncResult is the getSyncResultForVirtualAccountResponseSyncResult definition
@@ -3609,40 +3609,40 @@ type GetVirtualAccountListResponse []string
 
 // GetWorkflowByIDResponseTasks is the getWorkflowByIDResponseTasks definition
 type GetWorkflowByIDResponseTasks struct {
-	CurrWorkItemIDx int                                        `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                    `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                        `json:"endTime,omitempty"`         //
 	Name            string                                     `json:"name,omitempty"`            //
 	StartTime       int                                        `json:"startTime,omitempty"`       //
 	State           string                                     `json:"state,omitempty"`           //
-	TaskSeqNo       int                                        `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                        `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                    `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                    `json:"timeTaken,omitempty"`       //
 	Type            string                                     `json:"type,omitempty"`            //
 	WorkItemList    []GetWorkflowByIDResponseTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetWorkflowByIDResponseTasksWorkItemList is the getWorkflowByIDResponseTasksWorkItemList definition
 type GetWorkflowByIDResponseTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // GetWorkflowByIDResponse is the getWorkflowByIdResponse definition
 type GetWorkflowByIDResponse struct {
 	TypeID         string                         `json:"_id,omitempty"`            //
 	AddToInventory bool                           `json:"addToInventory,omitempty"` //
-	AddedOn        int                            `json:"addedOn,omitempty"`        //
+	AddedOn        float64                        `json:"addedOn,omitempty"`        //
 	ConfigID       string                         `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                            `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                        `json:"currTaskIdx,omitempty"`    //
 	Description    string                         `json:"description,omitempty"`    //
 	EndTime        int                            `json:"endTime,omitempty"`        //
-	ExecTime       int                            `json:"execTime,omitempty"`       //
+	ExecTime       float64                        `json:"execTime,omitempty"`       //
 	ImageID        string                         `json:"imageId,omitempty"`        //
 	InstanceType   string                         `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                            `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                        `json:"lastupdateOn,omitempty"`   //
 	Name           string                         `json:"name,omitempty"`           //
 	StartTime      int                            `json:"startTime,omitempty"`      //
 	State          string                         `json:"state,omitempty"`          //
@@ -3650,27 +3650,27 @@ type GetWorkflowByIDResponse struct {
 	TenantID       string                         `json:"tenantId,omitempty"`       //
 	Type           string                         `json:"type,omitempty"`           //
 	UseState       string                         `json:"useState,omitempty"`       //
-	Version        int                            `json:"version,omitempty"`        //
+	Version        float64                        `json:"version,omitempty"`        //
 }
 
 // GetWorkflowCountResponse is the getWorkflowCountResponse definition
 type GetWorkflowCountResponse struct {
-	Response int `json:"response,omitempty"` //
+	Response float64 `json:"response,omitempty"` //
 }
 
 // GetWorkflowsResponse is the getWorkflowsResponse definition
 type GetWorkflowsResponse struct {
 	TypeID         string                      `json:"_id,omitempty"`            //
 	AddToInventory bool                        `json:"addToInventory,omitempty"` //
-	AddedOn        int                         `json:"addedOn,omitempty"`        //
+	AddedOn        float64                     `json:"addedOn,omitempty"`        //
 	ConfigID       string                      `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                         `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                     `json:"currTaskIdx,omitempty"`    //
 	Description    string                      `json:"description,omitempty"`    //
 	EndTime        int                         `json:"endTime,omitempty"`        //
-	ExecTime       int                         `json:"execTime,omitempty"`       //
+	ExecTime       float64                     `json:"execTime,omitempty"`       //
 	ImageID        string                      `json:"imageId,omitempty"`        //
 	InstanceType   string                      `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                         `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                     `json:"lastupdateOn,omitempty"`   //
 	Name           string                      `json:"name,omitempty"`           //
 	StartTime      int                         `json:"startTime,omitempty"`      //
 	State          string                      `json:"state,omitempty"`          //
@@ -3678,30 +3678,30 @@ type GetWorkflowsResponse struct {
 	TenantID       string                      `json:"tenantId,omitempty"`       //
 	Type           string                      `json:"type,omitempty"`           //
 	UseState       string                      `json:"useState,omitempty"`       //
-	Version        int                         `json:"version,omitempty"`        //
+	Version        float64                     `json:"version,omitempty"`        //
 }
 
 // GetWorkflowsResponseTasks is the getWorkflowsResponseTasks definition
 type GetWorkflowsResponseTasks struct {
-	CurrWorkItemIDx int                                     `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                 `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                     `json:"endTime,omitempty"`         //
 	Name            string                                  `json:"name,omitempty"`            //
 	StartTime       int                                     `json:"startTime,omitempty"`       //
 	State           string                                  `json:"state,omitempty"`           //
-	TaskSeqNo       int                                     `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                     `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                 `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                 `json:"timeTaken,omitempty"`       //
 	Type            string                                  `json:"type,omitempty"`            //
 	WorkItemList    []GetWorkflowsResponseTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // GetWorkflowsResponseTasksWorkItemList is the getWorkflowsResponseTasksWorkItemList definition
 type GetWorkflowsResponseTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkResponse is the importDevicesInBulkResponse definition
@@ -3712,10 +3712,10 @@ type ImportDevicesInBulkResponse struct {
 
 // ImportDevicesInBulkResponseFailureList is the importDevicesInBulkResponseFailureList definition
 type ImportDevicesInBulkResponseFailureList struct {
-	ID        string `json:"id,omitempty"`        //
-	Index     int    `json:"index,omitempty"`     //
-	Msg       string `json:"msg,omitempty"`       //
-	SerialNum string `json:"serialNum,omitempty"` //
+	ID        string  `json:"id,omitempty"`        //
+	Index     float64 `json:"index,omitempty"`     //
+	Msg       string  `json:"msg,omitempty"`       //
+	SerialNum string  `json:"serialNum,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessList is the importDevicesInBulkResponseSuccessList definition
@@ -3728,7 +3728,7 @@ type ImportDevicesInBulkResponseSuccessList struct {
 	SystemResetWorkflow  ImportDevicesInBulkResponseSuccessListSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       ImportDevicesInBulkResponseSuccessListSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                                    `json:"tenantId,omitempty"`             //
-	Version              int                                                       `json:"version,omitempty"`              //
+	Version              float64                                                   `json:"version,omitempty"`              //
 	Workflow             ImportDevicesInBulkResponseSuccessListWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   ImportDevicesInBulkResponseSuccessListWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -3741,7 +3741,7 @@ type ImportDevicesInBulkResponseSuccessListDayZeroConfig struct {
 // ImportDevicesInBulkResponseSuccessListDeviceInfo is the importDevicesInBulkResponseSuccessListDeviceInfo definition
 type ImportDevicesInBulkResponseSuccessListDeviceInfo struct {
 	AAACredentials            ImportDevicesInBulkResponseSuccessListDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                                    `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                                                `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                                               `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                                                 `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                                                 `json:"authStatus,omitempty"`                //
@@ -3754,15 +3754,15 @@ type ImportDevicesInBulkResponseSuccessListDeviceInfo struct {
 	DeviceType                string                                                                 `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                                               `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []ImportDevicesInBulkResponseSuccessListDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                                    `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                                                `json:"firstContact,omitempty"`              //
 	Hostname                  string                                                                 `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []ImportDevicesInBulkResponseSuccessListDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                                                 `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                                                 `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []ImportDevicesInBulkResponseSuccessListDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                                    `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                                    `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                                    `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                                                `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                                                `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                                                `json:"lastUpdateOn,omitempty"`              //
 	Location                  ImportDevicesInBulkResponseSuccessListDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                                                 `json:"macAddress,omitempty"`                //
 	Mode                      string                                                                 `json:"mode,omitempty"`                      //
@@ -3813,12 +3813,12 @@ type ImportDevicesInBulkResponseSuccessListDeviceInfoFeaturesSupported []string
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoFileSystemList is the importDevicesInBulkResponseSuccessListDeviceInfoFileSystemList definition
 type ImportDevicesInBulkResponseSuccessListDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoHTTPHeaders is the importDevicesInBulkResponseSuccessListDeviceInfoHTTPHeaders definition
@@ -3872,22 +3872,22 @@ type ImportDevicesInBulkResponseSuccessListDeviceInfoPnpProfileList struct {
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListPrimaryEndpoint is the importDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListPrimaryEndpoint definition
 type ImportDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListSecondaryEndpoint is the importDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListSecondaryEndpoint definition
 type ImportDevicesInBulkResponseSuccessListDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoPreWorkflowCliOuputs is the importDevicesInBulkResponseSuccessListDeviceInfoPreWorkflowCliOuputs definition
@@ -3908,18 +3908,18 @@ type ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfo struct {
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfoStackMemberList is the importDevicesInBulkResponseSuccessListDeviceInfoStackInfoStackMemberList definition
 type ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessListDeviceInfoStackInfoValidLicenseLevels is the importDevicesInBulkResponseSuccessListDeviceInfoStackInfoValidLicenseLevels definition
@@ -3936,14 +3936,14 @@ type ImportDevicesInBulkResponseSuccessListRunSummaryList struct {
 	Details         string                                                              `json:"details,omitempty"`         //
 	ErrorFlag       bool                                                                `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                                                 `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                                             `json:"timestamp,omitempty"`       //
 }
 
 // ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfo is the importDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfo definition
 type ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                                            `json:"name,omitempty"`         //
-	TimeTaken    int                                                                               `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                                           `json:"timeTaken,omitempty"`    //
 	Type         string                                                                            `json:"type,omitempty"`         //
 	WorkItemList []ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -3956,27 +3956,27 @@ type ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoAddnDeta
 
 // ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoWorkItemList is the importDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoWorkItemList definition
 type ImportDevicesInBulkResponseSuccessListRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemResetWorkflow is the importDevicesInBulkResponseSuccessListSystemResetWorkflow definition
 type ImportDevicesInBulkResponseSuccessListSystemResetWorkflow struct {
 	TypeID         string                                                           `json:"_id,omitempty"`            //
 	AddToInventory bool                                                             `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                              `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                                          `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                           `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                              `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                                          `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                           `json:"description,omitempty"`    //
 	EndTime        int                                                              `json:"endTime,omitempty"`        //
-	ExecTime       int                                                              `json:"execTime,omitempty"`       //
+	ExecTime       float64                                                          `json:"execTime,omitempty"`       //
 	ImageID        string                                                           `json:"imageId,omitempty"`        //
 	InstanceType   string                                                           `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                              `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                                          `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                           `json:"name,omitempty"`           //
 	StartTime      int                                                              `json:"startTime,omitempty"`      //
 	State          string                                                           `json:"state,omitempty"`          //
@@ -3984,45 +3984,45 @@ type ImportDevicesInBulkResponseSuccessListSystemResetWorkflow struct {
 	TenantID       string                                                           `json:"tenantId,omitempty"`       //
 	Type           string                                                           `json:"type,omitempty"`           //
 	UseState       string                                                           `json:"useState,omitempty"`       //
-	Version        int                                                              `json:"version,omitempty"`        //
+	Version        float64                                                          `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemResetWorkflowTasks is the importDevicesInBulkResponseSuccessListSystemResetWorkflowTasks definition
 type ImportDevicesInBulkResponseSuccessListSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                                          `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                                      `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                                          `json:"endTime,omitempty"`         //
 	Name            string                                                                       `json:"name,omitempty"`            //
 	StartTime       int                                                                          `json:"startTime,omitempty"`       //
 	State           string                                                                       `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                                          `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                                          `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                                      `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                                      `json:"timeTaken,omitempty"`       //
 	Type            string                                                                       `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkResponseSuccessListSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemResetWorkflowTasksWorkItemList is the importDevicesInBulkResponseSuccessListSystemResetWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkResponseSuccessListSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemWorkflow is the importDevicesInBulkResponseSuccessListSystemWorkflow definition
 type ImportDevicesInBulkResponseSuccessListSystemWorkflow struct {
 	TypeID         string                                                      `json:"_id,omitempty"`            //
 	AddToInventory bool                                                        `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                         `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                                     `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                      `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                         `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                                     `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                      `json:"description,omitempty"`    //
 	EndTime        int                                                         `json:"endTime,omitempty"`        //
-	ExecTime       int                                                         `json:"execTime,omitempty"`       //
+	ExecTime       float64                                                     `json:"execTime,omitempty"`       //
 	ImageID        string                                                      `json:"imageId,omitempty"`        //
 	InstanceType   string                                                      `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                         `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                                     `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                      `json:"name,omitempty"`           //
 	StartTime      int                                                         `json:"startTime,omitempty"`      //
 	State          string                                                      `json:"state,omitempty"`          //
@@ -4030,45 +4030,45 @@ type ImportDevicesInBulkResponseSuccessListSystemWorkflow struct {
 	TenantID       string                                                      `json:"tenantId,omitempty"`       //
 	Type           string                                                      `json:"type,omitempty"`           //
 	UseState       string                                                      `json:"useState,omitempty"`       //
-	Version        int                                                         `json:"version,omitempty"`        //
+	Version        float64                                                     `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemWorkflowTasks is the importDevicesInBulkResponseSuccessListSystemWorkflowTasks definition
 type ImportDevicesInBulkResponseSuccessListSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                                     `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                                 `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                                     `json:"endTime,omitempty"`         //
 	Name            string                                                                  `json:"name,omitempty"`            //
 	StartTime       int                                                                     `json:"startTime,omitempty"`       //
 	State           string                                                                  `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                                     `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                                     `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                                 `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                                 `json:"timeTaken,omitempty"`       //
 	Type            string                                                                  `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkResponseSuccessListSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkResponseSuccessListSystemWorkflowTasksWorkItemList is the importDevicesInBulkResponseSuccessListSystemWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkResponseSuccessListSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // ImportDevicesInBulkResponseSuccessListWorkflow is the importDevicesInBulkResponseSuccessListWorkflow definition
 type ImportDevicesInBulkResponseSuccessListWorkflow struct {
 	TypeID         string                                                `json:"_id,omitempty"`            //
 	AddToInventory bool                                                  `json:"addToInventory,omitempty"` //
-	AddedOn        int                                                   `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                               `json:"addedOn,omitempty"`        //
 	ConfigID       string                                                `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                                   `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                               `json:"currTaskIdx,omitempty"`    //
 	Description    string                                                `json:"description,omitempty"`    //
 	EndTime        int                                                   `json:"endTime,omitempty"`        //
-	ExecTime       int                                                   `json:"execTime,omitempty"`       //
+	ExecTime       float64                                               `json:"execTime,omitempty"`       //
 	ImageID        string                                                `json:"imageId,omitempty"`        //
 	InstanceType   string                                                `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                                   `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                               `json:"lastupdateOn,omitempty"`   //
 	Name           string                                                `json:"name,omitempty"`           //
 	StartTime      int                                                   `json:"startTime,omitempty"`      //
 	State          string                                                `json:"state,omitempty"`          //
@@ -4076,7 +4076,7 @@ type ImportDevicesInBulkResponseSuccessListWorkflow struct {
 	TenantID       string                                                `json:"tenantId,omitempty"`       //
 	Type           string                                                `json:"type,omitempty"`           //
 	UseState       string                                                `json:"useState,omitempty"`       //
-	Version        int                                                   `json:"version,omitempty"`        //
+	Version        float64                                               `json:"version,omitempty"`        //
 }
 
 // ImportDevicesInBulkResponseSuccessListWorkflowParameters is the importDevicesInBulkResponseSuccessListWorkflowParameters definition
@@ -4101,25 +4101,25 @@ type ImportDevicesInBulkResponseSuccessListWorkflowParametersConfigListConfigPar
 
 // ImportDevicesInBulkResponseSuccessListWorkflowTasks is the importDevicesInBulkResponseSuccessListWorkflowTasks definition
 type ImportDevicesInBulkResponseSuccessListWorkflowTasks struct {
-	CurrWorkItemIDx int                                                               `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                           `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                               `json:"endTime,omitempty"`         //
 	Name            string                                                            `json:"name,omitempty"`            //
 	StartTime       int                                                               `json:"startTime,omitempty"`       //
 	State           string                                                            `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                               `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                               `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                           `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                           `json:"timeTaken,omitempty"`       //
 	Type            string                                                            `json:"type,omitempty"`            //
 	WorkItemList    []ImportDevicesInBulkResponseSuccessListWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // ImportDevicesInBulkResponseSuccessListWorkflowTasksWorkItemList is the importDevicesInBulkResponseSuccessListWorkflowTasksWorkItemList definition
 type ImportDevicesInBulkResponseSuccessListWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // PreviewConfigResponse is the previewConfigResponse definition
@@ -4147,7 +4147,7 @@ type ResetDeviceResponse struct {
 	JSONArrayResponse []string `json:"jsonArrayResponse,omitempty"` //
 	JSONResponse      string   `json:"jsonResponse,omitempty"`      //
 	Message           string   `json:"message,omitempty"`           //
-	StatusCode        int      `json:"statusCode,omitempty"`        //
+	StatusCode        float64  `json:"statusCode,omitempty"`        //
 }
 
 // ResetDeviceResponseJSONArrayResponse is the resetDeviceResponseJSONArrayResponse definition
@@ -4155,15 +4155,15 @@ type ResetDeviceResponseJSONArrayResponse []string
 
 // SyncVirtualAccountDevicesResponse is the syncVirtualAccountDevicesResponse definition
 type SyncVirtualAccountDevicesResponse struct {
-	AutoSyncPeriod   int                                         `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                     `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                      `json:"ccoUser,omitempty"`          //
-	Expiry           int                                         `json:"expiry,omitempty"`           //
-	LastSync         int                                         `json:"lastSync,omitempty"`         //
+	Expiry           float64                                     `json:"expiry,omitempty"`           //
+	LastSync         float64                                     `json:"lastSync,omitempty"`         //
 	Profile          SyncVirtualAccountDevicesResponseProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                      `json:"smartAccountId,omitempty"`   //
 	SyncResult       SyncVirtualAccountDevicesResponseSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                      `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                         `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                     `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                      `json:"syncStatus,omitempty"`       //
 	TenantID         string                                      `json:"tenantId,omitempty"`         //
 	Token            string                                      `json:"token,omitempty"`            //
@@ -4172,14 +4172,14 @@ type SyncVirtualAccountDevicesResponse struct {
 
 // SyncVirtualAccountDevicesResponseProfile is the syncVirtualAccountDevicesResponseProfile definition
 type SyncVirtualAccountDevicesResponseProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // SyncVirtualAccountDevicesResponseSyncResult is the syncVirtualAccountDevicesResponseSyncResult definition
@@ -4202,7 +4202,7 @@ type UnClaimDeviceResponse struct {
 	JSONArrayResponse []string `json:"jsonArrayResponse,omitempty"` //
 	JSONResponse      string   `json:"jsonResponse,omitempty"`      //
 	Message           string   `json:"message,omitempty"`           //
-	StatusCode        int      `json:"statusCode,omitempty"`        //
+	StatusCode        float64  `json:"statusCode,omitempty"`        //
 }
 
 // UnClaimDeviceResponseJSONArrayResponse is the unClaimDeviceResponseJSONArrayResponse definition
@@ -4218,7 +4218,7 @@ type UpdateDeviceResponse struct {
 	SystemResetWorkflow  UpdateDeviceResponseSystemResetWorkflow `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       UpdateDeviceResponseSystemWorkflow      `json:"systemWorkflow,omitempty"`       //
 	TenantID             string                                  `json:"tenantId,omitempty"`             //
-	Version              int                                     `json:"version,omitempty"`              //
+	Version              float64                                 `json:"version,omitempty"`              //
 	Workflow             UpdateDeviceResponseWorkflow            `json:"workflow,omitempty"`             //
 	WorkflowParameters   UpdateDeviceResponseWorkflowParameters  `json:"workflowParameters,omitempty"`   //
 }
@@ -4231,7 +4231,7 @@ type UpdateDeviceResponseDayZeroConfig struct {
 // UpdateDeviceResponseDeviceInfo is the updateDeviceResponseDeviceInfo definition
 type UpdateDeviceResponseDeviceInfo struct {
 	AAACredentials            UpdateDeviceResponseDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   int                                                  `json:"addedOn,omitempty"`                   //
+	AddedOn                   float64                                              `json:"addedOn,omitempty"`                   //
 	AddnMacAddrs              []string                                             `json:"addnMacAddrs,omitempty"`              //
 	AgentType                 string                                               `json:"agentType,omitempty"`                 //
 	AuthStatus                string                                               `json:"authStatus,omitempty"`                //
@@ -4244,15 +4244,15 @@ type UpdateDeviceResponseDeviceInfo struct {
 	DeviceType                string                                               `json:"deviceType,omitempty"`                //
 	FeaturesSupported         []string                                             `json:"featuresSupported,omitempty"`         //
 	FileSystemList            []UpdateDeviceResponseDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              int                                                  `json:"firstContact,omitempty"`              //
+	FirstContact              float64                                              `json:"firstContact,omitempty"`              //
 	Hostname                  string                                               `json:"hostname,omitempty"`                  //
 	HTTPHeaders               []UpdateDeviceResponseDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
 	ImageFile                 string                                               `json:"imageFile,omitempty"`                 //
 	ImageVersion              string                                               `json:"imageVersion,omitempty"`              //
 	IPInterfaces              []UpdateDeviceResponseDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               int                                                  `json:"lastContact,omitempty"`               //
-	LastSyncTime              int                                                  `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              int                                                  `json:"lastUpdateOn,omitempty"`              //
+	LastContact               float64                                              `json:"lastContact,omitempty"`               //
+	LastSyncTime              float64                                              `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              float64                                              `json:"lastUpdateOn,omitempty"`              //
 	Location                  UpdateDeviceResponseDeviceInfoLocation               `json:"location,omitempty"`                  //
 	MacAddress                string                                               `json:"macAddress,omitempty"`                //
 	Mode                      string                                               `json:"mode,omitempty"`                      //
@@ -4303,12 +4303,12 @@ type UpdateDeviceResponseDeviceInfoFeaturesSupported []string
 
 // UpdateDeviceResponseDeviceInfoFileSystemList is the updateDeviceResponseDeviceInfoFileSystemList definition
 type UpdateDeviceResponseDeviceInfoFileSystemList struct {
-	Freespace int    `json:"freespace,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Readable  bool   `json:"readable,omitempty"`  //
-	Size      int    `json:"size,omitempty"`      //
-	Type      string `json:"type,omitempty"`      //
-	Writeable bool   `json:"writeable,omitempty"` //
+	Freespace float64 `json:"freespace,omitempty"` //
+	Name      string  `json:"name,omitempty"`      //
+	Readable  bool    `json:"readable,omitempty"`  //
+	Size      float64 `json:"size,omitempty"`      //
+	Type      string  `json:"type,omitempty"`      //
+	Writeable bool    `json:"writeable,omitempty"` //
 }
 
 // UpdateDeviceResponseDeviceInfoHTTPHeaders is the updateDeviceResponseDeviceInfoHTTPHeaders definition
@@ -4362,22 +4362,22 @@ type UpdateDeviceResponseDeviceInfoPnpProfileList struct {
 
 // UpdateDeviceResponseDeviceInfoPnpProfileListPrimaryEndpoint is the updateDeviceResponseDeviceInfoPnpProfileListPrimaryEndpoint definition
 type UpdateDeviceResponseDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // UpdateDeviceResponseDeviceInfoPnpProfileListSecondaryEndpoint is the updateDeviceResponseDeviceInfoPnpProfileListSecondaryEndpoint definition
 type UpdateDeviceResponseDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string `json:"certificate,omitempty"` //
-	Fqdn        string `json:"fqdn,omitempty"`        //
-	IPv4Address string `json:"ipv4Address,omitempty"` //
-	IPv6Address string `json:"ipv6Address,omitempty"` //
-	Port        int    `json:"port,omitempty"`        //
-	Protocol    string `json:"protocol,omitempty"`    //
+	Certificate string  `json:"certificate,omitempty"` //
+	Fqdn        string  `json:"fqdn,omitempty"`        //
+	IPv4Address string  `json:"ipv4Address,omitempty"` //
+	IPv6Address string  `json:"ipv6Address,omitempty"` //
+	Port        float64 `json:"port,omitempty"`        //
+	Protocol    string  `json:"protocol,omitempty"`    //
 }
 
 // UpdateDeviceResponseDeviceInfoPreWorkflowCliOuputs is the updateDeviceResponseDeviceInfoPreWorkflowCliOuputs definition
@@ -4398,18 +4398,18 @@ type UpdateDeviceResponseDeviceInfoStackInfo struct {
 
 // UpdateDeviceResponseDeviceInfoStackInfoStackMemberList is the updateDeviceResponseDeviceInfoStackInfoStackMemberList definition
 type UpdateDeviceResponseDeviceInfoStackInfoStackMemberList struct {
-	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
-	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
-	LicenseType      string `json:"licenseType,omitempty"`      //
-	MacAddress       string `json:"macAddress,omitempty"`       //
-	Pid              string `json:"pid,omitempty"`              //
-	Priority         int    `json:"priority,omitempty"`         //
-	Role             string `json:"role,omitempty"`             //
-	SerialNumber     string `json:"serialNumber,omitempty"`     //
-	SoftwareVersion  string `json:"softwareVersion,omitempty"`  //
-	StackNumber      int    `json:"stackNumber,omitempty"`      //
-	State            string `json:"state,omitempty"`            //
-	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
+	HardwareVersion  string  `json:"hardwareVersion,omitempty"`  //
+	LicenseLevel     string  `json:"licenseLevel,omitempty"`     //
+	LicenseType      string  `json:"licenseType,omitempty"`      //
+	MacAddress       string  `json:"macAddress,omitempty"`       //
+	Pid              string  `json:"pid,omitempty"`              //
+	Priority         float64 `json:"priority,omitempty"`         //
+	Role             string  `json:"role,omitempty"`             //
+	SerialNumber     string  `json:"serialNumber,omitempty"`     //
+	SoftwareVersion  string  `json:"softwareVersion,omitempty"`  //
+	StackNumber      float64 `json:"stackNumber,omitempty"`      //
+	State            string  `json:"state,omitempty"`            //
+	SudiSerialNumber string  `json:"sudiSerialNumber,omitempty"` //
 }
 
 // UpdateDeviceResponseDeviceInfoStackInfoValidLicenseLevels is the updateDeviceResponseDeviceInfoStackInfoValidLicenseLevels definition
@@ -4426,14 +4426,14 @@ type UpdateDeviceResponseRunSummaryList struct {
 	Details         string                                            `json:"details,omitempty"`         //
 	ErrorFlag       bool                                              `json:"errorFlag,omitempty"`       //
 	HistoryTaskInfo UpdateDeviceResponseRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       int                                               `json:"timestamp,omitempty"`       //
+	Timestamp       float64                                           `json:"timestamp,omitempty"`       //
 }
 
 // UpdateDeviceResponseRunSummaryListHistoryTaskInfo is the updateDeviceResponseRunSummaryListHistoryTaskInfo definition
 type UpdateDeviceResponseRunSummaryListHistoryTaskInfo struct {
 	AddnDetails  []UpdateDeviceResponseRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
 	Name         string                                                          `json:"name,omitempty"`         //
-	TimeTaken    int                                                             `json:"timeTaken,omitempty"`    //
+	TimeTaken    float64                                                         `json:"timeTaken,omitempty"`    //
 	Type         string                                                          `json:"type,omitempty"`         //
 	WorkItemList []UpdateDeviceResponseRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
@@ -4446,27 +4446,27 @@ type UpdateDeviceResponseRunSummaryListHistoryTaskInfoAddnDetails struct {
 
 // UpdateDeviceResponseRunSummaryListHistoryTaskInfoWorkItemList is the updateDeviceResponseRunSummaryListHistoryTaskInfoWorkItemList definition
 type UpdateDeviceResponseRunSummaryListHistoryTaskInfoWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceResponseSystemResetWorkflow is the updateDeviceResponseSystemResetWorkflow definition
 type UpdateDeviceResponseSystemResetWorkflow struct {
 	TypeID         string                                         `json:"_id,omitempty"`            //
 	AddToInventory bool                                           `json:"addToInventory,omitempty"` //
-	AddedOn        int                                            `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                        `json:"addedOn,omitempty"`        //
 	ConfigID       string                                         `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                            `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                        `json:"currTaskIdx,omitempty"`    //
 	Description    string                                         `json:"description,omitempty"`    //
 	EndTime        int                                            `json:"endTime,omitempty"`        //
-	ExecTime       int                                            `json:"execTime,omitempty"`       //
+	ExecTime       float64                                        `json:"execTime,omitempty"`       //
 	ImageID        string                                         `json:"imageId,omitempty"`        //
 	InstanceType   string                                         `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                            `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                        `json:"lastupdateOn,omitempty"`   //
 	Name           string                                         `json:"name,omitempty"`           //
 	StartTime      int                                            `json:"startTime,omitempty"`      //
 	State          string                                         `json:"state,omitempty"`          //
@@ -4474,45 +4474,45 @@ type UpdateDeviceResponseSystemResetWorkflow struct {
 	TenantID       string                                         `json:"tenantId,omitempty"`       //
 	Type           string                                         `json:"type,omitempty"`           //
 	UseState       string                                         `json:"useState,omitempty"`       //
-	Version        int                                            `json:"version,omitempty"`        //
+	Version        float64                                        `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceResponseSystemResetWorkflowTasks is the updateDeviceResponseSystemResetWorkflowTasks definition
 type UpdateDeviceResponseSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx int                                                        `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                                    `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                        `json:"endTime,omitempty"`         //
 	Name            string                                                     `json:"name,omitempty"`            //
 	StartTime       int                                                        `json:"startTime,omitempty"`       //
 	State           string                                                     `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                        `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                        `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                                    `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                                    `json:"timeTaken,omitempty"`       //
 	Type            string                                                     `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceResponseSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceResponseSystemResetWorkflowTasksWorkItemList is the updateDeviceResponseSystemResetWorkflowTasksWorkItemList definition
 type UpdateDeviceResponseSystemResetWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceResponseSystemWorkflow is the updateDeviceResponseSystemWorkflow definition
 type UpdateDeviceResponseSystemWorkflow struct {
 	TypeID         string                                    `json:"_id,omitempty"`            //
 	AddToInventory bool                                      `json:"addToInventory,omitempty"` //
-	AddedOn        int                                       `json:"addedOn,omitempty"`        //
+	AddedOn        float64                                   `json:"addedOn,omitempty"`        //
 	ConfigID       string                                    `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                       `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                                   `json:"currTaskIdx,omitempty"`    //
 	Description    string                                    `json:"description,omitempty"`    //
 	EndTime        int                                       `json:"endTime,omitempty"`        //
-	ExecTime       int                                       `json:"execTime,omitempty"`       //
+	ExecTime       float64                                   `json:"execTime,omitempty"`       //
 	ImageID        string                                    `json:"imageId,omitempty"`        //
 	InstanceType   string                                    `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                       `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                                   `json:"lastupdateOn,omitempty"`   //
 	Name           string                                    `json:"name,omitempty"`           //
 	StartTime      int                                       `json:"startTime,omitempty"`      //
 	State          string                                    `json:"state,omitempty"`          //
@@ -4520,45 +4520,45 @@ type UpdateDeviceResponseSystemWorkflow struct {
 	TenantID       string                                    `json:"tenantId,omitempty"`       //
 	Type           string                                    `json:"type,omitempty"`           //
 	UseState       string                                    `json:"useState,omitempty"`       //
-	Version        int                                       `json:"version,omitempty"`        //
+	Version        float64                                   `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceResponseSystemWorkflowTasks is the updateDeviceResponseSystemWorkflowTasks definition
 type UpdateDeviceResponseSystemWorkflowTasks struct {
-	CurrWorkItemIDx int                                                   `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                               `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                                   `json:"endTime,omitempty"`         //
 	Name            string                                                `json:"name,omitempty"`            //
 	StartTime       int                                                   `json:"startTime,omitempty"`       //
 	State           string                                                `json:"state,omitempty"`           //
-	TaskSeqNo       int                                                   `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                                   `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                               `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                               `json:"timeTaken,omitempty"`       //
 	Type            string                                                `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceResponseSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceResponseSystemWorkflowTasksWorkItemList is the updateDeviceResponseSystemWorkflowTasksWorkItemList definition
 type UpdateDeviceResponseSystemWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdateDeviceResponseWorkflow is the updateDeviceResponseWorkflow definition
 type UpdateDeviceResponseWorkflow struct {
 	TypeID         string                              `json:"_id,omitempty"`            //
 	AddToInventory bool                                `json:"addToInventory,omitempty"` //
-	AddedOn        int                                 `json:"addedOn,omitempty"`        //
+	AddedOn        float64                             `json:"addedOn,omitempty"`        //
 	ConfigID       string                              `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                                 `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                             `json:"currTaskIdx,omitempty"`    //
 	Description    string                              `json:"description,omitempty"`    //
 	EndTime        int                                 `json:"endTime,omitempty"`        //
-	ExecTime       int                                 `json:"execTime,omitempty"`       //
+	ExecTime       float64                             `json:"execTime,omitempty"`       //
 	ImageID        string                              `json:"imageId,omitempty"`        //
 	InstanceType   string                              `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                                 `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                             `json:"lastupdateOn,omitempty"`   //
 	Name           string                              `json:"name,omitempty"`           //
 	StartTime      int                                 `json:"startTime,omitempty"`      //
 	State          string                              `json:"state,omitempty"`          //
@@ -4566,7 +4566,7 @@ type UpdateDeviceResponseWorkflow struct {
 	TenantID       string                              `json:"tenantId,omitempty"`       //
 	Type           string                              `json:"type,omitempty"`           //
 	UseState       string                              `json:"useState,omitempty"`       //
-	Version        int                                 `json:"version,omitempty"`        //
+	Version        float64                             `json:"version,omitempty"`        //
 }
 
 // UpdateDeviceResponseWorkflowParameters is the updateDeviceResponseWorkflowParameters definition
@@ -4591,25 +4591,25 @@ type UpdateDeviceResponseWorkflowParametersConfigListConfigParameters struct {
 
 // UpdateDeviceResponseWorkflowTasks is the updateDeviceResponseWorkflowTasks definition
 type UpdateDeviceResponseWorkflowTasks struct {
-	CurrWorkItemIDx int                                             `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                         `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                             `json:"endTime,omitempty"`         //
 	Name            string                                          `json:"name,omitempty"`            //
 	StartTime       int                                             `json:"startTime,omitempty"`       //
 	State           string                                          `json:"state,omitempty"`           //
-	TaskSeqNo       int                                             `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                             `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                         `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                         `json:"timeTaken,omitempty"`       //
 	Type            string                                          `json:"type,omitempty"`            //
 	WorkItemList    []UpdateDeviceResponseWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateDeviceResponseWorkflowTasksWorkItemList is the updateDeviceResponseWorkflowTasksWorkItemList definition
 type UpdateDeviceResponseWorkflowTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // UpdatePnPGlobalSettingsResponse is the updatePnPGlobalSettingsResponse definition
@@ -4622,7 +4622,7 @@ type UpdatePnPGlobalSettingsResponse struct {
 	SavaMappingList []UpdatePnPGlobalSettingsResponseSavaMappingList `json:"savaMappingList,omitempty"` //
 	TaskTimeOuts    UpdatePnPGlobalSettingsResponseTaskTimeOuts      `json:"taskTimeOuts,omitempty"`    //
 	TenantID        string                                           `json:"tenantId,omitempty"`        //
-	Version         int                                              `json:"version,omitempty"`         //
+	Version         float64                                          `json:"version,omitempty"`         //
 }
 
 // UpdatePnPGlobalSettingsResponseAAACredentials is the updatePnPGlobalSettingsResponseAAACredentials definition
@@ -4636,7 +4636,7 @@ type UpdatePnPGlobalSettingsResponseDefaultProfile struct {
 	Cert          string   `json:"cert,omitempty"`          //
 	FqdnAddresses []string `json:"fqdnAddresses,omitempty"` //
 	IPAddresses   []string `json:"ipAddresses,omitempty"`   //
-	Port          int      `json:"port,omitempty"`          //
+	Port          float64  `json:"port,omitempty"`          //
 	Proxy         bool     `json:"proxy,omitempty"`         //
 }
 
@@ -4648,15 +4648,15 @@ type UpdatePnPGlobalSettingsResponseDefaultProfileIPAddresses []string
 
 // UpdatePnPGlobalSettingsResponseSavaMappingList is the updatePnPGlobalSettingsResponseSavaMappingList definition
 type UpdatePnPGlobalSettingsResponseSavaMappingList struct {
-	AutoSyncPeriod   int                                                      `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                                  `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                                   `json:"ccoUser,omitempty"`          //
-	Expiry           int                                                      `json:"expiry,omitempty"`           //
-	LastSync         int                                                      `json:"lastSync,omitempty"`         //
+	Expiry           float64                                                  `json:"expiry,omitempty"`           //
+	LastSync         float64                                                  `json:"lastSync,omitempty"`         //
 	Profile          UpdatePnPGlobalSettingsResponseSavaMappingListProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                                   `json:"smartAccountId,omitempty"`   //
 	SyncResult       UpdatePnPGlobalSettingsResponseSavaMappingListSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                                   `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                                      `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                                  `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                                   `json:"syncStatus,omitempty"`       //
 	TenantID         string                                                   `json:"tenantId,omitempty"`         //
 	Token            string                                                   `json:"token,omitempty"`            //
@@ -4665,14 +4665,14 @@ type UpdatePnPGlobalSettingsResponseSavaMappingList struct {
 
 // UpdatePnPGlobalSettingsResponseSavaMappingListProfile is the updatePnPGlobalSettingsResponseSavaMappingListProfile definition
 type UpdatePnPGlobalSettingsResponseSavaMappingListProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // UpdatePnPGlobalSettingsResponseSavaMappingListSyncResult is the updatePnPGlobalSettingsResponseSavaMappingListSyncResult definition
@@ -4692,22 +4692,22 @@ type UpdatePnPGlobalSettingsResponseSavaMappingListSyncResultSyncListDeviceSnLis
 
 // UpdatePnPGlobalSettingsResponseTaskTimeOuts is the updatePnPGlobalSettingsResponseTaskTimeOuts definition
 type UpdatePnPGlobalSettingsResponseTaskTimeOuts struct {
-	ConfigTimeOut        int `json:"configTimeOut,omitempty"`        //
-	GeneralTimeOut       int `json:"generalTimeOut,omitempty"`       //
-	ImageDownloadTimeOut int `json:"imageDownloadTimeOut,omitempty"` //
+	ConfigTimeOut        float64 `json:"configTimeOut,omitempty"`        //
+	GeneralTimeOut       float64 `json:"generalTimeOut,omitempty"`       //
+	ImageDownloadTimeOut float64 `json:"imageDownloadTimeOut,omitempty"` //
 }
 
 // UpdatePnPServerProfileResponse is the updatePnPServerProfileResponse definition
 type UpdatePnPServerProfileResponse struct {
-	AutoSyncPeriod   int                                      `json:"autoSyncPeriod,omitempty"`   //
+	AutoSyncPeriod   float64                                  `json:"autoSyncPeriod,omitempty"`   //
 	CcoUser          string                                   `json:"ccoUser,omitempty"`          //
-	Expiry           int                                      `json:"expiry,omitempty"`           //
-	LastSync         int                                      `json:"lastSync,omitempty"`         //
+	Expiry           float64                                  `json:"expiry,omitempty"`           //
+	LastSync         float64                                  `json:"lastSync,omitempty"`         //
 	Profile          UpdatePnPServerProfileResponseProfile    `json:"profile,omitempty"`          //
 	SmartAccountID   string                                   `json:"smartAccountId,omitempty"`   //
 	SyncResult       UpdatePnPServerProfileResponseSyncResult `json:"syncResult,omitempty"`       //
 	SyncResultStr    string                                   `json:"syncResultStr,omitempty"`    //
-	SyncStartTime    int                                      `json:"syncStartTime,omitempty"`    //
+	SyncStartTime    float64                                  `json:"syncStartTime,omitempty"`    //
 	SyncStatus       string                                   `json:"syncStatus,omitempty"`       //
 	TenantID         string                                   `json:"tenantId,omitempty"`         //
 	Token            string                                   `json:"token,omitempty"`            //
@@ -4716,14 +4716,14 @@ type UpdatePnPServerProfileResponse struct {
 
 // UpdatePnPServerProfileResponseProfile is the updatePnPServerProfileResponseProfile definition
 type UpdatePnPServerProfileResponseProfile struct {
-	AddressFqdn string `json:"addressFqdn,omitempty"` //
-	AddressIPV4 string `json:"addressIpV4,omitempty"` //
-	Cert        string `json:"cert,omitempty"`        //
-	MakeDefault bool   `json:"makeDefault,omitempty"` //
-	Name        string `json:"name,omitempty"`        //
-	Port        int    `json:"port,omitempty"`        //
-	ProfileID   string `json:"profileId,omitempty"`   //
-	Proxy       bool   `json:"proxy,omitempty"`       //
+	AddressFqdn string  `json:"addressFqdn,omitempty"` //
+	AddressIPV4 string  `json:"addressIpV4,omitempty"` //
+	Cert        string  `json:"cert,omitempty"`        //
+	MakeDefault bool    `json:"makeDefault,omitempty"` //
+	Name        string  `json:"name,omitempty"`        //
+	Port        float64 `json:"port,omitempty"`        //
+	ProfileID   string  `json:"profileId,omitempty"`   //
+	Proxy       bool    `json:"proxy,omitempty"`       //
 }
 
 // UpdatePnPServerProfileResponseSyncResult is the updatePnPServerProfileResponseSyncResult definition
@@ -4745,15 +4745,15 @@ type UpdatePnPServerProfileResponseSyncResultSyncListDeviceSnList []string
 type UpdateWorkflowResponse struct {
 	TypeID         string                        `json:"_id,omitempty"`            //
 	AddToInventory bool                          `json:"addToInventory,omitempty"` //
-	AddedOn        int                           `json:"addedOn,omitempty"`        //
+	AddedOn        float64                       `json:"addedOn,omitempty"`        //
 	ConfigID       string                        `json:"configId,omitempty"`       //
-	CurrTaskIDx    int                           `json:"currTaskIdx,omitempty"`    //
+	CurrTaskIDx    float64                       `json:"currTaskIdx,omitempty"`    //
 	Description    string                        `json:"description,omitempty"`    //
 	EndTime        int                           `json:"endTime,omitempty"`        //
-	ExecTime       int                           `json:"execTime,omitempty"`       //
+	ExecTime       float64                       `json:"execTime,omitempty"`       //
 	ImageID        string                        `json:"imageId,omitempty"`        //
 	InstanceType   string                        `json:"instanceType,omitempty"`   //
-	LastupdateOn   int                           `json:"lastupdateOn,omitempty"`   //
+	LastupdateOn   float64                       `json:"lastupdateOn,omitempty"`   //
 	Name           string                        `json:"name,omitempty"`           //
 	StartTime      int                           `json:"startTime,omitempty"`      //
 	State          string                        `json:"state,omitempty"`          //
@@ -4761,30 +4761,30 @@ type UpdateWorkflowResponse struct {
 	TenantID       string                        `json:"tenantId,omitempty"`       //
 	Type           string                        `json:"type,omitempty"`           //
 	UseState       string                        `json:"useState,omitempty"`       //
-	Version        int                           `json:"version,omitempty"`        //
+	Version        float64                       `json:"version,omitempty"`        //
 }
 
 // UpdateWorkflowResponseTasks is the updateWorkflowResponseTasks definition
 type UpdateWorkflowResponseTasks struct {
-	CurrWorkItemIDx int                                       `json:"currWorkItemIdx,omitempty"` //
+	CurrWorkItemIDx float64                                   `json:"currWorkItemIdx,omitempty"` //
 	EndTime         int                                       `json:"endTime,omitempty"`         //
 	Name            string                                    `json:"name,omitempty"`            //
 	StartTime       int                                       `json:"startTime,omitempty"`       //
 	State           string                                    `json:"state,omitempty"`           //
-	TaskSeqNo       int                                       `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       int                                       `json:"timeTaken,omitempty"`       //
+	TaskSeqNo       float64                                   `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       float64                                   `json:"timeTaken,omitempty"`       //
 	Type            string                                    `json:"type,omitempty"`            //
 	WorkItemList    []UpdateWorkflowResponseTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
 
 // UpdateWorkflowResponseTasksWorkItemList is the updateWorkflowResponseTasksWorkItemList definition
 type UpdateWorkflowResponseTasksWorkItemList struct {
-	Command   string `json:"command,omitempty"`   //
-	EndTime   int    `json:"endTime,omitempty"`   //
-	OutputStr string `json:"outputStr,omitempty"` //
-	StartTime int    `json:"startTime,omitempty"` //
-	State     string `json:"state,omitempty"`     //
-	TimeTaken int    `json:"timeTaken,omitempty"` //
+	Command   string  `json:"command,omitempty"`   //
+	EndTime   int     `json:"endTime,omitempty"`   //
+	OutputStr string  `json:"outputStr,omitempty"` //
+	StartTime int     `json:"startTime,omitempty"` //
+	State     string  `json:"state,omitempty"`     //
+	TimeTaken float64 `json:"timeTaken,omitempty"` //
 }
 
 // AddAWorkflow addAWorkflow
@@ -4803,6 +4803,11 @@ func (s *DeviceOnboardingPnPService) AddAWorkflow(addAWorkflowRequest *AddAWorkf
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addAWorkflow")
+	}
+
 	result := response.Result().(*AddAWorkflowResponse)
 	return result, response, err
 }
@@ -4823,6 +4828,11 @@ func (s *DeviceOnboardingPnPService) AddDeviceToPnpDatabase(addDeviceToPnpDataba
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addDeviceToPnpDatabase")
+	}
+
 	result := response.Result().(*AddDeviceToPnpDatabaseResponse)
 	return result, response, err
 }
@@ -4843,6 +4853,11 @@ func (s *DeviceOnboardingPnPService) AddVirtualAccount(addVirtualAccountRequest 
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation addVirtualAccount")
+	}
+
 	result := response.Result().(*AddVirtualAccountResponse)
 	return result, response, err
 }
@@ -4863,6 +4878,11 @@ func (s *DeviceOnboardingPnPService) ClaimADeviceToASite(claimADeviceToASiteRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation claimADeviceToASite")
+	}
+
 	result := response.Result().(*ClaimADeviceToASiteResponse)
 	return result, response, err
 }
@@ -4883,6 +4903,11 @@ func (s *DeviceOnboardingPnPService) ClaimDevice(claimDeviceRequest *ClaimDevice
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation claimDevice")
+	}
+
 	result := response.Result().(*ClaimDeviceResponse)
 	return result, response, err
 }
@@ -4891,7 +4916,7 @@ func (s *DeviceOnboardingPnPService) ClaimDevice(claimDeviceRequest *ClaimDevice
 /* Deletes specified device from PnP database
 @param id id
 */
-func (s *DeviceOnboardingPnPService) DeleteDeviceByIDFromPnP(id string) (*resty.Response, error) {
+func (s *DeviceOnboardingPnPService) DeleteDeviceByIDFromPnP(id string) (*DeleteDeviceByIDFromPnPResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -4901,18 +4926,22 @@ func (s *DeviceOnboardingPnPService) DeleteDeviceByIDFromPnP(id string) (*resty.
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDeviceByIdFromPnP")
+	}
 
+	result := response.Result().(*DeleteDeviceByIDFromPnPResponse)
+	return result, response, err
 }
 
 // DeleteWorkflowByID deleteWorkflowById
 /* Deletes a workflow specified by id
 @param id id
 */
-func (s *DeviceOnboardingPnPService) DeleteWorkflowByID(id string) (*resty.Response, error) {
+func (s *DeviceOnboardingPnPService) DeleteWorkflowByID(id string) (*DeleteWorkflowByIDResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -4922,11 +4951,15 @@ func (s *DeviceOnboardingPnPService) DeleteWorkflowByID(id string) (*resty.Respo
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteWorkflowById")
+	}
 
+	result := response.Result().(*DeleteWorkflowByIDResponse)
+	return result, response, err
 }
 
 // DeregisterVirtualAccountQueryParams defines the query parameters for this request
@@ -4940,7 +4973,7 @@ type DeregisterVirtualAccountQueryParams struct {
 @param domain Smart Account Domain
 @param name Virtual Account Name
 */
-func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams) (*resty.Response, error) {
+func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams) (*DeregisterVirtualAccountResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/vacct"
 
@@ -4952,11 +4985,15 @@ func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualA
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deregisterVirtualAccount")
+	}
 
+	result := response.Result().(*DeregisterVirtualAccountResponse)
+	return result, response, err
 }
 
 // GetDeviceByID getDeviceById
@@ -4976,6 +5013,11 @@ func (s *DeviceOnboardingPnPService) GetDeviceByID(id string) (*GetDeviceByIDRes
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceById")
+	}
+
 	result := response.Result().(*GetDeviceByIDResponse)
 	return result, response, err
 }
@@ -5008,6 +5050,11 @@ func (s *DeviceOnboardingPnPService) GetDeviceHistory(getDeviceHistoryQueryParam
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceHistory")
+	}
+
 	result := response.Result().(*GetDeviceHistoryResponse)
 	return result, response, err
 }
@@ -5027,6 +5074,11 @@ func (s *DeviceOnboardingPnPService) GetPnPGlobalSettings() (*GetPnPGlobalSettin
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPnPGlobalSettings")
+	}
+
 	result := response.Result().(*GetPnPGlobalSettingsResponse)
 	return result, response, err
 }
@@ -5081,6 +5133,11 @@ func (s *DeviceOnboardingPnPService) GetPnpDeviceCount(getPnpDeviceCountQueryPar
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPnpDeviceCount")
+	}
+
 	result := response.Result().(*GetPnpDeviceCountResponse)
 	return result, response, err
 }
@@ -5149,6 +5206,11 @@ func (s *DeviceOnboardingPnPService) GetPnpDeviceList(getPnpDeviceListQueryParam
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getPnpDeviceList")
+	}
+
 	result := response.Result().(*GetPnpDeviceListResponse)
 	return result, response, err
 }
@@ -5168,6 +5230,11 @@ func (s *DeviceOnboardingPnPService) GetSmartAccountList() (*GetSmartAccountList
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSmartAccountList")
+	}
+
 	result := response.Result().(*GetSmartAccountListResponse)
 	return result, response, err
 }
@@ -5191,6 +5258,11 @@ func (s *DeviceOnboardingPnPService) GetSyncResultForVirtualAccount(domain strin
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getSyncResultForVirtualAccount")
+	}
+
 	result := response.Result().(*GetSyncResultForVirtualAccountResponse)
 	return result, response, err
 }
@@ -5212,6 +5284,11 @@ func (s *DeviceOnboardingPnPService) GetVirtualAccountList(domain string) (*GetV
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getVirtualAccountList")
+	}
+
 	result := response.Result().(*GetVirtualAccountListResponse)
 	return result, response, err
 }
@@ -5233,6 +5310,11 @@ func (s *DeviceOnboardingPnPService) GetWorkflowByID(id string) (*GetWorkflowByI
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getWorkflowById")
+	}
+
 	result := response.Result().(*GetWorkflowByIDResponse)
 	return result, response, err
 }
@@ -5261,6 +5343,11 @@ func (s *DeviceOnboardingPnPService) GetWorkflowCount(getWorkflowCountQueryParam
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getWorkflowCount")
+	}
+
 	result := response.Result().(*GetWorkflowCountResponse)
 	return result, response, err
 }
@@ -5299,6 +5386,11 @@ func (s *DeviceOnboardingPnPService) GetWorkflows(getWorkflowsQueryParams *GetWo
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getWorkflows")
+	}
+
 	result := response.Result().(*GetWorkflowsResponse)
 	return result, response, err
 }
@@ -5319,6 +5411,11 @@ func (s *DeviceOnboardingPnPService) ImportDevicesInBulk(importDevicesInBulkRequ
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation importDevicesInBulk")
+	}
+
 	result := response.Result().(*ImportDevicesInBulkResponse)
 	return result, response, err
 }
@@ -5339,6 +5436,11 @@ func (s *DeviceOnboardingPnPService) PreviewConfig(previewConfigRequest *Preview
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation previewConfig")
+	}
+
 	result := response.Result().(*PreviewConfigResponse)
 	return result, response, err
 }
@@ -5359,6 +5461,11 @@ func (s *DeviceOnboardingPnPService) ResetDevice(resetDeviceRequest *ResetDevice
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation resetDevice")
+	}
+
 	result := response.Result().(*ResetDeviceResponse)
 	return result, response, err
 }
@@ -5379,6 +5486,11 @@ func (s *DeviceOnboardingPnPService) SyncVirtualAccountDevices(syncVirtualAccoun
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation syncVirtualAccountDevices")
+	}
+
 	result := response.Result().(*SyncVirtualAccountDevicesResponse)
 	return result, response, err
 }
@@ -5399,6 +5511,11 @@ func (s *DeviceOnboardingPnPService) UnClaimDevice(unClaimDeviceRequest *UnClaim
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation unClaimDevice")
+	}
+
 	result := response.Result().(*UnClaimDeviceResponse)
 	return result, response, err
 }
@@ -5421,6 +5538,11 @@ func (s *DeviceOnboardingPnPService) UpdateDevice(id string, updateDeviceRequest
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateDevice")
+	}
+
 	result := response.Result().(*UpdateDeviceResponse)
 	return result, response, err
 }
@@ -5441,6 +5563,11 @@ func (s *DeviceOnboardingPnPService) UpdatePnPGlobalSettings(updatePnPGlobalSett
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updatePnPGlobalSettings")
+	}
+
 	result := response.Result().(*UpdatePnPGlobalSettingsResponse)
 	return result, response, err
 }
@@ -5461,6 +5588,11 @@ func (s *DeviceOnboardingPnPService) UpdatePnPServerProfile(updatePnPServerProfi
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updatePnPServerProfile")
+	}
+
 	result := response.Result().(*UpdatePnPServerProfileResponse)
 	return result, response, err
 }
@@ -5483,6 +5615,11 @@ func (s *DeviceOnboardingPnPService) UpdateWorkflow(id string, updateWorkflowReq
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateWorkflow")
+	}
+
 	result := response.Result().(*UpdateWorkflowResponse)
 	return result, response, err
 }

@@ -22,7 +22,7 @@ type GetTaskByIDResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          int    `json:"lastUpdate,omitempty"`          //
+	LastUpdate          string `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //
@@ -50,7 +50,7 @@ type GetTaskByOperationIDResponseResponse struct {
 	ID                  string `json:"id,omitempty"`                  //
 	InstanceTenantID    string `json:"instanceTenantId,omitempty"`    //
 	IsError             bool   `json:"isError,omitempty"`             //
-	LastUpdate          int    `json:"lastUpdate,omitempty"`          //
+	LastUpdate          string `json:"lastUpdate,omitempty"`          //
 	OperationIDList     string `json:"operationIdList,omitempty"`     //
 	ParentID            string `json:"parentId,omitempty"`            //
 	Progress            string `json:"progress,omitempty"`            //
@@ -83,7 +83,7 @@ type GetTaskTreeResponse struct {
 type GetTaskTreeResponseResponse struct {
 	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 	Data                string `json:"data,omitempty"`                //
-	EndTime             string `json:"endTime,omitempty"`             //
+	EndTime             int    `json:"endTime,omitempty"`             //
 	ErrorCode           string `json:"errorCode,omitempty"`           //
 	ErrorKey            string `json:"errorKey,omitempty"`            //
 	FailureReason       string `json:"failureReason,omitempty"`       //
@@ -96,7 +96,7 @@ type GetTaskTreeResponseResponse struct {
 	Progress            string `json:"progress,omitempty"`            //
 	RootID              string `json:"rootId,omitempty"`              //
 	ServiceType         string `json:"serviceType,omitempty"`         //
-	StartTime           string `json:"startTime,omitempty"`           //
+	StartTime           int    `json:"startTime,omitempty"`           //
 	Username            string `json:"username,omitempty"`            //
 	Version             int    `json:"version,omitempty"`             //
 }
@@ -111,7 +111,7 @@ type GetTasksResponse struct {
 type GetTasksResponseResponse struct {
 	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
 	Data                string `json:"data,omitempty"`                //
-	EndTime             string `json:"endTime,omitempty"`             //
+	EndTime             int    `json:"endTime,omitempty"`             //
 	ErrorCode           string `json:"errorCode,omitempty"`           //
 	ErrorKey            string `json:"errorKey,omitempty"`            //
 	FailureReason       string `json:"failureReason,omitempty"`       //
@@ -124,7 +124,7 @@ type GetTasksResponseResponse struct {
 	Progress            string `json:"progress,omitempty"`            //
 	RootID              string `json:"rootId,omitempty"`              //
 	ServiceType         string `json:"serviceType,omitempty"`         //
-	StartTime           string `json:"startTime,omitempty"`           //
+	StartTime           int    `json:"startTime,omitempty"`           //
 	Username            string `json:"username,omitempty"`            //
 	Version             int    `json:"version,omitempty"`             //
 }
@@ -146,6 +146,11 @@ func (s *TaskService) GetTaskByID(taskID string) (*GetTaskByIDResponse, *resty.R
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTaskById")
+	}
+
 	result := response.Result().(*GetTaskByIDResponse)
 	return result, response, err
 }
@@ -171,6 +176,11 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTaskByOperationId")
+	}
+
 	result := response.Result().(*GetTaskByOperationIDResponse)
 	return result, response, err
 }
@@ -217,6 +227,11 @@ func (s *TaskService) GetTaskCount(getTaskCountQueryParams *GetTaskCountQueryPar
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTaskCount")
+	}
+
 	result := response.Result().(*GetTaskCountResponse)
 	return result, response, err
 }
@@ -238,6 +253,11 @@ func (s *TaskService) GetTaskTree(taskID string) (*GetTaskTreeResponse, *resty.R
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTaskTree")
+	}
+
 	result := response.Result().(*GetTaskTreeResponse)
 	return result, response, err
 }
@@ -292,6 +312,11 @@ func (s *TaskService) GetTasks(getTasksQueryParams *GetTasksQueryParams) (*GetTa
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTasks")
+	}
+
 	result := response.Result().(*GetTasksResponse)
 	return result, response, err
 }

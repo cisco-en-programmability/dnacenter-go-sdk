@@ -11,9 +11,6 @@ import (
 // TagService is the service to communicate with the Tag API endpoint
 type TagService service
 
-// AddMembersToTheTagRequest is the AddMembersToTheTagRequest definition
-type AddMembersToTheTagRequest []string
-
 // CreateTagRequest is the createTagRequest definition
 type CreateTagRequest struct {
 	Description      string                         `json:"description,omitempty"`      //
@@ -272,23 +269,28 @@ type UpdatesTagMembershipResponseResponse struct {
 /* Adds members to the tag specified by id
 @param id Tag ID
 */
-func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
+// func (s *TagService) AddMembersToTheTag(id string, addMembersToTheTagRequest *AddMembersToTheTagRequest) (*AddMembersToTheTagResponse, *resty.Response, error) {
 
-	path := "/dna/intent/api/v1/tag/{id}/member"
-	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
+// 	path := "/dna/intent/api/v1/tag/{id}/member"
+// 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
-		SetBody(addMembersToTheTagRequest).
-		SetResult(&AddMembersToTheTagResponse{}).
-		SetError(&Error{}).
-		Post(path)
+// 	response, err := RestyClient.R().
+// 		SetBody(addMembersToTheTagRequest).
+// 		SetResult(&AddMembersToTheTagResponse{}).
+// 		SetError(&Error{}).
+// 		Post(path)
 
-	if err != nil {
-		return nil, nil, err
-	}
-	result := response.Result().(*AddMembersToTheTagResponse)
-	return result, response, err
-}
+// 	if err != nil {
+// 		return nil, nil, err
+// 	}
+
+// 	if response.IsError() {
+// 		return nil, response, fmt.Errorf("Error with operation addMembersToTheTag")
+// 	}
+
+// 	result := response.Result().(*AddMembersToTheTagResponse)
+// 	return result, response, err
+// }
 
 // CreateTag createTag
 /* Creates tag with specified tag attributes
@@ -306,6 +308,11 @@ func (s *TagService) CreateTag(createTagRequest *CreateTagRequest) (*CreateTagRe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createTag")
+	}
+
 	result := response.Result().(*CreateTagResponse)
 	return result, response, err
 }
@@ -320,12 +327,15 @@ func (s *TagService) DeleteTag(id string) (*DeleteTagResponse, *resty.Response, 
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&DeleteTagResponse{}).
 		SetError(&Error{}).
 		Delete(path)
 
 	if err != nil {
 		return nil, nil, err
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteTag")
 	}
 
 	result := response.Result().(*DeleteTagResponse)
@@ -376,6 +386,11 @@ func (s *TagService) GetTag(getTagQueryParams *GetTagQueryParams) (*GetTagRespon
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTag")
+	}
+
 	result := response.Result().(*GetTagResponse)
 	return result, response, err
 }
@@ -399,7 +414,7 @@ func (s *TagService) GetTagByID(id string) (*GetTagByIDResponse, *resty.Response
 	}
 
 	if response.IsError() {
-		return nil, nil, fmt.Errorf("Unable to get tag by id %s", id)
+		return nil, response, fmt.Errorf("Error with operation getTagById")
 	}
 
 	result := response.Result().(*GetTagByIDResponse)
@@ -440,6 +455,11 @@ func (s *TagService) GetTagCount(getTagCountQueryParams *GetTagCountQueryParams)
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTagCount")
+	}
+
 	result := response.Result().(*GetTagCountResponse)
 	return result, response, err
 }
@@ -474,6 +494,11 @@ func (s *TagService) GetTagMemberCount(id string, getTagMemberCountQueryParams *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTagMemberCount")
+	}
+
 	result := response.Result().(*GetTagMemberCountResponse)
 	return result, response, err
 }
@@ -512,6 +537,11 @@ func (s *TagService) GetTagMembersByID(id string, getTagMembersByIDQueryParams *
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTagMembersById")
+	}
+
 	result := response.Result().(*GetTagMembersByIDResponse)
 	return result, response, err
 }
@@ -531,6 +561,11 @@ func (s *TagService) GetTagResourceTypes() (*GetTagResourceTypesResponse, *resty
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getTagResourceTypes")
+	}
+
 	result := response.Result().(*GetTagResourceTypesResponse)
 	return result, response, err
 }
@@ -540,7 +575,7 @@ func (s *TagService) GetTagResourceTypes() (*GetTagResourceTypesResponse, *resty
 @param id Tag ID
 @param memberID TagMember id to be removed from tag
 */
-func (s *TagService) RemoveTagMember(id string, memberID string) (*resty.Response, error) {
+func (s *TagService) RemoveTagMember(id string, memberID string) (*RemoveTagMemberResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/tag/{id}/member/{memberId}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -551,11 +586,15 @@ func (s *TagService) RemoveTagMember(id string, memberID string) (*resty.Respons
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation removeTagMember")
+	}
 
+	result := response.Result().(*RemoveTagMemberResponse)
+	return result, response, err
 }
 
 // UpdateTag updateTag
@@ -574,6 +613,11 @@ func (s *TagService) UpdateTag(updateTagRequest *UpdateTagRequest) (*UpdateTagRe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateTag")
+	}
+
 	result := response.Result().(*UpdateTagResponse)
 	return result, response, err
 }
@@ -594,6 +638,11 @@ func (s *TagService) UpdatesTagMembership(updatesTagMembershipRequest *UpdatesTa
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updatesTagMembership")
+	}
+
 	result := response.Result().(*UpdatesTagMembershipResponse)
 	return result, response, err
 }

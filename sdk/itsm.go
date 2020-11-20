@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -66,6 +68,11 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getFailedITSMEvents")
+	}
+
 	result := response.Result().(*GetFailedITSMEventsResponse)
 	return result, response, err
 }
@@ -86,6 +93,11 @@ func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *[]Re
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation retryIntegrationEvents")
+	}
+
 	result := response.Result().(*RetryIntegrationEventsResponse)
 	return result, response, err
 }

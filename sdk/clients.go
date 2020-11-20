@@ -1,6 +1,8 @@
 package dnac
 
 import (
+	"fmt"
+
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
 )
@@ -139,24 +141,24 @@ type GetClientDetailResponseTopologyLinksLabel []string
 
 // GetClientDetailResponseTopologyNodes is the getClientDetailResponseTopologyNodes definition
 type GetClientDetailResponseTopologyNodes struct {
-	Clients         string `json:"clients,omitempty"`         //
-	ConnectedDevice string `json:"connectedDevice,omitempty"` //
-	Count           string `json:"count,omitempty"`           //
-	Description     string `json:"description,omitempty"`     //
-	DeviceType      string `json:"deviceType,omitempty"`      //
-	FabricGroup     string `json:"fabricGroup,omitempty"`     //
-	Family          string `json:"family,omitempty"`          //
-	HealthScore     int    `json:"healthScore,omitempty"`     //
-	ID              string `json:"id,omitempty"`              //
-	IP              string `json:"ip,omitempty"`              //
-	Level           int    `json:"level,omitempty"`           //
-	Name            string `json:"name,omitempty"`            //
-	NodeType        string `json:"nodeType,omitempty"`        //
-	PlatformID      string `json:"platformId,omitempty"`      //
-	RadioFrequency  string `json:"radioFrequency,omitempty"`  //
-	Role            string `json:"role,omitempty"`            //
-	SoftwareVersion string `json:"softwareVersion,omitempty"` //
-	UserID          string `json:"userId,omitempty"`          //
+	Clients         string  `json:"clients,omitempty"`         //
+	ConnectedDevice string  `json:"connectedDevice,omitempty"` //
+	Count           string  `json:"count,omitempty"`           //
+	Description     string  `json:"description,omitempty"`     //
+	DeviceType      string  `json:"deviceType,omitempty"`      //
+	FabricGroup     string  `json:"fabricGroup,omitempty"`     //
+	Family          string  `json:"family,omitempty"`          //
+	HealthScore     int     `json:"healthScore,omitempty"`     //
+	ID              string  `json:"id,omitempty"`              //
+	IP              string  `json:"ip,omitempty"`              //
+	Level           float64 `json:"level,omitempty"`           //
+	Name            string  `json:"name,omitempty"`            //
+	NodeType        string  `json:"nodeType,omitempty"`        //
+	PlatformID      string  `json:"platformId,omitempty"`      //
+	RadioFrequency  string  `json:"radioFrequency,omitempty"`  //
+	Role            string  `json:"role,omitempty"`            //
+	SoftwareVersion string  `json:"softwareVersion,omitempty"` //
+	UserID          string  `json:"userId,omitempty"`          //
 }
 
 // GetClientEnrichmentDetailsResponse is the getClientEnrichmentDetailsResponse definition
@@ -185,11 +187,11 @@ type GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	Hostname                  string                                                                           `json:"hostname,omitempty"`                  //
 	ID                        string                                                                           `json:"id,omitempty"`                        //
 	InstanceUUID              string                                                                           `json:"instanceUuid,omitempty"`              //
-	InterfaceCount            string                                                                           `json:"interfaceCount,omitempty"`            //
+	InterfaceCount            int                                                                              `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string                                                                           `json:"inventoryStatusDetail,omitempty"`     //
 	LastUpdateTime            int                                                                              `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string                                                                           `json:"lastUpdated,omitempty"`               //
-	LineCardCount             string                                                                           `json:"lineCardCount,omitempty"`             //
+	LineCardCount             int                                                                              `json:"lineCardCount,omitempty"`             //
 	LineCardID                string                                                                           `json:"lineCardId,omitempty"`                //
 	Location                  string                                                                           `json:"location,omitempty"`                  //
 	LocationName              string                                                                           `json:"locationName,omitempty"`              //
@@ -207,10 +209,10 @@ type GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	SNMPContact               string                                                                           `json:"snmpContact,omitempty"`               //
 	SNMPLocation              string                                                                           `json:"snmpLocation,omitempty"`              //
 	SoftwareVersion           string                                                                           `json:"softwareVersion,omitempty"`           //
-	TagCount                  string                                                                           `json:"tagCount,omitempty"`                  //
+	TagCount                  int                                                                              `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                                           `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                                           `json:"type,omitempty"`                      //
-	UpTime                    string                                                                           `json:"upTime,omitempty"`                    //
+	UpTime                    int                                                                              `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                                           `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -235,23 +237,23 @@ type GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetailsNeighborTopol
 
 // GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetailsNeighborTopologyNodes is the getClientEnrichmentDetailsResponseConnectedDeviceDeviceDetailsNeighborTopologyNodes definition
 type GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetailsNeighborTopologyNodes struct {
-	Clients         int    `json:"clients,omitempty"`         //
-	Count           string `json:"count,omitempty"`           //
-	Description     string `json:"description,omitempty"`     //
-	DeviceType      string `json:"deviceType,omitempty"`      //
-	FabricGroup     string `json:"fabricGroup,omitempty"`     //
-	Family          string `json:"family,omitempty"`          //
-	HealthScore     string `json:"healthScore,omitempty"`     //
-	ID              string `json:"id,omitempty"`              //
-	IP              string `json:"ip,omitempty"`              //
-	Level           int    `json:"level,omitempty"`           //
-	Name            string `json:"name,omitempty"`            //
-	NodeType        string `json:"nodeType,omitempty"`        //
-	PlatformID      string `json:"platformId,omitempty"`      //
-	RadioFrequency  string `json:"radioFrequency,omitempty"`  //
-	Role            string `json:"role,omitempty"`            //
-	SoftwareVersion string `json:"softwareVersion,omitempty"` //
-	UserID          string `json:"userId,omitempty"`          //
+	Clients         float64 `json:"clients,omitempty"`         //
+	Count           string  `json:"count,omitempty"`           //
+	Description     string  `json:"description,omitempty"`     //
+	DeviceType      string  `json:"deviceType,omitempty"`      //
+	FabricGroup     string  `json:"fabricGroup,omitempty"`     //
+	Family          string  `json:"family,omitempty"`          //
+	HealthScore     string  `json:"healthScore,omitempty"`     //
+	ID              string  `json:"id,omitempty"`              //
+	IP              string  `json:"ip,omitempty"`              //
+	Level           float64 `json:"level,omitempty"`           //
+	Name            string  `json:"name,omitempty"`            //
+	NodeType        string  `json:"nodeType,omitempty"`        //
+	PlatformID      string  `json:"platformId,omitempty"`      //
+	RadioFrequency  string  `json:"radioFrequency,omitempty"`  //
+	Role            string  `json:"role,omitempty"`            //
+	SoftwareVersion string  `json:"softwareVersion,omitempty"` //
+	UserID          string  `json:"userId,omitempty"`          //
 }
 
 // GetClientEnrichmentDetailsResponseIssueDetails is the getClientEnrichmentDetailsResponseIssueDetails definition
@@ -400,7 +402,7 @@ type GetOverallClientHealthResponseResponseScoreDetailScoreListScoreCategory str
 // GetOverallClientHealthResponseResponseScoreDetailScoreListScoreList is the getOverallClientHealthResponseResponseScoreDetailScoreListScoreList definition
 type GetOverallClientHealthResponseResponseScoreDetailScoreListScoreList struct {
 	ClientCount       int                                                                              `json:"clientCount,omitempty"`       //
-	ClientUniqueCount string                                                                           `json:"clientUniqueCount,omitempty"` //
+	ClientUniqueCount int                                                                              `json:"clientUniqueCount,omitempty"` //
 	Endtime           int                                                                              `json:"endtime,omitempty"`           //
 	ScoreCategory     GetOverallClientHealthResponseResponseScoreDetailScoreListScoreListScoreCategory `json:"scoreCategory,omitempty"`     //
 	ScoreValue        int                                                                              `json:"scoreValue,omitempty"`        //
@@ -439,6 +441,11 @@ func (s *ClientsService) GetClientDetail(getClientDetailQueryParams *GetClientDe
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getClientDetail")
+	}
+
 	result := response.Result().(*GetClientDetailResponse)
 	return result, response, err
 }
@@ -461,6 +468,11 @@ func (s *ClientsService) GetClientEnrichmentDetails() (*GetClientEnrichmentDetai
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getClientEnrichmentDetails")
+	}
+
 	result := response.Result().(*GetClientEnrichmentDetailsResponse)
 	return result, response, err
 }
@@ -489,6 +501,11 @@ func (s *ClientsService) GetOverallClientHealth(getOverallClientHealthQueryParam
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getOverallClientHealth")
+	}
+
 	result := response.Result().(*GetOverallClientHealthResponse)
 	return result, response, err
 }

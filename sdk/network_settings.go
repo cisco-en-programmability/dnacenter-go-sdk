@@ -46,18 +46,18 @@ type CreateDeviceCredentialsRequestSettingsCliCredential struct {
 
 // CreateDeviceCredentialsRequestSettingsHTTPSRead is the createDeviceCredentialsRequestSettingsHTTPSRead definition
 type CreateDeviceCredentialsRequestSettingsHTTPSRead struct {
-	Name     string `json:"name,omitempty"`     //
-	Password string `json:"password,omitempty"` //
-	Port     int    `json:"port,omitempty"`     //
-	Username string `json:"username,omitempty"` //
+	Name     string  `json:"name,omitempty"`     //
+	Password string  `json:"password,omitempty"` //
+	Port     float64 `json:"port,omitempty"`     //
+	Username string  `json:"username,omitempty"` //
 }
 
 // CreateDeviceCredentialsRequestSettingsHTTPSWrite is the createDeviceCredentialsRequestSettingsHTTPSWrite definition
 type CreateDeviceCredentialsRequestSettingsHTTPSWrite struct {
-	Name     string `json:"name,omitempty"`     //
-	Password string `json:"password,omitempty"` //
-	Port     int    `json:"port,omitempty"`     //
-	Username string `json:"username,omitempty"` //
+	Name     string  `json:"name,omitempty"`     //
+	Password string  `json:"password,omitempty"` //
+	Port     float64 `json:"port,omitempty"`     //
+	Username string  `json:"username,omitempty"` //
 }
 
 // CreateDeviceCredentialsRequestSettingsSNMPV2cRead is the createDeviceCredentialsRequestSettingsSNMPV2cRead definition
@@ -156,8 +156,8 @@ type CreateNetworkRequestSettingsMessageOfTheday struct {
 
 // CreateNetworkRequestSettingsNetflowcollector is the createNetworkRequestSettingsNetflowcollector definition
 type CreateNetworkRequestSettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` //
-	Port      int    `json:"port,omitempty"`      //
+	IPAddress string  `json:"ipAddress,omitempty"` //
+	Port      float64 `json:"port,omitempty"`      //
 }
 
 // CreateNetworkRequestSettingsNetworkAAA is the createNetworkRequestSettingsNetworkAAA definition
@@ -346,8 +346,8 @@ type UpdateNetworkRequestSettingsMessageOfTheday struct {
 
 // UpdateNetworkRequestSettingsNetflowcollector is the updateNetworkRequestSettingsNetflowcollector definition
 type UpdateNetworkRequestSettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` //
-	Port      int    `json:"port,omitempty"`      //
+	IPAddress string  `json:"ipAddress,omitempty"` //
+	Port      float64 `json:"port,omitempty"`      //
 }
 
 // UpdateNetworkRequestSettingsNetworkAAA is the updateNetworkRequestSettingsNetworkAAA definition
@@ -477,7 +477,7 @@ type GetDeviceCredentialDetailsResponseCli struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// GetDeviceCredentialDetailsResponseHTTPRead is the getDeviceCredentialDetailsResponseHTTP_read definition
+// GetDeviceCredentialDetailsResponseHTTPRead is the getDeviceCredentialDetailsResponseHTTPRead definition
 type GetDeviceCredentialDetailsResponseHTTPRead struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -491,7 +491,7 @@ type GetDeviceCredentialDetailsResponseHTTPRead struct {
 	Username         string `json:"username,omitempty"`         //
 }
 
-// GetDeviceCredentialDetailsResponseHTTPWrite is the getDeviceCredentialDetailsResponseHTTP_write definition
+// GetDeviceCredentialDetailsResponseHTTPWrite is the getDeviceCredentialDetailsResponseHTTPWrite definition
 type GetDeviceCredentialDetailsResponseHTTPWrite struct {
 	Comments         string `json:"comments,omitempty"`         //
 	CredentialType   string `json:"credentialType,omitempty"`   //
@@ -554,7 +554,7 @@ type GetGlobalPoolResponseResponse struct {
 	ClientOptions         string                                 `json:"clientOptions,omitempty"`         //
 	ConfigureExternalDhcp string                                 `json:"configureExternalDhcp,omitempty"` //
 	Context               []GetGlobalPoolResponseResponseContext `json:"context,omitempty"`               //
-	CreateTime            string                                 `json:"createTime,omitempty"`            //
+	CreateTime            int                                    `json:"createTime,omitempty"`            //
 	DhcpServerIPs         []string                               `json:"dhcpServerIps,omitempty"`         //
 	DNSServerIPs          []string                               `json:"dnsServerIps,omitempty"`          //
 	Gateways              []string                               `json:"gateways,omitempty"`              //
@@ -562,14 +562,14 @@ type GetGlobalPoolResponseResponse struct {
 	IPPoolCidr            string                                 `json:"ipPoolCidr,omitempty"`            //
 	IPPoolName            string                                 `json:"ipPoolName,omitempty"`            //
 	IPv6                  string                                 `json:"ipv6,omitempty"`                  //
-	LastUpdateTime        string                                 `json:"lastUpdateTime,omitempty"`        //
+	LastUpdateTime        int                                    `json:"lastUpdateTime,omitempty"`        //
 	Overlapping           string                                 `json:"overlapping,omitempty"`           //
 	Owner                 string                                 `json:"owner,omitempty"`                 //
 	ParentUUID            string                                 `json:"parentUuid,omitempty"`            //
 	Shared                string                                 `json:"shared,omitempty"`                //
-	TotalIPAddressCount   string                                 `json:"totalIpAddressCount,omitempty"`   //
-	UsedIPAddressCount    string                                 `json:"usedIpAddressCount,omitempty"`    //
-	UsedPercentage        string                                 `json:"usedPercentage,omitempty"`        //
+	TotalIPAddressCount   int                                    `json:"totalIpAddressCount,omitempty"`   //
+	UsedIPAddressCount    int                                    `json:"usedIpAddressCount,omitempty"`    //
+	UsedPercentage        int                                    `json:"usedPercentage,omitempty"`        //
 }
 
 // GetGlobalPoolResponseResponseContext is the getGlobalPoolResponseResponseContext definition
@@ -691,6 +691,11 @@ func (s *NetworkSettingsService) AssignCredentialToSite(siteID string, assignCre
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation assignCredentialToSite")
+	}
+
 	result := response.Result().(*AssignCredentialToSiteResponse)
 	return result, response, err
 }
@@ -711,6 +716,11 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(createDeviceCredentials
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createDeviceCredentials")
+	}
+
 	result := response.Result().(*CreateDeviceCredentialsResponse)
 	return result, response, err
 }
@@ -732,6 +742,11 @@ func (s *NetworkSettingsService) CreateGlobalPool(createGlobalPoolRequest *Creat
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createGlobalPool")
+	}
+
 	result := response.Result().(*CreateGlobalPoolResponse)
 	return result, response, err
 }
@@ -755,6 +770,11 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, createNetworkReque
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createNetwork")
+	}
+
 	result := response.Result().(*CreateNetworkResponse)
 	return result, response, err
 }
@@ -775,6 +795,11 @@ func (s *NetworkSettingsService) CreateSPProfile(createSPProfileRequest *CreateS
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation createSPProfile")
+	}
+
 	result := response.Result().(*CreateSPProfileResponse)
 	return result, response, err
 }
@@ -783,7 +808,7 @@ func (s *NetworkSettingsService) CreateSPProfile(createSPProfileRequest *CreateS
 /* Delete device credential.
 @param id global credential id
 */
-func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*resty.Response, error) {
+func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*DeleteDeviceCredentialResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/device-credential/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -793,18 +818,22 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*resty.Respo
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteDeviceCredential")
+	}
 
+	result := response.Result().(*DeleteDeviceCredentialResponse)
+	return result, response, err
 }
 
 // DeleteGlobalIPPool deleteGlobalIPPool
 /* API to delete global IP pool.
 @param id global pool id
 */
-func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*resty.Response, error) {
+func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*DeleteGlobalIPPoolResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/global-pool/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
@@ -814,18 +843,22 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*resty.Response,
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteGlobalIPPool")
+	}
 
+	result := response.Result().(*DeleteGlobalIPPoolResponse)
+	return result, response, err
 }
 
 // DeleteSPProfile deleteSPProfile
 /* API to delete Service Provider profile (QoS).
 @param spProfileName sp profile name
 */
-func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*resty.Response, error) {
+func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*DeleteSPProfileResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/sp-profile/{spProfileName}"
 	path = strings.Replace(path, "{"+"spProfileName"+"}", fmt.Sprintf("%v", spProfileName), -1)
@@ -835,11 +868,15 @@ func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*resty.R
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return response, err
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation deleteSPProfile")
+	}
 
+	result := response.Result().(*DeleteSPProfileResponse)
+	return result, response, err
 }
 
 // GetDeviceCredentialDetailsQueryParams defines the query parameters for this request
@@ -866,6 +903,11 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(getDeviceCredentialD
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getDeviceCredentialDetails")
+	}
+
 	result := response.Result().(*GetDeviceCredentialDetailsResponse)
 	return result, response, err
 }
@@ -896,6 +938,11 @@ func (s *NetworkSettingsService) GetGlobalPool(getGlobalPoolQueryParams *GetGlob
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getGlobalPool")
+	}
+
 	result := response.Result().(*GetGlobalPoolResponse)
 	return result, response, err
 }
@@ -924,6 +971,11 @@ func (s *NetworkSettingsService) GetNetwork(getNetworkQueryParams *GetNetworkQue
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getNetwork")
+	}
+
 	result := response.Result().(*GetNetworkResponse)
 	return result, response, err
 }
@@ -943,6 +995,11 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*GetServiceProvide
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation getServiceProviderDetails")
+	}
+
 	result := response.Result().(*GetServiceProviderDetailsResponse)
 	return result, response, err
 }
@@ -963,6 +1020,11 @@ func (s *NetworkSettingsService) UpdateDeviceCredentials(updateDeviceCredentials
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateDeviceCredentials")
+	}
+
 	result := response.Result().(*UpdateDeviceCredentialsResponse)
 	return result, response, err
 }
@@ -983,6 +1045,11 @@ func (s *NetworkSettingsService) UpdateGlobalPool(updateGlobalPoolRequest *Updat
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateGlobalPool")
+	}
+
 	result := response.Result().(*UpdateGlobalPoolResponse)
 	return result, response, err
 }
@@ -1006,6 +1073,11 @@ func (s *NetworkSettingsService) UpdateNetwork(siteID string, updateNetworkReque
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateNetwork")
+	}
+
 	result := response.Result().(*UpdateNetworkResponse)
 	return result, response, err
 }
@@ -1026,6 +1098,11 @@ func (s *NetworkSettingsService) UpdateSPProfile(updateSPProfileRequest *UpdateS
 	if err != nil {
 		return nil, nil, err
 	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("Error with operation updateSPProfile")
+	}
+
 	result := response.Result().(*UpdateSPProfileResponse)
 	return result, response, err
 }
