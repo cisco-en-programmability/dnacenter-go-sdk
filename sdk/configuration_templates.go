@@ -13,13 +13,27 @@ type ConfigurationTemplatesService service
 
 // CreateProjectRequest is the createProjectRequest definition
 type CreateProjectRequest struct {
-	CreateTime     int      `json:"createTime,omitempty"`     //
-	Description    string   `json:"description,omitempty"`    //
-	ID             string   `json:"id,omitempty"`             //
-	LastUpdateTime int      `json:"lastUpdateTime,omitempty"` //
-	Name           string   `json:"name,omitempty"`           //
-	Tags           []string `json:"tags,omitempty"`           //
-	Templates      string   `json:"templates,omitempty"`      //
+	IsDeletable    bool                            `json:"isDeletable,omitempty"`    //
+	CreateTime     int                             `json:"createTime,omitempty"`     //
+	Description    string                          `json:"description,omitempty"`    //
+	ID             string                          `json:"id,omitempty"`             //
+	LastUpdateTime int                             `json:"lastUpdateTime,omitempty"` //
+	Name           string                          `json:"name,omitempty"`           //
+	Tags           []string                        `json:"tags,omitempty"`           //
+	Templates      []CreateProjectRequestTemplates `json:"templates,omitempty"`      //
+}
+
+// CreateProjectRequestTemplates is the createProjectRequestTemplates definition
+type CreateProjectRequestTemplates struct {
+	Name              string  `json:"name,omitempty"`              //
+	Composite         bool    `json:"composite,omitempty"`         //
+	Language          string  `json:"language,omitempty"`          //
+	ID                string  `json:"id,omitempty"`                //
+	CustomParamsOrder bool    `json:"customParamsOrder,omitempty"` //
+	LastUpdateTime    float64 `json:"lastUpdateTime,omitempty"`    //
+	LatestVersionTime float64 `json:"latestVersionTime,omitempty"` //
+	ProjectAssociated bool    `json:"projectAssociated,omitempty"` //
+	DocumentDatabase  bool    `json:"documentDatabase,omitempty"`  //
 }
 
 // CreateProjectRequestTags is the createProjectRequestTags definition
@@ -96,9 +110,9 @@ type CreateTemplateRequestRollbackTemplateParamsRange struct {
 
 // CreateTemplateRequestRollbackTemplateParamsSelection is the createTemplateRequestRollbackTemplateParamsSelection definition
 type CreateTemplateRequestRollbackTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // CreateTemplateRequestTags is the createTemplateRequestTags definition
@@ -134,9 +148,9 @@ type CreateTemplateRequestTemplateParamsRange struct {
 
 // CreateTemplateRequestTemplateParamsSelection is the createTemplateRequestTemplateParamsSelection definition
 type CreateTemplateRequestTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // DeployTemplateRequest is the deployTemplateRequest definition
@@ -144,37 +158,47 @@ type DeployTemplateRequest struct {
 	ForcePushTemplate            bool                              `json:"forcePushTemplate,omitempty"`            //
 	IsComposite                  bool                              `json:"isComposite,omitempty"`                  //
 	MainTemplateID               string                            `json:"mainTemplateId,omitempty"`               //
-	MemberTemplateDeploymentInfo []string                          `json:"memberTemplateDeploymentInfo,omitempty"` //
+	MemberTemplateDeploymentInfo *[]DeployTemplateRequest          `json:"memberTemplateDeploymentInfo,omitempty"` //
 	TargetInfo                   []DeployTemplateRequestTargetInfo `json:"targetInfo,omitempty"`                   //
 	TemplateID                   string                            `json:"templateId,omitempty"`                   //
 }
 
-// DeployTemplateRequestMemberTemplateDeploymentInfo is the deployTemplateRequestMemberTemplateDeploymentInfo definition
-type DeployTemplateRequestMemberTemplateDeploymentInfo []string
-
 // DeployTemplateRequestTargetInfo is the deployTemplateRequestTargetInfo definition
 type DeployTemplateRequestTargetInfo struct {
-	HostName string `json:"hostName,omitempty"` //
-	ID       string `json:"id,omitempty"`       //
-	Params   string `json:"params,omitempty"`   //
-	Type     string `json:"type,omitempty"`     //
+	HostName string                 `json:"hostName,omitempty"` //
+	ID       string                 `json:"id,omitempty"`       //
+	Params   map[string]interface{} `json:"params,omitempty"`   //
+	Type     string                 `json:"type,omitempty"`     //
 }
 
 // PreviewTemplateRequest is the previewTemplateRequest definition
 type PreviewTemplateRequest struct {
-	Params     string `json:"params,omitempty"`     //
-	TemplateID string `json:"templateId,omitempty"` //
+	Params     map[string]interface{} `json:"params,omitempty"`     //
+	TemplateID string                 `json:"templateId,omitempty"` //
 }
 
 // UpdateProjectRequest is the updateProjectRequest definition
 type UpdateProjectRequest struct {
-	CreateTime     int      `json:"createTime,omitempty"`     //
-	Description    string   `json:"description,omitempty"`    //
-	ID             string   `json:"id,omitempty"`             //
-	LastUpdateTime int      `json:"lastUpdateTime,omitempty"` //
-	Name           string   `json:"name,omitempty"`           //
-	Tags           []string `json:"tags,omitempty"`           //
-	Templates      string   `json:"templates,omitempty"`      //
+	CreateTime     int                             `json:"createTime,omitempty"`     //
+	Description    string                          `json:"description,omitempty"`    //
+	ID             string                          `json:"id,omitempty"`             //
+	LastUpdateTime int                             `json:"lastUpdateTime,omitempty"` //
+	Name           string                          `json:"name,omitempty"`           //
+	Tags           []string                        `json:"tags,omitempty"`           //
+	Templates      []UpdateProjectRequestTemplates `json:"templates,omitempty"`      //
+}
+
+// UpdateProjectRequestTemplates is the updateProjectRequestTemplates definition
+type UpdateProjectRequestTemplates struct {
+	Name              string  `json:"name,omitempty"`              //
+	Composite         bool    `json:"composite,omitempty"`         //
+	Language          string  `json:"language,omitempty"`          //
+	ID                string  `json:"id,omitempty"`                //
+	CustomParamsOrder bool    `json:"customParamsOrder,omitempty"` //
+	LastUpdateTime    float64 `json:"lastUpdateTime,omitempty"`    //
+	LatestVersionTime float64 `json:"latestVersionTime,omitempty"` //
+	ProjectAssociated bool    `json:"projectAssociated,omitempty"` //
+	DocumentDatabase  bool    `json:"documentDatabase,omitempty"`  //
 }
 
 // UpdateProjectRequestTags is the updateProjectRequestTags definition
@@ -251,9 +275,9 @@ type UpdateTemplateRequestRollbackTemplateParamsRange struct {
 
 // UpdateTemplateRequestRollbackTemplateParamsSelection is the updateTemplateRequestRollbackTemplateParamsSelection definition
 type UpdateTemplateRequestRollbackTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // UpdateTemplateRequestTags is the updateTemplateRequestTags definition
@@ -289,9 +313,9 @@ type UpdateTemplateRequestTemplateParamsRange struct {
 
 // UpdateTemplateRequestTemplateParamsSelection is the updateTemplateRequestTemplateParamsSelection definition
 type UpdateTemplateRequestTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // VersionTemplateRequest is the versionTemplateRequest definition
@@ -354,9 +378,9 @@ type DeployTemplateResponse struct {
 	DeploymentName  string                          `json:"deploymentName,omitempty"`  //
 	Devices         []DeployTemplateResponseDevices `json:"devices,omitempty"`         //
 	Duration        string                          `json:"duration,omitempty"`        //
-	EndTime         int                             `json:"endTime,omitempty"`         //
+	EndTime         string                          `json:"endTime,omitempty"`         //
 	ProjectName     string                          `json:"projectName,omitempty"`     //
-	StartTime       int                             `json:"startTime,omitempty"`       //
+	StartTime       string                          `json:"startTime,omitempty"`       //
 	Status          string                          `json:"status,omitempty"`          //
 	TemplateName    string                          `json:"templateName,omitempty"`    //
 	TemplateVersion string                          `json:"templateVersion,omitempty"` //
@@ -366,25 +390,32 @@ type DeployTemplateResponse struct {
 type DeployTemplateResponseDevices struct {
 	DeviceID  string `json:"deviceId,omitempty"`  //
 	Duration  string `json:"duration,omitempty"`  //
-	EndTime   int    `json:"endTime,omitempty"`   //
+	EndTime   string `json:"endTime,omitempty"`   //
 	IPAddress string `json:"ipAddress,omitempty"` //
 	Name      string `json:"name,omitempty"`      //
-	StartTime int    `json:"startTime,omitempty"` //
+	StartTime string `json:"startTime,omitempty"` //
 	Status    string `json:"status,omitempty"`    //
 }
 
 // GetProjectsResponse is the getProjectsResponse definition
 type GetProjectsResponse struct {
-	ID        string                         `json:"id,omitempty"`        //
-	Name      string                         `json:"name,omitempty"`      //
-	Templates []GetProjectsResponseTemplates `json:"templates,omitempty"` //
+	ID          string                         `json:"id,omitempty"`          //
+	Name        string                         `json:"name,omitempty"`        //
+	Templates   []GetProjectsResponseTemplates `json:"templates,omitempty"`   //
+	IsDeletable bool                           `json:"isDeletable,omitempty"` //
 }
 
 // GetProjectsResponseTemplates is the getProjectsResponseTemplates definition
 type GetProjectsResponseTemplates struct {
-	Composite bool   `json:"composite,omitempty"` //
-	ID        string `json:"id,omitempty"`        //
-	Name      string `json:"name,omitempty"`      //
+	Composite         bool    `json:"composite,omitempty"`         //
+	ID                string  `json:"id,omitempty"`                //
+	Name              string  `json:"name,omitempty"`              //
+	Language          string  `json:"language,omitempty"`          //
+	CustomParamsOrder bool    `json:"customParamsOrder,omitempty"` //
+	LastUpdateTime    float64 `json:"lastUpdateTime,omitempty"`    //
+	LatestVersionTime float64 `json:"latestVersionTime,omitempty"` //
+	ProjectAssociated bool    `json:"projectAssociated,omitempty"` //
+	DocumentDatabase  bool    `json:"documentDatabase,omitempty"`  //
 }
 
 // GetTemplateDeploymentStatusResponse is the getTemplateDeploymentStatusResponse definition
@@ -393,9 +424,9 @@ type GetTemplateDeploymentStatusResponse struct {
 	DeploymentName  string                                       `json:"deploymentName,omitempty"`  //
 	Devices         []GetTemplateDeploymentStatusResponseDevices `json:"devices,omitempty"`         //
 	Duration        string                                       `json:"duration,omitempty"`        //
-	EndTime         int                                          `json:"endTime,omitempty"`         //
+	EndTime         string                                       `json:"endTime,omitempty"`         //
 	ProjectName     string                                       `json:"projectName,omitempty"`     //
-	StartTime       int                                          `json:"startTime,omitempty"`       //
+	StartTime       string                                       `json:"startTime,omitempty"`       //
 	Status          string                                       `json:"status,omitempty"`          //
 	TemplateName    string                                       `json:"templateName,omitempty"`    //
 	TemplateVersion string                                       `json:"templateVersion,omitempty"` //
@@ -405,10 +436,10 @@ type GetTemplateDeploymentStatusResponse struct {
 type GetTemplateDeploymentStatusResponseDevices struct {
 	DeviceID  string `json:"deviceId,omitempty"`  //
 	Duration  string `json:"duration,omitempty"`  //
-	EndTime   int    `json:"endTime,omitempty"`   //
+	EndTime   string `json:"endTime,omitempty"`   //
 	IPAddress string `json:"ipAddress,omitempty"` //
 	Name      string `json:"name,omitempty"`      //
-	StartTime int    `json:"startTime,omitempty"` //
+	StartTime string `json:"startTime,omitempty"` //
 	Status    string `json:"status,omitempty"`    //
 }
 
@@ -432,7 +463,7 @@ type GetTemplateDetailsResponse struct {
 	SoftwareType            string                                             `json:"softwareType,omitempty"`            //
 	SoftwareVariant         string                                             `json:"softwareVariant,omitempty"`         //
 	SoftwareVersion         string                                             `json:"softwareVersion,omitempty"`         //
-	Tags                    []string                                           `json:"tags,omitempty"`                    //
+	Tags                    []GetTemplateDetailsResponseTags                   `json:"tags,omitempty"`                    //
 	TemplateContent         string                                             `json:"templateContent,omitempty"`         //
 	TemplateParams          []GetTemplateDetailsResponseTemplateParams         `json:"templateParams,omitempty"`          //
 	Version                 string                                             `json:"version,omitempty"`                 //
@@ -483,13 +514,16 @@ type GetTemplateDetailsResponseRollbackTemplateParamsRange struct {
 
 // GetTemplateDetailsResponseRollbackTemplateParamsSelection is the getTemplateDetailsResponseRollbackTemplateParamsSelection definition
 type GetTemplateDetailsResponseRollbackTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // GetTemplateDetailsResponseTags is the getTemplateDetailsResponseTags definition
-type GetTemplateDetailsResponseTags []string
+type GetTemplateDetailsResponseTags struct {
+	ID   string `json:"id,omitempty"`   //
+	Name string `json:"name,omitempty"` //
+}
 
 // GetTemplateDetailsResponseTemplateParams is the getTemplateDetailsResponseTemplateParams definition
 type GetTemplateDetailsResponseTemplateParams struct {
@@ -521,9 +555,9 @@ type GetTemplateDetailsResponseTemplateParamsRange struct {
 
 // GetTemplateDetailsResponseTemplateParamsSelection is the getTemplateDetailsResponseTemplateParamsSelection definition
 type GetTemplateDetailsResponseTemplateParamsSelection struct {
-	ID              string `json:"id,omitempty"`              //
-	SelectionType   string `json:"selectionType,omitempty"`   //
-	SelectionValues string `json:"selectionValues,omitempty"` //
+	ID              string                 `json:"id,omitempty"`              //
+	SelectionType   string                 `json:"selectionType,omitempty"`   //
+	SelectionValues map[string]interface{} `json:"selectionValues,omitempty"` //
 }
 
 // GetTemplateVersionsResponse is the getTemplateVersionsResponse definition
@@ -538,9 +572,12 @@ type GetTemplateVersionsResponse struct {
 
 // GetTemplateVersionsResponseVersionsInfo is the getTemplateVersionsResponseVersionsInfo definition
 type GetTemplateVersionsResponseVersionsInfo struct {
-	Description string  `json:"description,omitempty"` //
-	ID          string  `json:"id,omitempty"`          //
-	VersionTime float64 `json:"versionTime,omitempty"` //
+	Description    string  `json:"description,omitempty"`    //
+	ID             string  `json:"id,omitempty"`             //
+	VersionTime    float64 `json:"versionTime,omitempty"`    //
+	Author         string  `json:"author,omitempty"`         //
+	Version        string  `json:"version,omitempty"`        //
+	VersionComment string  `json:"versionComment,omitempty"` //
 }
 
 // GetsTheTemplatesAvailableResponse is the getsTheTemplatesAvailableResponse definition
@@ -555,16 +592,25 @@ type GetsTheTemplatesAvailableResponse struct {
 
 // GetsTheTemplatesAvailableResponseVersionsInfo is the getsTheTemplatesAvailableResponseVersionsInfo definition
 type GetsTheTemplatesAvailableResponseVersionsInfo struct {
-	Description string  `json:"description,omitempty"` //
-	ID          string  `json:"id,omitempty"`          //
-	VersionTime float64 `json:"versionTime,omitempty"` //
+	Description    string  `json:"description,omitempty"`    //
+	ID             string  `json:"id,omitempty"`             //
+	VersionTime    float64 `json:"versionTime,omitempty"`    //
+	Author         string  `json:"author,omitempty"`         //
+	Version        string  `json:"version,omitempty"`        //
+	VersionComment string  `json:"versionComment,omitempty"` //
 }
 
 // PreviewTemplateResponse is the previewTemplateResponse definition
 type PreviewTemplateResponse struct {
-	CliPreview       string `json:"cliPreview,omitempty"`       //
-	TemplateID       string `json:"templateId,omitempty"`       //
-	ValidationErrors string `json:"validationErrors,omitempty"` //
+	CliPreview       string                                    `json:"cliPreview,omitempty"`       //
+	TemplateID       string                                    `json:"templateId,omitempty"`       //
+	ValidationErrors []PreviewTemplateResponseValidationErrors `json:"validationErrors,omitempty"` //
+}
+
+// PreviewTemplateResponseValidationErrors is the previewTemplateResponseValidationErrors definition
+type PreviewTemplateResponseValidationErrors struct {
+	Type    string `json:"type,omitempty"`    //
+	Message string `json:"message,omitempty"` //
 }
 
 // UpdateProjectResponse is the updateProjectResponse definition
@@ -741,7 +787,7 @@ type GetProjectsQueryParams struct {
 /* Returns the projects in the system
 @param name Name of project to be searched
 */
-func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetProjectsQueryParams) (*GetProjectsResponse, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetProjectsQueryParams) (*[]GetProjectsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/template-programmer/project"
 
@@ -749,7 +795,7 @@ func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetP
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&GetProjectsResponse{}).
+		SetResult(&[]GetProjectsResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
@@ -761,7 +807,7 @@ func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetP
 		return nil, response, fmt.Errorf("Error with operation getProjects")
 	}
 
-	result := response.Result().(*GetProjectsResponse)
+	result := response.Result().(*[]GetProjectsResponse)
 	return result, response, err
 }
 
@@ -830,13 +876,13 @@ func (s *ConfigurationTemplatesService) GetTemplateDetails(templateID string, ge
 /* Returns the versions of a specified template
 @param templateID templateId
 */
-func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (*GetTemplateVersionsResponse, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (*[]GetTemplateVersionsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/template-programmer/template/version/{templateId}"
 	path = strings.Replace(path, "{"+"templateId"+"}", fmt.Sprintf("%v", templateID), -1)
 
 	response, err := RestyClient.R().
-		SetResult(&GetTemplateVersionsResponse{}).
+		SetResult(&[]GetTemplateVersionsResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
@@ -848,7 +894,7 @@ func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (
 		return nil, response, fmt.Errorf("Error with operation getTemplateVersions")
 	}
 
-	result := response.Result().(*GetTemplateVersionsResponse)
+	result := response.Result().(*[]GetTemplateVersionsResponse)
 	return result, response, err
 }
 
@@ -873,7 +919,7 @@ type GetsTheTemplatesAvailableQueryParams struct {
 @param productType productType
 @param filterConflictingTemplates filterConflictingTemplates
 */
-func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplatesAvailableQueryParams *GetsTheTemplatesAvailableQueryParams) (*GetsTheTemplatesAvailableResponse, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplatesAvailableQueryParams *GetsTheTemplatesAvailableQueryParams) (*[]GetsTheTemplatesAvailableResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/template-programmer/template"
 
@@ -881,7 +927,7 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplat
 
 	response, err := RestyClient.R().
 		SetQueryString(queryString.Encode()).
-		SetResult(&GetsTheTemplatesAvailableResponse{}).
+		SetResult(&[]GetsTheTemplatesAvailableResponse{}).
 		SetError(&Error{}).
 		Get(path)
 
@@ -893,7 +939,7 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplat
 		return nil, response, fmt.Errorf("Error with operation getsTheTemplatesAvailable")
 	}
 
-	result := response.Result().(*GetsTheTemplatesAvailableResponse)
+	result := response.Result().(*[]GetsTheTemplatesAvailableResponse)
 	return result, response, err
 }
 
