@@ -143,7 +143,7 @@ type GetMembershipResponseSiteResponse []string
 
 // GetSiteCountResponse is the getSiteCountResponse definition
 type GetSiteCountResponse struct {
-	Response string `json:"response,omitempty"` //
+	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 
