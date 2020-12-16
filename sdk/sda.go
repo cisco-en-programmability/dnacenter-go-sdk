@@ -434,6 +434,9 @@ type GetSDAFabricInfoResponse struct {
 	Description        string `json:"description,omitempty"`        //
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
 	Status             string `json:"status,omitempty"`             //
+	FabricName         string `json:"fabricName,omitempty"`         //
+	FabricType         string `json:"fabricType,omitempty"`         //
+	FabricDomainType   string `json:"fabricDomainType,omitempty"`   //
 }
 
 // GetSiteFromSDAFabricResponse is the getSiteFromSDAFabricResponse definition
