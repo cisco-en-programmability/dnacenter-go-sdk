@@ -833,7 +833,7 @@ type GetListOfDiscoveriesByDiscoveryIDResponseResponse struct {
 	AttributeInfo               string `json:"attributeInfo,omitempty"`               //
 	CliStatus                   string `json:"cliStatus,omitempty"`                   //
 	DiscoveryStatus             string `json:"discoveryStatus,omitempty"`             //
-	EndTime                     int    `json:"endTime,omitempty"`                     //
+	EndTime                     string `json:"endTime,omitempty"`                     //
 	HTTPStatus                  string `json:"httpStatus,omitempty"`                  //
 	ID                          string `json:"id,omitempty"`                          //
 	InventoryCollectionStatus   string `json:"inventoryCollectionStatus,omitempty"`   //
@@ -844,7 +844,7 @@ type GetListOfDiscoveriesByDiscoveryIDResponseResponse struct {
 	NetconfStatus               string `json:"netconfStatus,omitempty"`               //
 	PingStatus                  string `json:"pingStatus,omitempty"`                  //
 	SNMPStatus                  string `json:"snmpStatus,omitempty"`                  //
-	StartTime                   int    `json:"startTime,omitempty"`                   //
+	StartTime                   string `json:"startTime,omitempty"`                   //
 	TaskID                      string `json:"taskId,omitempty"`                      //
 }
 
