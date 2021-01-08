@@ -124,9 +124,10 @@ type GetMembershipResponse struct {
 
 // GetMembershipResponseDevice is the getMembershipResponseDevice definition
 type GetMembershipResponseDevice struct {
-	Response []string `json:"response,omitempty"` //
-	SiteID   string   `json:"siteId,omitempty"`   //
-	Version  string   `json:"version,omitempty"`  //
+	Response []interface{} `json:"response,omitempty"` //
+	SiteID   string        `json:"siteId,omitempty"`   //
+	Version  string        `json:"version,omitempty"`  //
+	Message  string        `json:"message,omitempty"`  //
 }
 
 // GetMembershipResponseDeviceResponse is the getMembershipResponseDeviceResponse definition
@@ -134,16 +135,25 @@ type GetMembershipResponseDeviceResponse []string
 
 // GetMembershipResponseSite is the getMembershipResponseSite definition
 type GetMembershipResponseSite struct {
-	Response []string `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	Response []GetMembershipResponseSiteResponse `json:"response,omitempty"` //
+	Version  string                              `json:"version,omitempty"`  //
 }
 
 // GetMembershipResponseSiteResponse is the getMembershipResponseSiteResponse definition
-type GetMembershipResponseSiteResponse []string
+type GetMembershipResponseSiteResponse struct {
+	ParentID           string        `json:"parentId,omitempty"`           //
+	AdditionalInfo     []interface{} `json:"additionalInfo,omitempty"`     //
+	GroupTypeList      []string      `json:"groupTypeList,omitempty"`      //
+	GroupHierarchy     string        `json:"groupHierarchy,omitempty"`     //
+	GroupNameHierarchy string        `json:"groupNameHierarchy,omitempty"` //
+	Name               string        `json:"name,omitempty"`               //
+	InstanceTenantID   string        `json:"instanceTenantId,omitempty"`   //
+	ID                 string        `json:"id,omitempty"`                 //
+}
 
 // GetSiteCountResponse is the getSiteCountResponse definition
 type GetSiteCountResponse struct {
-	Response string `json:"response,omitempty"` //
+	Response int    `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
 

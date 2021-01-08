@@ -287,11 +287,11 @@ type UpdateGlobalPoolRequestSettings struct {
 
 // UpdateGlobalPoolRequestSettingsIPpool is the updateGlobalPoolRequestSettingsIPpool definition
 type UpdateGlobalPoolRequestSettingsIPpool struct {
-	DhcpServerIPs []string `json:"dhcpServerIps,omitempty"` //
-	DNSServerIPs  []string `json:"dnsServerIps,omitempty"`  //
-	Gateway       string   `json:"gateway,omitempty"`       //
-	ID            string   `json:"id,omitempty"`            //
-	IPPoolName    string   `json:"ipPoolName,omitempty"`    //
+	DhcpServerIPs *[]string `json:"dhcpServerIps,omitempty"` //
+	DNSServerIPs  *[]string `json:"dnsServerIps,omitempty"`  //
+	Gateway       string    `json:"gateway,omitempty"`       //
+	ID            string    `json:"id,omitempty"`            //
+	IPPoolName    string    `json:"ipPoolName,omitempty"`    //
 }
 
 // UpdateGlobalPoolRequestSettingsIPpoolDNSServerIPs is the updateGlobalPoolRequestSettingsIPpoolDNSServerIPs definition
@@ -307,16 +307,16 @@ type UpdateNetworkRequest struct {
 
 // UpdateNetworkRequestSettings is the updateNetworkRequestSettings definition
 type UpdateNetworkRequestSettings struct {
-	ClientAndEndpointAAA UpdateNetworkRequestSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
-	DhcpServer           []string                                         `json:"dhcpServer,omitempty"`            //
-	DNSServer            UpdateNetworkRequestSettingsDNSServer            `json:"dnsServer,omitempty"`             //
-	MessageOfTheday      UpdateNetworkRequestSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
-	Netflowcollector     UpdateNetworkRequestSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
-	NetworkAAA           UpdateNetworkRequestSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
-	NtpServer            []string                                         `json:"ntpServer,omitempty"`             //
-	SNMPServer           UpdateNetworkRequestSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
-	SyslogServer         UpdateNetworkRequestSettingsSyslogServer         `json:"syslogServer,omitempty"`          //
-	Timezone             string                                           `json:"timezone,omitempty"`              //
+	ClientAndEndpointAAA *UpdateNetworkRequestSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
+	DhcpServer           []string                                          `json:"dhcpServer,omitempty"`            //
+	DNSServer            *UpdateNetworkRequestSettingsDNSServer            `json:"dnsServer,omitempty"`             //
+	MessageOfTheday      *UpdateNetworkRequestSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
+	Netflowcollector     *UpdateNetworkRequestSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
+	NetworkAAA           *UpdateNetworkRequestSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
+	NtpServer            []string                                          `json:"ntpServer,omitempty"`             //
+	SNMPServer           *UpdateNetworkRequestSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
+	SyslogServer         *UpdateNetworkRequestSettingsSyslogServer         `json:"syslogServer,omitempty"`          //
+	Timezone             string                                            `json:"timezone,omitempty"`              //
 }
 
 // UpdateNetworkRequestSettingsClientAndEndpointAAA is the updateNetworkRequestSettingsClientAndEndpointAAA definition
@@ -486,8 +486,8 @@ type GetDeviceCredentialDetailsResponseHTTPRead struct {
 	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
 	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
-	Port             string `json:"port,omitempty"`             //
-	Secure           string `json:"secure,omitempty"`           //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
 }
 
@@ -500,8 +500,8 @@ type GetDeviceCredentialDetailsResponseHTTPWrite struct {
 	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
 	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
-	Port             string `json:"port,omitempty"`             //
-	Secure           string `json:"secure,omitempty"`           //
+	Port             int    `json:"port,omitempty"`             //
+	Secure           bool   `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
 }
 
@@ -551,8 +551,8 @@ type GetGlobalPoolResponse struct {
 
 // GetGlobalPoolResponseResponse is the getGlobalPoolResponseResponse definition
 type GetGlobalPoolResponseResponse struct {
-	ClientOptions         string                                 `json:"clientOptions,omitempty"`         //
-	ConfigureExternalDhcp string                                 `json:"configureExternalDhcp,omitempty"` //
+	ClientOptions         interface{}                            `json:"clientOptions,omitempty"`         //
+	ConfigureExternalDhcp bool                                   `json:"configureExternalDhcp,omitempty"` //
 	Context               []GetGlobalPoolResponseResponseContext `json:"context,omitempty"`               //
 	CreateTime            int                                    `json:"createTime,omitempty"`            //
 	DhcpServerIPs         []string                               `json:"dhcpServerIps,omitempty"`         //
@@ -561,15 +561,15 @@ type GetGlobalPoolResponseResponse struct {
 	ID                    string                                 `json:"id,omitempty"`                    //
 	IPPoolCidr            string                                 `json:"ipPoolCidr,omitempty"`            //
 	IPPoolName            string                                 `json:"ipPoolName,omitempty"`            //
-	IPv6                  string                                 `json:"ipv6,omitempty"`                  //
+	IPv6                  bool                                   `json:"ipv6,omitempty"`                  //
 	LastUpdateTime        int                                    `json:"lastUpdateTime,omitempty"`        //
-	Overlapping           string                                 `json:"overlapping,omitempty"`           //
+	Overlapping           bool                                   `json:"overlapping,omitempty"`           //
 	Owner                 string                                 `json:"owner,omitempty"`                 //
 	ParentUUID            string                                 `json:"parentUuid,omitempty"`            //
-	Shared                string                                 `json:"shared,omitempty"`                //
-	TotalIPAddressCount   string                                 `json:"totalIpAddressCount,omitempty"`   //
-	UsedIPAddressCount    string                                 `json:"usedIpAddressCount,omitempty"`    //
-	UsedPercentage        int                                    `json:"usedPercentage,omitempty"`        //
+	Shared                bool                                   `json:"shared,omitempty"`                //
+	TotalIPAddressCount   int                                    `json:"totalIpAddressCount,omitempty"`   //
+	UsedIPAddressCount    int                                    `json:"usedIpAddressCount,omitempty"`    //
+	UsedPercentage        string                                 `json:"usedPercentage,omitempty"`        //
 }
 
 // GetGlobalPoolResponseResponseContext is the getGlobalPoolResponseResponseContext definition
@@ -596,16 +596,16 @@ type GetNetworkResponse struct {
 
 // GetNetworkResponseResponse is the getNetworkResponseResponse definition
 type GetNetworkResponseResponse struct {
-	GroupUUID          string                            `json:"groupUuid,omitempty"`          //
-	InheritedGroupName string                            `json:"inheritedGroupName,omitempty"` //
-	InheritedGroupUUID string                            `json:"inheritedGroupUuid,omitempty"` //
-	InstanceType       string                            `json:"instanceType,omitempty"`       //
-	InstanceUUID       string                            `json:"instanceUuid,omitempty"`       //
-	Key                string                            `json:"key,omitempty"`                //
-	Namespace          string                            `json:"namespace,omitempty"`          //
-	Type               string                            `json:"type,omitempty"`               //
-	Value              []GetNetworkResponseResponseValue `json:"value,omitempty"`              //
-	Version            int                               `json:"version,omitempty"`            //
+	GroupUUID          string        `json:"groupUuid,omitempty"`          //
+	InheritedGroupName string        `json:"inheritedGroupName,omitempty"` //
+	InheritedGroupUUID string        `json:"inheritedGroupUuid,omitempty"` //
+	InstanceType       string        `json:"instanceType,omitempty"`       //
+	InstanceUUID       string        `json:"instanceUuid,omitempty"`       //
+	Key                string        `json:"key,omitempty"`                //
+	Namespace          string        `json:"namespace,omitempty"`          //
+	Type               string        `json:"type,omitempty"`               //
+	Value              []interface{} `json:"value,omitempty"`              //
+	Version            int           `json:"version,omitempty"`            //
 }
 
 // GetNetworkResponseResponseValue is the getNetworkResponseResponseValue definition
@@ -634,7 +634,7 @@ type GetServiceProviderDetailsResponseResponse struct {
 	Namespace          string                                           `json:"namespace,omitempty"`          //
 	Type               string                                           `json:"type,omitempty"`               //
 	Value              []GetServiceProviderDetailsResponseResponseValue `json:"value,omitempty"`              //
-	Version            string                                           `json:"version,omitempty"`            //
+	Version            int                                              `json:"version,omitempty"`            //
 }
 
 // GetServiceProviderDetailsResponseResponseValue is the getServiceProviderDetailsResponseResponseValue definition
