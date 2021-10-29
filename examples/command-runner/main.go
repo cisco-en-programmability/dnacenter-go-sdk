@@ -59,7 +59,11 @@ func main() {
 	}
 	fmt.Println(taskResponse.Response.Progress)
 	var fileID fileIDJSON
-	json.Unmarshal([]byte(taskResponse.Response.Progress), &fileID)
+	err = json.Unmarshal([]byte(taskResponse.Response.Progress), &fileID)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	fileResponse, _, err := client.File.DownloadAFileByFileID(fileID.FileID)
 	if err != nil {

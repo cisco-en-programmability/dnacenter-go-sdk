@@ -314,7 +314,7 @@ type DevicesGetDeviceByIDResponseResponse struct {
 	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string    `json:"upTime,omitempty"`                    //
+	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -363,7 +363,7 @@ type GetDeviceBySerialNumberResponseResponse struct {
 	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string    `json:"upTime,omitempty"`                    //
+	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -502,7 +502,7 @@ type GetDeviceEnrichmentDetailsResponseDeviceDetails struct {
 	TagCount                  string                                                            `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                            `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                            `json:"type,omitempty"`                      //
-	UpTime                    string                                                               `json:"upTime,omitempty"`                    //
+	UpTime                    string                                                            `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                            `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -662,7 +662,7 @@ type GetDeviceListResponseResponse struct {
 	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string    `json:"upTime,omitempty"`                    //
+	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1036,7 +1036,7 @@ type GetNetworkDeviceByIPResponseResponse struct {
 	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string    `json:"upTime,omitempty"`                    //
+	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -1085,7 +1085,7 @@ type GetNetworkDeviceByPaginationRangeResponseResponse struct {
 	TagCount                  string `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string `json:"type,omitempty"`                      //
-	UpTime                    string    `json:"upTime,omitempty"`                    //
+	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
 

@@ -32,7 +32,7 @@ The client could be generated with the following parameters:
 - `sslVerify`: Boolean to enable or disable SSL certificate verification.
 
 ```go
-Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
+Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
     "devnetuser", "Cisco123!",
     "false", "false")
 devicesCount, _, err := Client.Devices.GetDeviceCount()
@@ -49,7 +49,7 @@ The client can be configured with the following environment variables:
 - `DNAC_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
 
 ```go
-Client = dnac.NewClient()
+Client, err = dnac.NewClient()
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 ```
 
@@ -58,7 +58,7 @@ devicesCount, _, err := Client.Devices.GetDeviceCount()
 Here is an example of how we can generate a client, get a device count and then a list of devices filtering them using query params.
 
 ```go
-Client = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
+Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
     "devnetuser", "Cisco123!",
     "false", "false")
 devicesCount, _, err := Client.Devices.GetDeviceCount()

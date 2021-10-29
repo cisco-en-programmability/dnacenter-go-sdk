@@ -60,7 +60,7 @@ type RetrievesPreviousPathtraceResponse struct {
 // RetrievesPreviousPathtraceResponseResponse is the retrievesPreviousPathtraceResponseResponse definition
 type RetrievesPreviousPathtraceResponseResponse struct {
 	DetailedStatus      RetrievesPreviousPathtraceResponseResponseDetailedStatus        `json:"detailedStatus,omitempty"`      //
-	LastUpdate          int                                                          `json:"lastUpdate,omitempty"`          //
+	LastUpdate          int                                                             `json:"lastUpdate,omitempty"`          //
 	NetworkElements     []RetrievesPreviousPathtraceResponseResponseNetworkElements     `json:"networkElements,omitempty"`     //
 	NetworkElementsInfo []RetrievesPreviousPathtraceResponseResponseNetworkElementsInfo `json:"networkElementsInfo,omitempty"` //
 	Properties          []string                                                        `json:"properties,omitempty"`          //

@@ -58,7 +58,7 @@ type GetUserEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	TagCount                  string                                                                         `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                                         `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                                         `json:"type,omitempty"`                      //
-	UpTime                    string                                                                            `json:"upTime,omitempty"`                    //
+	UpTime                    string                                                                         `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                                         `json:"waasDeviceMode,omitempty"`            //
 }
 

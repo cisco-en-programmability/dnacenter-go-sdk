@@ -212,7 +212,7 @@ type GetClientEnrichmentDetailsResponseConnectedDeviceDeviceDetails struct {
 	TagCount                  string                                                                           `json:"tagCount,omitempty"`                  //
 	TunnelUDPPort             string                                                                           `json:"tunnelUdpPort,omitempty"`             //
 	Type                      string                                                                           `json:"type,omitempty"`                      //
-	UpTime                    string                                                                              `json:"upTime,omitempty"`                    //
+	UpTime                    string                                                                           `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string                                                                           `json:"waasDeviceMode,omitempty"`            //
 }
 
@@ -450,17 +450,37 @@ func (s *ClientsService) GetClientDetail(getClientDetailQueryParams *GetClientDe
 	return result, response, err
 }
 
+// GetClientEnrichmentDetailsHeaderParams defines the header parameters for this request
+type GetClientEnrichmentDetailsHeaderParams struct {
+	EntityType    string `url:"entity_type,omitempty"`   // Expecting string type. Client enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
+	EntityValue   string `url:"entity_value,omitempty"`  // Expecting string type. Contains the actual value for the entity type that has been defined
+	IssueCategory string `url:"issueCategory,omitempty"` // Expecting string type. The category of the DNA event based on which the underlying issues need to be fetched
+}
+
 // GetClientEnrichmentDetails getClientEnrichmentDetails
 /* Enriches a given network End User context (a network user-id or end user’s device Mac Address) with details about the user, the devices that the user is connected to and the assurance issues that the user is impacted by
 @param entity_type Client enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
 @param entity_value Contains the actual value for the entity type that has been defined
 @param issueCategory The category of the DNA event based on which the underlying issues need to be fetched
 */
-func (s *ClientsService) GetClientEnrichmentDetails() (*GetClientEnrichmentDetailsResponse, *resty.Response, error) {
+func (s *ClientsService) GetClientEnrichmentDetails(getClientEnrichmentDetailsHeaderParams *GetClientEnrichmentDetailsHeaderParams) (*GetClientEnrichmentDetailsResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/client-enrichment-details"
 
-	response, err := RestyClient.R().
+	var response *resty.Response
+	var err error
+	clientRequest := RestyClient.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if getClientEnrichmentDetailsHeaderParams != nil {
+		clientRequest = clientRequest.
+			SetHeader("entity_type", getClientEnrichmentDetailsHeaderParams.EntityType).
+			SetHeader("entity_value", getClientEnrichmentDetailsHeaderParams.EntityValue).
+			SetHeader("issueCategory", getClientEnrichmentDetailsHeaderParams.IssueCategory)
+	}
+
+	response, err = clientRequest.
 		SetResult(&GetClientEnrichmentDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)

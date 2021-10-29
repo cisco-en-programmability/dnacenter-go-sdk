@@ -48,7 +48,10 @@ func main() {
 	}
 	for id, credential := range credentialsListResponse.Response {
 		fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
-		client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+		_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+		if err != nil {
+			continue
+		}
 	}
 
 	fmt.Println("Creating new HTTP Write credentials...")
@@ -79,7 +82,10 @@ func main() {
 	}
 	for id, credential := range credentialsListResponse.Response {
 		fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
-		client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+		_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+		if err != nil {
+			continue
+		}
 	}
 
 }
