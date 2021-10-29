@@ -46,7 +46,7 @@ func main() {
 	}
 
 	for _, network := range networkHealth.Response {
-		fmt.Println(fmt.Sprintf("Network Health --> Good Count: %d, Bad Count: %d, Health Score: %d", network.GoodCount, network.BadCount, network.HealthScore))
+		fmt.Println(fmt.Sprintf("Network Health --> Good Count: %d, Bad Count: %f, Health Score: %d", network.GoodCount, network.BadCount, network.HealthScore))
 	}
 
 	getOverallClientHealthQueryParams := &dnac.GetOverallClientHealthQueryParams{
