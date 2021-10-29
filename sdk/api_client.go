@@ -125,11 +125,27 @@ func NewClient() (*Client, error) {
 
 //NewClientWithOptions is the client with options passed with parameters
 func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
-	os.Setenv("DNAC_BASE_URL", baseURL)
-	os.Setenv("DNAC_USERNAME", username)
-	os.Setenv("DNAC_PASSWORD", password)
-	os.Setenv("DNAC_DEBUG", debug)
-	os.Setenv("DNAC_SSL_VERIFY", sslVerify)
+	var err error
+	err = os.Setenv("DNAC_BASE_URL", baseURL)
+	if err != nil {
+		return nil, err
+	}
+	err = os.Setenv("DNAC_USERNAME", username)
+	if err != nil {
+		return nil, err
+	}
+	err = os.Setenv("DNAC_PASSWORD", password)
+	if err != nil {
+		return nil, err
+	}
+	err = os.Setenv("DNAC_DEBUG", debug)
+	if err != nil {
+		return nil, err
+	}
+	err = os.Setenv("DNAC_SSL_VERIFY", sslVerify)
+	if err != nil {
+		return nil, err
+	}
 	return NewClient()
 }
 
