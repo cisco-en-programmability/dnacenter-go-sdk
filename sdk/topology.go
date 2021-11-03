@@ -102,22 +102,25 @@ type GetOverallNetworkHealthResponse struct {
 
 // GetOverallNetworkHealthResponseHealthDistirubution is the getOverallNetworkHealthResponseHealthDistirubution definition
 type GetOverallNetworkHealthResponseHealthDistirubution struct {
-	BadCount        float64  `json:"badCount,omitempty"`        //
-	BadPercentage   int      `json:"badPercentage,omitempty"`   //
-	Category        string   `json:"category,omitempty"`        //
-	FairCount       float64  `json:"fairCount,omitempty"`       //
-	FairPercentage  int      `json:"fairPercentage,omitempty"`  //
-	GoodCount       int      `json:"goodCount,omitempty"`       //
-	GoodPercentage  int      `json:"goodPercentage,omitempty"`  //
-	HealthScore     int      `json:"healthScore,omitempty"`     //
-	KpiMetrics      []string `json:"kpiMetrics,omitempty"`      //
-	TotalCount      int      `json:"totalCount,omitempty"`      //
-	UnmonCount      float64  `json:"unmonCount,omitempty"`      //
-	UnmonPercentage int      `json:"unmonPercentage,omitempty"` //
+	BadCount        int                                                            `json:"badCount,omitempty"`        //
+	BadPercentage   float64                                                        `json:"badPercentage,omitempty"`   //
+	Category        string                                                         `json:"category,omitempty"`        //
+	FairCount       int                                                            `json:"fairCount,omitempty"`       //
+	FairPercentage  float64                                                        `json:"fairPercentage,omitempty"`  //
+	GoodCount       int                                                            `json:"goodCount,omitempty"`       //
+	GoodPercentage  float64                                                        `json:"goodPercentage,omitempty"`  //
+	HealthScore     int                                                            `json:"healthScore,omitempty"`     //
+	KpiMetrics      []GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics `json:"kpiMetrics,omitempty"`      //
+	TotalCount      int                                                            `json:"totalCount,omitempty"`      //
+	UnmonCount      int                                                            `json:"unmonCount,omitempty"`      //
+	UnmonPercentage float64                                                        `json:"unmonPercentage,omitempty"` //
 }
 
 // GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics is the getOverallNetworkHealthResponseHealthDistirubutionKpiMetrics definition
-type GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics []string
+type GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics struct {
+	Key          string `json:"key,omitempty"`           //
+	Value        string `json:"value,omitempty"`         //
+}
 
 // GetOverallNetworkHealthResponseResponse is the getOverallNetworkHealthResponseResponse definition
 type GetOverallNetworkHealthResponseResponse struct {
