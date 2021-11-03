@@ -118,8 +118,8 @@ type GetOverallNetworkHealthResponseHealthDistirubution struct {
 
 // GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics is the getOverallNetworkHealthResponseHealthDistirubutionKpiMetrics definition
 type GetOverallNetworkHealthResponseHealthDistirubutionKpiMetrics struct {
-	Key          string `json:"key,omitempty"`           //
-	Value        string `json:"value,omitempty"`         //
+	Key   string `json:"key,omitempty"`   //
+	Value string `json:"value,omitempty"` //
 }
 
 // GetOverallNetworkHealthResponseResponse is the getOverallNetworkHealthResponseResponse definition
