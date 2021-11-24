@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/sdk"
+	dnac "dnacenter-go-sdk/sdk"
 )
 
 // Client is DNA Center API client
@@ -34,12 +34,14 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, device := range devices.Response {
-		fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+	if devices.Response != nil {
+		for id, device := range *devices.Response {
+			fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+		}
 	}
 
 	getDeviceListQueryParams = &dnac.GetDeviceListQueryParams{
-		PlatformID: []string{"C9300-24UX"},
+		//PlatformID: []string{"C9300-24UX"},
 	}
 
 	fmt.Println("Printing device list  ... PlatformID is C9300-24UX")
@@ -48,15 +50,20 @@ func main() {
 		fmt.Println(err)
 	}
 
-	for id, device := range devices.Response {
-		fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+	if devices.Response != nil {
+		for id, device := range *devices.Response {
+			fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+		}
 	}
 
 	fmt.Println("Printing device info by device id...")
-	device, _, err := Client.Devices.GetDeviceByID(devices.Response[0].ID)
-	if err != nil {
-		fmt.Println(err)
+	if devices.Response != nil {
+		device, _, err := Client.Devices.GetDeviceByID((*devices.Response)[0].ID)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(device.Response.ID, device.Response.MacAddress, device.Response.ManagementIPAddress, device.Response.PlatformID)
 	}
-	fmt.Println(device.Response.ID, device.Response.MacAddress, device.Response.ManagementIPAddress, device.Response.PlatformID)
 
 }

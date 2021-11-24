@@ -21,10 +21,10 @@ func (s *AuthenticationService) AuthenticationAPI(username string, password stri
 
 	path := "/dna/system/api/v1/auth/token"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBasicAuth(username, password).
 		SetResult(&AuthenticationAPIResponse{}).
-		SetError(&Error{}).
+		SetError(&Error).
 		Post(path)
 
 	if err != nil {

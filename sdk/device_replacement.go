@@ -7,18 +7,31 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// DeviceReplacementService is the service to communicate with the DeviceReplacement API endpoint
 type DeviceReplacementService service
 
-// DeployDeviceReplacementWorkflowRequest is the deployDeviceReplacementWorkflowRequest definition
-type DeployDeviceReplacementWorkflowRequest struct {
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+type ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams struct {
+	FaultyDeviceName              string   `url:"faultyDeviceName,omitempty"`              //Faulty Device Name
+	FaultyDevicePlatform          string   `url:"faultyDevicePlatform,omitempty"`          //Faulty Device Platform
+	ReplacementDevicePlatform     string   `url:"replacementDevicePlatform,omitempty"`     //Replacement Device Platform
+	FaultyDeviceSerialNumber      string   `url:"faultyDeviceSerialNumber,omitempty"`      //Faulty Device Serial Number
+	ReplacementDeviceSerialNumber string   `url:"replacementDeviceSerialNumber,omitempty"` //Replacement Device Serial Number
+	ReplacementStatus             []string `url:"replacementStatus,omitempty"`             //Device Replacement status [READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR, NETWORK_READINESS_REQUESTED, NETWORK_READINESS_FAILED]
+	Family                        []string `url:"family,omitempty"`                        //List of families[Routers, Switches and Hubs, AP]
+	SortBy                        string   `url:"sortBy,omitempty"`                        //SortBy this field. SortBy is mandatory when order is used.
+	SortOrder                     string   `url:"sortOrder,omitempty"`                     //Order on displayName[ASC,DESC]
+	Offset                        int      `url:"offset,omitempty"`                        //offset
+	Limit                         int      `url:"limit,omitempty"`                         //limit
+}
+type ReturnReplacementDevicesCountQueryParams struct {
+	ReplacementStatus []string `url:"replacementStatus,omitempty"` //Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
 }
 
-// MarkDeviceForReplacementRequest is the markDeviceForReplacementRequest definition
-type MarkDeviceForReplacementRequest struct {
-	CreationTime                  int    `json:"creationTime,omitempty"`                  //
+type ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails struct {
+	Response *[]ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetailsResponse `json:"response,omitempty"` //
+	Version  string                                                                                   `json:"version,omitempty"`  //
+}
+type ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetailsResponse struct {
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
 	Family                        string `json:"family,omitempty"`                        //
 	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
 	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
@@ -30,251 +43,226 @@ type MarkDeviceForReplacementRequest struct {
 	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
 	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
 	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               int    `json:"replacementTime,omitempty"`               //
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
 	WorkflowID                    string `json:"workflowId,omitempty"`                    //
 }
-
-// UnMarkDeviceForReplacementRequest is the unMarkDeviceForReplacementRequest definition
-type UnMarkDeviceForReplacementRequest struct {
-	CreationTime                  int    `json:"creationTime,omitempty"`                  //
-	Family                        string `json:"family,omitempty"`                        //
-	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ID                            string `json:"id,omitempty"`                            //
-	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               int    `json:"replacementTime,omitempty"`               //
-	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+type ResponseDeviceReplacementUnmarkDeviceForReplacement struct {
+	Response *ResponseDeviceReplacementUnmarkDeviceForReplacementResponse `json:"response,omitempty"` //
+	Version  string                                                       `json:"version,omitempty"`  //
 }
-
-// DeployDeviceReplacementWorkflowResponse is the deployDeviceReplacementWorkflowResponse definition
-type DeployDeviceReplacementWorkflowResponse struct {
-	Response DeployDeviceReplacementWorkflowResponseResponse `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  //
-}
-
-// DeployDeviceReplacementWorkflowResponseResponse is the deployDeviceReplacementWorkflowResponseResponse definition
-type DeployDeviceReplacementWorkflowResponseResponse struct {
+type ResponseDeviceReplacementUnmarkDeviceForReplacementResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-
-// MarkDeviceForReplacementResponse is the markDeviceForReplacementResponse definition
-type MarkDeviceForReplacementResponse struct {
-	Response MarkDeviceForReplacementResponseResponse `json:"response,omitempty"` //
-	Version  string                                   `json:"version,omitempty"`  //
+type ResponseDeviceReplacementMarkDeviceForReplacement struct {
+	Response *ResponseDeviceReplacementMarkDeviceForReplacementResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  //
 }
-
-// MarkDeviceForReplacementResponseResponse is the markDeviceForReplacementResponseResponse definition
-type MarkDeviceForReplacementResponseResponse struct {
+type ResponseDeviceReplacementMarkDeviceForReplacementResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-
-// ReturnListOfReplacementDevicesWithReplacementDetailsResponse is the returnListOfReplacementDevicesWithReplacementDetailsResponse definition
-type ReturnListOfReplacementDevicesWithReplacementDetailsResponse struct {
-	Response []ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse `json:"response,omitempty"` //
-	Version  string                                                                 `json:"version,omitempty"`  //
-}
-
-// ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse is the returnListOfReplacementDevicesWithReplacementDetailsResponseResponse definition
-type ReturnListOfReplacementDevicesWithReplacementDetailsResponseResponse struct {
-	CreationTime                  int    `json:"creationTime,omitempty"`                  //
-	Family                        string `json:"family,omitempty"`                        //
-	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ID                            string `json:"id,omitempty"`                            //
-	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               int    `json:"replacementTime,omitempty"`               //
-	WorkflowID                    string `json:"workflowId,omitempty"`                    //
-}
-
-// ReturnReplacementDevicesCountResponse is the returnReplacementDevicesCountResponse definition
-type ReturnReplacementDevicesCountResponse struct {
-	Response int    `json:"response,omitempty"` //
+type ResponseDeviceReplacementReturnReplacementDevicesCount struct {
+	Response *int   `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
-
-// UnMarkDeviceForReplacementResponse is the unMarkDeviceForReplacementResponse definition
-type UnMarkDeviceForReplacementResponse struct {
-	Response UnMarkDeviceForReplacementResponseResponse `json:"response,omitempty"` //
-	Version  string                                     `json:"version,omitempty"`  //
+type ResponseDeviceReplacementDeployDeviceReplacementWorkflow struct {
+	Response *ResponseDeviceReplacementDeployDeviceReplacementWorkflowResponse `json:"response,omitempty"` //
+	Version  string                                                            `json:"version,omitempty"`  //
 }
-
-// UnMarkDeviceForReplacementResponseResponse is the unMarkDeviceForReplacementResponseResponse definition
-type UnMarkDeviceForReplacementResponseResponse struct {
+type ResponseDeviceReplacementDeployDeviceReplacementWorkflowResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-
-// DeployDeviceReplacementWorkflow deployDeviceReplacementWorkflow
-/* API to trigger RMA workflow that will replace faulty device with replacement device with same configuration and images
- */
-func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceReplacementWorkflowRequest *DeployDeviceReplacementWorkflowRequest) (*DeployDeviceReplacementWorkflowResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/device-replacement/workflow"
-
-	response, err := RestyClient.R().
-		SetBody(deployDeviceReplacementWorkflowRequest).
-		SetResult(&DeployDeviceReplacementWorkflowResponse{}).
-		SetError(&Error{}).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation deployDeviceReplacementWorkflow")
-	}
-
-	result := response.Result().(*DeployDeviceReplacementWorkflowResponse)
-	return result, response, err
+type RequestDeviceReplacementUnmarkDeviceForReplacement []RequestItemDeviceReplacementUnmarkDeviceForReplacement // Array of RequestDeviceReplacementUnMarkDeviceForReplacement
+type RequestItemDeviceReplacementUnmarkDeviceForReplacement struct {
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
+	Family                        string `json:"family,omitempty"`                        //
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ID                            string `json:"id,omitempty"`                            //
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
+	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+}
+type RequestDeviceReplacementMarkDeviceForReplacement []RequestItemDeviceReplacementMarkDeviceForReplacement // Array of RequestDeviceReplacementMarkDeviceForReplacement
+type RequestItemDeviceReplacementMarkDeviceForReplacement struct {
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
+	Family                        string `json:"family,omitempty"`                        //
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ID                            string `json:"id,omitempty"`                            //
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
+	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+}
+type RequestDeviceReplacementDeployDeviceReplacementWorkflow struct {
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
 }
 
-// MarkDeviceForReplacement markDeviceForReplacement
-/* Marks device for replacement
- */
-func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplacementRequest *[]MarkDeviceForReplacementRequest) (*MarkDeviceForReplacementResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/device-replacement"
-
-	response, err := RestyClient.R().
-		SetBody(markDeviceForReplacementRequest).
-		SetResult(&MarkDeviceForReplacementResponse{}).
-		SetError(&Error{}).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation markDeviceForReplacement")
-	}
-
-	result := response.Result().(*MarkDeviceForReplacementResponse)
-	return result, response, err
-}
-
-// ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams defines the query parameters for this request
-type ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams struct {
-	FaultyDeviceName              string   `url:"faultyDeviceName,omitempty"`              // Faulty Device Name
-	FaultyDevicePlatform          string   `url:"faultyDevicePlatform,omitempty"`          // Faulty Device Platform
-	ReplacementDevicePlatform     string   `url:"replacementDevicePlatform,omitempty"`     // Replacement Device Platform
-	FaultyDeviceSerialNumber      string   `url:"faultyDeviceSerialNumber,omitempty"`      // Faulty Device Serial Number
-	ReplacementDeviceSerialNumber string   `url:"replacementDeviceSerialNumber,omitempty"` // Replacement Device Serial Number
-	ReplacementStatus             []string `url:"replacementStatus,omitempty"`             // Device Replacement status [READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR, NETWORK_READINESS_REQUESTED, NETWORK_READINESS_FAILED]
-	Family                        []string `url:"family,omitempty"`                        // List of families[Routers, Switches and Hubs, AP]
-	SortBy                        string   `url:"sortBy,omitempty"`                        // SortBy this field. SortBy is mandatory when order is used.
-	SortOrder                     string   `url:"sortOrder,omitempty"`                     // Order on displayName[ASC,DESC]
-	Offset                        int      `url:"offset,omitempty"`                        // offset
-	Limit                         int      `url:"limit,omitempty"`                         // limit
-}
-
-// ReturnListOfReplacementDevicesWithReplacementDetails returnListOfReplacementDevicesWithReplacementDetails
+//ReturnListOfReplacementDevicesWithReplacementDetails Return list of replacement devices with replacement details - 809c-2956-4bc9-97d0
 /* Get list of replacement devices with replacement details and it can filter replacement devices based on Faulty Device Name,Faulty Device Platform, Replacement Device Platform, Faulty Device Serial Number,Replacement Device Serial Number, Device Replacement status, Product Family.
-@param faultyDeviceName Faulty Device Name
-@param faultyDevicePlatform Faulty Device Platform
-@param replacementDevicePlatform Replacement Device Platform
-@param faultyDeviceSerialNumber Faulty Device Serial Number
-@param replacementDeviceSerialNumber Replacement Device Serial Number
-@param replacementStatus Device Replacement status [READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR, NETWORK_READINESS_REQUESTED, NETWORK_READINESS_FAILED]
-@param family List of families[Routers, Switches and Hubs, AP]
-@param sortBy SortBy this field. SortBy is mandatory when order is used.
-@param sortOrder Order on displayName[ASC,DESC]
-@param offset offset
-@param limit limit
-*/
-func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacementDetails(returnListOfReplacementDevicesWithReplacementDetailsQueryParams *ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams) (*ReturnListOfReplacementDevicesWithReplacementDetailsResponse, *resty.Response, error) {
 
+
+@param ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams Filtering parameter
+*/
+func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacementDetails(ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams *ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams) (*ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement"
 
-	queryString, _ := query.Values(returnListOfReplacementDevicesWithReplacementDetailsQueryParams)
+	queryString, _ := query.Values(ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&ReturnListOfReplacementDevicesWithReplacementDetailsResponse{}).
-		SetError(&Error{}).
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation returnListOfReplacementDevicesWithReplacementDetails")
+		return nil, response, fmt.Errorf("error with operation ReturnListOfReplacementDevicesWithReplacementDetails")
 	}
 
-	result := response.Result().(*ReturnListOfReplacementDevicesWithReplacementDetailsResponse)
+	result := response.Result().(*ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails)
 	return result, response, err
+
 }
 
-// ReturnReplacementDevicesCountQueryParams defines the query parameters for this request
-type ReturnReplacementDevicesCountQueryParams struct {
-	ReplacementStatus []string `url:"replacementStatus,omitempty"` // Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
-}
-
-// ReturnReplacementDevicesCount returnReplacementDevicesCount
+//ReturnReplacementDevicesCount Return replacement devices count - 9eb8-4ba5-4929-a2a2
 /* Get replacement devices count
-@param replacementStatus Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
-*/
-func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplacementDevicesCountQueryParams *ReturnReplacementDevicesCountQueryParams) (*ReturnReplacementDevicesCountResponse, *resty.Response, error) {
 
+
+@param ReturnReplacementDevicesCountQueryParams Filtering parameter
+*/
+func (s *DeviceReplacementService) ReturnReplacementDevicesCount(ReturnReplacementDevicesCountQueryParams *ReturnReplacementDevicesCountQueryParams) (*ResponseDeviceReplacementReturnReplacementDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement/count"
 
-	queryString, _ := query.Values(returnReplacementDevicesCountQueryParams)
+	queryString, _ := query.Values(ReturnReplacementDevicesCountQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&ReturnReplacementDevicesCountResponse{}).
-		SetError(&Error{}).
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDeviceReplacementReturnReplacementDevicesCount{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation returnReplacementDevicesCount")
+		return nil, response, fmt.Errorf("error with operation ReturnReplacementDevicesCount")
 	}
 
-	result := response.Result().(*ReturnReplacementDevicesCountResponse)
+	result := response.Result().(*ResponseDeviceReplacementReturnReplacementDevicesCount)
 	return result, response, err
+
 }
 
-// UnMarkDeviceForReplacement unMarkDeviceForReplacement
-/* UnMarks device for replacement
- */
-func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForReplacementRequest *[]UnMarkDeviceForReplacementRequest) (*UnMarkDeviceForReplacementResponse, *resty.Response, error) {
+//MarkDeviceForReplacement Mark device for replacement - 64b9-dad0-403a-aca1
+/* Marks device for replacement
 
+
+ */
+func (s *DeviceReplacementService) MarkDeviceForReplacement(requestDeviceReplacementMarkDeviceForReplacement *RequestDeviceReplacementMarkDeviceForReplacement) (*ResponseDeviceReplacementMarkDeviceForReplacement, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement"
 
-	response, err := RestyClient.R().
-		SetBody(unMarkDeviceForReplacementRequest).
-		SetResult(&UnMarkDeviceForReplacementResponse{}).
-		SetError(&Error{}).
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDeviceReplacementMarkDeviceForReplacement).
+		SetResult(&ResponseDeviceReplacementMarkDeviceForReplacement{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation MarkDeviceForReplacement")
+	}
+
+	result := response.Result().(*ResponseDeviceReplacementMarkDeviceForReplacement)
+	return result, response, err
+
+}
+
+//DeployDeviceReplacementWorkflow Deploy device replacement workflow - 3faa-a994-4b49-bc9f
+/* API to trigger RMA workflow that will replace faulty device with replacement device with same configuration and images
+
+
+ */
+func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(requestDeviceReplacementDeployDeviceReplacementWorkflow *RequestDeviceReplacementDeployDeviceReplacementWorkflow) (*ResponseDeviceReplacementDeployDeviceReplacementWorkflow, *resty.Response, error) {
+	path := "/dna/intent/api/v1/device-replacement/workflow"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDeviceReplacementDeployDeviceReplacementWorkflow).
+		SetResult(&ResponseDeviceReplacementDeployDeviceReplacementWorkflow{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DeployDeviceReplacementWorkflow")
+	}
+
+	result := response.Result().(*ResponseDeviceReplacementDeployDeviceReplacementWorkflow)
+	return result, response, err
+
+}
+
+//UnmarkDeviceForReplacement UnMark device for replacement - 4aba-ba75-489a-b24b
+/* UnMarks device for replacement
+
+
+ */
+func (s *DeviceReplacementService) UnmarkDeviceForReplacement(requestDeviceReplacementUnMarkDeviceForReplacement *RequestDeviceReplacementUnmarkDeviceForReplacement) (*ResponseDeviceReplacementUnmarkDeviceForReplacement, *resty.Response, error) {
+	path := "/dna/intent/api/v1/device-replacement"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDeviceReplacementUnMarkDeviceForReplacement).
+		SetResult(&ResponseDeviceReplacementUnmarkDeviceForReplacement{}).
+		SetError(&Error).
 		Put(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation unMarkDeviceForReplacement")
+		return nil, response, fmt.Errorf("error with operation UnmarkDeviceForReplacement")
 	}
 
-	result := response.Result().(*UnMarkDeviceForReplacementResponse)
+	result := response.Result().(*ResponseDeviceReplacementUnmarkDeviceForReplacement)
 	return result, response, err
+
 }

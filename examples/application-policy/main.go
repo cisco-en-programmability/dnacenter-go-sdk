@@ -25,6 +25,9 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(nResponse.Response)
-
+	if nResponse.Response != nil {
+		fmt.Println(nResponse.Response)
+		return
+	}
+	fmt.Println("There's no data on response")
 }
