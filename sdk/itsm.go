@@ -7,97 +7,148 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// ITSMService is the service to communicate with the ITSM API endpoint
-type ITSMService service
+type ItsmService service
 
-// RetryIntegrationEventsRequest is the retryIntegrationEventsRequest definition
-type RetryIntegrationEventsRequest []string
-
-// GetFailedITSMEventsResponse is the getFailedITSMEventsResponse definition
-type GetFailedITSMEventsResponse struct {
-	Category       string                                    `json:"category,omitempty"`       //
-	Description    string                                    `json:"description,omitempty"`    //
-	Domain         string                                    `json:"domain,omitempty"`         //
-	EnrichmentInfo GetFailedITSMEventsResponseEnrichmentInfo `json:"enrichmentInfo,omitempty"` //
-	EventID        string                                    `json:"eventId,omitempty"`        //
-	InstanceID     string                                    `json:"instanceId,omitempty"`     //
-	Name           string                                    `json:"name,omitempty"`           //
-	Severity       string                                    `json:"severity,omitempty"`       //
-	Source         string                                    `json:"source,omitempty"`         //
-	SubDomain      string                                    `json:"subDomain,omitempty"`      //
-	Timestamp      int                                       `json:"timestamp,omitempty"`      //
-	Type           string                                    `json:"type,omitempty"`           //
+type GetCmdbSyncStatusQueryParams struct {
+	Status string `url:"status,omitempty"` //Supported values are "Success","Failed" and "Unknown". Providing other values will result in all the available sync job status.
+	Date   string `url:"date,omitempty"`   //Provide date in "YYYY-MM-DD" format
+}
+type GetFailedItsmEventsQueryParams struct {
+	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the failed event as in the Runtime Dashboard
 }
 
-// GetFailedITSMEventsResponseEnrichmentInfo is the getFailedITSMEventsResponseEnrichmentInfo definition
-type GetFailedITSMEventsResponseEnrichmentInfo struct {
-	ErrorCode                      string `json:"errorCode,omitempty"`                      //
-	ErrorDescription               string `json:"errorDescription,omitempty"`               //
-	EventStatus                    string `json:"eventStatus,omitempty"`                    //
-	ResponseReceivedFromITSMSystem string `json:"responseReceivedFromITSMSystem,omitempty"` //
+type ResponseItsmGetCmdbSyncStatus []ResponseItemItsmGetCmdbSyncStatus // Array of ResponseItsmGetCMDBSyncStatus
+type ResponseItemItsmGetCmdbSyncStatus struct {
+	SuccessCount      string                                      `json:"successCount,omitempty"`      // Successfully synchronized device count
+	FailureCount      string                                      `json:"failureCount,omitempty"`      // Failed device count
+	Devices           *[]ResponseItemItsmGetCmdbSyncStatusDevices `json:"devices,omitempty"`           //
+	UnknownErrorCount string                                      `json:"unknownErrorCount,omitempty"` // Unknown error count
+	Message           string                                      `json:"message,omitempty"`           // Message
+	SyncTime          string                                      `json:"syncTime,omitempty"`          // Synchronization Time
 }
-
-// RetryIntegrationEventsResponse is the retryIntegrationEventsResponse definition
-type RetryIntegrationEventsResponse struct {
-	ExecutionID        string `json:"executionId,omitempty"`        //
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
-	Message            string `json:"message,omitempty"`            //
+type ResponseItemItsmGetCmdbSyncStatusDevices struct {
+	DeviceID string `json:"deviceId,omitempty"` // Device Id
+	Status   string `json:"status,omitempty"`   // Status "Success" or "Failed"
 }
-
-// GetFailedITSMEventsQueryParams defines the query parameters for this request
-type GetFailedITSMEventsQueryParams struct {
-	InstanceID string `url:"instanceId,omitempty"` // Instance Id of the failed event as in the Runtime Dashboard
+type ResponseItsmGetFailedItsmEvents []ResponseItemItsmGetFailedItsmEvents // Array of ResponseItsmGetFailedITSMEvents
+type ResponseItemItsmGetFailedItsmEvents struct {
+	InstanceID     string                                             `json:"instanceId,omitempty"`     // Instance Id
+	EventID        string                                             `json:"eventId,omitempty"`        // Event Id
+	Name           string                                             `json:"name,omitempty"`           // Name
+	Type           string                                             `json:"type,omitempty"`           // Type
+	Category       string                                             `json:"category,omitempty"`       // Category
+	Domain         string                                             `json:"domain,omitempty"`         // Domain
+	SubDomain      string                                             `json:"subDomain,omitempty"`      // Sub Domain
+	Severity       string                                             `json:"severity,omitempty"`       // Severity
+	Source         string                                             `json:"source,omitempty"`         // Source
+	Timestamp      *int                                               `json:"timestamp,omitempty"`      // Timestamp
+	EnrichmentInfo *ResponseItemItsmGetFailedItsmEventsEnrichmentInfo `json:"enrichmentInfo,omitempty"` //
+	Description    string                                             `json:"description,omitempty"`    // Description
 }
+type ResponseItemItsmGetFailedItsmEventsEnrichmentInfo struct {
+	EventStatus                    string                                                                           `json:"eventStatus,omitempty"`                    // Event Status
+	ErrorCode                      string                                                                           `json:"errorCode,omitempty"`                      // Error Code
+	ErrorDescription               string                                                                           `json:"errorDescription,omitempty"`               // Error Description
+	ResponseReceivedFromITSmsystem *ResponseItemItsmGetFailedItsmEventsEnrichmentInfoResponseReceivedFromITSmsystem `json:"responseReceivedFromITSMSystem,omitempty"` // Response Received From ITSMSystem
+}
+type ResponseItemItsmGetFailedItsmEventsEnrichmentInfoResponseReceivedFromITSmsystem interface{}
+type ResponseItsmRetryIntegrationEvents struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
+type RequestItsmRetryIntegrationEvents []string // Array of RequestItsmRetryIntegrationEvents
 
-// GetFailedITSMEvents getFailedITSMEvents
-/* Used to retrieve the list of integration events that failed to create tickets in ITSM
-@param instanceID Instance Id of the failed event as in the Runtime Dashboard
+//GetCmdbSyncStatus Get CMDB Sync Status - a492-8993-4948-b86c
+/* This API allows to retrieve the detail of CMDB sync status.It accepts two query parameter "status","date".The supported values for status field are "Success","Failed","Unknown" and date field should be in "YYYY-MM-DD" format. By default all the cmdb sync status will be send as response and based on the query parameter filtered detail will be send as response.
+
+
+@param GetCMDBSyncStatusQueryParams Filtering parameter
 */
-func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFailedITSMEventsQueryParams) (*GetFailedITSMEventsResponse, *resty.Response, error) {
+func (s *ItsmService) GetCmdbSyncStatus(GetCMDBSyncStatusQueryParams *GetCmdbSyncStatusQueryParams) (*ResponseItsmGetCmdbSyncStatus, *resty.Response, error) {
+	path := "/dna/intent/api/v1/cmdb-sync/detail"
 
-	path := "/dna/intent/api/v1/integration/events"
+	queryString, _ := query.Values(GetCMDBSyncStatusQueryParams)
 
-	queryString, _ := query.Values(getFailedITSMEventsQueryParams)
-
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetFailedITSMEventsResponse{}).
-		SetError(&Error{}).
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseItsmGetCmdbSyncStatus{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getFailedITSMEvents")
+		return nil, response, fmt.Errorf("error with operation GetCmdbSyncStatus")
 	}
 
-	result := response.Result().(*GetFailedITSMEventsResponse)
+	result := response.Result().(*ResponseItsmGetCmdbSyncStatus)
 	return result, response, err
+
 }
 
-// RetryIntegrationEvents retryIntegrationEvents
-/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
- */
-func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *[]RetryIntegrationEventsRequest) (*RetryIntegrationEventsResponse, *resty.Response, error) {
+//GetFailedItsmEvents Get Failed ITSM Events - a293-b82a-42a8-ab15
+/* Used to retrieve the list of integration events that failed to create tickets in ITSM
 
+
+@param GetFailedITSMEventsQueryParams Filtering parameter
+*/
+func (s *ItsmService) GetFailedItsmEvents(GetFailedITSMEventsQueryParams *GetFailedItsmEventsQueryParams) (*ResponseItsmGetFailedItsmEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration/events"
 
-	response, err := RestyClient.R().
-		SetBody(retryIntegrationEventsRequest).
-		SetResult(&RetryIntegrationEventsResponse{}).
-		SetError(&Error{}).
+	queryString, _ := query.Values(GetFailedITSMEventsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseItsmGetFailedItsmEvents{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetFailedItsmEvents")
+	}
+
+	result := response.Result().(*ResponseItsmGetFailedItsmEvents)
+	return result, response, err
+
+}
+
+//RetryIntegrationEvents Retry Integration Events - fa9a-9817-4129-af50
+/* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
+
+
+ */
+func (s *ItsmService) RetryIntegrationEvents(requestItsmRetryIntegrationEvents *RequestItsmRetryIntegrationEvents) (*ResponseItsmRetryIntegrationEvents, *resty.Response, error) {
+	path := "/dna/intent/api/v1/integration/events"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestItsmRetryIntegrationEvents).
+		SetResult(&ResponseItsmRetryIntegrationEvents{}).
+		SetError(&Error).
 		Post(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation retryIntegrationEvents")
+		return nil, response, fmt.Errorf("error with operation RetryIntegrationEvents")
 	}
 
-	result := response.Result().(*RetryIntegrationEventsResponse)
+	result := response.Result().(*ResponseItsmRetryIntegrationEvents)
 	return result, response, err
+
 }

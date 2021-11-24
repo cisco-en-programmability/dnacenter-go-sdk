@@ -32,8 +32,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, site := range siteHealth.Response {
-		fmt.Println(fmt.Sprintf("Site --> ID: %d, Name: %s, Health: %d", id, site.SiteName, site.NetworkHealthAverage))
+	if siteHealth.Response != nil {
+		for id, site := range *siteHealth.Response {
+			fmt.Println(fmt.Sprintf("Site --> ID: %d, Name: %s, Health: %d", id, site.SiteName, site.NetworkHealthAverage))
+		}
 	}
 
 	getOverallNetworkHealthQueryParams := &dnac.GetOverallNetworkHealthQueryParams{
@@ -45,8 +47,10 @@ func main() {
 		fmt.Println(err)
 	}
 
-	for _, network := range networkHealth.Response {
-		fmt.Println(fmt.Sprintf("Network Health --> Good Count: %d, Bad Count: %f, Health Score: %d", network.GoodCount, network.BadCount, network.HealthScore))
+	if networkHealth.Response != nil {
+		for _, network := range *networkHealth.Response {
+			fmt.Println(fmt.Sprintf("Network Health --> Good Count: %d, Bad Count: %d, Health Score: %d", network.GoodCount, network.BadCount, network.HealthScore))
+		}
 	}
 
 	getOverallClientHealthQueryParams := &dnac.GetOverallClientHealthQueryParams{
@@ -58,9 +62,11 @@ func main() {
 		fmt.Println(err)
 	}
 
-	for id := range clientHealth.Response {
-		fmt.Println(id, clientHealth.Response[id])
+	if clientHealth.Response != nil {
+		for id := range *clientHealth.Response {
+			fmt.Println(id, (*clientHealth.Response)[id])
+		}
+		fmt.Println((*clientHealth.Response)[0])
 	}
-	fmt.Println(clientHealth.Response[0])
 
 }

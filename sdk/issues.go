@@ -7,140 +7,144 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// IssuesService is the service to communicate with the Issues API endpoint
 type IssuesService service
 
-// GetIssueEnrichmentDetailsResponse is the getIssueEnrichmentDetailsResponse definition
-type GetIssueEnrichmentDetailsResponse struct {
-	IssueDetails GetIssueEnrichmentDetailsResponseIssueDetails `json:"issueDetails,omitempty"` //
+type GetIssueEnrichmentDetailsHeaderParams struct {
+	EntityType  string `url:"entity_type,omitempty"`  //Expects type string. Issue enrichment details can be fetched based on either Issue ID or Client MAC address. This parameter value must either be issue_id/mac_address
+	EntityValue string `url:"entity_value,omitempty"` //Expects type string. Contains the actual value for the entity type that has been defined
+}
+type IssuesQueryParams struct {
+	StartTime   float64 `url:"startTime,omitempty"`   //Starting epoch time in milliseconds of query time window
+	EndTime     float64 `url:"endTime,omitempty"`     //Ending epoch time in milliseconds of query time window
+	SiteID      string  `url:"siteId,omitempty"`      //Assurance UUID value of the site in the issue content
+	DeviceID    string  `url:"deviceId,omitempty"`    //Assurance UUID value of the device in the issue content
+	MacAddress  string  `url:"macAddress,omitempty"`  //Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
+	Priority    string  `url:"priority,omitempty"`    //The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
+	AiDriven    string  `url:"aiDriven,omitempty"`    //The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
+	IssueStatus string  `url:"issueStatus,omitempty"` //The issue's status value (One of ACTIVE, IGNORED, RESOLVED)
 }
 
-// GetIssueEnrichmentDetailsResponseIssueDetails is the getIssueEnrichmentDetailsResponseIssueDetails definition
-type GetIssueEnrichmentDetailsResponseIssueDetails struct {
-	Issue []GetIssueEnrichmentDetailsResponseIssueDetailsIssue `json:"issue,omitempty"` //
+type ResponseIssuesGetIssueEnrichmentDetails struct {
+	IssueDetails *ResponseIssuesGetIssueEnrichmentDetailsIssueDetails `json:"issueDetails,omitempty"` //
+}
+type ResponseIssuesGetIssueEnrichmentDetailsIssueDetails struct {
+	Issue *[]ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssue `json:"issue,omitempty"` //
+}
+type ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssue struct {
+	IssueID          string                                                                      `json:"issueId,omitempty"`          // Issue Id
+	IssueSource      string                                                                      `json:"issueSource,omitempty"`      // Issue Source
+	IssueCategory    string                                                                      `json:"issueCategory,omitempty"`    // Issue Category
+	IssueName        string                                                                      `json:"issueName,omitempty"`        // Issue Name
+	IssueDescription string                                                                      `json:"issueDescription,omitempty"` // Issue Description
+	IssueEntity      string                                                                      `json:"issueEntity,omitempty"`      // Issue Entity
+	IssueEntityValue string                                                                      `json:"issueEntityValue,omitempty"` // Issue Entity Value
+	IssueSeverity    string                                                                      `json:"issueSeverity,omitempty"`    // Issue Severity
+	IssuePriority    string                                                                      `json:"issuePriority,omitempty"`    // Issue Priority
+	IssueSummary     string                                                                      `json:"issueSummary,omitempty"`     // Issue Summary
+	IssueTimestamp   *int                                                                        `json:"issueTimestamp,omitempty"`   // Issue Timestamp
+	SuggestedActions *[]ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueSuggestedActions `json:"suggestedActions,omitempty"` //
+	ImpactedHosts    *[]ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueImpactedHosts    `json:"impactedHosts,omitempty"`    // Impacted Hosts
+}
+type ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueSuggestedActions struct {
+	Message string                                                                           `json:"message,omitempty"` // Message
+	Steps   *[]ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueSuggestedActionsSteps `json:"steps,omitempty"`   // Steps
+}
+type ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueSuggestedActionsSteps interface{}
+type ResponseIssuesGetIssueEnrichmentDetailsIssueDetailsIssueImpactedHosts interface{}
+type ResponseIssuesIssues struct {
+	Version    string                          `json:"version,omitempty"`    // Version
+	TotalCount *int                            `json:"totalCount,omitempty"` // Total Count
+	Response   *[]ResponseIssuesIssuesResponse `json:"response,omitempty"`   //
+}
+type ResponseIssuesIssuesResponse struct {
+	IssueID             string `json:"issueId,omitempty"`               // Issue Id
+	Name                string `json:"name,omitempty"`                  // Name
+	SiteID              string `json:"siteId,omitempty"`                // Site Id
+	DeviceID            string `json:"deviceId,omitempty"`              // Device Id
+	DeviceRole          string `json:"deviceRole,omitempty"`            // Device Role
+	AiDriven            *bool  `json:"aiDriven,omitempty"`              // Ai Driven
+	ClientMac           string `json:"clientMac,omitempty"`             // Client Mac
+	IssueOccurenceCount *int   `json:"issue_occurence_count,omitempty"` // Issue Occurence Count
+	Status              string `json:"status,omitempty"`                // Status
+	Priority            string `json:"priority,omitempty"`              // Priority
+	Category            string `json:"category,omitempty"`              // Category
+	LastOccurenceTime   *int   `json:"last_occurence_time,omitempty"`   // Last Occurence Time
 }
 
-// GetIssueEnrichmentDetailsResponseIssueDetailsIssue is the getIssueEnrichmentDetailsResponseIssueDetailsIssue definition
-type GetIssueEnrichmentDetailsResponseIssueDetailsIssue struct {
-	ImpactedHosts    []string                                                             `json:"impactedHosts,omitempty"`    //
-	IssueCategory    string                                                               `json:"issueCategory,omitempty"`    //
-	IssueDescription string                                                               `json:"issueDescription,omitempty"` //
-	IssueEntity      string                                                               `json:"issueEntity,omitempty"`      //
-	IssueEntityValue string                                                               `json:"issueEntityValue,omitempty"` //
-	IssueID          string                                                               `json:"issueId,omitempty"`          //
-	IssueName        string                                                               `json:"issueName,omitempty"`        //
-	IssuePriority    string                                                               `json:"issuePriority,omitempty"`    //
-	IssueSeverity    string                                                               `json:"issueSeverity,omitempty"`    //
-	IssueSource      string                                                               `json:"issueSource,omitempty"`      //
-	IssueSummary     string                                                               `json:"issueSummary,omitempty"`     //
-	IssueTimestamp   int                                                                  `json:"issueTimestamp,omitempty"`   //
-	SuggestedActions []GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions `json:"suggestedActions,omitempty"` //
-}
-
-// GetIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts is the getIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts definition
-type GetIssueEnrichmentDetailsResponseIssueDetailsIssueImpactedHosts []string
-
-// GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions is the getIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions definition
-type GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActions struct {
-	Message string   `json:"message,omitempty"` //
-	Steps   []string `json:"steps,omitempty"`   //
-}
-
-// GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps is the getIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps definition
-type GetIssueEnrichmentDetailsResponseIssueDetailsIssueSuggestedActionsSteps []string
-
-// IssuesResponse is the issuesResponse definition
-type IssuesResponse struct {
-	Response   []IssuesResponseResponse `json:"response,omitempty"`   //
-	TotalCount int                      `json:"totalCount,omitempty"` //
-	Version    string                   `json:"version,omitempty"`    //
-}
-
-// IssuesResponseResponse is the issuesResponseResponse definition
-type IssuesResponseResponse struct {
-	AiDriven            bool   `json:"aiDriven,omitempty"`              //
-	Category            string `json:"category,omitempty"`              //
-	ClientMac           string `json:"clientMac,omitempty"`             //
-	DeviceID            string `json:"deviceId,omitempty"`              //
-	DeviceRole          string `json:"deviceRole,omitempty"`            //
-	IssueID             string `json:"issueId,omitempty"`               //
-	IssueOccurenceCount int    `json:"issue_occurence_count,omitempty"` //
-	LastOccurenceTime   int    `json:"last_occurence_time,omitempty"`   //
-	Name                string `json:"name,omitempty"`                  //
-	Priority            string `json:"priority,omitempty"`              //
-	SiteID              string `json:"siteId,omitempty"`                //
-	Status              string `json:"status,omitempty"`                //
-}
-
-// GetIssueEnrichmentDetails getIssueEnrichmentDetails
+//GetIssueEnrichmentDetails Get Issue Enrichment Details - 8684-39bb-4e89-a6e4
 /* Enriches a given network issue context (an issue id or end user’s Mac Address) with details about the issue(s), impacted hosts and suggested actions for remediation
-@param entity_type Issue enrichment details can be fetched based on either Issue ID or Client MAC address. This parameter value must either be issue_id/mac_address
-@param entity_value Contains the actual value for the entity type that has been defined
-*/
-func (s *IssuesService) GetIssueEnrichmentDetails() (*GetIssueEnrichmentDetailsResponse, *resty.Response, error) {
 
+
+@param GetIssueEnrichmentDetailsHeaderParams Custom header parameters
+*/
+func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeaderParams *GetIssueEnrichmentDetailsHeaderParams) (*ResponseIssuesGetIssueEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issue-enrichment-details"
 
-	response, err := RestyClient.R().
-		SetResult(&GetIssueEnrichmentDetailsResponse{}).
-		SetError(&Error{}).
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetIssueEnrichmentDetailsHeaderParams != nil {
+
+		if GetIssueEnrichmentDetailsHeaderParams.EntityType != "" {
+			clientRequest = clientRequest.SetHeader("entity_type", GetIssueEnrichmentDetailsHeaderParams.EntityType)
+		}
+
+		if GetIssueEnrichmentDetailsHeaderParams.EntityValue != "" {
+			clientRequest = clientRequest.SetHeader("entity_value", GetIssueEnrichmentDetailsHeaderParams.EntityValue)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetResult(&ResponseIssuesGetIssueEnrichmentDetails{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getIssueEnrichmentDetails")
+		return nil, response, fmt.Errorf("error with operation GetIssueEnrichmentDetails")
 	}
 
-	result := response.Result().(*GetIssueEnrichmentDetailsResponse)
+	result := response.Result().(*ResponseIssuesGetIssueEnrichmentDetails)
 	return result, response, err
+
 }
 
-// IssuesQueryParams defines the query parameters for this request
-type IssuesQueryParams struct {
-	StartTime   float64 `url:"startTime,omitempty"`   // Starting epoch time in milliseconds of query time window
-	EndTime     float64 `url:"endTime,omitempty"`     // Ending epoch time in milliseconds of query time window
-	SiteID      string  `url:"siteId,omitempty"`      // Assurance UUID value of the site in the issue content
-	DeviceID    string  `url:"deviceId,omitempty"`    // Assurance UUID value of the device in the issue content
-	MacAddress  string  `url:"macAddress,omitempty"`  // Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
-	Priority    string  `url:"priority,omitempty"`    // The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
-	AiDriven    string  `url:"aiDriven,omitempty"`    // The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
-	IssueStatus string  `url:"issueStatus,omitempty"` // The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
-}
-
-// Issues issues
+//Issues Issues - 5e86-3b7b-4a4b-b2f9
 /* Intent API to get a list of global issues, issues for a specific device, or issue for a specific client device's MAC address.
-@param startTime Starting epoch time in milliseconds of query time window
-@param endTime Ending epoch time in milliseconds of query time window
-@param siteID Assurance UUID value of the site in the issue content
-@param deviceID Assurance UUID value of the device in the issue content
-@param macAddress Client's device MAC address of the issue (format xx:xx:xx:xx:xx:xx)
-@param priority The issue's priority value (One of P1, P2, P3, or P4)(Use only when macAddress and deviceId are not provided)
-@param aiDriven The issue's AI driven value (Yes or No)(Use only when macAddress and deviceId are not provided)
-@param issueStatus The issue's status value (One of ACTIVE, IGNORED, RESOLVED) (Use only when macAddress and deviceId are not provided)
-*/
-func (s *IssuesService) Issues(issuesQueryParams *IssuesQueryParams) (*IssuesResponse, *resty.Response, error) {
 
+
+@param IssuesQueryParams Filtering parameter
+*/
+func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseIssuesIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issues"
 
-	queryString, _ := query.Values(issuesQueryParams)
+	queryString, _ := query.Values(IssuesQueryParams)
 
-	response, err := RestyClient.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&IssuesResponse{}).
-		SetError(&Error{}).
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseIssuesIssues{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation issues")
+		return nil, response, fmt.Errorf("error with operation Issues")
 	}
 
-	result := response.Result().(*IssuesResponse)
+	result := response.Result().(*ResponseIssuesIssues)
 	return result, response, err
+
 }
