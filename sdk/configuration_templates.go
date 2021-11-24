@@ -10,9 +10,6 @@ import (
 
 type ConfigurationTemplatesService service
 
-type CreatesACloneOfTheGivenTemplateQueryParams struct {
-	ProjectID string `url:"projectId,omitempty"` //UUID of the project in which the template needs to be created
-}
 type GetsAListOfProjectsQueryParams struct {
 	Name      string `url:"name,omitempty"`      //Name of project to be searched
 	SortOrder string `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (des)
@@ -38,32 +35,6 @@ type GetsTheTemplatesAvailableQueryParams struct {
 }
 type GetsDetailsOfAGivenTemplateQueryParams struct {
 	LatestVersion bool `url:"latestVersion,omitempty"` //latestVersion flag to get the latest versioned template
-}
-type GetProjectsDetailsQueryParams struct {
-	ID        string `url:"id,omitempty"`        //Id of project to be searched
-	Name      string `url:"name,omitempty"`      //Name of project to be searched
-	Offset    int    `url:"offset,omitempty"`    //Index of first result
-	Limit     int    `url:"limit,omitempty"`     //Limits number of results
-	SortOrder string `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (dsc)
-}
-type GetTemplatesDetailsQueryParams struct {
-	ID                         string   `url:"id,omitempty"`                         //Id of template to be searched
-	Name                       string   `url:"name,omitempty"`                       //Name of template to be searched
-	ProjectID                  string   `url:"projectId,omitempty"`                  //Filter template(s) based on project id
-	ProjectName                string   `url:"projectName,omitempty"`                //Filter template(s) based on project name
-	SoftwareType               string   `url:"softwareType,omitempty"`               //Filter template(s) based software type
-	SoftwareVersion            string   `url:"softwareVersion,omitempty"`            //Filter template(s) based softwareVersion
-	ProductFamily              string   `url:"productFamily,omitempty"`              //Filter template(s) based on device family
-	ProductSeries              string   `url:"productSeries,omitempty"`              //Filter template(s) based on device series
-	ProductType                string   `url:"productType,omitempty"`                //Filter template(s) based on device type
-	FilterConflictingTemplates bool     `url:"filterConflictingTemplates,omitempty"` //Filter template(s) based on confliting templates
-	Tags                       []string `url:"tags,omitempty"`                       //Filter template(s) based on tags
-	UnCommitted                bool     `url:"unCommitted,omitempty"`                //Return uncommitted template
-	SortOrder                  string   `url:"sortOrder,omitempty"`                  //Sort Order Ascending (asc) or Descending (dsc)
-	AllTemplateAttributes      bool     `url:"allTemplateAttributes,omitempty"`      //Return all template attributes
-	IncludeVersionDetails      bool     `url:"includeVersionDetails,omitempty"`      //Include template version details
-	Offset                     int      `url:"offset,omitempty"`                     //Index of first result
-	Limit                      int      `url:"limit,omitempty"`                      //Limits number of results
 }
 
 type ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate struct {
@@ -92,19 +63,214 @@ type ResponseConfigurationTemplatesUpdateProjectResponse struct {
 }
 type ResponseConfigurationTemplatesGetsAListOfProjects []ResponseItemConfigurationTemplatesGetsAListOfProjects // Array of ResponseConfigurationTemplatesGetsAListOfProjects
 type ResponseItemConfigurationTemplatesGetsAListOfProjects struct {
-	Tags           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTags    `json:"tags,omitempty"`           //
-	CreateTime     *int                                                            `json:"createTime,omitempty"`     // Create time of project
-	Description    string                                                          `json:"description,omitempty"`    // Description of project
-	ID             string                                                          `json:"id,omitempty"`             // UUID of project
-	LastUpdateTime *int                                                            `json:"lastUpdateTime,omitempty"` // Update time of project
-	Name           string                                                          `json:"name,omitempty"`           // Name of project
-	Templates      *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates `json:"templates,omitempty"`      // List of templates within the project
+	Tags           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTags      `json:"tags,omitempty"`           //
+	CreateTime     *int                                                              `json:"createTime,omitempty"`     // Create time of project
+	Description    string                                                            `json:"description,omitempty"`    // Description of project
+	ID             string                                                            `json:"id,omitempty"`             // UUID of project
+	LastUpdateTime *int                                                              `json:"lastUpdateTime,omitempty"` // Update time of project
+	Name           string                                                            `json:"name,omitempty"`           // Name of project
+	Templates      *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates `json:"templates,omitempty"`      // List of templates within the project
 }
 type ResponseItemConfigurationTemplatesGetsAListOfProjectsTags struct {
 	ID   string `json:"id,omitempty"`   // UUID of tag
 	Name string `json:"name,omitempty"` // Name of tag
 }
-type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct {
+	Tags                    *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTags                   `json:"tags,omitempty"`                    //
+	Author                  string                                                                                  `json:"author,omitempty"`                  // Author of template
+	Composite               *bool                                                                                   `json:"composite,omitempty"`               // Is it composite template
+	ContainingTemplates     *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              *int                                                                                    `json:"createTime,omitempty"`              // Create time of template
+	CustomParamsOrder       *bool                                                                                   `json:"customParamsOrder,omitempty"`       // Custom Params Order
+	Description             string                                                                                  `json:"description,omitempty"`             // Description of template
+	DeviceTypes             *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                                                                  `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
+	ID                      string                                                                                  `json:"id,omitempty"`                      // UUID of template
+	Language                string                                                                                  `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
+	LastUpdateTime          *int                                                                                    `json:"lastUpdateTime,omitempty"`          // Update time of template
+	LatestVersionTime       *int                                                                                    `json:"latestVersionTime,omitempty"`       // Latest versioned template time
+	Name                    string                                                                                  `json:"name,omitempty"`                    // Name of template
+	ParentTemplateID        string                                                                                  `json:"parentTemplateId,omitempty"`        // Parent templateID
+	ProjectID               string                                                                                  `json:"projectId,omitempty"`               // Project UUID
+	ProjectName             string                                                                                  `json:"projectName,omitempty"`             // Project name
+	RollbackTemplateContent string                                                                                  `json:"rollbackTemplateContent,omitempty"` // Rollback template content
+	RollbackTemplateParams  *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                                                                  `json:"softwareType,omitempty"`            // Applicable device software type
+	SoftwareVariant         string                                                                                  `json:"softwareVariant,omitempty"`         // Applicable device software variant
+	SoftwareVersion         string                                                                                  `json:"softwareVersion,omitempty"`         // Applicable device software version
+	TemplateContent         string                                                                                  `json:"templateContent,omitempty"`         // Template content
+	TemplateParams          *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParams         `json:"templateParams,omitempty"`          //
+	ValidationErrors        *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrors         `json:"validationErrors,omitempty"`        //
+	Version                 string                                                                                  `json:"version,omitempty"`                 // Current version of template
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplates struct {
+	Tags                   *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTags                   `json:"tags,omitempty"`                   //
+	Composite              *bool                                                                                                      `json:"composite,omitempty"`              // Is it composite template
+	Description            string                                                                                                     `json:"description,omitempty"`            // Description of template
+	DeviceTypes            *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`            //
+	ID                     string                                                                                                     `json:"id,omitempty"`                     // UUID of template
+	Language               string                                                                                                     `json:"language,omitempty"`               // Template language (JINJA or VELOCITY)
+	Name                   string                                                                                                     `json:"name,omitempty"`                   // Name of template
+	ProjectName            string                                                                                                     `json:"projectName,omitempty"`            // Project name
+	RollbackTemplateParams *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"` //
+	TemplateContent        string                                                                                                     `json:"templateContent,omitempty"`        // Template content
+	TemplateParams         *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParams         `json:"templateParams,omitempty"`         //
+	Version                string                                                                                                     `json:"version,omitempty"`                // Current version of template
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                                            `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                              `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                            `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                            `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                            `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                            `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                            `json:"group,omitempty"`           // group
+	ID              string                                                                                                            `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                            `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                            `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                             `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                              `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                             `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                            `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                            `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                             `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                                         `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                           `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                           `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParams struct {
+	Binding         string                                                                                                    `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                      `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                    `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                    `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                    `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                    `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                    `json:"group,omitempty"`           // group
+	ID              string                                                                                                    `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                    `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                    `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                     `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                      `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                     `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                    `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                    `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                     `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                                 `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                   `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                   `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                         `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                           `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                         `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                         `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                         `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                         `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                         `json:"group,omitempty"`           // group
+	ID              string                                                                                         `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                         `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                         `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                          `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                           `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                          `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                         `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                         `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                          `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                      `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                        `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                        `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParams struct {
+	Binding         string                                                                                 `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                   `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                 `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                 `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                 `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                 `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                 `json:"group,omitempty"`           // group
+	ID              string                                                                                 `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                 `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                 `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                  `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                   `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                  `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                 `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                 `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                  `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                              `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesTemplateParamsSelectionSelectionValues interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrors struct {
+	RollbackTemplateErrors *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                                  `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                                  `json:"templateVersion,omitempty"`        // Current version of template
+}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrorsRollbackTemplateErrors interface{}
+type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrorsTemplateErrors interface{}
 type ResponseConfigurationTemplatesImportsTheProjectsProvided struct {
 	Response *ResponseConfigurationTemplatesImportsTheProjectsProvidedResponse `json:"response,omitempty"` //
 	Version  string                                                            `json:"version,omitempty"`  //
@@ -130,19 +296,214 @@ type ResponseConfigurationTemplatesImportsTheTemplatesProvidedResponse struct {
 	URL    string `json:"url,omitempty"`    //
 }
 type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject struct {
-	Tags           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTags    `json:"tags,omitempty"`           //
-	CreateTime     *int                                                                  `json:"createTime,omitempty"`     // Create time of project
-	Description    string                                                                `json:"description,omitempty"`    // Description of project
-	ID             string                                                                `json:"id,omitempty"`             // UUID of project
-	LastUpdateTime *int                                                                  `json:"lastUpdateTime,omitempty"` // Update time of project
-	Name           string                                                                `json:"name,omitempty"`           // Name of project
-	Templates      *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
+	Tags           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTags      `json:"tags,omitempty"`           //
+	CreateTime     *int                                                                    `json:"createTime,omitempty"`     // Create time of project
+	Description    string                                                                  `json:"description,omitempty"`    // Description of project
+	ID             string                                                                  `json:"id,omitempty"`             // UUID of project
+	LastUpdateTime *int                                                                    `json:"lastUpdateTime,omitempty"` // Update time of project
+	Name           string                                                                  `json:"name,omitempty"`           // Name of project
+	Templates      *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
 }
 type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTags struct {
 	ID   string `json:"id,omitempty"`   // UUID of tag
 	Name string `json:"name,omitempty"` // Name of tag
 }
-type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct {
+	Tags                    *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTags                   `json:"tags,omitempty"`                    //
+	Author                  string                                                                                        `json:"author,omitempty"`                  // Author of template
+	Composite               *bool                                                                                         `json:"composite,omitempty"`               // Is it composite template
+	ContainingTemplates     *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              *int                                                                                          `json:"createTime,omitempty"`              // Create time of template
+	CustomParamsOrder       *bool                                                                                         `json:"customParamsOrder,omitempty"`       // Custom Params Order
+	Description             string                                                                                        `json:"description,omitempty"`             // Description of template
+	DeviceTypes             *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                                                                        `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
+	ID                      string                                                                                        `json:"id,omitempty"`                      // UUID of template
+	Language                string                                                                                        `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
+	LastUpdateTime          *int                                                                                          `json:"lastUpdateTime,omitempty"`          // Update time of template
+	LatestVersionTime       *int                                                                                          `json:"latestVersionTime,omitempty"`       // Latest versioned template time
+	Name                    string                                                                                        `json:"name,omitempty"`                    // Name of template
+	ParentTemplateID        string                                                                                        `json:"parentTemplateId,omitempty"`        // Parent templateID
+	ProjectID               string                                                                                        `json:"projectId,omitempty"`               // Project UUID
+	ProjectName             string                                                                                        `json:"projectName,omitempty"`             // Project name
+	RollbackTemplateContent string                                                                                        `json:"rollbackTemplateContent,omitempty"` // Rollback template content
+	RollbackTemplateParams  *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                                                                        `json:"softwareType,omitempty"`            // Applicable device software type
+	SoftwareVariant         string                                                                                        `json:"softwareVariant,omitempty"`         // Applicable device software variant
+	SoftwareVersion         string                                                                                        `json:"softwareVersion,omitempty"`         // Applicable device software version
+	TemplateContent         string                                                                                        `json:"templateContent,omitempty"`         // Template content
+	TemplateParams          *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParams         `json:"templateParams,omitempty"`          //
+	ValidationErrors        *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrors         `json:"validationErrors,omitempty"`        //
+	Version                 string                                                                                        `json:"version,omitempty"`                 // Current version of template
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplates struct {
+	Tags                   *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTags                   `json:"tags,omitempty"`                   //
+	Composite              *bool                                                                                                            `json:"composite,omitempty"`              // Is it composite template
+	Description            string                                                                                                           `json:"description,omitempty"`            // Description of template
+	DeviceTypes            *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`            //
+	ID                     string                                                                                                           `json:"id,omitempty"`                     // UUID of template
+	Language               string                                                                                                           `json:"language,omitempty"`               // Template language (JINJA or VELOCITY)
+	Name                   string                                                                                                           `json:"name,omitempty"`                   // Name of template
+	ProjectName            string                                                                                                           `json:"projectName,omitempty"`            // Project name
+	RollbackTemplateParams *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"` //
+	TemplateContent        string                                                                                                           `json:"templateContent,omitempty"`        // Template content
+	TemplateParams         *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParams         `json:"templateParams,omitempty"`         //
+	Version                string                                                                                                           `json:"version,omitempty"`                // Current version of template
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                                                  `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                                    `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                                  `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                                  `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                                  `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                                  `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                                  `json:"group,omitempty"`           // group
+	ID              string                                                                                                                  `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                                  `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                                  `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                                   `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                                    `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                                   `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                                  `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                                  `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                                   `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                                               `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                                 `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                                 `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParams struct {
+	Binding         string                                                                                                          `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                            `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                          `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                          `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                          `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                          `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                          `json:"group,omitempty"`           // group
+	ID              string                                                                                                          `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                          `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                          `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                           `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                            `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                           `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                          `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                          `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                           `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                                       `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                         `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                         `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                               `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                 `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                               `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                               `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                               `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                               `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                               `json:"group,omitempty"`           // group
+	ID              string                                                                                               `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                               `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                               `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                 `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                               `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                               `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                            `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                              `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                              `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParams struct {
+	Binding         string                                                                                       `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                         `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                       `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                       `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                       `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                       `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                       `json:"group,omitempty"`           // group
+	ID              string                                                                                       `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                       `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                       `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                        `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                         `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                        `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                       `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                       `json:"provider,omitempty"`        // provider
+	Range           *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                        `json:"required,omitempty"`        // Is param required
+	Selection       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                    `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                      `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                      `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesTemplateParamsSelectionSelectionValues interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrors struct {
+	RollbackTemplateErrors *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                                        `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                                        `json:"templateVersion,omitempty"`        // Current version of template
+}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrorsRollbackTemplateErrors interface{}
+type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrorsTemplateErrors interface{}
 type ResponseConfigurationTemplatesDeletesTheProject struct {
 	Response *ResponseConfigurationTemplatesDeletesTheProjectResponse `json:"response,omitempty"` //
 	Version  string                                                   `json:"version,omitempty"`  //
@@ -243,10 +604,10 @@ type ResponseConfigurationTemplatesExportsTheTemplatesForAGivenCriteriaResponse 
 	URL    string `json:"url,omitempty"`    //
 }
 type ResponseConfigurationTemplatesPreviewTemplate struct {
-	CliPreview       string                                                         `json:"cliPreview,omitempty"`       // Generated template preview
-	DeviceID         string                                                         `json:"deviceId,omitempty"`         // UUID of device
-	TemplateID       string                                                         `json:"templateId,omitempty"`       // UUID of template
-	ValidationErrors *ResponseConfigurationTemplatesPreviewTemplateValidationErrors `json:"validationErrors,omitempty"` // Validation error in template content if any
+	CliPreview       string                                                           `json:"cliPreview,omitempty"`       // Generated template preview
+	DeviceID         string                                                           `json:"deviceId,omitempty"`         // UUID of device
+	TemplateID       string                                                           `json:"templateId,omitempty"`       // UUID of template
+	ValidationErrors *[]ResponseConfigurationTemplatesPreviewTemplateValidationErrors `json:"validationErrors,omitempty"` // Validation error in template content if any
 }
 type ResponseConfigurationTemplatesPreviewTemplateValidationErrors interface{}
 type ResponseConfigurationTemplatesVersionTemplate struct {
@@ -471,234 +832,13 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateTemplateParamsSele
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateTemplateParamsSelectionSelectionValues interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors struct {
-	RollbackTemplateErrors *ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
-	TemplateErrors         *ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
-	TemplateID             string                                                                                           `json:"templateId,omitempty"`             // UUID of template
-	TemplateVersion        string                                                                                           `json:"templateVersion,omitempty"`        // Current version of template
+	RollbackTemplateErrors *[]ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                             `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                             `json:"templateVersion,omitempty"`        // Current version of template
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors interface{}
-type ResponseConfigurationTemplatesGetProjectsDetails struct {
-	CreateTime     *int                                                       `json:"createTime,omitempty"`     // Create time of project
-	Description    string                                                     `json:"description,omitempty"`    // Description of project
-	ID             string                                                     `json:"id,omitempty"`             // UUID of project
-	IsDeletable    *bool                                                      `json:"isDeletable,omitempty"`    // Flag to check if project is deletable or not(for internal use only)
-	LastUpdateTime *int                                                       `json:"lastUpdateTime,omitempty"` // Update time of project
-	Name           string                                                     `json:"name,omitempty"`           // Name of project
-	Tags           *[]ResponseConfigurationTemplatesGetProjectsDetailsTags    `json:"tags,omitempty"`           //
-	Templates      *ResponseConfigurationTemplatesGetProjectsDetailsTemplates `json:"templates,omitempty"`      // List of templates within the project
-}
-type ResponseConfigurationTemplatesGetProjectsDetailsTags struct {
-	ID   string `json:"id,omitempty"`   // UUID of tag
-	Name string `json:"name,omitempty"` // Name of tag
-}
-type ResponseConfigurationTemplatesGetProjectsDetailsTemplates interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetails struct {
-	Author                  string                                                                     `json:"author,omitempty"`                  // Author of template
-	Composite               *bool                                                                      `json:"composite,omitempty"`               // Is it composite template
-	ContainingTemplates     *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplates    `json:"containingTemplates,omitempty"`     //
-	CreateTime              *int                                                                       `json:"createTime,omitempty"`              // Create time of template
-	CustomParamsOrder       *bool                                                                      `json:"customParamsOrder,omitempty"`       // Custom Params Order
-	Description             string                                                                     `json:"description,omitempty"`             // Description of template
-	DeviceTypes             *[]ResponseConfigurationTemplatesGetTemplatesDetailsDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	FailurePolicy           string                                                                     `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
-	ID                      string                                                                     `json:"id,omitempty"`                      // UUID of template
-	Language                string                                                                     `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
-	LastUpdateTime          *int                                                                       `json:"lastUpdateTime,omitempty"`          // Update time of template
-	LatestVersionTime       *int                                                                       `json:"latestVersionTime,omitempty"`       // Latest versioned template time
-	Name                    string                                                                     `json:"name,omitempty"`                    // Name of template
-	ParentTemplateID        string                                                                     `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                      `json:"projectAssociated,omitempty"`       //
-	ProjectID               string                                                                     `json:"projectId,omitempty"`               // Project UUID
-	ProjectName             string                                                                     `json:"projectName,omitempty"`             // Project name
-	RollbackTemplateContent string                                                                     `json:"rollbackTemplateContent,omitempty"` // Rollback template content
-	RollbackTemplateParams  *[]ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
-	SoftwareType            string                                                                     `json:"softwareType,omitempty"`            // Applicable device software type
-	SoftwareVariant         string                                                                     `json:"softwareVariant,omitempty"`         // Applicable device software variant
-	SoftwareVersion         string                                                                     `json:"softwareVersion,omitempty"`         // Applicable device software version
-	Tags                    *[]ResponseConfigurationTemplatesGetTemplatesDetailsTags                   `json:"tags,omitempty"`                    //
-	TemplateContent         string                                                                     `json:"templateContent,omitempty"`         // Template content
-	TemplateParams          *[]ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParams         `json:"templateParams,omitempty"`          //
-	ValidationErrors        *ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrors         `json:"validationErrors,omitempty"`        //
-	Version                 string                                                                     `json:"version,omitempty"`                 // Current version of template
-	VersionsInfo            *[]ResponseConfigurationTemplatesGetTemplatesDetailsVersionsInfo           `json:"versionsInfo,omitempty"`            //
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplates struct {
-	Composite              *bool                                                                                         `json:"composite,omitempty"`              // Is it composite template
-	Description            string                                                                                        `json:"description,omitempty"`            // Description of template
-	DeviceTypes            *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`            //
-	ID                     string                                                                                        `json:"id,omitempty"`                     // UUID of template
-	Language               string                                                                                        `json:"language,omitempty"`               // Template language (JINJA or VELOCITY)
-	Name                   string                                                                                        `json:"name,omitempty"`                   // Name of template
-	ProjectName            string                                                                                        `json:"projectName,omitempty"`            // Project name
-	RollbackTemplateParams *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"` //
-	Tags                   *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTags                   `json:"tags,omitempty"`                   //
-	TemplateContent        string                                                                                        `json:"templateContent,omitempty"`        // Template content
-	TemplateParams         *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParams         `json:"templateParams,omitempty"`         //
-	Version                string                                                                                        `json:"version,omitempty"`                // Current version of template
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesDeviceTypes struct {
-	ProductFamily string `json:"productFamily,omitempty"` // Device family
-	ProductSeries string `json:"productSeries,omitempty"` // Device series
-	ProductType   string `json:"productType,omitempty"`   // Device type
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParams struct {
-	Binding         string                                                                                               `json:"binding,omitempty"`         // Bind to source
-	CustomOrder     *int                                                                                                 `json:"customOrder,omitempty"`     // CustomOrder of template param
-	DataType        string                                                                                               `json:"dataType,omitempty"`        // Datatype of template param
-	DefaultValue    string                                                                                               `json:"defaultValue,omitempty"`    // Default value of template param
-	Description     string                                                                                               `json:"description,omitempty"`     // Description of template param
-	DisplayName     string                                                                                               `json:"displayName,omitempty"`     // Display name of param
-	Group           string                                                                                               `json:"group,omitempty"`           // group
-	ID              string                                                                                               `json:"id,omitempty"`              // UUID of template param
-	InstructionText string                                                                                               `json:"instructionText,omitempty"` // Instruction text for param
-	Key             string                                                                                               `json:"key,omitempty"`             // key
-	NotParam        *bool                                                                                                `json:"notParam,omitempty"`        // Is it not a variable
-	Order           *int                                                                                                 `json:"order,omitempty"`           // Order of template param
-	ParamArray      *bool                                                                                                `json:"paramArray,omitempty"`      // Is it an array
-	ParameterName   string                                                                                               `json:"parameterName,omitempty"`   // Name of template param
-	Provider        string                                                                                               `json:"provider,omitempty"`        // provider
-	Range           *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
-	Required        *bool                                                                                                `json:"required,omitempty"`        // Is param required
-	Selection       *ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsRange struct {
-	ID       string `json:"id,omitempty"`       // UUID of range
-	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
-	MinValue *int   `json:"minValue,omitempty"` // Min value of range
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsSelection struct {
-	DefaultSelectedValues []string                                                                                                            `json:"defaultSelectedValues,omitempty"` // Default selection values
-	ID                    string                                                                                                              `json:"id,omitempty"`                    // UUID of selection
-	SelectionType         string                                                                                                              `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
-	SelectionValues       *ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTags struct {
-	ID   string `json:"id,omitempty"`   // UUID of tag
-	Name string `json:"name,omitempty"` // Name of tag
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParams struct {
-	Binding         string                                                                                       `json:"binding,omitempty"`         // Bind to source
-	CustomOrder     *int                                                                                         `json:"customOrder,omitempty"`     // CustomOrder of template param
-	DataType        string                                                                                       `json:"dataType,omitempty"`        // Datatype of template param
-	DefaultValue    string                                                                                       `json:"defaultValue,omitempty"`    // Default value of template param
-	Description     string                                                                                       `json:"description,omitempty"`     // Description of template param
-	DisplayName     string                                                                                       `json:"displayName,omitempty"`     // Display name of param
-	Group           string                                                                                       `json:"group,omitempty"`           // group
-	ID              string                                                                                       `json:"id,omitempty"`              // UUID of template param
-	InstructionText string                                                                                       `json:"instructionText,omitempty"` // Instruction text for param
-	Key             string                                                                                       `json:"key,omitempty"`             // key
-	NotParam        *bool                                                                                        `json:"notParam,omitempty"`        // Is it not a variable
-	Order           *int                                                                                         `json:"order,omitempty"`           // Order of template param
-	ParamArray      *bool                                                                                        `json:"paramArray,omitempty"`      // Is it an array
-	ParameterName   string                                                                                       `json:"parameterName,omitempty"`   // Name of template param
-	Provider        string                                                                                       `json:"provider,omitempty"`        // provider
-	Range           *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
-	Required        *bool                                                                                        `json:"required,omitempty"`        // Is param required
-	Selection       *ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsRange struct {
-	ID       string `json:"id,omitempty"`       // UUID of range
-	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
-	MinValue *int   `json:"minValue,omitempty"` // Min value of range
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsSelection struct {
-	DefaultSelectedValues []string                                                                                                    `json:"defaultSelectedValues,omitempty"` // Default selection values
-	ID                    string                                                                                                      `json:"id,omitempty"`                    // UUID of selection
-	SelectionType         string                                                                                                      `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
-	SelectionValues       *ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplatesTemplateParamsSelectionSelectionValues interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsDeviceTypes struct {
-	ProductFamily string `json:"productFamily,omitempty"` // Device family
-	ProductSeries string `json:"productSeries,omitempty"` // Device series
-	ProductType   string `json:"productType,omitempty"`   // Device type
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParams struct {
-	Binding         string                                                                            `json:"binding,omitempty"`         // Bind to source
-	CustomOrder     *int                                                                              `json:"customOrder,omitempty"`     // CustomOrder of template param
-	DataType        string                                                                            `json:"dataType,omitempty"`        // Datatype of template param
-	DefaultValue    string                                                                            `json:"defaultValue,omitempty"`    // Default value of template param
-	Description     string                                                                            `json:"description,omitempty"`     // Description of template param
-	DisplayName     string                                                                            `json:"displayName,omitempty"`     // Display name of param
-	Group           string                                                                            `json:"group,omitempty"`           // group
-	ID              string                                                                            `json:"id,omitempty"`              // UUID of template param
-	InstructionText string                                                                            `json:"instructionText,omitempty"` // Instruction text for param
-	Key             string                                                                            `json:"key,omitempty"`             // key
-	NotParam        *bool                                                                             `json:"notParam,omitempty"`        // Is it not a variable
-	Order           *int                                                                              `json:"order,omitempty"`           // Order of template param
-	ParamArray      *bool                                                                             `json:"paramArray,omitempty"`      // Is it an array
-	ParameterName   string                                                                            `json:"parameterName,omitempty"`   // Name of template param
-	Provider        string                                                                            `json:"provider,omitempty"`        // provider
-	Range           *[]ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsRange   `json:"range,omitempty"`           //
-	Required        *bool                                                                             `json:"required,omitempty"`        // Is param required
-	Selection       *ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsRange struct {
-	ID       string `json:"id,omitempty"`       // UUID of range
-	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
-	MinValue *int   `json:"minValue,omitempty"` // Min value of range
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsSelection struct {
-	DefaultSelectedValues []string                                                                                         `json:"defaultSelectedValues,omitempty"` // Default selection values
-	ID                    string                                                                                           `json:"id,omitempty"`                    // UUID of selection
-	SelectionType         string                                                                                           `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
-	SelectionValues       *ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsRollbackTemplateParamsSelectionSelectionValues interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsTags struct {
-	ID   string `json:"id,omitempty"`   // UUID of tag
-	Name string `json:"name,omitempty"` // Name of tag
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParams struct {
-	Binding         string                                                                    `json:"binding,omitempty"`         // Bind to source
-	CustomOrder     *int                                                                      `json:"customOrder,omitempty"`     // CustomOrder of template param
-	DataType        string                                                                    `json:"dataType,omitempty"`        // Datatype of template param
-	DefaultValue    string                                                                    `json:"defaultValue,omitempty"`    // Default value of template param
-	Description     string                                                                    `json:"description,omitempty"`     // Description of template param
-	DisplayName     string                                                                    `json:"displayName,omitempty"`     // Display name of param
-	Group           string                                                                    `json:"group,omitempty"`           // group
-	ID              string                                                                    `json:"id,omitempty"`              // UUID of template param
-	InstructionText string                                                                    `json:"instructionText,omitempty"` // Instruction text for param
-	Key             string                                                                    `json:"key,omitempty"`             // key
-	NotParam        *bool                                                                     `json:"notParam,omitempty"`        // Is it not a variable
-	Order           *int                                                                      `json:"order,omitempty"`           // Order of template param
-	ParamArray      *bool                                                                     `json:"paramArray,omitempty"`      // Is it an array
-	ParameterName   string                                                                    `json:"parameterName,omitempty"`   // Name of template param
-	Provider        string                                                                    `json:"provider,omitempty"`        // provider
-	Range           *[]ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsRange   `json:"range,omitempty"`           //
-	Required        *bool                                                                     `json:"required,omitempty"`        // Is param required
-	Selection       *ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsSelection `json:"selection,omitempty"`       //
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsRange struct {
-	ID       string `json:"id,omitempty"`       // UUID of range
-	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
-	MinValue *int   `json:"minValue,omitempty"` // Min value of range
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsSelection struct {
-	DefaultSelectedValues []string                                                                                 `json:"defaultSelectedValues,omitempty"` // Default selection values
-	ID                    string                                                                                   `json:"id,omitempty"`                    // UUID of selection
-	SelectionType         string                                                                                   `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
-	SelectionValues       *ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsTemplateParamsSelectionSelectionValues interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrors struct {
-	RollbackTemplateErrors *ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
-	TemplateErrors         *ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
-	TemplateID             string                                                                                   `json:"templateId,omitempty"`             // UUID of template
-	TemplateVersion        string                                                                                   `json:"templateVersion,omitempty"`        // Current version of template
-}
-type ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrorsRollbackTemplateErrors interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsValidationErrorsTemplateErrors interface{}
-type ResponseConfigurationTemplatesGetTemplatesDetailsVersionsInfo struct {
-	Author         string `json:"author,omitempty"`         //
-	Description    string `json:"description,omitempty"`    //
-	ID             string `json:"id,omitempty"`             //
-	Version        string `json:"version,omitempty"`        //
-	VersionComment string `json:"versionComment,omitempty"` //
-	VersionTime    *int   `json:"versionTime,omitempty"`    //
-}
 type ResponseConfigurationTemplatesDeployTemplateV2 struct {
 	Response *ResponseConfigurationTemplatesDeployTemplateV2Response `json:"response,omitempty"` //
 	Version  string                                                  `json:"version,omitempty"`  //
@@ -707,34 +847,425 @@ type ResponseConfigurationTemplatesDeployTemplateV2Response struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
+type RequestConfigurationTemplatesCreatesACloneOfTheGivenTemplate interface{}
 type RequestConfigurationTemplatesCreateProject struct {
-	Tags           *[]RequestConfigurationTemplatesCreateProjectTags    `json:"tags,omitempty"`           //
-	CreateTime     *int                                                 `json:"createTime,omitempty"`     // Create time of project
-	Description    string                                               `json:"description,omitempty"`    // Description of project
-	ID             string                                               `json:"id,omitempty"`             // UUID of project
-	LastUpdateTime *int                                                 `json:"lastUpdateTime,omitempty"` // Update time of project
-	Name           string                                               `json:"name,omitempty"`           // Name of project
-	Templates      *RequestConfigurationTemplatesCreateProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
+	Tags           *[]RequestConfigurationTemplatesCreateProjectTags      `json:"tags,omitempty"`           //
+	CreateTime     *int                                                   `json:"createTime,omitempty"`     // Create time of project
+	Description    string                                                 `json:"description,omitempty"`    // Description of project
+	ID             string                                                 `json:"id,omitempty"`             // UUID of project
+	LastUpdateTime *int                                                   `json:"lastUpdateTime,omitempty"` // Update time of project
+	Name           string                                                 `json:"name,omitempty"`           // Name of project
+	Templates      *[]RequestConfigurationTemplatesCreateProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
 }
 type RequestConfigurationTemplatesCreateProjectTags struct {
 	ID   string `json:"id,omitempty"`   // UUID of tag
 	Name string `json:"name,omitempty"` // Name of tag
 }
-type RequestConfigurationTemplatesCreateProjectTemplates interface{}
+type RequestConfigurationTemplatesCreateProjectTemplates struct {
+	Tags                    *[]RequestConfigurationTemplatesCreateProjectTemplatesTags                   `json:"tags,omitempty"`                    //
+	Author                  string                                                                       `json:"author,omitempty"`                  // Author of template
+	Composite               *bool                                                                        `json:"composite,omitempty"`               // Is it composite template
+	ContainingTemplates     *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              *int                                                                         `json:"createTime,omitempty"`              // Create time of template
+	CustomParamsOrder       *bool                                                                        `json:"customParamsOrder,omitempty"`       // Custom Params Order
+	Description             string                                                                       `json:"description,omitempty"`             // Description of template
+	DeviceTypes             *[]RequestConfigurationTemplatesCreateProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                                                       `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
+	ID                      string                                                                       `json:"id,omitempty"`                      // UUID of template
+	Language                string                                                                       `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
+	LastUpdateTime          *int                                                                         `json:"lastUpdateTime,omitempty"`          // Update time of template
+	LatestVersionTime       *int                                                                         `json:"latestVersionTime,omitempty"`       // Latest versioned template time
+	Name                    string                                                                       `json:"name,omitempty"`                    // Name of template
+	ParentTemplateID        string                                                                       `json:"parentTemplateId,omitempty"`        // Parent templateID
+	ProjectID               string                                                                       `json:"projectId,omitempty"`               // Project UUID
+	ProjectName             string                                                                       `json:"projectName,omitempty"`             // Project name
+	RollbackTemplateContent string                                                                       `json:"rollbackTemplateContent,omitempty"` // Rollback template content
+	RollbackTemplateParams  *[]RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                                                       `json:"softwareType,omitempty"`            // Applicable device software type
+	SoftwareVariant         string                                                                       `json:"softwareVariant,omitempty"`         // Applicable device software variant
+	SoftwareVersion         string                                                                       `json:"softwareVersion,omitempty"`         // Applicable device software version
+	TemplateContent         string                                                                       `json:"templateContent,omitempty"`         // Template content
+	TemplateParams          *[]RequestConfigurationTemplatesCreateProjectTemplatesTemplateParams         `json:"templateParams,omitempty"`          //
+	ValidationErrors        *RequestConfigurationTemplatesCreateProjectTemplatesValidationErrors         `json:"validationErrors,omitempty"`        //
+	Version                 string                                                                       `json:"version,omitempty"`                 // Current version of template
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplates struct {
+	Tags                   *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTags                   `json:"tags,omitempty"`                   //
+	Composite              *bool                                                                                           `json:"composite,omitempty"`              // Is it composite template
+	Description            string                                                                                          `json:"description,omitempty"`            // Description of template
+	DeviceTypes            *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`            //
+	ID                     string                                                                                          `json:"id,omitempty"`                     // UUID of template
+	Language               string                                                                                          `json:"language,omitempty"`               // Template language (JINJA or VELOCITY)
+	Name                   string                                                                                          `json:"name,omitempty"`                   // Name of template
+	ProjectName            string                                                                                          `json:"projectName,omitempty"`            // Project name
+	RollbackTemplateParams *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"` //
+	TemplateContent        string                                                                                          `json:"templateContent,omitempty"`        // Template content
+	TemplateParams         *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParams         `json:"templateParams,omitempty"`         //
+	Version                string                                                                                          `json:"version,omitempty"`                // Current version of template
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                                 `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                   `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                 `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                 `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                 `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                 `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                 `json:"group,omitempty"`           // group
+	ID              string                                                                                                 `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                 `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                 `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                  `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                   `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                  `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                 `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                 `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                  `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                              `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParams struct {
+	Binding         string                                                                                         `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                           `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                         `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                         `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                         `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                         `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                         `json:"group,omitempty"`           // group
+	ID              string                                                                                         `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                         `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                         `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                          `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                           `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                          `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                         `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                         `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                          `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                      `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                        `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                        `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesCreateProjectTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                              `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                              `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                              `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                              `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                              `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                              `json:"group,omitempty"`           // group
+	ID              string                                                                              `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                              `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                              `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                               `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                               `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                              `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                              `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                               `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                           `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                             `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                             `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesCreateProjectTemplatesTemplateParams struct {
+	Binding         string                                                                      `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                        `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                      `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                      `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                      `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                      `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                      `json:"group,omitempty"`           // group
+	ID              string                                                                      `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                      `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                      `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                       `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                        `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                       `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                      `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                      `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                       `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                   `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                     `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                     `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesCreateProjectTemplatesValidationErrors struct {
+	RollbackTemplateErrors *[]RequestConfigurationTemplatesCreateProjectTemplatesValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]RequestConfigurationTemplatesCreateProjectTemplatesValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                       `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                       `json:"templateVersion,omitempty"`        // Current version of template
+}
+type RequestConfigurationTemplatesCreateProjectTemplatesValidationErrorsRollbackTemplateErrors interface{}
+type RequestConfigurationTemplatesCreateProjectTemplatesValidationErrorsTemplateErrors interface{}
 type RequestConfigurationTemplatesUpdateProject struct {
-	Tags           *[]RequestConfigurationTemplatesUpdateProjectTags    `json:"tags,omitempty"`           //
-	CreateTime     *int                                                 `json:"createTime,omitempty"`     // Create time of project
-	Description    string                                               `json:"description,omitempty"`    // Description of project
-	ID             string                                               `json:"id,omitempty"`             // UUID of project
-	LastUpdateTime *int                                                 `json:"lastUpdateTime,omitempty"` // Update time of project
-	Name           string                                               `json:"name,omitempty"`           // Name of project
-	Templates      *RequestConfigurationTemplatesUpdateProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
+	Tags           *[]RequestConfigurationTemplatesUpdateProjectTags      `json:"tags,omitempty"`           //
+	CreateTime     *int                                                   `json:"createTime,omitempty"`     // Create time of project
+	Description    string                                                 `json:"description,omitempty"`    // Description of project
+	ID             string                                                 `json:"id,omitempty"`             // UUID of project
+	LastUpdateTime *int                                                   `json:"lastUpdateTime,omitempty"` // Update time of project
+	Name           string                                                 `json:"name,omitempty"`           // Name of project
+	Templates      *[]RequestConfigurationTemplatesUpdateProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
 }
 type RequestConfigurationTemplatesUpdateProjectTags struct {
 	ID   string `json:"id,omitempty"`   // UUID of tag
 	Name string `json:"name,omitempty"` // Name of tag
 }
-type RequestConfigurationTemplatesUpdateProjectTemplates interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplates struct {
+	Tags                    *[]RequestConfigurationTemplatesUpdateProjectTemplatesTags                   `json:"tags,omitempty"`                    //
+	Author                  string                                                                       `json:"author,omitempty"`                  // Author of template
+	Composite               *bool                                                                        `json:"composite,omitempty"`               // Is it composite template
+	ContainingTemplates     *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplates    `json:"containingTemplates,omitempty"`     //
+	CreateTime              *int                                                                         `json:"createTime,omitempty"`              // Create time of template
+	CustomParamsOrder       *bool                                                                        `json:"customParamsOrder,omitempty"`       // Custom Params Order
+	Description             string                                                                       `json:"description,omitempty"`             // Description of template
+	DeviceTypes             *[]RequestConfigurationTemplatesUpdateProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
+	FailurePolicy           string                                                                       `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
+	ID                      string                                                                       `json:"id,omitempty"`                      // UUID of template
+	Language                string                                                                       `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
+	LastUpdateTime          *int                                                                         `json:"lastUpdateTime,omitempty"`          // Update time of template
+	LatestVersionTime       *int                                                                         `json:"latestVersionTime,omitempty"`       // Latest versioned template time
+	Name                    string                                                                       `json:"name,omitempty"`                    // Name of template
+	ParentTemplateID        string                                                                       `json:"parentTemplateId,omitempty"`        // Parent templateID
+	ProjectID               string                                                                       `json:"projectId,omitempty"`               // Project UUID
+	ProjectName             string                                                                       `json:"projectName,omitempty"`             // Project name
+	RollbackTemplateContent string                                                                       `json:"rollbackTemplateContent,omitempty"` // Rollback template content
+	RollbackTemplateParams  *[]RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"`  //
+	SoftwareType            string                                                                       `json:"softwareType,omitempty"`            // Applicable device software type
+	SoftwareVariant         string                                                                       `json:"softwareVariant,omitempty"`         // Applicable device software variant
+	SoftwareVersion         string                                                                       `json:"softwareVersion,omitempty"`         // Applicable device software version
+	TemplateContent         string                                                                       `json:"templateContent,omitempty"`         // Template content
+	TemplateParams          *[]RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParams         `json:"templateParams,omitempty"`          //
+	ValidationErrors        *RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrors         `json:"validationErrors,omitempty"`        //
+	Version                 string                                                                       `json:"version,omitempty"`                 // Current version of template
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplates struct {
+	Tags                   *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTags                   `json:"tags,omitempty"`                   //
+	Composite              *bool                                                                                           `json:"composite,omitempty"`              // Is it composite template
+	Description            string                                                                                          `json:"description,omitempty"`            // Description of template
+	DeviceTypes            *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`            //
+	ID                     string                                                                                          `json:"id,omitempty"`                     // UUID of template
+	Language               string                                                                                          `json:"language,omitempty"`               // Template language (JINJA or VELOCITY)
+	Name                   string                                                                                          `json:"name,omitempty"`                   // Name of template
+	ProjectName            string                                                                                          `json:"projectName,omitempty"`            // Project name
+	RollbackTemplateParams *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParams `json:"rollbackTemplateParams,omitempty"` //
+	TemplateContent        string                                                                                          `json:"templateContent,omitempty"`        // Template content
+	TemplateParams         *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParams         `json:"templateParams,omitempty"`         //
+	Version                string                                                                                          `json:"version,omitempty"`                // Current version of template
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTags struct {
+	ID   string `json:"id,omitempty"`   // UUID of tag
+	Name string `json:"name,omitempty"` // Name of tag
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                                                 `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                                   `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                                 `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                                 `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                                 `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                                 `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                                 `json:"group,omitempty"`           // group
+	ID              string                                                                                                 `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                                 `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                                 `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                                  `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                                   `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                                  `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                                 `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                                 `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                                  `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                              `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                                `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                                `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParams struct {
+	Binding         string                                                                                         `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                           `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                                         `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                                         `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                                         `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                                         `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                                         `json:"group,omitempty"`           // group
+	ID              string                                                                                         `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                                         `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                                         `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                                          `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                           `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                                          `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                                         `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                                         `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                                          `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                                      `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                                        `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                                        `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesContainingTemplatesTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesDeviceTypes struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Device family
+	ProductSeries string `json:"productSeries,omitempty"` // Device series
+	ProductType   string `json:"productType,omitempty"`   // Device type
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParams struct {
+	Binding         string                                                                              `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                                `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                              `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                              `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                              `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                              `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                              `json:"group,omitempty"`           // group
+	ID              string                                                                              `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                              `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                              `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                               `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                                `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                               `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                              `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                              `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                               `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                           `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                             `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                             `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesRollbackTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParams struct {
+	Binding         string                                                                      `json:"binding,omitempty"`         // Bind to source
+	CustomOrder     *int                                                                        `json:"customOrder,omitempty"`     // CustomOrder of template param
+	DataType        string                                                                      `json:"dataType,omitempty"`        // Datatype of template param
+	DefaultValue    string                                                                      `json:"defaultValue,omitempty"`    // Default value of template param
+	Description     string                                                                      `json:"description,omitempty"`     // Description of template param
+	DisplayName     string                                                                      `json:"displayName,omitempty"`     // Display name of param
+	Group           string                                                                      `json:"group,omitempty"`           // group
+	ID              string                                                                      `json:"id,omitempty"`              // UUID of template param
+	InstructionText string                                                                      `json:"instructionText,omitempty"` // Instruction text for param
+	Key             string                                                                      `json:"key,omitempty"`             // key
+	NotParam        *bool                                                                       `json:"notParam,omitempty"`        // Is it not a variable
+	Order           *int                                                                        `json:"order,omitempty"`           // Order of template param
+	ParamArray      *bool                                                                       `json:"paramArray,omitempty"`      // Is it an array
+	ParameterName   string                                                                      `json:"parameterName,omitempty"`   // Name of template param
+	Provider        string                                                                      `json:"provider,omitempty"`        // provider
+	Range           *[]RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsRange   `json:"range,omitempty"`           //
+	Required        *bool                                                                       `json:"required,omitempty"`        // Is param required
+	Selection       *RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsSelection `json:"selection,omitempty"`       //
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsRange struct {
+	ID       string `json:"id,omitempty"`       // UUID of range
+	MaxValue *int   `json:"maxValue,omitempty"` // Max value of range
+	MinValue *int   `json:"minValue,omitempty"` // Min value of range
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsSelection struct {
+	DefaultSelectedValues []string                                                                                   `json:"defaultSelectedValues,omitempty"` // Default selection values
+	ID                    string                                                                                     `json:"id,omitempty"`                    // UUID of selection
+	SelectionType         string                                                                                     `json:"selectionType,omitempty"`         // Type of selection(SINGLE_SELECT or MULTI_SELECT)
+	SelectionValues       *RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsSelectionSelectionValues `json:"selectionValues,omitempty"`       // Selection values
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesTemplateParamsSelectionSelectionValues interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrors struct {
+	RollbackTemplateErrors *[]RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                       `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                       `json:"templateVersion,omitempty"`        // Current version of template
+}
+type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsRollbackTemplateErrors interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsTemplateErrors interface{}
 type RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria []RequestItemConfigurationTemplatesExportsTheProjectsForAGivenCriteria // Array of RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria
 type RequestItemConfigurationTemplatesExportsTheProjectsForAGivenCriteria interface{}
 type RequestConfigurationTemplatesImportsTheTemplatesProvided []RequestItemConfigurationTemplatesImportsTheTemplatesProvided // Array of RequestConfigurationTemplatesImportsTheTemplatesProvided
@@ -927,10 +1458,10 @@ type RequestItemConfigurationTemplatesImportsTheTemplatesProvidedTemplateParamsS
 }
 type RequestItemConfigurationTemplatesImportsTheTemplatesProvidedTemplateParamsSelectionSelectionValues interface{}
 type RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrors struct {
-	RollbackTemplateErrors *RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
-	TemplateErrors         *RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
-	TemplateID             string                                                                                              `json:"templateId,omitempty"`             // UUID of template
-	TemplateVersion        string                                                                                              `json:"templateVersion,omitempty"`        // Current version of template
+	RollbackTemplateErrors *[]RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                                                `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                                                `json:"templateVersion,omitempty"`        // Current version of template
 }
 type RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsRollbackTemplateErrors interface{}
 type RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrorsTemplateErrors interface{}
@@ -1123,10 +1654,10 @@ type RequestConfigurationTemplatesCreateTemplateTemplateParamsSelection struct {
 }
 type RequestConfigurationTemplatesCreateTemplateTemplateParamsSelectionSelectionValues interface{}
 type RequestConfigurationTemplatesCreateTemplateValidationErrors struct {
-	RollbackTemplateErrors *RequestConfigurationTemplatesCreateTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
-	TemplateErrors         *RequestConfigurationTemplatesCreateTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
-	TemplateID             string                                                                             `json:"templateId,omitempty"`             // UUID of template
-	TemplateVersion        string                                                                             `json:"templateVersion,omitempty"`        // Current version of template
+	RollbackTemplateErrors *[]RequestConfigurationTemplatesCreateTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]RequestConfigurationTemplatesCreateTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                               `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                               `json:"templateVersion,omitempty"`        // Current version of template
 }
 type RequestConfigurationTemplatesCreateTemplateValidationErrorsRollbackTemplateErrors interface{}
 type RequestConfigurationTemplatesCreateTemplateValidationErrorsTemplateErrors interface{}
@@ -1319,10 +1850,10 @@ type RequestConfigurationTemplatesUpdateTemplateTemplateParamsSelection struct {
 }
 type RequestConfigurationTemplatesUpdateTemplateTemplateParamsSelectionSelectionValues interface{}
 type RequestConfigurationTemplatesUpdateTemplateValidationErrors struct {
-	RollbackTemplateErrors *RequestConfigurationTemplatesUpdateTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
-	TemplateErrors         *RequestConfigurationTemplatesUpdateTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
-	TemplateID             string                                                                             `json:"templateId,omitempty"`             // UUID of template
-	TemplateVersion        string                                                                             `json:"templateVersion,omitempty"`        // Current version of template
+	RollbackTemplateErrors *[]RequestConfigurationTemplatesUpdateTemplateValidationErrorsRollbackTemplateErrors `json:"rollbackTemplateErrors,omitempty"` // Validation or design conflicts errors of rollback template
+	TemplateErrors         *[]RequestConfigurationTemplatesUpdateTemplateValidationErrorsTemplateErrors         `json:"templateErrors,omitempty"`         // Validation or design conflicts errors
+	TemplateID             string                                                                               `json:"templateId,omitempty"`             // UUID of template
+	TemplateVersion        string                                                                               `json:"templateVersion,omitempty"`        // Current version of template
 }
 type RequestConfigurationTemplatesUpdateTemplateValidationErrorsRollbackTemplateErrors interface{}
 type RequestConfigurationTemplatesUpdateTemplateValidationErrorsTemplateErrors interface{}
@@ -1336,22 +1867,22 @@ type RequestConfigurationTemplatesDeployTemplate struct {
 }
 type RequestConfigurationTemplatesDeployTemplateMemberTemplateDeploymentInfo interface{}
 type RequestConfigurationTemplatesDeployTemplateTargetInfo struct {
-	HostName            string                                                               `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
-	ID                  string                                                               `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
-	Params              *RequestConfigurationTemplatesDeployTemplateTargetInfoParams         `json:"params,omitempty"`              // Template params/values to be provisioned
-	ResourceParams      *RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
-	Type                string                                                               `json:"type,omitempty"`                // Target type of device
-	VersionedTemplateID string                                                               `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
+	HostName            string                                                                 `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
+	ID                  string                                                                 `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
+	Params              *RequestConfigurationTemplatesDeployTemplateTargetInfoParams           `json:"params,omitempty"`              // Template params/values to be provisioned
+	ResourceParams      *[]RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
+	Type                string                                                                 `json:"type,omitempty"`                // Target type of device
+	VersionedTemplateID string                                                                 `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
 type RequestConfigurationTemplatesDeployTemplateTargetInfoParams interface{}
 type RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams interface{}
 type RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria []RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria // Array of RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria
 type RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria interface{}
 type RequestConfigurationTemplatesPreviewTemplate struct {
-	DeviceID       string                                                      `json:"deviceId,omitempty"`       // UUID of device to get template preview
-	Params         *RequestConfigurationTemplatesPreviewTemplateParams         `json:"params,omitempty"`         // Params to render preview
-	ResourceParams *RequestConfigurationTemplatesPreviewTemplateResourceParams `json:"resourceParams,omitempty"` // Resource params to render preview
-	TemplateID     string                                                      `json:"templateId,omitempty"`     // UUID of template to get template preview
+	DeviceID       string                                                        `json:"deviceId,omitempty"`       // UUID of device to get template preview
+	Params         *RequestConfigurationTemplatesPreviewTemplateParams           `json:"params,omitempty"`         // Params to render preview
+	ResourceParams *[]RequestConfigurationTemplatesPreviewTemplateResourceParams `json:"resourceParams,omitempty"` // Resource params to render preview
+	TemplateID     string                                                        `json:"templateId,omitempty"`     // UUID of template to get template preview
 }
 type RequestConfigurationTemplatesPreviewTemplateParams interface{}
 type RequestConfigurationTemplatesPreviewTemplateResourceParams interface{}
@@ -1369,12 +1900,12 @@ type RequestConfigurationTemplatesDeployTemplateV2 struct {
 }
 type RequestConfigurationTemplatesDeployTemplateV2MemberTemplateDeploymentInfo interface{}
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfo struct {
-	HostName            string                                                                 `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
-	ID                  string                                                                 `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
-	Params              *RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams         `json:"params,omitempty"`              // Template params/values to be provisioned
-	ResourceParams      *RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
-	Type                string                                                                 `json:"type,omitempty"`                // Target type of device
-	VersionedTemplateID string                                                                 `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
+	HostName            string                                                                   `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
+	ID                  string                                                                   `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
+	Params              *RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams           `json:"params,omitempty"`              // Template params/values to be provisioned
+	ResourceParams      *[]RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
+	Type                string                                                                   `json:"type,omitempty"`                // Target type of device
+	VersionedTemplateID string                                                                   `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams interface{}
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams interface{}
@@ -1574,70 +2105,6 @@ func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID s
 
 }
 
-//GetProjectsDetails Get project(s) details - 9a8c-aa6d-459b-a4a2
-/* Get project(s) details
-
-
-@param GetProjectsDetailsQueryParams Filtering parameter
-*/
-func (s *ConfigurationTemplatesService) GetProjectsDetails(GetProjectsDetailsQueryParams *GetProjectsDetailsQueryParams) (*ResponseConfigurationTemplatesGetProjectsDetails, *resty.Response, error) {
-	path := "/dna/intent/api/v2/template-programmer/project"
-
-	queryString, _ := query.Values(GetProjectsDetailsQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetProjectsDetails{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetProjectsDetails")
-	}
-
-	result := response.Result().(*ResponseConfigurationTemplatesGetProjectsDetails)
-	return result, response, err
-
-}
-
-//GetTemplatesDetails Get template(s) details - b0b6-ba49-43c8-9f45
-/* Get template(s) details
-
-
-@param GetTemplatesDetailsQueryParams Filtering parameter
-*/
-func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQueryParams *GetTemplatesDetailsQueryParams) (*ResponseConfigurationTemplatesGetTemplatesDetails, *resty.Response, error) {
-	path := "/dna/intent/api/v2/template-programmer/template"
-
-	queryString, _ := query.Values(GetTemplatesDetailsQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetTemplatesDetails{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetTemplatesDetails")
-	}
-
-	result := response.Result().(*ResponseConfigurationTemplatesGetTemplatesDetails)
-	return result, response, err
-
-}
-
 //CreatesACloneOfTheGivenTemplate Creates a clone of the given template - 0384-4a0a-4ee8-bfc2
 /* API to clone template
 
@@ -1646,21 +2113,19 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQ
 
 @param templateID templateId path parameter. UUID of the template to clone it
 
-@param projectID projectId path parameter.
-@param CreatesACloneOfTheGivenTemplateQueryParams Filtering parameter
+@param projectID projectId path parameter. UUID of the project in which the template needs to be created
+
 */
-func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string, CreatesACloneOfTheGivenTemplateQueryParams *CreatesACloneOfTheGivenTemplateQueryParams) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string, requestConfigurationTemplatesCreatesACloneOfTheGivenTemplate *RequestConfigurationTemplatesCreatesACloneOfTheGivenTemplate) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/clone/name/{name}/project/{projectId}/template/{templateId}"
 	path = strings.Replace(path, "{name}", fmt.Sprintf("%v", name), -1)
 	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
 	path = strings.Replace(path, "{projectId}", fmt.Sprintf("%v", projectID), -1)
 
-	queryString, _ := query.Values(CreatesACloneOfTheGivenTemplateQueryParams)
-
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).
+		SetBody(requestConfigurationTemplatesCreatesACloneOfTheGivenTemplate).
 		SetResult(&ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate{}).
 		SetError(&Error).
 		Post(path)

@@ -24,7 +24,7 @@ type ResponseReportsCreateOrScheduleAReport struct {
 	Name              string                                              `json:"name,omitempty"`              // report name
 	ReportID          string                                              `json:"reportId,omitempty"`          // report Id
 	ReportWasExecuted *bool                                               `json:"reportWasExecuted,omitempty"` // true if atleast one execution has started
-	Schedule          *ResponseReportsCreateOrScheduleAReportSchedule     `json:"schedule,omitempty"`          //
+	Schedule          *ResponseReportsCreateOrScheduleAReportSchedule     `json:"schedule,omitempty"`          // Schedule
 	View              *ResponseReportsCreateOrScheduleAReportView         `json:"view,omitempty"`              //
 	ViewGroupID       string                                              `json:"viewGroupId,omitempty"`       // viewGroupId of the viewgroup for the report
 	ViewGroupVersion  string                                              `json:"viewGroupVersion,omitempty"`  // version of viewgroup for the report
@@ -79,7 +79,7 @@ type ResponseItemReportsGetListOfScheduledReports struct {
 	Name              string                                                    `json:"name,omitempty"`              // report name
 	ReportID          string                                                    `json:"reportId,omitempty"`          // report Id
 	ReportWasExecuted *bool                                                     `json:"reportWasExecuted,omitempty"` // true if atleast one execution has started
-	Schedule          *ResponseItemReportsGetListOfScheduledReportsSchedule     `json:"schedule,omitempty"`          //
+	Schedule          *ResponseItemReportsGetListOfScheduledReportsSchedule     `json:"schedule,omitempty"`          // Schedule
 	View              *ResponseItemReportsGetListOfScheduledReportsView         `json:"view,omitempty"`              //
 	ViewGroupID       string                                                    `json:"viewGroupId,omitempty"`       // viewGroupId of the viewgroup for the report
 	ViewGroupVersion  string                                                    `json:"viewGroupVersion,omitempty"`  // version of viewgroup for the report
@@ -172,7 +172,7 @@ type ResponseReportsGetAScheduledReportViewFilters struct {
 	DisplayName string                                              `json:"displayName,omitempty"` // filter label/displayname
 	Name        string                                              `json:"name,omitempty"`        // filter name
 	Type        string                                              `json:"type,omitempty"`        // filter type
-	Value       *ResponseReportsGetAScheduledReportViewFiltersValue `json:"value,omitempty"`       // value of filter. data type is based on the filter type.
+	Value       *ResponseReportsGetAScheduledReportViewFiltersValue `json:"value,omitempty"`       // Value of filter. data type is based on the filter type.
 }
 type ResponseReportsGetAScheduledReportViewFiltersValue interface{}
 type ResponseReportsGetAScheduledReportViewFormat struct {
@@ -193,7 +193,7 @@ type ResponseReportsGetAllExecutionDetailsForAGivenReport struct {
 	Name              string                                                            `json:"name,omitempty"`              // report dataset name
 	ReportID          string                                                            `json:"reportId,omitempty"`          // report Id
 	ReportWasExecuted *bool                                                             `json:"reportWasExecuted,omitempty"` // true if atleast one execution has started
-	Schedule          *ResponseReportsGetAllExecutionDetailsForAGivenReportSchedule     `json:"schedule,omitempty"`          //
+	Schedule          *ResponseReportsGetAllExecutionDetailsForAGivenReportSchedule     `json:"schedule,omitempty"`          // Schedule
 	View              *ResponseReportsGetAllExecutionDetailsForAGivenReportView         `json:"view,omitempty"`              //
 	ViewGroupID       string                                                            `json:"viewGroupId,omitempty"`       // viewGroupId of the viewgroup for the report
 	ViewGroupVersion  string                                                            `json:"viewGroupVersion,omitempty"`  // version of viewgroup for the report
@@ -212,7 +212,7 @@ type ResponseReportsGetAllExecutionDetailsForAGivenReportSchedule interface{}
 type ResponseReportsGetAllExecutionDetailsForAGivenReportView struct {
 	FieldGroups *[]ResponseReportsGetAllExecutionDetailsForAGivenReportViewFieldGroups `json:"fieldGroups,omitempty"` //
 	Filters     *[]ResponseReportsGetAllExecutionDetailsForAGivenReportViewFilters     `json:"filters,omitempty"`     //
-	Format      *ResponseReportsGetAllExecutionDetailsForAGivenReportViewFormat        `json:"format,omitempty"`      //
+	Format      *ResponseReportsGetAllExecutionDetailsForAGivenReportViewFormat        `json:"format,omitempty"`      // Format
 	Name        string                                                                 `json:"name,omitempty"`        // view name
 	ViewID      string                                                                 `json:"viewId,omitempty"`      // view Id
 	Description string                                                                 `json:"description,omitempty"` // view description
@@ -237,67 +237,67 @@ type ResponseReportsGetViewsForAGivenViewGroupViews struct {
 	ViewID      string `json:"viewId,omitempty"`      // Unique id for a view within viewgroup
 	ViewName    string `json:"viewName,omitempty"`    // view name
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupView struct {
-	Deliveries  *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewDeliveries  `json:"deliveries,omitempty"`  //
-	Description string                                                            `json:"description,omitempty"` // view description
-	FieldGroups *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewFieldGroups `json:"fieldGroups,omitempty"` //
-	Filters     *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewFilters     `json:"filters,omitempty"`     //
-	Formats     *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewFormats     `json:"formats,omitempty"`     //
-	Schedules   *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewSchedules   `json:"schedules,omitempty"`   //
-	ViewID      string                                                            `json:"viewId,omitempty"`      // Unique view Id
-	ViewInfo    string                                                            `json:"viewInfo,omitempty"`    // view filters info
-	ViewName    string                                                            `json:"viewName,omitempty"`    // view name
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndView struct {
+	Deliveries  *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewDeliveries  `json:"deliveries,omitempty"`  //
+	Description string                                                               `json:"description,omitempty"` // view description
+	FieldGroups *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFieldGroups `json:"fieldGroups,omitempty"` //
+	Filters     *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFilters     `json:"filters,omitempty"`     //
+	Formats     *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFormats     `json:"formats,omitempty"`     //
+	Schedules   *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewSchedules   `json:"schedules,omitempty"`   //
+	ViewID      string                                                               `json:"viewId,omitempty"`      // Unique view Id
+	ViewInfo    string                                                               `json:"viewInfo,omitempty"`    // view filters info
+	ViewName    string                                                               `json:"viewName,omitempty"`    // view name
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewDeliveries struct {
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewDeliveries struct {
 	Type    string `json:"type,omitempty"`    // delivery type
 	Default *bool  `json:"default,omitempty"` // true, if the delivery type is considered default
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFieldGroups struct {
-	FieldGroupDisplayName string                                                                  `json:"fieldGroupDisplayName,omitempty"` // Field group label/displayname for user
-	FieldGroupName        string                                                                  `json:"fieldGroupName,omitempty"`        // Field group name
-	Fields                *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewFieldGroupsFields `json:"fields,omitempty"`                //
-	TableID               string                                                                  `json:"tableId,omitempty"`               // Table Id of the corresponding table mapped to fieldgroup
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFieldGroups struct {
+	FieldGroupDisplayName string                                                                     `json:"fieldGroupDisplayName,omitempty"` // Field group label/displayname for user
+	FieldGroupName        string                                                                     `json:"fieldGroupName,omitempty"`        // Field group name
+	Fields                *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFieldGroupsFields `json:"fields,omitempty"`                //
+	TableID               string                                                                     `json:"tableId,omitempty"`               // Table Id of the corresponding table mapped to fieldgroup
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFieldGroupsFields struct {
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFieldGroupsFields struct {
 	DisplayName string `json:"displayName,omitempty"` // field label/displayname
 	Name        string `json:"name,omitempty"`        // field name
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFilters struct {
-	AdditionalInfo *ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersAdditionalInfo `json:"additionalInfo,omitempty"` // Additional info for managing filter options
-	CacheFilter    *bool                                                                     `json:"cacheFilter,omitempty"`    //
-	DataType       string                                                                    `json:"dataType,omitempty"`       // data type of filter value
-	DisplayName    string                                                                    `json:"displayName,omitempty"`    // filter label/displayname
-	FilterSource   *ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersFilterSource   `json:"filterSource,omitempty"`   //
-	Name           string                                                                    `json:"name,omitempty"`           // filter name
-	Required       *bool                                                                     `json:"required,omitempty"`       // true if the filter is required
-	TimeOptions    *[]ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersTimeOptions  `json:"timeOptions,omitempty"`    //
-	Type           string                                                                    `json:"type,omitempty"`           // filter type. Used to handle filter value selection by the client for report configuration.
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFilters struct {
+	AdditionalInfo *ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersAdditionalInfo `json:"additionalInfo,omitempty"` // Additional info for managing filter options
+	CacheFilter    *bool                                                                        `json:"cacheFilter,omitempty"`    //
+	DataType       string                                                                       `json:"dataType,omitempty"`       // data type of filter value
+	DisplayName    string                                                                       `json:"displayName,omitempty"`    // filter label/displayname
+	FilterSource   *ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersFilterSource   `json:"filterSource,omitempty"`   //
+	Name           string                                                                       `json:"name,omitempty"`           // filter name
+	Required       *bool                                                                        `json:"required,omitempty"`       // true if the filter is required
+	TimeOptions    *[]ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersTimeOptions  `json:"timeOptions,omitempty"`    //
+	Type           string                                                                       `json:"type,omitempty"`           // filter type. Used to handle filter value selection by the client for report configuration.
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersAdditionalInfo interface{}
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersFilterSource struct {
-	DataSource       *ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersFilterSourceDataSource `json:"dataSource,omitempty"`       //
-	DisplayValuePath string                                                                            `json:"displayValuePath,omitempty"` // JSONPath of the label of filter option from the filter option as root
-	RootPath         string                                                                            `json:"rootPath,omitempty"`         // JSONPath of the filter options array in the API response
-	ValuePath        string                                                                            `json:"valuePath,omitempty"`        // JSONPath of the value of filter option from the filter option as root
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersAdditionalInfo interface{}
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersFilterSource struct {
+	DataSource       *ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersFilterSourceDataSource `json:"dataSource,omitempty"`       // Data Source
+	DisplayValuePath string                                                                               `json:"displayValuePath,omitempty"` // JSONPath of the label of filter option from the filter option as root
+	RootPath         string                                                                               `json:"rootPath,omitempty"`         // JSONPath of the filter options array in the API response
+	ValuePath        string                                                                               `json:"valuePath,omitempty"`        // JSONPath of the value of filter option from the filter option as root
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersFilterSourceDataSource interface{}
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFiltersTimeOptions struct {
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersFilterSourceDataSource interface{}
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFiltersTimeOptions struct {
 	Info     string `json:"info,omitempty"`     // Time range option description
 	MaxValue *int   `json:"maxValue,omitempty"` // Maximum number of hours allowed for the time range option. (Client Validation)
 	MinValue *int   `json:"minValue,omitempty"` // Minimum number of hours allowed for the time range option. (Client Validation)
 	Name     string `json:"name,omitempty"`     // Time range option label
 	Value    string `json:"value,omitempty"`    // Time range option value
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFormats struct {
-	Format   string                                                              `json:"format,omitempty"`   // format type
-	Name     string                                                              `json:"name,omitempty"`     // format name
-	Default  *bool                                                               `json:"default,omitempty"`  // true, if the format type is considered default
-	Template *ResponseReportsGetViewDetailsForAGivenViewGroupViewFormatsTemplate `json:"template,omitempty"` //
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFormats struct {
+	Format   string                                                                 `json:"format,omitempty"`   // format type
+	Name     string                                                                 `json:"name,omitempty"`     // format name
+	Default  *bool                                                                  `json:"default,omitempty"`  // true, if the format type is considered default
+	Template *ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFormatsTemplate `json:"template,omitempty"` //
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewFormatsTemplate struct {
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewFormatsTemplate struct {
 	JsTemplateID string `json:"jsTemplateId,omitempty"` // TemplateId of template
 }
-type ResponseReportsGetViewDetailsForAGivenViewGroupViewSchedules struct {
+type ResponseReportsGetViewDetailsForAGivenViewGroupAndViewSchedules struct {
 	Type    string `json:"type,omitempty"`    // schedule type
 	Default *bool  `json:"default,omitempty"` // true, if the schedule type is default
 }
@@ -535,7 +535,7 @@ func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*Respon
 
 }
 
-//GetViewDetailsForAGivenViewGroupView Get view details for a given view group & view - 1d9a-ba2f-4f89-ae51
+//GetViewDetailsForAGivenViewGroupAndView Get view details for a given view group & view - 1d9a-ba2f-4f89-ae51
 /* Gives complete information of the view that is required to configure a report. Use "Get views for a given view group" API to get the viewIds  (required as a query param for this API) for available views.
 
 
@@ -544,7 +544,7 @@ func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*Respon
 @param viewID viewId path parameter. view id of view
 
 */
-func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string, viewID string) (*ResponseReportsGetViewDetailsForAGivenViewGroupView, *resty.Response, error) {
+func (s *ReportsService) GetViewDetailsForAGivenViewGroupAndView(viewGroupID string, viewID string) (*ResponseReportsGetViewDetailsForAGivenViewGroupAndView, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups/{viewGroupId}/views/{viewId}"
 	path = strings.Replace(path, "{viewGroupId}", fmt.Sprintf("%v", viewGroupID), -1)
 	path = strings.Replace(path, "{viewId}", fmt.Sprintf("%v", viewID), -1)
@@ -552,7 +552,7 @@ func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseReportsGetViewDetailsForAGivenViewGroupView{}).
+		SetResult(&ResponseReportsGetViewDetailsForAGivenViewGroupAndView{}).
 		SetError(&Error).
 		Get(path)
 
@@ -562,10 +562,10 @@ func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetViewDetailsForAGivenViewGroupView")
+		return nil, response, fmt.Errorf("error with operation GetViewDetailsForAGivenViewGroupAndView")
 	}
 
-	result := response.Result().(*ResponseReportsGetViewDetailsForAGivenViewGroupView)
+	result := response.Result().(*ResponseReportsGetViewDetailsForAGivenViewGroupAndView)
 	return result, response, err
 
 }

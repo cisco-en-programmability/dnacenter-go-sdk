@@ -206,6 +206,11 @@ type ResponseItemWirelessGetDynamicInterface struct {
 	InterfaceName string   `json:"interfaceName,omitempty"` // dynamic interface name
 	VLANID        *float64 `json:"vlanId,omitempty"`        // Vlan id
 }
+type ResponseWirelessDeleteDynamicInterface struct {
+	ExecutionID        string `json:"executionId,omitempty"`        //
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
+	Message            string `json:"message,omitempty"`            //
+}
 type ResponseWirelessUpdateWirelessProfile struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
@@ -223,19 +228,9 @@ type ResponseItemWirelessGetWirelessProfile struct {
 type ResponseItemWirelessGetWirelessProfileProfileDetails struct {
 	Name        string                                                             `json:"name,omitempty"`        // Profile Name
 	Sites       []string                                                           `json:"sites,omitempty"`       // array of site name hierarchies(eg: ["Global/aaa/zzz", "Global/aaa/zzz"])
-	SSIDDetails *[]ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails `json:"ssidDetails,omitempty"` //
+	SSIDDetails *[]ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails `json:"ssidDetails,omitempty"` // SSID Details
 }
-type ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails struct {
-	Name          string                                                                      `json:"name,omitempty"`          // SSID Name
-	Type          string                                                                      `json:"type,omitempty"`          // SSID Type(enum: Enterprise/Guest)
-	EnableFabric  *bool                                                                       `json:"enableFabric,omitempty"`  // true if fabric is enabled else false
-	FlexConnect   *ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
-	InterfaceName string                                                                      `json:"interfaceName,omitempty"` // Interface Name
-}
-type ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
-	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
-	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To VLAN ID
-}
+type ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails interface{}
 type ResponseWirelessProvisionUpdate struct {
 	ExecutionID       string                                            `json:"executionId,omitempty"`       // Execution Id
 	ExecutionURL      string                                            `json:"executionUrl,omitempty"`      // Execution Url
@@ -312,7 +307,7 @@ type RequestWirelessCreateAndProvisionSSIDSSIDDetails struct {
 	Passphrase          string `json:"passphrase,omitempty"`          // Pass Phrase ( Only applicable for SSID with PERSONAL auth type )
 	TrafficType         string `json:"trafficType,omitempty"`         // Traffic Type
 	EnableBroadcastSSID *bool  `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
-	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'.
+	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy
 	EnableMacFiltering  *bool  `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
 	FastTransition      string `json:"fastTransition,omitempty"`      // Fast Transition
 	WebAuthURL          string `json:"webAuthURL,omitempty"`          // Web Auth URL
@@ -328,7 +323,7 @@ type RequestWirelessCreateEnterpriseSSID struct {
 	EnableFastLane                   *bool  `json:"enableFastLane,omitempty"`                   // Enable Fast Lane
 	EnableMacFiltering               *bool  `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
 	TrafficType                      string `json:"trafficType,omitempty"`                      // Traffic Type
-	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'.
+	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy
 	EnableBroadcastSSID              *bool  `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcast SSID
 	FastTransition                   string `json:"fastTransition,omitempty"`                   // Fast Transition
 	EnableSessionTimeOut             *bool  `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
@@ -348,7 +343,7 @@ type RequestWirelessUpdateEnterpriseSSID struct {
 	EnableFastLane                   *bool  `json:"enableFastLane,omitempty"`                   // Enable Fast Lane
 	EnableMacFiltering               *bool  `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
 	TrafficType                      string `json:"trafficType,omitempty"`                      // Traffic Type
-	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'
+	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy
 	EnableBroadcastSSID              *bool  `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcast SSID
 	FastTransition                   string `json:"fastTransition,omitempty"`                   // Fast Transition
 	EnableSessionTimeOut             *bool  `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
@@ -386,13 +381,13 @@ type RequestWirelessUpdateWirelessProfileProfileDetails struct {
 type RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetails struct {
 	Name          string                                                                    `json:"name,omitempty"`          // Ssid Name
 	Type          string                                                                    `json:"type,omitempty"`          // Ssid Type(enum: Enterprise/Guest)
-	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true is ssid is fabric else false
+	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true if ssid is fabric else false
 	FlexConnect   *RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
 	InterfaceName string                                                                    `json:"interfaceName,omitempty"` // Interface Name
 }
 type RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
-	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan
+	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan Id
 }
 type RequestWirelessCreateWirelessProfile struct {
 	ProfileDetails *RequestWirelessCreateWirelessProfileProfileDetails `json:"profileDetails,omitempty"` //
@@ -405,26 +400,26 @@ type RequestWirelessCreateWirelessProfileProfileDetails struct {
 type RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetails struct {
 	Name          string                                                                    `json:"name,omitempty"`          // Ssid Name
 	Type          string                                                                    `json:"type,omitempty"`          // Ssid Type(enum: Enterprise/Guest)
-	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true is ssid is fabric else false
+	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true if ssid is fabric else false
 	FlexConnect   *RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
 	InterfaceName string                                                                    `json:"interfaceName,omitempty"` // Interface Name
 }
 type RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
-	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan
+	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan Id
 }
 type RequestWirelessProvisionUpdate []RequestItemWirelessProvisionUpdate // Array of RequestWirelessProvisionUpdate
 type RequestItemWirelessProvisionUpdate struct {
 	DeviceName         string                                                 `json:"deviceName,omitempty"`         // Device Name
-	ManagedApLocations []string                                               `json:"managedAPLocations,omitempty"` // Managed APLocations
+	ManagedApLocations []string                                               `json:"managedAPLocations,omitempty"` // List of managed AP locations (Site Hierarchies)
 	DynamicInterfaces  *[]RequestItemWirelessProvisionUpdateDynamicInterfaces `json:"dynamicInterfaces,omitempty"`  //
 }
 type RequestItemWirelessProvisionUpdateDynamicInterfaces struct {
-	InterfaceIPAddress     string `json:"interfaceIPAddress,omitempty"`     // Interface IPAddress
+	InterfaceIPAddress     string `json:"interfaceIPAddress,omitempty"`     // Interface IP Address
 	InterfaceNetmaskInCIDR *int   `json:"interfaceNetmaskInCIDR,omitempty"` // Interface Netmask In CIDR
 	InterfaceGateway       string `json:"interfaceGateway,omitempty"`       // Interface Gateway
 	LagOrPortNumber        *int   `json:"lagOrPortNumber,omitempty"`        // Lag Or Port Number
-	VLANID                 *int   `json:"vlanId,omitempty"`                 // Vlan Id
+	VLANID                 *int   `json:"vlanId,omitempty"`                 // VLAN ID
 	InterfaceName          string `json:"interfaceName,omitempty"`          // Interface Name
 }
 type RequestWirelessProvision []RequestItemWirelessProvision // Array of RequestWirelessProvision
@@ -1142,7 +1137,7 @@ func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*Re
 
 @param DeleteDynamicInterfaceHeaderParams Custom header parameters
 */
-func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams) (*resty.Response, error) {
+func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams) (*ResponseWirelessDeleteDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface/{interfaceName}"
 	path = strings.Replace(path, "{interfaceName}", fmt.Sprintf("%v", interfaceName), -1)
 
@@ -1165,19 +1160,21 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 	}
 
 	response, err = clientRequest.
+		SetResult(&ResponseWirelessDeleteDynamicInterface{}).
 		SetError(&Error).
 		Delete(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteDynamicInterface")
+		return nil, response, fmt.Errorf("error with operation DeleteDynamicInterface")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessDeleteDynamicInterface)
+	return result, response, err
 
 }
 
@@ -1185,7 +1182,7 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 /* Delete RF profile(s)
 
 
-@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
+@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) non_custom RF profile cannot be deleted
 
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {

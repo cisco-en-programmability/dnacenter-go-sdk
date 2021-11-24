@@ -33,7 +33,7 @@ type GetDeviceList2QueryParams struct {
 	Hostname         string   `url:"hostname,omitempty"`         //Device Hostname
 	SiteName         string   `url:"siteName,omitempty"`         //Device Site Name
 }
-type GetDeviceCountQueryParams struct {
+type GetDeviceCount2QueryParams struct {
 	SerialNumber     []string `url:"serialNumber,omitempty"`     //Device Serial Number
 	State            []string `url:"state,omitempty"`            //Device State
 	OnbState         []string `url:"onbState,omitempty"`         //Device Onboarding State
@@ -70,80 +70,80 @@ type GetWorkflowCountQueryParams struct {
 	Name []string `url:"name,omitempty"` //Workflow Name
 }
 
-type ResponseDeviceOnboardingPnpAddDevice struct {
-	TypeID               string                                                    `json:"_id,omitempty"`                  // Id
-	DeviceInfo           *ResponseDeviceOnboardingPnpAddDeviceDeviceInfo           `json:"deviceInfo,omitempty"`           //
-	SystemResetWorkflow  *ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflow  `json:"systemResetWorkflow,omitempty"`  //
-	SystemWorkflow       *ResponseDeviceOnboardingPnpAddDeviceSystemWorkflow       `json:"systemWorkflow,omitempty"`       //
-	Workflow             *ResponseDeviceOnboardingPnpAddDeviceWorkflow             `json:"workflow,omitempty"`             //
-	RunSummaryList       *[]ResponseDeviceOnboardingPnpAddDeviceRunSummaryList     `json:"runSummaryList,omitempty"`       //
-	WorkflowParameters   *ResponseDeviceOnboardingPnpAddDeviceWorkflowParameters   `json:"workflowParameters,omitempty"`   //
-	DayZeroConfig        *ResponseDeviceOnboardingPnpAddDeviceDayZeroConfig        `json:"dayZeroConfig,omitempty"`        //
-	DayZeroConfigPreview *ResponseDeviceOnboardingPnpAddDeviceDayZeroConfigPreview `json:"dayZeroConfigPreview,omitempty"` // Day Zero Config Preview
-	Version              *float64                                                  `json:"version,omitempty"`              // Version
-	TenantID             string                                                    `json:"tenantId,omitempty"`             // Tenant Id
+type ResponseDeviceOnboardingPnpAddDevice2 struct {
+	TypeID               string                                                     `json:"_id,omitempty"`                  // Id
+	DeviceInfo           *ResponseDeviceOnboardingPnpAddDevice2DeviceInfo           `json:"deviceInfo,omitempty"`           //
+	SystemResetWorkflow  *ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflow  `json:"systemResetWorkflow,omitempty"`  //
+	SystemWorkflow       *ResponseDeviceOnboardingPnpAddDevice2SystemWorkflow       `json:"systemWorkflow,omitempty"`       //
+	Workflow             *ResponseDeviceOnboardingPnpAddDevice2Workflow             `json:"workflow,omitempty"`             //
+	RunSummaryList       *[]ResponseDeviceOnboardingPnpAddDevice2RunSummaryList     `json:"runSummaryList,omitempty"`       //
+	WorkflowParameters   *ResponseDeviceOnboardingPnpAddDevice2WorkflowParameters   `json:"workflowParameters,omitempty"`   //
+	DayZeroConfig        *ResponseDeviceOnboardingPnpAddDevice2DayZeroConfig        `json:"dayZeroConfig,omitempty"`        //
+	DayZeroConfigPreview *ResponseDeviceOnboardingPnpAddDevice2DayZeroConfigPreview `json:"dayZeroConfigPreview,omitempty"` // Day Zero Config Preview
+	Version              *float64                                                   `json:"version,omitempty"`              // Version
+	TenantID             string                                                     `json:"tenantId,omitempty"`             // Tenant Id
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfo struct {
-	Source                    string                                                                `json:"source,omitempty"`                    // Source
-	SerialNumber              string                                                                `json:"serialNumber,omitempty"`              // Serial Number
-	Stack                     *bool                                                                 `json:"stack,omitempty"`                     // Stack
-	Mode                      string                                                                `json:"mode,omitempty"`                      // Mode
-	State                     string                                                                `json:"state,omitempty"`                     // State
-	Location                  *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoLocation               `json:"location,omitempty"`                  //
-	Description               string                                                                `json:"description,omitempty"`               // Description
-	OnbState                  string                                                                `json:"onbState,omitempty"`                  // Onb State
-	AuthenticatedMicNumber    string                                                                `json:"authenticatedMicNumber,omitempty"`    // Authenticated Mic Number
-	AuthenticatedSudiSerialNo string                                                                `json:"authenticatedSudiSerialNo,omitempty"` // Authenticated Sudi Serial No
-	CapabilitiesSupported     []string                                                              `json:"capabilitiesSupported,omitempty"`     // Capabilities Supported
-	FeaturesSupported         []string                                                              `json:"featuresSupported,omitempty"`         // Features Supported
-	CmState                   string                                                                `json:"cmState,omitempty"`                   // Cm State
-	FirstContact              *float64                                                              `json:"firstContact,omitempty"`              // First Contact
-	LastContact               *float64                                                              `json:"lastContact,omitempty"`               // Last Contact
-	MacAddress                string                                                                `json:"macAddress,omitempty"`                // Mac Address
-	Pid                       string                                                                `json:"pid,omitempty"`                       // Pid
-	DeviceSudiSerialNos       []string                                                              `json:"deviceSudiSerialNos,omitempty"`       // Device Sudi Serial Nos
-	LastUpdateOn              *float64                                                              `json:"lastUpdateOn,omitempty"`              // Last Update On
-	WorkflowID                string                                                                `json:"workflowId,omitempty"`                // Workflow Id
-	WorkflowName              string                                                                `json:"workflowName,omitempty"`              // Workflow Name
-	ProjectID                 string                                                                `json:"projectId,omitempty"`                 // Project Id
-	ProjectName               string                                                                `json:"projectName,omitempty"`               // Project Name
-	DeviceType                string                                                                `json:"deviceType,omitempty"`                // Device Type
-	AgentType                 string                                                                `json:"agentType,omitempty"`                 // Agent Type
-	ImageVersion              string                                                                `json:"imageVersion,omitempty"`              // Image Version
-	FileSystemList            *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	PnpProfileList            *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileList       `json:"pnpProfileList,omitempty"`            //
-	ImageFile                 string                                                                `json:"imageFile,omitempty"`                 // Image File
-	HTTPHeaders               *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
-	NeighborLinks             *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks        `json:"neighborLinks,omitempty"`             //
-	LastSyncTime              *float64                                                              `json:"lastSyncTime,omitempty"`              // Last Sync Time
-	IPInterfaces              *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	Hostname                  string                                                                `json:"hostname,omitempty"`                  // Hostname
-	AuthStatus                string                                                                `json:"authStatus,omitempty"`                // Auth Status
-	StackInfo                 *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoStackInfo              `json:"stackInfo,omitempty"`                 //
-	ReloadRequested           *bool                                                                 `json:"reloadRequested,omitempty"`           // Reload Requested
-	AddedOn                   *float64                                                              `json:"addedOn,omitempty"`                   // Added On
-	SiteID                    string                                                                `json:"siteId,omitempty"`                    // Site Id
-	AAACredentials            *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	UserMicNumbers            []string                                                              `json:"userMicNumbers,omitempty"`            // User Mic Numbers
-	UserSudiSerialNos         []string                                                              `json:"userSudiSerialNos,omitempty"`         // User Sudi Serial Nos
-	AddnMacAddrs              []string                                                              `json:"addnMacAddrs,omitempty"`              // Addn Mac Addrs
-	PreWorkflowCliOuputs      *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPreWorkflowCliOuputs `json:"preWorkflowCliOuputs,omitempty"`      //
-	Tags                      *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoTags                   `json:"tags,omitempty"`                      // Tags
-	SudiRequired              *bool                                                                 `json:"sudiRequired,omitempty"`              // Sudi Required
-	SmartAccountID            string                                                                `json:"smartAccountId,omitempty"`            // Smart Account Id
-	VirtualAccountID          string                                                                `json:"virtualAccountId,omitempty"`          // Virtual Account Id
-	PopulateInventory         *bool                                                                 `json:"populateInventory,omitempty"`         // Populate Inventory
-	SiteName                  string                                                                `json:"siteName,omitempty"`                  // Site Name
-	Name                      string                                                                `json:"name,omitempty"`                      // Name
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfo struct {
+	Source                    string                                                                 `json:"source,omitempty"`                    // Source
+	SerialNumber              string                                                                 `json:"serialNumber,omitempty"`              // Serial Number
+	Stack                     *bool                                                                  `json:"stack,omitempty"`                     // Stack
+	Mode                      string                                                                 `json:"mode,omitempty"`                      // Mode
+	State                     string                                                                 `json:"state,omitempty"`                     // State
+	Location                  *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoLocation               `json:"location,omitempty"`                  //
+	Description               string                                                                 `json:"description,omitempty"`               // Description
+	OnbState                  string                                                                 `json:"onbState,omitempty"`                  // Onb State
+	AuthenticatedMicNumber    string                                                                 `json:"authenticatedMicNumber,omitempty"`    // Authenticated Mic Number
+	AuthenticatedSudiSerialNo string                                                                 `json:"authenticatedSudiSerialNo,omitempty"` // Authenticated Sudi Serial No
+	CapabilitiesSupported     []string                                                               `json:"capabilitiesSupported,omitempty"`     // Capabilities Supported
+	FeaturesSupported         []string                                                               `json:"featuresSupported,omitempty"`         // Features Supported
+	CmState                   string                                                                 `json:"cmState,omitempty"`                   // Cm State
+	FirstContact              *float64                                                               `json:"firstContact,omitempty"`              // First Contact
+	LastContact               *float64                                                               `json:"lastContact,omitempty"`               // Last Contact
+	MacAddress                string                                                                 `json:"macAddress,omitempty"`                // Mac Address
+	Pid                       string                                                                 `json:"pid,omitempty"`                       // Pid
+	DeviceSudiSerialNos       []string                                                               `json:"deviceSudiSerialNos,omitempty"`       // Device Sudi Serial Nos
+	LastUpdateOn              *float64                                                               `json:"lastUpdateOn,omitempty"`              // Last Update On
+	WorkflowID                string                                                                 `json:"workflowId,omitempty"`                // Workflow Id
+	WorkflowName              string                                                                 `json:"workflowName,omitempty"`              // Workflow Name
+	ProjectID                 string                                                                 `json:"projectId,omitempty"`                 // Project Id
+	ProjectName               string                                                                 `json:"projectName,omitempty"`               // Project Name
+	DeviceType                string                                                                 `json:"deviceType,omitempty"`                // Device Type
+	AgentType                 string                                                                 `json:"agentType,omitempty"`                 // Agent Type
+	ImageVersion              string                                                                 `json:"imageVersion,omitempty"`              // Image Version
+	FileSystemList            *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
+	PnpProfileList            *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileList       `json:"pnpProfileList,omitempty"`            //
+	ImageFile                 string                                                                 `json:"imageFile,omitempty"`                 // Image File
+	HTTPHeaders               *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
+	NeighborLinks             *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoNeighborLinks        `json:"neighborLinks,omitempty"`             //
+	LastSyncTime              *float64                                                               `json:"lastSyncTime,omitempty"`              // Last Sync Time
+	IPInterfaces              *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
+	Hostname                  string                                                                 `json:"hostname,omitempty"`                  // Hostname
+	AuthStatus                string                                                                 `json:"authStatus,omitempty"`                // Auth Status
+	StackInfo                 *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoStackInfo              `json:"stackInfo,omitempty"`                 //
+	ReloadRequested           *bool                                                                  `json:"reloadRequested,omitempty"`           // Reload Requested
+	AddedOn                   *float64                                                               `json:"addedOn,omitempty"`                   // Added On
+	SiteID                    string                                                                 `json:"siteId,omitempty"`                    // Site Id
+	AAACredentials            *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
+	UserMicNumbers            []string                                                               `json:"userMicNumbers,omitempty"`            // User Mic Numbers
+	UserSudiSerialNos         []string                                                               `json:"userSudiSerialNos,omitempty"`         // User Sudi Serial Nos
+	AddnMacAddrs              []string                                                               `json:"addnMacAddrs,omitempty"`              // Addn Mac Addrs
+	PreWorkflowCliOuputs      *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPreWorkflowCliOuputs `json:"preWorkflowCliOuputs,omitempty"`      //
+	Tags                      *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoTags                   `json:"tags,omitempty"`                      // Tags
+	SudiRequired              *bool                                                                  `json:"sudiRequired,omitempty"`              // Sudi Required
+	SmartAccountID            string                                                                 `json:"smartAccountId,omitempty"`            // Smart Account Id
+	VirtualAccountID          string                                                                 `json:"virtualAccountId,omitempty"`          // Virtual Account Id
+	PopulateInventory         *bool                                                                  `json:"populateInventory,omitempty"`         // Populate Inventory
+	SiteName                  string                                                                 `json:"siteName,omitempty"`                  // Site Name
+	Name                      string                                                                 `json:"name,omitempty"`                      // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoLocation struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoLocation struct {
 	SiteID    string `json:"siteId,omitempty"`    // Site Id
 	Address   string `json:"address,omitempty"`   // Address
 	Latitude  string `json:"latitude,omitempty"`  // Latitude
 	Longitude string `json:"longitude,omitempty"` // Longitude
 	Altitude  string `json:"altitude,omitempty"`  // Altitude
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoFileSystemList struct {
 	Type      string   `json:"type,omitempty"`      // Type
 	Writeable *bool    `json:"writeable,omitempty"` // Writeable
 	Freespace *float64 `json:"freespace,omitempty"` // Freespace
@@ -151,38 +151,38 @@ type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList struct {
 	Readable  *bool    `json:"readable,omitempty"`  // Readable
 	Size      *float64 `json:"size,omitempty"`      // Size
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileList struct {
-	ProfileName       string                                                                         `json:"profileName,omitempty"`       // Profile Name
-	DiscoveryCreated  *bool                                                                          `json:"discoveryCreated,omitempty"`  // Discovery Created
-	CreatedBy         string                                                                         `json:"createdBy,omitempty"`         // Created By
-	PrimaryEndpoint   *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpoint   `json:"primaryEndpoint,omitempty"`   //
-	SecondaryEndpoint *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpoint `json:"secondaryEndpoint,omitempty"` //
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileList struct {
+	ProfileName       string                                                                          `json:"profileName,omitempty"`       // Profile Name
+	DiscoveryCreated  *bool                                                                           `json:"discoveryCreated,omitempty"`  // Discovery Created
+	CreatedBy         string                                                                          `json:"createdBy,omitempty"`         // Created By
+	PrimaryEndpoint   *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpoint   `json:"primaryEndpoint,omitempty"`   //
+	SecondaryEndpoint *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpoint `json:"secondaryEndpoint,omitempty"` //
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Port        *float64                                                                                `json:"port,omitempty"`        // Port
-	Protocol    string                                                                                  `json:"protocol,omitempty"`    // Protocol
-	IPv4Address *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv4Address `json:"ipv4Address,omitempty"` // Ipv4 Address
-	IPv6Address *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv6Address `json:"ipv6Address,omitempty"` // Ipv6 Address
-	Fqdn        string                                                                                  `json:"fqdn,omitempty"`        // Fqdn
-	Certificate string                                                                                  `json:"certificate,omitempty"` // Certificate
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpoint struct {
+	Port        *float64                                                                                 `json:"port,omitempty"`        // Port
+	Protocol    string                                                                                   `json:"protocol,omitempty"`    // Protocol
+	IPv4Address *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv4Address `json:"ipv4Address,omitempty"` // Ipv4 Address
+	IPv6Address *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv6Address `json:"ipv6Address,omitempty"` // Ipv6 Address
+	Fqdn        string                                                                                   `json:"fqdn,omitempty"`        // Fqdn
+	Certificate string                                                                                   `json:"certificate,omitempty"` // Certificate
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv4Address interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv6Address interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Port        *float64                                                                                  `json:"port,omitempty"`        // Port
-	Protocol    string                                                                                    `json:"protocol,omitempty"`    // Protocol
-	IPv4Address *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv4Address `json:"ipv4Address,omitempty"` // Ipv4 Address
-	IPv6Address *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv6Address `json:"ipv6Address,omitempty"` // Ipv6 Address
-	Fqdn        string                                                                                    `json:"fqdn,omitempty"`        // Fqdn
-	Certificate string                                                                                    `json:"certificate,omitempty"` // Certificate
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv4Address interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv6Address interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpoint struct {
+	Port        *float64                                                                                   `json:"port,omitempty"`        // Port
+	Protocol    string                                                                                     `json:"protocol,omitempty"`    // Protocol
+	IPv4Address *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv4Address `json:"ipv4Address,omitempty"` // Ipv4 Address
+	IPv6Address *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv6Address `json:"ipv6Address,omitempty"` // Ipv6 Address
+	Fqdn        string                                                                                     `json:"fqdn,omitempty"`        // Fqdn
+	Certificate string                                                                                     `json:"certificate,omitempty"` // Certificate
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv4Address interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv6Address interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoHTTPHeaders struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv4Address interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv6Address interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoHTTPHeaders struct {
 	Key   string `json:"key,omitempty"`   // Key
 	Value string `json:"value,omitempty"` // Value
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoNeighborLinks struct {
 	LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       // Local Interface Name
 	LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  // Local Short Interface Name
 	LocalMacAddress          string `json:"localMacAddress,omitempty"`          // Local Mac Address
@@ -193,79 +193,65 @@ type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks struct {
 	RemotePlatform           string `json:"remotePlatform,omitempty"`           // Remote Platform
 	RemoteVersion            string `json:"remoteVersion,omitempty"`            // Remote Version
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfaces struct {
-	Status          string                                                                       `json:"status,omitempty"`          // Status
-	MacAddress      string                                                                       `json:"macAddress,omitempty"`      // Mac Address
-	IPv4Address     *ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv4Address       `json:"ipv4Address,omitempty"`     // Ipv4 Address
-	IPv6AddressList *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv6AddressList `json:"ipv6AddressList,omitempty"` // Ipv6 Address List
-	Name            string                                                                       `json:"name,omitempty"`            // Name
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfaces struct {
+	Status          string                                                                        `json:"status,omitempty"`          // Status
+	MacAddress      string                                                                        `json:"macAddress,omitempty"`      // Mac Address
+	IPv4Address     *ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv4Address       `json:"ipv4Address,omitempty"`     // Ipv4 Address
+	IPv6AddressList *[]ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv6AddressList `json:"ipv6AddressList,omitempty"` // Ipv6 Address List
+	Name            string                                                                        `json:"name,omitempty"`            // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv4Address interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv6AddressList interface{}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoStackInfo struct {
-	SupportsStackWorkflows *bool                                                                     `json:"supportsStackWorkflows,omitempty"` // Supports Stack Workflows
-	IsFullRing             *bool                                                                     `json:"isFullRing,omitempty"`             // Is Full Ring
-	StackMemberList        *[]ResponseDeviceOnboardingPnpAddDeviceDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
-	StackRingProtocol      string                                                                    `json:"stackRingProtocol,omitempty"`      // Stack Ring Protocol
-	ValidLicenseLevels     []string                                                                  `json:"validLicenseLevels,omitempty"`     // Valid License Levels
-	TotalMemberCount       *float64                                                                  `json:"totalMemberCount,omitempty"`       // Total Member Count
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv4Address interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv6AddressList interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoStackInfo struct {
+	SupportsStackWorkflows *bool       `json:"supportsStackWorkflows,omitempty"` // Supports Stack Workflows
+	IsFullRing             *bool       `json:"isFullRing,omitempty"`             // Is Full Ring
+	StackMemberList        *[][]string `json:"stackMemberList,omitempty"`        // Stack Member List
+	StackRingProtocol      string      `json:"stackRingProtocol,omitempty"`      // Stack Ring Protocol
+	ValidLicenseLevels     []string    `json:"validLicenseLevels,omitempty"`     // Valid License Levels
+	TotalMemberCount       *float64    `json:"totalMemberCount,omitempty"`       // Total Member Count
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoStackInfoStackMemberList struct {
-	SerialNumber     string   `json:"serialNumber,omitempty"`     // Serial Number
-	State            string   `json:"state,omitempty"`            // State
-	Role             string   `json:"role,omitempty"`             // Role
-	MacAddress       string   `json:"macAddress,omitempty"`       // Mac Address
-	Pid              string   `json:"pid,omitempty"`              // Pid
-	LicenseLevel     string   `json:"licenseLevel,omitempty"`     // License Level
-	LicenseType      string   `json:"licenseType,omitempty"`      // License Type
-	SudiSerialNumber string   `json:"sudiSerialNumber,omitempty"` // Sudi Serial Number
-	HardwareVersion  string   `json:"hardwareVersion,omitempty"`  // Hardware Version
-	StackNumber      *float64 `json:"stackNumber,omitempty"`      // Stack Number
-	SoftwareVersion  string   `json:"softwareVersion,omitempty"`  // Software Version
-	Priority         *float64 `json:"priority,omitempty"`         // Priority
-}
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoAAACredentials struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoAAACredentials struct {
 	Password string `json:"password,omitempty"` // Password
 	Username string `json:"username,omitempty"` // Username
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoPreWorkflowCliOuputs struct {
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoPreWorkflowCliOuputs struct {
 	Cli       string `json:"cli,omitempty"`       // Cli
 	CliOutput string `json:"cliOutput,omitempty"` // Cli Output
 }
-type ResponseDeviceOnboardingPnpAddDeviceDeviceInfoTags interface{}
-type ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflow struct {
-	TypeID         string                                                          `json:"_id,omitempty"`            // Id
-	State          string                                                          `json:"state,omitempty"`          // State
-	Type           string                                                          `json:"type,omitempty"`           // Type
-	Description    string                                                          `json:"description,omitempty"`    // Description
-	LastupdateOn   *float64                                                        `json:"lastupdateOn,omitempty"`   // Lastupdate On
-	ImageID        string                                                          `json:"imageId,omitempty"`        // Image Id
-	CurrTaskIDx    *float64                                                        `json:"currTaskIdx,omitempty"`    // Curr Task Idx
-	AddedOn        *float64                                                        `json:"addedOn,omitempty"`        // Added On
-	Tasks          *[]ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasks `json:"tasks,omitempty"`          //
-	AddToInventory *bool                                                           `json:"addToInventory,omitempty"` // Add To Inventory
-	InstanceType   string                                                          `json:"instanceType,omitempty"`   // Instance Type
-	EndTime        *float64                                                        `json:"endTime,omitempty"`        // End Time
-	ExecTime       *float64                                                        `json:"execTime,omitempty"`       // Exec Time
-	StartTime      *float64                                                        `json:"startTime,omitempty"`      // Start Time
-	UseState       string                                                          `json:"useState,omitempty"`       // Use State
-	ConfigID       string                                                          `json:"configId,omitempty"`       // Config Id
-	Name           string                                                          `json:"name,omitempty"`           // Name
-	Version        *float64                                                        `json:"version,omitempty"`        // Version
-	TenantID       string                                                          `json:"tenantId,omitempty"`       // Tenant Id
+type ResponseDeviceOnboardingPnpAddDevice2DeviceInfoTags interface{}
+type ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflow struct {
+	TypeID         string                                                           `json:"_id,omitempty"`            // Id
+	State          string                                                           `json:"state,omitempty"`          // State
+	Type           string                                                           `json:"type,omitempty"`           // Type
+	Description    string                                                           `json:"description,omitempty"`    // Description
+	LastupdateOn   *float64                                                         `json:"lastupdateOn,omitempty"`   // Lastupdate On
+	ImageID        string                                                           `json:"imageId,omitempty"`        // Image Id
+	CurrTaskIDx    *float64                                                         `json:"currTaskIdx,omitempty"`    // Curr Task Idx
+	AddedOn        *float64                                                         `json:"addedOn,omitempty"`        // Added On
+	Tasks          *[]ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasks `json:"tasks,omitempty"`          //
+	AddToInventory *bool                                                            `json:"addToInventory,omitempty"` // Add To Inventory
+	InstanceType   string                                                           `json:"instanceType,omitempty"`   // Instance Type
+	EndTime        *float64                                                         `json:"endTime,omitempty"`        // End Time
+	ExecTime       *float64                                                         `json:"execTime,omitempty"`       // Exec Time
+	StartTime      *float64                                                         `json:"startTime,omitempty"`      // Start Time
+	UseState       string                                                           `json:"useState,omitempty"`       // Use State
+	ConfigID       string                                                           `json:"configId,omitempty"`       // Config Id
+	Name           string                                                           `json:"name,omitempty"`           // Name
+	Version        *float64                                                         `json:"version,omitempty"`        // Version
+	TenantID       string                                                           `json:"tenantId,omitempty"`       // Tenant Id
 }
-type ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasks struct {
-	State           string                                                                      `json:"state,omitempty"`           // State
-	Type            string                                                                      `json:"type,omitempty"`            // Type
-	CurrWorkItemIDx *float64                                                                    `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
-	TaskSeqNo       *float64                                                                    `json:"taskSeqNo,omitempty"`       // Task Seq No
-	EndTime         *float64                                                                    `json:"endTime,omitempty"`         // End Time
-	StartTime       *float64                                                                    `json:"startTime,omitempty"`       // Start Time
-	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
-	TimeTaken       *float64                                                                    `json:"timeTaken,omitempty"`       // Time Taken
-	Name            string                                                                      `json:"name,omitempty"`            // Name
+type ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasks struct {
+	State           string                                                                       `json:"state,omitempty"`           // State
+	Type            string                                                                       `json:"type,omitempty"`            // Type
+	CurrWorkItemIDx *float64                                                                     `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
+	TaskSeqNo       *float64                                                                     `json:"taskSeqNo,omitempty"`       // Task Seq No
+	EndTime         *float64                                                                     `json:"endTime,omitempty"`         // End Time
+	StartTime       *float64                                                                     `json:"startTime,omitempty"`       // Start Time
+	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+	TimeTaken       *float64                                                                     `json:"timeTaken,omitempty"`       // Time Taken
+	Name            string                                                                       `json:"name,omitempty"`            // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList struct {
+type ResponseDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasksWorkItemList struct {
 	State     string   `json:"state,omitempty"`     // State
 	Command   string   `json:"command,omitempty"`   // Command
 	OutputStr string   `json:"outputStr,omitempty"` // Output Str
@@ -273,39 +259,39 @@ type ResponseDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList st
 	StartTime *float64 `json:"startTime,omitempty"` // Start Time
 	TimeTaken *float64 `json:"timeTaken,omitempty"` // Time Taken
 }
-type ResponseDeviceOnboardingPnpAddDeviceSystemWorkflow struct {
-	TypeID         string                                                     `json:"_id,omitempty"`            // Id
-	State          string                                                     `json:"state,omitempty"`          // State
-	Type           string                                                     `json:"type,omitempty"`           // Type
-	Description    string                                                     `json:"description,omitempty"`    // Description
-	LastupdateOn   *float64                                                   `json:"lastupdateOn,omitempty"`   // Lastupdate On
-	ImageID        string                                                     `json:"imageId,omitempty"`        // Image Id
-	CurrTaskIDx    *float64                                                   `json:"currTaskIdx,omitempty"`    // Curr Task Idx
-	AddedOn        *float64                                                   `json:"addedOn,omitempty"`        // Added On
-	Tasks          *[]ResponseDeviceOnboardingPnpAddDeviceSystemWorkflowTasks `json:"tasks,omitempty"`          //
-	AddToInventory *bool                                                      `json:"addToInventory,omitempty"` // Add To Inventory
-	InstanceType   string                                                     `json:"instanceType,omitempty"`   // Instance Type
-	EndTime        *float64                                                   `json:"endTime,omitempty"`        // End Time
-	ExecTime       *float64                                                   `json:"execTime,omitempty"`       // Exec Time
-	StartTime      *float64                                                   `json:"startTime,omitempty"`      // Start Time
-	UseState       string                                                     `json:"useState,omitempty"`       // Use State
-	ConfigID       string                                                     `json:"configId,omitempty"`       // Config Id
-	Name           string                                                     `json:"name,omitempty"`           // Name
-	Version        *float64                                                   `json:"version,omitempty"`        // Version
-	TenantID       string                                                     `json:"tenantId,omitempty"`       // Tenant Id
+type ResponseDeviceOnboardingPnpAddDevice2SystemWorkflow struct {
+	TypeID         string                                                      `json:"_id,omitempty"`            // Id
+	State          string                                                      `json:"state,omitempty"`          // State
+	Type           string                                                      `json:"type,omitempty"`           // Type
+	Description    string                                                      `json:"description,omitempty"`    // Description
+	LastupdateOn   *float64                                                    `json:"lastupdateOn,omitempty"`   // Lastupdate On
+	ImageID        string                                                      `json:"imageId,omitempty"`        // Image Id
+	CurrTaskIDx    *float64                                                    `json:"currTaskIdx,omitempty"`    // Curr Task Idx
+	AddedOn        *float64                                                    `json:"addedOn,omitempty"`        // Added On
+	Tasks          *[]ResponseDeviceOnboardingPnpAddDevice2SystemWorkflowTasks `json:"tasks,omitempty"`          //
+	AddToInventory *bool                                                       `json:"addToInventory,omitempty"` // Add To Inventory
+	InstanceType   string                                                      `json:"instanceType,omitempty"`   // Instance Type
+	EndTime        *float64                                                    `json:"endTime,omitempty"`        // End Time
+	ExecTime       *float64                                                    `json:"execTime,omitempty"`       // Exec Time
+	StartTime      *float64                                                    `json:"startTime,omitempty"`      // Start Time
+	UseState       string                                                      `json:"useState,omitempty"`       // Use State
+	ConfigID       string                                                      `json:"configId,omitempty"`       // Config Id
+	Name           string                                                      `json:"name,omitempty"`           // Name
+	Version        *float64                                                    `json:"version,omitempty"`        // Version
+	TenantID       string                                                      `json:"tenantId,omitempty"`       // Tenant Id
 }
-type ResponseDeviceOnboardingPnpAddDeviceSystemWorkflowTasks struct {
-	State           string                                                                 `json:"state,omitempty"`           // State
-	Type            string                                                                 `json:"type,omitempty"`            // Type
-	CurrWorkItemIDx *float64                                                               `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
-	TaskSeqNo       *float64                                                               `json:"taskSeqNo,omitempty"`       // Task Seq No
-	EndTime         *float64                                                               `json:"endTime,omitempty"`         // End Time
-	StartTime       *float64                                                               `json:"startTime,omitempty"`       // Start Time
-	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
-	TimeTaken       *float64                                                               `json:"timeTaken,omitempty"`       // Time Taken
-	Name            string                                                                 `json:"name,omitempty"`            // Name
+type ResponseDeviceOnboardingPnpAddDevice2SystemWorkflowTasks struct {
+	State           string                                                                  `json:"state,omitempty"`           // State
+	Type            string                                                                  `json:"type,omitempty"`            // Type
+	CurrWorkItemIDx *float64                                                                `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
+	TaskSeqNo       *float64                                                                `json:"taskSeqNo,omitempty"`       // Task Seq No
+	EndTime         *float64                                                                `json:"endTime,omitempty"`         // End Time
+	StartTime       *float64                                                                `json:"startTime,omitempty"`       // Start Time
+	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDevice2SystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+	TimeTaken       *float64                                                                `json:"timeTaken,omitempty"`       // Time Taken
+	Name            string                                                                  `json:"name,omitempty"`            // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList struct {
+type ResponseDeviceOnboardingPnpAddDevice2SystemWorkflowTasksWorkItemList struct {
 	State     string   `json:"state,omitempty"`     // State
 	Command   string   `json:"command,omitempty"`   // Command
 	OutputStr string   `json:"outputStr,omitempty"` // Output Str
@@ -313,39 +299,39 @@ type ResponseDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList struct 
 	StartTime *float64 `json:"startTime,omitempty"` // Start Time
 	TimeTaken *float64 `json:"timeTaken,omitempty"` // Time Taken
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflow struct {
-	TypeID         string                                               `json:"_id,omitempty"`            // Id
-	State          string                                               `json:"state,omitempty"`          // State
-	Type           string                                               `json:"type,omitempty"`           // Type
-	Description    string                                               `json:"description,omitempty"`    // Description
-	LastupdateOn   *float64                                             `json:"lastupdateOn,omitempty"`   // Lastupdate On
-	ImageID        string                                               `json:"imageId,omitempty"`        // Image Id
-	CurrTaskIDx    *float64                                             `json:"currTaskIdx,omitempty"`    // Curr Task Idx
-	AddedOn        *float64                                             `json:"addedOn,omitempty"`        // Added On
-	Tasks          *[]ResponseDeviceOnboardingPnpAddDeviceWorkflowTasks `json:"tasks,omitempty"`          //
-	AddToInventory *bool                                                `json:"addToInventory,omitempty"` // Add To Inventory
-	InstanceType   string                                               `json:"instanceType,omitempty"`   // Instance Type
-	EndTime        *float64                                             `json:"endTime,omitempty"`        // End Time
-	ExecTime       *float64                                             `json:"execTime,omitempty"`       // Exec Time
-	StartTime      *float64                                             `json:"startTime,omitempty"`      // Start Time
-	UseState       string                                               `json:"useState,omitempty"`       // Use State
-	ConfigID       string                                               `json:"configId,omitempty"`       // Config Id
-	Name           string                                               `json:"name,omitempty"`           // Name
-	Version        *float64                                             `json:"version,omitempty"`        // Version
-	TenantID       string                                               `json:"tenantId,omitempty"`       // Tenant Id
+type ResponseDeviceOnboardingPnpAddDevice2Workflow struct {
+	TypeID         string                                                `json:"_id,omitempty"`            // Id
+	State          string                                                `json:"state,omitempty"`          // State
+	Type           string                                                `json:"type,omitempty"`           // Type
+	Description    string                                                `json:"description,omitempty"`    // Description
+	LastupdateOn   *float64                                              `json:"lastupdateOn,omitempty"`   // Lastupdate On
+	ImageID        string                                                `json:"imageId,omitempty"`        // Image Id
+	CurrTaskIDx    *float64                                              `json:"currTaskIdx,omitempty"`    // Curr Task Idx
+	AddedOn        *float64                                              `json:"addedOn,omitempty"`        // Added On
+	Tasks          *[]ResponseDeviceOnboardingPnpAddDevice2WorkflowTasks `json:"tasks,omitempty"`          //
+	AddToInventory *bool                                                 `json:"addToInventory,omitempty"` // Add To Inventory
+	InstanceType   string                                                `json:"instanceType,omitempty"`   // Instance Type
+	EndTime        *float64                                              `json:"endTime,omitempty"`        // End Time
+	ExecTime       *float64                                              `json:"execTime,omitempty"`       // Exec Time
+	StartTime      *float64                                              `json:"startTime,omitempty"`      // Start Time
+	UseState       string                                                `json:"useState,omitempty"`       // Use State
+	ConfigID       string                                                `json:"configId,omitempty"`       // Config Id
+	Name           string                                                `json:"name,omitempty"`           // Name
+	Version        *float64                                              `json:"version,omitempty"`        // Version
+	TenantID       string                                                `json:"tenantId,omitempty"`       // Tenant Id
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflowTasks struct {
-	State           string                                                           `json:"state,omitempty"`           // State
-	Type            string                                                           `json:"type,omitempty"`            // Type
-	CurrWorkItemIDx *float64                                                         `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
-	TaskSeqNo       *float64                                                         `json:"taskSeqNo,omitempty"`       // Task Seq No
-	EndTime         *float64                                                         `json:"endTime,omitempty"`         // End Time
-	StartTime       *float64                                                         `json:"startTime,omitempty"`       // Start Time
-	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
-	TimeTaken       *float64                                                         `json:"timeTaken,omitempty"`       // Time Taken
-	Name            string                                                           `json:"name,omitempty"`            // Name
+type ResponseDeviceOnboardingPnpAddDevice2WorkflowTasks struct {
+	State           string                                                            `json:"state,omitempty"`           // State
+	Type            string                                                            `json:"type,omitempty"`            // Type
+	CurrWorkItemIDx *float64                                                          `json:"currWorkItemIdx,omitempty"` // Curr Work Item Idx
+	TaskSeqNo       *float64                                                          `json:"taskSeqNo,omitempty"`       // Task Seq No
+	EndTime         *float64                                                          `json:"endTime,omitempty"`         // End Time
+	StartTime       *float64                                                          `json:"startTime,omitempty"`       // Start Time
+	WorkItemList    *[]ResponseDeviceOnboardingPnpAddDevice2WorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+	TimeTaken       *float64                                                          `json:"timeTaken,omitempty"`       // Time Taken
+	Name            string                                                            `json:"name,omitempty"`            // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList struct {
+type ResponseDeviceOnboardingPnpAddDevice2WorkflowTasksWorkItemList struct {
 	State     string   `json:"state,omitempty"`     // State
 	Command   string   `json:"command,omitempty"`   // Command
 	OutputStr string   `json:"outputStr,omitempty"` // Output Str
@@ -353,20 +339,20 @@ type ResponseDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList struct {
 	StartTime *float64 `json:"startTime,omitempty"` // Start Time
 	TimeTaken *float64 `json:"timeTaken,omitempty"` // Time Taken
 }
-type ResponseDeviceOnboardingPnpAddDeviceRunSummaryList struct {
-	Details         string                                                             `json:"details,omitempty"`         // Details
-	HistoryTaskInfo *ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	ErrorFlag       *bool                                                              `json:"errorFlag,omitempty"`       // Error Flag
-	Timestamp       *float64                                                           `json:"timestamp,omitempty"`       // Timestamp
+type ResponseDeviceOnboardingPnpAddDevice2RunSummaryList struct {
+	Details         string                                                              `json:"details,omitempty"`         // Details
+	HistoryTaskInfo *ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
+	ErrorFlag       *bool                                                               `json:"errorFlag,omitempty"`       // Error Flag
+	Timestamp       *float64                                                            `json:"timestamp,omitempty"`       // Timestamp
 }
-type ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfo struct {
-	Type         string                                                                           `json:"type,omitempty"`         // Type
-	WorkItemList *[]ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
-	TimeTaken    *float64                                                                         `json:"timeTaken,omitempty"`    // Time Taken
-	AddnDetails  *[]ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
-	Name         string                                                                           `json:"name,omitempty"`         // Name
+type ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfo struct {
+	Type         string                                                                            `json:"type,omitempty"`         // Type
+	WorkItemList *[]ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
+	TimeTaken    *float64                                                                          `json:"timeTaken,omitempty"`    // Time Taken
+	AddnDetails  *[]ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
+	Name         string                                                                            `json:"name,omitempty"`         // Name
 }
-type ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemList struct {
+type ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoWorkItemList struct {
 	State     string   `json:"state,omitempty"`     // State
 	Command   string   `json:"command,omitempty"`   // Command
 	OutputStr string   `json:"outputStr,omitempty"` // Output Str
@@ -374,28 +360,28 @@ type ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemLi
 	StartTime *float64 `json:"startTime,omitempty"` // Start Time
 	TimeTaken *float64 `json:"timeTaken,omitempty"` // Time Taken
 }
-type ResponseDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoAddnDetails struct {
+type ResponseDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoAddnDetails struct {
 	Key   string `json:"key,omitempty"`   // Key
 	Value string `json:"value,omitempty"` // Value
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflowParameters struct {
-	TopOfStackSerialNumber string                                                              `json:"topOfStackSerialNumber,omitempty"` // Top Of Stack Serial Number
-	LicenseLevel           string                                                              `json:"licenseLevel,omitempty"`           // License Level
-	LicenseType            string                                                              `json:"licenseType,omitempty"`            // License Type
-	ConfigList             *[]ResponseDeviceOnboardingPnpAddDeviceWorkflowParametersConfigList `json:"configList,omitempty"`             //
+type ResponseDeviceOnboardingPnpAddDevice2WorkflowParameters struct {
+	TopOfStackSerialNumber string                                                               `json:"topOfStackSerialNumber,omitempty"` // Top Of Stack Serial Number
+	LicenseLevel           string                                                               `json:"licenseLevel,omitempty"`           // License Level
+	LicenseType            string                                                               `json:"licenseType,omitempty"`            // License Type
+	ConfigList             *[]ResponseDeviceOnboardingPnpAddDevice2WorkflowParametersConfigList `json:"configList,omitempty"`             //
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflowParametersConfigList struct {
-	ConfigParameters *[]ResponseDeviceOnboardingPnpAddDeviceWorkflowParametersConfigListConfigParameters `json:"configParameters,omitempty"` //
-	ConfigID         string                                                                              `json:"configId,omitempty"`         // Config Id
+type ResponseDeviceOnboardingPnpAddDevice2WorkflowParametersConfigList struct {
+	ConfigParameters *[]ResponseDeviceOnboardingPnpAddDevice2WorkflowParametersConfigListConfigParameters `json:"configParameters,omitempty"` //
+	ConfigID         string                                                                               `json:"configId,omitempty"`         // Config Id
 }
-type ResponseDeviceOnboardingPnpAddDeviceWorkflowParametersConfigListConfigParameters struct {
+type ResponseDeviceOnboardingPnpAddDevice2WorkflowParametersConfigListConfigParameters struct {
 	Key   string `json:"key,omitempty"`   // Key
 	Value string `json:"value,omitempty"` // Value
 }
-type ResponseDeviceOnboardingPnpAddDeviceDayZeroConfig struct {
+type ResponseDeviceOnboardingPnpAddDevice2DayZeroConfig struct {
 	Config string `json:"config,omitempty"` // Config
 }
-type ResponseDeviceOnboardingPnpAddDeviceDayZeroConfigPreview interface{}
+type ResponseDeviceOnboardingPnpAddDevice2DayZeroConfigPreview interface{}
 type ResponseDeviceOnboardingPnpGetDeviceList2 struct {
 	DeviceInfo           *ResponseDeviceOnboardingPnpGetDeviceList2DeviceInfo           `json:"deviceInfo,omitempty"`           //
 	SystemResetWorkflow  *ResponseDeviceOnboardingPnpGetDeviceList2SystemResetWorkflow  `json:"systemResetWorkflow,omitempty"`  //
@@ -729,7 +715,7 @@ type ResponseDeviceOnboardingPnpClaimDevice struct {
 }
 type ResponseDeviceOnboardingPnpClaimDeviceJSONArrayResponse interface{}
 type ResponseDeviceOnboardingPnpClaimDeviceJSONResponse interface{}
-type ResponseDeviceOnboardingPnpGetDeviceCount struct {
+type ResponseDeviceOnboardingPnpGetDeviceCount2 struct {
 	Response *float64 `json:"response,omitempty"` // Response
 }
 type ResponseDeviceOnboardingPnpGetDeviceHistory struct {
@@ -889,14 +875,13 @@ type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoNeighbor
 	RemoteVersion            string `json:"remoteVersion,omitempty"`            // Remote Version
 }
 type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfaces struct {
-	Status          string                                                                                            `json:"status,omitempty"`          // Status
-	MacAddress      string                                                                                            `json:"macAddress,omitempty"`      // Mac Address
-	IPv4Address     *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfacesIPv4Address       `json:"ipv4Address,omitempty"`     // Ipv4 Address
-	IPv6AddressList *[]ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfacesIPv6AddressList `json:"ipv6AddressList,omitempty"` // Ipv6 Address List
-	Name            string                                                                                            `json:"name,omitempty"`            // Name
+	Status          string                                                                                      `json:"status,omitempty"`          // Status
+	MacAddress      string                                                                                      `json:"macAddress,omitempty"`      // Mac Address
+	IPv4Address     *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfacesIPv4Address `json:"ipv4Address,omitempty"`     // Ipv4 Address
+	IPv6AddressList string                                                                                      `json:"ipv6AddressList,omitempty"` // Ipv6 Address List
+	Name            string                                                                                      `json:"name,omitempty"`            // Name
 }
 type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfacesIPv4Address interface{}
-type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoIPInterfacesIPv6AddressList interface{}
 type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfoStackInfo struct {
 	SupportsStackWorkflows *bool                                                                                          `json:"supportsStackWorkflows,omitempty"` // Supports Stack Workflows
 	IsFullRing             *bool                                                                                          `json:"isFullRing,omitempty"`             // Is Full Ring
@@ -2602,71 +2587,71 @@ type ResponseDeviceOnboardingPnpUpdateWorkflowTasksWorkItemList struct {
 	StartTime *float64 `json:"startTime,omitempty"` // Start Time
 	TimeTaken *float64 `json:"timeTaken,omitempty"` // Time Taken
 }
-type RequestDeviceOnboardingPnpAddDevice struct {
-	TypeID              string                                                  `json:"_id,omitempty"`                 //
-	DeviceInfo          *RequestDeviceOnboardingPnpAddDeviceDeviceInfo          `json:"deviceInfo,omitempty"`          //
-	RunSummaryList      *[]RequestDeviceOnboardingPnpAddDeviceRunSummaryList    `json:"runSummaryList,omitempty"`      //
-	SystemResetWorkflow *RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflow `json:"systemResetWorkflow,omitempty"` //
-	SystemWorkflow      *RequestDeviceOnboardingPnpAddDeviceSystemWorkflow      `json:"systemWorkflow,omitempty"`      //
-	TenantID            string                                                  `json:"tenantId,omitempty"`            //
-	Version             *int                                                    `json:"version,omitempty"`             //
-	Workflow            *RequestDeviceOnboardingPnpAddDeviceWorkflow            `json:"workflow,omitempty"`            //
-	WorkflowParameters  *RequestDeviceOnboardingPnpAddDeviceWorkflowParameters  `json:"workflowParameters,omitempty"`  //
+type RequestDeviceOnboardingPnpAddDevice2 struct {
+	TypeID              string                                                   `json:"_id,omitempty"`                 //
+	DeviceInfo          *RequestDeviceOnboardingPnpAddDevice2DeviceInfo          `json:"deviceInfo,omitempty"`          //
+	RunSummaryList      *[]RequestDeviceOnboardingPnpAddDevice2RunSummaryList    `json:"runSummaryList,omitempty"`      //
+	SystemResetWorkflow *RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflow `json:"systemResetWorkflow,omitempty"` //
+	SystemWorkflow      *RequestDeviceOnboardingPnpAddDevice2SystemWorkflow      `json:"systemWorkflow,omitempty"`      //
+	TenantID            string                                                   `json:"tenantId,omitempty"`            //
+	Version             *int                                                     `json:"version,omitempty"`             //
+	Workflow            *RequestDeviceOnboardingPnpAddDevice2Workflow            `json:"workflow,omitempty"`            //
+	WorkflowParameters  *RequestDeviceOnboardingPnpAddDevice2WorkflowParameters  `json:"workflowParameters,omitempty"`  //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfo struct {
-	AAACredentials            *RequestDeviceOnboardingPnpAddDeviceDeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
-	AddedOn                   *int                                                                 `json:"addedOn,omitempty"`                   //
-	AddnMacAddrs              []string                                                             `json:"addnMacAddrs,omitempty"`              //
-	AgentType                 string                                                               `json:"agentType,omitempty"`                 //
-	AuthStatus                string                                                               `json:"authStatus,omitempty"`                //
-	AuthenticatedSudiSerialNo string                                                               `json:"authenticatedSudiSerialNo,omitempty"` //
-	CapabilitiesSupported     []string                                                             `json:"capabilitiesSupported,omitempty"`     //
-	CmState                   string                                                               `json:"cmState,omitempty"`                   //
-	Description               string                                                               `json:"description,omitempty"`               //
-	DeviceSudiSerialNos       []string                                                             `json:"deviceSudiSerialNos,omitempty"`       //
-	DeviceType                string                                                               `json:"deviceType,omitempty"`                //
-	FeaturesSupported         []string                                                             `json:"featuresSupported,omitempty"`         //
-	FileSystemList            *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
-	FirstContact              *int                                                                 `json:"firstContact,omitempty"`              //
-	Hostname                  string                                                               `json:"hostname,omitempty"`                  //
-	HTTPHeaders               *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
-	ImageFile                 string                                                               `json:"imageFile,omitempty"`                 //
-	ImageVersion              string                                                               `json:"imageVersion,omitempty"`              //
-	IPInterfaces              *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
-	LastContact               *int                                                                 `json:"lastContact,omitempty"`               //
-	LastSyncTime              *int                                                                 `json:"lastSyncTime,omitempty"`              //
-	LastUpdateOn              *int                                                                 `json:"lastUpdateOn,omitempty"`              //
-	Location                  *RequestDeviceOnboardingPnpAddDeviceDeviceInfoLocation               `json:"location,omitempty"`                  //
-	MacAddress                string                                                               `json:"macAddress,omitempty"`                //
-	Mode                      string                                                               `json:"mode,omitempty"`                      //
-	Name                      string                                                               `json:"name,omitempty"`                      //
-	NeighborLinks             *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks        `json:"neighborLinks,omitempty"`             //
-	OnbState                  string                                                               `json:"onbState,omitempty"`                  //
-	Pid                       string                                                               `json:"pid,omitempty"`                       //
-	PnpProfileList            *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileList       `json:"pnpProfileList,omitempty"`            //
-	PopulateInventory         *bool                                                                `json:"populateInventory,omitempty"`         //
-	PreWorkflowCliOuputs      *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoPreWorkflowCliOuputs `json:"preWorkflowCliOuputs,omitempty"`      //
-	ProjectID                 string                                                               `json:"projectId,omitempty"`                 //
-	ProjectName               string                                                               `json:"projectName,omitempty"`               //
-	ReloadRequested           *bool                                                                `json:"reloadRequested,omitempty"`           //
-	SerialNumber              string                                                               `json:"serialNumber,omitempty"`              //
-	SmartAccountID            string                                                               `json:"smartAccountId,omitempty"`            //
-	Source                    string                                                               `json:"source,omitempty"`                    //
-	Stack                     *bool                                                                `json:"stack,omitempty"`                     //
-	StackInfo                 *RequestDeviceOnboardingPnpAddDeviceDeviceInfoStackInfo              `json:"stackInfo,omitempty"`                 //
-	State                     string                                                               `json:"state,omitempty"`                     //
-	SudiRequired              *bool                                                                `json:"sudiRequired,omitempty"`              //
-	Tags                      *RequestDeviceOnboardingPnpAddDeviceDeviceInfoTags                   `json:"tags,omitempty"`                      //
-	UserSudiSerialNos         []string                                                             `json:"userSudiSerialNos,omitempty"`         //
-	VirtualAccountID          string                                                               `json:"virtualAccountId,omitempty"`          //
-	WorkflowID                string                                                               `json:"workflowId,omitempty"`                //
-	WorkflowName              string                                                               `json:"workflowName,omitempty"`              //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfo struct {
+	AAACredentials            *RequestDeviceOnboardingPnpAddDevice2DeviceInfoAAACredentials         `json:"aaaCredentials,omitempty"`            //
+	AddedOn                   *int                                                                  `json:"addedOn,omitempty"`                   //
+	AddnMacAddrs              []string                                                              `json:"addnMacAddrs,omitempty"`              //
+	AgentType                 string                                                                `json:"agentType,omitempty"`                 //
+	AuthStatus                string                                                                `json:"authStatus,omitempty"`                //
+	AuthenticatedSudiSerialNo string                                                                `json:"authenticatedSudiSerialNo,omitempty"` //
+	CapabilitiesSupported     []string                                                              `json:"capabilitiesSupported,omitempty"`     //
+	CmState                   string                                                                `json:"cmState,omitempty"`                   //
+	Description               string                                                                `json:"description,omitempty"`               //
+	DeviceSudiSerialNos       []string                                                              `json:"deviceSudiSerialNos,omitempty"`       //
+	DeviceType                string                                                                `json:"deviceType,omitempty"`                //
+	FeaturesSupported         []string                                                              `json:"featuresSupported,omitempty"`         //
+	FileSystemList            *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoFileSystemList       `json:"fileSystemList,omitempty"`            //
+	FirstContact              *int                                                                  `json:"firstContact,omitempty"`              //
+	Hostname                  string                                                                `json:"hostname,omitempty"`                  //
+	HTTPHeaders               *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoHTTPHeaders          `json:"httpHeaders,omitempty"`               //
+	ImageFile                 string                                                                `json:"imageFile,omitempty"`                 //
+	ImageVersion              string                                                                `json:"imageVersion,omitempty"`              //
+	IPInterfaces              *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfaces         `json:"ipInterfaces,omitempty"`              //
+	LastContact               *int                                                                  `json:"lastContact,omitempty"`               //
+	LastSyncTime              *int                                                                  `json:"lastSyncTime,omitempty"`              //
+	LastUpdateOn              *int                                                                  `json:"lastUpdateOn,omitempty"`              //
+	Location                  *RequestDeviceOnboardingPnpAddDevice2DeviceInfoLocation               `json:"location,omitempty"`                  //
+	MacAddress                string                                                                `json:"macAddress,omitempty"`                //
+	Mode                      string                                                                `json:"mode,omitempty"`                      //
+	Name                      string                                                                `json:"name,omitempty"`                      //
+	NeighborLinks             *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoNeighborLinks        `json:"neighborLinks,omitempty"`             //
+	OnbState                  string                                                                `json:"onbState,omitempty"`                  //
+	Pid                       string                                                                `json:"pid,omitempty"`                       //
+	PnpProfileList            *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileList       `json:"pnpProfileList,omitempty"`            //
+	PopulateInventory         *bool                                                                 `json:"populateInventory,omitempty"`         //
+	PreWorkflowCliOuputs      *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoPreWorkflowCliOuputs `json:"preWorkflowCliOuputs,omitempty"`      //
+	ProjectID                 string                                                                `json:"projectId,omitempty"`                 //
+	ProjectName               string                                                                `json:"projectName,omitempty"`               //
+	ReloadRequested           *bool                                                                 `json:"reloadRequested,omitempty"`           //
+	SerialNumber              string                                                                `json:"serialNumber,omitempty"`              //
+	SmartAccountID            string                                                                `json:"smartAccountId,omitempty"`            //
+	Source                    string                                                                `json:"source,omitempty"`                    //
+	Stack                     *bool                                                                 `json:"stack,omitempty"`                     //
+	StackInfo                 *RequestDeviceOnboardingPnpAddDevice2DeviceInfoStackInfo              `json:"stackInfo,omitempty"`                 //
+	State                     string                                                                `json:"state,omitempty"`                     //
+	SudiRequired              *bool                                                                 `json:"sudiRequired,omitempty"`              //
+	Tags                      *RequestDeviceOnboardingPnpAddDevice2DeviceInfoTags                   `json:"tags,omitempty"`                      //
+	UserSudiSerialNos         []string                                                              `json:"userSudiSerialNos,omitempty"`         //
+	VirtualAccountID          string                                                                `json:"virtualAccountId,omitempty"`          //
+	WorkflowID                string                                                                `json:"workflowId,omitempty"`                //
+	WorkflowName              string                                                                `json:"workflowName,omitempty"`              //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoAAACredentials struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoAAACredentials struct {
 	Password string `json:"password,omitempty"` //
 	Username string `json:"username,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoFileSystemList struct {
 	Freespace *int   `json:"freespace,omitempty"` //
 	Name      string `json:"name,omitempty"`      //
 	Readable  *bool  `json:"readable,omitempty"`  //
@@ -2674,27 +2659,27 @@ type RequestDeviceOnboardingPnpAddDeviceDeviceInfoFileSystemList struct {
 	Type      string `json:"type,omitempty"`      //
 	Writeable *bool  `json:"writeable,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoHTTPHeaders struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoHTTPHeaders struct {
 	Key   string `json:"key,omitempty"`   //
 	Value string `json:"value,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfaces struct {
-	IPv4Address     *RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv4Address       `json:"ipv4Address,omitempty"`     //
-	IPv6AddressList *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv6AddressList `json:"ipv6AddressList,omitempty"` //
-	MacAddress      string                                                                      `json:"macAddress,omitempty"`      //
-	Name            string                                                                      `json:"name,omitempty"`            //
-	Status          string                                                                      `json:"status,omitempty"`          //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfaces struct {
+	IPv4Address     *RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv4Address       `json:"ipv4Address,omitempty"`     //
+	IPv6AddressList *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv6AddressList `json:"ipv6AddressList,omitempty"` //
+	MacAddress      string                                                                       `json:"macAddress,omitempty"`      //
+	Name            string                                                                       `json:"name,omitempty"`            //
+	Status          string                                                                       `json:"status,omitempty"`          //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv4Address interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoIPInterfacesIPv6AddressList interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoLocation struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv4Address interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoIPInterfacesIPv6AddressList interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoLocation struct {
 	Address   string `json:"address,omitempty"`   //
 	Altitude  string `json:"altitude,omitempty"`  //
 	Latitude  string `json:"latitude,omitempty"`  //
 	Longitude string `json:"longitude,omitempty"` //
 	SiteID    string `json:"siteId,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoNeighborLinks struct {
 	LocalInterfaceName       string `json:"localInterfaceName,omitempty"`       //
 	LocalMacAddress          string `json:"localMacAddress,omitempty"`          //
 	LocalShortInterfaceName  string `json:"localShortInterfaceName,omitempty"`  //
@@ -2705,46 +2690,46 @@ type RequestDeviceOnboardingPnpAddDeviceDeviceInfoNeighborLinks struct {
 	RemoteShortInterfaceName string `json:"remoteShortInterfaceName,omitempty"` //
 	RemoteVersion            string `json:"remoteVersion,omitempty"`            //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileList struct {
-	CreatedBy         string                                                                        `json:"createdBy,omitempty"`         //
-	DiscoveryCreated  *bool                                                                         `json:"discoveryCreated,omitempty"`  //
-	PrimaryEndpoint   *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpoint   `json:"primaryEndpoint,omitempty"`   //
-	ProfileName       string                                                                        `json:"profileName,omitempty"`       //
-	SecondaryEndpoint *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpoint `json:"secondaryEndpoint,omitempty"` //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileList struct {
+	CreatedBy         string                                                                         `json:"createdBy,omitempty"`         //
+	DiscoveryCreated  *bool                                                                          `json:"discoveryCreated,omitempty"`  //
+	PrimaryEndpoint   *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpoint   `json:"primaryEndpoint,omitempty"`   //
+	ProfileName       string                                                                         `json:"profileName,omitempty"`       //
+	SecondaryEndpoint *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpoint `json:"secondaryEndpoint,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpoint struct {
-	Certificate string                                                                                 `json:"certificate,omitempty"` //
-	Fqdn        string                                                                                 `json:"fqdn,omitempty"`        //
-	IPv4Address *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv4Address `json:"ipv4Address,omitempty"` //
-	IPv6Address *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv6Address `json:"ipv6Address,omitempty"` //
-	Port        *int                                                                                   `json:"port,omitempty"`        //
-	Protocol    string                                                                                 `json:"protocol,omitempty"`    //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpoint struct {
+	Certificate string                                                                                  `json:"certificate,omitempty"` //
+	Fqdn        string                                                                                  `json:"fqdn,omitempty"`        //
+	IPv4Address *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv4Address `json:"ipv4Address,omitempty"` //
+	IPv6Address *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv6Address `json:"ipv6Address,omitempty"` //
+	Port        *int                                                                                    `json:"port,omitempty"`        //
+	Protocol    string                                                                                  `json:"protocol,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv4Address interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListPrimaryEndpointIPv6Address interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpoint struct {
-	Certificate string                                                                                   `json:"certificate,omitempty"` //
-	Fqdn        string                                                                                   `json:"fqdn,omitempty"`        //
-	IPv4Address *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv4Address `json:"ipv4Address,omitempty"` //
-	IPv6Address *RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv6Address `json:"ipv6Address,omitempty"` //
-	Port        *int                                                                                     `json:"port,omitempty"`        //
-	Protocol    string                                                                                   `json:"protocol,omitempty"`    //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv4Address interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListPrimaryEndpointIPv6Address interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpoint struct {
+	Certificate string                                                                                    `json:"certificate,omitempty"` //
+	Fqdn        string                                                                                    `json:"fqdn,omitempty"`        //
+	IPv4Address *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv4Address `json:"ipv4Address,omitempty"` //
+	IPv6Address *RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv6Address `json:"ipv6Address,omitempty"` //
+	Port        *int                                                                                      `json:"port,omitempty"`        //
+	Protocol    string                                                                                    `json:"protocol,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv4Address interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPnpProfileListSecondaryEndpointIPv6Address interface{}
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoPreWorkflowCliOuputs struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv4Address interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPnpProfileListSecondaryEndpointIPv6Address interface{}
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoPreWorkflowCliOuputs struct {
 	Cli       string `json:"cli,omitempty"`       //
 	CliOutput string `json:"cliOutput,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoStackInfo struct {
-	IsFullRing             *bool                                                                    `json:"isFullRing,omitempty"`             //
-	StackMemberList        *[]RequestDeviceOnboardingPnpAddDeviceDeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
-	StackRingProtocol      string                                                                   `json:"stackRingProtocol,omitempty"`      //
-	SupportsStackWorkflows *bool                                                                    `json:"supportsStackWorkflows,omitempty"` //
-	TotalMemberCount       *int                                                                     `json:"totalMemberCount,omitempty"`       //
-	ValidLicenseLevels     []string                                                                 `json:"validLicenseLevels,omitempty"`     //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoStackInfo struct {
+	IsFullRing             *bool                                                                     `json:"isFullRing,omitempty"`             //
+	StackMemberList        *[]RequestDeviceOnboardingPnpAddDevice2DeviceInfoStackInfoStackMemberList `json:"stackMemberList,omitempty"`        //
+	StackRingProtocol      string                                                                    `json:"stackRingProtocol,omitempty"`      //
+	SupportsStackWorkflows *bool                                                                     `json:"supportsStackWorkflows,omitempty"` //
+	TotalMemberCount       *int                                                                      `json:"totalMemberCount,omitempty"`       //
+	ValidLicenseLevels     []string                                                                  `json:"validLicenseLevels,omitempty"`     //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoStackInfoStackMemberList struct {
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoStackInfoStackMemberList struct {
 	HardwareVersion  string `json:"hardwareVersion,omitempty"`  //
 	LicenseLevel     string `json:"licenseLevel,omitempty"`     //
 	LicenseType      string `json:"licenseType,omitempty"`      //
@@ -2758,25 +2743,25 @@ type RequestDeviceOnboardingPnpAddDeviceDeviceInfoStackInfoStackMemberList struc
 	State            string `json:"state,omitempty"`            //
 	SudiSerialNumber string `json:"sudiSerialNumber,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceDeviceInfoTags interface{}
-type RequestDeviceOnboardingPnpAddDeviceRunSummaryList struct {
-	Details         string                                                            `json:"details,omitempty"`         //
-	ErrorFlag       *bool                                                             `json:"errorFlag,omitempty"`       //
-	HistoryTaskInfo *RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
-	Timestamp       *int                                                              `json:"timestamp,omitempty"`       //
+type RequestDeviceOnboardingPnpAddDevice2DeviceInfoTags interface{}
+type RequestDeviceOnboardingPnpAddDevice2RunSummaryList struct {
+	Details         string                                                             `json:"details,omitempty"`         //
+	ErrorFlag       *bool                                                              `json:"errorFlag,omitempty"`       //
+	HistoryTaskInfo *RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfo `json:"historyTaskInfo,omitempty"` //
+	Timestamp       *int                                                               `json:"timestamp,omitempty"`       //
 }
-type RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfo struct {
-	AddnDetails  *[]RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
-	Name         string                                                                          `json:"name,omitempty"`         //
-	TimeTaken    *int                                                                            `json:"timeTaken,omitempty"`    //
-	Type         string                                                                          `json:"type,omitempty"`         //
-	WorkItemList *[]RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
+type RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfo struct {
+	AddnDetails  *[]RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoAddnDetails  `json:"addnDetails,omitempty"`  //
+	Name         string                                                                           `json:"name,omitempty"`         //
+	TimeTaken    *int                                                                             `json:"timeTaken,omitempty"`    //
+	Type         string                                                                           `json:"type,omitempty"`         //
+	WorkItemList *[]RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoWorkItemList `json:"workItemList,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoAddnDetails struct {
+type RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoAddnDetails struct {
 	Key   string `json:"key,omitempty"`   //
 	Value string `json:"value,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemList struct {
+type RequestDeviceOnboardingPnpAddDevice2RunSummaryListHistoryTaskInfoWorkItemList struct {
 	Command   string `json:"command,omitempty"`   //
 	EndTime   *int   `json:"endTime,omitempty"`   //
 	OutputStr string `json:"outputStr,omitempty"` //
@@ -2784,39 +2769,39 @@ type RequestDeviceOnboardingPnpAddDeviceRunSummaryListHistoryTaskInfoWorkItemLis
 	State     string `json:"state,omitempty"`     //
 	TimeTaken *int   `json:"timeTaken,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflow struct {
-	TypeID         string                                                         `json:"_id,omitempty"`            //
-	AddToInventory *bool                                                          `json:"addToInventory,omitempty"` //
-	AddedOn        *int                                                           `json:"addedOn,omitempty"`        //
-	ConfigID       string                                                         `json:"configId,omitempty"`       //
-	CurrTaskIDx    *int                                                           `json:"currTaskIdx,omitempty"`    //
-	Description    string                                                         `json:"description,omitempty"`    //
-	EndTime        *int                                                           `json:"endTime,omitempty"`        //
-	ExecTime       *int                                                           `json:"execTime,omitempty"`       //
-	ImageID        string                                                         `json:"imageId,omitempty"`        //
-	InstanceType   string                                                         `json:"instanceType,omitempty"`   //
-	LastupdateOn   *int                                                           `json:"lastupdateOn,omitempty"`   //
-	Name           string                                                         `json:"name,omitempty"`           //
-	StartTime      *int                                                           `json:"startTime,omitempty"`      //
-	State          string                                                         `json:"state,omitempty"`          //
-	Tasks          *[]RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasks `json:"tasks,omitempty"`          //
-	TenantID       string                                                         `json:"tenantId,omitempty"`       //
-	Type           string                                                         `json:"type,omitempty"`           //
-	UseState       string                                                         `json:"useState,omitempty"`       //
-	Version        *int                                                           `json:"version,omitempty"`        //
+type RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflow struct {
+	TypeID         string                                                          `json:"_id,omitempty"`            //
+	AddToInventory *bool                                                           `json:"addToInventory,omitempty"` //
+	AddedOn        *int                                                            `json:"addedOn,omitempty"`        //
+	ConfigID       string                                                          `json:"configId,omitempty"`       //
+	CurrTaskIDx    *int                                                            `json:"currTaskIdx,omitempty"`    //
+	Description    string                                                          `json:"description,omitempty"`    //
+	EndTime        *int                                                            `json:"endTime,omitempty"`        //
+	ExecTime       *int                                                            `json:"execTime,omitempty"`       //
+	ImageID        string                                                          `json:"imageId,omitempty"`        //
+	InstanceType   string                                                          `json:"instanceType,omitempty"`   //
+	LastupdateOn   *int                                                            `json:"lastupdateOn,omitempty"`   //
+	Name           string                                                          `json:"name,omitempty"`           //
+	StartTime      *int                                                            `json:"startTime,omitempty"`      //
+	State          string                                                          `json:"state,omitempty"`          //
+	Tasks          *[]RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasks `json:"tasks,omitempty"`          //
+	TenantID       string                                                          `json:"tenantId,omitempty"`       //
+	Type           string                                                          `json:"type,omitempty"`           //
+	UseState       string                                                          `json:"useState,omitempty"`       //
+	Version        *int                                                            `json:"version,omitempty"`        //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasks struct {
-	CurrWorkItemIDx *int                                                                       `json:"currWorkItemIdx,omitempty"` //
-	EndTime         *int                                                                       `json:"endTime,omitempty"`         //
-	Name            string                                                                     `json:"name,omitempty"`            //
-	StartTime       *int                                                                       `json:"startTime,omitempty"`       //
-	State           string                                                                     `json:"state,omitempty"`           //
-	TaskSeqNo       *int                                                                       `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       *int                                                                       `json:"timeTaken,omitempty"`       //
-	Type            string                                                                     `json:"type,omitempty"`            //
-	WorkItemList    *[]RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+type RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasks struct {
+	CurrWorkItemIDx *int                                                                        `json:"currWorkItemIdx,omitempty"` //
+	EndTime         *int                                                                        `json:"endTime,omitempty"`         //
+	Name            string                                                                      `json:"name,omitempty"`            //
+	StartTime       *int                                                                        `json:"startTime,omitempty"`       //
+	State           string                                                                      `json:"state,omitempty"`           //
+	TaskSeqNo       *int                                                                        `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       *int                                                                        `json:"timeTaken,omitempty"`       //
+	Type            string                                                                      `json:"type,omitempty"`            //
+	WorkItemList    *[]RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList struct {
+type RequestDeviceOnboardingPnpAddDevice2SystemResetWorkflowTasksWorkItemList struct {
 	Command   string `json:"command,omitempty"`   //
 	EndTime   *int   `json:"endTime,omitempty"`   //
 	OutputStr string `json:"outputStr,omitempty"` //
@@ -2824,39 +2809,39 @@ type RequestDeviceOnboardingPnpAddDeviceSystemResetWorkflowTasksWorkItemList str
 	State     string `json:"state,omitempty"`     //
 	TimeTaken *int   `json:"timeTaken,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemWorkflow struct {
-	TypeID         string                                                    `json:"_id,omitempty"`            //
-	AddToInventory *bool                                                     `json:"addToInventory,omitempty"` //
-	AddedOn        *int                                                      `json:"addedOn,omitempty"`        //
-	ConfigID       string                                                    `json:"configId,omitempty"`       //
-	CurrTaskIDx    *int                                                      `json:"currTaskIdx,omitempty"`    //
-	Description    string                                                    `json:"description,omitempty"`    //
-	EndTime        *int                                                      `json:"endTime,omitempty"`        //
-	ExecTime       *int                                                      `json:"execTime,omitempty"`       //
-	ImageID        string                                                    `json:"imageId,omitempty"`        //
-	InstanceType   string                                                    `json:"instanceType,omitempty"`   //
-	LastupdateOn   *int                                                      `json:"lastupdateOn,omitempty"`   //
-	Name           string                                                    `json:"name,omitempty"`           //
-	StartTime      *int                                                      `json:"startTime,omitempty"`      //
-	State          string                                                    `json:"state,omitempty"`          //
-	Tasks          *[]RequestDeviceOnboardingPnpAddDeviceSystemWorkflowTasks `json:"tasks,omitempty"`          //
-	TenantID       string                                                    `json:"tenantId,omitempty"`       //
-	Type           string                                                    `json:"type,omitempty"`           //
-	UseState       string                                                    `json:"useState,omitempty"`       //
-	Version        *int                                                      `json:"version,omitempty"`        //
+type RequestDeviceOnboardingPnpAddDevice2SystemWorkflow struct {
+	TypeID         string                                                     `json:"_id,omitempty"`            //
+	AddToInventory *bool                                                      `json:"addToInventory,omitempty"` //
+	AddedOn        *int                                                       `json:"addedOn,omitempty"`        //
+	ConfigID       string                                                     `json:"configId,omitempty"`       //
+	CurrTaskIDx    *int                                                       `json:"currTaskIdx,omitempty"`    //
+	Description    string                                                     `json:"description,omitempty"`    //
+	EndTime        *int                                                       `json:"endTime,omitempty"`        //
+	ExecTime       *int                                                       `json:"execTime,omitempty"`       //
+	ImageID        string                                                     `json:"imageId,omitempty"`        //
+	InstanceType   string                                                     `json:"instanceType,omitempty"`   //
+	LastupdateOn   *int                                                       `json:"lastupdateOn,omitempty"`   //
+	Name           string                                                     `json:"name,omitempty"`           //
+	StartTime      *int                                                       `json:"startTime,omitempty"`      //
+	State          string                                                     `json:"state,omitempty"`          //
+	Tasks          *[]RequestDeviceOnboardingPnpAddDevice2SystemWorkflowTasks `json:"tasks,omitempty"`          //
+	TenantID       string                                                     `json:"tenantId,omitempty"`       //
+	Type           string                                                     `json:"type,omitempty"`           //
+	UseState       string                                                     `json:"useState,omitempty"`       //
+	Version        *int                                                       `json:"version,omitempty"`        //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemWorkflowTasks struct {
-	CurrWorkItemIDx *int                                                                  `json:"currWorkItemIdx,omitempty"` //
-	EndTime         *int                                                                  `json:"endTime,omitempty"`         //
-	Name            string                                                                `json:"name,omitempty"`            //
-	StartTime       *int                                                                  `json:"startTime,omitempty"`       //
-	State           string                                                                `json:"state,omitempty"`           //
-	TaskSeqNo       *int                                                                  `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       *int                                                                  `json:"timeTaken,omitempty"`       //
-	Type            string                                                                `json:"type,omitempty"`            //
-	WorkItemList    *[]RequestDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+type RequestDeviceOnboardingPnpAddDevice2SystemWorkflowTasks struct {
+	CurrWorkItemIDx *int                                                                   `json:"currWorkItemIdx,omitempty"` //
+	EndTime         *int                                                                   `json:"endTime,omitempty"`         //
+	Name            string                                                                 `json:"name,omitempty"`            //
+	StartTime       *int                                                                   `json:"startTime,omitempty"`       //
+	State           string                                                                 `json:"state,omitempty"`           //
+	TaskSeqNo       *int                                                                   `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       *int                                                                   `json:"timeTaken,omitempty"`       //
+	Type            string                                                                 `json:"type,omitempty"`            //
+	WorkItemList    *[]RequestDeviceOnboardingPnpAddDevice2SystemWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList struct {
+type RequestDeviceOnboardingPnpAddDevice2SystemWorkflowTasksWorkItemList struct {
 	Command   string `json:"command,omitempty"`   //
 	EndTime   *int   `json:"endTime,omitempty"`   //
 	OutputStr string `json:"outputStr,omitempty"` //
@@ -2864,39 +2849,39 @@ type RequestDeviceOnboardingPnpAddDeviceSystemWorkflowTasksWorkItemList struct {
 	State     string `json:"state,omitempty"`     //
 	TimeTaken *int   `json:"timeTaken,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflow struct {
-	TypeID         string                                              `json:"_id,omitempty"`            //
-	AddToInventory *bool                                               `json:"addToInventory,omitempty"` //
-	AddedOn        *int                                                `json:"addedOn,omitempty"`        //
-	ConfigID       string                                              `json:"configId,omitempty"`       //
-	CurrTaskIDx    *int                                                `json:"currTaskIdx,omitempty"`    //
-	Description    string                                              `json:"description,omitempty"`    //
-	EndTime        *int                                                `json:"endTime,omitempty"`        //
-	ExecTime       *int                                                `json:"execTime,omitempty"`       //
-	ImageID        string                                              `json:"imageId,omitempty"`        //
-	InstanceType   string                                              `json:"instanceType,omitempty"`   //
-	LastupdateOn   *int                                                `json:"lastupdateOn,omitempty"`   //
-	Name           string                                              `json:"name,omitempty"`           //
-	StartTime      *int                                                `json:"startTime,omitempty"`      //
-	State          string                                              `json:"state,omitempty"`          //
-	Tasks          *[]RequestDeviceOnboardingPnpAddDeviceWorkflowTasks `json:"tasks,omitempty"`          //
-	TenantID       string                                              `json:"tenantId,omitempty"`       //
-	Type           string                                              `json:"type,omitempty"`           //
-	UseState       string                                              `json:"useState,omitempty"`       //
-	Version        *int                                                `json:"version,omitempty"`        //
+type RequestDeviceOnboardingPnpAddDevice2Workflow struct {
+	TypeID         string                                               `json:"_id,omitempty"`            //
+	AddToInventory *bool                                                `json:"addToInventory,omitempty"` //
+	AddedOn        *int                                                 `json:"addedOn,omitempty"`        //
+	ConfigID       string                                               `json:"configId,omitempty"`       //
+	CurrTaskIDx    *int                                                 `json:"currTaskIdx,omitempty"`    //
+	Description    string                                               `json:"description,omitempty"`    //
+	EndTime        *int                                                 `json:"endTime,omitempty"`        //
+	ExecTime       *int                                                 `json:"execTime,omitempty"`       //
+	ImageID        string                                               `json:"imageId,omitempty"`        //
+	InstanceType   string                                               `json:"instanceType,omitempty"`   //
+	LastupdateOn   *int                                                 `json:"lastupdateOn,omitempty"`   //
+	Name           string                                               `json:"name,omitempty"`           //
+	StartTime      *int                                                 `json:"startTime,omitempty"`      //
+	State          string                                               `json:"state,omitempty"`          //
+	Tasks          *[]RequestDeviceOnboardingPnpAddDevice2WorkflowTasks `json:"tasks,omitempty"`          //
+	TenantID       string                                               `json:"tenantId,omitempty"`       //
+	Type           string                                               `json:"type,omitempty"`           //
+	UseState       string                                               `json:"useState,omitempty"`       //
+	Version        *int                                                 `json:"version,omitempty"`        //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflowTasks struct {
-	CurrWorkItemIDx *int                                                            `json:"currWorkItemIdx,omitempty"` //
-	EndTime         *int                                                            `json:"endTime,omitempty"`         //
-	Name            string                                                          `json:"name,omitempty"`            //
-	StartTime       *int                                                            `json:"startTime,omitempty"`       //
-	State           string                                                          `json:"state,omitempty"`           //
-	TaskSeqNo       *int                                                            `json:"taskSeqNo,omitempty"`       //
-	TimeTaken       *int                                                            `json:"timeTaken,omitempty"`       //
-	Type            string                                                          `json:"type,omitempty"`            //
-	WorkItemList    *[]RequestDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
+type RequestDeviceOnboardingPnpAddDevice2WorkflowTasks struct {
+	CurrWorkItemIDx *int                                                             `json:"currWorkItemIdx,omitempty"` //
+	EndTime         *int                                                             `json:"endTime,omitempty"`         //
+	Name            string                                                           `json:"name,omitempty"`            //
+	StartTime       *int                                                             `json:"startTime,omitempty"`       //
+	State           string                                                           `json:"state,omitempty"`           //
+	TaskSeqNo       *int                                                             `json:"taskSeqNo,omitempty"`       //
+	TimeTaken       *int                                                             `json:"timeTaken,omitempty"`       //
+	Type            string                                                           `json:"type,omitempty"`            //
+	WorkItemList    *[]RequestDeviceOnboardingPnpAddDevice2WorkflowTasksWorkItemList `json:"workItemList,omitempty"`    //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList struct {
+type RequestDeviceOnboardingPnpAddDevice2WorkflowTasksWorkItemList struct {
 	Command   string `json:"command,omitempty"`   //
 	EndTime   *int   `json:"endTime,omitempty"`   //
 	OutputStr string `json:"outputStr,omitempty"` //
@@ -2904,17 +2889,17 @@ type RequestDeviceOnboardingPnpAddDeviceWorkflowTasksWorkItemList struct {
 	State     string `json:"state,omitempty"`     //
 	TimeTaken *int   `json:"timeTaken,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflowParameters struct {
-	ConfigList             *[]RequestDeviceOnboardingPnpAddDeviceWorkflowParametersConfigList `json:"configList,omitempty"`             //
-	LicenseLevel           string                                                             `json:"licenseLevel,omitempty"`           //
-	LicenseType            string                                                             `json:"licenseType,omitempty"`            //
-	TopOfStackSerialNumber string                                                             `json:"topOfStackSerialNumber,omitempty"` //
+type RequestDeviceOnboardingPnpAddDevice2WorkflowParameters struct {
+	ConfigList             *[]RequestDeviceOnboardingPnpAddDevice2WorkflowParametersConfigList `json:"configList,omitempty"`             //
+	LicenseLevel           string                                                              `json:"licenseLevel,omitempty"`           //
+	LicenseType            string                                                              `json:"licenseType,omitempty"`            //
+	TopOfStackSerialNumber string                                                              `json:"topOfStackSerialNumber,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflowParametersConfigList struct {
-	ConfigID         string                                                                             `json:"configId,omitempty"`         //
-	ConfigParameters *[]RequestDeviceOnboardingPnpAddDeviceWorkflowParametersConfigListConfigParameters `json:"configParameters,omitempty"` //
+type RequestDeviceOnboardingPnpAddDevice2WorkflowParametersConfigList struct {
+	ConfigID         string                                                                              `json:"configId,omitempty"`         //
+	ConfigParameters *[]RequestDeviceOnboardingPnpAddDevice2WorkflowParametersConfigListConfigParameters `json:"configParameters,omitempty"` //
 }
-type RequestDeviceOnboardingPnpAddDeviceWorkflowParametersConfigListConfigParameters struct {
+type RequestDeviceOnboardingPnpAddDevice2WorkflowParametersConfigListConfigParameters struct {
 	Key   string `json:"key,omitempty"`   //
 	Value string `json:"value,omitempty"` //
 }
@@ -3881,21 +3866,21 @@ func (s *DeviceOnboardingPnpService) GetDeviceList2(GetDeviceList2QueryParams *G
 
 }
 
-//GetDeviceCount Get Device Count - d9a1-fa9c-4068-b23c
+//GetDeviceCount2 Get Device Count - d9a1-fa9c-4068-b23c
 /* Returns the device count based on filter criteria. This is useful for pagination
 
 
-@param GetDeviceCountQueryParams Filtering parameter
+@param GetDeviceCount2QueryParams Filtering parameter
 */
-func (s *DeviceOnboardingPnpService) GetDeviceCount(GetDeviceCountQueryParams *GetDeviceCountQueryParams) (*ResponseDeviceOnboardingPnpGetDeviceCount, *resty.Response, error) {
+func (s *DeviceOnboardingPnpService) GetDeviceCount2(GetDeviceCount2QueryParams *GetDeviceCount2QueryParams) (*ResponseDeviceOnboardingPnpGetDeviceCount2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/count"
 
-	queryString, _ := query.Values(GetDeviceCountQueryParams)
+	queryString, _ := query.Values(GetDeviceCount2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDeviceOnboardingPnpGetDeviceCount{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDeviceOnboardingPnpGetDeviceCount2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -3905,10 +3890,10 @@ func (s *DeviceOnboardingPnpService) GetDeviceCount(GetDeviceCountQueryParams *G
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCount")
+		return nil, response, fmt.Errorf("error with operation GetDeviceCount2")
 	}
 
-	result := response.Result().(*ResponseDeviceOnboardingPnpGetDeviceCount)
+	result := response.Result().(*ResponseDeviceOnboardingPnpGetDeviceCount2)
 	return result, response, err
 
 }
@@ -4196,19 +4181,19 @@ func (s *DeviceOnboardingPnpService) GetWorkflowByID(id string) (*ResponseDevice
 
 }
 
-//AddDevice Add Device - f3b2-6b55-44ca-bab9
+//AddDevice2 Add Device - f3b2-6b55-44ca-bab9
 /* Adds a device to the PnP database.
 
 
  */
-func (s *DeviceOnboardingPnpService) AddDevice(requestDeviceOnboardingPnpAddDevice *RequestDeviceOnboardingPnpAddDevice) (*ResponseDeviceOnboardingPnpAddDevice, *resty.Response, error) {
+func (s *DeviceOnboardingPnpService) AddDevice2(requestDeviceOnboardingPnpAddDevice2 *RequestDeviceOnboardingPnpAddDevice2) (*ResponseDeviceOnboardingPnpAddDevice2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDeviceOnboardingPnpAddDevice).
-		SetResult(&ResponseDeviceOnboardingPnpAddDevice{}).
+		SetBody(requestDeviceOnboardingPnpAddDevice2).
+		SetResult(&ResponseDeviceOnboardingPnpAddDevice2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -4218,10 +4203,10 @@ func (s *DeviceOnboardingPnpService) AddDevice(requestDeviceOnboardingPnpAddDevi
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddDevice")
+		return nil, response, fmt.Errorf("error with operation AddDevice2")
 	}
 
-	result := response.Result().(*ResponseDeviceOnboardingPnpAddDevice)
+	result := response.Result().(*ResponseDeviceOnboardingPnpAddDevice2)
 	return result, response, err
 
 }

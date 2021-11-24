@@ -41,6 +41,7 @@ type ResponseLicensesDeviceCountDetails struct {
 	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseLicensesDeviceLicenseSummary struct {
+	Version  string                                          `json:"version,omitempty"`  // Version
 	Response *[]ResponseLicensesDeviceLicenseSummaryResponse `json:"response,omitempty"` //
 }
 type ResponseLicensesDeviceLicenseSummaryResponse struct {
@@ -81,58 +82,34 @@ type ResponseLicensesDeviceLicenseSummaryResponse struct {
 	SmartAccountName                 string `json:"smart_account_name,omitempty"`                    // Name of smart account
 }
 type ResponseLicensesDeviceLicenseDetails struct {
-	Response *[]ResponseLicensesDeviceLicenseDetailsResponse `json:"response,omitempty"` //
+	DeviceUUID              string                                              `json:"device_uuid,omitempty"`               // Id of device
+	Site                    string                                              `json:"site,omitempty"`                      // Site of device
+	Model                   string                                              `json:"model,omitempty"`                     // Model of device
+	LicenseMode             string                                              `json:"license_mode,omitempty"`              // Mode of license
+	IsLicenseExpired        *bool                                               `json:"is_license_expired,omitempty"`        // Is device license expired
+	SoftwareVersion         string                                              `json:"software_version,omitempty"`          // Software image version of device
+	NetworkLicense          string                                              `json:"network_license,omitempty"`           // Device network license level
+	EvaluationLicenseExpiry string                                              `json:"evaluation_license_expiry,omitempty"` // Evaluation period expiry date
+	DeviceName              string                                              `json:"device_name,omitempty"`               // Name of device
+	DeviceType              string                                              `json:"device_type,omitempty"`               // Type of device
+	DnaLevel                string                                              `json:"dna_level,omitempty"`                 // Device Cisco DNA license level
+	VirtualAccountName      string                                              `json:"virtual_account_name,omitempty"`      // Name of virtual account
+	IPAddress               string                                              `json:"ip_address,omitempty"`                // IP address of device
+	MacAddress              string                                              `json:"mac_address,omitempty"`               // MAC address of device
+	SntcStatus              string                                              `json:"sntc_status,omitempty"`               // Valid if device is covered under license contract and invalid if not covered, otherwise unknown.
+	FeatureLicense          []string                                            `json:"feature_license,omitempty"`           // Name of feature licenses
+	HasSupCards             *bool                                               `json:"has_sup_cards,omitempty"`             // Whether device has supervisor cards
+	Udi                     string                                              `json:"udi,omitempty"`                       // Unique Device Identifier
+	StackedDevices          *[][]string                                         `json:"stacked_devices,omitempty"`           // Stacked device details
+	IsStackedDevice         *bool                                               `json:"is_stacked_device,omitempty"`         // Is Stacked Device
+	AccessPoints            *[][]string                                         `json:"access_points,omitempty"`             // Access point details
+	ChassisDetails          *ResponseLicensesDeviceLicenseDetailsChassisDetails `json:"chassis_details,omitempty"`           //
 }
-type ResponseLicensesDeviceLicenseDetailsResponse struct {
-	DeviceUUID              string                                                        `json:"device_uuid,omitempty"`               // Id of device
-	Site                    string                                                        `json:"site,omitempty"`                      // Site of device
-	Model                   string                                                        `json:"model,omitempty"`                     // Model of device
-	LicenseMode             string                                                        `json:"license_mode,omitempty"`              // Mode of license
-	IsLicenseExpired        *bool                                                         `json:"is_license_expired,omitempty"`        // Is device license expired
-	SoftwareVersion         string                                                        `json:"software_version,omitempty"`          // Software image version of device
-	NetworkLicense          string                                                        `json:"network_license,omitempty"`           // Device network license level
-	EvaluationLicenseExpiry string                                                        `json:"evaluation_license_expiry,omitempty"` // Evaluation period expiry date
-	DeviceName              string                                                        `json:"device_name,omitempty"`               // Name of device
-	DeviceType              string                                                        `json:"device_type,omitempty"`               // Type of device
-	DnaLevel                string                                                        `json:"dna_level,omitempty"`                 // Device Cisco DNA license level
-	VirtualAccountName      string                                                        `json:"virtual_account_name,omitempty"`      // Name of virtual account
-	IPAddress               string                                                        `json:"ip_address,omitempty"`                // IP address of device
-	MacAddress              string                                                        `json:"mac_address,omitempty"`               // MAC address of device
-	SntcStatus              string                                                        `json:"sntc_status,omitempty"`               // Valid if device is covered under license contract and invalid if not covered, otherwise unknown.
-	FeatureLicense          []string                                                      `json:"feature_license,omitempty"`           // Name of feature licenses
-	HasSupCards             *bool                                                         `json:"has_sup_cards,omitempty"`             // Whether device has supervisor cards
-	Udi                     string                                                        `json:"udi,omitempty"`                       // Unique Device Identifier
-	StackedDevices          *[]ResponseLicensesDeviceLicenseDetailsResponseStackedDevices `json:"stacked_devices,omitempty"`           //
-	IsStackedDevice         *bool                                                         `json:"is_stacked_device,omitempty"`         // Is Stacked Device
-	AccessPoints            *[]ResponseLicensesDeviceLicenseDetailsResponseAccessPoints   `json:"access_points,omitempty"`             //
-	ChassisDetails          *ResponseLicensesDeviceLicenseDetailsResponseChassisDetails   `json:"chassis_details,omitempty"`           //
-}
-type ResponseLicensesDeviceLicenseDetailsResponseStackedDevices struct {
-	MacAddress   string `json:"mac_address,omitempty"`   // Stack mac address
-	ID           string `json:"id,omitempty"`            // Id
-	Role         string `json:"role,omitempty"`          // Chassis role
-	SerialNumber string `json:"serial_number,omitempty"` // Chassis serial number
-}
-type ResponseLicensesDeviceLicenseDetailsResponseAccessPoints struct {
-	ApType string `json:"ap_type,omitempty"` // Type of access point
-	Count  string `json:"count,omitempty"`   // Number of access point
-}
-type ResponseLicensesDeviceLicenseDetailsResponseChassisDetails struct {
-	BoardSerialNumber string                                                                       `json:"board_serial_number,omitempty"` // Board serial number
-	Modules           *[]ResponseLicensesDeviceLicenseDetailsResponseChassisDetailsModules         `json:"modules,omitempty"`             //
-	SupervisorCards   *[]ResponseLicensesDeviceLicenseDetailsResponseChassisDetailsSupervisorCards `json:"supervisor_cards,omitempty"`    //
-	Port              *int                                                                         `json:"port,omitempty"`                // Number of port
-}
-type ResponseLicensesDeviceLicenseDetailsResponseChassisDetailsModules struct {
-	ModuleType   string `json:"module_type,omitempty"`   // Type of module
-	ModuleName   string `json:"module_name,omitempty"`   // Name of module
-	SerialNumber string `json:"serial_number,omitempty"` // Serial number of module
-	ID           string `json:"id,omitempty"`            // Id of module
-}
-type ResponseLicensesDeviceLicenseDetailsResponseChassisDetailsSupervisorCards struct {
-	SerialNumber       string `json:"serial_number,omitempty"`        // Serial number of supervisor card
-	SupervisorCardType string `json:"supervisor_card_type,omitempty"` // Type of supervisor card
-	Status             string `json:"status,omitempty"`               // Status of supervisor card
+type ResponseLicensesDeviceLicenseDetailsChassisDetails struct {
+	BoardSerialNumber string      `json:"board_serial_number,omitempty"` // Board serial number
+	Modules           *[][]string `json:"modules,omitempty"`             // Module details
+	SupervisorCards   *[][]string `json:"supervisor_cards,omitempty"`    // Supervisor card details
+	Port              *int        `json:"port,omitempty"`                // Number of port
 }
 type ResponseLicensesDeviceDeregistration struct {
 	Response *ResponseLicensesDeviceDeregistrationResponse `json:"response,omitempty"` //
@@ -183,7 +160,7 @@ type ResponseLicensesLicenseTermDetailsLicenseDetails struct {
 	LicenseTermStartDate     string `json:"license_term_start_date,omitempty"`     // Start date of license term
 	LicenseTermEndDate       string `json:"license_term_end_date,omitempty"`       // End date of license term
 	DnaLevel                 string `json:"dna_level,omitempty"`                   // Cisco DNA license level
-	PurchasedDnaLicenseCount string `json:"purchased_dna_license_count,omitempty"` // Number of purchased Cisco DNA licenses
+	PurchasedDnaLicenseCount string `json:"purchased_dna_license_count,omitempty"` // Number of purchased DNA licenses
 	IsLicenseExpired         string `json:"is_license_expired,omitempty"`          // Is license expired
 }
 type ResponseLicensesLicenseUsageDetails struct {
@@ -430,7 +407,7 @@ func (s *LicensesService) LicenseTermDetails(smartaccountTypeID string, virtuala
 }
 
 //LicenseUsageDetails License Usage Details - f191-0b23-40fb-89d3
-/* Get count of purchased and in use Cisco DNA and Network licenses.
+/* Get count of purchased and in use DNA and Network licenses.
 
 
 @param smartaccountTypeID smart_account_id path parameter. Id of smart account

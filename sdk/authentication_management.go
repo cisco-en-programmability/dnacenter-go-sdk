@@ -37,7 +37,8 @@ type ResponseAuthenticationManagementImportCertificateP12Response struct {
 }
 
 //ImportCertificate importCertificate - 2a9e-c8a4-454a-b942
-/* This method is used to upload a certificate
+/* This method is used to upload a certificate.
+Upload the files to the **certFileUpload** and **pkFileUpload** form data fields
 
 
 @param ImportCertificateQueryParams Filtering parameter
@@ -70,7 +71,8 @@ func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQue
 }
 
 //ImportCertificateP12 importCertificateP12 - 368e-79cf-4329-b63f
-/* This method is used to upload a PKCS#12 file
+/* This method is used to upload a PKCS#12 file.
+Upload the file to the **p12FileUpload** form data field
 
 
 @param ImportCertificateP12QueryParams Filtering parameter

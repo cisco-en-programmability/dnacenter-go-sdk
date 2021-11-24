@@ -72,11 +72,11 @@ type ResponseHealthAndPerformanceSystemPerformanceAPIKpisMemory struct {
 }
 type ResponseHealthAndPerformanceSystemPerformanceAPIKpisNetworktxRate struct {
 	Units       string `json:"units,omitempty"`       // Units for network tx_rate
-	Utilization string `json:"utilization,omitempty"` // Network tx_rate in units
+	Utilization string `json:"utilization,omitempty"` // Network_tx_rate in units
 }
 type ResponseHealthAndPerformanceSystemPerformanceAPIKpisNetworkrxRate struct {
 	Units       string `json:"units,omitempty"`       // Units for network rx_rate
-	Utilization string `json:"utilization,omitempty"` // Network rx_rate in units
+	Utilization string `json:"utilization,omitempty"` // Network_rx_rate in units
 }
 type ResponseHealthAndPerformanceSystemPerformanceHistoricalApI struct {
 	HostName string                                                          `json:"hostName,omitempty"` // Hostname
