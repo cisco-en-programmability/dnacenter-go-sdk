@@ -83,7 +83,21 @@ for id, device := range devices.Response {
 
 https://godoc.org/github.com/cisco-en-programmability/dnacenter-go-sdk/sdk
 
-## TODO
+## Compatibility matrix
+
+| SDK versions | Cisco DNA Center version supported |
+|--------------|------------------------------------|
+| 0.y.z        |  2.1.2                             |
+| 1.y.z        |  2.1.2                             |
+| 2.y.z        |  2.2.2.3                           |
+| 3.y.z        |  2.2.3.3                           |
+
+## Changelog
+
+All notable changes to this project will be documented in the [CHANGELOG](https://github.com/cisco-en-programmability/dnacenter-go-sdk/blob/main/CHANGELOG.md) file.
+
+The development team may make additional name changes as the library evolves with the Cisco DNA Center APIs.
+
 
 ## License
 
