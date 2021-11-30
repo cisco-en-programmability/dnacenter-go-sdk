@@ -80,4 +80,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.1...v1.0.0
 [2.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v2.0.0
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...master
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...main
