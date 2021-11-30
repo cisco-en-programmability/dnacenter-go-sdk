@@ -59,7 +59,7 @@ func (s *ITSMService) GetFailedITSMEvents(getFailedITSMEventsQueryParams *GetFai
 
 	queryString, _ := query.Values(getFailedITSMEventsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetFailedITSMEventsResponse{}).
 		SetError(&Error{}).
@@ -84,7 +84,7 @@ func (s *ITSMService) RetryIntegrationEvents(retryIntegrationEventsRequest *[]Re
 
 	path := "/dna/intent/api/v1/integration/events"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(retryIntegrationEventsRequest).
 		SetResult(&RetryIntegrationEventsResponse{}).
 		SetError(&Error{}).

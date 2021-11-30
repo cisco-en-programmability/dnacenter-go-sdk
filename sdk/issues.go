@@ -81,7 +81,7 @@ func (s *IssuesService) GetIssueEnrichmentDetails() (*GetIssueEnrichmentDetailsR
 
 	path := "/dna/intent/api/v1/issue-enrichment-details"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetIssueEnrichmentDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -127,7 +127,7 @@ func (s *IssuesService) Issues(issuesQueryParams *IssuesQueryParams) (*IssuesRes
 
 	queryString, _ := query.Values(issuesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&IssuesResponse{}).
 		SetError(&Error{}).

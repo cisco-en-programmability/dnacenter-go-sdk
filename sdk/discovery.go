@@ -1002,7 +1002,7 @@ func (s *DiscoveryService) CreateCLICredentials(createCLICredentialsRequest *[]C
 
 	path := "/dna/intent/api/v1/global-credential/cli"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createCLICredentialsRequest).
 		SetResult(&CreateCLICredentialsResponse{}).
 		SetError(&Error{}).
@@ -1027,7 +1027,7 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(createHTTPReadCredentialsRe
 
 	path := "/dna/intent/api/v1/global-credential/http-read"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createHTTPReadCredentialsRequest).
 		SetResult(&CreateHTTPReadCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1052,7 +1052,7 @@ func (s *DiscoveryService) CreateHTTPWriteCredentials(createHTTPWriteCredentials
 
 	path := "/dna/intent/api/v1/global-credential/http-write"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createHTTPWriteCredentialsRequest).
 		SetResult(&CreateHTTPWriteCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1077,7 +1077,7 @@ func (s *DiscoveryService) CreateNetconfCredentials(createNetconfCredentialsRequ
 
 	path := "/dna/intent/api/v1/global-credential/netconf"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createNetconfCredentialsRequest).
 		SetResult(&CreateNetconfCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1102,7 +1102,7 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(createSNMPReadCommunityReques
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSNMPReadCommunityRequest).
 		SetResult(&CreateSNMPReadCommunityResponse{}).
 		SetError(&Error{}).
@@ -1127,7 +1127,7 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(createSNMPWriteCommunityRequ
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSNMPWriteCommunityRequest).
 		SetResult(&CreateSNMPWriteCommunityResponse{}).
 		SetError(&Error{}).
@@ -1152,7 +1152,7 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(createSNMPv3CredentialsReques
 
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSNMPv3CredentialsRequest).
 		SetResult(&CreateSNMPv3CredentialsResponse{}).
 		SetError(&Error{}).
@@ -1177,7 +1177,7 @@ func (s *DiscoveryService) CreateUpdateSNMPProperties(createUpdateSNMPProperties
 
 	path := "/dna/intent/api/v1/snmp-property"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createUpdateSNMPPropertiesRequest).
 		SetResult(&CreateUpdateSNMPPropertiesResponse{}).
 		SetError(&Error{}).
@@ -1202,7 +1202,7 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*DeleteAllDiscoveryResponse, *r
 
 	path := "/dna/intent/api/v1/discovery"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteAllDiscoveryResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -1228,7 +1228,7 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*DeleteDiscoveryByIDR
 	path := "/dna/intent/api/v1/discovery/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteDiscoveryByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -1256,7 +1256,7 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 	path = strings.Replace(path, "{"+"startIndex"+"}", fmt.Sprintf("%v", startIndex), -1)
 	path = strings.Replace(path, "{"+"recordsToDelete"+"}", fmt.Sprintf("%v", recordsToDelete), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteDiscoveryBySpecifiedRangeResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -1282,7 +1282,7 @@ func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string
 	path := "/dna/intent/api/v1/global-credential/{globalCredentialId}"
 	path = strings.Replace(path, "{"+"globalCredentialId"+"}", fmt.Sprintf("%v", globalCredentialID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteGlobalCredentialsByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -1306,7 +1306,7 @@ func (s *DiscoveryService) GetCountOfAllDiscoveryJobs() (*GetCountOfAllDiscovery
 
 	path := "/dna/intent/api/v1/discovery/count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetCountOfAllDiscoveryJobsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1332,7 +1332,7 @@ func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*GetCr
 	path := "/dna/intent/api/v1/global-credential/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetCredentialSubTypeByCredentialIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1366,7 +1366,7 @@ func (s *DiscoveryService) GetDevicesDiscoveredByID(id string, getDevicesDiscove
 
 	queryString, _ := query.Values(getDevicesDiscoveredByIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDevicesDiscoveredByIDResponse{}).
 		SetError(&Error{}).
@@ -1405,7 +1405,7 @@ func (s *DiscoveryService) GetDiscoveredDevicesByRange(id string, startIndex int
 
 	queryString, _ := query.Values(getDiscoveredDevicesByRangeQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDiscoveredDevicesByRangeResponse{}).
 		SetError(&Error{}).
@@ -1440,7 +1440,7 @@ func (s *DiscoveryService) GetDiscoveredNetworkDevicesByDiscoveryID(id string, g
 
 	queryString, _ := query.Values(getDiscoveredNetworkDevicesByDiscoveryIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDiscoveredNetworkDevicesByDiscoveryIDResponse{}).
 		SetError(&Error{}).
@@ -1469,7 +1469,7 @@ func (s *DiscoveryService) GetDiscoveriesByRange(startIndex int, recordsToReturn
 	path = strings.Replace(path, "{"+"startIndex"+"}", fmt.Sprintf("%v", startIndex), -1)
 	path = strings.Replace(path, "{"+"recordsToReturn"+"}", fmt.Sprintf("%v", recordsToReturn), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDiscoveriesByRangeResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1495,7 +1495,7 @@ func (s *DiscoveryService) GetDiscoveryByID(id string) (*GetDiscoveryByIDRespons
 	path := "/dna/intent/api/v1/discovery/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDiscoveryByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1533,7 +1533,7 @@ func (s *DiscoveryService) GetDiscoveryJobsByIP(getDiscoveryJobsByIPQueryParams 
 
 	queryString, _ := query.Values(getDiscoveryJobsByIPQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDiscoveryJobsByIPResponse{}).
 		SetError(&Error{}).
@@ -1570,7 +1570,7 @@ func (s *DiscoveryService) GetGlobalCredentials(getGlobalCredentialsQueryParams 
 
 	queryString, _ := query.Values(getGlobalCredentialsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetGlobalCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1609,7 +1609,7 @@ func (s *DiscoveryService) GetListOfDiscoveriesByDiscoveryID(id string, getListO
 
 	queryString, _ := query.Values(getListOfDiscoveriesByDiscoveryIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetListOfDiscoveriesByDiscoveryIDResponse{}).
 		SetError(&Error{}).
@@ -1660,7 +1660,7 @@ func (s *DiscoveryService) GetNetworkDevicesFromDiscovery(id string, getNetworkD
 
 	queryString, _ := query.Values(getNetworkDevicesFromDiscoveryQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetNetworkDevicesFromDiscoveryResponse{}).
 		SetError(&Error{}).
@@ -1685,7 +1685,7 @@ func (s *DiscoveryService) GetSNMPProperties() (*GetSNMPPropertiesResponse, *res
 
 	path := "/dna/intent/api/v1/snmp-property"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetSNMPPropertiesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1709,7 +1709,7 @@ func (s *DiscoveryService) StartDiscovery(startDiscoveryRequest *StartDiscoveryR
 
 	path := "/dna/intent/api/v1/discovery"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(startDiscoveryRequest).
 		SetResult(&StartDiscoveryResponse{}).
 		SetError(&Error{}).
@@ -1734,7 +1734,7 @@ func (s *DiscoveryService) UpdateCLICredentials(updateCLICredentialsRequest *Upd
 
 	path := "/dna/intent/api/v1/global-credential/cli"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateCLICredentialsRequest).
 		SetResult(&UpdateCLICredentialsResponse{}).
 		SetError(&Error{}).
@@ -1761,7 +1761,7 @@ func (s *DiscoveryService) UpdateGlobalCredentials(globalCredentialID string, up
 	path := "/dna/intent/api/v1/global-credential/{globalCredentialId}"
 	path = strings.Replace(path, "{"+"globalCredentialId"+"}", fmt.Sprintf("%v", globalCredentialID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateGlobalCredentialsRequest).
 		SetResult(&UpdateGlobalCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1786,7 +1786,7 @@ func (s *DiscoveryService) UpdateHTTPReadCredential(updateHTTPReadCredentialRequ
 
 	path := "/dna/intent/api/v1/global-credential/http-read"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateHTTPReadCredentialRequest).
 		SetResult(&UpdateHTTPReadCredentialResponse{}).
 		SetError(&Error{}).
@@ -1811,7 +1811,7 @@ func (s *DiscoveryService) UpdateHTTPWriteCredentials(updateHTTPWriteCredentials
 
 	path := "/dna/intent/api/v1/global-credential/http-write"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateHTTPWriteCredentialsRequest).
 		SetResult(&UpdateHTTPWriteCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1836,7 +1836,7 @@ func (s *DiscoveryService) UpdateNetconfCredentials(updateNetconfCredentialsRequ
 
 	path := "/dna/intent/api/v1/global-credential/netconf"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateNetconfCredentialsRequest).
 		SetResult(&UpdateNetconfCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1861,7 +1861,7 @@ func (s *DiscoveryService) UpdateSNMPReadCommunity(updateSNMPReadCommunityReques
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateSNMPReadCommunityRequest).
 		SetResult(&UpdateSNMPReadCommunityResponse{}).
 		SetError(&Error{}).
@@ -1886,7 +1886,7 @@ func (s *DiscoveryService) UpdateSNMPWriteCommunity(updateSNMPWriteCommunityRequ
 
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateSNMPWriteCommunityRequest).
 		SetResult(&UpdateSNMPWriteCommunityResponse{}).
 		SetError(&Error{}).
@@ -1911,7 +1911,7 @@ func (s *DiscoveryService) UpdateSNMPv3Credentials(updateSNMPv3CredentialsReques
 
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateSNMPv3CredentialsRequest).
 		SetResult(&UpdateSNMPv3CredentialsResponse{}).
 		SetError(&Error{}).
@@ -1936,7 +1936,7 @@ func (s *DiscoveryService) UpdatesAnExistingDiscoveryBySpecifiedID(updatesAnExis
 
 	path := "/dna/intent/api/v1/discovery"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updatesAnExistingDiscoveryBySpecifiedIDRequest).
 		SetResult(&UpdatesAnExistingDiscoveryBySpecifiedIDResponse{}).
 		SetError(&Error{}).

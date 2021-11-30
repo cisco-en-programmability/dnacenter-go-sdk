@@ -9,7 +9,6 @@ import (
 )
 
 // RestyClient is the REST Client
-var RestyClient *resty.Client
 
 var apiURL = "https://sandboxdnac.cisco.com"
 
@@ -49,12 +48,12 @@ type Client struct {
 }
 
 type service struct {
-	client *Client
+	client *resty.Client
 }
 
 // SetAuthToken defines the Authorization token sent in the request
 func (s *Client) SetAuthToken(accessToken string) {
-	RestyClient.SetAuthToken(accessToken)
+	s.common.client.SetAuthToken(accessToken)
 }
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
@@ -64,7 +63,7 @@ func NewClient() (*Client, error) {
 	var password = ""
 	client := resty.New()
 	c := &Client{}
-	RestyClient = client
+	c.common.client = client
 
 	if os.Getenv("DNAC_DEBUG") == "true" {
 		client.SetDebug(true)
@@ -74,7 +73,7 @@ func NewClient() (*Client, error) {
 	}
 
 	if os.Getenv("DNAC_BASE_URL") != "" {
-		RestyClient.SetHostURL(os.Getenv("DNAC_BASE_URL"))
+		c.common.client.SetHostURL(os.Getenv("DNAC_BASE_URL"))
 	}
 	if os.Getenv("DNAC_USERNAME") != "" {
 		username = os.Getenv("DNAC_USERNAME")
@@ -152,4 +151,8 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 // Error indicates an error from the invocation of a Cisco DNA Center API.
 type Error struct {
 	Error string `json:"error,omitempty"` // Error message
+}
+
+func (s *Client) RestyClient() *resty.Client {
+	return s.common.client
 }

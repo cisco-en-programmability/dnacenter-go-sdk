@@ -250,7 +250,7 @@ func (s *ApplicationPolicyService) CreateApplication(createApplicationRequest *[
 
 	path := "/dna/intent/api/v1/applications"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createApplicationRequest).
 		SetResult(&CreateApplicationResponse{}).
 		SetError(&Error{}).
@@ -275,7 +275,7 @@ func (s *ApplicationPolicyService) CreateApplicationSet(createApplicationSetRequ
 
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createApplicationSetRequest).
 		SetResult(&CreateApplicationSetResponse{}).
 		SetError(&Error{}).
@@ -308,7 +308,7 @@ func (s *ApplicationPolicyService) DeleteApplication(deleteApplicationQueryParam
 
 	queryString, _ := query.Values(deleteApplicationQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteApplicationResponse{}).
 		SetError(&Error{}).
@@ -341,7 +341,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(deleteApplicationSetQuer
 
 	queryString, _ := query.Values(deleteApplicationSetQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteApplicationSetResponse{}).
 		SetError(&Error{}).
@@ -366,7 +366,7 @@ func (s *ApplicationPolicyService) EditApplication(editApplicationRequest *[]Edi
 
 	path := "/dna/intent/api/v1/applications"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(editApplicationRequest).
 		SetResult(&EditApplicationResponse{}).
 		SetError(&Error{}).
@@ -403,7 +403,7 @@ func (s *ApplicationPolicyService) GetApplicationSets(getApplicationSetsQueryPar
 
 	queryString, _ := query.Values(getApplicationSetsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetApplicationSetsResponse{}).
 		SetError(&Error{}).
@@ -428,7 +428,7 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*GetApplicationSet
 
 	path := "/dna/intent/api/v1/application-policy-application-set-count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetApplicationSetsCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -464,7 +464,7 @@ func (s *ApplicationPolicyService) GetApplications(getApplicationsQueryParams *G
 
 	queryString, _ := query.Values(getApplicationsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetApplicationsResponse{}).
 		SetError(&Error{}).
@@ -489,7 +489,7 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*GetApplicationsCount
 
 	path := "/dna/intent/api/v1/applications-count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetApplicationsCountResponse{}).
 		SetError(&Error{}).
 		Get(path)

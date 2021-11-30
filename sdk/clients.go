@@ -432,7 +432,7 @@ func (s *ClientsService) GetClientDetail(getClientDetailQueryParams *GetClientDe
 
 	queryString, _ := query.Values(getClientDetailQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetClientDetailResponse{}).
 		SetError(&Error{}).
@@ -469,7 +469,7 @@ func (s *ClientsService) GetClientEnrichmentDetails(getClientEnrichmentDetailsHe
 
 	var response *resty.Response
 	var err error
-	clientRequest := RestyClient.R().
+	clientRequest := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
 
@@ -512,7 +512,7 @@ func (s *ClientsService) GetOverallClientHealth(getOverallClientHealthQueryParam
 
 	queryString, _ := query.Values(getOverallClientHealthQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetOverallClientHealthResponse{}).
 		SetError(&Error{}).

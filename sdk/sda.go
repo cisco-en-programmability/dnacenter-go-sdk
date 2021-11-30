@@ -694,7 +694,7 @@ func (s *SDAService) AddControlPlaneDeviceInSDAFabric(addControlPlaneDeviceInSDA
 
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addControlPlaneDeviceInSDAFabricRequest).
 		SetResult(&AddControlPlaneDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -719,7 +719,7 @@ func (s *SDAService) AddDefaultAuthenticationProfileInSDAFabric(addDefaultAuthen
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addDefaultAuthenticationProfileInSDAFabricRequest).
 		SetResult(&AddDefaultAuthenticationProfileInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -744,7 +744,7 @@ func (s *SDAService) AddEdgeDeviceInSDAFabric(addEdgeDeviceInSDAFabricRequest *[
 
 	path := "/dna/intent/api/v1/business/sda/edge-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addEdgeDeviceInSDAFabricRequest).
 		SetResult(&AddEdgeDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -769,7 +769,7 @@ func (s *SDAService) AddFabric(addFabricRequest *[]AddFabricRequest) (*AddFabric
 
 	path := "/dna/intent/api/v1/business/sda/fabric"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addFabricRequest).
 		SetResult(&AddFabricResponse{}).
 		SetError(&Error{}).
@@ -794,7 +794,7 @@ func (s *SDAService) AddIPPoolInSDAVirtualNetwork(addIPPoolInSDAVirtualNetworkRe
 
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addIPPoolInSDAVirtualNetworkRequest).
 		SetResult(&AddIPPoolInSDAVirtualNetworkResponse{}).
 		SetError(&Error{}).
@@ -819,7 +819,7 @@ func (s *SDAService) AddPortAssignmentForAccessPointInSDAFabric(addPortAssignmen
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addPortAssignmentForAccessPointInSDAFabricRequest).
 		SetResult(&AddPortAssignmentForAccessPointInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -844,7 +844,7 @@ func (s *SDAService) AddPortAssignmentForUserDeviceInSDAFabric(addPortAssignment
 
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addPortAssignmentForUserDeviceInSDAFabricRequest).
 		SetResult(&AddPortAssignmentForUserDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -869,7 +869,7 @@ func (s *SDAService) AddSiteInSDAFabric(addSiteInSDAFabricRequest *[]AddSiteInSD
 
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addSiteInSDAFabricRequest).
 		SetResult(&AddSiteInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -894,7 +894,7 @@ func (s *SDAService) AddVNInSDAFabric(addVNInSDAFabricRequest *[]AddVNInSDAFabri
 
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addVNInSDAFabricRequest).
 		SetResult(&AddVNInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -919,7 +919,7 @@ func (s *SDAService) AddsBorderDeviceInSDAFabric(addsBorderDeviceInSDAFabricRequ
 
 	path := "/dna/intent/api/v1/business/sda/border-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addsBorderDeviceInSDAFabricRequest).
 		SetResult(&AddsBorderDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -952,7 +952,7 @@ func (s *SDAService) DeleteControlPlaneDeviceInSDAFabric(deleteControlPlaneDevic
 
 	queryString, _ := query.Values(deleteControlPlaneDeviceInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteControlPlaneDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -985,7 +985,7 @@ func (s *SDAService) DeleteDefaultAuthenticationProfileFromSDAFabric(deleteDefau
 
 	queryString, _ := query.Values(deleteDefaultAuthenticationProfileFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteDefaultAuthenticationProfileFromSDAFabricRequest).
 		SetResult(&DeleteDefaultAuthenticationProfileFromSDAFabricResponse{}).
@@ -1019,7 +1019,7 @@ func (s *SDAService) DeleteEdgeDeviceFromSDAFabric(deleteEdgeDeviceFromSDAFabric
 
 	queryString, _ := query.Values(deleteEdgeDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteEdgeDeviceFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1054,7 +1054,7 @@ func (s *SDAService) DeleteIPPoolFromSDAVirtualNetwork(deleteIPPoolFromSDAVirtua
 
 	queryString, _ := query.Values(deleteIPPoolFromSDAVirtualNetworkQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteIPPoolFromSDAVirtualNetworkRequest).
 		SetResult(&DeleteIPPoolFromSDAVirtualNetworkResponse{}).
@@ -1090,7 +1090,7 @@ func (s *SDAService) DeletePortAssignmentForAccessPointInSDAFabric(deletePortAss
 
 	queryString, _ := query.Values(deletePortAssignmentForAccessPointInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deletePortAssignmentForAccessPointInSDAFabricRequest).
 		SetResult(&DeletePortAssignmentForAccessPointInSDAFabricResponse{}).
@@ -1126,7 +1126,7 @@ func (s *SDAService) DeletePortAssignmentForUserDeviceInSDAFabric(deletePortAssi
 
 	queryString, _ := query.Values(deletePortAssignmentForUserDeviceInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deletePortAssignmentForUserDeviceInSDAFabricRequest).
 		SetResult(&DeletePortAssignmentForUserDeviceInSDAFabricResponse{}).
@@ -1160,7 +1160,7 @@ func (s *SDAService) DeleteSDAFabric(deleteSDAFabricQueryParams *DeleteSDAFabric
 
 	queryString, _ := query.Values(deleteSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteSDAFabricRequest).
 		SetResult(&DeleteSDAFabricResponse{}).
@@ -1194,7 +1194,7 @@ func (s *SDAService) DeleteSiteFromSDAFabric(deleteSiteFromSDAFabricQueryParams 
 
 	queryString, _ := query.Values(deleteSiteFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(deleteSiteFromSDAFabricRequest).
 		SetResult(&DeleteSiteFromSDAFabricResponse{}).
@@ -1230,7 +1230,7 @@ func (s *SDAService) DeleteVNFromSDAFabric(deleteVNFromSDAFabricQueryParams *Del
 
 	queryString, _ := query.Values(deleteVNFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteVNFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1263,7 +1263,7 @@ type DeletesBorderDeviceFromSDAFabricQueryParams struct {
 
 // 	queryString, _ := query.Values(deletesBorderDeviceFromSDAFabricQueryParams)
 
-// 	response, err := RestyClient.R().
+// 	response, err := s.client.R().
 // 		SetQueryString(queryString.Encode()).
 // 		SetBody(deletesBorderDeviceFromSDAFabricRequest).
 // 		SetResult(&DeletesBorderDeviceFromSDAFabricResponse{}).
@@ -1297,7 +1297,7 @@ func (s *SDAService) GetControlPlaneDeviceFromSDAFabric(getControlPlaneDeviceFro
 
 	queryString, _ := query.Values(getControlPlaneDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetControlPlaneDeviceFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1330,7 +1330,7 @@ func (s *SDAService) GetDefaultAuthenticationProfileFromSDAFabric(getDefaultAuth
 
 	queryString, _ := query.Values(getDefaultAuthenticationProfileFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDefaultAuthenticationProfileFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1363,7 +1363,7 @@ func (s *SDAService) GetDeviceInfoFromSDAFabric(getDeviceInfoFromSDAFabricQueryP
 
 	queryString, _ := query.Values(getDeviceInfoFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceInfoFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1396,7 +1396,7 @@ func (s *SDAService) GetDeviceRoleInSDAFabric(getDeviceRoleInSDAFabricQueryParam
 
 	queryString, _ := query.Values(getDeviceRoleInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceRoleInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1429,7 +1429,7 @@ func (s *SDAService) GetEdgeDeviceFromSDAFabric(getEdgeDeviceFromSDAFabricQueryP
 
 	queryString, _ := query.Values(getEdgeDeviceFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetEdgeDeviceFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1464,7 +1464,7 @@ func (s *SDAService) GetIPPoolFromSDAVirtualNetwork(getIPPoolFromSDAVirtualNetwo
 
 	queryString, _ := query.Values(getIPPoolFromSDAVirtualNetworkQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetIPPoolFromSDAVirtualNetworkResponse{}).
 		SetError(&Error{}).
@@ -1499,7 +1499,7 @@ func (s *SDAService) GetPortAssignmentForAccessPointInSDAFabric(getPortAssignmen
 
 	queryString, _ := query.Values(getPortAssignmentForAccessPointInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetPortAssignmentForAccessPointInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1534,7 +1534,7 @@ func (s *SDAService) GetPortAssignmentForUserDeviceInSDAFabric(getPortAssignment
 
 	queryString, _ := query.Values(getPortAssignmentForUserDeviceInSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetPortAssignmentForUserDeviceInSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1559,7 +1559,7 @@ func (s *SDAService) GetSDAFabricCount() (*GetSDAFabricCountResponse, *resty.Res
 
 	path := "/dna/intent/api/v1/business/sda/fabric/count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetSDAFabricCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1591,7 +1591,7 @@ func (s *SDAService) GetSDAFabricInfo(getSDAFabricInfoQueryParams *GetSDAFabricI
 
 	queryString, _ := query.Values(getSDAFabricInfoQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSDAFabricInfoResponse{}).
 		SetError(&Error{}).
@@ -1624,7 +1624,7 @@ func (s *SDAService) GetSiteFromSDAFabric(getSiteFromSDAFabricQueryParams *GetSi
 
 	queryString, _ := query.Values(getSiteFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSiteFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1659,7 +1659,7 @@ func (s *SDAService) GetVNFromSDAFabric(getVNFromSDAFabricQueryParams *GetVNFrom
 
 	queryString, _ := query.Values(getVNFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetVNFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1692,7 +1692,7 @@ func (s *SDAService) GetsBorderDeviceDetailFromSDAFabric(getsBorderDeviceDetailF
 
 	queryString, _ := query.Values(getsBorderDeviceDetailFromSDAFabricQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetsBorderDeviceDetailFromSDAFabricResponse{}).
 		SetError(&Error{}).
@@ -1717,7 +1717,7 @@ func (s *SDAService) UpdateDefaultAuthenticationProfileInSDAFabric(updateDefault
 
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateDefaultAuthenticationProfileInSDAFabricRequest).
 		SetResult(&UpdateDefaultAuthenticationProfileInSDAFabricResponse{}).
 		SetError(&Error{}).

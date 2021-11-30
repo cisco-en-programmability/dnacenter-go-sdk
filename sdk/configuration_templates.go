@@ -656,7 +656,7 @@ func (s *ConfigurationTemplatesService) CreateProject(createProjectRequest *Crea
 
 	path := "/dna/intent/api/v1/template-programmer/project"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createProjectRequest).
 		SetResult(&CreateProjectResponse{}).
 		SetError(&Error{}).
@@ -683,7 +683,7 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, createT
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}/template"
 	path = strings.Replace(path, "{"+"projectId"+"}", fmt.Sprintf("%v", projectID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createTemplateRequest).
 		SetResult(&CreateTemplateResponse{}).
 		SetError(&Error{}).
@@ -710,7 +710,7 @@ func (s *ConfigurationTemplatesService) DeleteProject(projectID string) (*Delete
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}"
 	path = strings.Replace(path, "{"+"projectId"+"}", fmt.Sprintf("%v", projectID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteProjectResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -736,7 +736,7 @@ func (s *ConfigurationTemplatesService) DeleteTemplate(templateID string) (*Dele
 	path := "/dna/intent/api/v1/template-programmer/template/{templateId}"
 	path = strings.Replace(path, "{"+"templateId"+"}", fmt.Sprintf("%v", templateID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteTemplateResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -760,7 +760,7 @@ func (s *ConfigurationTemplatesService) DeployTemplate(deployTemplateRequest *De
 
 	path := "/dna/intent/api/v1/template-programmer/template/deploy"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(deployTemplateRequest).
 		SetResult(&DeployTemplateResponse{}).
 		SetError(&Error{}).
@@ -793,7 +793,7 @@ func (s *ConfigurationTemplatesService) GetProjects(getProjectsQueryParams *GetP
 
 	queryString, _ := query.Values(getProjectsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&[]GetProjectsResponse{}).
 		SetError(&Error{}).
@@ -820,7 +820,7 @@ func (s *ConfigurationTemplatesService) GetTemplateDeploymentStatus(deploymentID
 	path := "/dna/intent/api/v1/template-programmer/template/deploy/status/{deploymentId}"
 	path = strings.Replace(path, "{"+"deploymentId"+"}", fmt.Sprintf("%v", deploymentID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTemplateDeploymentStatusResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -854,7 +854,7 @@ func (s *ConfigurationTemplatesService) GetTemplateDetails(templateID string, ge
 
 	queryString, _ := query.Values(getTemplateDetailsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTemplateDetailsResponse{}).
 		SetError(&Error{}).
@@ -881,7 +881,7 @@ func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string) (
 	path := "/dna/intent/api/v1/template-programmer/template/version/{templateId}"
 	path = strings.Replace(path, "{"+"templateId"+"}", fmt.Sprintf("%v", templateID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&[]GetTemplateVersionsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -925,7 +925,7 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(getsTheTemplat
 
 	queryString, _ := query.Values(getsTheTemplatesAvailableQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&[]GetsTheTemplatesAvailableResponse{}).
 		SetError(&Error{}).
@@ -950,7 +950,7 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(previewTemplateRequest *
 
 	path := "/dna/intent/api/v1/template-programmer/template/preview"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(previewTemplateRequest).
 		SetResult(&PreviewTemplateResponse{}).
 		SetError(&Error{}).
@@ -975,7 +975,7 @@ func (s *ConfigurationTemplatesService) UpdateProject(updateProjectRequest *Upda
 
 	path := "/dna/intent/api/v1/template-programmer/project"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateProjectRequest).
 		SetResult(&UpdateProjectResponse{}).
 		SetError(&Error{}).
@@ -1000,7 +1000,7 @@ func (s *ConfigurationTemplatesService) UpdateTemplate(updateTemplateRequest *Up
 
 	path := "/dna/intent/api/v1/template-programmer/template"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateTemplateRequest).
 		SetResult(&UpdateTemplateResponse{}).
 		SetError(&Error{}).
@@ -1025,7 +1025,7 @@ func (s *ConfigurationTemplatesService) VersionTemplate(versionTemplateRequest *
 
 	path := "/dna/intent/api/v1/template-programmer/template/version"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(versionTemplateRequest).
 		SetResult(&VersionTemplateResponse{}).
 		SetError(&Error{}).

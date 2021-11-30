@@ -194,7 +194,7 @@ func (s *SoftwareImageManagementSWIMService) GetSoftwareImageDetails(getSoftware
 
 	queryString, _ := query.Values(getSoftwareImageDetailsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSoftwareImageDetailsResponse{}).
 		SetError(&Error{}).
@@ -234,7 +234,7 @@ func (s *SoftwareImageManagementSWIMService) ImportLocalSoftwareImage(importLoca
 
 	queryString, _ := query.Values(importLocalSoftwareImageQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&ImportLocalSoftwareImageResponse{}).
 		SetError(&Error{}).
@@ -271,7 +271,7 @@ func (s *SoftwareImageManagementSWIMService) ImportSoftwareImageViaURL(importSof
 
 	queryString, _ := query.Values(importSoftwareImageViaURLQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(importSoftwareImageViaURLRequest).
 		SetResult(&ImportSoftwareImageViaURLResponse{}).
@@ -307,7 +307,7 @@ func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageActivation(trig
 
 	queryString, _ := query.Values(triggerSoftwareImageActivationQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(triggerSoftwareImageActivationRequest).
 		SetResult(&TriggerSoftwareImageActivationResponse{}).
@@ -333,7 +333,7 @@ func (s *SoftwareImageManagementSWIMService) TriggerSoftwareImageDistribution(tr
 
 	path := "/dna/intent/api/v1/image/distribution"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(triggerSoftwareImageDistributionRequest).
 		SetResult(&TriggerSoftwareImageDistributionResponse{}).
 		SetError(&Error{}).

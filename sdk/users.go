@@ -144,7 +144,7 @@ func (s *UsersService) GetUserEnrichmentDetails() (*GetUserEnrichmentDetailsResp
 
 	path := "/dna/intent/api/v1/user-enrichment-details"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetUserEnrichmentDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)

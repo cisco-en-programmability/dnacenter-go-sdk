@@ -16,7 +16,7 @@ func (s *ConfigurationArchiveService) ExportDeviceConfigurations() (string, *res
 	path := "/dna/intent/api/v1/network-device-archive/cleartext"
 
 	var operationResult string
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&operationResult).
 		SetError(&Error{}).
 		Post(path)

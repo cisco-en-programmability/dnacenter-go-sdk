@@ -54,7 +54,7 @@ func (s *FileService) DownloadAFileByFileID(fileID string) (string, *resty.Respo
 	path = strings.Replace(path, "{"+"fileId"+"}", fmt.Sprintf("%v", fileID), -1)
 
 	var operationResult string
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&operationResult).
 		SetError(&Error{}).
 		Get(path)
@@ -72,7 +72,7 @@ func (s *FileService) GetListOfAvailableNamespaces() (*GetListOfAvailableNamespa
 
 	path := "/dna/intent/api/v1/file/namespace"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetListOfAvailableNamespacesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -98,7 +98,7 @@ func (s *FileService) GetListOfFiles(nameSpace string) (*GetListOfFilesResponse,
 	path := "/dna/intent/api/v1/file/namespace/{nameSpace}"
 	path = strings.Replace(path, "{"+"nameSpace"+"}", fmt.Sprintf("%v", nameSpace), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetListOfFilesResponse{}).
 		SetError(&Error{}).
 		Get(path)

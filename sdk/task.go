@@ -138,7 +138,7 @@ func (s *TaskService) GetTaskByID(taskID string) (*GetTaskByIDResponse, *resty.R
 	path := "/dna/intent/api/v1/task/{taskId}"
 	path = strings.Replace(path, "{"+"taskId"+"}", fmt.Sprintf("%v", taskID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTaskByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -168,7 +168,7 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 	path = strings.Replace(path, "{"+"offset"+"}", fmt.Sprintf("%v", offset), -1)
 	path = strings.Replace(path, "{"+"limit"+"}", fmt.Sprintf("%v", limit), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTaskByOperationIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -218,7 +218,7 @@ func (s *TaskService) GetTaskCount(getTaskCountQueryParams *GetTaskCountQueryPar
 
 	queryString, _ := query.Values(getTaskCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTaskCountResponse{}).
 		SetError(&Error{}).
@@ -245,7 +245,7 @@ func (s *TaskService) GetTaskTree(taskID string) (*GetTaskTreeResponse, *resty.R
 	path := "/dna/intent/api/v1/task/{taskId}/tree"
 	path = strings.Replace(path, "{"+"taskId"+"}", fmt.Sprintf("%v", taskID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTaskTreeResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -303,7 +303,7 @@ func (s *TaskService) GetTasks(getTasksQueryParams *GetTasksQueryParams) (*GetTa
 
 	queryString, _ := query.Values(getTasksQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTasksResponse{}).
 		SetError(&Error{}).
