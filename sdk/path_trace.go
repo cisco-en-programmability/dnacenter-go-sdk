@@ -1241,7 +1241,7 @@ func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*Deletes
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
 	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeletesPathtraceByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -1265,7 +1265,7 @@ func (s *PathTraceService) InitiateANewPathtrace(initiateANewPathtraceRequest *I
 
 	path := "/dna/intent/api/v1/flow-analysis"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(initiateANewPathtraceRequest).
 		SetResult(&InitiateANewPathtraceResponse{}).
 		SetError(&Error{}).
@@ -1292,7 +1292,7 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*R
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
 	path = strings.Replace(path, "{"+"flowAnalysisId"+"}", fmt.Sprintf("%v", flowAnalysisID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&RetrievesPreviousPathtraceResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1352,7 +1352,7 @@ func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(retrivesAllPrevi
 
 	queryString, _ := query.Values(retrivesAllPreviousPathtracesSummaryQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&RetrivesAllPreviousPathtracesSummaryResponse{}).
 		SetError(&Error{}).

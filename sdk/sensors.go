@@ -592,7 +592,7 @@ func (s *SensorsService) CreateSensorTestTemplate(createSensorTestTemplateReques
 
 	path := "/dna/intent/api/v1/sensor"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSensorTestTemplateRequest).
 		SetResult(&CreateSensorTestTemplateResponse{}).
 		SetError(&Error{}).
@@ -625,7 +625,7 @@ func (s *SensorsService) DeleteSensorTest(deleteSensorTestQueryParams *DeleteSen
 
 	queryString, _ := query.Values(deleteSensorTestQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteSensorTestResponse{}).
 		SetError(&Error{}).
@@ -650,7 +650,7 @@ func (s *SensorsService) DuplicateSensorTestTemplate(duplicateSensorTestTemplate
 
 	path := "/dna/intent/api/v1/sensorTestTemplate"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(duplicateSensorTestTemplateRequest).
 		SetResult(&DuplicateSensorTestTemplateResponse{}).
 		SetError(&Error{}).
@@ -675,7 +675,7 @@ func (s *SensorsService) EditSensorTestTemplate(editSensorTestTemplateRequest *E
 
 	path := "/dna/intent/api/v1/AssuranceScheduleSensorTest"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(editSensorTestTemplateRequest).
 		SetResult(&EditSensorTestTemplateResponse{}).
 		SetError(&Error{}).
@@ -700,7 +700,7 @@ func (s *SensorsService) RunNowSensorTest(runNowSensorTestRequest *RunNowSensorT
 
 	path := "/dna/intent/api/v1/sensor-run-now"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(runNowSensorTestRequest).
 		SetError(&Error{}).
 		Put(path)
@@ -726,7 +726,7 @@ func (s *SensorsService) Sensors(sensorsQueryParams *SensorsQueryParams) (*Senso
 
 	queryString, _ := query.Values(sensorsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&SensorsResponse{}).
 		SetError(&Error{}).

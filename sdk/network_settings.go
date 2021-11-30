@@ -682,7 +682,7 @@ func (s *NetworkSettingsService) AssignCredentialToSite(siteID string, assignCre
 	path := "/dna/intent/api/v1/credential-to-site/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(assignCredentialToSiteRequest).
 		SetResult(&AssignCredentialToSiteResponse{}).
 		SetError(&Error{}).
@@ -707,7 +707,7 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(createDeviceCredentials
 
 	path := "/dna/intent/api/v1/device-credential"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createDeviceCredentialsRequest).
 		SetResult(&CreateDeviceCredentialsResponse{}).
 		SetError(&Error{}).
@@ -733,7 +733,7 @@ func (s *NetworkSettingsService) CreateGlobalPool(createGlobalPoolRequest *Creat
 
 	path := "/dna/intent/api/v1/global-pool"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createGlobalPoolRequest).
 		SetResult(&CreateGlobalPoolResponse{}).
 		SetError(&Error{}).
@@ -761,7 +761,7 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, createNetworkReque
 	path := "/dna/intent/api/v1/network/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createNetworkRequest).
 		SetResult(&CreateNetworkResponse{}).
 		SetError(&Error{}).
@@ -786,7 +786,7 @@ func (s *NetworkSettingsService) CreateSPProfile(createSPProfileRequest *CreateS
 
 	path := "/dna/intent/api/v1/service-provider"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSPProfileRequest).
 		SetResult(&CreateSPProfileResponse{}).
 		SetError(&Error{}).
@@ -813,7 +813,7 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*DeleteDevic
 	path := "/dna/intent/api/v1/device-credential/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteDeviceCredentialResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -839,7 +839,7 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*DeleteGlobalIPP
 	path := "/dna/intent/api/v1/global-pool/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteGlobalIPPoolResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -865,7 +865,7 @@ func (s *NetworkSettingsService) DeleteSPProfile(spProfileName string) (*DeleteS
 	path := "/dna/intent/api/v1/sp-profile/{spProfileName}"
 	path = strings.Replace(path, "{"+"spProfileName"+"}", fmt.Sprintf("%v", spProfileName), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteSPProfileResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -897,7 +897,7 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(getDeviceCredentialD
 
 	queryString, _ := query.Values(getDeviceCredentialDetailsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceCredentialDetailsResponse{}).
 		SetError(&Error{}).
@@ -932,7 +932,7 @@ func (s *NetworkSettingsService) GetGlobalPool(getGlobalPoolQueryParams *GetGlob
 
 	queryString, _ := query.Values(getGlobalPoolQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetGlobalPoolResponse{}).
 		SetError(&Error{}).
@@ -965,7 +965,7 @@ func (s *NetworkSettingsService) GetNetwork(getNetworkQueryParams *GetNetworkQue
 
 	queryString, _ := query.Values(getNetworkQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetNetworkResponse{}).
 		SetError(&Error{}).
@@ -990,7 +990,7 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*GetServiceProvide
 
 	path := "/dna/intent/api/v1/service-provider"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetServiceProviderDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1014,7 +1014,7 @@ func (s *NetworkSettingsService) UpdateDeviceCredentials(updateDeviceCredentials
 
 	path := "/dna/intent/api/v1/device-credential"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateDeviceCredentialsRequest).
 		SetResult(&UpdateDeviceCredentialsResponse{}).
 		SetError(&Error{}).
@@ -1039,7 +1039,7 @@ func (s *NetworkSettingsService) UpdateGlobalPool(updateGlobalPoolRequest *Updat
 
 	path := "/dna/intent/api/v1/global-pool"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateGlobalPoolRequest).
 		SetResult(&UpdateGlobalPoolResponse{}).
 		SetError(&Error{}).
@@ -1067,7 +1067,7 @@ func (s *NetworkSettingsService) UpdateNetwork(siteID string, updateNetworkReque
 	path := "/dna/intent/api/v1/network/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateNetworkRequest).
 		SetResult(&UpdateNetworkResponse{}).
 		SetError(&Error{}).
@@ -1092,7 +1092,7 @@ func (s *NetworkSettingsService) UpdateSPProfile(updateSPProfileRequest *UpdateS
 
 	path := "/dna/intent/api/v1/service-provider"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateSPProfileRequest).
 		SetResult(&UpdateSPProfileResponse{}).
 		SetError(&Error{}).

@@ -274,7 +274,7 @@ type UpdatesTagMembershipResponseResponse struct {
 // 	path := "/dna/intent/api/v1/tag/{id}/member"
 // 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-// 	response, err := RestyClient.R().
+// 	response, err := s.client.R().
 // 		SetBody(addMembersToTheTagRequest).
 // 		SetResult(&AddMembersToTheTagResponse{}).
 // 		SetError(&Error{}).
@@ -299,7 +299,7 @@ func (s *TagService) CreateTag(createTagRequest *CreateTagRequest) (*CreateTagRe
 
 	path := "/dna/intent/api/v1/tag"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createTagRequest).
 		SetResult(&CreateTagResponse{}).
 		SetError(&Error{}).
@@ -326,7 +326,7 @@ func (s *TagService) DeleteTag(id string) (*DeleteTagResponse, *resty.Response, 
 	path := "/dna/intent/api/v1/tag/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteTagResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -378,7 +378,7 @@ func (s *TagService) GetTag(getTagQueryParams *GetTagQueryParams) (*GetTagRespon
 
 	queryString, _ := query.Values(getTagQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTagResponse{}).
 		SetError(&Error{}).
@@ -405,7 +405,7 @@ func (s *TagService) GetTagByID(id string) (*GetTagByIDResponse, *resty.Response
 	path := "/dna/intent/api/v1/tag/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTagByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -447,7 +447,7 @@ func (s *TagService) GetTagCount(getTagCountQueryParams *GetTagCountQueryParams)
 
 	queryString, _ := query.Values(getTagCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTagCountResponse{}).
 		SetError(&Error{}).
@@ -486,7 +486,7 @@ func (s *TagService) GetTagMemberCount(id string, getTagMemberCountQueryParams *
 
 	queryString, _ := query.Values(getTagMemberCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTagMemberCountResponse{}).
 		SetError(&Error{}).
@@ -529,7 +529,7 @@ func (s *TagService) GetTagMembersByID(id string, getTagMembersByIDQueryParams *
 
 	queryString, _ := query.Values(getTagMembersByIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetTagMembersByIDResponse{}).
 		SetError(&Error{}).
@@ -554,7 +554,7 @@ func (s *TagService) GetTagResourceTypes() (*GetTagResourceTypesResponse, *resty
 
 	path := "/dna/intent/api/v1/tag/member/type"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTagResourceTypesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -582,7 +582,7 @@ func (s *TagService) RemoveTagMember(id string, memberID string) (*RemoveTagMemb
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 	path = strings.Replace(path, "{"+"memberId"+"}", fmt.Sprintf("%v", memberID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&RemoveTagMemberResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -606,7 +606,7 @@ func (s *TagService) UpdateTag(updateTagRequest *UpdateTagRequest) (*UpdateTagRe
 
 	path := "/dna/intent/api/v1/tag"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateTagRequest).
 		SetResult(&UpdateTagResponse{}).
 		SetError(&Error{}).
@@ -631,7 +631,7 @@ func (s *TagService) UpdatesTagMembership(updatesTagMembershipRequest *UpdatesTa
 
 	path := "/dna/intent/api/v1/tag/member"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updatesTagMembershipRequest).
 		SetResult(&UpdatesTagMembershipResponse{}).
 		SetError(&Error{}).

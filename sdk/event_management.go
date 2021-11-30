@@ -201,7 +201,7 @@ func (s *EventManagementService) CountOfEventSubscriptions(countOfEventSubscript
 
 	queryString, _ := query.Values(countOfEventSubscriptionsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&CountOfEventSubscriptionsResponse{}).
 		SetError(&Error{}).
@@ -236,7 +236,7 @@ func (s *EventManagementService) CountOfEvents(countOfEventsQueryParams *CountOf
 
 	queryString, _ := query.Values(countOfEventsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&CountOfEventsResponse{}).
 		SetError(&Error{}).
@@ -285,7 +285,7 @@ func (s *EventManagementService) CountOfNotifications(countOfNotificationsQueryP
 
 	queryString, _ := query.Values(countOfNotificationsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&CountOfNotificationsResponse{}).
 		SetError(&Error{}).
@@ -310,7 +310,7 @@ func (s *EventManagementService) CreateEventSubscriptions(createEventSubscriptio
 
 	path := "/dna/intent/api/v1/event/subscription"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createEventSubscriptionsRequest).
 		SetResult(&CreateEventSubscriptionsResponse{}).
 		SetError(&Error{}).
@@ -344,7 +344,7 @@ func (s *EventManagementService) DeleteEventSubscriptions(deleteEventSubscriptio
 
 	queryString, _ := query.Values(deleteEventSubscriptionsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteEventSubscriptionsResponse{}).
 		SetError(&Error{}).
@@ -385,7 +385,7 @@ func (s *EventManagementService) GetEventSubscriptions(getEventSubscriptionsQuer
 
 	queryString, _ := query.Values(getEventSubscriptionsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetEventSubscriptionsResponse{}).
 		SetError(&Error{}).
@@ -428,7 +428,7 @@ func (s *EventManagementService) GetEvents(getEventsQueryParams *GetEventsQueryP
 
 	queryString, _ := query.Values(getEventsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetEventsResponse{}).
 		SetError(&Error{}).
@@ -485,7 +485,7 @@ func (s *EventManagementService) GetNotifications(getNotificationsQueryParams *G
 
 	queryString, _ := query.Values(getNotificationsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetNotificationsResponse{}).
 		SetError(&Error{}).
@@ -512,7 +512,7 @@ func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*Get
 	path := "/dna/intent/api/v1/event/api-status/{executionId}"
 	path = strings.Replace(path, "{"+"executionId"+"}", fmt.Sprintf("%v", executionID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetStatusAPIForEventsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -536,7 +536,7 @@ func (s *EventManagementService) UpdateEventSubscriptions(updateEventSubscriptio
 
 	path := "/dna/intent/api/v1/event/subscription"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateEventSubscriptionsRequest).
 		SetResult(&UpdateEventSubscriptionsResponse{}).
 		SetError(&Error{}).

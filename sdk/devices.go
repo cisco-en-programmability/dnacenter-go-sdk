@@ -1233,7 +1233,7 @@ func (s *DevicesService) AddDevice(addDeviceRequest *AddDeviceRequest) (*AddDevi
 
 	path := "/dna/intent/api/v1/network-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addDeviceRequest).
 		SetResult(&AddDeviceResponse{}).
 		SetError(&Error{}).
@@ -1268,7 +1268,7 @@ func (s *DevicesService) DeleteDeviceByID(id string, deleteDeviceByIDQueryParams
 
 	queryString, _ := query.Values(deleteDeviceByIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeleteDeviceByIDResponse{}).
 		SetError(&Error{}).
@@ -1313,7 +1313,7 @@ func (s *DevicesService) Devices(devicesQueryParams *DevicesQueryParams) (*Devic
 
 	queryString, _ := query.Values(devicesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DevicesResponse{}).
 		SetError(&Error{}).
@@ -1338,7 +1338,7 @@ func (s *DevicesService) ExportDeviceList(exportDeviceListRequest *ExportDeviceL
 
 	path := "/dna/intent/api/v1/network-device/file"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(exportDeviceListRequest).
 		SetResult(&ExportDeviceListResponse{}).
 		SetError(&Error{}).
@@ -1373,7 +1373,7 @@ func (s *DevicesService) GetAllInterfaces(getAllInterfacesQueryParams *GetAllInt
 
 	queryString, _ := query.Values(getAllInterfacesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetAllInterfacesResponse{}).
 		SetError(&Error{}).
@@ -1400,7 +1400,7 @@ func (s *DevicesService) GetDeviceByID(id string) (*DevicesGetDeviceByIDResponse
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DevicesGetDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1426,7 +1426,7 @@ func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*GetDevic
 	path := "/dna/intent/api/v1/network-device/serial-number/{serialNumber}"
 	path = strings.Replace(path, "{"+"serialNumber"+"}", fmt.Sprintf("%v", serialNumber), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceBySerialNumberResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1452,7 +1452,7 @@ func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*GetDevice
 	path := "/dna/intent/api/v1/network-device/{networkDeviceId}/config"
 	path = strings.Replace(path, "{"+"networkDeviceId"+"}", fmt.Sprintf("%v", networkDeviceID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceConfigByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1476,7 +1476,7 @@ func (s *DevicesService) GetDeviceConfigCount() (*GetDeviceConfigCountResponse, 
 
 	path := "/dna/intent/api/v1/network-device/config/count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceConfigCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1500,7 +1500,7 @@ func (s *DevicesService) GetDeviceConfigForAllDevices() (*GetDeviceConfigForAllD
 
 	path := "/dna/intent/api/v1/network-device/config"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceConfigForAllDevicesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1524,7 +1524,7 @@ func (s *DevicesService) GetDeviceCount() (*GetDeviceCountResponse, *resty.Respo
 
 	path := "/dna/intent/api/v1/network-device/count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1560,7 +1560,7 @@ func (s *DevicesService) GetDeviceDetail(getDeviceDetailQueryParams *GetDeviceDe
 
 	queryString, _ := query.Values(getDeviceDetailQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceDetailResponse{}).
 		SetError(&Error{}).
@@ -1587,7 +1587,7 @@ func (s *DevicesService) GetDeviceEnrichmentDetails() (*GetDeviceEnrichmentDetai
 
 	path := "/dna/intent/api/v1/device-enrichment-details"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceEnrichmentDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1611,7 +1611,7 @@ func (s *DevicesService) GetDeviceInterfaceCount() (*GetDeviceInterfaceCountResp
 
 	path := "/dna/intent/api/v1/interface/count"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceInterfaceCountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1637,7 +1637,7 @@ func (s *DevicesService) GetDeviceInterfaceCountByDeviceID(deviceID string) (*Ge
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/count"
 	path = strings.Replace(path, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceInterfaceCountByDeviceIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1671,7 +1671,7 @@ func (s *DevicesService) GetDeviceInterfaceVLANs(id string, getDeviceInterfaceVL
 
 	queryString, _ := query.Values(getDeviceInterfaceVLANsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceInterfaceVLANsResponse{}).
 		SetError(&Error{}).
@@ -1702,7 +1702,7 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 	path = strings.Replace(path, "{"+"startIndex"+"}", fmt.Sprintf("%v", startIndex), -1)
 	path = strings.Replace(path, "{"+"recordsToReturn"+"}", fmt.Sprintf("%v", recordsToReturn), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceInterfacesBySpecifiedRangeResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1798,7 +1798,7 @@ func (s *DevicesService) GetDeviceList(getDeviceListQueryParams *GetDeviceListQu
 
 	queryString, _ := query.Values(getDeviceListQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceListResponse{}).
 		SetError(&Error{}).
@@ -1825,7 +1825,7 @@ func (s *DevicesService) GetDeviceSummary(id string) (*GetDeviceSummaryResponse,
 	path := "/dna/intent/api/v1/network-device/{id}/brief"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceSummaryResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1851,7 +1851,7 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*GetFunctionalC
 	path := "/dna/intent/api/v1/network-device/functional-capability/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetFunctionalCapabilityByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1885,7 +1885,7 @@ func (s *DevicesService) GetFunctionalCapabilityForDevices(getFunctionalCapabili
 
 	queryString, _ := query.Values(getFunctionalCapabilityForDevicesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetFunctionalCapabilityForDevicesResponse{}).
 		SetError(&Error{}).
@@ -1910,7 +1910,7 @@ func (s *DevicesService) GetISISInterfaces() (*GetISISInterfacesResponse, *resty
 
 	path := "/dna/intent/api/v1/interface/isis"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetISISInterfacesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1936,7 +1936,7 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*GetInterfaceByIPRe
 	path := "/dna/intent/api/v1/interface/ip-address/{ipAddress}"
 	path = strings.Replace(path, "{"+"ipAddress"+"}", fmt.Sprintf("%v", ipAddress), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetInterfaceByIPResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1962,7 +1962,7 @@ func (s *DevicesService) GetInterfaceByID(id string) (*GetInterfaceByIDResponse,
 	path := "/dna/intent/api/v1/interface/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetInterfaceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -1996,7 +1996,7 @@ func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID 
 
 	queryString, _ := query.Values(getInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetInterfaceDetailsByDeviceIDAndInterfaceNameResponse{}).
 		SetError(&Error{}).
@@ -2023,7 +2023,7 @@ func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*GetInterfaceInf
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}"
 	path = strings.Replace(path, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetInterfaceInfoByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2063,7 +2063,7 @@ func (s *DevicesService) GetModuleCount(getModuleCountQueryParams *GetModuleCoun
 
 	queryString, _ := query.Values(getModuleCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetModuleCountResponse{}).
 		SetError(&Error{}).
@@ -2090,7 +2090,7 @@ func (s *DevicesService) GetModuleInfoByID(id string) (*GetModuleInfoByIDRespons
 	path := "/dna/intent/api/v1/network-device/module/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetModuleInfoByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2134,7 +2134,7 @@ func (s *DevicesService) GetModules(getModulesQueryParams *GetModulesQueryParams
 
 	queryString, _ := query.Values(getModulesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetModulesResponse{}).
 		SetError(&Error{}).
@@ -2161,7 +2161,7 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*GetNetworkDevi
 	path := "/dna/intent/api/v1/network-device/ip-address/{ipAddress}"
 	path = strings.Replace(path, "{"+"ipAddress"+"}", fmt.Sprintf("%v", ipAddress), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetNetworkDeviceByIPResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2189,7 +2189,7 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 	path = strings.Replace(path, "{"+"startIndex"+"}", fmt.Sprintf("%v", startIndex), -1)
 	path = strings.Replace(path, "{"+"recordsToReturn"+"}", fmt.Sprintf("%v", recordsToReturn), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetNetworkDeviceByPaginationRangeResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2213,7 +2213,7 @@ func (s *DevicesService) GetOSPFInterfaces() (*GetOSPFInterfacesResponse, *resty
 
 	path := "/dna/intent/api/v1/interface/ospf"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetOSPFInterfacesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2239,7 +2239,7 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*GetOrganizati
 	path := "/dna/intent/api/v1/network-device/{id}/meraki-organization"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetOrganizationListForMerakiResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2265,7 +2265,7 @@ func (s *DevicesService) GetPollingIntervalByID(id string) (*GetPollingIntervalB
 	path := "/dna/intent/api/v1/network-device/{id}/collection-schedule"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetPollingIntervalByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2289,7 +2289,7 @@ func (s *DevicesService) GetPollingIntervalForAllDevices() (*GetPollingIntervalF
 
 	path := "/dna/intent/api/v1/network-device/collection-schedule/global"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetPollingIntervalForAllDevicesResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2315,7 +2315,7 @@ func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*GetWir
 	path := "/dna/intent/api/v1/network-device/{id}/wireless-info"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetWirelessLanControllerDetailsByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -2349,7 +2349,7 @@ func (s *DevicesService) RegisterDeviceForWSA(registerDeviceForWSAQueryParams *R
 
 	queryString, _ := query.Values(registerDeviceForWSAQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&RegisterDeviceForWSAResponse{}).
 		SetError(&Error{}).
@@ -2425,7 +2425,7 @@ func (s *DevicesService) RetrievesAllNetworkDevices(retrievesAllNetworkDevicesQu
 	queryString, _ := query.Values(retrievesAllNetworkDevicesQueryParams)
 
 	var operationResult string
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&operationResult).
 		SetError(&Error{}).
@@ -2444,7 +2444,7 @@ func (s *DevicesService) SyncDevices(syncDevicesRequest *SyncDevicesRequest) (*S
 
 	path := "/dna/intent/api/v1/network-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(syncDevicesRequest).
 		SetResult(&SyncDevicesResponse{}).
 		SetError(&Error{}).
@@ -2477,7 +2477,7 @@ func (s *DevicesService) SyncNetworkDevices(syncNetworkDevicesQueryParams *SyncN
 
 	queryString, _ := query.Values(syncNetworkDevicesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(syncNetworkDevicesRequest).
 		SetResult(&SyncNetworkDevicesResponse{}).
@@ -2503,7 +2503,7 @@ func (s *DevicesService) UpdateDeviceRole(updateDeviceRoleRequest *UpdateDeviceR
 
 	path := "/dna/intent/api/v1/network-device/brief"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateDeviceRoleRequest).
 		SetResult(&UpdateDeviceRoleResponse{}).
 		SetError(&Error{}).

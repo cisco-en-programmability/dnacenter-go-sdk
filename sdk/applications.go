@@ -62,7 +62,7 @@ func (s *ApplicationsService) Applications(applicationsQueryParams *Applications
 
 	queryString, _ := query.Values(applicationsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&ApplicationsResponse{}).
 		SetError(&Error{}).

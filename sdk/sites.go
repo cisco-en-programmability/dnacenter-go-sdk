@@ -314,7 +314,7 @@ func (s *SitesService) AssignDeviceToSite(siteID string, assignDeviceToSiteReque
 	path := "/dna/system/api/v1/site/{siteId}/device"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(assignDeviceToSiteRequest).
 		SetResult(&AssignDeviceToSiteResponse{}).
 		SetError(&Error{}).
@@ -342,7 +342,7 @@ func (s *SitesService) CreateSite(createSiteRequest *CreateSiteRequest) (*Create
 
 	path := "/dna/intent/api/v1/site"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createSiteRequest).
 		SetResult(&CreateSiteResponse{}).
 		SetError(&Error{}).
@@ -369,7 +369,7 @@ func (s *SitesService) DeleteSite(siteID string) (*DeleteSiteResponse, *resty.Re
 	path := "/dna/intent/api/v1/site/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteSiteResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -409,7 +409,7 @@ func (s *SitesService) GetMembership(siteID string, getMembershipQueryParams *Ge
 
 	queryString, _ := query.Values(getMembershipQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetMembershipResponse{}).
 		SetError(&Error{}).
@@ -450,7 +450,7 @@ func (s *SitesService) GetSite(getSiteQueryParams *GetSiteQueryParams) (*GetSite
 
 	queryString, _ := query.Values(getSiteQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSiteResponse{}).
 		SetError(&Error{}).
@@ -483,7 +483,7 @@ func (s *SitesService) GetSiteCount(getSiteCountQueryParams *GetSiteCountQueryPa
 
 	queryString, _ := query.Values(getSiteCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSiteCountResponse{}).
 		SetError(&Error{}).
@@ -516,7 +516,7 @@ func (s *SitesService) GetSiteHealth(getSiteHealthQueryParams *GetSiteHealthQuer
 
 	queryString, _ := query.Values(getSiteHealthQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetSiteHealthResponse{}).
 		SetError(&Error{}).
@@ -546,7 +546,7 @@ func (s *SitesService) UpdateSite(siteID string, updateSiteRequest *UpdateSiteRe
 	path := "/dna/intent/api/v1/site/{siteId}"
 	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateSiteRequest).
 		SetResult(&UpdateSiteResponse{}).
 		SetError(&Error{}).

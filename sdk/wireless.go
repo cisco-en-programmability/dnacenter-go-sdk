@@ -557,7 +557,7 @@ func (s *WirelessService) APProvision(aPProvisionRequest *[]APProvisionRequest) 
 
 	path := "/dna/intent/api/v1/wireless/ap-provision"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(aPProvisionRequest).
 		SetResult(&APProvisionResponse{}).
 		SetError(&Error{}).
@@ -583,7 +583,7 @@ func (s *WirelessService) CreateAndProvisionSSID(createAndProvisionSSIDRequest *
 
 	path := "/dna/intent/api/v1/business/ssid"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createAndProvisionSSIDRequest).
 		SetResult(&CreateAndProvisionSSIDResponse{}).
 		SetError(&Error{}).
@@ -608,7 +608,7 @@ func (s *WirelessService) CreateEnterpriseSSID(createEnterpriseSSIDRequest *Crea
 
 	path := "/dna/intent/api/v1/enterprise-ssid"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createEnterpriseSSIDRequest).
 		SetResult(&CreateEnterpriseSSIDResponse{}).
 		SetError(&Error{}).
@@ -633,7 +633,7 @@ func (s *WirelessService) CreateOrUpdateRFProfile(createOrUpdateRFProfileRequest
 
 	path := "/dna/intent/api/v1/wireless/rf-profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createOrUpdateRFProfileRequest).
 		SetResult(&CreateOrUpdateRFProfileResponse{}).
 		SetError(&Error{}).
@@ -658,7 +658,7 @@ func (s *WirelessService) CreateWirelessProfile(createWirelessProfileRequest *Cr
 
 	path := "/dna/intent/api/v1/wireless/profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createWirelessProfileRequest).
 		SetResult(&CreateWirelessProfileResponse{}).
 		SetError(&Error{}).
@@ -685,7 +685,7 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*DeleteEnterpri
 	path := "/dna/intent/api/v1/enterprise-ssid/{ssidName}"
 	path = strings.Replace(path, "{"+"ssidName"+"}", fmt.Sprintf("%v", ssidName), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteEnterpriseSSIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -711,7 +711,7 @@ func (s *WirelessService) DeleteRFProfiles(rfProfileName string) (*DeleteRFProfi
 	path := "/dna/intent/api/v1/wireless/rf-profile/{rfProfileName}"
 	path = strings.Replace(path, "{"+"rfProfileName"+"}", fmt.Sprintf("%v", rfProfileName), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteRFProfilesResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -740,7 +740,7 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 	path = strings.Replace(path, "{"+"ssidName"+"}", fmt.Sprintf("%v", ssidName), -1)
 	path = strings.Replace(path, "{"+"managedAPLocations"+"}", fmt.Sprintf("%v", managedAPLocations), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteSSIDAndProvisionItToDevicesResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -766,7 +766,7 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 // 	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
 // 	path = strings.Replace(path, "{"+"wirelessProfileName"+"}", fmt.Sprintf("%v", wirelessProfileName), -1)
 
-// 	response, err := RestyClient.R().
+// 	response, err := s.client.R().
 // 		SetBody(deleteWirelessProfileRequest).
 // 		SetResult(&DeleteWirelessProfileResponse{}).
 // 		SetError(&Error{}).
@@ -799,7 +799,7 @@ func (s *WirelessService) GetEnterpriseSSID(getEnterpriseSSIDQueryParams *GetEnt
 
 	queryString, _ := query.Values(getEnterpriseSSIDQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetEnterpriseSSIDResponse{}).
 		SetError(&Error{}).
@@ -832,7 +832,7 @@ func (s *WirelessService) GetWirelessProfile(getWirelessProfileQueryParams *GetW
 
 	queryString, _ := query.Values(getWirelessProfileQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetWirelessProfileResponse{}).
 		SetError(&Error{}).
@@ -858,7 +858,7 @@ func (s *WirelessService) Provision(provisionRequest *[]ProvisionRequest) (*Prov
 
 	path := "/dna/intent/api/v1/wireless/provision"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(provisionRequest).
 		SetResult(&ProvisionResponse{}).
 		SetError(&Error{}).
@@ -884,7 +884,7 @@ func (s *WirelessService) ProvisionUpdate(provisionUpdateRequest *[]ProvisionUpd
 
 	path := "/dna/intent/api/v1/wireless/provision"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(provisionUpdateRequest).
 		SetResult(&ProvisionUpdateResponse{}).
 		SetError(&Error{}).
@@ -917,7 +917,7 @@ func (s *WirelessService) RetrieveRFProfiles(retrieveRFProfilesQueryParams *Retr
 
 	queryString, _ := query.Values(retrieveRFProfilesQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&RetrieveRFProfilesResponse{}).
 		SetError(&Error{}).
@@ -956,7 +956,7 @@ func (s *WirelessService) SensorTestResults(sensorTestResultsQueryParams *Sensor
 
 	queryString, _ := query.Values(sensorTestResultsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&SensorTestResultsResponse{}).
 		SetError(&Error{}).
@@ -981,7 +981,7 @@ func (s *WirelessService) UpdateWirelessProfile(updateWirelessProfileRequest *Up
 
 	path := "/dna/intent/api/v1/wireless/profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateWirelessProfileRequest).
 		SetResult(&UpdateWirelessProfileResponse{}).
 		SetError(&Error{}).

@@ -503,7 +503,7 @@ func (s *SiteDesignService) CreateNFVProfile(createNFVProfileRequest *CreateNFVP
 
 	path := "/dna/intent/api/v1/nfv/network-profile"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(createNFVProfileRequest).
 		SetResult(&CreateNFVProfileResponse{}).
 		SetError(&Error{}).
@@ -536,7 +536,7 @@ func (s *SiteDesignService) GetDeviceDetailsByIP(getDeviceDetailsByIPQueryParams
 
 	queryString, _ := query.Values(getDeviceDetailsByIPQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceDetailsByIPResponse{}).
 		SetError(&Error{}).
@@ -575,7 +575,7 @@ func (s *SiteDesignService) GetNFVProfile(id string, getNFVProfileQueryParams *G
 
 	queryString, _ := query.Values(getNFVProfileQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetNFVProfileResponse{}).
 		SetError(&Error{}).
@@ -603,7 +603,7 @@ func (s *SiteDesignService) NFVProvisioningDetail(nFVProvisioningDetailRequest *
 
 	path := "/dna/intent/api/v1/nfv-provision-detail"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(nFVProvisioningDetailRequest).
 		SetResult(&NFVProvisioningDetailResponse{}).
 		SetError(&Error{}).
@@ -631,7 +631,7 @@ func (s *SiteDesignService) ProvisionNFV(provisionNFVRequest *ProvisionNFVReques
 
 	path := "/dna/intent/api/v1/business/nfv"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(provisionNFVRequest).
 		SetResult(&ProvisionNFVResponse{}).
 		SetError(&Error{}).
@@ -666,7 +666,7 @@ func (s *SiteDesignService) UpdateNFVProfile(id string, updateNFVProfileQueryPar
 
 	queryString, _ := query.Values(updateNFVProfileQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetBody(updateNFVProfileRequest).
 		SetResult(&UpdateNFVProfileResponse{}).

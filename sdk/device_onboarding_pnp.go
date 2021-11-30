@@ -4794,7 +4794,7 @@ func (s *DeviceOnboardingPnPService) AddAWorkflow(addAWorkflowRequest *AddAWorkf
 
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addAWorkflowRequest).
 		SetResult(&AddAWorkflowResponse{}).
 		SetError(&Error{}).
@@ -4819,7 +4819,7 @@ func (s *DeviceOnboardingPnPService) AddDeviceToPnpDatabase(addDeviceToPnpDataba
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addDeviceToPnpDatabaseRequest).
 		SetResult(&AddDeviceToPnpDatabaseResponse{}).
 		SetError(&Error{}).
@@ -4844,7 +4844,7 @@ func (s *DeviceOnboardingPnPService) AddVirtualAccount(addVirtualAccountRequest 
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/savacct"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(addVirtualAccountRequest).
 		SetResult(&AddVirtualAccountResponse{}).
 		SetError(&Error{}).
@@ -4869,7 +4869,7 @@ func (s *DeviceOnboardingPnPService) ClaimADeviceToASite(claimADeviceToASiteRequ
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/site-claim"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(claimADeviceToASiteRequest).
 		SetResult(&ClaimADeviceToASiteResponse{}).
 		SetError(&Error{}).
@@ -4894,7 +4894,7 @@ func (s *DeviceOnboardingPnPService) ClaimDevice(claimDeviceRequest *ClaimDevice
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/claim"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(claimDeviceRequest).
 		SetResult(&ClaimDeviceResponse{}).
 		SetError(&Error{}).
@@ -4921,7 +4921,7 @@ func (s *DeviceOnboardingPnPService) DeleteDeviceByIDFromPnP(id string) (*Delete
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteDeviceByIDFromPnPResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -4947,7 +4947,7 @@ func (s *DeviceOnboardingPnPService) DeleteWorkflowByID(id string) (*DeleteWorkf
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&DeleteWorkflowByIDResponse{}).
 		SetError(&Error{}).
 		Delete(path)
@@ -4981,7 +4981,7 @@ func (s *DeviceOnboardingPnPService) DeregisterVirtualAccount(deregisterVirtualA
 
 	queryString, _ := query.Values(deregisterVirtualAccountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&DeregisterVirtualAccountResponse{}).
 		SetError(&Error{}).
@@ -5008,7 +5008,7 @@ func (s *DeviceOnboardingPnPService) GetDeviceByID(id string) (*GetDeviceByIDRes
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetDeviceByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5044,7 +5044,7 @@ func (s *DeviceOnboardingPnPService) GetDeviceHistory(getDeviceHistoryQueryParam
 
 	queryString, _ := query.Values(getDeviceHistoryQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetDeviceHistoryResponse{}).
 		SetError(&Error{}).
@@ -5069,7 +5069,7 @@ func (s *DeviceOnboardingPnPService) GetPnPGlobalSettings() (*GetPnPGlobalSettin
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetPnPGlobalSettingsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5127,7 +5127,7 @@ func (s *DeviceOnboardingPnPService) GetPnpDeviceCount(getPnpDeviceCountQueryPar
 
 	queryString, _ := query.Values(getPnpDeviceCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetPnpDeviceCountResponse{}).
 		SetError(&Error{}).
@@ -5200,7 +5200,7 @@ func (s *DeviceOnboardingPnPService) GetPnpDeviceList(getPnpDeviceListQueryParam
 
 	queryString, _ := query.Values(getPnpDeviceListQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&[]GetPnpDeviceListResponse{}).
 		SetError(&Error{}).
@@ -5225,7 +5225,7 @@ func (s *DeviceOnboardingPnPService) GetSmartAccountList() (*GetSmartAccountList
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetSmartAccountListResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5253,7 +5253,7 @@ func (s *DeviceOnboardingPnPService) GetSyncResultForVirtualAccount(domain strin
 	path = strings.Replace(path, "{"+"domain"+"}", fmt.Sprintf("%v", domain), -1)
 	path = strings.Replace(path, "{"+"name"+"}", fmt.Sprintf("%v", name), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetSyncResultForVirtualAccountResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5279,7 +5279,7 @@ func (s *DeviceOnboardingPnPService) GetVirtualAccountList(domain string) (*GetV
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct/{domain}/vacct"
 	path = strings.Replace(path, "{"+"domain"+"}", fmt.Sprintf("%v", domain), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetVirtualAccountListResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5305,7 +5305,7 @@ func (s *DeviceOnboardingPnPService) GetWorkflowByID(id string) (*GetWorkflowByI
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetWorkflowByIDResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -5337,7 +5337,7 @@ func (s *DeviceOnboardingPnPService) GetWorkflowCount(getWorkflowCountQueryParam
 
 	queryString, _ := query.Values(getWorkflowCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetWorkflowCountResponse{}).
 		SetError(&Error{}).
@@ -5380,7 +5380,7 @@ func (s *DeviceOnboardingPnPService) GetWorkflows(getWorkflowsQueryParams *GetWo
 
 	queryString, _ := query.Values(getWorkflowsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&[]GetWorkflowsResponse{}).
 		SetError(&Error{}).
@@ -5405,7 +5405,7 @@ func (s *DeviceOnboardingPnPService) ImportDevicesInBulk(importDevicesInBulkRequ
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/import"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(importDevicesInBulkRequest).
 		SetResult(&ImportDevicesInBulkResponse{}).
 		SetError(&Error{}).
@@ -5430,7 +5430,7 @@ func (s *DeviceOnboardingPnPService) PreviewConfig(previewConfigRequest *Preview
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/site-config-preview"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(previewConfigRequest).
 		SetResult(&PreviewConfigResponse{}).
 		SetError(&Error{}).
@@ -5455,7 +5455,7 @@ func (s *DeviceOnboardingPnPService) ResetDevice(resetDeviceRequest *ResetDevice
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/reset"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(resetDeviceRequest).
 		SetResult(&ResetDeviceResponse{}).
 		SetError(&Error{}).
@@ -5480,7 +5480,7 @@ func (s *DeviceOnboardingPnPService) SyncVirtualAccountDevices(syncVirtualAccoun
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/vacct-sync"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(syncVirtualAccountDevicesRequest).
 		SetResult(&SyncVirtualAccountDevicesResponse{}).
 		SetError(&Error{}).
@@ -5505,7 +5505,7 @@ func (s *DeviceOnboardingPnPService) UnClaimDevice(unClaimDeviceRequest *UnClaim
 
 	path := "/dna/intent/api/v1/onboarding/pnp-device/unclaim"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(unClaimDeviceRequest).
 		SetResult(&UnClaimDeviceResponse{}).
 		SetError(&Error{}).
@@ -5532,7 +5532,7 @@ func (s *DeviceOnboardingPnPService) UpdateDevice(id string, updateDeviceRequest
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateDeviceRequest).
 		SetResult(&UpdateDeviceResponse{}).
 		SetError(&Error{}).
@@ -5557,7 +5557,7 @@ func (s *DeviceOnboardingPnPService) UpdatePnPGlobalSettings(updatePnPGlobalSett
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updatePnPGlobalSettingsRequest).
 		SetResult(&UpdatePnPGlobalSettingsResponse{}).
 		SetError(&Error{}).
@@ -5582,7 +5582,7 @@ func (s *DeviceOnboardingPnPService) UpdatePnPServerProfile(updatePnPServerProfi
 
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/savacct"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updatePnPServerProfileRequest).
 		SetResult(&UpdatePnPServerProfileResponse{}).
 		SetError(&Error{}).
@@ -5609,7 +5609,7 @@ func (s *DeviceOnboardingPnPService) UpdateWorkflow(id string, updateWorkflowReq
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
 	path = strings.Replace(path, "{"+"id"+"}", fmt.Sprintf("%v", id), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(updateWorkflowRequest).
 		SetResult(&UpdateWorkflowResponse{}).
 		SetError(&Error{}).

@@ -125,7 +125,7 @@ func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(deployDeviceR
 
 	path := "/dna/intent/api/v1/device-replacement/workflow"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(deployDeviceReplacementWorkflowRequest).
 		SetResult(&DeployDeviceReplacementWorkflowResponse{}).
 		SetError(&Error{}).
@@ -150,7 +150,7 @@ func (s *DeviceReplacementService) MarkDeviceForReplacement(markDeviceForReplace
 
 	path := "/dna/intent/api/v1/device-replacement"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(markDeviceForReplacementRequest).
 		SetResult(&MarkDeviceForReplacementResponse{}).
 		SetError(&Error{}).
@@ -203,7 +203,7 @@ func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacement
 
 	queryString, _ := query.Values(returnListOfReplacementDevicesWithReplacementDetailsQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&ReturnListOfReplacementDevicesWithReplacementDetailsResponse{}).
 		SetError(&Error{}).
@@ -236,7 +236,7 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(returnReplaceme
 
 	queryString, _ := query.Values(returnReplacementDevicesCountQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&ReturnReplacementDevicesCountResponse{}).
 		SetError(&Error{}).
@@ -261,7 +261,7 @@ func (s *DeviceReplacementService) UnMarkDeviceForReplacement(unMarkDeviceForRep
 
 	path := "/dna/intent/api/v1/device-replacement"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(unMarkDeviceForReplacementRequest).
 		SetResult(&UnMarkDeviceForReplacementResponse{}).
 		SetError(&Error{}).

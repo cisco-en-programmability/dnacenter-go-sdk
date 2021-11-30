@@ -52,7 +52,7 @@ func (s *CommandRunnerService) GetAllKeywordsOfCLIsAcceptedByCommandRunner() (*G
 
 	path := "/dna/intent/api/v1/network-device-poller/cli/legit-reads"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetAllKeywordsOfCLIsAcceptedByCommandRunnerResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -76,7 +76,7 @@ func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeCon
 
 	path := "/dna/intent/api/v1/network-device-poller/cli/read-request"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetBody(runReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationRequest).
 		SetResult(&RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigurationResponse{}).
 		SetError(&Error{}).

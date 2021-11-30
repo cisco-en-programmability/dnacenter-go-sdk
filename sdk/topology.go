@@ -346,7 +346,7 @@ func (s *TopologyService) GetL3TopologyDetails(topologyType string) (*GetL3Topol
 	path := "/dna/intent/api/v1/topology/l3/{topologyType}"
 	path = strings.Replace(path, "{"+"topologyType"+"}", fmt.Sprintf("%v", topologyType), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetL3TopologyDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -378,7 +378,7 @@ func (s *TopologyService) GetOverallNetworkHealth(getOverallNetworkHealthQueryPa
 
 	queryString, _ := query.Values(getOverallNetworkHealthQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetOverallNetworkHealthResponse{}).
 		SetError(&Error{}).
@@ -411,7 +411,7 @@ func (s *TopologyService) GetPhysicalTopology(getPhysicalTopologyQueryParams *Ge
 
 	queryString, _ := query.Values(getPhysicalTopologyQueryParams)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetQueryString(queryString.Encode()).
 		SetResult(&GetPhysicalTopologyResponse{}).
 		SetError(&Error{}).
@@ -436,7 +436,7 @@ func (s *TopologyService) GetSiteTopology() (*GetSiteTopologyResponse, *resty.Re
 
 	path := "/dna/intent/api/v1/topology/site-topology"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetSiteTopologyResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -462,7 +462,7 @@ func (s *TopologyService) GetTopologyDetails(vlanID string) (*GetTopologyDetails
 	path := "/dna/intent/api/v1/topology/l2/{vlanID}"
 	path = strings.Replace(path, "{"+"vlanID"+"}", fmt.Sprintf("%v", vlanID), -1)
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetTopologyDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
@@ -486,7 +486,7 @@ func (s *TopologyService) GetVLANDetails() (*GetVLANDetailsResponse, *resty.Resp
 
 	path := "/dna/intent/api/v1/topology/vlan/vlan-names"
 
-	response, err := RestyClient.R().
+	response, err := s.client.R().
 		SetResult(&GetVLANDetailsResponse{}).
 		SetError(&Error{}).
 		Get(path)
