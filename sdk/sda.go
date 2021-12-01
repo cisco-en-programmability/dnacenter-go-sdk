@@ -10,34 +10,35 @@ import (
 type SdaService service
 
 type GetDefaultAuthenticationProfileFromSdaFabricQueryParams struct {
-	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //siteNameHierarchy
+	SiteNameHierarchy        string `url:"siteNameHierarchy,omitempty"`        //siteNameHierarchy
+	AuthenticateTemplateName string `url:"authenticateTemplateName,omitempty"` //authenticateTemplateName
 }
 type DeleteDefaultAuthenticationProfileFromSdaFabricQueryParams struct {
 	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //siteNameHierarchy
 }
 type GetsBorderDeviceDetailFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type DeletesBorderDeviceFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type DeleteControlPlaneDeviceInSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type GetControlPlaneDeviceFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type GetDeviceInfoFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type GetDeviceRoleInSdaFabricQueryParams struct {
 	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //Device Management IP Address
 }
 type DeleteEdgeDeviceFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type GetEdgeDeviceFromSdaFabricQueryParams struct {
-	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device IP Address
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
 }
 type DeleteSdaFabricQueryParams struct {
 	FabricName string `url:"fabricName,omitempty"` //Fabric Name
@@ -52,26 +53,26 @@ type DeleteSiteFromSdaFabricQueryParams struct {
 	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //Site Name Hierarchy
 }
 type DeletePortAssignmentForAccessPointInSdaFabricQueryParams struct {
-	DeviceIP      string `url:"device-ip,omitempty"`     //device-ip
-	InterfaceName string `url:"interfaceName,omitempty"` //interfaceName
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
+	InterfaceName             string `url:"interfaceName,omitempty"`             //interfaceName
 }
 type GetPortAssignmentForAccessPointInSdaFabricQueryParams struct {
-	DeviceIP      string `url:"device-ip,omitempty"`     //device-ip
-	InterfaceName string `url:"interfaceName,omitempty"` //interfaceName
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
+	InterfaceName             string `url:"interfaceName,omitempty"`             //interfaceName
 }
 type DeletePortAssignmentForUserDeviceInSdaFabricQueryParams struct {
-	DeviceIP      string `url:"device-ip,omitempty"`     //device-ip
-	InterfaceName string `url:"interfaceName,omitempty"` //interfaceName
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
+	InterfaceName             string `url:"interfaceName,omitempty"`             //interfaceName
 }
 type GetPortAssignmentForUserDeviceInSdaFabricQueryParams struct {
-	DeviceIP      string `url:"device-ip,omitempty"`     //device-ip
-	InterfaceName string `url:"interfaceName,omitempty"` //interfaceName
+	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //deviceManagementIpAddress
+	InterfaceName             string `url:"interfaceName,omitempty"`             //interfaceName
 }
 type GetMulticastDetailsFromSdaFabricQueryParams struct {
-	FabricSiteNameHierarchy string `url:"fabricSiteNameHierarchy,omitempty"` //fabricSiteNameHierarchy
+	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //fabric site name hierarchy
 }
 type DeleteMulticastFromSdaFabricQueryParams struct {
-	FabricSiteNameHierarchy string `url:"fabricSiteNameHierarchy,omitempty"` //fabricSiteNameHierarchy
+	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //siteNameHierarchy
 }
 type DeleteProvisionedWiredDeviceQueryParams struct {
 	DeviceManagementIPAddress string `url:"deviceManagementIpAddress,omitempty"` //Valid IP address of the device currently provisioned in a fabric site
@@ -107,25 +108,37 @@ type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
 	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` // Authenticate Template Name
 	AuthenticateTemplateID   string `json:"authenticateTemplateId,omitempty"`   // Authenticate Template Id
 }
-type ResponseSdaAddDefaultAuthenticationProfileInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+type ResponseSdaDeployAuthenticationTemplateInSdaFabric struct {
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaUpdateDefaultAuthenticationProfileInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeleteDefaultAuthenticationProfileFromSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaAddsBorderDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetsBorderDeviceDetailFromSdaFabric struct {
 	Status      string                                                 `json:"status,omitempty"`      // Status
@@ -279,14 +292,20 @@ type ResponseSdaGetsBorderDeviceDetailFromSdaFabricPayloadTransitNetworks struct
 type ResponseSdaGetsBorderDeviceDetailFromSdaFabricPayloadVirtualNetwork interface{}
 type ResponseSdaGetsBorderDeviceDetailFromSdaFabricPayloadWLAN interface{}
 type ResponseSdaDeletesBorderDeviceFromSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeleteControlPlaneDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetControlPlaneDeviceFromSdaFabric struct {
 	Status                    string   `json:"status,omitempty"`                    // Status
@@ -297,9 +316,12 @@ type ResponseSdaGetControlPlaneDeviceFromSdaFabric struct {
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
 }
 type ResponseSdaAddControlPlaneDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetDeviceInfoFromSdaFabric struct {
 	Status                    string   `json:"status,omitempty"`                    // Status
@@ -319,14 +341,20 @@ type ResponseSdaGetDeviceRoleInSdaFabricResponse struct {
 	Roles       []string `json:"roles,omitempty"`       // Roles
 }
 type ResponseSdaAddEdgeDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeleteEdgeDeviceFromSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetEdgeDeviceFromSdaFabric struct {
 	Status                    string   `json:"status,omitempty"`                    // Status
@@ -337,9 +365,12 @@ type ResponseSdaGetEdgeDeviceFromSdaFabric struct {
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
 }
 type ResponseSdaDeleteSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetSdaFabricInfo struct {
 	Status             string `json:"status,omitempty"`             // Status
@@ -347,9 +378,12 @@ type ResponseSdaGetSdaFabricInfo struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 }
 type ResponseSdaAddFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetSiteFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // Status
@@ -357,14 +391,20 @@ type ResponseSdaGetSiteFromSdaFabric struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 }
 type ResponseSdaDeleteSiteFromSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaAddSiteInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetSdaFabricCount struct {
 	Response *ResponseSdaGetSdaFabricCountResponse `json:"response,omitempty"` //
@@ -376,14 +416,20 @@ type ResponseSdaGetSdaFabricCountResponse struct {
 	FabricCount string `json:"fabricCount,omitempty"` // Fabric Count
 }
 type ResponseSdaAddPortAssignmentForAccessPointInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeletePortAssignmentForAccessPointInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetPortAssignmentForAccessPointInSdaFabric struct {
 	Status                    string `json:"status,omitempty"`                    // Status
@@ -397,14 +443,20 @@ type ResponseSdaGetPortAssignmentForAccessPointInSdaFabric struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
 }
 type ResponseSdaDeletePortAssignmentForUserDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaAddPortAssignmentForUserDeviceInSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetPortAssignmentForUserDeviceInSdaFabric struct {
 	Status                    string `json:"status,omitempty"`                    // Status
@@ -418,47 +470,59 @@ type ResponseSdaGetPortAssignmentForUserDeviceInSdaFabric struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
 }
 type ResponseSdaAddMulticastInSdaFabric struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabric struct {
-	FabricSiteNameHierarchy string                                                      `json:"fabricSiteNameHierarchy,omitempty"` // fabricSiteNameHierarchy
-	MulticastMethod         string                                                      `json:"multicastMethod,omitempty"`         // multicast methods
-	MuticastType            string                                                      `json:"muticastType,omitempty"`            // muticast type
-	MulticastVnInfo         *ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`         //
+	SiteNameHierarchy string                                                      `json:"siteNameHierarchy,omitempty"` // Full path of sda fabric siteNameHierarchy
+	MulticastMethod   string                                                      `json:"multicastMethod,omitempty"`   // Multicast Methods
+	MuticastType      string                                                      `json:"muticastType,omitempty"`      // Muticast Type
+	MulticastVnInfo   *ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`   //
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo struct {
-	VirtualNetworkName  string                                                             `json:"virtualNetworkName,omitempty"`  // virtual network name in fabricSiteNameHierarchy
-	IPPoolName          string                                                             `json:"ipPoolName,omitempty"`          // Ip Pool Name in fabricSiteNameHierarchy
+	VirtualNetworkName  string                                                             `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to fabricSiteNameHierarchy
+	IPPoolName          string                                                             `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to fabricSiteNameHierarchy
 	ExternalRpIPAddress string                                                             `json:"externalRpIpAddress,omitempty"` // External Rp Ip Address, required for muticastType=asm_with_external_rp
 	SsmInfo             *ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             // Source-specific multicast information, required if muticastType=ssm
-	SsmGroupRange       string                                                             `json:"ssmGroupRange,omitempty"`       // valid ssm group range ip address
-	SsmWildcardMask     string                                                             `json:"ssmWildcardMask,omitempty"`     // valid ssm Wildcard Mask ip address
+	SsmGroupRange       string                                                             `json:"ssmGroupRange,omitempty"`       // Valid SSM group range ip address(e.g., 230.0.0.0)
+	SsmWildcardMask     string                                                             `json:"ssmWildcardMask,omitempty"`     // Valid SSM Wildcard Mask ip address(e.g.,0.255.255.255)
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfoSsmInfo interface{}
 type ResponseSdaDeleteMulticastFromSdaFabric struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeleteProvisionedWiredDevice struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
+}
+type ResponseSdaReProvisionWiredDevice struct {
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaProvisionWiredDevice struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetProvisionedWiredDevice struct {
 	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
@@ -468,16 +532,14 @@ type ResponseSdaGetProvisionedWiredDevice struct {
 	TaskID                    string `json:"taskId,omitempty"`                    // Task Id
 	TaskStatusURL             string `json:"taskStatusUrl,omitempty"`             // Task Status Url
 	ExecutionStatusURL        string `json:"executionStatusUrl,omitempty"`        // Execution Status Url
-	ExecutionID               string `json:"executionId,omitempty"`               // Execution Id
-	SiteID                    string `json:"siteId,omitempty"`                    // Site Id
 }
 type ResponseSdaDeleteVnFromSdaFabric struct {
-	Status                    string   `json:"status,omitempty"`                    // Status
-	Description               string   `json:"description,omitempty"`               // Description
-	Name                      string   `json:"name,omitempty"`                      // Name
-	Roles                     []string `json:"roles,omitempty"`                     // Roles
-	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetVnFromSdaFabric struct {
 	Status                    string   `json:"status,omitempty"`                    // Status
@@ -488,12 +550,12 @@ type ResponseSdaGetVnFromSdaFabric struct {
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
 }
 type ResponseSdaAddVnInSdaFabric struct {
-	Status                    string   `json:"status,omitempty"`                    // Status
-	Description               string   `json:"description,omitempty"`               // Description
-	Name                      string   `json:"name,omitempty"`                      // Name
-	Roles                     []string `json:"roles,omitempty"`                     // Roles
-	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetIPPoolFromSdaVirtualNetwork struct {
 	Status                   string `json:"status,omitempty"`                   // Status
@@ -507,29 +569,36 @@ type ResponseSdaGetIPPoolFromSdaVirtualNetwork struct {
 	IsThisCriticalPool       *bool  `json:"isThisCriticalPool,omitempty"`       // Is This Critical Pool
 }
 type ResponseSdaDeleteIPPoolFromSdaVirtualNetwork struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaAddIPPoolInSdaVirtualNetwork struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaAddVirtualNetworkWithScalableGroups struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaDeleteVirtualNetworkWithScalableGroups struct {
 	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
 	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
 	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
 	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID        string `json:"executionId,omitempty"`        // DNA-Center executionId that carried out the API execution. It will be provided if execution was generated by api. For failed status, executionId may not be available
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // url to track the api progression via executionId /dna/intent/api/v1/execution-statu/<executionId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetVirtualNetworkWithScalableGroups struct {
 	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name
@@ -540,130 +609,128 @@ type ResponseSdaGetVirtualNetworkWithScalableGroups struct {
 	TaskID                string   `json:"taskId,omitempty"`                // Task Id
 	TaskStatusURL         string   `json:"taskStatusUrl,omitempty"`         // Task Status Url
 	ExecutionStatusURL    string   `json:"executionStatusUrl,omitempty"`    // Execution Status Url
-	ExecutionID           string   `json:"executionId,omitempty"`           // Execution Id
 }
 type ResponseSdaUpdateVirtualNetworkWithScalableGroups struct {
-	Status        string `json:"status,omitempty"`        // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
-	Description   string `json:"description,omitempty"`   // gives the api status description and reason for its success or failure.
-	TaskID        string `json:"taskId,omitempty"`        // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
-	TaskStatusURL string `json:"taskStatusUrl,omitempty"` // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
-	ExecutionID   string `json:"executionId,omitempty"`   // /dna/intent/api/v1/execution-status/<executionId>
+	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
+	Description        string `json:"description,omitempty"`        // gives the api status description and reason for its success or failure.
+	TaskID             string `json:"taskId,omitempty"`             // DNA-Center taskId that carried out the API execution. It will be provided if task was generated by api. For failed status, taskId may not be available
+	TaskStatusURL      string `json:"taskStatusUrl,omitempty"`      // url to track the api progression via taskId /dna/intent/api/v1/task/<taskId>
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // /dna/intent/api/v1/execution-status/<executionId>
+	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
-type RequestSdaAddDefaultAuthenticationProfileInSdaFabric []RequestItemSdaAddDefaultAuthenticationProfileInSdaFabric // Array of RequestSdaAddDefaultAuthenticationProfileInSDAFabric
-type RequestItemSdaAddDefaultAuthenticationProfileInSdaFabric struct {
-	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        // Site Name Hierarchy
-	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` // Authenticate Template Name
+type RequestSdaDeployAuthenticationTemplateInSdaFabric struct {
+	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        // Site Name Hierarchy should be a valid fabric site name hierarchy. e.g Global/USA/San Jose
+	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` // Authenticate Template Name. Allowed values are 'No Authentication ', 'Open Authentication', 'Closed Authentication', 'Low Impact'.
 }
-type RequestSdaUpdateDefaultAuthenticationProfileInSdaFabric []RequestItemSdaUpdateDefaultAuthenticationProfileInSdaFabric // Array of RequestSdaUpdateDefaultAuthenticationProfileInSDAFabric
-type RequestItemSdaUpdateDefaultAuthenticationProfileInSdaFabric struct {
-	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        // Site Name Hierarchy
-	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` // Authenticate Template Name
+type RequestSdaUpdateDefaultAuthenticationProfileInSdaFabric struct {
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // siteNameHierarchy should be a valid fabric site name hierarchy. e.g Global/USA/San Jose
+	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name. Allowed values are 'Open Authentication', 'Closed Authentication', 'No Authentication', 'Low  Impact'.
+	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order. Allowed values are 'dot1x ', 'mac'.
+	Dot1XToMabFallbackTimeout string `json:"dot1xToMabFallbackTimeout,omitempty"` // In a network that includes both devices that support and devices that do not support IEEE 802.1X, MAB can be deployed as a fallback, or complementary, mechanism to IEEE 802.1X. If the network does not have any IEEE 802.1X-capable devices, MAB can be deployed as a standalone authentication mechanism (e.g. [3-120])
+	WakeOnLan                 *bool  `json:"wakeOnLan,omitempty"`                 // The IEEE 802.1X Wake on LAN (WoL) Support feature allows dormant systems to be powered up when the  switch receives a specific Ethernet frame. You can use this feature in cases when hosts on power save and needs to receive a  magic packet to turn them on. This feature works on a per subnet basis and send the subnet broadcast to all hosts in the subnet
+	NumberOfHosts             string `json:"numberOfHosts,omitempty"`             // Number of hosts specifies the number of data hosts that can be connected to a port. With Single selected, you can have only one data client  on the port. With Unlimited selected, you can have multiple data clients and one voice client on the port
 }
-type RequestSdaAddsBorderDeviceInSdaFabric []RequestItemSdaAddsBorderDeviceInSdaFabric // Array of RequestSdaAddsBorderDeviceInSDAFabric
-type RequestItemSdaAddsBorderDeviceInSdaFabric struct {
-	DeviceManagementIPAddress         string                                                                   `json:"deviceManagementIpAddress,omitempty"`         // Device Management Ip Address
-	SiteNameHierarchy                 string                                                                   `json:"siteNameHierarchy,omitempty"`                 // Site Name Hierarchy
-	ExternalDomainRoutingProtocolName string                                                                   `json:"externalDomainRoutingProtocolName,omitempty"` // External Domain Routing Protocol Name
-	ExternalConnectivityIPPoolName    string                                                                   `json:"externalConnectivityIpPoolName,omitempty"`    // External Connectivity Ip Pool Name
-	InternalAutonomouSystemNumber     string                                                                   `json:"internalAutonomouSystemNumber,omitempty"`     // Internal Autonomou System Number
-	BorderSessionType                 string                                                                   `json:"borderSessionType,omitempty"`                 // Border Session Type
-	ConnectedToInternet               *bool                                                                    `json:"connectedToInternet,omitempty"`               // Connected To Internet
-	ExternalConnectivitySettings      *[]RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      //
+type RequestSdaAddsBorderDeviceInSdaFabric struct {
+	DeviceManagementIPAddress         string                                                             `json:"deviceManagementIpAddress,omitempty"`         // Management Ip Address of the Device which is provisioned successfully
+	SiteNameHierarchy                 string                                                             `json:"siteNameHierarchy,omitempty"`                 // Site Name Hierarchy for device location(site should be fabric site)
+	ExternalDomainRoutingProtocolName string                                                             `json:"externalDomainRoutingProtocolName,omitempty"` // External Domain Routing Protocol  Name. (Example: BGP)
+	ExternalConnectivityIPPoolName    string                                                             `json:"externalConnectivityIpPoolName,omitempty"`    // IP pool to use to automate IP routing between the border node and remote peer.
+	InternalAutonomouSystemNumber     string                                                             `json:"internalAutonomouSystemNumber,omitempty"`     // Internal Autonomouns System Number used by border node to communicate with remote peer (e.g.,1-65535)
+	BorderSessionType                 string                                                             `json:"borderSessionType,omitempty"`                 // Border Session Type
+	ConnectedToInternet               *bool                                                              `json:"connectedToInternet,omitempty"`               // Connected to Internet
+	ExternalConnectivitySettings      *RequestSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      // External Connectivity Settings information of L3 Handoff
+	InterfaceName                     string                                                             `json:"interfaceName,omitempty"`                     // Interface Name
+	ExternalAutonomouSystemNumber     string                                                             `json:"externalAutonomouSystemNumber,omitempty"`     // External Autonomous System Number  will be used to automate IP routing between Border Node and remote peer (e.g.,1-65535)
+	L3Handoff                         *RequestSdaAddsBorderDeviceInSdaFabricL3Handoff                    `json:"l3Handoff,omitempty"`                         // L3 Handoff information
+	VirtualNetwork                    *RequestSdaAddsBorderDeviceInSdaFabricVirtualNetwork               `json:"virtualNetwork,omitempty"`                    // Virtual Network information of L3 Hand off
+	VirtualNetworkName                string                                                             `json:"virtualNetworkName,omitempty"`                // Virtual Network Name assigned to site
+	VLANID                            string                                                             `json:"vlanId,omitempty"`                            // Vlan Id (e.g.,2-4096 except for reserved VLANs (1002-1005, 2046, 4095))
 }
-type RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettings struct {
-	InterfaceName                 string                                                                            `json:"interfaceName,omitempty"`                 // Interface Name
-	ExternalAutonomouSystemNumber string                                                                            `json:"externalAutonomouSystemNumber,omitempty"` // External Autonomou System Number
-	L3Handoff                     *[]RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                     //
+type RequestSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettings interface{}
+type RequestSdaAddsBorderDeviceInSdaFabricL3Handoff interface{}
+type RequestSdaAddsBorderDeviceInSdaFabricVirtualNetwork interface{}
+type RequestSdaAddControlPlaneDeviceInSdaFabric struct {
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy of provisioned Device(site should be fabric site)
 }
-type RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff struct {
-	VirtualNetwork *RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"` //
+type RequestSdaAddEdgeDeviceInSdaFabric struct {
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy of provisioned Device
 }
-type RequestItemSdaAddsBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork struct {
-	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
+type RequestSdaAddFabric struct {
+	FabricName string `json:"fabricName,omitempty"` // Fabric Name (from DNAC2.2.3 onwards following default fabric name  Default_LAN_Fabric)
 }
-type RequestSdaAddControlPlaneDeviceInSdaFabric []RequestItemSdaAddControlPlaneDeviceInSdaFabric // Array of RequestSdaAddControlPlaneDeviceInSDAFabric
-type RequestItemSdaAddControlPlaneDeviceInSdaFabric struct {
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+type RequestSdaAddSiteInSdaFabric struct {
+	FabricName        string `json:"fabricName,omitempty"`        // Fabric Name (should be existing fabric name)
+	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy for provision device location.
 }
-type RequestSdaAddEdgeDeviceInSdaFabric []RequestItemSdaAddEdgeDeviceInSdaFabric // Array of RequestSdaAddEdgeDeviceInSDAFabric
-type RequestItemSdaAddEdgeDeviceInSdaFabric struct {
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+type RequestSdaAddPortAssignmentForAccessPointInSdaFabric struct {
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy should be a valid fabric site name hierarchy. e.g Global/USA/San Jose
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the edge device
+	InterfaceName             string `json:"interfaceName,omitempty"`             // Interface Name of the edge device
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     // Ip Pool Name, that is assigned to INFRA_VN
+	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate TemplateName associated to siteNameHierarchy.
+	InterfaceDescription      string `json:"interfaceDescription,omitempty"`      // Details or note of interface assignment
 }
-type RequestSdaAddFabric []RequestItemSdaAddFabric // Array of RequestSdaAddFabric
-type RequestItemSdaAddFabric struct {
-	FabricName string `json:"fabricName,omitempty"` // Fabric Name
-}
-type RequestSdaAddSiteInSdaFabric []RequestItemSdaAddSiteInSdaFabric // Array of RequestSdaAddSiteInSDAFabric
-type RequestItemSdaAddSiteInSdaFabric struct {
-	FabricName        string `json:"fabricName,omitempty"`        // Fabric Name
-	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
-}
-type RequestSdaAddPortAssignmentForAccessPointInSdaFabric []RequestItemSdaAddPortAssignmentForAccessPointInSdaFabric // Array of RequestSdaAddPortAssignmentForAccessPointInSDAFabric
-type RequestItemSdaAddPortAssignmentForAccessPointInSdaFabric struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	InterfaceName             string `json:"interfaceName,omitempty"`             // Interface Name
-	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     // Data Ip Address Pool Name
-	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    // Voice Ip Address Pool Name
-	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
-}
-type RequestSdaAddPortAssignmentForUserDeviceInSdaFabric []RequestItemSdaAddPortAssignmentForUserDeviceInSdaFabric // Array of RequestSdaAddPortAssignmentForUserDeviceInSDAFabric
-type RequestItemSdaAddPortAssignmentForUserDeviceInSdaFabric struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	InterfaceName             string `json:"interfaceName,omitempty"`             // Interface Name
-	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     // Data Ip Address Pool Name
-	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    // Voice Ip Address Pool Name
-	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
+type RequestSdaAddPortAssignmentForUserDeviceInSdaFabric struct {
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy should be a valid fabric site name hierarchy. e.g Global/USA/San Jose
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the edge device
+	InterfaceName             string `json:"interfaceName,omitempty"`             // Interface Name of the edge device
+	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     // Ip Pool Name, that is assigned to virtual network with traffic type as DATA(can't be empty if voiceIpAddressPoolName is empty)
+	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    // Ip Pool Name, that is assigned to virtual network with traffic type as VOICE(can't be empty if dataIpAddressPoolName is emty)
+	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate TemplateName associated to siteNameHierarchy. Allowed values are 'Open Authentication', 'Closed Authentication', 'Low Impact', 'No Authentication', ''.
+	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         // valid name of a scalable group associated with virtual network(Scalable groups are only supported on No Auth profile because the other profiles assign SGTs from ISE)
+	InterfaceDescription      string `json:"interfaceDescription,omitempty"`      // Details or note of interface assignment
 }
 type RequestSdaAddMulticastInSdaFabric struct {
-	FabricSiteNameHierarchy string                                            `json:"fabricSiteNameHierarchy,omitempty"` // fabricSiteNameHierarchy
-	MulticastMethod         string                                            `json:"multicastMethod,omitempty"`         // multicast methods
-	MuticastType            string                                            `json:"muticastType,omitempty"`            // muticast type
-	MulticastVnInfo         *RequestSdaAddMulticastInSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`         //
+	SiteNameHierarchy string                                            `json:"siteNameHierarchy,omitempty"` // Full path of sda fabric siteNameHierarchy
+	MulticastMethod   string                                            `json:"multicastMethod,omitempty"`   // Multicast Methods
+	MuticastType      string                                            `json:"muticastType,omitempty"`      // Muticast Type
+	MulticastVnInfo   *RequestSdaAddMulticastInSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`   //
 }
 type RequestSdaAddMulticastInSdaFabricMulticastVnInfo struct {
-	VirtualNetworkName  string                                                   `json:"virtualNetworkName,omitempty"`  // virtual network name in fabricSiteNameHierarchy
-	IPPoolName          string                                                   `json:"ipPoolName,omitempty"`          // Ip Pool Name in fabricSiteNameHierarchy
+	VirtualNetworkName  string                                                   `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to fabricSiteNameHierarchy
+	IPPoolName          string                                                   `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to fabricSiteNameHierarchy
 	ExternalRpIPAddress string                                                   `json:"externalRpIpAddress,omitempty"` // External Rp Ip Address, required for muticastType=asm_with_external_rp
 	SsmInfo             *RequestSdaAddMulticastInSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             // Source-specific multicast information, required if muticastType=ssm
-	SsmGroupRange       string                                                   `json:"ssmGroupRange,omitempty"`       // valid ssm group range ip address
-	SsmWildcardMask     string                                                   `json:"ssmWildcardMask,omitempty"`     // valid ssm Wildcard Mask ip address
+	SsmGroupRange       string                                                   `json:"ssmGroupRange,omitempty"`       // Valid SSM group range ip address(e.g., 230.0.0.0)
+	SsmWildcardMask     string                                                   `json:"ssmWildcardMask,omitempty"`     // Valid SSM Wildcard Mask ip address(e.g.,0.255.255.255)
 }
 type RequestSdaAddMulticastInSdaFabricMulticastVnInfoSsmInfo interface{}
+type RequestSdaReProvisionWiredDevice struct {
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the device to be re-provisioned
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy for device location(only building / floor level)
+}
 type RequestSdaProvisionWiredDevice struct {
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the device to be provisioned
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy for device location(only building / floor level)
 }
-type RequestSdaAddVnInSdaFabric []RequestItemSdaAddVnInSdaFabric // Array of RequestSdaAddVNInSDAFabric
-type RequestItemSdaAddVnInSdaFabric struct {
-	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
-	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Site Name Hierarchy
+type RequestSdaAddVnInSdaFabric struct {
+	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name, that is created in Global level
+	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Site Name Hierarchy should be a valid fabric site name hierarchy.( e.g. Global/USA/San Jose)
 }
-type RequestSdaAddIPPoolInSdaVirtualNetwork []RequestItemSdaAddIPPoolInSdaVirtualNetwork // Array of RequestSdaAddIPPoolInSDAVirtualNetwork
-type RequestItemSdaAddIPPoolInSdaVirtualNetwork struct {
-	VirtualNetworkName       string `json:"virtualNetworkName,omitempty"`       // Virtual Network Name
-	IPPoolName               string `json:"ipPoolName,omitempty"`               // Ip Pool Name
-	TrafficType              string `json:"trafficType,omitempty"`              // Traffic Type
-	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` // Authentication Policy Name
-	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        // Scalable Group Name
-	IsL2FloodingEnabled      *bool  `json:"isL2FloodingEnabled,omitempty"`      // Is L2 Flooding Enabled
-	IsThisCriticalPool       *bool  `json:"isThisCriticalPool,omitempty"`       // Is This Critical Pool
-	PoolType                 string `json:"poolType,omitempty"`                 // Pool Type
+type RequestSdaAddIPPoolInSdaVirtualNetwork struct {
+	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        // Full path of sda fabric siteNameHierarchy
+	VirtualNetworkName       string `json:"virtualNetworkName,omitempty"`       // Virtual Network Name, that is associated to fabric siteNameHierarchy
+	IPPoolName               string `json:"ipPoolName,omitempty"`               // Ip Pool Name, that is reserved to fabric siteNameHierarchy
+	TrafficType              string `json:"trafficType,omitempty"`              // Traffic type
+	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` // Deprecated, same as vlanName, please use vlanName
+	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        // Scalable Group, that is associated to Virtual Network
+	IsL2FloodingEnabled      *bool  `json:"isL2FloodingEnabled,omitempty"`      // Layer2 flooding enablement flag
+	IsThisCriticalPool       *bool  `json:"isThisCriticalPool,omitempty"`       // Critical pool enablement flag where depending on the pool type (data or voice), a corresponding Critical Vlan gets assigned to the Critical Pool
+	PoolType                 string `json:"poolType,omitempty"`                 // Pool Type (needed when assigning segment to INFRA_VN) (Example: AP.)
+	VLANName                 string `json:"vlanName,omitempty"`                 // Vlan name for this segment, represent the segment name, if empty, vlanName would be auto generated by API
+	IsWirelessPool           string `json:"isWirelessPool,omitempty"`           // Wireless Pool enablement flag
 }
 type RequestSdaAddVirtualNetworkWithScalableGroups struct {
-	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name
-	VirtualNetworkType    string   `json:"virtualNetworkType,omitempty"`    // Virtual Network Type
-	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group Names
-	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` //
+	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned  global level
+	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
+	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group to be associated to virtual network
 }
 type RequestSdaUpdateVirtualNetworkWithScalableGroups struct {
-	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name
-	VirtualNetworkType    string   `json:"virtualNetworkType,omitempty"`    // Virtual Network Type
-	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group Names
-	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // Is Guest Virtual Network
+	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned global level
+	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
+	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group to be associated to virtual network
 }
 
 //GetDefaultAuthenticationProfileFromSdaFabric Get default authentication profile from SDA Fabric - 8b90-8a4e-4c5a-9a23
@@ -1175,19 +1242,19 @@ func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithSc
 
 }
 
-//AddDefaultAuthenticationProfileInSdaFabric Add default authentication profile in SDA Fabric - bca3-39d8-44c8-a3c0
-/* Add default authentication profile in SDA Fabric
+//DeployAuthenticationTemplateInSdaFabric Deploy authentication template in SDA Fabric - bca3-39d8-44c8-a3c0
+/* Deploy authentication template in SDA Fabric
 
 
  */
-func (s *SdaService) AddDefaultAuthenticationProfileInSdaFabric(requestSdaAddDefaultAuthenticationProfileInSDAFabric *RequestSdaAddDefaultAuthenticationProfileInSdaFabric) (*ResponseSdaAddDefaultAuthenticationProfileInSdaFabric, *resty.Response, error) {
+func (s *SdaService) DeployAuthenticationTemplateInSdaFabric(requestSdaDeployAuthenticationTemplateInSDAFabric *RequestSdaDeployAuthenticationTemplateInSdaFabric) (*ResponseSdaDeployAuthenticationTemplateInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSdaAddDefaultAuthenticationProfileInSDAFabric).
-		SetResult(&ResponseSdaAddDefaultAuthenticationProfileInSdaFabric{}).
+		SetBody(requestSdaDeployAuthenticationTemplateInSDAFabric).
+		SetResult(&ResponseSdaDeployAuthenticationTemplateInSdaFabric{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1197,10 +1264,10 @@ func (s *SdaService) AddDefaultAuthenticationProfileInSdaFabric(requestSdaAddDef
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddDefaultAuthenticationProfileInSdaFabric")
+		return nil, response, fmt.Errorf("error with operation DeployAuthenticationTemplateInSdaFabric")
 	}
 
-	result := response.Result().(*ResponseSdaAddDefaultAuthenticationProfileInSdaFabric)
+	result := response.Result().(*ResponseSdaDeployAuthenticationTemplateInSdaFabric)
 	return result, response, err
 
 }
@@ -1591,6 +1658,36 @@ func (s *SdaService) UpdateDefaultAuthenticationProfileInSdaFabric(requestSdaUpd
 	}
 
 	result := response.Result().(*ResponseSdaUpdateDefaultAuthenticationProfileInSdaFabric)
+	return result, response, err
+
+}
+
+//ReProvisionWiredDevice Re-Provision Wired Device - 4e95-c9a2-41ab-8889
+/* Re-Provision Wired Device
+
+
+ */
+func (s *SdaService) ReProvisionWiredDevice(requestSdaReProvisionWiredDevice *RequestSdaReProvisionWiredDevice) (*ResponseSdaReProvisionWiredDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/business/sda/provision-device"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSdaReProvisionWiredDevice).
+		SetResult(&ResponseSdaReProvisionWiredDevice{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ReProvisionWiredDevice")
+	}
+
+	result := response.Result().(*ResponseSdaReProvisionWiredDevice)
 	return result, response, err
 
 }

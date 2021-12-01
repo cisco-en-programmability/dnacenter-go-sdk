@@ -18,28 +18,47 @@ type ApplicationsQueryParams struct {
 	ApplicationHealth string  `url:"applicationHealth,omitempty"` //Application health category (POOR, FAIR, or GOOD.  Optionally use with siteId only)
 	Offset            float64 `url:"offset,omitempty"`            //The offset of the first application in the returned data (optionally used with siteId only)
 	Limit             float64 `url:"limit,omitempty"`             //The max number of application entries in returned data [1, 1000] (optionally used with siteId only)
+	ApplicationName   string  `url:"applicationName,omitempty"`   //The name of the application to get information on
 }
 
 type ResponseApplicationsApplications struct {
-	Version    string                                      `json:"version,omitempty"`    // Version
-	TotalCount *int                                        `json:"totalCount,omitempty"` // Total Count
+	Version    string                                      `json:"version,omitempty"`    // API version
+	TotalCount *int                                        `json:"totalCount,omitempty"` // Count of items in response
 	Response   *[]ResponseApplicationsApplicationsResponse `json:"response,omitempty"`   //
 }
 type ResponseApplicationsApplicationsResponse struct {
-	Name                     string                                                            `json:"name,omitempty"`                     // Name
-	Health                   *ResponseApplicationsApplicationsResponseHealth                   `json:"health,omitempty"`                   // Health
-	BusinessRelevance        string                                                            `json:"businessRelevance,omitempty"`        // Business Relevance
-	TrafficClass             string                                                            `json:"trafficClass,omitempty"`             // Traffic Class
-	UsageBytes               *int                                                              `json:"usageBytes,omitempty"`               // Usage Bytes
-	AverageThroughput        *float64                                                          `json:"averageThroughput,omitempty"`        // Average Throughput
-	PacketLossPercent        *ResponseApplicationsApplicationsResponsePacketLossPercent        `json:"packetLossPercent,omitempty"`        // Packet Loss Percent
-	NetworkLatency           *ResponseApplicationsApplicationsResponseNetworkLatency           `json:"networkLatency,omitempty"`           // Network Latency
-	Jitter                   *ResponseApplicationsApplicationsResponseJitter                   `json:"jitter,omitempty"`                   // Jitter
-	ApplicationServerLatency *ResponseApplicationsApplicationsResponseApplicationServerLatency `json:"applicationServerLatency,omitempty"` // Application Server Latency
-	ClientNetworkLatency     *ResponseApplicationsApplicationsResponseClientNetworkLatency     `json:"clientNetworkLatency,omitempty"`     // Client Network Latency
-	ServerNetworkLatency     *ResponseApplicationsApplicationsResponseServerNetworkLatency     `json:"serverNetworkLatency,omitempty"`     // Server Network Latency
+	Name                     string                                                            `json:"name,omitempty"`                     // Application name
+	Health                   *int                                                              `json:"health,omitempty"`                   // Health score
+	BusinessRelevance        string                                                            `json:"businessRelevance,omitempty"`        // Application's business relevance
+	TrafficClass             string                                                            `json:"trafficClass,omitempty"`             // Application's traffic class
+	UsageBytes               *int                                                              `json:"usageBytes,omitempty"`               // Usage amount in bytes
+	AverageThroughput        *float64                                                          `json:"averageThroughput,omitempty"`        // Average throughput of application
+	PacketLossPercent        *ResponseApplicationsApplicationsResponsePacketLossPercent        `json:"packetLossPercent,omitempty"`        // Packet loss percentage for application
+	NetworkLatency           *ResponseApplicationsApplicationsResponseNetworkLatency           `json:"networkLatency,omitempty"`           // Network latency for application
+	Jitter                   *ResponseApplicationsApplicationsResponseJitter                   `json:"jitter,omitempty"`                   // Jitter for application
+	ApplicationServerLatency *ResponseApplicationsApplicationsResponseApplicationServerLatency `json:"applicationServerLatency,omitempty"` // Latency of application server
+	ClientNetworkLatency     *ResponseApplicationsApplicationsResponseClientNetworkLatency     `json:"clientNetworkLatency,omitempty"`     // Latency of client network
+	ServerNetworkLatency     *ResponseApplicationsApplicationsResponseServerNetworkLatency     `json:"serverNetworkLatency,omitempty"`     // Latency of server network
+	ExporterIPAddress        string                                                            `json:"exporterIpAddress,omitempty"`        // Ip address of exporter device
+	ExporterName             string                                                            `json:"exporterName,omitempty"`             // Name of exporter device
+	ExporterUUID             string                                                            `json:"exporterUUID,omitempty"`             // UUID of exporter device
+	ExporterFamily           string                                                            `json:"exporterFamily,omitempty"`           // Devices family of exporter device
+	ClientName               string                                                            `json:"clientName,omitempty"`               // Endpoint client name
+	ClientIP                 string                                                            `json:"clientIp,omitempty"`                 // Endpoint client ip
+	Location                 string                                                            `json:"location,omitempty"`                 // Site location
+	OperatingSystem          string                                                            `json:"operatingSystem,omitempty"`          // Endpoint's operating system
+	DeviceType               string                                                            `json:"deviceType,omitempty"`               // Type of device
+	ClientMacAddress         string                                                            `json:"clientMacAddress,omitempty"`         // Endpoint mac address
+	IssueID                  string                                                            `json:"issueId,omitempty"`                  // Id number of issue
+	IssueName                string                                                            `json:"issueName,omitempty"`                // Name of issue
+	Application              string                                                            `json:"application,omitempty"`              // Issue reltaed application
+	Severity                 string                                                            `json:"severity,omitempty"`                 // Issue severity
+	Summary                  string                                                            `json:"summary,omitempty"`                  // Issue summary
+	RootCause                string                                                            `json:"rootCause,omitempty"`                // Issue's root cause
+	Timestamp                *int                                                              `json:"timestamp,omitempty"`                // Issue's timestamp
+	Occurrences              *int                                                              `json:"occurrences,omitempty"`              // Issue occurrences
+	Priority                 string                                                            `json:"priority,omitempty"`                 // Issue priority
 }
-type ResponseApplicationsApplicationsResponseHealth interface{}
 type ResponseApplicationsApplicationsResponsePacketLossPercent interface{}
 type ResponseApplicationsApplicationsResponseNetworkLatency interface{}
 type ResponseApplicationsApplicationsResponseJitter interface{}
@@ -48,7 +67,7 @@ type ResponseApplicationsApplicationsResponseClientNetworkLatency interface{}
 type ResponseApplicationsApplicationsResponseServerNetworkLatency interface{}
 
 //Applications Applications - 2db5-8a1f-4fea-9242
-/* Intent API to get a list of applications for a specific site, a device, or a client device's MAC address.
+/* Intent API to get a list of applications for a specific site, a device, or a client device's MAC address. For a combination of a specific application with site and/or device the API gets list of issues/devices/endpoints.
 
 
 @param ApplicationsQueryParams Filtering parameter

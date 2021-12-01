@@ -432,7 +432,7 @@ type RequestNetworkSettingsCreateGlobalPoolSettingsIPpool struct {
 	Gateway        string   `json:"gateway,omitempty"`        // Gateway
 	DhcpServerIPs  []string `json:"dhcpServerIps,omitempty"`  // Dhcp Server Ips
 	DNSServerIPs   []string `json:"dnsServerIps,omitempty"`   // Dns Server Ips
-	IPAddressSpace string   `json:"IpAddressSpace,omitempty"` // Ip Address Space. IPv6 or IPv4
+	IPAddressSpace string   `json:"IpAddressSpace,omitempty"` // Ip Address Space. Allowed values are IPv6 or IPv4.
 }
 type RequestNetworkSettingsCreateNetwork struct {
 	Settings *RequestNetworkSettingsCreateNetworkSettings `json:"settings,omitempty"` //
@@ -444,15 +444,15 @@ type RequestNetworkSettingsCreateNetworkSettings struct {
 	SNMPServer           *RequestNetworkSettingsCreateNetworkSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
 	Netflowcollector     *RequestNetworkSettingsCreateNetworkSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
 	NtpServer            []string                                                         `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
-	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan (GMT))
+	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
 	MessageOfTheday      *RequestNetworkSettingsCreateNetworkSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
 	NetworkAAA           *RequestNetworkSettingsCreateNetworkSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsCreateNetworkSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsCreateNetworkSettingsDNSServer struct {
-	DomainName         string `json:"domainName,omitempty"`         // Domain name of DHCP (eg; cisco). can only contain alphanumeric characters or hyphen
-	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary ip address for DHCP (eg: 2.2.2.2). Valid range : 1.0.0.0 - 223.255.255.255
-	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary ip address for DHCP (eg: 3.3.3.3). Valid range : 1.0.0.0 - 223.255.255.255
+	DomainName         string `json:"domainName,omitempty"`         // Domain name of DHCP (eg; cisco). It can only contain alphanumeric characters or hyphen.
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary ip address for DHCP (eg: 2.2.2.2). valid range : 1.0.0.0 - 223.255.255.255
+	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary ip address for DHCP (eg: 3.3.3.3). valid range : 1.0.0.0 - 223.255.255.255
 }
 type RequestNetworkSettingsCreateNetworkSettingsSyslogServer struct {
 	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP address for syslog server (eg: 4.4.4.4)
@@ -468,23 +468,21 @@ type RequestNetworkSettingsCreateNetworkSettingsNetflowcollector struct {
 }
 type RequestNetworkSettingsCreateNetworkSettingsMessageOfTheday struct {
 	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for banner message (eg; Good day)
-	RetainExistingBanner *bool  `json:"retainExistingBanner,omitempty"` // Retain existing banner message (eg: true)
+	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing banner message (eg: "true" or "false")
 }
 type RequestNetworkSettingsCreateNetworkSettingsNetworkAAA struct {
-	Servers      string   `json:"servers,omitempty"`      // Server type for AAA network (eg: AAA). Server type supported by ISE and AAA
-	IPAddress    string   `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1). Mandatory for ISE servers and for AAA consider this as additional Ip.
-	Network      string   `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.2). For AAA server consider it as primary IP and For ISE consider as Network
-	Protocol     string   `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
-	SharedSecret string   `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
-	AdditionalIP []string `json:"additionalIp,omitempty"` // Additional IP for ISE server which is not supported by AAA server.
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1). Mandatory for ISE servers and for AAA consider this as additional Ip.
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.2). For AAA server consider it as primary IP and For ISE consider as Network
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
+	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
 }
 type RequestNetworkSettingsCreateNetworkSettingsClientAndEndpointAAA struct {
-	Servers      string   `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
-	IPAddress    string   `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4). Mandatory for ISE servers.
-	Network      string   `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
-	Protocol     string   `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
-	SharedSecret string   `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
-	AdditionalIP []string `json:"additionalIp,omitempty"` // Additional IP for ISE server which is not supported by AAA server.
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4). Mandatory for ISE servers.
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
+	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
 }
 type RequestNetworkSettingsUpdateNetwork struct {
 	Settings *RequestNetworkSettingsUpdateNetworkSettings `json:"settings,omitempty"` //
@@ -496,15 +494,15 @@ type RequestNetworkSettingsUpdateNetworkSettings struct {
 	SNMPServer           *RequestNetworkSettingsUpdateNetworkSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
 	Netflowcollector     *RequestNetworkSettingsUpdateNetworkSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
 	NtpServer            []string                                                         `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
-	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan (GMT))
+	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
 	MessageOfTheday      *RequestNetworkSettingsUpdateNetworkSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
 	NetworkAAA           *RequestNetworkSettingsUpdateNetworkSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsUpdateNetworkSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsUpdateNetworkSettingsDNSServer struct {
-	DomainName         string `json:"domainName,omitempty"`         // Domain name of DHCP (eg; cisco). Can only contain alphanumeric characters or hyphen
-	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary ip address for DHCP (eg: 2.2.2.2). Valid range : 1.0.0.0 - 223.255.255.255
-	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary ip address for DHCP (eg: 3.3.3.3). Valid range : 1.0.0.0 - 223.255.255.255
+	DomainName         string `json:"domainName,omitempty"`         // Domain name of DHCP (eg; cisco). It can only contain alphanumeric characters or hyphen.
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary ip address for DHCP (eg: 2.2.2.2). valid range : 1.0.0.0 - 223.255.255.255
+	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary ip address for DHCP (eg: 3.3.3.3. valid range : 1.0.0.0 - 223.255.255.255)
 }
 type RequestNetworkSettingsUpdateNetworkSettingsSyslogServer struct {
 	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP address for syslog server (eg: 4.4.4.4)
@@ -520,23 +518,21 @@ type RequestNetworkSettingsUpdateNetworkSettingsNetflowcollector struct {
 }
 type RequestNetworkSettingsUpdateNetworkSettingsMessageOfTheday struct {
 	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for banner message (eg; Good day)
-	RetainExistingBanner *bool  `json:"retainExistingBanner,omitempty"` // Retain existing banner message (eg: true)
+	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing banner message (eg: "true" or "false")
 }
 type RequestNetworkSettingsUpdateNetworkSettingsNetworkAAA struct {
-	Servers      string   `json:"servers,omitempty"`      // Server type for AAA network (eg: AAA). Server type supported by ISE and AAA
-	IPAddress    string   `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1). Mandatory for ISE servers and for AAA consider this as additional Ip.
-	Network      string   `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.2). For AAA server consider it as primary IP and For ISE consider as Network
-	Protocol     string   `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
-	SharedSecret string   `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
-	AdditionalIP []string `json:"additionalIp,omitempty"` // Additional IP for ISE server which is not supported by AAA server.
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1). Mandatory for ISE servers and for AAA consider this as additional Ip.
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.2). For AAA server consider it as primary IP and For ISE consider as Network
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
+	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
 }
 type RequestNetworkSettingsUpdateNetworkSettingsClientAndEndpointAAA struct {
-	Servers      string   `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
-	IPAddress    string   `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4). Mandatory for ISE servers.
-	Network      string   `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
-	Protocol     string   `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
-	SharedSecret string   `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
-	AdditionalIP []string `json:"additionalIp,omitempty"` // Additional IP for ISE server which is not supported by AAA server.
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4). Mandatory for ISE servers.
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
+	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server. Supported only by ISE servers
 }
 type RequestNetworkSettingsReserveIPSubpool struct {
 	Name             string   `json:"name,omitempty"`             // Name of the reserve ip sub pool
@@ -574,6 +570,7 @@ type RequestNetworkSettingsUpdateReserveIPSubpool struct {
 	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: 2001:db8::1234
 	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // IPv6 total host is required when ipv6prefix value is false.
 	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // Slaac Support
+	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Ipv4 Gate Way
 }
 type RequestNetworkSettingsCreateSpProfile struct {
 	Settings *RequestNetworkSettingsCreateSpProfileSettings `json:"settings,omitempty"` //
@@ -1230,12 +1227,12 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 /* API to delete Service Provider profile (QoS).
 
 
-@param spProfileName sp-profile-name path parameter. sp profile name
+@param spProfileName spProfileName path parameter. sp profile name
 
 */
 func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfile, *resty.Response, error) {
-	path := "/dna/intent/api/v1/sp-profile/{sp-profile-name}"
-	path = strings.Replace(path, "{sp-profile-name}", fmt.Sprintf("%v", spProfileName), -1)
+	path := "/dna/intent/api/v1/sp-profile/{spProfileName}"
+	path = strings.Replace(path, "{spProfileName}", fmt.Sprintf("%v", spProfileName), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").

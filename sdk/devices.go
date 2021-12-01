@@ -69,29 +69,29 @@ type GetDeviceListQueryParams struct {
 	ID                        string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
 	DeviceSupportLevel        string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
 }
-type RetrievesAllNetworkDevicesQueryParams struct {
-	VrfName                   string `url:"vrfName,omitempty"`                   //vrfName
-	ManagementIPAddress       string `url:"managementIpAddress,omitempty"`       //managementIpAddress
-	Hostname                  string `url:"hostname,omitempty"`                  //hostname
-	MacAddress                string `url:"macAddress,omitempty"`                //macAddress
-	Family                    string `url:"family,omitempty"`                    //family
-	CollectionStatus          string `url:"collectionStatus,omitempty"`          //collectionStatus
-	CollectionInterval        string `url:"collectionInterval,omitempty"`        //collectionInterval
-	SoftwareVersion           string `url:"softwareVersion,omitempty"`           //softwareVersion
-	SoftwareType              string `url:"softwareType,omitempty"`              //softwareType
-	ReachabilityStatus        string `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
-	ReachabilityFailureReason string `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
-	ErrorCode                 string `url:"errorCode,omitempty"`                 //errorCode
-	PlatformID                string `url:"platformId,omitempty"`                //platformId
-	Series                    string `url:"series,omitempty"`                    //series
-	Type                      string `url:"type,omitempty"`                      //type
-	SerialNumber              string `url:"serialNumber,omitempty"`              //serialNumber
-	UpTime                    string `url:"upTime,omitempty"`                    //upTime
-	Role                      string `url:"role,omitempty"`                      //role
-	RoleSource                string `url:"roleSource,omitempty"`                //roleSource
-	AssociatedWlcIP           string `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
-	Offset                    string `url:"offset,omitempty"`                    //offset
-	Limit                     string `url:"limit,omitempty"`                     //limit
+type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
+	VrfName                   string  `url:"vrfName,omitempty"`                   //vrfName
+	ManagementIPAddress       string  `url:"managementIpAddress,omitempty"`       //managementIpAddress
+	Hostname                  string  `url:"hostname,omitempty"`                  //hostname
+	MacAddress                string  `url:"macAddress,omitempty"`                //macAddress
+	Family                    string  `url:"family,omitempty"`                    //family
+	CollectionStatus          string  `url:"collectionStatus,omitempty"`          //collectionStatus
+	CollectionInterval        string  `url:"collectionInterval,omitempty"`        //collectionInterval
+	SoftwareVersion           string  `url:"softwareVersion,omitempty"`           //softwareVersion
+	SoftwareType              string  `url:"softwareType,omitempty"`              //softwareType
+	ReachabilityStatus        string  `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
+	ReachabilityFailureReason string  `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
+	ErrorCode                 string  `url:"errorCode,omitempty"`                 //errorCode
+	PlatformID                string  `url:"platformId,omitempty"`                //platformId
+	Series                    string  `url:"series,omitempty"`                    //series
+	Type                      string  `url:"type,omitempty"`                      //type
+	SerialNumber              string  `url:"serialNumber,omitempty"`              //serialNumber
+	UpTime                    string  `url:"upTime,omitempty"`                    //upTime
+	Role                      string  `url:"role,omitempty"`                      //role
+	RoleSource                string  `url:"roleSource,omitempty"`                //roleSource
+	AssociatedWlcIP           string  `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
+	Offset                    float64 `url:"offset,omitempty"`                    //offset
+	Limit                     float64 `url:"limit,omitempty"`                     //limit
 }
 type GetFunctionalCapabilityForDevicesQueryParams struct {
 	DeviceID     string   `url:"deviceId,omitempty"`     //Accepts comma separated deviceid's and return list of functional-capabilities for the given id's. If invalid or not-found id's are provided, null entry will be returned in the list.
@@ -140,7 +140,7 @@ type ReturnsPoeInterfaceDetailsForTheDeviceQueryParams struct {
 	InterfaceNameList string `url:"interfaceNameList,omitempty"` //comma seperated interface names
 }
 type DeleteDeviceByIDQueryParams struct {
-	IsForceDelete bool `url:"isForceDelete,omitempty"` //isForceDelete
+	CleanConfig bool `url:"cleanConfig,omitempty"` //cleanConfig
 }
 type GetDeviceInterfaceVLANsQueryParams struct {
 	InterfaceType string `url:"interfaceType,omitempty"` //Vlan assocaited with sub-interface
@@ -693,11 +693,11 @@ type ResponseDevicesGetDeviceListResponseWaasDeviceMode interface{}
 type ResponseDevicesGetDeviceListResponseLocation interface{}
 type ResponseDevicesGetDeviceListResponseApEthernetMacAddress interface{}
 type ResponseDevicesGetDeviceListResponseLocationName interface{}
-type ResponseDevicesAddDevice struct {
-	Response *ResponseDevicesAddDeviceResponse `json:"response,omitempty"` //
-	Version  string                            `json:"version,omitempty"`  //
+type ResponseDevicesAddDevice2 struct {
+	Response *ResponseDevicesAddDevice2Response `json:"response,omitempty"` //
+	Version  string                             `json:"version,omitempty"`  //
 }
-type ResponseDevicesAddDeviceResponse struct {
+type ResponseDevicesAddDevice2Response struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
@@ -709,7 +709,7 @@ type ResponseDevicesSyncDevices2Response struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-type ResponseDevicesRetrievesAllNetworkDevices struct {
+type ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct {
 	object string `json:"object,omitempty"` // object
 }
 type ResponseDevicesUpdateDeviceRole struct {
@@ -746,7 +746,7 @@ type ResponseDevicesGetDeviceConfigCount struct {
 	Response *int   `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
-type ResponseDevicesGetDeviceCount struct {
+type ResponseDevicesGetDeviceCount2 struct {
 	Response *int   `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
@@ -1193,7 +1193,6 @@ type ResponseDevicesGetDeviceByIDResponse struct {
 	Type                      string `json:"type,omitempty"`                      //
 	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
-	UptimeSeconds             *int   `json:"uptimeSeconds,omitempty"`             //
 }
 type ResponseDevicesDeleteDeviceByID struct {
 	Response *ResponseDevicesDeleteDeviceByIDResponse `json:"response,omitempty"` //
@@ -1333,36 +1332,36 @@ type ResponseDevicesThreatSummaryResponseThreatData struct {
 	ThreatLevel string `json:"threatLevel,omitempty"` // Threat Level
 	ThreatCount *int   `json:"threatCount,omitempty"` // Threat Count
 }
-type RequestDevicesAddDevice struct {
-	CliTransport            string                                            `json:"cliTransport,omitempty"`            //
-	ComputeDevice           *bool                                             `json:"computeDevice,omitempty"`           //
-	EnablePassword          string                                            `json:"enablePassword,omitempty"`          //
-	ExtendedDiscoveryInfo   string                                            `json:"extendedDiscoveryInfo,omitempty"`   //
-	HTTPPassword            string                                            `json:"httpPassword,omitempty"`            //
-	HTTPPort                string                                            `json:"httpPort,omitempty"`                //
-	HTTPSecure              *bool                                             `json:"httpSecure,omitempty"`              //
-	HTTPUserName            string                                            `json:"httpUserName,omitempty"`            //
-	IPAddress               []string                                          `json:"ipAddress,omitempty"`               //
-	MerakiOrgID             []string                                          `json:"merakiOrgId,omitempty"`             //
-	NetconfPort             string                                            `json:"netconfPort,omitempty"`             //
-	Password                string                                            `json:"password,omitempty"`                //
-	SerialNumber            string                                            `json:"serialNumber,omitempty"`            //
-	SNMPAuthPassphrase      string                                            `json:"snmpAuthPassphrase,omitempty"`      //
-	SNMPAuthProtocol        string                                            `json:"snmpAuthProtocol,omitempty"`        //
-	SNMPMode                string                                            `json:"snmpMode,omitempty"`                //
-	SNMPPrivPassphrase      string                                            `json:"snmpPrivPassphrase,omitempty"`      //
-	SNMPPrivProtocol        string                                            `json:"snmpPrivProtocol,omitempty"`        //
-	SNMPROCommunity         string                                            `json:"snmpROCommunity,omitempty"`         //
-	SNMPRWCommunity         string                                            `json:"snmpRWCommunity,omitempty"`         //
-	SNMPRetry               *int                                              `json:"snmpRetry,omitempty"`               //
-	SNMPTimeout             *int                                              `json:"snmpTimeout,omitempty"`             //
-	SNMPUserName            string                                            `json:"snmpUserName,omitempty"`            //
-	SNMPVersion             string                                            `json:"snmpVersion,omitempty"`             //
-	Type                    string                                            `json:"type,omitempty"`                    //
-	UpdateMgmtIPaddressList *[]RequestDevicesAddDeviceUpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
-	UserName                string                                            `json:"userName,omitempty"`                //
+type RequestDevicesAddDevice2 struct {
+	CliTransport            string                                             `json:"cliTransport,omitempty"`            //
+	ComputeDevice           *bool                                              `json:"computeDevice,omitempty"`           //
+	EnablePassword          string                                             `json:"enablePassword,omitempty"`          //
+	ExtendedDiscoveryInfo   string                                             `json:"extendedDiscoveryInfo,omitempty"`   //
+	HTTPPassword            string                                             `json:"httpPassword,omitempty"`            //
+	HTTPPort                string                                             `json:"httpPort,omitempty"`                //
+	HTTPSecure              *bool                                              `json:"httpSecure,omitempty"`              //
+	HTTPUserName            string                                             `json:"httpUserName,omitempty"`            //
+	IPAddress               []string                                           `json:"ipAddress,omitempty"`               //
+	MerakiOrgID             []string                                           `json:"merakiOrgId,omitempty"`             //
+	NetconfPort             string                                             `json:"netconfPort,omitempty"`             //
+	Password                string                                             `json:"password,omitempty"`                //
+	SerialNumber            string                                             `json:"serialNumber,omitempty"`            //
+	SNMPAuthPassphrase      string                                             `json:"snmpAuthPassphrase,omitempty"`      //
+	SNMPAuthProtocol        string                                             `json:"snmpAuthProtocol,omitempty"`        //
+	SNMPMode                string                                             `json:"snmpMode,omitempty"`                //
+	SNMPPrivPassphrase      string                                             `json:"snmpPrivPassphrase,omitempty"`      //
+	SNMPPrivProtocol        string                                             `json:"snmpPrivProtocol,omitempty"`        //
+	SNMPROCommunity         string                                             `json:"snmpROCommunity,omitempty"`         //
+	SNMPRWCommunity         string                                             `json:"snmpRWCommunity,omitempty"`         //
+	SNMPRetry               *int                                               `json:"snmpRetry,omitempty"`               //
+	SNMPTimeout             *int                                               `json:"snmpTimeout,omitempty"`             //
+	SNMPUserName            string                                             `json:"snmpUserName,omitempty"`            //
+	SNMPVersion             string                                             `json:"snmpVersion,omitempty"`             //
+	Type                    string                                             `json:"type,omitempty"`                    //
+	UpdateMgmtIPaddressList *[]RequestDevicesAddDevice2UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
+	UserName                string                                             `json:"userName,omitempty"`                //
 }
-type RequestDevicesAddDeviceUpdateMgmtIPaddressList struct {
+type RequestDevicesAddDevice2UpdateMgmtIPaddressList struct {
 	ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` //
 	NewMgmtIPAddress   string `json:"newMgmtIpAddress,omitempty"`   //
 }
@@ -1872,7 +1871,8 @@ func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfa
 }
 
 //GetDeviceList Get Device list - 20b1-9b52-464b-8972
-/* Returns list of network devices based on filter criteria such as management IP address, mac address, hostname, etc. You can use the .* in any value to conduct a wildcard search. For example, to find all hostnames beginning with myhost in the IP address range 192.25.18.n, issue the following request: GET /dna/intent/api/v1/network-device?hostname=myhost.*&managementIpAddress=192.25.18..* If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters.
+/* Returns list of network devices based on filter criteria such as management IP address, mac address, hostname, etc. You can use the .* in any value to conduct a wildcard search. For example, to find all hostnames beginning with myhost in the IP address range 192.25.18.n, issue the following request: GET /dna/intent/api/v1/network-device?hostname=myhost.*&managementIpAddress=192.25.18..*
+If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters.
 
 
 @param GetDeviceListQueryParams Filtering parameter
@@ -1903,21 +1903,21 @@ func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQu
 
 }
 
-//RetrievesAllNetworkDevices Retrieves all network devices - ffa7-48cc-44e9-a437
-/* Gets the list of first 500 network devices sorted lexicographically based on host name. It can be filtered using management IP address, mac address, hostname and location name. If id param is provided, it will be returning the list of network-devices for the given id's and other request params will be ignored. In case of autocomplete request, returns the list of specified attributes.
+//GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute Get Device Values that match fully or partially an Attribute - ffa7-48cc-44e9-a437
+/* Returns the list of values of the first given required parameter. You can use the .* in any value to conduct a wildcard search. For example, to get all the devices with the management IP address starting with 10.10. , issue the following request: GET /dna/inten/api/v1/network-device/autocomplete?managementIpAddress=10.10..* It will return the device management IP addresses that match fully or partially the provided attribute. {[10.10.1.1, 10.10.20.2, …]}.
 
 
-@param RetrievesAllNetworkDevicesQueryParams Filtering parameter
+@param GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams Filtering parameter
 */
-func (s *DevicesService) RetrievesAllNetworkDevices(RetrievesAllNetworkDevicesQueryParams *RetrievesAllNetworkDevicesQueryParams) (*ResponseDevicesRetrievesAllNetworkDevices, *resty.Response, error) {
+func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams *GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams) (*ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/autocomplete"
 
-	queryString, _ := query.Values(RetrievesAllNetworkDevicesQueryParams)
+	queryString, _ := query.Values(GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesRetrievesAllNetworkDevices{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1927,10 +1927,10 @@ func (s *DevicesService) RetrievesAllNetworkDevices(RetrievesAllNetworkDevicesQu
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RetrievesAllNetworkDevices")
+		return nil, response, fmt.Errorf("error with operation GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute")
 	}
 
-	result := response.Result().(*ResponseDevicesRetrievesAllNetworkDevices)
+	result := response.Result().(*ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute)
 	return result, response, err
 
 }
@@ -2022,18 +2022,18 @@ func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfig
 
 }
 
-//GetDeviceCount Get Device Count - 5db2-1b8e-43fa-b7d8
+//GetDeviceCount2 Get Device Count - 5db2-1b8e-43fa-b7d8
 /* Returns the count of network devices based on the filter criteria by management IP address, mac address, hostname and location name
 
 
  */
-func (s *DevicesService) GetDeviceCount() (*ResponseDevicesGetDeviceCount, *resty.Response, error) {
+func (s *DevicesService) GetDeviceCount2() (*ResponseDevicesGetDeviceCount2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/count"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseDevicesGetDeviceCount{}).
+		SetResult(&ResponseDevicesGetDeviceCount2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -2043,10 +2043,10 @@ func (s *DevicesService) GetDeviceCount() (*ResponseDevicesGetDeviceCount, *rest
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceCount")
+		return nil, response, fmt.Errorf("error with operation GetDeviceCount2")
 	}
 
-	result := response.Result().(*ResponseDevicesGetDeviceCount)
+	result := response.Result().(*ResponseDevicesGetDeviceCount2)
 	return result, response, err
 
 }
@@ -2862,19 +2862,19 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 
 }
 
-//AddDevice Add Device - 4bb2-2af0-46fa-8f08
+//AddDevice2 Add Device - 4bb2-2af0-46fa-8f08
 /* Adds the device with given credential
 
 
  */
-func (s *DevicesService) AddDevice(requestDevicesAddDevice *RequestDevicesAddDevice) (*ResponseDevicesAddDevice, *resty.Response, error) {
+func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddDevice2) (*ResponseDevicesAddDevice2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesAddDevice).
-		SetResult(&ResponseDevicesAddDevice{}).
+		SetBody(requestDevicesAddDevice2).
+		SetResult(&ResponseDevicesAddDevice2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -2884,10 +2884,10 @@ func (s *DevicesService) AddDevice(requestDevicesAddDevice *RequestDevicesAddDev
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddDevice")
+		return nil, response, fmt.Errorf("error with operation AddDevice2")
 	}
 
-	result := response.Result().(*ResponseDevicesAddDevice)
+	result := response.Result().(*ResponseDevicesAddDevice2)
 	return result, response, err
 
 }

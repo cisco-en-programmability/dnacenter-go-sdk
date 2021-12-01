@@ -12,7 +12,7 @@ import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/sdk"
 
 The dnacenter-go-sdk makes it easier to work with the Cisco DNA Center Platform RESTFul APIs from Go.
 
-It supports version 2.2.2.3, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.2.2.3.
+It supports version 2.2.3.3, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.2.3.3.
 
 ## Getting started
 
