@@ -6,12 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.0.0] - 2021-12-01
+## [3.0.0] - 2021-11-30
 
 ### Changed
 - Update to use DNAC 2.2.3.3
 
-## [2.0.0] - 2021-12-01
+## [2.0.0] - 2021-11-30
 ### Added
 - Add function to get the resty.Client pointer.
 
