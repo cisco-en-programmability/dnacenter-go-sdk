@@ -73,6 +73,22 @@ type ResponseSiteDesignGetDeviceDetailsByIPProvisionDetailsTaskNodesProvisionedN
 type ResponseSiteDesignGetDeviceDetailsByIPProvisionDetailsTaskNodesErrorPayload interface{}
 type ResponseSiteDesignGetDeviceDetailsByIPProvisionDetailsTaskNodesParentTask interface{}
 type ResponseSiteDesignGetDeviceDetailsByIPProvisionDetailsTaskNodesCliTemplateUserMessageDTO interface{}
+type ResponseSiteDesignAssociate struct {
+	Version  string                               `json:"version,omitempty"`  // Version
+	Response *ResponseSiteDesignAssociateResponse `json:"response,omitempty"` //
+}
+type ResponseSiteDesignAssociateResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseSiteDesignDisassociate struct {
+	Version  string                                  `json:"version,omitempty"`  // Version
+	Response *ResponseSiteDesignDisassociateResponse `json:"response,omitempty"` //
+}
+type ResponseSiteDesignDisassociateResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
 type ResponseSiteDesignNfvProvisioningDetail struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
@@ -149,70 +165,6 @@ type ResponseSiteDesignDeleteNfvProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseSiteDesignCreateFloormap interface{}
-type ResponseSiteDesignListFloormaps struct {
-	Total *int                                    `json:"total,omitempty"` // Total
-	Items *[]ResponseSiteDesignListFloormapsItems `json:"items,omitempty"` //
-}
-type ResponseSiteDesignListFloormapsItems struct {
-	ParentGroupUUID      string                                         `json:"parentGroupUuid,omitempty"`      // Parent Group Uuid
-	SiteName             string                                         `json:"siteName,omitempty"`             // Site Name
-	ImageInfo            *ResponseSiteDesignListFloormapsItemsImageInfo `json:"imageInfo,omitempty"`            //
-	Type                 *int                                           `json:"type,omitempty"`                 //
-	Contact              *ResponseSiteDesignListFloormapsItemsContact   `json:"contact,omitempty"`              // Contact
-	WirelessClientsCount string                                         `json:"wirelessClientsCount,omitempty"` // Wireless Clients Count
-	ID                   *int                                           `json:"id,omitempty"`                   // Id
-	ApCount              *int                                           `json:"apCount,omitempty"`              //
-	BuildingName         string                                         `json:"buildingName,omitempty"`         // Building Name
-	CriticalRadioCount   string                                         `json:"criticalRadioCount,omitempty"`   // Critical Radio Count
-	InstanceUUID         string                                         `json:"instanceUuid,omitempty"`         // Instance Uuid
-	Name                 string                                         `json:"name,omitempty"`                 // Name
-	Location             *ResponseSiteDesignListFloormapsItemsLocation  `json:"location,omitempty"`             //
-	Geometry             *ResponseSiteDesignListFloormapsItemsGeometry  `json:"geometry,omitempty"`             //
-	GroupInstanceUUID    string                                         `json:"groupInstanceUuid,omitempty"`    // Group Instance Uuid
-	Metrics              *ResponseSiteDesignListFloormapsItemsMetrics   `json:"metrics,omitempty"`              // Metrics
-	Items                []string                                       `json:"items,omitempty"`                //
-	FloorIndex           *float64                                       `json:"floorIndex,omitempty"`           // Floor Index
-	MaintainAspectRatio  *bool                                          `json:"maintainAspectRatio,omitempty"`  //
-}
-type ResponseSiteDesignListFloormapsItemsImageInfo struct {
-	Image                *ResponseSiteDesignListFloormapsItemsImageInfoImage                `json:"image,omitempty"`                // Image
-	Thumbnail            *ResponseSiteDesignListFloormapsItemsImageInfoThumbnail            `json:"thumbnail,omitempty"`            // Thumbnail
-	GeneratedRasterImage *ResponseSiteDesignListFloormapsItemsImageInfoGeneratedRasterImage `json:"generatedRasterImage,omitempty"` // Generated Raster Image
-	EnteredImageName     *ResponseSiteDesignListFloormapsItemsImageInfoEnteredImageName     `json:"enteredImageName,omitempty"`     // Entered Image Name
-	Features             *ResponseSiteDesignListFloormapsItemsImageInfoFeatures             `json:"features,omitempty"`             // Features
-	Shapes               *ResponseSiteDesignListFloormapsItemsImageInfoShapes               `json:"shapes,omitempty"`               // Shapes
-	IsCadFile            *bool                                                              `json:"isCadFile,omitempty"`            // Is Cad File
-	Categories           *ResponseSiteDesignListFloormapsItemsImageInfoCategories           `json:"categories,omitempty"`           // Categories
-}
-type ResponseSiteDesignListFloormapsItemsImageInfoImage interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoThumbnail interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoGeneratedRasterImage interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoEnteredImageName interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoFeatures interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoShapes interface{}
-type ResponseSiteDesignListFloormapsItemsImageInfoCategories interface{}
-type ResponseSiteDesignListFloormapsItemsContact interface{}
-type ResponseSiteDesignListFloormapsItemsLocation struct {
-	Country string   `json:"country,omitempty"` // Country
-	Address string   `json:"address,omitempty"` // Address
-	Lon     *float64 `json:"lon,omitempty"`     // Lon
-	Lat     *float64 `json:"lat,omitempty"`     // Lat
-	Height  *float64 `json:"height,omitempty"`  // Height
-}
-type ResponseSiteDesignListFloormapsItemsGeometry struct {
-	Length  *float64                                          `json:"length,omitempty"`  // Length
-	Type    *ResponseSiteDesignListFloormapsItemsGeometryType `json:"type,omitempty"`    // Type
-	OffsetX *float64                                          `json:"offsetX,omitempty"` // OffsetX
-	OffsetY *float64                                          `json:"offsetY,omitempty"` // OffsetY
-	Width   *float64                                          `json:"width,omitempty"`   // Width
-	Height  *float64                                          `json:"height,omitempty"`  // Height
-}
-type ResponseSiteDesignListFloormapsItemsGeometryType interface{}
-type ResponseSiteDesignListFloormapsItemsMetrics interface{}
-type ResponseSiteDesignDeleteFloormap interface{}
-type ResponseSiteDesignUpdateFloormap interface{}
-type ResponseSiteDesignListSpecifiedFloormaps interface{}
 type RequestSiteDesignProvisionNfv struct {
 	SiteProfile  *[]RequestSiteDesignProvisionNfvSiteProfile  `json:"siteProfile,omitempty"`  //
 	Provisioning *[]RequestSiteDesignProvisionNfvProvisioning `json:"provisioning,omitempty"` //
@@ -378,7 +330,7 @@ type RequestSiteDesignCreateNfvProfile struct {
 	Device      *[]RequestSiteDesignCreateNfvProfileDevice `json:"device,omitempty"`      //
 }
 type RequestSiteDesignCreateNfvProfileDevice struct {
-	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile
+	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco 5100 Enterprise Network Compute System'.
 	DeviceTag                       string                                                           `json:"deviceTag,omitempty"`                       // Device Tag name(eg: dev1)
 	ServiceProviderProfile          *[]RequestSiteDesignCreateNfvProfileDeviceServiceProviderProfile `json:"serviceProviderProfile,omitempty"`          //
 	DirectInternetAccessForFirewall *bool                                                            `json:"directInternetAccessForFirewall,omitempty"` // Direct internet access value should be boolean (eg: false or true)
@@ -421,9 +373,9 @@ type RequestSiteDesignCreateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg: Access 4018)
 }
 type RequestSiteDesignCreateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates)
+	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)' and 'Day-N-Template(s)'.
 }
 type RequestSiteDesignUpdateNfvProfile struct {
 	Device *[]RequestSiteDesignUpdateNfvProfileDevice `json:"device,omitempty"` //
@@ -465,12 +417,10 @@ type RequestSiteDesignUpdateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg. Access 4018)
 }
 type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates)
+	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)', 'Day-N-Template(s)'.
 }
-type RequestSiteDesignCreateFloormap interface{}
-type RequestSiteDesignUpdateFloormap interface{}
 
 //GetDeviceDetailsByIP Get Device details by IP - 9cb2-cb3f-494a-824f
 /* Returns provisioning device information for the specified IP address.
@@ -544,27 +494,25 @@ func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *G
 
 
  */
-func (s *SiteDesignService) ListFloormaps() (*ResponseSiteDesignListFloormaps, *resty.Response, error) {
+func (s *SiteDesignService) ListFloormaps() (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap/all"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSiteDesignListFloormaps{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ListFloormaps")
+		return response, fmt.Errorf("error with operation ListFloormaps")
 	}
 
-	result := response.Result().(*ResponseSiteDesignListFloormaps)
-	return result, response, err
+	return response, err
 
 }
 
@@ -575,29 +523,26 @@ func (s *SiteDesignService) ListFloormaps() (*ResponseSiteDesignListFloormaps, *
 @param floorID floorId path parameter. Group Id of the specified floormap
 
 */
-func (s *SiteDesignService) ListSpecifiedFloormaps(floorID string) (*ResponseSiteDesignListSpecifiedFloormaps, *resty.Response, error) {
+func (s *SiteDesignService) ListSpecifiedFloormaps(floorID string) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
 	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		// SetResult(&ResponseSiteDesignListSpecifiedFloormaps{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ListSpecifiedFloormaps")
+		return response, fmt.Errorf("error with operation ListSpecifiedFloormaps")
 	}
 
-	result := response.Result().(ResponseSiteDesignListSpecifiedFloormaps)
-
-	return &result, response, err
+	return response, err
 
 }
 
@@ -648,6 +593,41 @@ func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestS
 	}
 
 	result := response.Result().(*ResponseSiteDesignProvisionNfv)
+	return result, response, err
+
+}
+
+//Associate Associate - 308e-195d-403a-bbd4
+/* Associate Site to a Network Profile
+
+
+@param networkProfileID networkProfileId path parameter. Network-Profile Id to be associated
+
+@param siteID siteId path parameter. Site Id to be associated
+
+*/
+func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*ResponseSiteDesignAssociate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
+	path = strings.Replace(path, "{networkProfileId}", fmt.Sprintf("%v", networkProfileID), -1)
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSiteDesignAssociate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation Associate")
+	}
+
+	result := response.Result().(*ResponseSiteDesignAssociate)
 	return result, response, err
 
 }
@@ -738,29 +718,25 @@ func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *
 
 
  */
-func (s *SiteDesignService) CreateFloormap(requestSiteDesignCreateFloormap *RequestSiteDesignCreateFloormap) (*ResponseSiteDesignCreateFloormap, *resty.Response, error) {
+func (s *SiteDesignService) CreateFloormap() (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignCreateFloormap).
-		// SetResult(&ResponseSiteDesignCreateFloormap{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CreateFloormap")
+		return response, fmt.Errorf("error with operation CreateFloormap")
 	}
 
-	result := response.Result().(ResponseSiteDesignCreateFloormap)
-
-	return &result, response, err
+	return response, err
 
 }
 
@@ -807,17 +783,49 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 @param floorID floorId path parameter. Group ID of the floor to be modified
 
 */
-func (s *SiteDesignService) UpdateFloormap(floorID string, requestSiteDesignUpdateFloormap *RequestSiteDesignUpdateFloormap) (*ResponseSiteDesignUpdateFloormap, *resty.Response, error) {
+func (s *SiteDesignService) UpdateFloormap(floorID string) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
 	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignUpdateFloormap).
-		// SetResult(&ResponseSiteDesignUpdateFloormap{}).
 		SetError(&Error).
 		Put(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation UpdateFloormap")
+	}
+
+	return response, err
+
+}
+
+//Disassociate Disassociate - e687-58d2-4b19-b5c6
+/* Disassociate a Site from a Network Profile
+
+
+@param networkProfileID networkProfileId path parameter. Network-Profile Id to be associated
+
+@param siteID siteId path parameter. Site Id to be associated
+
+*/
+func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string) (*ResponseSiteDesignDisassociate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
+	path = strings.Replace(path, "{networkProfileId}", fmt.Sprintf("%v", networkProfileID), -1)
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSiteDesignDisassociate{}).
+		SetError(&Error).
+		Delete(path)
 
 	if err != nil {
 		return nil, nil, err
@@ -825,12 +833,11 @@ func (s *SiteDesignService) UpdateFloormap(floorID string, requestSiteDesignUpda
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateFloormap")
+		return nil, response, fmt.Errorf("error with operation Disassociate")
 	}
 
-	result := response.Result().(ResponseSiteDesignUpdateFloormap)
-
-	return &result, response, err
+	result := response.Result().(*ResponseSiteDesignDisassociate)
+	return result, response, err
 
 }
 
@@ -876,28 +883,25 @@ func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryPar
 @param floorID floorId path parameter. Group ID of floor to be deleted
 
 */
-func (s *SiteDesignService) DeleteFloormap(floorID string) (*ResponseSiteDesignDeleteFloormap, *resty.Response, error) {
+func (s *SiteDesignService) DeleteFloormap(floorID string) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
 	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		// SetResult(&ResponseSiteDesignDeleteFloormap{}).
 		SetError(&Error).
 		Delete(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation DeleteFloormap")
+		return response, fmt.Errorf("error with operation DeleteFloormap")
 	}
 
-	result := response.Result().(ResponseSiteDesignDeleteFloormap)
-
-	return &result, response, err
+	return response, err
 
 }

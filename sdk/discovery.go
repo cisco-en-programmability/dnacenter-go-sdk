@@ -744,42 +744,32 @@ type RequestItemDiscoveryCreateNetconfCredentials struct {
 	NetconfPort      string `json:"netconfPort,omitempty"`      //
 }
 type RequestDiscoveryUpdateSNMPReadCommunity struct {
-	Comments         string `json:"comments,omitempty"`         //
-	CredentialType   string `json:"credentialType,omitempty"`   //
-	Description      string `json:"description,omitempty"`      //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-	ReadCommunity    string `json:"readCommunity,omitempty"`    //
+	Comments       string `json:"comments,omitempty"`       // Comments to identify the credential
+	CredentialType string `json:"credentialType,omitempty"` // Credential type to identify the application that uses the credential
+	Description    string `json:"description,omitempty"`    // Name/Description of the credential
+	InstanceUUID   string `json:"instanceUuid,omitempty"`   //
+	ReadCommunity  string `json:"readCommunity,omitempty"`  // SNMP read community. NO!$DATA!$ for no value change
 }
 type RequestDiscoveryCreateSNMPReadCommunity []RequestItemDiscoveryCreateSNMPReadCommunity // Array of RequestDiscoveryCreateSNMPReadCommunity
 type RequestItemDiscoveryCreateSNMPReadCommunity struct {
-	Comments         string `json:"comments,omitempty"`         //
-	CredentialType   string `json:"credentialType,omitempty"`   //
-	Description      string `json:"description,omitempty"`      //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-	ReadCommunity    string `json:"readCommunity,omitempty"`    //
+	Comments       string `json:"comments,omitempty"`       // Comments to identify the credential
+	CredentialType string `json:"credentialType,omitempty"` // Credential type to identify the application that uses the credential
+	Description    string `json:"description,omitempty"`    // Name/Description of the credential
+	ReadCommunity  string `json:"readCommunity,omitempty"`  // SNMP read community
 }
 type RequestDiscoveryCreateSNMPWriteCommunity []RequestItemDiscoveryCreateSNMPWriteCommunity // Array of RequestDiscoveryCreateSNMPWriteCommunity
 type RequestItemDiscoveryCreateSNMPWriteCommunity struct {
-	Comments         string `json:"comments,omitempty"`         //
-	CredentialType   string `json:"credentialType,omitempty"`   //
-	Description      string `json:"description,omitempty"`      //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
+	Comments       string `json:"comments,omitempty"`       // Comments to identify the credential
+	CredentialType string `json:"credentialType,omitempty"` // Credential type to identify the application that uses the credential
+	Description    string `json:"description,omitempty"`    // Name/Description of the credential
+	WriteCommunity string `json:"writeCommunity,omitempty"` // SNMP write community
 }
 type RequestDiscoveryUpdateSNMPWriteCommunity struct {
-	Comments         string `json:"comments,omitempty"`         //
-	CredentialType   string `json:"credentialType,omitempty"`   //
-	Description      string `json:"description,omitempty"`      //
-	ID               string `json:"id,omitempty"`               //
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
-	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
-	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
+	Comments       string `json:"comments,omitempty"`       // Comments to identify the credential
+	CredentialType string `json:"credentialType,omitempty"` // Credential type to identify the application that uses the credential
+	Description    string `json:"description,omitempty"`    // Name/Description of the credential
+	InstanceUUID   string `json:"instanceUuid,omitempty"`   //
+	WriteCommunity string `json:"writeCommunity,omitempty"` // SNMP write community. NO!$DATA!$ for no value change
 }
 type RequestDiscoveryUpdateSNMPv3Credentials struct {
 	AuthPassword     string `json:"authPassword,omitempty"`     //

@@ -36,7 +36,7 @@ type ResponseTopologyGetOverallNetworkHealthResponse struct {
 	GoodCount    *int                                                   `json:"goodCount,omitempty"`    // Good Count
 	UnmonCount   *float64                                               `json:"unmonCount,omitempty"`   // Unmon Count
 	FairCount    *int                                                   `json:"fairCount,omitempty"`    // Fair Count
-	BadCount     *int                                                   `json:"badCount,omitempty"`     // Bad Count
+	BadCount     *float64                                               `json:"badCount,omitempty"`     // Bad Count
 	Entity       *ResponseTopologyGetOverallNetworkHealthResponseEntity `json:"entity,omitempty"`       // Entity
 	TimeinMillis *int                                                   `json:"timeinMillis,omitempty"` // Timein Millis
 }
@@ -46,20 +46,17 @@ type ResponseTopologyGetOverallNetworkHealthHealthDistirubution struct {
 	Category        string                                                                  `json:"category,omitempty"`        // Category
 	TotalCount      *int                                                                    `json:"totalCount,omitempty"`      // Total Count
 	HealthScore     *int                                                                    `json:"healthScore,omitempty"`     // Health Score
-	GoodPercentage  *float64                                                                `json:"goodPercentage,omitempty"`  // Good Percentage
+	GoodPercentage  *int                                                                    `json:"goodPercentage,omitempty"`  // Good Percentage
 	BadPercentage   *float64                                                                `json:"badPercentage,omitempty"`   // Bad Percentage
 	FairPercentage  *float64                                                                `json:"fairPercentage,omitempty"`  // Fair Percentage
 	UnmonPercentage *float64                                                                `json:"unmonPercentage,omitempty"` // Unmon Percentage
 	GoodCount       *int                                                                    `json:"goodCount,omitempty"`       // Good Count
 	BadCount        *float64                                                                `json:"badCount,omitempty"`        // Bad Count
-	FairCount       *int                                                                    `json:"fairCount,omitempty"`       // Fair Count
-	UnmonCount      *int                                                                    `json:"unmonCount,omitempty"`      // Unmon Count
+	FairCount       *float64                                                                `json:"fairCount,omitempty"`       // Fair Count
+	UnmonCount      *float64                                                                `json:"unmonCount,omitempty"`      // Unmon Count
 	KpiMetrics      *[]ResponseTopologyGetOverallNetworkHealthHealthDistirubutionKpiMetrics `json:"kpiMetrics,omitempty"`      // Kpi Metrics
 }
-type ResponseTopologyGetOverallNetworkHealthHealthDistirubutionKpiMetrics struct {
-	Key   string `json:"key,omitempty"`   // Key
-	Value string `json:"value,omitempty"` // Value
-}
+type ResponseTopologyGetOverallNetworkHealthHealthDistirubutionKpiMetrics interface{}
 type ResponseTopologyGetTopologyDetails struct {
 	Response *ResponseTopologyGetTopologyDetailsResponse `json:"response,omitempty"` //
 	Version  string                                      `json:"version,omitempty"`  //

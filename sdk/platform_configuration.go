@@ -20,7 +20,6 @@ type ResponsePlatformConfigurationCiscoDnaCenterReleaseSummaryResponse struct {
 	SystemVersion          string                                                                                     `json:"systemVersion,omitempty"`          // The MAGLEV-SYSTEM version
 	SupportedDirectUpdates *[]ResponsePlatformConfigurationCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates `json:"supportedDirectUpdates,omitempty"` // The list of earlier releases that can upgrade directly to the current release. If the supportedDirectUpdates value is empty, then no direct upgrades to the current release are allowed.
 	TenantID               string                                                                                     `json:"tenantId,omitempty"`               // Tenant ID (for multi tenant Cisco DNA Center)
-	Modified               *float64                                                                                   `json:"modified,omitempty"`               //
 }
 type ResponsePlatformConfigurationCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates interface{}
 type ResponsePlatformConfigurationCiscoDnaCenterNodesConfigurationSummary struct {

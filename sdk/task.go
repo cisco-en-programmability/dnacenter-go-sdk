@@ -39,6 +39,18 @@ type GetTaskCountQueryParams struct {
 	ParentID      string `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
 }
 
+type ResponseTaskGetBusinessAPIExecutionDetails struct {
+	BapiKey           string `json:"bapiKey,omitempty"`           // Business API Key (UUID)
+	BapiName          string `json:"bapiName,omitempty"`          // Name of the Business API
+	BapiExecutionID   string `json:"bapiExecutionId,omitempty"`   // Execution Id of the Business API (UUID)
+	StartTime         string `json:"startTime,omitempty"`         // Execution Start Time of the Business API (Date Time Format)
+	StartTimeEpoch    *int   `json:"startTimeEpoch,omitempty"`    // Execution Start Time of the Business API (Epoch Milliseconds)
+	EndTime           string `json:"endTime,omitempty"`           // Execution End Time of the Business API (Date Time Format)
+	EndTimeEpoch      *int   `json:"endTimeEpoch,omitempty"`      // Execution End Time of the Business API (Epoch Milliseconds)
+	TimeDuration      *int   `json:"timeDuration,omitempty"`      // Time taken for Business API Execution (Milliseconds)
+	Status            string `json:"status,omitempty"`            // Execution status of the Business API
+	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
+}
 type ResponseTaskGetTasks struct {
 	Response *[]ResponseTaskGetTasksResponse `json:"response,omitempty"` //
 	Version  string                          `json:"version,omitempty"`  //
@@ -46,7 +58,7 @@ type ResponseTaskGetTasks struct {
 type ResponseTaskGetTasksResponse struct {
 	AdditionalStatusURL string                                       `json:"additionalStatusURL,omitempty"` //
 	Data                string                                       `json:"data,omitempty"`                //
-	EndTime             string                                       `json:"endTime,omitempty"`             //
+	EndTime             *int                                         `json:"endTime,omitempty"`             //
 	ErrorCode           string                                       `json:"errorCode,omitempty"`           //
 	ErrorKey            string                                       `json:"errorKey,omitempty"`            //
 	FailureReason       string                                       `json:"failureReason,omitempty"`       //
@@ -59,7 +71,7 @@ type ResponseTaskGetTasksResponse struct {
 	Progress            string                                       `json:"progress,omitempty"`            //
 	RootID              string                                       `json:"rootId,omitempty"`              //
 	ServiceType         string                                       `json:"serviceType,omitempty"`         //
-	StartTime           string                                       `json:"startTime,omitempty"`           //
+	StartTime           *int                                         `json:"startTime,omitempty"`           //
 	Username            string                                       `json:"username,omitempty"`            //
 	Version             *int                                         `json:"version,omitempty"`             //
 }
@@ -143,6 +155,38 @@ type ResponseTaskGetTaskTreeResponse struct {
 	Version             *int                                            `json:"version,omitempty"`             //
 }
 type ResponseTaskGetTaskTreeResponseOperationIDList interface{}
+
+//GetBusinessAPIExecutionDetails Get Business API Execution Details - c1bc-a8c1-41fb-9f75
+/* Retrieves the execution details of a Business API
+
+
+@param executionID executionId path parameter. Execution Id of API
+
+*/
+func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*ResponseTaskGetBusinessAPIExecutionDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/dnacaap/management/execution-status/{executionId}"
+	path = strings.Replace(path, "{executionId}", fmt.Sprintf("%v", executionID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseTaskGetBusinessAPIExecutionDetails{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetBusinessApiExecutionDetails")
+	}
+
+	result := response.Result().(*ResponseTaskGetBusinessAPIExecutionDetails)
+	return result, response, err
+
+}
 
 //GetTasks Get tasks - e78b-b8a2-449b-9eed
 /* Returns task(s) based on filter criteria

@@ -20,11 +20,14 @@ func main() {
 		return
 	}
 
-	nResponse, _, err := client.ApplicationPolicy.GetApplicationsCount()
+	queryParams := &dnac.ApplicationsQueryParams{
+		SiteID: "1",
+	}
+
+	nResponse, _, err := client.Applications.Applications(queryParams)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println(nResponse.Response)
-
 }

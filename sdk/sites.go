@@ -25,11 +25,14 @@ type GetSiteQueryParams struct {
 	Name   string `url:"name,omitempty"`   //siteNameHierarchy (ex: global/groupName)
 	SiteID string `url:"siteId,omitempty"` //Site id to which site details to retrieve.
 	Type   string `url:"type,omitempty"`   //type (ex: area, building, floor)
-	Offset string `url:"offset,omitempty"` //offset/starting row. The default value is 1
-	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
+	Offset string `url:"offset,omitempty"` //offset/starting row
+	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved
 }
 type GetSiteHealthQueryParams struct {
-	Timestamp string `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
+	Timestamp string  `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
+	SiteType  string  `url:"siteType,omitempty"`  //Type of the site to return.  AREA or BUILDING.  Default to AREA
+	Offset    float64 `url:"offset,omitempty"`    //The offset value, starting from 1, of the first returned site entry.  Default is 1.
+	Limit     float64 `url:"limit,omitempty"`     //The max number of sites in the returned data set.  Default is 25, and max at 50
 }
 type GetSiteCountQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to retrieve site count.
@@ -208,7 +211,7 @@ type ResponseSitesDeleteSite struct {
 	Message string `json:"message,omitempty"` // Message
 }
 type ResponseSitesAssignDeviceToSite struct {
-	ExecutionID        string `json:"executionId,omitempty"`        // sExecution Id
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
@@ -235,7 +238,7 @@ type RequestSitesCreateSiteSiteBuilding struct {
 type RequestSitesCreateSiteSiteFloor struct {
 	Name       string   `json:"name,omitempty"`       // Name of the floor (eg:floor-1)
 	ParentName string   `json:"parentName,omitempty"` // Parent name of the floor to be created
-	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor (eg: Cubes And Walled Offices0
+	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'.
 	Width      *float64 `json:"width,omitempty"`      // Width of the floor (eg:100)
 	Length     *float64 `json:"length,omitempty"`     // Length of the floor (eg: 100)
 	Height     *float64 `json:"height,omitempty"`     // Height of the floor (eg: 15)
@@ -262,7 +265,7 @@ type RequestSitesUpdateSiteSiteBuilding struct {
 }
 type RequestSitesUpdateSiteSiteFloor struct {
 	Name    string   `json:"name,omitempty"`    // Name
-	RfModel string   `json:"rfModel,omitempty"` // Rf Model
+	RfModel string   `json:"rfModel,omitempty"` // Rf Model. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'
 	Width   *float64 `json:"width,omitempty"`   // Width
 	Length  *float64 `json:"length,omitempty"`  // Length
 	Height  *float64 `json:"height,omitempty"`  // Height

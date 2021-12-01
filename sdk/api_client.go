@@ -46,8 +46,10 @@ type Client struct {
 	DeviceOnboardingPnp         *DeviceOnboardingPnpService
 	DeviceReplacement           *DeviceReplacementService
 	Devices                     *DevicesService
+	DisasterRecovery            *DisasterRecoveryService
 	Discovery                   *DiscoveryService
 	EventManagement             *EventManagementService
+	FabricWireless              *FabricWirelessService
 	File                        *FileService
 	HealthAndPerformance        *HealthAndPerformanceService
 	Itsm                        *ItsmService
@@ -56,6 +58,7 @@ type Client struct {
 	NetworkSettings             *NetworkSettingsService
 	PathTrace                   *PathTraceService
 	PlatformConfiguration       *PlatformConfigurationService
+	Policy                      *PolicyService
 	Reports                     *ReportsService
 	Sda                         *SdaService
 	SecurityAdvisories          *SecurityAdvisoriesService
@@ -134,8 +137,10 @@ func NewClient() (*Client, error) {
 	c.DeviceOnboardingPnp = (*DeviceOnboardingPnpService)(&c.common)
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 	c.Devices = (*DevicesService)(&c.common)
+	c.DisasterRecovery = (*DisasterRecoveryService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
+	c.FabricWireless = (*FabricWirelessService)(&c.common)
 	c.File = (*FileService)(&c.common)
 	c.HealthAndPerformance = (*HealthAndPerformanceService)(&c.common)
 	c.Itsm = (*ItsmService)(&c.common)
@@ -144,6 +149,7 @@ func NewClient() (*Client, error) {
 	c.NetworkSettings = (*NetworkSettingsService)(&c.common)
 	c.PathTrace = (*PathTraceService)(&c.common)
 	c.PlatformConfiguration = (*PlatformConfigurationService)(&c.common)
+	c.Policy = (*PolicyService)(&c.common)
 	c.Reports = (*ReportsService)(&c.common)
 	c.Sda = (*SdaService)(&c.common)
 	c.SecurityAdvisories = (*SecurityAdvisoriesService)(&c.common)
