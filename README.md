@@ -12,7 +12,7 @@ import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/sdk"
 
 The dnacenter-go-sdk makes it easier to work with the Cisco DNA Center Platform RESTFul APIs from Go.
 
-It supports version 2.1.2, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.1.2.
+It supports version 2.2.2.3, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.2.2.3.
 
 ## Getting started
 
@@ -74,8 +74,10 @@ devices, _, err = Client.Devices.GetDeviceList(getDeviceListQueryParams)
 if err != nil {
     fmt.Println(err)
 }
-for id, device := range devices.Response {
-    fmt.Println("GET:", id, device.ID, device.ManagementIPAddress, device.PlatformID)
+if devices.Response != nil {
+    for id, device := range *devices.Response {
+        fmt.Println("GET:", id, device.ID, device.MacAddress, device.ManagementIPAddress, device.PlatformID)
+    }
 }
 ```
 

@@ -21,8 +21,8 @@ func main() {
 	}
 
 	fmt.Println("Creating new SNMPv3 credentials...")
-	snmpv3Credentials := &[]dnac.CreateSNMPv3CredentialsRequest{
-		dnac.CreateSNMPv3CredentialsRequest{
+	snmpv3Credentials := &dnac.RequestDiscoveryCreateSNMPv3Credentials{
+		dnac.RequestItemDiscoveryCreateSNMPv3Credentials{
 			AuthType:        "SHA",
 			AuthPassword:    "DNAC-2020",
 			SNMPMode:        "AUTHPRIV",
@@ -46,23 +46,27 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, credential := range credentialsListResponse.Response {
-		fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
-		_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
-		if err != nil {
-			continue
+	if credentialsListResponse.Response != nil {
+		for id, credential := range *credentialsListResponse.Response {
+			fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
+			_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+			if err != nil {
+				continue
+			}
 		}
 	}
 
 	fmt.Println("Creating new HTTP Write credentials...")
-	httpWriteCredentials := &[]dnac.CreateHTTPWriteCredentialsRequest{
-		dnac.CreateHTTPWriteCredentialsRequest{
+	port := 443
+	secure := true
+	httpWriteCredentials := &dnac.RequestDiscoveryCreateHTTPWriteCredentials{
+		dnac.RequestItemDiscoveryCreateHTTPWriteCredentials{
 			Comments:    "DNA Center HTTP Credentials",
 			Description: "HTTP Creds",
 			Password:    "HTTP-cr3d$",
-			Port:        443,
+			Port:        &port,
 			Username:    "dnac-http-user",
-			Secure:      true,
+			Secure:      &secure,
 		},
 	}
 
@@ -80,11 +84,13 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, credential := range credentialsListResponse.Response {
-		fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
-		_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
-		if err != nil {
-			continue
+	if credentialsListResponse.Response != nil {
+		for id, credential := range *credentialsListResponse.Response {
+			fmt.Println("GET: ", id, credential.ID, credential.Description, credential.CredentialType)
+			_, _, err := client.Discovery.DeleteGlobalCredentialsByID(credential.ID)
+			if err != nil {
+				continue
+			}
 		}
 	}
 

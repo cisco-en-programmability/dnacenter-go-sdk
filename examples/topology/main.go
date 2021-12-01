@@ -25,8 +25,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, site := range topology.Response.Sites {
-		fmt.Println("GET:", id, site.ID, site.GroupNameHierarchy)
+	if topology.Response != nil && topology.Response.Sites != nil {
+		for id, site := range *topology.Response.Sites {
+			fmt.Println("GET:", id, site.ID, site.GroupNameHierarchy)
+		}
 	}
 
 	fmt.Println("Printing physical topology...")
@@ -38,8 +40,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, nodes := range physicalTopology.Response.Nodes {
-		fmt.Println("GET:", id, nodes.ID, nodes.IP, nodes.Label, nodes.AdditionalInfo)
+	if physicalTopology.Response != nil && physicalTopology.Response.Nodes != nil {
+		for id, nodes := range *physicalTopology.Response.Nodes {
+			fmt.Println("GET:", id, nodes.ID, nodes.IP, nodes.Label, nodes.AdditionalInfo)
+		}
 	}
 
 	fmt.Println("Printing VLAN Information...")
@@ -56,8 +60,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	for id, link := range vlanDetails.Response.Links {
-		fmt.Println("GET:", id, link.ID, link.Source, link.Target, link.LinkStatus)
+	if vlanDetails.Response != nil && vlanDetails.Response.Links != nil {
+		for id, link := range *vlanDetails.Response.Links {
+			fmt.Println("GET:", id, link.ID, link.Source, link.Target, link.LinkStatus)
+		}
 	}
 
 	fmt.Println("Printing Network Health...")

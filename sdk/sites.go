@@ -8,558 +8,590 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// SitesService is the service to communicate with the Sites API endpoint
 type SitesService service
 
-// AssignDeviceToSiteRequest is the assignDeviceToSiteRequest definition
-type AssignDeviceToSiteRequest struct {
-	Device []AssignDeviceToSiteRequestDevice `json:"device,omitempty"` //
-}
-
-// AssignDeviceToSiteRequestDevice is the assignDeviceToSiteRequestDevice definition
-type AssignDeviceToSiteRequestDevice struct {
-	IP string `json:"ip,omitempty"` //
-}
-
-// CreateSiteRequest is the createSiteRequest definition
-type CreateSiteRequest struct {
-	Site CreateSiteRequestSite `json:"site,omitempty"` //
-	Type string                `json:"type,omitempty"` //
-}
-
-// CreateSiteRequestSite is the createSiteRequestSite definition
-type CreateSiteRequestSite struct {
-	Area     CreateSiteRequestSiteArea     `json:"area,omitempty"`     //
-	Building CreateSiteRequestSiteBuilding `json:"building,omitempty"` //
-	Floor    CreateSiteRequestSiteFloor    `json:"floor,omitempty"`    //
-}
-
-// CreateSiteRequestSiteArea is the createSiteRequestSiteArea definition
-type CreateSiteRequestSiteArea struct {
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-}
-
-// CreateSiteRequestSiteBuilding is the createSiteRequestSiteBuilding definition
-type CreateSiteRequestSiteBuilding struct {
-	Address    string  `json:"address,omitempty"`    //
-	Latitude   float64 `json:"latitude,omitempty"`   //
-	Longitude  float64 `json:"longitude,omitempty"`  //
-	Name       string  `json:"name,omitempty"`       //
-	ParentName string  `json:"parentName,omitempty"` //
-}
-
-// CreateSiteRequestSiteFloor is the createSiteRequestSiteFloor definition
-type CreateSiteRequestSiteFloor struct {
-	Height     float64 `json:"height,omitempty"`     //
-	Length     float64 `json:"length,omitempty"`     //
-	Name       string  `json:"name,omitempty"`       //
-	ParentName string  `json:"parentName,omitempty"` //
-	RfModel    string  `json:"rfModel,omitempty"`    //
-	Width      float64 `json:"width,omitempty"`      //
-}
-
-// UpdateSiteRequest is the updateSiteRequest definition
-type UpdateSiteRequest struct {
-	Site UpdateSiteRequestSite `json:"site,omitempty"` //
-	Type string                `json:"type,omitempty"` //
-}
-
-// UpdateSiteRequestSite is the updateSiteRequestSite definition
-type UpdateSiteRequestSite struct {
-	Area     UpdateSiteRequestSiteArea     `json:"area,omitempty"`     //
-	Building UpdateSiteRequestSiteBuilding `json:"building,omitempty"` //
-	Floor    UpdateSiteRequestSiteFloor    `json:"floor,omitempty"`    //
-}
-
-// UpdateSiteRequestSiteArea is the updateSiteRequestSiteArea definition
-type UpdateSiteRequestSiteArea struct {
-	Name       string `json:"name,omitempty"`       //
-	ParentName string `json:"parentName,omitempty"` //
-}
-
-// UpdateSiteRequestSiteBuilding is the updateSiteRequestSiteBuilding definition
-type UpdateSiteRequestSiteBuilding struct {
-	Address    string  `json:"address,omitempty"`    //
-	Latitude   float64 `json:"latitude,omitempty"`   //
-	Longitude  float64 `json:"longitude,omitempty"`  //
-	Name       string  `json:"name,omitempty"`       //
-	ParentName string  `json:"parentName,omitempty"` //
-}
-
-// UpdateSiteRequestSiteFloor is the updateSiteRequestSiteFloor definition
-type UpdateSiteRequestSiteFloor struct {
-	Height  float64 `json:"height,omitempty"`  //
-	Length  float64 `json:"length,omitempty"`  //
-	Name    string  `json:"name,omitempty"`    //
-	RfModel string  `json:"rfModel,omitempty"` //
-	Width   float64 `json:"width,omitempty"`   //
-}
-
-// AssignDeviceToSiteResponse is the assignDeviceToSiteResponse definition
-type AssignDeviceToSiteResponse struct {
-	ExecutionID        string `json:"executionId,omitempty"`        //
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
-	Message            string `json:"message,omitempty"`            //
-}
-
-// CreateSiteResponse is the createSiteResponse definition
-type CreateSiteResponse struct {
-	ExecutionID        string `json:"executionId,omitempty"`        //
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` //
-	Message            string `json:"message,omitempty"`            //
-}
-
-// DeleteSiteResponse is the deleteSiteResponse definition
-type DeleteSiteResponse struct {
-	Message string `json:"message,omitempty"` //
-	Status  string `json:"status,omitempty"`  //
-}
-
-// GetMembershipResponse is the getMembershipResponse definition
-type GetMembershipResponse struct {
-	Device []GetMembershipResponseDevice `json:"device,omitempty"` //
-	Site   GetMembershipResponseSite     `json:"site,omitempty"`   //
-}
-
-// GetMembershipResponseDevice is the getMembershipResponseDevice definition
-type GetMembershipResponseDevice struct {
-	Response []interface{} `json:"response,omitempty"` //
-	SiteID   string        `json:"siteId,omitempty"`   //
-	Version  string        `json:"version,omitempty"`  //
-	Message  string        `json:"message,omitempty"`  //
-}
-
-// GetMembershipResponseDeviceResponse is the getMembershipResponseDeviceResponse definition
-type GetMembershipResponseDeviceResponse []string
-
-// GetMembershipResponseSite is the getMembershipResponseSite definition
-type GetMembershipResponseSite struct {
-	Response []GetMembershipResponseSiteResponse `json:"response,omitempty"` //
-	Version  string                              `json:"version,omitempty"`  //
-}
-
-// GetMembershipResponseSiteResponse is the getMembershipResponseSiteResponse definition
-type GetMembershipResponseSiteResponse struct {
-	ParentID           string        `json:"parentId,omitempty"`           //
-	AdditionalInfo     []interface{} `json:"additionalInfo,omitempty"`     //
-	GroupTypeList      []string      `json:"groupTypeList,omitempty"`      //
-	GroupHierarchy     string        `json:"groupHierarchy,omitempty"`     //
-	GroupNameHierarchy string        `json:"groupNameHierarchy,omitempty"` //
-	Name               string        `json:"name,omitempty"`               //
-	InstanceTenantID   string        `json:"instanceTenantId,omitempty"`   //
-	ID                 string        `json:"id,omitempty"`                 //
-}
-
-// GetSiteCountResponse is the getSiteCountResponse definition
-type GetSiteCountResponse struct {
-	Response int    `json:"response,omitempty"` //
-	Version  string `json:"version,omitempty"`  //
-}
-
-// GetSiteHealthResponse is the getSiteHealthResponse definition
-type GetSiteHealthResponse struct {
-	Response []GetSiteHealthResponseResponse `json:"response,omitempty"` //
-}
-
-// GetSiteHealthResponseResponse is the getSiteHealthResponseResponse definition
-type GetSiteHealthResponseResponse struct {
-	AccessGoodCount                    int                                                 `json:"accessGoodCount,omitempty"`                    //
-	AccessTotalCount                   int                                                 `json:"accessTotalCount,omitempty"`                   //
-	ApplicationBytesTotalCount         int                                                 `json:"applicationBytesTotalCount,omitempty"`         //
-	ApplicationGoodCount               int                                                 `json:"applicationGoodCount,omitempty"`               //
-	ApplicationHealth                  int                                                 `json:"applicationHealth,omitempty"`                  //
-	ApplicationHealthStats             GetSiteHealthResponseResponseApplicationHealthStats `json:"applicationHealthStats,omitempty"`             //
-	ApplicationTotalCount              int                                                 `json:"applicationTotalCount,omitempty"`              //
-	ClientHealthWired                  int                                                 `json:"clientHealthWired,omitempty"`                  //
-	ClientHealthWireless               int                                                 `json:"clientHealthWireless,omitempty"`               //
-	CoreGoodCount                      int                                                 `json:"coreGoodCount,omitempty"`                      //
-	CoreTotalCount                     int                                                 `json:"coreTotalCount,omitempty"`                     //
-	DistributionGoodCount              int                                                 `json:"distributionGoodCount,omitempty"`              //
-	DistributionTotalCount             int                                                 `json:"distributionTotalCount,omitempty"`             //
-	DnacInfo                           string                                              `json:"dnacInfo,omitempty"`                           //
-	HealthyClientsPercentage           int                                                 `json:"healthyClientsPercentage,omitempty"`           //
-	HealthyNetworkDevicePercentage     int                                                 `json:"healthyNetworkDevicePercentage,omitempty"`     //
-	Latitude                           float64                                             `json:"latitude,omitempty"`                           //
-	Longitude                          float64                                             `json:"longitude,omitempty"`                          //
-	NetworkHealthAccess                int                                                 `json:"networkHealthAccess,omitempty"`                //
-	NetworkHealthAverage               int                                                 `json:"networkHealthAverage,omitempty"`               //
-	NetworkHealthCore                  int                                                 `json:"networkHealthCore,omitempty"`                  //
-	NetworkHealthDistribution          int                                                 `json:"networkHealthDistribution,omitempty"`          //
-	NetworkHealthOthers                int                                                 `json:"networkHealthOthers,omitempty"`                //
-	NetworkHealthRouter                int                                                 `json:"networkHealthRouter,omitempty"`                //
-	NetworkHealthWireless              int                                                 `json:"networkHealthWireless,omitempty"`              //
-	NumberOfClients                    int                                                 `json:"numberOfClients,omitempty"`                    //
-	NumberOfNetworkDevice              int                                                 `json:"numberOfNetworkDevice,omitempty"`              //
-	NumberOfWiredClients               int                                                 `json:"numberOfWiredClients,omitempty"`               //
-	NumberOfWirelessClients            int                                                 `json:"numberOfWirelessClients,omitempty"`            //
-	OverallGoodDevices                 int                                                 `json:"overallGoodDevices,omitempty"`                 //
-	ParentSiteID                       string                                              `json:"parentSiteId,omitempty"`                       //
-	ParentSiteName                     string                                              `json:"parentSiteName,omitempty"`                     //
-	RouterGoodCount                    int                                                 `json:"routerGoodCount,omitempty"`                    //
-	RouterTotalCount                   int                                                 `json:"routerTotalCount,omitempty"`                   //
-	SiteID                             string                                              `json:"siteId,omitempty"`                             //
-	SiteName                           string                                              `json:"siteName,omitempty"`                           //
-	SiteType                           string                                              `json:"siteType,omitempty"`                           //
-	TotalNumberOfActiveWirelessClients int                                                 `json:"totalNumberOfActiveWirelessClients,omitempty"` //
-	TotalNumberOfConnectedWiredClients int                                                 `json:"totalNumberOfConnectedWiredClients,omitempty"` //
-	WiredGoodClients                   int                                                 `json:"wiredGoodClients,omitempty"`                   //
-	WirelessDeviceGoodCount            int                                                 `json:"wirelessDeviceGoodCount,omitempty"`            //
-	WirelessDeviceTotalCount           int                                                 `json:"wirelessDeviceTotalCount,omitempty"`           //
-	WirelessGoodClients                int                                                 `json:"wirelessGoodClients,omitempty"`                //
-}
-
-// GetSiteHealthResponseResponseApplicationHealthStats is the getSiteHealthResponseResponseApplicationHealthStats definition
-type GetSiteHealthResponseResponseApplicationHealthStats struct {
-	AppTotalCount              float64                                                                       `json:"appTotalCount,omitempty"`              //
-	BusinessIrrelevantAppCount GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount `json:"businessIrrelevantAppCount,omitempty"` //
-	BusinessRelevantAppCount   GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount   `json:"businessRelevantAppCount,omitempty"`   //
-	DefaultHealthAppCount      GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount      `json:"defaultHealthAppCount,omitempty"`      //
-}
-
-// GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount definition
-type GetSiteHealthResponseResponseApplicationHealthStatsBusinessIrrelevantAppCount struct {
-	Fair float64 `json:"fair,omitempty"` //
-	Good float64 `json:"good,omitempty"` //
-	Poor float64 `json:"poor,omitempty"` //
-}
-
-// GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount is the getSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount definition
-type GetSiteHealthResponseResponseApplicationHealthStatsBusinessRelevantAppCount struct {
-	Fair float64 `json:"fair,omitempty"` //
-	Good float64 `json:"good,omitempty"` //
-	Poor float64 `json:"poor,omitempty"` //
-}
-
-// GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount is the getSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount definition
-type GetSiteHealthResponseResponseApplicationHealthStatsDefaultHealthAppCount struct {
-	Fair float64 `json:"fair,omitempty"` //
-	Good float64 `json:"good,omitempty"` //
-	Poor float64 `json:"poor,omitempty"` //
-}
-
-// GetSiteResponse is the getSiteResponse definition
-type GetSiteResponse struct {
-	Response []GetSiteResponseResponse `json:"response,omitempty"` //
-}
-
-// GetSiteResponseResponse is the getSiteResponseResponse definition
-type GetSiteResponseResponse struct {
-	AdditionalInfo    []GetSiteResponseResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
-	ID                string                                  `json:"id,omitempty"`                //
-	InstanceTenantID  string                                  `json:"instanceTenantId,omitempty"`  //
-	Name              string                                  `json:"name,omitempty"`              //
-	ParentID          string                                  `json:"parentId,omitempty"`          //
-	SiteHierarchy     string                                  `json:"siteHierarchy,omitempty"`     //
-	SiteNameHierarchy string                                  `json:"siteNameHierarchy,omitempty"` //
-}
-
-// GetSiteResponseResponseAdditionalInfo is the getSiteResponseResponseAdditionalInfo definition
-type GetSiteResponseResponseAdditionalInfo struct {
-	Namespace  string                                          `json:"nameSpace,omitempty"`  //
-	Attributes GetSiteResponseResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
-}
-
-// GetSiteResponseResponseAdditionalInfoAttributes is the getSiteResponseResponseAdditionalInfoAttributes definition
-type GetSiteResponseResponseAdditionalInfoAttributes struct {
-	Country              string `json:"country,omitempty"`
-	Address              string `json:"address,omitempty"`
-	Latitude             string `json:"latitude,omitempty"`
-	AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"`
-	Type                 string `json:"type,omitempty"`
-	Longitude            string `json:"longitude,omitempty"`
-	OffsetX              string `json:"offsetX,omitempty"`
-	OffsetY              string `json:"offsetY,omitempty"`
-	Length               string `json:"length,omitempty"`
-	Width                string `json:"width,omitempty"`
-	Height               string `json:"height,omitempty"`
-	RfModel              string `json:"rfModel,omitempty"`
-	FloorIndex           string `json:"floorIndex,omitempty"`
-}
-
-// UpdateSiteResponse is the updateSiteResponse definition
-type UpdateSiteResponse struct {
-	Response UpdateSiteResponseResponse `json:"response,omitempty"` //
-	Result   string                     `json:"result,omitempty"`   //
-	Status   string                     `json:"status,omitempty"`   //
-}
-
-// UpdateSiteResponseResponse is the updateSiteResponseResponse definition
-type UpdateSiteResponseResponse struct {
-	Data             string   `json:"data,omitempty"`             //
-	EndTime          int      `json:"endTime,omitempty"`          //
-	ID               string   `json:"id,omitempty"`               //
-	InstanceTenantID string   `json:"instanceTenantId,omitempty"` //
-	IsError          string   `json:"isError,omitempty"`          //
-	OperationIDList  []string `json:"operationIdList,omitempty"`  //
-	Progress         string   `json:"progress,omitempty"`         //
-	RootID           string   `json:"rootId,omitempty"`           //
-	ServiceType      string   `json:"serviceType,omitempty"`      //
-	StartTime        int      `json:"startTime,omitempty"`        //
-	Version          string   `json:"version,omitempty"`          //
-}
-
-// UpdateSiteResponseResponseOperationIDList is the updateSiteResponseResponseOperationIDList definition
-type UpdateSiteResponseResponseOperationIDList []string
-
-// AssignDeviceToSite assignDeviceToSite
-/* Assigns list of devices to a site
-@param __runsync Enable this parameter to execute the API and return a response synchronously
-@param __persistbapioutput Persist bapi sync response
-@param __runsynctimeout During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
-@param siteID Site id to which site the device to assign
-*/
-func (s *SitesService) AssignDeviceToSite(siteID string, assignDeviceToSiteRequest *AssignDeviceToSiteRequest) (*AssignDeviceToSiteResponse, *resty.Response, error) {
-
-	path := "/dna/system/api/v1/site/{siteId}/device"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
-
-	response, err := s.client.R().
-		SetBody(assignDeviceToSiteRequest).
-		SetResult(&AssignDeviceToSiteResponse{}).
-		SetError(&Error{}).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation assignDeviceToSite")
-	}
-
-	result := response.Result().(*AssignDeviceToSiteResponse)
-	return result, response, err
-}
-
-// CreateSite createSite
-/* Creates site with area/building/floor with specified hierarchy.
-@param __runsync Enable this parameter to execute the API and return a response synchronously
-@param __timeout During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
-@param __persistbapioutput Persist bapi sync response
-*/
-func (s *SitesService) CreateSite(createSiteRequest *CreateSiteRequest) (*CreateSiteResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/site"
-
-	response, err := s.client.R().
-		SetBody(createSiteRequest).
-		SetResult(&CreateSiteResponse{}).
-		SetError(&Error{}).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation createSite")
-	}
-
-	result := response.Result().(*CreateSiteResponse)
-	return result, response, err
-}
-
-// DeleteSite deleteSite
-/* Delete site with area/building/floor by siteId.
-@param siteID Site id to which site details to be deleted.
-*/
-func (s *SitesService) DeleteSite(siteID string) (*DeleteSiteResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/site/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
-
-	response, err := s.client.R().
-		SetResult(&DeleteSiteResponse{}).
-		SetError(&Error{}).
-		Delete(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation deleteSite")
-	}
-
-	result := response.Result().(*DeleteSiteResponse)
-	return result, response, err
-}
-
-// GetMembershipQueryParams defines the query parameters for this request
 type GetMembershipQueryParams struct {
-	Offset       string `url:"offset,omitempty"`       // offset/starting row
-	Limit        string `url:"limit,omitempty"`        // Number of sites to be retrieved
-	DeviceFamily string `url:"deviceFamily,omitempty"` // Device family name
-	SerialNumber string `url:"serialNumber,omitempty"` // Device serial number
+	Offset       string `url:"offset,omitempty"`       //offset/starting row
+	Limit        string `url:"limit,omitempty"`        //Number of sites to be retrieved
+	DeviceFamily string `url:"deviceFamily,omitempty"` //Device family name
+	SerialNumber string `url:"serialNumber,omitempty"` //Device serial number
+}
+type CreateSiteHeaderParams struct {
+	Runsync           string `url:"__runsync,omitempty"`           //Expects type bool. Enable this parameter to execute the API and return a response synchronously
+	Timeout           string `url:"__timeout,omitempty"`           //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
+}
+type GetSiteQueryParams struct {
+	Name   string `url:"name,omitempty"`   //siteNameHierarchy (ex: global/groupName)
+	SiteID string `url:"siteId,omitempty"` //Site id to which site details to retrieve.
+	Type   string `url:"type,omitempty"`   //type (ex: area, building, floor)
+	Offset string `url:"offset,omitempty"` //offset/starting row. The default value is 1
+	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
+}
+type GetSiteHealthQueryParams struct {
+	Timestamp string `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
+}
+type GetSiteCountQueryParams struct {
+	SiteID string `url:"siteId,omitempty"` //Site id to retrieve site count.
+}
+type UpdateSiteHeaderParams struct {
+	Runsync           string `url:"__runsync,omitempty"`           //Expects type bool. Enable this parameter to execute the API and return a response synchronously
+	Timeout           string `url:"__timeout,omitempty"`           //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
+}
+type AssignDeviceToSiteHeaderParams struct {
+	Runsync           string `url:"__runsync,omitempty"`           //Expects type bool. Enable this parameter to execute the API and return a response synchronously
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
+	Runsynctimeout    string `url:"__runsynctimeout,omitempty"`    //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
 }
 
-// GetMembership getMembership
+type ResponseSitesGetMembership struct {
+	Site   *ResponseSitesGetMembershipSite     `json:"site,omitempty"`   //
+	Device *[]ResponseSitesGetMembershipDevice `json:"device,omitempty"` //
+}
+type ResponseSitesGetMembershipSite struct {
+	Response *[]ResponseSitesGetMembershipSiteResponse `json:"response,omitempty"` // Response
+	Version  string                                    `json:"version,omitempty"`  // Version
+}
+type ResponseSitesGetMembershipSiteResponse interface{}
+type ResponseSitesGetMembershipDevice struct {
+	Response *[]ResponseSitesGetMembershipDeviceResponse `json:"response,omitempty"` // Response
+	Version  string                                      `json:"version,omitempty"`  // Version
+	SiteID   string                                      `json:"siteId,omitempty"`   // Site Id
+}
+type ResponseSitesGetMembershipDeviceResponse interface{}
+type ResponseSitesCreateSite struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
+type ResponseSitesGetSite struct {
+	Response *[]ResponseSitesGetSiteResponse `json:"response,omitempty"` //
+}
+type ResponseSitesGetSiteResponse struct {
+	ParentID          string   `json:"parentId,omitempty"`          // Parent Id
+	Name              string   `json:"name,omitempty"`              // Name
+	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    // Additional Info
+	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
+	ID                string   `json:"id,omitempty"`                // Id
+}
+type ResponseSitesGetSiteHealth struct {
+	Response *[]ResponseSitesGetSiteHealthResponse `json:"response,omitempty"` //
+}
+type ResponseSitesGetSiteHealthResponse struct {
+	SiteName                           string                                                                `json:"siteName,omitempty"`                           // Site Name
+	SiteID                             string                                                                `json:"siteId,omitempty"`                             // Site Id
+	ParentSiteID                       string                                                                `json:"parentSiteId,omitempty"`                       // Parent Site Id
+	ParentSiteName                     string                                                                `json:"parentSiteName,omitempty"`                     // Parent Site Name
+	SiteType                           string                                                                `json:"siteType,omitempty"`                           // Site Type
+	Latitude                           *float64                                                              `json:"latitude,omitempty"`                           // Latitude
+	Longitude                          *float64                                                              `json:"longitude,omitempty"`                          // Longitude
+	HealthyNetworkDevicePercentage     *ResponseSitesGetSiteHealthResponseHealthyNetworkDevicePercentage     `json:"healthyNetworkDevicePercentage,omitempty"`     // Healthy Network Device Percentage
+	HealthyClientsPercentage           *ResponseSitesGetSiteHealthResponseHealthyClientsPercentage           `json:"healthyClientsPercentage,omitempty"`           // Healthy Clients Percentage
+	ClientHealthWired                  *ResponseSitesGetSiteHealthResponseClientHealthWired                  `json:"clientHealthWired,omitempty"`                  // Client Health Wired
+	ClientHealthWireless               *ResponseSitesGetSiteHealthResponseClientHealthWireless               `json:"clientHealthWireless,omitempty"`               // Client Health Wireless
+	NumberOfClients                    *ResponseSitesGetSiteHealthResponseNumberOfClients                    `json:"numberOfClients,omitempty"`                    // Number Of Clients
+	NumberOfNetworkDevice              *ResponseSitesGetSiteHealthResponseNumberOfNetworkDevice              `json:"numberOfNetworkDevice,omitempty"`              // Number Of Network Device
+	NetworkHealthAverage               *ResponseSitesGetSiteHealthResponseNetworkHealthAverage               `json:"networkHealthAverage,omitempty"`               // Network Health Average
+	NetworkHealthAccess                *ResponseSitesGetSiteHealthResponseNetworkHealthAccess                `json:"networkHealthAccess,omitempty"`                // Network Health Access
+	NetworkHealthCore                  *ResponseSitesGetSiteHealthResponseNetworkHealthCore                  `json:"networkHealthCore,omitempty"`                  // Network Health Core
+	NetworkHealthDistribution          *ResponseSitesGetSiteHealthResponseNetworkHealthDistribution          `json:"networkHealthDistribution,omitempty"`          // Network Health Distribution
+	NetworkHealthRouter                *ResponseSitesGetSiteHealthResponseNetworkHealthRouter                `json:"networkHealthRouter,omitempty"`                // Network Health Router
+	NetworkHealthWireless              *ResponseSitesGetSiteHealthResponseNetworkHealthWireless              `json:"networkHealthWireless,omitempty"`              // Network Health Wireless
+	NetworkHealthOthers                *ResponseSitesGetSiteHealthResponseNetworkHealthOthers                `json:"networkHealthOthers,omitempty"`                // Network Health Others
+	NumberOfWiredClients               *ResponseSitesGetSiteHealthResponseNumberOfWiredClients               `json:"numberOfWiredClients,omitempty"`               // Number Of Wired Clients
+	NumberOfWirelessClients            *ResponseSitesGetSiteHealthResponseNumberOfWirelessClients            `json:"numberOfWirelessClients,omitempty"`            // Number Of Wireless Clients
+	TotalNumberOfConnectedWiredClients *ResponseSitesGetSiteHealthResponseTotalNumberOfConnectedWiredClients `json:"totalNumberOfConnectedWiredClients,omitempty"` // Total Number Of Connected Wired Clients
+	TotalNumberOfActiveWirelessClients *ResponseSitesGetSiteHealthResponseTotalNumberOfActiveWirelessClients `json:"totalNumberOfActiveWirelessClients,omitempty"` // Total Number Of Active Wireless Clients
+	WiredGoodClients                   *ResponseSitesGetSiteHealthResponseWiredGoodClients                   `json:"wiredGoodClients,omitempty"`                   // Wired Good Clients
+	WirelessGoodClients                *ResponseSitesGetSiteHealthResponseWirelessGoodClients                `json:"wirelessGoodClients,omitempty"`                // Wireless Good Clients
+	OverallGoodDevices                 *ResponseSitesGetSiteHealthResponseOverallGoodDevices                 `json:"overallGoodDevices,omitempty"`                 // Overall Good Devices
+	AccessGoodCount                    *ResponseSitesGetSiteHealthResponseAccessGoodCount                    `json:"accessGoodCount,omitempty"`                    // Access Good Count
+	AccessTotalCount                   *ResponseSitesGetSiteHealthResponseAccessTotalCount                   `json:"accessTotalCount,omitempty"`                   // Access Total Count
+	CoreGoodCount                      *ResponseSitesGetSiteHealthResponseCoreGoodCount                      `json:"coreGoodCount,omitempty"`                      // Core Good Count
+	CoreTotalCount                     *ResponseSitesGetSiteHealthResponseCoreTotalCount                     `json:"coreTotalCount,omitempty"`                     // Core Total Count
+	DistributionGoodCount              *ResponseSitesGetSiteHealthResponseDistributionGoodCount              `json:"distributionGoodCount,omitempty"`              // Distribution Good Count
+	DistributionTotalCount             *ResponseSitesGetSiteHealthResponseDistributionTotalCount             `json:"distributionTotalCount,omitempty"`             // Distribution Total Count
+	RouterGoodCount                    *ResponseSitesGetSiteHealthResponseRouterGoodCount                    `json:"routerGoodCount,omitempty"`                    // Router Good Count
+	RouterTotalCount                   *ResponseSitesGetSiteHealthResponseRouterTotalCount                   `json:"routerTotalCount,omitempty"`                   // Router Total Count
+	WirelessDeviceGoodCount            *ResponseSitesGetSiteHealthResponseWirelessDeviceGoodCount            `json:"wirelessDeviceGoodCount,omitempty"`            // Wireless Device Good Count
+	WirelessDeviceTotalCount           *ResponseSitesGetSiteHealthResponseWirelessDeviceTotalCount           `json:"wirelessDeviceTotalCount,omitempty"`           // Wireless Device Total Count
+	ApplicationHealth                  *ResponseSitesGetSiteHealthResponseApplicationHealth                  `json:"applicationHealth,omitempty"`                  // Application Health
+	ApplicationGoodCount               *ResponseSitesGetSiteHealthResponseApplicationGoodCount               `json:"applicationGoodCount,omitempty"`               // Application Good Count
+	ApplicationTotalCount              *ResponseSitesGetSiteHealthResponseApplicationTotalCount              `json:"applicationTotalCount,omitempty"`              // Application Total Count
+	ApplicationBytesTotalCount         *ResponseSitesGetSiteHealthResponseApplicationBytesTotalCount         `json:"applicationBytesTotalCount,omitempty"`         // Application Bytes Total Count
+	DnacInfo                           *ResponseSitesGetSiteHealthResponseDnacInfo                           `json:"dnacInfo,omitempty"`                           // Dnac Info
+	ApplicationHealthStats             *ResponseSitesGetSiteHealthResponseApplicationHealthStats             `json:"applicationHealthStats,omitempty"`             //
+}
+type ResponseSitesGetSiteHealthResponseHealthyNetworkDevicePercentage interface{}
+type ResponseSitesGetSiteHealthResponseHealthyClientsPercentage interface{}
+type ResponseSitesGetSiteHealthResponseClientHealthWired interface{}
+type ResponseSitesGetSiteHealthResponseClientHealthWireless interface{}
+type ResponseSitesGetSiteHealthResponseNumberOfClients interface{}
+type ResponseSitesGetSiteHealthResponseNumberOfNetworkDevice interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthAverage interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthAccess interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthCore interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthDistribution interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthRouter interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthWireless interface{}
+type ResponseSitesGetSiteHealthResponseNetworkHealthOthers interface{}
+type ResponseSitesGetSiteHealthResponseNumberOfWiredClients interface{}
+type ResponseSitesGetSiteHealthResponseNumberOfWirelessClients interface{}
+type ResponseSitesGetSiteHealthResponseTotalNumberOfConnectedWiredClients interface{}
+type ResponseSitesGetSiteHealthResponseTotalNumberOfActiveWirelessClients interface{}
+type ResponseSitesGetSiteHealthResponseWiredGoodClients interface{}
+type ResponseSitesGetSiteHealthResponseWirelessGoodClients interface{}
+type ResponseSitesGetSiteHealthResponseOverallGoodDevices interface{}
+type ResponseSitesGetSiteHealthResponseAccessGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseAccessTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseCoreGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseCoreTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseDistributionGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseDistributionTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseRouterGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseRouterTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseWirelessDeviceGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseWirelessDeviceTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseApplicationHealth interface{}
+type ResponseSitesGetSiteHealthResponseApplicationGoodCount interface{}
+type ResponseSitesGetSiteHealthResponseApplicationTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseApplicationBytesTotalCount interface{}
+type ResponseSitesGetSiteHealthResponseDnacInfo interface{}
+type ResponseSitesGetSiteHealthResponseApplicationHealthStats struct {
+	AppTotalCount              *float64                                                                            `json:"appTotalCount,omitempty"`              // App Total Count
+	BusinessRelevantAppCount   *ResponseSitesGetSiteHealthResponseApplicationHealthStatsBusinessRelevantAppCount   `json:"businessRelevantAppCount,omitempty"`   //
+	BusinessIrrelevantAppCount *ResponseSitesGetSiteHealthResponseApplicationHealthStatsBusinessIrrelevantAppCount `json:"businessIrrelevantAppCount,omitempty"` //
+	DefaultHealthAppCount      *ResponseSitesGetSiteHealthResponseApplicationHealthStatsDefaultHealthAppCount      `json:"defaultHealthAppCount,omitempty"`      //
+}
+type ResponseSitesGetSiteHealthResponseApplicationHealthStatsBusinessRelevantAppCount struct {
+	Poor *float64 `json:"poor,omitempty"` // Poor
+	Fair *float64 `json:"fair,omitempty"` // Fair
+	Good *float64 `json:"good,omitempty"` // Good
+}
+type ResponseSitesGetSiteHealthResponseApplicationHealthStatsBusinessIrrelevantAppCount struct {
+	Poor *float64 `json:"poor,omitempty"` // Poor
+	Fair *float64 `json:"fair,omitempty"` // Fair
+	Good *float64 `json:"good,omitempty"` // Good
+}
+type ResponseSitesGetSiteHealthResponseApplicationHealthStatsDefaultHealthAppCount struct {
+	Poor *float64 `json:"poor,omitempty"` // Poor
+	Fair *float64 `json:"fair,omitempty"` // Fair
+	Good *float64 `json:"good,omitempty"` // Good
+}
+type ResponseSitesGetSiteCount struct {
+	Response string `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
+}
+type ResponseSitesUpdateSite struct {
+	Result   string                           `json:"result,omitempty"`   // Result
+	Response *ResponseSitesUpdateSiteResponse `json:"response,omitempty"` //
+	Status   string                           `json:"status,omitempty"`   // Status
+}
+type ResponseSitesUpdateSiteResponse struct {
+	EndTime          string   `json:"endTime,omitempty"`          // End Time
+	Version          string   `json:"version,omitempty"`          // Version
+	StartTime        string   `json:"startTime,omitempty"`        // Start Time
+	Progress         string   `json:"progress,omitempty"`         // Progress
+	Data             string   `json:"data,omitempty"`             // Data
+	ServiceType      string   `json:"serviceType,omitempty"`      // Service Type
+	OperationIDList  []string `json:"operationIdList,omitempty"`  // Operation Id List
+	IsError          string   `json:"isError,omitempty"`          // Is Error
+	RootID           string   `json:"rootId,omitempty"`           // Root Id
+	InstanceTenantID string   `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	ID               string   `json:"id,omitempty"`               // Id
+}
+type ResponseSitesDeleteSite struct {
+	Status  string `json:"status,omitempty"`  // Status
+	Message string `json:"message,omitempty"` // Message
+}
+type ResponseSitesAssignDeviceToSite struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // sExecution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
+type RequestSitesCreateSite struct {
+	Type string                      `json:"type,omitempty"` // Type of site to create (eg: area, building, floor)
+	Site *RequestSitesCreateSiteSite `json:"site,omitempty"` //
+}
+type RequestSitesCreateSiteSite struct {
+	Area     *RequestSitesCreateSiteSiteArea     `json:"area,omitempty"`     //
+	Building *RequestSitesCreateSiteSiteBuilding `json:"building,omitempty"` //
+	Floor    *RequestSitesCreateSiteSiteFloor    `json:"floor,omitempty"`    //
+}
+type RequestSitesCreateSiteSiteArea struct {
+	Name       string `json:"name,omitempty"`       // Name of the area (eg: Area1)
+	ParentName string `json:"parentName,omitempty"` // Parent name of the area to be created
+}
+type RequestSitesCreateSiteSiteBuilding struct {
+	Name       string   `json:"name,omitempty"`       // Name of the building (eg: building1)
+	Address    string   `json:"address,omitempty"`    // Address of the building to be created
+	ParentName string   `json:"parentName,omitempty"` // Parent name of building to be created
+	Latitude   *float64 `json:"latitude,omitempty"`   // Latitude coordinate of the building (eg:37.338)
+	Longitude  *float64 `json:"longitude,omitempty"`  // Longitude coordinate of the building (eg:-121.832)
+}
+type RequestSitesCreateSiteSiteFloor struct {
+	Name       string   `json:"name,omitempty"`       // Name of the floor (eg:floor-1)
+	ParentName string   `json:"parentName,omitempty"` // Parent name of the floor to be created
+	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor (eg: Cubes And Walled Offices0
+	Width      *float64 `json:"width,omitempty"`      // Width of the floor (eg:100)
+	Length     *float64 `json:"length,omitempty"`     // Length of the floor (eg: 100)
+	Height     *float64 `json:"height,omitempty"`     // Height of the floor (eg: 15)
+}
+type RequestSitesUpdateSite struct {
+	Type string                      `json:"type,omitempty"` // Type
+	Site *RequestSitesUpdateSiteSite `json:"site,omitempty"` //
+}
+type RequestSitesUpdateSiteSite struct {
+	Area     *RequestSitesUpdateSiteSiteArea     `json:"area,omitempty"`     //
+	Building *RequestSitesUpdateSiteSiteBuilding `json:"building,omitempty"` //
+	Floor    *RequestSitesUpdateSiteSiteFloor    `json:"floor,omitempty"`    //
+}
+type RequestSitesUpdateSiteSiteArea struct {
+	Name       string `json:"name,omitempty"`       // Name
+	ParentName string `json:"parentName,omitempty"` // Parent Name
+}
+type RequestSitesUpdateSiteSiteBuilding struct {
+	Name       string   `json:"name,omitempty"`       // Name
+	Address    string   `json:"address,omitempty"`    // Address
+	ParentName string   `json:"parentName,omitempty"` // Parent Name
+	Latitude   *float64 `json:"latitude,omitempty"`   // Latitude
+	Longitude  *float64 `json:"longitude,omitempty"`  // Longitude
+}
+type RequestSitesUpdateSiteSiteFloor struct {
+	Name    string   `json:"name,omitempty"`    // Name
+	RfModel string   `json:"rfModel,omitempty"` // Rf Model
+	Width   *float64 `json:"width,omitempty"`   // Width
+	Length  *float64 `json:"length,omitempty"`  // Length
+	Height  *float64 `json:"height,omitempty"`  // Height
+}
+type RequestSitesAssignDeviceToSite struct {
+	Device *[]RequestSitesAssignDeviceToSiteDevice `json:"device,omitempty"` //
+}
+type RequestSitesAssignDeviceToSiteDevice struct {
+	IP string `json:"ip,omitempty"` // Device ip (eg: 10.104.240.64)
+}
+
+//GetMembership Get Membership - eba6-6905-4e08-a60e
 /* Getting the site children details and device details.
-@param siteID Site id to retrieve device associated with the site.
-@param offset offset/starting row
-@param limit Number of sites to be retrieved
-@param deviceFamily Device family name
-@param serialNumber Device serial number
+
+
+@param siteID siteId path parameter. Site id to retrieve device associated with the site.
+
+@param GetMembershipQueryParams Filtering parameter
 */
-func (s *SitesService) GetMembership(siteID string, getMembershipQueryParams *GetMembershipQueryParams) (*GetMembershipResponse, *resty.Response, error) {
-
+func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *GetMembershipQueryParams) (*ResponseSitesGetMembership, *resty.Response, error) {
 	path := "/dna/intent/api/v1/membership/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
-	queryString, _ := query.Values(getMembershipQueryParams)
+	queryString, _ := query.Values(GetMembershipQueryParams)
 
 	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetMembershipResponse{}).
-		SetError(&Error{}).
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetMembership{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getMembership")
+		return nil, response, fmt.Errorf("error with operation GetMembership")
 	}
 
-	result := response.Result().(*GetMembershipResponse)
+	result := response.Result().(*ResponseSitesGetMembership)
 	return result, response, err
+
 }
 
-// GetSiteQueryParams defines the query parameters for this request
-type GetSiteQueryParams struct {
-	Name   string `url:"name,omitempty"`   // siteNameHierarchy (ex: global/groupName)
-	SiteID string `url:"siteId,omitempty"` // Site id to which site details to retrieve.
-	Type   string `url:"type,omitempty"`   // type (ex: area, building, floor)
-	Offset string `url:"offset,omitempty"` // offset/starting row
-	Limit  string `url:"limit,omitempty"`  // Number of sites to be retrieved
-}
+//GetSite Get Site - 6fb4-ab36-43fa-a80f
+/* Get site using siteNameHierarchy/siteId/type ,return all sites if these parameters are not given as input.
 
-// GetSite getSite
-/* Get site with area/building/floor with specified hierarchy.
-@param name siteNameHierarchy (ex: global/groupName)
-@param siteID Site id to which site details to retrieve.
-@param type type (ex: area, building, floor)
-@param offset offset/starting row
-@param limit Number of sites to be retrieved
+
+@param GetSiteQueryParams Filtering parameter
 */
-func (s *SitesService) GetSite(getSiteQueryParams *GetSiteQueryParams) (*GetSiteResponse, *resty.Response, error) {
-
+func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
 
-	queryString, _ := query.Values(getSiteQueryParams)
+	queryString, _ := query.Values(GetSiteQueryParams)
 
 	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetSiteResponse{}).
-		SetError(&Error{}).
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetSite{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getSite")
+		return nil, response, fmt.Errorf("error with operation GetSite")
 	}
 
-	result := response.Result().(*GetSiteResponse)
+	result := response.Result().(*ResponseSitesGetSite)
 	return result, response, err
+
 }
 
-// GetSiteCountQueryParams defines the query parameters for this request
-type GetSiteCountQueryParams struct {
-	SiteID string `url:"siteId,omitempty"` // Site id to retrieve site count.
-}
-
-// GetSiteCount getSiteCount
-/* API to get site count
-@param siteID Site id to retrieve site count.
-*/
-func (s *SitesService) GetSiteCount(getSiteCountQueryParams *GetSiteCountQueryParams) (*GetSiteCountResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/site/count"
-
-	queryString, _ := query.Values(getSiteCountQueryParams)
-
-	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetSiteCountResponse{}).
-		SetError(&Error{}).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getSiteCount")
-	}
-
-	result := response.Result().(*GetSiteCountResponse)
-	return result, response, err
-}
-
-// GetSiteHealthQueryParams defines the query parameters for this request
-type GetSiteHealthQueryParams struct {
-	Timestamp string `url:"timestamp,omitempty"` // Epoch time(in milliseconds) when the Site Hierarchy data is required
-}
-
-// GetSiteHealth getSiteHealth
+//GetSiteHealth Get Site Health - 15b7-aa0c-4dda-8e85
 /* Returns Overall Health information for all sites
-@param timestamp Epoch time(in milliseconds) when the Site Hierarchy data is required
-*/
-func (s *SitesService) GetSiteHealth(getSiteHealthQueryParams *GetSiteHealthQueryParams) (*GetSiteHealthResponse, *resty.Response, error) {
 
+
+@param GetSiteHealthQueryParams Filtering parameter
+*/
+func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQueryParams) (*ResponseSitesGetSiteHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site-health"
 
-	queryString, _ := query.Values(getSiteHealthQueryParams)
+	queryString, _ := query.Values(GetSiteHealthQueryParams)
 
 	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&GetSiteHealthResponse{}).
-		SetError(&Error{}).
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetSiteHealth{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation getSiteHealth")
+		return nil, response, fmt.Errorf("error with operation GetSiteHealth")
 	}
 
-	result := response.Result().(*GetSiteHealthResponse)
+	result := response.Result().(*ResponseSitesGetSiteHealth)
 	return result, response, err
+
 }
 
-// UpdateSite updateSite
-/* Update site area/building/floor with specified hierarchy and new values
-@param __runsync Enable this parameter to execute the API and return a response synchronously
-@param __timeout During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
-@param __persistbapioutput Persist bapi sync response
-@param siteID Site id to which site details to be updated.
-*/
-func (s *SitesService) UpdateSite(siteID string, updateSiteRequest *UpdateSiteRequest) (*UpdateSiteResponse, *resty.Response, error) {
+//GetSiteCount Get Site Count - b0b7-eabc-4f4b-9b28
+/* API to get site count
 
-	path := "/dna/intent/api/v1/site/{siteId}"
-	path = strings.Replace(path, "{"+"siteId"+"}", fmt.Sprintf("%v", siteID), -1)
+
+@param GetSiteCountQueryParams Filtering parameter
+*/
+func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryParams) (*ResponseSitesGetSiteCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site/count"
+
+	queryString, _ := query.Values(GetSiteCountQueryParams)
 
 	response, err := s.client.R().
-		SetBody(updateSiteRequest).
-		SetResult(&UpdateSiteResponse{}).
-		SetError(&Error{}).
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetSiteCount{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSiteCount")
+	}
+
+	result := response.Result().(*ResponseSitesGetSiteCount)
+	return result, response, err
+
+}
+
+//CreateSite Create Site - 50b5-89fd-4c7a-930a
+/* Creates site with area/building/floor with specified hierarchy.
+
+
+@param CreateSiteHeaderParams Custom header parameters
+*/
+func (s *SitesService) CreateSite(requestSitesCreateSite *RequestSitesCreateSite, CreateSiteHeaderParams *CreateSiteHeaderParams) (*ResponseSitesCreateSite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if CreateSiteHeaderParams != nil {
+
+		if CreateSiteHeaderParams.Runsync != "" {
+			clientRequest = clientRequest.SetHeader("__runsync", CreateSiteHeaderParams.Runsync)
+		}
+
+		if CreateSiteHeaderParams.Timeout != "" {
+			clientRequest = clientRequest.SetHeader("__timeout", CreateSiteHeaderParams.Timeout)
+		}
+
+		if CreateSiteHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", CreateSiteHeaderParams.Persistbapioutput)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestSitesCreateSite).
+		SetResult(&ResponseSitesCreateSite{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateSite")
+	}
+
+	result := response.Result().(*ResponseSitesCreateSite)
+	return result, response, err
+
+}
+
+//AssignDeviceToSite Assign Device To Site - eeb1-68eb-4198-8e07
+/* Assigns list of devices to a site
+
+
+@param siteID siteId path parameter. Site id to which site the device to assign
+
+@param AssignDeviceToSiteHeaderParams Custom header parameters
+*/
+func (s *SitesService) AssignDeviceToSite(siteID string, requestSitesAssignDeviceToSite *RequestSitesAssignDeviceToSite, AssignDeviceToSiteHeaderParams *AssignDeviceToSiteHeaderParams) (*ResponseSitesAssignDeviceToSite, *resty.Response, error) {
+	path := "/dna/system/api/v1/site/{siteId}/device"
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if AssignDeviceToSiteHeaderParams != nil {
+
+		if AssignDeviceToSiteHeaderParams.Runsync != "" {
+			clientRequest = clientRequest.SetHeader("__runsync", AssignDeviceToSiteHeaderParams.Runsync)
+		}
+
+		if AssignDeviceToSiteHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", AssignDeviceToSiteHeaderParams.Persistbapioutput)
+		}
+
+		if AssignDeviceToSiteHeaderParams.Runsynctimeout != "" {
+			clientRequest = clientRequest.SetHeader("__runsynctimeout", AssignDeviceToSiteHeaderParams.Runsynctimeout)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestSitesAssignDeviceToSite).
+		SetResult(&ResponseSitesAssignDeviceToSite{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation AssignDeviceToSite")
+	}
+
+	result := response.Result().(*ResponseSitesAssignDeviceToSite)
+	return result, response, err
+
+}
+
+//UpdateSite Update Site - eeb7-eb4b-4bd8-a1dd
+/* Update site area/building/floor with specified hierarchy and new values
+
+
+@param siteID siteId path parameter. Site id to which site details to be updated.
+
+@param UpdateSiteHeaderParams Custom header parameters
+*/
+func (s *SitesService) UpdateSite(siteID string, requestSitesUpdateSite *RequestSitesUpdateSite, UpdateSiteHeaderParams *UpdateSiteHeaderParams) (*ResponseSitesUpdateSite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site/{siteId}"
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if UpdateSiteHeaderParams != nil {
+
+		if UpdateSiteHeaderParams.Runsync != "" {
+			clientRequest = clientRequest.SetHeader("__runsync", UpdateSiteHeaderParams.Runsync)
+		}
+
+		if UpdateSiteHeaderParams.Timeout != "" {
+			clientRequest = clientRequest.SetHeader("__timeout", UpdateSiteHeaderParams.Timeout)
+		}
+
+		if UpdateSiteHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", UpdateSiteHeaderParams.Persistbapioutput)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestSitesUpdateSite).
+		SetResult(&ResponseSitesUpdateSite{}).
+		SetError(&Error).
 		Put(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation updateSite")
+		return nil, response, fmt.Errorf("error with operation UpdateSite")
 	}
 
-	result := response.Result().(*UpdateSiteResponse)
+	result := response.Result().(*ResponseSitesUpdateSite)
 	return result, response, err
+
+}
+
+//DeleteSite Delete Site - f083-cb13-484a-8fae
+/* Delete site with area/building/floor by siteId.
+
+
+@param siteID siteId path parameter. Site id to which site details to be deleted.
+
+*/
+func (s *SitesService) DeleteSite(siteID string) (*ResponseSitesDeleteSite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site/{siteId}"
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSitesDeleteSite{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DeleteSite")
+	}
+
+	result := response.Result().(*ResponseSitesDeleteSite)
+	return result, response, err
+
 }

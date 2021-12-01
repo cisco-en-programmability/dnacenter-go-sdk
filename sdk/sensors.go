@@ -7,739 +7,702 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-// SensorsService is the service to communicate with the Sensors API endpoint
 type SensorsService service
 
-// CreateSensorTestTemplateRequest is the createSensorTestTemplateRequest definition
-type CreateSensorTestTemplateRequest struct {
-	ApCoverage   []CreateSensorTestTemplateRequestApCoverage `json:"apCoverage,omitempty"`   //
-	Connection   string                                      `json:"connection,omitempty"`   //
-	ModelVersion int                                         `json:"modelVersion,omitempty"` //
-	Name         string                                      `json:"name,omitempty"`         //
-	SSIDs        []CreateSensorTestTemplateRequestSSIDs      `json:"ssids,omitempty"`        //
-}
-
-// CreateSensorTestTemplateRequestApCoverage is the createSensorTestTemplateRequestApCoverage definition
-type CreateSensorTestTemplateRequestApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest int    `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     string `json:"rssiThreshold,omitempty"`     //
-}
-
-// CreateSensorTestTemplateRequestSSIDs is the createSensorTestTemplateRequestSSIDs definition
-type CreateSensorTestTemplateRequestSSIDs struct {
-	AuthType    string                                         `json:"authType,omitempty"`    //
-	Categories  []string                                       `json:"categories,omitempty"`  //
-	ProfileName string                                         `json:"profileName,omitempty"` //
-	Psk         string                                         `json:"psk,omitempty"`         //
-	QosPolicy   string                                         `json:"qosPolicy,omitempty"`   //
-	SSID        string                                         `json:"ssid,omitempty"`        //
-	Tests       []CreateSensorTestTemplateRequestSSIDsTests    `json:"tests,omitempty"`       //
-	ThirdParty  CreateSensorTestTemplateRequestSSIDsThirdParty `json:"thirdParty,omitempty"`  //
-}
-
-// CreateSensorTestTemplateRequestSSIDsCategories is the createSensorTestTemplateRequestSSIDsCategories definition
-type CreateSensorTestTemplateRequestSSIDsCategories []string
-
-// CreateSensorTestTemplateRequestSSIDsTests is the createSensorTestTemplateRequestSSIDsTests definition
-type CreateSensorTestTemplateRequestSSIDsTests struct {
-	Config []string `json:"config,omitempty"` //
-	Name   string   `json:"name,omitempty"`   //
-}
-
-// CreateSensorTestTemplateRequestSSIDsTestsConfig is the createSensorTestTemplateRequestSSIDsTestsConfig definition
-type CreateSensorTestTemplateRequestSSIDsTestsConfig []string
-
-// CreateSensorTestTemplateRequestSSIDsThirdParty is the createSensorTestTemplateRequestSSIDsThirdParty definition
-type CreateSensorTestTemplateRequestSSIDsThirdParty struct {
-	Selected bool `json:"selected,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateRequest is the duplicateSensorTestTemplateRequest definition
-type DuplicateSensorTestTemplateRequest struct {
-	NewTemplateName string `json:"newTemplateName,omitempty"` //
-	TemplateName    string `json:"templateName,omitempty"`    //
-}
-
-// EditSensorTestTemplateRequest is the editSensorTestTemplateRequest definition
-type EditSensorTestTemplateRequest struct {
-	LocationInfoList []EditSensorTestTemplateRequestLocationInfoList `json:"locationInfoList,omitempty"` //
-	Schedule         EditSensorTestTemplateRequestSchedule           `json:"schedule,omitempty"`         //
-	TemplateName     string                                          `json:"templateName,omitempty"`     //
-}
-
-// EditSensorTestTemplateRequestLocationInfoList is the editSensorTestTemplateRequestLocationInfoList definition
-type EditSensorTestTemplateRequestLocationInfoList struct {
-	AllSensors    bool   `json:"allSensors,omitempty"`    //
-	LocationID    string `json:"locationId,omitempty"`    //
-	LocationType  string `json:"locationType,omitempty"`  //
-	SiteHierarchy string `json:"siteHierarchy,omitempty"` //
-}
-
-// EditSensorTestTemplateRequestSchedule is the editSensorTestTemplateRequestSchedule definition
-type EditSensorTestTemplateRequestSchedule struct {
-	Frequency        EditSensorTestTemplateRequestScheduleFrequency       `json:"frequency,omitempty"`        //
-	ScheduleRange    []EditSensorTestTemplateRequestScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
-	TestScheduleMode string                                               `json:"testScheduleMode,omitempty"` //
-}
-
-// EditSensorTestTemplateRequestScheduleFrequency is the editSensorTestTemplateRequestScheduleFrequency definition
-type EditSensorTestTemplateRequestScheduleFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// EditSensorTestTemplateRequestScheduleScheduleRange is the editSensorTestTemplateRequestScheduleScheduleRange definition
-type EditSensorTestTemplateRequestScheduleScheduleRange struct {
-	Day       string                                                        `json:"day,omitempty"`       //
-	TimeRange []EditSensorTestTemplateRequestScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
-}
-
-// EditSensorTestTemplateRequestScheduleScheduleRangeTimeRange is the editSensorTestTemplateRequestScheduleScheduleRangeTimeRange definition
-type EditSensorTestTemplateRequestScheduleScheduleRangeTimeRange struct {
-	Frequency EditSensorTestTemplateRequestScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
-	From      string                                                               `json:"from,omitempty"`      //
-	To        string                                                               `json:"to,omitempty"`        //
-}
-
-// EditSensorTestTemplateRequestScheduleScheduleRangeTimeRangeFrequency is the editSensorTestTemplateRequestScheduleScheduleRangeTimeRangeFrequency definition
-type EditSensorTestTemplateRequestScheduleScheduleRangeTimeRangeFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// RunNowSensorTestRequest is the runNowSensorTestRequest definition
-type RunNowSensorTestRequest struct {
-	TemplateName string `json:"templateName,omitempty"` //
-}
-
-// CreateSensorTestTemplateResponse is the createSensorTestTemplateResponse definition
-type CreateSensorTestTemplateResponse struct {
-	Response CreateSensorTestTemplateResponseResponse `json:"response,omitempty"` //
-	Version  string                                   `json:"version,omitempty"`  //
-}
-
-// CreateSensorTestTemplateResponseResponse is the createSensorTestTemplateResponseResponse definition
-type CreateSensorTestTemplateResponseResponse struct {
-	TypeID                 string                                               `json:"_id,omitempty"`                    //
-	ApCoverage             []CreateSensorTestTemplateResponseResponseApCoverage `json:"apCoverage,omitempty"`             //
-	Connection             string                                               `json:"connection,omitempty"`             //
-	EncryptionMode         string                                               `json:"encryptionMode,omitempty"`         //
-	Frequency              string                                               `json:"frequency,omitempty"`              //
-	LastModifiedTime       float64                                              `json:"lastModifiedTime,omitempty"`       //
-	LegacyTestSuite        bool                                                 `json:"legacyTestSuite,omitempty"`        //
-	Location               string                                               `json:"location,omitempty"`               //
-	LocationInfoList       []string                                             `json:"locationInfoList,omitempty"`       //
-	ModelVersion           int                                                  `json:"modelVersion,omitempty"`           //
-	Name                   string                                               `json:"name,omitempty"`                   //
-	NumAssociatedSensor    float64                                              `json:"numAssociatedSensor,omitempty"`    //
-	NumNeighborAPThreshold int                                                  `json:"numNeighborAPThreshold,omitempty"` //
-	RadioAsSensorRemoved   bool                                                 `json:"radioAsSensorRemoved,omitempty"`   //
-	RssiThreshold          int                                                  `json:"rssiThreshold,omitempty"`          //
-	RunNow                 string                                               `json:"runNow,omitempty"`                 //
-	Schedule               string                                               `json:"schedule,omitempty"`               //
-	ScheduleInDays         float64                                              `json:"scheduleInDays,omitempty"`         //
-	Sensors                []string                                             `json:"sensors,omitempty"`                //
-	ShowWlcUpgradeBanner   bool                                                 `json:"showWlcUpgradeBanner,omitempty"`   //
-	SiteHierarchy          string                                               `json:"siteHierarchy,omitempty"`          //
-	SSIDs                  []CreateSensorTestTemplateResponseResponseSSIDs      `json:"ssids,omitempty"`                  //
-	StartTime              int                                                  `json:"startTime,omitempty"`              //
-	Status                 string                                               `json:"status,omitempty"`                 //
-	TenantID               string                                               `json:"tenantId,omitempty"`               //
-	TestDurationEstimate   int                                                  `json:"testDurationEstimate,omitempty"`   //
-	TestScheduleMode       string                                               `json:"testScheduleMode,omitempty"`       //
-	TestTemplate           bool                                                 `json:"testTemplate,omitempty"`           //
-	Tests                  string                                               `json:"tests,omitempty"`                  //
-	Version                float64                                              `json:"version,omitempty"`                //
-	WLANs                  []string                                             `json:"wlans,omitempty"`                  //
-}
-
-// CreateSensorTestTemplateResponseResponseApCoverage is the createSensorTestTemplateResponseResponseApCoverage definition
-type CreateSensorTestTemplateResponseResponseApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest int    `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     int    `json:"rssiThreshold,omitempty"`     //
-}
-
-// CreateSensorTestTemplateResponseResponseLocationInfoList is the createSensorTestTemplateResponseResponseLocationInfoList definition
-type CreateSensorTestTemplateResponseResponseLocationInfoList []string
-
-// CreateSensorTestTemplateResponseResponseSSIDs is the createSensorTestTemplateResponseResponseSSIDs definition
-type CreateSensorTestTemplateResponseResponseSSIDs struct {
-	AuthProtocol              string                                                  `json:"authProtocol,omitempty"`              //
-	AuthType                  string                                                  `json:"authType,omitempty"`                  //
-	AuthTypeRcvd              string                                                  `json:"authTypeRcvd,omitempty"`              //
-	Bands                     string                                                  `json:"bands,omitempty"`                     //
-	Certdownloadurl           string                                                  `json:"certdownloadurl,omitempty"`           //
-	Certfilename              string                                                  `json:"certfilename,omitempty"`              //
-	Certpassphrase            string                                                  `json:"certpassphrase,omitempty"`            //
-	Certstatus                string                                                  `json:"certstatus,omitempty"`                //
-	Certxferprotocol          string                                                  `json:"certxferprotocol,omitempty"`          //
-	EapMethod                 string                                                  `json:"eapMethod,omitempty"`                 //
-	ExtWebAuth                bool                                                    `json:"extWebAuth,omitempty"`                //
-	ExtWebAuthAccessURL       string                                                  `json:"extWebAuthAccessUrl,omitempty"`       //
-	ExtWebAuthHTMLTag         []string                                                `json:"extWebAuthHtmlTag,omitempty"`         //
-	ExtWebAuthPortal          string                                                  `json:"extWebAuthPortal,omitempty"`          //
-	ExtWebAuthVirtualIP       string                                                  `json:"extWebAuthVirtualIp,omitempty"`       //
-	ID                        float64                                                 `json:"id,omitempty"`                        //
-	Layer3webAuthEmailAddress string                                                  `json:"layer3webAuthEmailAddress,omitempty"` //
-	Layer3webAuthpassword     string                                                  `json:"layer3webAuthpassword,omitempty"`     //
-	Layer3webAuthsecurity     string                                                  `json:"layer3webAuthsecurity,omitempty"`     //
-	Layer3webAuthuserName     string                                                  `json:"layer3webAuthuserName,omitempty"`     //
-	NumAps                    float64                                                 `json:"numAps,omitempty"`                    //
-	NumSensors                float64                                                 `json:"numSensors,omitempty"`                //
-	Password                  string                                                  `json:"password,omitempty"`                  //
-	ProfileName               string                                                  `json:"profileName,omitempty"`               //
-	Psk                       string                                                  `json:"psk,omitempty"`                       //
-	QosPolicy                 string                                                  `json:"qosPolicy,omitempty"`                 //
-	Scep                      bool                                                    `json:"scep,omitempty"`                      //
-	SSID                      string                                                  `json:"ssid,omitempty"`                      //
-	Status                    string                                                  `json:"status,omitempty"`                    //
-	Tests                     []CreateSensorTestTemplateResponseResponseSSIDsTests    `json:"tests,omitempty"`                     //
-	ThirdParty                CreateSensorTestTemplateResponseResponseSSIDsThirdParty `json:"thirdParty,omitempty"`                //
-	Username                  string                                                  `json:"username,omitempty"`                  //
-	ValidFrom                 float64                                                 `json:"validFrom,omitempty"`                 //
-	ValidTo                   float64                                                 `json:"validTo,omitempty"`                   //
-	WhiteList                 bool                                                    `json:"whiteList,omitempty"`                 //
-	WLANID                    float64                                                 `json:"wlanId,omitempty"`                    //
-	Wlc                       string                                                  `json:"wlc,omitempty"`                       //
-}
-
-// CreateSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag is the createSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag definition
-type CreateSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag []string
-
-// CreateSensorTestTemplateResponseResponseSSIDsTests is the createSensorTestTemplateResponseResponseSSIDsTests definition
-type CreateSensorTestTemplateResponseResponseSSIDsTests struct {
-	Config []string `json:"config,omitempty"` //
-	Name   string   `json:"name,omitempty"`   //
-}
-
-// CreateSensorTestTemplateResponseResponseSSIDsTestsConfig is the createSensorTestTemplateResponseResponseSSIDsTestsConfig definition
-type CreateSensorTestTemplateResponseResponseSSIDsTestsConfig []string
-
-// CreateSensorTestTemplateResponseResponseSSIDsThirdParty is the createSensorTestTemplateResponseResponseSSIDsThirdParty definition
-type CreateSensorTestTemplateResponseResponseSSIDsThirdParty struct {
-	Selected bool `json:"selected,omitempty"` //
-}
-
-// CreateSensorTestTemplateResponseResponseSensors is the createSensorTestTemplateResponseResponseSensors definition
-type CreateSensorTestTemplateResponseResponseSensors []string
-
-// CreateSensorTestTemplateResponseResponseWLANs is the createSensorTestTemplateResponseResponseWLANs definition
-type CreateSensorTestTemplateResponseResponseWLANs []string
-
-// DeleteSensorTestResponse is the deleteSensorTestResponse definition
-type DeleteSensorTestResponse struct {
-	Response DeleteSensorTestResponseResponse `json:"response,omitempty"` //
-	Version  string                           `json:"version,omitempty"`  //
-}
-
-// DeleteSensorTestResponseResponse is the deleteSensorTestResponseResponse definition
-type DeleteSensorTestResponseResponse struct {
-	Status       string `json:"status,omitempty"`       //
-	TemplateName string `json:"templateName,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponse is the duplicateSensorTestTemplateResponse definition
-type DuplicateSensorTestTemplateResponse struct {
-	Response DuplicateSensorTestTemplateResponseResponse `json:"response,omitempty"` //
-	Version  string                                      `json:"version,omitempty"`  //
-}
-
-// DuplicateSensorTestTemplateResponseResponse is the duplicateSensorTestTemplateResponseResponse definition
-type DuplicateSensorTestTemplateResponseResponse struct {
-	TypeID                 string                                                        `json:"_id,omitempty"`                    //
-	ApCoverage             []DuplicateSensorTestTemplateResponseResponseApCoverage       `json:"apCoverage,omitempty"`             //
-	Connection             string                                                        `json:"connection,omitempty"`             //
-	EncryptionMode         string                                                        `json:"encryptionMode,omitempty"`         //
-	Frequency              string                                                        `json:"frequency,omitempty"`              //
-	LastModifiedTime       float64                                                       `json:"lastModifiedTime,omitempty"`       //
-	LegacyTestSuite        bool                                                          `json:"legacyTestSuite,omitempty"`        //
-	Location               string                                                        `json:"location,omitempty"`               //
-	LocationInfoList       []DuplicateSensorTestTemplateResponseResponseLocationInfoList `json:"locationInfoList,omitempty"`       //
-	ModelVersion           int                                                           `json:"modelVersion,omitempty"`           //
-	Name                   string                                                        `json:"name,omitempty"`                   //
-	NumAssociatedSensor    float64                                                       `json:"numAssociatedSensor,omitempty"`    //
-	NumNeighborAPThreshold int                                                           `json:"numNeighborAPThreshold,omitempty"` //
-	RadioAsSensorRemoved   bool                                                          `json:"radioAsSensorRemoved,omitempty"`   //
-	RssiThreshold          int                                                           `json:"rssiThreshold,omitempty"`          //
-	RunNow                 string                                                        `json:"runNow,omitempty"`                 //
-	Schedule               DuplicateSensorTestTemplateResponseResponseSchedule           `json:"schedule,omitempty"`               //
-	ScheduleInDays         float64                                                       `json:"scheduleInDays,omitempty"`         //
-	Sensors                []string                                                      `json:"sensors,omitempty"`                //
-	ShowWlcUpgradeBanner   bool                                                          `json:"showWlcUpgradeBanner,omitempty"`   //
-	SiteHierarchy          string                                                        `json:"siteHierarchy,omitempty"`          //
-	SSIDs                  []DuplicateSensorTestTemplateResponseResponseSSIDs            `json:"ssids,omitempty"`                  //
-	StartTime              int                                                           `json:"startTime,omitempty"`              //
-	Status                 string                                                        `json:"status,omitempty"`                 //
-	TenantID               string                                                        `json:"tenantId,omitempty"`               //
-	TestDurationEstimate   int                                                           `json:"testDurationEstimate,omitempty"`   //
-	TestScheduleMode       string                                                        `json:"testScheduleMode,omitempty"`       //
-	TestTemplate           bool                                                          `json:"testTemplate,omitempty"`           //
-	Tests                  string                                                        `json:"tests,omitempty"`                  //
-	Version                float64                                                       `json:"version,omitempty"`                //
-	WLANs                  []string                                                      `json:"wlans,omitempty"`                  //
-}
-
-// DuplicateSensorTestTemplateResponseResponseApCoverage is the duplicateSensorTestTemplateResponseResponseApCoverage definition
-type DuplicateSensorTestTemplateResponseResponseApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest int    `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     int    `json:"rssiThreshold,omitempty"`     //
-}
-
-// DuplicateSensorTestTemplateResponseResponseLocationInfoList is the duplicateSensorTestTemplateResponseResponseLocationInfoList definition
-type DuplicateSensorTestTemplateResponseResponseLocationInfoList struct {
-	AllSensors     bool     `json:"allSensors,omitempty"`     //
-	LocationID     string   `json:"locationId,omitempty"`     //
-	LocationType   string   `json:"locationType,omitempty"`   //
-	MacAddressList []string `json:"macAddressList,omitempty"` //
-	SiteHierarchy  string   `json:"siteHierarchy,omitempty"`  //
-}
-
-// DuplicateSensorTestTemplateResponseResponseLocationInfoListMacAddressList is the duplicateSensorTestTemplateResponseResponseLocationInfoListMacAddressList definition
-type DuplicateSensorTestTemplateResponseResponseLocationInfoListMacAddressList []string
-
-// DuplicateSensorTestTemplateResponseResponseSSIDs is the duplicateSensorTestTemplateResponseResponseSSIDs definition
-type DuplicateSensorTestTemplateResponseResponseSSIDs struct {
-	AuthProtocol              string                                                     `json:"authProtocol,omitempty"`              //
-	AuthType                  string                                                     `json:"authType,omitempty"`                  //
-	AuthTypeRcvd              string                                                     `json:"authTypeRcvd,omitempty"`              //
-	Bands                     string                                                     `json:"bands,omitempty"`                     //
-	Certdownloadurl           string                                                     `json:"certdownloadurl,omitempty"`           //
-	Certfilename              string                                                     `json:"certfilename,omitempty"`              //
-	Certpassphrase            string                                                     `json:"certpassphrase,omitempty"`            //
-	Certstatus                string                                                     `json:"certstatus,omitempty"`                //
-	Certxferprotocol          string                                                     `json:"certxferprotocol,omitempty"`          //
-	EapMethod                 string                                                     `json:"eapMethod,omitempty"`                 //
-	ExtWebAuth                bool                                                       `json:"extWebAuth,omitempty"`                //
-	ExtWebAuthAccessURL       string                                                     `json:"extWebAuthAccessUrl,omitempty"`       //
-	ExtWebAuthHTMLTag         []string                                                   `json:"extWebAuthHtmlTag,omitempty"`         //
-	ExtWebAuthPortal          string                                                     `json:"extWebAuthPortal,omitempty"`          //
-	ExtWebAuthVirtualIP       string                                                     `json:"extWebAuthVirtualIp,omitempty"`       //
-	ID                        float64                                                    `json:"id,omitempty"`                        //
-	Layer3webAuthEmailAddress string                                                     `json:"layer3webAuthEmailAddress,omitempty"` //
-	Layer3webAuthpassword     string                                                     `json:"layer3webAuthpassword,omitempty"`     //
-	Layer3webAuthsecurity     string                                                     `json:"layer3webAuthsecurity,omitempty"`     //
-	Layer3webAuthuserName     string                                                     `json:"layer3webAuthuserName,omitempty"`     //
-	NumAps                    float64                                                    `json:"numAps,omitempty"`                    //
-	NumSensors                float64                                                    `json:"numSensors,omitempty"`                //
-	Password                  string                                                     `json:"password,omitempty"`                  //
-	ProfileName               string                                                     `json:"profileName,omitempty"`               //
-	Psk                       string                                                     `json:"psk,omitempty"`                       //
-	QosPolicy                 string                                                     `json:"qosPolicy,omitempty"`                 //
-	Scep                      bool                                                       `json:"scep,omitempty"`                      //
-	SSID                      string                                                     `json:"ssid,omitempty"`                      //
-	Status                    string                                                     `json:"status,omitempty"`                    //
-	Tests                     []DuplicateSensorTestTemplateResponseResponseSSIDsTests    `json:"tests,omitempty"`                     //
-	ThirdParty                DuplicateSensorTestTemplateResponseResponseSSIDsThirdParty `json:"thirdParty,omitempty"`                //
-	Username                  string                                                     `json:"username,omitempty"`                  //
-	ValidFrom                 float64                                                    `json:"validFrom,omitempty"`                 //
-	ValidTo                   float64                                                    `json:"validTo,omitempty"`                   //
-	WhiteList                 bool                                                       `json:"whiteList,omitempty"`                 //
-	WLANID                    float64                                                    `json:"wlanId,omitempty"`                    //
-	Wlc                       string                                                     `json:"wlc,omitempty"`                       //
-}
-
-// DuplicateSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag is the duplicateSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag definition
-type DuplicateSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag []string
-
-// DuplicateSensorTestTemplateResponseResponseSSIDsTests is the duplicateSensorTestTemplateResponseResponseSSIDsTests definition
-type DuplicateSensorTestTemplateResponseResponseSSIDsTests struct {
-	Config []string `json:"config,omitempty"` //
-	Name   string   `json:"name,omitempty"`   //
-}
-
-// DuplicateSensorTestTemplateResponseResponseSSIDsTestsConfig is the duplicateSensorTestTemplateResponseResponseSSIDsTestsConfig definition
-type DuplicateSensorTestTemplateResponseResponseSSIDsTestsConfig []string
-
-// DuplicateSensorTestTemplateResponseResponseSSIDsThirdParty is the duplicateSensorTestTemplateResponseResponseSSIDsThirdParty definition
-type DuplicateSensorTestTemplateResponseResponseSSIDsThirdParty struct {
-	Selected bool `json:"selected,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponseResponseSchedule is the duplicateSensorTestTemplateResponseResponseSchedule definition
-type DuplicateSensorTestTemplateResponseResponseSchedule struct {
-	Frequency        DuplicateSensorTestTemplateResponseResponseScheduleFrequency       `json:"frequency,omitempty"`        //
-	ScheduleRange    []DuplicateSensorTestTemplateResponseResponseScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
-	StartTime        int                                                                `json:"startTime,omitempty"`        //
-	TestScheduleMode string                                                             `json:"testScheduleMode,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponseResponseScheduleFrequency is the duplicateSensorTestTemplateResponseResponseScheduleFrequency definition
-type DuplicateSensorTestTemplateResponseResponseScheduleFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponseResponseScheduleScheduleRange is the duplicateSensorTestTemplateResponseResponseScheduleScheduleRange definition
-type DuplicateSensorTestTemplateResponseResponseScheduleScheduleRange struct {
-	Day       string                                                                      `json:"day,omitempty"`       //
-	TimeRange []DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange is the duplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange definition
-type DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange struct {
-	Frequency DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
-	From      string                                                                             `json:"from,omitempty"`      //
-	To        string                                                                             `json:"to,omitempty"`        //
-}
-
-// DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency is the duplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency definition
-type DuplicateSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// DuplicateSensorTestTemplateResponseResponseSensors is the duplicateSensorTestTemplateResponseResponseSensors definition
-type DuplicateSensorTestTemplateResponseResponseSensors []string
-
-// DuplicateSensorTestTemplateResponseResponseWLANs is the duplicateSensorTestTemplateResponseResponseWLANs definition
-type DuplicateSensorTestTemplateResponseResponseWLANs []string
-
-// EditSensorTestTemplateResponse is the editSensorTestTemplateResponse definition
-type EditSensorTestTemplateResponse struct {
-	Response EditSensorTestTemplateResponseResponse `json:"response,omitempty"` //
-	Version  string                                 `json:"version,omitempty"`  //
-}
-
-// EditSensorTestTemplateResponseResponse is the editSensorTestTemplateResponseResponse definition
-type EditSensorTestTemplateResponseResponse struct {
-	TypeID                 string                                                   `json:"_id,omitempty"`                    //
-	ApCoverage             []EditSensorTestTemplateResponseResponseApCoverage       `json:"apCoverage,omitempty"`             //
-	Connection             string                                                   `json:"connection,omitempty"`             //
-	EncryptionMode         string                                                   `json:"encryptionMode,omitempty"`         //
-	Frequency              string                                                   `json:"frequency,omitempty"`              //
-	LastModifiedTime       float64                                                  `json:"lastModifiedTime,omitempty"`       //
-	LegacyTestSuite        bool                                                     `json:"legacyTestSuite,omitempty"`        //
-	Location               string                                                   `json:"location,omitempty"`               //
-	LocationInfoList       []EditSensorTestTemplateResponseResponseLocationInfoList `json:"locationInfoList,omitempty"`       //
-	ModelVersion           int                                                      `json:"modelVersion,omitempty"`           //
-	Name                   string                                                   `json:"name,omitempty"`                   //
-	NumAssociatedSensor    float64                                                  `json:"numAssociatedSensor,omitempty"`    //
-	NumNeighborAPThreshold int                                                      `json:"numNeighborAPThreshold,omitempty"` //
-	RadioAsSensorRemoved   bool                                                     `json:"radioAsSensorRemoved,omitempty"`   //
-	RssiThreshold          int                                                      `json:"rssiThreshold,omitempty"`          //
-	RunNow                 string                                                   `json:"runNow,omitempty"`                 //
-	Schedule               EditSensorTestTemplateResponseResponseSchedule           `json:"schedule,omitempty"`               //
-	ScheduleInDays         float64                                                  `json:"scheduleInDays,omitempty"`         //
-	Sensors                []string                                                 `json:"sensors,omitempty"`                //
-	ShowWlcUpgradeBanner   bool                                                     `json:"showWlcUpgradeBanner,omitempty"`   //
-	SiteHierarchy          string                                                   `json:"siteHierarchy,omitempty"`          //
-	SSIDs                  []EditSensorTestTemplateResponseResponseSSIDs            `json:"ssids,omitempty"`                  //
-	StartTime              int                                                      `json:"startTime,omitempty"`              //
-	Status                 string                                                   `json:"status,omitempty"`                 //
-	TenantID               string                                                   `json:"tenantId,omitempty"`               //
-	TestDurationEstimate   int                                                      `json:"testDurationEstimate,omitempty"`   //
-	TestScheduleMode       string                                                   `json:"testScheduleMode,omitempty"`       //
-	TestTemplate           bool                                                     `json:"testTemplate,omitempty"`           //
-	Tests                  string                                                   `json:"tests,omitempty"`                  //
-	Version                float64                                                  `json:"version,omitempty"`                //
-	WLANs                  []string                                                 `json:"wlans,omitempty"`                  //
-}
-
-// EditSensorTestTemplateResponseResponseApCoverage is the editSensorTestTemplateResponseResponseApCoverage definition
-type EditSensorTestTemplateResponseResponseApCoverage struct {
-	Bands             string `json:"bands,omitempty"`             //
-	NumberOfApsToTest int    `json:"numberOfApsToTest,omitempty"` //
-	RssiThreshold     int    `json:"rssiThreshold,omitempty"`     //
-}
-
-// EditSensorTestTemplateResponseResponseLocationInfoList is the editSensorTestTemplateResponseResponseLocationInfoList definition
-type EditSensorTestTemplateResponseResponseLocationInfoList struct {
-	AllSensors     bool     `json:"allSensors,omitempty"`     //
-	LocationID     string   `json:"locationId,omitempty"`     //
-	LocationType   string   `json:"locationType,omitempty"`   //
-	MacAddressList []string `json:"macAddressList,omitempty"` //
-	SiteHierarchy  string   `json:"siteHierarchy,omitempty"`  //
-}
-
-// EditSensorTestTemplateResponseResponseLocationInfoListMacAddressList is the editSensorTestTemplateResponseResponseLocationInfoListMacAddressList definition
-type EditSensorTestTemplateResponseResponseLocationInfoListMacAddressList []string
-
-// EditSensorTestTemplateResponseResponseSSIDs is the editSensorTestTemplateResponseResponseSSIDs definition
-type EditSensorTestTemplateResponseResponseSSIDs struct {
-	AuthProtocol              string                                                `json:"authProtocol,omitempty"`              //
-	AuthType                  string                                                `json:"authType,omitempty"`                  //
-	AuthTypeRcvd              string                                                `json:"authTypeRcvd,omitempty"`              //
-	Bands                     string                                                `json:"bands,omitempty"`                     //
-	Certdownloadurl           string                                                `json:"certdownloadurl,omitempty"`           //
-	Certfilename              string                                                `json:"certfilename,omitempty"`              //
-	Certpassphrase            string                                                `json:"certpassphrase,omitempty"`            //
-	Certstatus                string                                                `json:"certstatus,omitempty"`                //
-	Certxferprotocol          string                                                `json:"certxferprotocol,omitempty"`          //
-	EapMethod                 string                                                `json:"eapMethod,omitempty"`                 //
-	ExtWebAuth                bool                                                  `json:"extWebAuth,omitempty"`                //
-	ExtWebAuthAccessURL       string                                                `json:"extWebAuthAccessUrl,omitempty"`       //
-	ExtWebAuthHTMLTag         []string                                              `json:"extWebAuthHtmlTag,omitempty"`         //
-	ExtWebAuthPortal          string                                                `json:"extWebAuthPortal,omitempty"`          //
-	ExtWebAuthVirtualIP       string                                                `json:"extWebAuthVirtualIp,omitempty"`       //
-	ID                        float64                                               `json:"id,omitempty"`                        //
-	Layer3webAuthEmailAddress string                                                `json:"layer3webAuthEmailAddress,omitempty"` //
-	Layer3webAuthpassword     string                                                `json:"layer3webAuthpassword,omitempty"`     //
-	Layer3webAuthsecurity     string                                                `json:"layer3webAuthsecurity,omitempty"`     //
-	Layer3webAuthuserName     string                                                `json:"layer3webAuthuserName,omitempty"`     //
-	NumAps                    float64                                               `json:"numAps,omitempty"`                    //
-	NumSensors                float64                                               `json:"numSensors,omitempty"`                //
-	Password                  string                                                `json:"password,omitempty"`                  //
-	ProfileName               string                                                `json:"profileName,omitempty"`               //
-	Psk                       string                                                `json:"psk,omitempty"`                       //
-	QosPolicy                 string                                                `json:"qosPolicy,omitempty"`                 //
-	Scep                      bool                                                  `json:"scep,omitempty"`                      //
-	SSID                      string                                                `json:"ssid,omitempty"`                      //
-	Status                    string                                                `json:"status,omitempty"`                    //
-	Tests                     []EditSensorTestTemplateResponseResponseSSIDsTests    `json:"tests,omitempty"`                     //
-	ThirdParty                EditSensorTestTemplateResponseResponseSSIDsThirdParty `json:"thirdParty,omitempty"`                //
-	Username                  string                                                `json:"username,omitempty"`                  //
-	ValidFrom                 float64                                               `json:"validFrom,omitempty"`                 //
-	ValidTo                   float64                                               `json:"validTo,omitempty"`                   //
-	WhiteList                 bool                                                  `json:"whiteList,omitempty"`                 //
-	WLANID                    float64                                               `json:"wlanId,omitempty"`                    //
-	Wlc                       string                                                `json:"wlc,omitempty"`                       //
-}
-
-// EditSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag is the editSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag definition
-type EditSensorTestTemplateResponseResponseSSIDsExtWebAuthHTMLTag []string
-
-// EditSensorTestTemplateResponseResponseSSIDsTests is the editSensorTestTemplateResponseResponseSSIDsTests definition
-type EditSensorTestTemplateResponseResponseSSIDsTests struct {
-	Config []string `json:"config,omitempty"` //
-	Name   string   `json:"name,omitempty"`   //
-}
-
-// EditSensorTestTemplateResponseResponseSSIDsTestsConfig is the editSensorTestTemplateResponseResponseSSIDsTestsConfig definition
-type EditSensorTestTemplateResponseResponseSSIDsTestsConfig []string
-
-// EditSensorTestTemplateResponseResponseSSIDsThirdParty is the editSensorTestTemplateResponseResponseSSIDsThirdParty definition
-type EditSensorTestTemplateResponseResponseSSIDsThirdParty struct {
-	Selected bool `json:"selected,omitempty"` //
-}
-
-// EditSensorTestTemplateResponseResponseSchedule is the editSensorTestTemplateResponseResponseSchedule definition
-type EditSensorTestTemplateResponseResponseSchedule struct {
-	Frequency        EditSensorTestTemplateResponseResponseScheduleFrequency       `json:"frequency,omitempty"`        //
-	ScheduleRange    []EditSensorTestTemplateResponseResponseScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
-	StartTime        int                                                           `json:"startTime,omitempty"`        //
-	TestScheduleMode string                                                        `json:"testScheduleMode,omitempty"` //
-}
-
-// EditSensorTestTemplateResponseResponseScheduleFrequency is the editSensorTestTemplateResponseResponseScheduleFrequency definition
-type EditSensorTestTemplateResponseResponseScheduleFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// EditSensorTestTemplateResponseResponseScheduleScheduleRange is the editSensorTestTemplateResponseResponseScheduleScheduleRange definition
-type EditSensorTestTemplateResponseResponseScheduleScheduleRange struct {
-	Day       string                                                                 `json:"day,omitempty"`       //
-	TimeRange []EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
-}
-
-// EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange is the editSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange definition
-type EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRange struct {
-	Frequency EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
-	From      string                                                                        `json:"from,omitempty"`      //
-	To        string                                                                        `json:"to,omitempty"`        //
-}
-
-// EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency is the editSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency definition
-type EditSensorTestTemplateResponseResponseScheduleScheduleRangeTimeRangeFrequency struct {
-	Unit  string `json:"unit,omitempty"`  //
-	Value int    `json:"value,omitempty"` //
-}
-
-// EditSensorTestTemplateResponseResponseSensors is the editSensorTestTemplateResponseResponseSensors definition
-type EditSensorTestTemplateResponseResponseSensors []string
-
-// EditSensorTestTemplateResponseResponseWLANs is the editSensorTestTemplateResponseResponseWLANs definition
-type EditSensorTestTemplateResponseResponseWLANs []string
-
-// SensorsResponse is the sensorsResponse definition
-type SensorsResponse struct {
-	Response []SensorsResponseResponse `json:"response,omitempty"` //
-	Version  string                    `json:"version,omitempty"`  //
-}
-
-// SensorsResponseResponse is the sensorsResponseResponse definition
-type SensorsResponseResponse struct {
-	BackhaulType       string                           `json:"backhaulType,omitempty"`       //
-	EthernetMacAddress string                           `json:"ethernetMacAddress,omitempty"` //
-	IPAddress          string                           `json:"ipAddress,omitempty"`          //
-	IsLEDEnabled       bool                             `json:"isLEDEnabled,omitempty"`       //
-	LastSeen           int                              `json:"lastSeen,omitempty"`           //
-	Location           string                           `json:"location,omitempty"`           //
-	Name               string                           `json:"name,omitempty"`               //
-	RadioMacAddress    string                           `json:"radioMacAddress,omitempty"`    //
-	SerialNumber       string                           `json:"serialNumber,omitempty"`       //
-	SSHConfig          SensorsResponseResponseSSHConfig `json:"sshConfig,omitempty"`          //
-	Status             string                           `json:"status,omitempty"`             //
-	Type               string                           `json:"type,omitempty"`               //
-	Version            string                           `json:"version,omitempty"`            //
-}
-
-// SensorsResponseResponseSSHConfig is the sensorsResponseResponseSSHConfig definition
-type SensorsResponseResponseSSHConfig struct {
-	EnablePassword string `json:"enablePassword,omitempty"` //
-	SSHPassword    string `json:"sshPassword,omitempty"`    //
-	SSHState       string `json:"sshState,omitempty"`       //
-	SSHUserName    string `json:"sshUserName,omitempty"`    //
-}
-
-// CreateSensorTestTemplate createSensorTestTemplate
-/* Intent API to create a SENSOR test template with a new SSID, existing SSID, or both new and existing SSID
- */
-func (s *SensorsService) CreateSensorTestTemplate(createSensorTestTemplateRequest *CreateSensorTestTemplateRequest) (*CreateSensorTestTemplateResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/sensor"
-
-	response, err := s.client.R().
-		SetBody(createSensorTestTemplateRequest).
-		SetResult(&CreateSensorTestTemplateResponse{}).
-		SetError(&Error{}).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation createSensorTestTemplate")
-	}
-
-	result := response.Result().(*CreateSensorTestTemplateResponse)
-	return result, response, err
-}
-
-// DeleteSensorTestQueryParams defines the query parameters for this request
 type DeleteSensorTestQueryParams struct {
 	TemplateName string `url:"templateName,omitempty"` //
 }
-
-// DeleteSensorTest deleteSensorTest
-/* Intent API to delete an existing SENSOR test template
-@param templateName
-*/
-func (s *SensorsService) DeleteSensorTest(deleteSensorTestQueryParams *DeleteSensorTestQueryParams) (*DeleteSensorTestResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/sensor"
-
-	queryString, _ := query.Values(deleteSensorTestQueryParams)
-
-	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&DeleteSensorTestResponse{}).
-		SetError(&Error{}).
-		Delete(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation deleteSensorTest")
-	}
-
-	result := response.Result().(*DeleteSensorTestResponse)
-	return result, response, err
-}
-
-// DuplicateSensorTestTemplate duplicateSensorTestTemplate
-/* Intent API to duplicate an existing SENSOR test template
- */
-func (s *SensorsService) DuplicateSensorTestTemplate(duplicateSensorTestTemplateRequest *DuplicateSensorTestTemplateRequest) (*DuplicateSensorTestTemplateResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/sensorTestTemplate"
-
-	response, err := s.client.R().
-		SetBody(duplicateSensorTestTemplateRequest).
-		SetResult(&DuplicateSensorTestTemplateResponse{}).
-		SetError(&Error{}).
-		Put(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation duplicateSensorTestTemplate")
-	}
-
-	result := response.Result().(*DuplicateSensorTestTemplateResponse)
-	return result, response, err
-}
-
-// EditSensorTestTemplate editSensorTestTemplate
-/* Intent API to deploy, schedule, or edit and existing SENSOR test template
- */
-func (s *SensorsService) EditSensorTestTemplate(editSensorTestTemplateRequest *EditSensorTestTemplateRequest) (*EditSensorTestTemplateResponse, *resty.Response, error) {
-
-	path := "/dna/intent/api/v1/AssuranceScheduleSensorTest"
-
-	response, err := s.client.R().
-		SetBody(editSensorTestTemplateRequest).
-		SetResult(&EditSensorTestTemplateResponse{}).
-		SetError(&Error{}).
-		Put(path)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation editSensorTestTemplate")
-	}
-
-	result := response.Result().(*EditSensorTestTemplateResponse)
-	return result, response, err
-}
-
-// RunNowSensorTest runNowSensorTest
-/* Intent API to run a deployed SENSOR test
- */
-func (s *SensorsService) RunNowSensorTest(runNowSensorTestRequest *RunNowSensorTestRequest) (*resty.Response, error) {
-
-	path := "/dna/intent/api/v1/sensor-run-now"
-
-	response, err := s.client.R().
-		SetBody(runNowSensorTestRequest).
-		SetError(&Error{}).
-		Put(path)
-
-	if err != nil {
-		return nil, nil
-	}
-	return response, err
-}
-
-// SensorsQueryParams defines the query parameters for this request
 type SensorsQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //
 }
 
-// Sensors sensors
-/* Intent API to get a list of SENSOR devices
-@param siteID
-*/
-func (s *SensorsService) Sensors(sensorsQueryParams *SensorsQueryParams) (*SensorsResponse, *resty.Response, error) {
+type ResponseSensorsEditSensorTestTemplate struct {
+	Version  string                                         `json:"version,omitempty"`  // Version
+	Response *ResponseSensorsEditSensorTestTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseSensorsEditSensorTestTemplateResponse struct {
+	TypeID                 string                                                           `json:"_id,omitempty"`                    // Id
+	Name                   string                                                           `json:"name,omitempty"`                   // Name
+	Version                *float64                                                         `json:"version,omitempty"`                // Version
+	ModelVersion           *int                                                             `json:"modelVersion,omitempty"`           // Model Version
+	StartTime              *float64                                                         `json:"startTime,omitempty"`              // Start Time
+	LastModifiedTime       *float64                                                         `json:"lastModifiedTime,omitempty"`       // Last Modified Time
+	NumAssociatedSensor    *float64                                                         `json:"numAssociatedSensor,omitempty"`    // Num Associated Sensor
+	Location               *ResponseSensorsEditSensorTestTemplateResponseLocation           `json:"location,omitempty"`               // Location
+	SiteHierarchy          *ResponseSensorsEditSensorTestTemplateResponseSiteHierarchy      `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	Status                 string                                                           `json:"status,omitempty"`                 // Status
+	Connection             string                                                           `json:"connection,omitempty"`             // Connection
+	Frequency              *ResponseSensorsEditSensorTestTemplateResponseFrequency          `json:"frequency,omitempty"`              // Frequency
+	RssiThreshold          *int                                                             `json:"rssiThreshold,omitempty"`          // Rssi Threshold
+	NumNeighborApThreshold *int                                                             `json:"numNeighborAPThreshold,omitempty"` // Num Neighbor A P Threshold
+	ScheduleInDays         *float64                                                         `json:"scheduleInDays,omitempty"`         // Schedule In Days
+	WLANs                  *[]ResponseSensorsEditSensorTestTemplateResponseWLANs            `json:"wlans,omitempty"`                  // Wlans
+	SSIDs                  *[]ResponseSensorsEditSensorTestTemplateResponseSSIDs            `json:"ssids,omitempty"`                  //
+	TestScheduleMode       string                                                           `json:"testScheduleMode,omitempty"`       // Test Schedule Mode
+	ShowWlcUpgradeBanner   *bool                                                            `json:"showWlcUpgradeBanner,omitempty"`   // Show Wlc Upgrade Banner
+	RadioAsSensorRemoved   *bool                                                            `json:"radioAsSensorRemoved,omitempty"`   // Radio As Sensor Removed
+	EncryptionMode         string                                                           `json:"encryptionMode,omitempty"`         // Encryption Mode
+	RunNow                 string                                                           `json:"runNow,omitempty"`                 // Run Now
+	LocationInfoList       *[]ResponseSensorsEditSensorTestTemplateResponseLocationInfoList `json:"locationInfoList,omitempty"`       //
+	Schedule               *ResponseSensorsEditSensorTestTemplateResponseSchedule           `json:"schedule,omitempty"`               //
+	Tests                  *ResponseSensorsEditSensorTestTemplateResponseTests              `json:"tests,omitempty"`                  // Tests
+	Sensors                *[]ResponseSensorsEditSensorTestTemplateResponseSensors          `json:"sensors,omitempty"`                // Sensors
+	ApCoverage             *[]ResponseSensorsEditSensorTestTemplateResponseApCoverage       `json:"apCoverage,omitempty"`             //
+	TestDurationEstimate   *int                                                             `json:"testDurationEstimate,omitempty"`   // Test Duration Estimate
+	TestTemplate           *bool                                                            `json:"testTemplate,omitempty"`           // Test Template
+	LegacyTestSuite        *bool                                                            `json:"legacyTestSuite,omitempty"`        // Legacy Test Suite
+	TenantID               string                                                           `json:"tenantId,omitempty"`               // Tenant Id
+}
+type ResponseSensorsEditSensorTestTemplateResponseLocation interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSiteHierarchy interface{}
+type ResponseSensorsEditSensorTestTemplateResponseFrequency interface{}
+type ResponseSensorsEditSensorTestTemplateResponseWLANs interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDs struct {
+	Bands                     *ResponseSensorsEditSensorTestTemplateResponseSSIDsBands                     `json:"bands,omitempty"`                     // Bands
+	SSID                      string                                                                       `json:"ssid,omitempty"`                      // Ssid
+	ProfileName               string                                                                       `json:"profileName,omitempty"`               // Profile Name
+	AuthType                  string                                                                       `json:"authType,omitempty"`                  // Auth Type
+	AuthTypeRcvd              *ResponseSensorsEditSensorTestTemplateResponseSSIDsAuthTypeRcvd              `json:"authTypeRcvd,omitempty"`              // Auth Type Rcvd
+	Psk                       string                                                                       `json:"psk,omitempty"`                       // Psk
+	Username                  *ResponseSensorsEditSensorTestTemplateResponseSSIDsUsername                  `json:"username,omitempty"`                  // Username
+	Password                  *ResponseSensorsEditSensorTestTemplateResponseSSIDsPassword                  `json:"password,omitempty"`                  // Password
+	EapMethod                 *ResponseSensorsEditSensorTestTemplateResponseSSIDsEapMethod                 `json:"eapMethod,omitempty"`                 // Eap Method
+	Scep                      *bool                                                                        `json:"scep,omitempty"`                      // Scep
+	AuthProtocol              *ResponseSensorsEditSensorTestTemplateResponseSSIDsAuthProtocol              `json:"authProtocol,omitempty"`              // Auth Protocol
+	Certfilename              *ResponseSensorsEditSensorTestTemplateResponseSSIDsCertfilename              `json:"certfilename,omitempty"`              // Certfilename
+	Certxferprotocol          string                                                                       `json:"certxferprotocol,omitempty"`          // Certxferprotocol
+	Certstatus                string                                                                       `json:"certstatus,omitempty"`                // Certstatus
+	Certpassphrase            *ResponseSensorsEditSensorTestTemplateResponseSSIDsCertpassphrase            `json:"certpassphrase,omitempty"`            // Certpassphrase
+	Certdownloadurl           *ResponseSensorsEditSensorTestTemplateResponseSSIDsCertdownloadurl           `json:"certdownloadurl,omitempty"`           // Certdownloadurl
+	NumAps                    *float64                                                                     `json:"numAps,omitempty"`                    // Num Aps
+	NumSensors                *float64                                                                     `json:"numSensors,omitempty"`                // Num Sensors
+	Layer3WebAuthsecurity     *ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity     `json:"layer3webAuthsecurity,omitempty"`     // Layer3web Authsecurity
+	Layer3WebAuthuserName     *ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthuserName     `json:"layer3webAuthuserName,omitempty"`     // Layer3web Authuser Name
+	Layer3WebAuthpassword     *ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthpassword     `json:"layer3webAuthpassword,omitempty"`     // Layer3web Authpassword
+	ExtWebAuthVirtualIP       *ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP       `json:"extWebAuthVirtualIp,omitempty"`       // Ext Web Auth Virtual Ip
+	Layer3WebAuthEmailAddress *ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress `json:"layer3webAuthEmailAddress,omitempty"` // Layer3web Auth Email Address
+	QosPolicy                 string                                                                       `json:"qosPolicy,omitempty"`                 // Qos Policy
+	ExtWebAuth                *bool                                                                        `json:"extWebAuth,omitempty"`                // Ext Web Auth
+	WhiteList                 *bool                                                                        `json:"whiteList,omitempty"`                 // White List
+	ExtWebAuthPortal          *ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthPortal          `json:"extWebAuthPortal,omitempty"`          // Ext Web Auth Portal
+	ExtWebAuthAccessURL       *ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthAccessURL       `json:"extWebAuthAccessUrl,omitempty"`       // Ext Web Auth Access Url
+	ExtWebAuthHTMLTag         *[]ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag       `json:"extWebAuthHtmlTag,omitempty"`         // Ext Web Auth Html Tag
+	ThirdParty                *ResponseSensorsEditSensorTestTemplateResponseSSIDsThirdParty                `json:"thirdParty,omitempty"`                //
+	ID                        *float64                                                                     `json:"id,omitempty"`                        // Id
+	WLANID                    *float64                                                                     `json:"wlanId,omitempty"`                    // Wlan Id
+	Wlc                       *ResponseSensorsEditSensorTestTemplateResponseSSIDsWlc                       `json:"wlc,omitempty"`                       // Wlc
+	ValidFrom                 *float64                                                                     `json:"validFrom,omitempty"`                 // Valid From
+	ValidTo                   *float64                                                                     `json:"validTo,omitempty"`                   // Valid To
+	Status                    string                                                                       `json:"status,omitempty"`                    // Status
+	Tests                     *[]ResponseSensorsEditSensorTestTemplateResponseSSIDsTests                   `json:"tests,omitempty"`                     //
+}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsBands interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsAuthTypeRcvd interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsUsername interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsPassword interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsEapMethod interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsAuthProtocol interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsCertfilename interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsCertpassphrase interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsCertdownloadurl interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthuserName interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthpassword interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthPortal interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthAccessURL interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsThirdParty struct {
+	Selected *bool `json:"selected,omitempty"` // Selected
+}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsWlc interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsTests struct {
+	Name   string                                                           `json:"name,omitempty"`   // Name
+	Config *[]ResponseSensorsEditSensorTestTemplateResponseSSIDsTestsConfig `json:"config,omitempty"` // Config
+}
+type ResponseSensorsEditSensorTestTemplateResponseSSIDsTestsConfig interface{}
+type ResponseSensorsEditSensorTestTemplateResponseLocationInfoList struct {
+	LocationID     string                                                                         `json:"locationId,omitempty"`     // Location Id
+	LocationType   string                                                                         `json:"locationType,omitempty"`   // Location Type
+	AllSensors     *bool                                                                          `json:"allSensors,omitempty"`     // All Sensors
+	SiteHierarchy  string                                                                         `json:"siteHierarchy,omitempty"`  // Site Hierarchy
+	MacAddressList *[]ResponseSensorsEditSensorTestTemplateResponseLocationInfoListMacAddressList `json:"macAddressList,omitempty"` // Mac Address List
+}
+type ResponseSensorsEditSensorTestTemplateResponseLocationInfoListMacAddressList interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSchedule struct {
+	TestScheduleMode string                                                                `json:"testScheduleMode,omitempty"` // Test Schedule Mode
+	ScheduleRange    *[]ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
+	StartTime        *float64                                                              `json:"startTime,omitempty"`        // Start Time
+	Frequency        *ResponseSensorsEditSensorTestTemplateResponseScheduleFrequency       `json:"frequency,omitempty"`        //
+}
+type ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRange struct {
+	TimeRange *[]ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
+	Day       string                                                                         `json:"day,omitempty"`       // Day
+}
+type ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRangeTimeRange struct {
+	From      string                                                                                `json:"from,omitempty"`      // From
+	To        string                                                                                `json:"to,omitempty"`        // To
+	Frequency *ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
+}
+type ResponseSensorsEditSensorTestTemplateResponseScheduleScheduleRangeTimeRangeFrequency struct {
+	Value *int   `json:"value,omitempty"` // Value
+	Unit  string `json:"unit,omitempty"`  // Unit
+}
+type ResponseSensorsEditSensorTestTemplateResponseScheduleFrequency struct {
+	Value *int   `json:"value,omitempty"` // Value
+	Unit  string `json:"unit,omitempty"`  // Unit
+}
+type ResponseSensorsEditSensorTestTemplateResponseTests interface{}
+type ResponseSensorsEditSensorTestTemplateResponseSensors interface{}
+type ResponseSensorsEditSensorTestTemplateResponseApCoverage struct {
+	Bands             string `json:"bands,omitempty"`             // Bands
+	NumberOfApsToTest *int   `json:"numberOfApsToTest,omitempty"` // Number Of Aps To Test
+	RssiThreshold     *int   `json:"rssiThreshold,omitempty"`     // Rssi Threshold
+}
+type ResponseSensorsCreateSensorTestTemplate struct {
+	Version  string                                           `json:"version,omitempty"`  // Version
+	Response *ResponseSensorsCreateSensorTestTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseSensorsCreateSensorTestTemplateResponse struct {
+	TypeID                 string                                                             `json:"_id,omitempty"`                    // Id
+	Name                   string                                                             `json:"name,omitempty"`                   // Name
+	Version                *float64                                                           `json:"version,omitempty"`                // Version
+	ModelVersion           *int                                                               `json:"modelVersion,omitempty"`           // Model Version
+	StartTime              *float64                                                           `json:"startTime,omitempty"`              // Start Time
+	LastModifiedTime       *float64                                                           `json:"lastModifiedTime,omitempty"`       // Last Modified Time
+	NumAssociatedSensor    *float64                                                           `json:"numAssociatedSensor,omitempty"`    // Num Associated Sensor
+	Location               *ResponseSensorsCreateSensorTestTemplateResponseLocation           `json:"location,omitempty"`               // Location
+	SiteHierarchy          *ResponseSensorsCreateSensorTestTemplateResponseSiteHierarchy      `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	Status                 string                                                             `json:"status,omitempty"`                 // Status
+	Connection             string                                                             `json:"connection,omitempty"`             // Connection
+	Frequency              *ResponseSensorsCreateSensorTestTemplateResponseFrequency          `json:"frequency,omitempty"`              // Frequency
+	RssiThreshold          *int                                                               `json:"rssiThreshold,omitempty"`          // Rssi Threshold
+	NumNeighborApThreshold *int                                                               `json:"numNeighborAPThreshold,omitempty"` // Num Neighbor A P Threshold
+	ScheduleInDays         *float64                                                           `json:"scheduleInDays,omitempty"`         // Schedule In Days
+	WLANs                  *[]ResponseSensorsCreateSensorTestTemplateResponseWLANs            `json:"wlans,omitempty"`                  // Wlans
+	SSIDs                  *[]ResponseSensorsCreateSensorTestTemplateResponseSSIDs            `json:"ssids,omitempty"`                  //
+	TestScheduleMode       string                                                             `json:"testScheduleMode,omitempty"`       // Test Schedule Mode
+	ShowWlcUpgradeBanner   *bool                                                              `json:"showWlcUpgradeBanner,omitempty"`   // Show Wlc Upgrade Banner
+	RadioAsSensorRemoved   *bool                                                              `json:"radioAsSensorRemoved,omitempty"`   // Radio As Sensor Removed
+	EncryptionMode         string                                                             `json:"encryptionMode,omitempty"`         // Encryption Mode
+	RunNow                 string                                                             `json:"runNow,omitempty"`                 // Run Now
+	LocationInfoList       *[]ResponseSensorsCreateSensorTestTemplateResponseLocationInfoList `json:"locationInfoList,omitempty"`       // Location Info List
+	Schedule               *ResponseSensorsCreateSensorTestTemplateResponseSchedule           `json:"schedule,omitempty"`               // Schedule
+	Tests                  *ResponseSensorsCreateSensorTestTemplateResponseTests              `json:"tests,omitempty"`                  // Tests
+	Sensors                *[]ResponseSensorsCreateSensorTestTemplateResponseSensors          `json:"sensors,omitempty"`                // Sensors
+	ApCoverage             *[]ResponseSensorsCreateSensorTestTemplateResponseApCoverage       `json:"apCoverage,omitempty"`             //
+	TestDurationEstimate   *int                                                               `json:"testDurationEstimate,omitempty"`   // Test Duration Estimate
+	TestTemplate           *bool                                                              `json:"testTemplate,omitempty"`           // Test Template
+	LegacyTestSuite        *bool                                                              `json:"legacyTestSuite,omitempty"`        // Legacy Test Suite
+	TenantID               *ResponseSensorsCreateSensorTestTemplateResponseTenantID           `json:"tenantId,omitempty"`               // Tenant Id
+}
+type ResponseSensorsCreateSensorTestTemplateResponseLocation interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSiteHierarchy interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseFrequency interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseWLANs interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDs struct {
+	Bands                     *ResponseSensorsCreateSensorTestTemplateResponseSSIDsBands                     `json:"bands,omitempty"`                     // Bands
+	SSID                      string                                                                         `json:"ssid,omitempty"`                      // Ssid
+	ProfileName               string                                                                         `json:"profileName,omitempty"`               // Profile Name
+	AuthType                  string                                                                         `json:"authType,omitempty"`                  // Auth Type
+	AuthTypeRcvd              *ResponseSensorsCreateSensorTestTemplateResponseSSIDsAuthTypeRcvd              `json:"authTypeRcvd,omitempty"`              // Auth Type Rcvd
+	Psk                       string                                                                         `json:"psk,omitempty"`                       // Psk
+	Username                  *ResponseSensorsCreateSensorTestTemplateResponseSSIDsUsername                  `json:"username,omitempty"`                  // Username
+	Password                  *ResponseSensorsCreateSensorTestTemplateResponseSSIDsPassword                  `json:"password,omitempty"`                  // Password
+	EapMethod                 *ResponseSensorsCreateSensorTestTemplateResponseSSIDsEapMethod                 `json:"eapMethod,omitempty"`                 // Eap Method
+	Scep                      *bool                                                                          `json:"scep,omitempty"`                      // Scep
+	AuthProtocol              *ResponseSensorsCreateSensorTestTemplateResponseSSIDsAuthProtocol              `json:"authProtocol,omitempty"`              // Auth Protocol
+	Certfilename              *ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertfilename              `json:"certfilename,omitempty"`              // Certfilename
+	Certxferprotocol          string                                                                         `json:"certxferprotocol,omitempty"`          // Certxferprotocol
+	Certstatus                string                                                                         `json:"certstatus,omitempty"`                // Certstatus
+	Certpassphrase            *ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertpassphrase            `json:"certpassphrase,omitempty"`            // Certpassphrase
+	Certdownloadurl           *ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertdownloadurl           `json:"certdownloadurl,omitempty"`           // Certdownloadurl
+	NumAps                    *float64                                                                       `json:"numAps,omitempty"`                    // Num Aps
+	NumSensors                *float64                                                                       `json:"numSensors,omitempty"`                // Num Sensors
+	Layer3WebAuthsecurity     *ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity     `json:"layer3webAuthsecurity,omitempty"`     // Layer3web Authsecurity
+	Layer3WebAuthuserName     *ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthuserName     `json:"layer3webAuthuserName,omitempty"`     // Layer3web Authuser Name
+	Layer3WebAuthpassword     *ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthpassword     `json:"layer3webAuthpassword,omitempty"`     // Layer3web Authpassword
+	ExtWebAuthVirtualIP       *ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP       `json:"extWebAuthVirtualIp,omitempty"`       // Ext Web Auth Virtual Ip
+	Layer3WebAuthEmailAddress *ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress `json:"layer3webAuthEmailAddress,omitempty"` // Layer3web Auth Email Address
+	QosPolicy                 string                                                                         `json:"qosPolicy,omitempty"`                 // Qos Policy
+	ExtWebAuth                *bool                                                                          `json:"extWebAuth,omitempty"`                // Ext Web Auth
+	WhiteList                 *bool                                                                          `json:"whiteList,omitempty"`                 // White List
+	ExtWebAuthPortal          *ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthPortal          `json:"extWebAuthPortal,omitempty"`          // Ext Web Auth Portal
+	ExtWebAuthAccessURL       *ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthAccessURL       `json:"extWebAuthAccessUrl,omitempty"`       // Ext Web Auth Access Url
+	ExtWebAuthHTMLTag         *[]ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag       `json:"extWebAuthHtmlTag,omitempty"`         // Ext Web Auth Html Tag
+	ThirdParty                *ResponseSensorsCreateSensorTestTemplateResponseSSIDsThirdParty                `json:"thirdParty,omitempty"`                //
+	ID                        *float64                                                                       `json:"id,omitempty"`                        // Id
+	WLANID                    *float64                                                                       `json:"wlanId,omitempty"`                    // Wlan Id
+	Wlc                       *ResponseSensorsCreateSensorTestTemplateResponseSSIDsWlc                       `json:"wlc,omitempty"`                       // Wlc
+	ValidFrom                 *float64                                                                       `json:"validFrom,omitempty"`                 // Valid From
+	ValidTo                   *float64                                                                       `json:"validTo,omitempty"`                   // Valid To
+	Status                    string                                                                         `json:"status,omitempty"`                    // Status
+	Tests                     *[]ResponseSensorsCreateSensorTestTemplateResponseSSIDsTests                   `json:"tests,omitempty"`                     //
+}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsBands interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsAuthTypeRcvd interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsUsername interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsPassword interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsEapMethod interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsAuthProtocol interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertfilename interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertpassphrase interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsCertdownloadurl interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthuserName interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthpassword interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthPortal interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthAccessURL interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsThirdParty struct {
+	Selected *bool `json:"selected,omitempty"` // Selected
+}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsWlc interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsTests struct {
+	Name   string                                                             `json:"name,omitempty"`   // Name
+	Config *[]ResponseSensorsCreateSensorTestTemplateResponseSSIDsTestsConfig `json:"config,omitempty"` // Config
+}
+type ResponseSensorsCreateSensorTestTemplateResponseSSIDsTestsConfig interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseLocationInfoList interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSchedule interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseTests interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseSensors interface{}
+type ResponseSensorsCreateSensorTestTemplateResponseApCoverage struct {
+	Bands             string `json:"bands,omitempty"`             // Bands
+	NumberOfApsToTest *int   `json:"numberOfApsToTest,omitempty"` // Number Of Aps To Test
+	RssiThreshold     *int   `json:"rssiThreshold,omitempty"`     // Rssi Threshold
+}
+type ResponseSensorsCreateSensorTestTemplateResponseTenantID interface{}
+type ResponseSensorsDeleteSensorTest struct {
+	Version  string                                   `json:"version,omitempty"`  // Version
+	Response *ResponseSensorsDeleteSensorTestResponse `json:"response,omitempty"` //
+}
+type ResponseSensorsDeleteSensorTestResponse struct {
+	TemplateName string `json:"templateName,omitempty"` // Template Name
+	Status       string `json:"status,omitempty"`       // Status
+}
+type ResponseSensorsSensors struct {
+	Version  string                            `json:"version,omitempty"`  // Version
+	Response *[]ResponseSensorsSensorsResponse `json:"response,omitempty"` //
+}
+type ResponseSensorsSensorsResponse struct {
+	Name               string                                   `json:"name,omitempty"`               // Name
+	Status             string                                   `json:"status,omitempty"`             // Status
+	RadioMacAddress    string                                   `json:"radioMacAddress,omitempty"`    // Radio Mac Address
+	EthernetMacAddress string                                   `json:"ethernetMacAddress,omitempty"` // Ethernet Mac Address
+	Location           string                                   `json:"location,omitempty"`           // Location
+	BackhaulType       string                                   `json:"backhaulType,omitempty"`       // Backhaul Type
+	SerialNumber       string                                   `json:"serialNumber,omitempty"`       // Serial Number
+	IPAddress          string                                   `json:"ipAddress,omitempty"`          // Ip Address
+	Version            string                                   `json:"version,omitempty"`            // Version
+	LastSeen           *int                                     `json:"lastSeen,omitempty"`           // Last Seen
+	Type               string                                   `json:"type,omitempty"`               // Type
+	SSHConfig          *ResponseSensorsSensorsResponseSSHConfig `json:"sshConfig,omitempty"`          //
+	IsLEDEnabled       *bool                                    `json:"isLEDEnabled,omitempty"`       // Is L E D Enabled
+}
+type ResponseSensorsSensorsResponseSSHConfig struct {
+	SSHState       string `json:"sshState,omitempty"`       // Ssh State
+	SSHUserName    string `json:"sshUserName,omitempty"`    // Ssh User Name
+	SSHPassword    string `json:"sshPassword,omitempty"`    // Ssh Password
+	EnablePassword string `json:"enablePassword,omitempty"` // Enable Password
+}
+type ResponseSensorsDuplicateSensorTestTemplate struct {
+	Version  string                                              `json:"version,omitempty"`  // Version
+	Response *ResponseSensorsDuplicateSensorTestTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponse struct {
+	TypeID                 string                                                                `json:"_id,omitempty"`                    // Id
+	Name                   string                                                                `json:"name,omitempty"`                   // Name
+	Version                *float64                                                              `json:"version,omitempty"`                // Version
+	ModelVersion           *int                                                                  `json:"modelVersion,omitempty"`           // Model Version
+	StartTime              *float64                                                              `json:"startTime,omitempty"`              // Start Time
+	LastModifiedTime       *float64                                                              `json:"lastModifiedTime,omitempty"`       // Last Modified Time
+	NumAssociatedSensor    *float64                                                              `json:"numAssociatedSensor,omitempty"`    // Num Associated Sensor
+	Location               *ResponseSensorsDuplicateSensorTestTemplateResponseLocation           `json:"location,omitempty"`               // Location
+	SiteHierarchy          *ResponseSensorsDuplicateSensorTestTemplateResponseSiteHierarchy      `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	Status                 string                                                                `json:"status,omitempty"`                 // Status
+	Connection             string                                                                `json:"connection,omitempty"`             // Connection
+	Frequency              *ResponseSensorsDuplicateSensorTestTemplateResponseFrequency          `json:"frequency,omitempty"`              // Frequency
+	RssiThreshold          *int                                                                  `json:"rssiThreshold,omitempty"`          // Rssi Threshold
+	NumNeighborApThreshold *int                                                                  `json:"numNeighborAPThreshold,omitempty"` // Num Neighbor A P Threshold
+	ScheduleInDays         *float64                                                              `json:"scheduleInDays,omitempty"`         // Schedule In Days
+	WLANs                  *[]ResponseSensorsDuplicateSensorTestTemplateResponseWLANs            `json:"wlans,omitempty"`                  // Wlans
+	SSIDs                  *[]ResponseSensorsDuplicateSensorTestTemplateResponseSSIDs            `json:"ssids,omitempty"`                  //
+	TestScheduleMode       string                                                                `json:"testScheduleMode,omitempty"`       // Test Schedule Mode
+	ShowWlcUpgradeBanner   *bool                                                                 `json:"showWlcUpgradeBanner,omitempty"`   // Show Wlc Upgrade Banner
+	RadioAsSensorRemoved   *bool                                                                 `json:"radioAsSensorRemoved,omitempty"`   // Radio As Sensor Removed
+	EncryptionMode         string                                                                `json:"encryptionMode,omitempty"`         // Encryption Mode
+	RunNow                 string                                                                `json:"runNow,omitempty"`                 // Run Now
+	LocationInfoList       *[]ResponseSensorsDuplicateSensorTestTemplateResponseLocationInfoList `json:"locationInfoList,omitempty"`       //
+	Schedule               *ResponseSensorsDuplicateSensorTestTemplateResponseSchedule           `json:"schedule,omitempty"`               //
+	Tests                  *ResponseSensorsDuplicateSensorTestTemplateResponseTests              `json:"tests,omitempty"`                  // Tests
+	Sensors                *[]ResponseSensorsDuplicateSensorTestTemplateResponseSensors          `json:"sensors,omitempty"`                // Sensors
+	ApCoverage             *[]ResponseSensorsDuplicateSensorTestTemplateResponseApCoverage       `json:"apCoverage,omitempty"`             //
+	TestDurationEstimate   *int                                                                  `json:"testDurationEstimate,omitempty"`   // Test Duration Estimate
+	TestTemplate           *bool                                                                 `json:"testTemplate,omitempty"`           // Test Template
+	LegacyTestSuite        *bool                                                                 `json:"legacyTestSuite,omitempty"`        // Legacy Test Suite
+	TenantID               *ResponseSensorsDuplicateSensorTestTemplateResponseTenantID           `json:"tenantId,omitempty"`               // Tenant Id
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseLocation interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSiteHierarchy interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseFrequency interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseWLANs interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDs struct {
+	Bands                     *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsBands                     `json:"bands,omitempty"`                     // Bands
+	SSID                      string                                                                            `json:"ssid,omitempty"`                      // Ssid
+	ProfileName               string                                                                            `json:"profileName,omitempty"`               // Profile Name
+	AuthType                  string                                                                            `json:"authType,omitempty"`                  // Auth Type
+	AuthTypeRcvd              *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsAuthTypeRcvd              `json:"authTypeRcvd,omitempty"`              // Auth Type Rcvd
+	Psk                       string                                                                            `json:"psk,omitempty"`                       // Psk
+	Username                  *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsUsername                  `json:"username,omitempty"`                  // Username
+	Password                  *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsPassword                  `json:"password,omitempty"`                  // Password
+	EapMethod                 *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsEapMethod                 `json:"eapMethod,omitempty"`                 // Eap Method
+	Scep                      *bool                                                                             `json:"scep,omitempty"`                      // Scep
+	AuthProtocol              *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsAuthProtocol              `json:"authProtocol,omitempty"`              // Auth Protocol
+	Certfilename              *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertfilename              `json:"certfilename,omitempty"`              // Certfilename
+	Certxferprotocol          string                                                                            `json:"certxferprotocol,omitempty"`          // Certxferprotocol
+	Certstatus                string                                                                            `json:"certstatus,omitempty"`                // Certstatus
+	Certpassphrase            *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertpassphrase            `json:"certpassphrase,omitempty"`            // Certpassphrase
+	Certdownloadurl           *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertdownloadurl           `json:"certdownloadurl,omitempty"`           // Certdownloadurl
+	NumAps                    *float64                                                                          `json:"numAps,omitempty"`                    // Num Aps
+	NumSensors                *float64                                                                          `json:"numSensors,omitempty"`                // Num Sensors
+	Layer3WebAuthsecurity     *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity     `json:"layer3webAuthsecurity,omitempty"`     // Layer3web Authsecurity
+	Layer3WebAuthuserName     *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthuserName     `json:"layer3webAuthuserName,omitempty"`     // Layer3web Authuser Name
+	Layer3WebAuthpassword     *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthpassword     `json:"layer3webAuthpassword,omitempty"`     // Layer3web Authpassword
+	ExtWebAuthVirtualIP       *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP       `json:"extWebAuthVirtualIp,omitempty"`       // Ext Web Auth Virtual Ip
+	Layer3WebAuthEmailAddress *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress `json:"layer3webAuthEmailAddress,omitempty"` // Layer3web Auth Email Address
+	QosPolicy                 string                                                                            `json:"qosPolicy,omitempty"`                 // Qos Policy
+	ExtWebAuth                *bool                                                                             `json:"extWebAuth,omitempty"`                // Ext Web Auth
+	WhiteList                 *bool                                                                             `json:"whiteList,omitempty"`                 // White List
+	ExtWebAuthPortal          *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthPortal          `json:"extWebAuthPortal,omitempty"`          // Ext Web Auth Portal
+	ExtWebAuthAccessURL       *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthAccessURL       `json:"extWebAuthAccessUrl,omitempty"`       // Ext Web Auth Access Url
+	ExtWebAuthHTMLTag         *[]ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag       `json:"extWebAuthHtmlTag,omitempty"`         // Ext Web Auth Html Tag
+	ThirdParty                *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsThirdParty                `json:"thirdParty,omitempty"`                //
+	ID                        *float64                                                                          `json:"id,omitempty"`                        // Id
+	WLANID                    *float64                                                                          `json:"wlanId,omitempty"`                    // Wlan Id
+	Wlc                       *ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsWlc                       `json:"wlc,omitempty"`                       // Wlc
+	ValidFrom                 *float64                                                                          `json:"validFrom,omitempty"`                 // Valid From
+	ValidTo                   *float64                                                                          `json:"validTo,omitempty"`                   // Valid To
+	Status                    string                                                                            `json:"status,omitempty"`                    // Status
+	Tests                     *[]ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsTests                   `json:"tests,omitempty"`                     //
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsBands interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsAuthTypeRcvd interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsUsername interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsPassword interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsEapMethod interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsAuthProtocol interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertfilename interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertpassphrase interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsCertdownloadurl interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthsecurity interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthuserName interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthpassword interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthVirtualIP interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsLayer3WebAuthEmailAddress interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthPortal interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthAccessURL interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsExtWebAuthHTMLTag interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsThirdParty struct {
+	Selected *bool `json:"selected,omitempty"` // Selected
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsWlc interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsTests struct {
+	Name   string                                                                `json:"name,omitempty"`   // Name
+	Config *[]ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsTestsConfig `json:"config,omitempty"` // Config
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSSIDsTestsConfig interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseLocationInfoList struct {
+	LocationID     string                                                                              `json:"locationId,omitempty"`     // Location Id
+	LocationType   string                                                                              `json:"locationType,omitempty"`   // Location Type
+	AllSensors     *bool                                                                               `json:"allSensors,omitempty"`     // All Sensors
+	SiteHierarchy  string                                                                              `json:"siteHierarchy,omitempty"`  // Site Hierarchy
+	MacAddressList *[]ResponseSensorsDuplicateSensorTestTemplateResponseLocationInfoListMacAddressList `json:"macAddressList,omitempty"` // Mac Address List
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseLocationInfoListMacAddressList interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSchedule struct {
+	TestScheduleMode string                                                                     `json:"testScheduleMode,omitempty"` // Test Schedule Mode
+	ScheduleRange    *[]ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
+	StartTime        *float64                                                                   `json:"startTime,omitempty"`        // Start Time
+	Frequency        *ResponseSensorsDuplicateSensorTestTemplateResponseScheduleFrequency       `json:"frequency,omitempty"`        //
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRange struct {
+	TimeRange *[]ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
+	Day       string                                                                              `json:"day,omitempty"`       // Day
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRangeTimeRange struct {
+	From      string                                                                                     `json:"from,omitempty"`      // From
+	To        string                                                                                     `json:"to,omitempty"`        // To
+	Frequency *ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseScheduleScheduleRangeTimeRangeFrequency struct {
+	Value *int   `json:"value,omitempty"` // Value
+	Unit  string `json:"unit,omitempty"`  // Unit
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseScheduleFrequency struct {
+	Value *int   `json:"value,omitempty"` // Value
+	Unit  string `json:"unit,omitempty"`  // Unit
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseTests interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseSensors interface{}
+type ResponseSensorsDuplicateSensorTestTemplateResponseApCoverage struct {
+	Bands             string `json:"bands,omitempty"`             // Bands
+	NumberOfApsToTest *int   `json:"numberOfApsToTest,omitempty"` // Number Of Aps To Test
+	RssiThreshold     *int   `json:"rssiThreshold,omitempty"`     // Rssi Threshold
+}
+type ResponseSensorsDuplicateSensorTestTemplateResponseTenantID interface{}
+type RequestSensorsEditSensorTestTemplate struct {
+	TemplateName     string                                                  `json:"templateName,omitempty"`     // Template Name
+	LocationInfoList *[]RequestSensorsEditSensorTestTemplateLocationInfoList `json:"locationInfoList,omitempty"` //
+	Schedule         *RequestSensorsEditSensorTestTemplateSchedule           `json:"schedule,omitempty"`         //
+}
+type RequestSensorsEditSensorTestTemplateLocationInfoList struct {
+	LocationID    string `json:"locationId,omitempty"`    // Location Id
+	LocationType  string `json:"locationType,omitempty"`  // Location Type
+	SiteHierarchy string `json:"siteHierarchy,omitempty"` // Site Hierarchy
+	AllSensors    *bool  `json:"allSensors,omitempty"`    // All Sensors
+}
+type RequestSensorsEditSensorTestTemplateSchedule struct {
+	TestScheduleMode string                                                       `json:"testScheduleMode,omitempty"` // Test Schedule Mode
+	Frequency        *RequestSensorsEditSensorTestTemplateScheduleFrequency       `json:"frequency,omitempty"`        //
+	ScheduleRange    *[]RequestSensorsEditSensorTestTemplateScheduleScheduleRange `json:"scheduleRange,omitempty"`    //
+}
+type RequestSensorsEditSensorTestTemplateScheduleFrequency struct {
+	Unit  string `json:"unit,omitempty"`  // Unit
+	Value *int   `json:"value,omitempty"` // Value
+}
+type RequestSensorsEditSensorTestTemplateScheduleScheduleRange struct {
+	Day       string                                                                `json:"day,omitempty"`       // Day
+	TimeRange *[]RequestSensorsEditSensorTestTemplateScheduleScheduleRangeTimeRange `json:"timeRange,omitempty"` //
+}
+type RequestSensorsEditSensorTestTemplateScheduleScheduleRangeTimeRange struct {
+	From      string                                                                       `json:"from,omitempty"`      // From
+	To        string                                                                       `json:"to,omitempty"`        // To
+	Frequency *RequestSensorsEditSensorTestTemplateScheduleScheduleRangeTimeRangeFrequency `json:"frequency,omitempty"` //
+}
+type RequestSensorsEditSensorTestTemplateScheduleScheduleRangeTimeRangeFrequency struct {
+	Unit  string `json:"unit,omitempty"`  // Unit
+	Value *int   `json:"value,omitempty"` // Value
+}
+type RequestSensorsCreateSensorTestTemplate struct {
+	SSIDs        *[]RequestSensorsCreateSensorTestTemplateSSIDs      `json:"ssids,omitempty"`        //
+	Name         string                                              `json:"name,omitempty"`         // Name
+	Connection   string                                              `json:"connection,omitempty"`   // Connection
+	ApCoverage   *[]RequestSensorsCreateSensorTestTemplateApCoverage `json:"apCoverage,omitempty"`   //
+	ModelVersion *int                                                `json:"modelVersion,omitempty"` // Model Version
+}
+type RequestSensorsCreateSensorTestTemplateSSIDs struct {
+	SSID        string                                                 `json:"ssid,omitempty"`        // Ssid
+	ProfileName string                                                 `json:"profileName,omitempty"` // Profile Name
+	AuthType    string                                                 `json:"authType,omitempty"`    // Auth Type
+	ThirdParty  *RequestSensorsCreateSensorTestTemplateSSIDsThirdParty `json:"thirdParty,omitempty"`  //
+	Psk         string                                                 `json:"psk,omitempty"`         // Psk
+	Tests       *[]RequestSensorsCreateSensorTestTemplateSSIDsTests    `json:"tests,omitempty"`       //
+	Categories  []string                                               `json:"categories,omitempty"`  // Categories
+	QosPolicy   string                                                 `json:"qosPolicy,omitempty"`   // Qos Policy
+}
+type RequestSensorsCreateSensorTestTemplateSSIDsThirdParty struct {
+	Selected *bool `json:"selected,omitempty"` // Selected
+}
+type RequestSensorsCreateSensorTestTemplateSSIDsTests struct {
+	Name   string                                                    `json:"name,omitempty"`   // Name
+	Config *[]RequestSensorsCreateSensorTestTemplateSSIDsTestsConfig `json:"config,omitempty"` // Config
+}
+type RequestSensorsCreateSensorTestTemplateSSIDsTestsConfig interface{}
+type RequestSensorsCreateSensorTestTemplateApCoverage struct {
+	Bands             string `json:"bands,omitempty"`             // Bands
+	NumberOfApsToTest string `json:"numberOfApsToTest,omitempty"` // Number Of Aps To Test
+	RssiThreshold     string `json:"rssiThreshold,omitempty"`     // Rssi Threshold
+}
+type RequestSensorsRunNowSensorTest struct {
+	TemplateName string `json:"templateName,omitempty"` // Template Name
+}
+type RequestSensorsDuplicateSensorTestTemplate struct {
+	TemplateName    string `json:"templateName,omitempty"`    // Template Name
+	NewTemplateName string `json:"newTemplateName,omitempty"` // New Template Name
+}
 
+//Sensors Sensors - 71a1-2bb7-4569-9cc5
+/* Intent API to get a list of SENSOR devices
+
+
+@param SensorsQueryParams Filtering parameter
+*/
+func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*ResponseSensorsSensors, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sensor"
 
-	queryString, _ := query.Values(sensorsQueryParams)
+	queryString, _ := query.Values(SensorsQueryParams)
 
 	response, err := s.client.R().
-		SetQueryString(queryString.Encode()).
-		SetResult(&SensorsResponse{}).
-		SetError(&Error{}).
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorsSensors{}).
+		SetError(&Error).
 		Get(path)
 
 	if err != nil {
 		return nil, nil, err
+
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("Error with operation sensors")
+		return nil, response, fmt.Errorf("error with operation Sensors")
 	}
 
-	result := response.Result().(*SensorsResponse)
+	result := response.Result().(*ResponseSensorsSensors)
 	return result, response, err
+
+}
+
+//CreateSensorTestTemplate Create sensor test template - 08bd-8883-4a68-a2e6
+/* Intent API to create a SENSOR test template with a new SSID, existing SSID, or both new and existing SSID
+
+
+ */
+func (s *SensorsService) CreateSensorTestTemplate(requestSensorsCreateSensorTestTemplate *RequestSensorsCreateSensorTestTemplate) (*ResponseSensorsCreateSensorTestTemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sensor"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSensorsCreateSensorTestTemplate).
+		SetResult(&ResponseSensorsCreateSensorTestTemplate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateSensorTestTemplate")
+	}
+
+	result := response.Result().(*ResponseSensorsCreateSensorTestTemplate)
+	return result, response, err
+
+}
+
+//EditSensorTestTemplate Edit sensor test template - c085-eaf5-4f89-ba34
+/* Intent API to deploy, schedule, or edit and existing SENSOR test template
+
+
+ */
+func (s *SensorsService) EditSensorTestTemplate(requestSensorsEditSensorTestTemplate *RequestSensorsEditSensorTestTemplate) (*ResponseSensorsEditSensorTestTemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/AssuranceScheduleSensorTest"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSensorsEditSensorTestTemplate).
+		SetResult(&ResponseSensorsEditSensorTestTemplate{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation EditSensorTestTemplate")
+	}
+
+	result := response.Result().(*ResponseSensorsEditSensorTestTemplate)
+	return result, response, err
+
+}
+
+//RunNowSensorTest Run now sensor test - f1a7-a8e7-4cf9-9c8f
+/* Intent API to run a deployed SENSOR test
+
+
+ */
+func (s *SensorsService) RunNowSensorTest(requestSensorsRunNowSensorTest *RequestSensorsRunNowSensorTest) (*resty.Response, error) {
+	path := "/dna/intent/api/v1/sensor-run-now"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSensorsRunNowSensorTest).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation RunNowSensorTest")
+	}
+
+	return response, err
+
+}
+
+//DuplicateSensorTestTemplate Duplicate sensor test template - 85a2-8837-4909-9021
+/* Intent API to duplicate an existing SENSOR test template
+
+
+ */
+func (s *SensorsService) DuplicateSensorTestTemplate(requestSensorsDuplicateSensorTestTemplate *RequestSensorsDuplicateSensorTestTemplate) (*ResponseSensorsDuplicateSensorTestTemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sensorTestTemplate"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSensorsDuplicateSensorTestTemplate).
+		SetResult(&ResponseSensorsDuplicateSensorTestTemplate{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DuplicateSensorTestTemplate")
+	}
+
+	result := response.Result().(*ResponseSensorsDuplicateSensorTestTemplate)
+	return result, response, err
+
+}
+
+//DeleteSensorTest Delete sensor test - 5bbb-28ff-442a-825f
+/* Intent API to delete an existing SENSOR test template
+
+
+@param DeleteSensorTestQueryParams Filtering parameter
+*/
+func (s *SensorsService) DeleteSensorTest(DeleteSensorTestQueryParams *DeleteSensorTestQueryParams) (*ResponseSensorsDeleteSensorTest, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sensor"
+
+	queryString, _ := query.Values(DeleteSensorTestQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSensorsDeleteSensorTest{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DeleteSensorTest")
+	}
+
+	result := response.Result().(*ResponseSensorsDeleteSensorTest)
+	return result, response, err
+
 }

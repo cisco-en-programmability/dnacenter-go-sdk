@@ -24,7 +24,7 @@ func (s *AuthenticationService) AuthenticationAPI(username string, password stri
 	response, err := s.client.R().
 		SetBasicAuth(username, password).
 		SetResult(&AuthenticationAPIResponse{}).
-		SetError(&Error{}).
+		SetError(&Error).
 		Post(path)
 
 	if err != nil {
