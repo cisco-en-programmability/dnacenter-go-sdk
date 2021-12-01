@@ -199,7 +199,3 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 func (s *Client) RestyClient() *resty.Client {
 	return s.common.client
 }
-
-func (s *Client) RestyClient() *resty.Client {
-	return s.common.client
-}
