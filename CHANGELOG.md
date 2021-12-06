@@ -6,8 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.1.0] - 2021-12-06
-
+## [3.0.0] - 2021-12-06
 ### Added
 - Add ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct (change interface{})
 - Add ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct (change interface{})
@@ -22,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removes CreatesACloneOfTheGivenTemplateQueryParams
 
 ### Changed
+- Update to use DNAC 2.2.3.3
 - Changes type of Templates property from (pointer to struct) to (pointer to array of struct):
     + ResponseItemConfigurationTemplatesGetsAListOfProjects
     + ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject
@@ -44,11 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     + RequestConfigurationTemplatesCreateTemplateValidationErrors
     + RequestConfigurationTemplatesUpdateTemplateValidationErrors
 - Change GetProjectsDetails, GetTemplatesDetails response struct to ResponseConfigurationTemplatesGetProjectsDetails, ResponseConfigurationTemplatesGetTemplatesDetails (which adds response property with a list of previous struct definition)
-
-## [3.0.0] - 2021-11-30
-
-### Changed
-- Update to use DNAC 2.2.3.3
 
 ## [2.0.0] - 2021-11-30
 ### Added
@@ -118,6 +113,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.0...v0.1.1
 [1.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.1...v1.0.0
 [2.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v2.0.0
+[2.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v2.1.0
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
-[3.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.1.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.0...main
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...main
