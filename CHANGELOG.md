@@ -5,13 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+- Add ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct (change interface{})
+- Add ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct (change interface{})
+- Add DocumentDatabase and ProjectAssociated properties to ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate
+- Add ImportCertificateMultipartFields to ImportCertificate
+- Add ImportCertificateP12MultipartFields to ImportCertificateP12
+- Add VirtualNetworkType to RequestSdaAddVirtualNetworkWithScalableGroups and RequestSdaUpdateVirtualNetworkWithScalableGroups
+- Add ImportLocalSoftwareImageMultipartFields to ImportLocalSoftwareImage
+- Add BapiError to ResponseTaskGetBusinessAPIExecutionDetails
+
 ### Removed
 - Removes CreatesACloneOfTheGivenTemplateQueryParams
 
 ### Changed
-- Add ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct (change interface{})
-- Add ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct (change interface{})
-- Add DocumentDatabase and ProjectAssociated properties to ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate
 - Changes type of Templates property from (pointer to struct) to (pointer to array of struct):
     + ResponseItemConfigurationTemplatesGetsAListOfProjects
     + ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject
