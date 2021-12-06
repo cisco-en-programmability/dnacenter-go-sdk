@@ -22,7 +22,7 @@ func main() {
 		return
 	}
 
-	f, err := os.Open("/Users/wilhelm32/Downloads/dnac_2-2-3-3.zip")
+	f, err := os.Open("dnac_2-2-3-3.zip")
 	if err != nil {
 		fmt.Println(err)
 		return
