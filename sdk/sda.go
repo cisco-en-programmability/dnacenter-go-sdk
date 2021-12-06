@@ -726,9 +726,11 @@ type RequestSdaAddVirtualNetworkWithScalableGroups struct {
 	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned  global level
 	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
 	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group to be associated to virtual network
+	VirtualNetworkType    string   `json:"virtualNetworkType,omitempty"`    // Virtual Network Type
 }
 type RequestSdaUpdateVirtualNetworkWithScalableGroups struct {
 	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned global level
+	VirtualNetworkType    string   `json:"virtualNetworkType,omitempty"`    // Virtual Network Type
 	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
 	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group to be associated to virtual network
 }
