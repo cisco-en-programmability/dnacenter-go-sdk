@@ -1,4 +1,4 @@
-module github.com/cisco-en-programmability/dnacenter-go-sdk
+module github.com/cisco-en-programmability/dnacenter-go-sdk/v2
 
 go 1.17
 
