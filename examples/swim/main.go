@@ -27,7 +27,11 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	defer f.Close()
+	defer func() {
+		if err = f.Close(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 
 	var r io.Reader
 	r = f
