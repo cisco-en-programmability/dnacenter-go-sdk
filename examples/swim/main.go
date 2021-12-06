@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v3/sdk"
 )
 
 // Client is DNA Center API client
