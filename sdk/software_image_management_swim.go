@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"io"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -44,6 +45,11 @@ type ImportLocalSoftwareImageQueryParams struct {
 	ThirdPartyImageFamily     string `url:"thirdPartyImageFamily,omitempty"`     //Third Party image family
 	ThirdPartyApplicationType string `url:"thirdPartyApplicationType,omitempty"` //Third Party Application Type
 }
+
+type ImportLocalSoftwareImageMultipartFields struct {
+	File io.Reader
+}
+
 type ImportSoftwareImageViaURLQueryParams struct {
 	ScheduleAt     string `url:"scheduleAt,omitempty"`     //Epoch Time (The number of milli-seconds since January 1 1970 UTC) at which the distribution should be scheduled (Optional)
 	ScheduleDesc   string `url:"scheduleDesc,omitempty"`   //Custom Description (Optional)
@@ -402,19 +408,28 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 }
 
 //ImportLocalSoftwareImage Import local software image - 4dbe-3bc7-43a8-91bc
-/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
+/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2.
+Upload the file to the **file** form data field
 
 
 @param ImportLocalSoftwareImageQueryParams Filtering parameter
 */
-func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams) (*ResponseSoftwareImageManagementSwimImportLocalSoftwareImage, *resty.Response, error) {
+func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams, ImportLocalSoftwareImageMultipartFields *ImportLocalSoftwareImageMultipartFields) (*ResponseSoftwareImageManagementSwimImportLocalSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/source/file"
 
 	queryString, _ := query.Values(ImportLocalSoftwareImageQueryParams)
 
-	response, err := s.client.R().
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
 		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if ImportLocalSoftwareImageMultipartFields != nil {
+		clientRequest = clientRequest.SetMultipartField("file", "", "", ImportLocalSoftwareImageMultipartFields.File)
+	}
+
+	response, err = clientRequest.
 		SetQueryString(queryString.Encode()).
 		SetResult(&ResponseSoftwareImageManagementSwimImportLocalSoftwareImage{}).
 		SetError(&Error).
