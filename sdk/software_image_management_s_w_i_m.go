@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -220,6 +221,11 @@ type ImportLocalSoftwareImageQueryParams struct {
 	ThirdPartyApplicationType string `url:"thirdPartyApplicationType,omitempty"` // Third Party Application Type
 }
 
+type ImportLocalSoftwareImageMultipartFields struct {
+	File     io.Reader
+	FileName string
+}
+
 // ImportLocalSoftwareImage importLocalSoftwareImage
 /* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
 @param Content-Type Request body content type
@@ -228,13 +234,23 @@ type ImportLocalSoftwareImageQueryParams struct {
 @param thirdPartyImageFamily Third Party image family
 @param thirdPartyApplicationType Third Party Application Type
 */
-func (s *SoftwareImageManagementSWIMService) ImportLocalSoftwareImage(importLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams) (*ImportLocalSoftwareImageResponse, *resty.Response, error) {
+func (s *SoftwareImageManagementSWIMService) ImportLocalSoftwareImage(importLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams, ImportLocalSoftwareImageMultipartFields *ImportLocalSoftwareImageMultipartFields) (*ImportLocalSoftwareImageResponse, *resty.Response, error) {
 
 	path := "/dna/intent/api/v1/image/importation/source/file"
 
 	queryString, _ := query.Values(importLocalSoftwareImageQueryParams)
 
-	response, err := s.client.R().
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if ImportLocalSoftwareImageMultipartFields != nil {
+		clientRequest = clientRequest.SetFileReader("file", ImportLocalSoftwareImageMultipartFields.FileName, ImportLocalSoftwareImageMultipartFields.File)
+	}
+
+	response, err = clientRequest.
 		SetQueryString(queryString.Encode()).
 		SetResult(&ImportLocalSoftwareImageResponse{}).
 		SetError(&Error{}).
