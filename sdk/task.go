@@ -49,6 +49,7 @@ type ResponseTaskGetBusinessAPIExecutionDetails struct {
 	EndTimeEpoch      *int   `json:"endTimeEpoch,omitempty"`      // Execution End Time of the Business API (Epoch Milliseconds)
 	TimeDuration      *int   `json:"timeDuration,omitempty"`      // Time taken for Business API Execution (Milliseconds)
 	Status            string `json:"status,omitempty"`            // Execution status of the Business API
+	BapiError         string `json:"bapiError,omitempty"`         // Bapi Error
 	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
 }
 type ResponseTaskGetTasks struct {
