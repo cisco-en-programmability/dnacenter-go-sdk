@@ -47,7 +47,8 @@ type ImportLocalSoftwareImageQueryParams struct {
 }
 
 type ImportLocalSoftwareImageMultipartFields struct {
-	File io.Reader
+	File     io.Reader
+	FileName string
 }
 
 type ImportSoftwareImageViaURLQueryParams struct {
@@ -426,7 +427,7 @@ func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLoca
 		SetHeader("Accept", "application/json")
 
 	if ImportLocalSoftwareImageMultipartFields != nil {
-		clientRequest = clientRequest.SetMultipartField("file", "", "", ImportLocalSoftwareImageMultipartFields.File)
+		clientRequest = clientRequest.SetFileReader("file", ImportLocalSoftwareImageMultipartFields.FileName, ImportLocalSoftwareImageMultipartFields.File)
 	}
 
 	response, err = clientRequest.

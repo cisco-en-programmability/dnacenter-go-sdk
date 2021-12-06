@@ -16,8 +16,10 @@ type ImportCertificateQueryParams struct {
 }
 
 type ImportCertificateMultipartFields struct {
-	PkFileUpload   io.Reader
-	CertFileUpload io.Reader
+	PkFileUploadName   string
+	PkFileUpload       io.Reader
+	CertFileUploadName string
+	CertFileUpload     io.Reader
 }
 
 type ImportCertificateP12QueryParams struct {
@@ -27,7 +29,8 @@ type ImportCertificateP12QueryParams struct {
 }
 
 type ImportCertificateP12MultipartFields struct {
-	P12FileUpload io.Reader
+	P12FileUpload     io.Reader
+	P12FileUploadName string
 }
 
 type ResponseAuthenticationManagementImportCertificate struct {
@@ -66,8 +69,8 @@ func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQue
 		SetHeader("Accept", "application/json")
 
 	if ImportCertificateMultipartFields != nil {
-		clientRequest = clientRequest.SetMultipartField("pkFileUpload", "", "", ImportCertificateMultipartFields.PkFileUpload)
-		clientRequest = clientRequest.SetMultipartField("certFileUpload", "", "", ImportCertificateMultipartFields.CertFileUpload)
+		clientRequest = clientRequest.SetFileReader("pkFileUpload", ImportCertificateMultipartFields.PkFileUploadName, ImportCertificateMultipartFields.PkFileUpload)
+		clientRequest = clientRequest.SetFileReader("certFileUpload", ImportCertificateMultipartFields.CertFileUploadName, ImportCertificateMultipartFields.CertFileUpload)
 	}
 
 	response, err = clientRequest.
@@ -109,7 +112,7 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 		SetHeader("Accept", "application/json")
 
 	if ImportCertificateP12MultipartFields != nil {
-		clientRequest = clientRequest.SetMultipartField("pkFileUpload", "", "", ImportCertificateP12MultipartFields.P12FileUpload)
+		clientRequest = clientRequest.SetFileReader("pkFileUpload", ImportCertificateP12MultipartFields.P12FileUploadName, ImportCertificateP12MultipartFields.P12FileUpload)
 	}
 
 	response, err = clientRequest.
