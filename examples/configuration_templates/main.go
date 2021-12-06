@@ -87,9 +87,7 @@ func main() {
 	// /v2 endpoints can't test
 
 	fmt.Println("Creates a CLONE")
-	reqBodyClone := &dnac.CreatesACloneOfTheGivenTemplateQueryParams{}
-
-	respCreatesAClone, _, err := client.ConfigurationTemplates.CreatesACloneOfTheGivenTemplate("DMVPN for Cloud Router - System Default", templateId, projectID, reqBodyClone)
+	respCreatesAClone, _, err := client.ConfigurationTemplates.CreatesACloneOfTheGivenTemplate("DMVPN for Cloud Router - System Default", templateId, projectID)
 
 	if err != nil {
 		fmt.Println(err)

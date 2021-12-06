@@ -5,6 +5,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+- Removes CreatesACloneOfTheGivenTemplateQueryParams
+
+### Changed
+- Add ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct (change interface{})
+- Add ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct (change interface{})
+- Add DocumentDatabase and ProjectAssociated properties to ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate
+- Changes type of Templates property from (pointer to struct) to (pointer to array of struct):
+    + ResponseItemConfigurationTemplatesGetsAListOfProjects
+    + ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject
+    + ResponseConfigurationTemplatesGetProjectsDetailsResponse
+    + RequestConfigurationTemplatesCreateProject
+    + RequestConfigurationTemplatesUpdateProject
+- Changes type of ResourceParams property from (pointer to struct) to (pointer to array of struct):
+    + RequestConfigurationTemplatesDeployTemplateTargetInfo
+    + RequestConfigurationTemplatesPreviewTemplate
+    + RequestConfigurationTemplatesDeployTemplateV2TargetInfo
+- Change type of RollbackTemplateErrors TemplateErrors and properties from (pointer to struct) to (pointer to array of struct):
+    + ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesValidationErrors
+    + ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesValidationErrors
+    + ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors
+    + ResponseConfigurationTemplatesGetProjectsDetailsResponseTemplatesValidationErrors
+    + ResponseConfigurationTemplatesGetTemplatesDetailsResponseValidationErrors
+    + RequestConfigurationTemplatesCreateProjectTemplatesValidationErrors
+    + RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrors
+    + RequestItemConfigurationTemplatesImportsTheTemplatesProvidedValidationErrors
+    + RequestConfigurationTemplatesCreateTemplateValidationErrors
+    + RequestConfigurationTemplatesUpdateTemplateValidationErrors
+- Change GetProjectsDetails, GetTemplatesDetails response struct to ResponseConfigurationTemplatesGetProjectsDetails, ResponseConfigurationTemplatesGetTemplatesDetails (which adds response property with a list of previous struct definition)
 
 ## [3.0.0] - 2021-11-30
 
