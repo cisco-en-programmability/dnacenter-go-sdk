@@ -206,9 +206,7 @@ type RequestTagUpdatesTagMembership struct {
 type RequestTagUpdatesTagMembershipMemberToTags struct {
 	Key []string `json:"key,omitempty"` //
 }
-type RequestTagAddMembersToTheTag struct {
-	object string `json:"object,omitempty"` // object
-}
+type RequestTagAddMembersToTheTag map[string][]string
 
 //GetTag Get Tag - ee9a-ab01-487a-8896
 /* Returns the tags for given filter criteria
