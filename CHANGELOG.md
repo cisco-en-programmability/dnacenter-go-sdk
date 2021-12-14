@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.2] - 2021-12-14
+### Fixed
+- Fixes ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct
+- Fixes RequestTagAddMembersToTheTag struct
+
 ## [3.0.1] - 2021-12-13
 ### Fixed
 - Fix ImportCertificateP12
@@ -48,6 +53,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     + RequestConfigurationTemplatesCreateTemplateValidationErrors
     + RequestConfigurationTemplatesUpdateTemplateValidationErrors
 - Change GetProjectsDetails, GetTemplatesDetails response struct to ResponseConfigurationTemplatesGetProjectsDetails, ResponseConfigurationTemplatesGetTemplatesDetails (which adds response property with a list of previous struct definition)
+
+## [2.1.2] - 2021-12-14
+### Fixed
+- Fixes ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct
+- Fixes RequestTagAddMembersToTheTag struct
 
 ## [2.1.1] - 2021-12-13
 ### Fixed
@@ -135,6 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v2.0.0
 [2.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v2.1.0
 [2.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.0...v2.1.1
+[2.1.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.1...v2.1.2
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
 [3.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.0.1
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...main
+[3.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.1...v3.0.2
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...main
