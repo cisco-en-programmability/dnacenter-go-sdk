@@ -114,7 +114,7 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 		SetHeader("Accept", "application/json")
 
 	if ImportCertificateP12MultipartFields != nil {
-		clientRequest = clientRequest.SetFileReader("pkFileUpload", ImportCertificateP12MultipartFields.P12FileUploadName, ImportCertificateP12MultipartFields.P12FileUpload)
+		clientRequest = clientRequest.SetFileReader("p12FileUpload", ImportCertificateP12MultipartFields.P12FileUploadName, ImportCertificateP12MultipartFields.P12FileUpload)
 	}
 
 	response, err = clientRequest.
