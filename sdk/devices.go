@@ -710,7 +710,8 @@ type ResponseDevicesSyncDevices2Response struct {
 	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct {
-	object string `json:"object,omitempty"` // object
+	Response []string `json:"response,omitempty"` //
+	Version  string   `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateDeviceRole struct {
 	Response *ResponseDevicesUpdateDeviceRoleResponse `json:"response,omitempty"` //
