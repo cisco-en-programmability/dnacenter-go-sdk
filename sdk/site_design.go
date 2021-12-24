@@ -421,6 +421,8 @@ type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
 	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)', 'Day-N-Template(s)'.
 }
+type RequestSiteDesignCreateFloormap interface{}
+type RequestSiteDesignUpdateFloormap interface{}
 
 //GetDeviceDetailsByIP Get Device details by IP - 9cb2-cb3f-494a-824f
 /* Returns provisioning device information for the specified IP address.
@@ -718,12 +720,13 @@ func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *
 
 
  */
-func (s *SiteDesignService) CreateFloormap() (*resty.Response, error) {
+func (s *SiteDesignService) CreateFloormap(requestSiteDesignCreateFloormap *RequestSiteDesignCreateFloormap) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestSiteDesignCreateFloormap).
 		SetError(&Error).
 		Post(path)
 
@@ -783,13 +786,14 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 @param floorID floorId path parameter. Group ID of the floor to be modified
 
 */
-func (s *SiteDesignService) UpdateFloormap(floorID string) (*resty.Response, error) {
+func (s *SiteDesignService) UpdateFloormap(floorID string, requestSiteDesignUpdateFloormap *RequestSiteDesignUpdateFloormap) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
 	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetBody(requestSiteDesignUpdateFloormap).
 		SetError(&Error).
 		Put(path)
 

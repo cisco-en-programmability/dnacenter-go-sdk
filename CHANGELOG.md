@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2021-12-24
+
+### Added
+- Adds `RequestSiteDesignCreateFloormap` struct
+- Adds `RequestSiteDesignUpdateFloormap` struct
+- Adds `requestSiteDesignCreateFloormap` param to `CreateFloormap`
+- Adds `requestSiteDesignUpdateFloormap` param to `UpdateFloormap`
+
 ## [3.0.2] - 2021-12-14
 ### Fixed
 - Fixes ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct
@@ -149,4 +157,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
 [3.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.0.1
 [3.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.1...v3.0.2
+[3.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...v3.1.0
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...main
