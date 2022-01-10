@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.1] - 2022-01-10
+
+### Added
+- Adds `FabricName` property to `ResponseSdaGetSdaFabricInfo`
+- Adds `FabricType` property to `ResponseSdaGetSdaFabricInfo`
+- Adds `FabricDomainType` property to `ResponseSdaGetSdaFabricInfo`
+
+### Changed
+- `ExecutionStatusURL` changes to `ExecutionId` on `ResponseSdaGetSdaFabricInfo`
 ## [3.1.0] - 2021-12-24
 
 ### Added
@@ -158,4 +167,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.0.1
 [3.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.1...v3.0.2
 [3.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...v3.1.0
+[3.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.0...v3.1.1
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...main

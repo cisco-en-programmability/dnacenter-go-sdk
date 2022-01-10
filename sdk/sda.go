@@ -373,9 +373,12 @@ type ResponseSdaDeleteSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for api execution status
 }
 type ResponseSdaGetSdaFabricInfo struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Status           string `json:"status,omitempty"`           // Status
+	Description      string `json:"description,omitempty"`      // Description
+	ExecutionID      string `json:"executionId,omitempty"`      // Execution Id
+	FabricName       string `json:"fabricName,omitempty"`       // Fabric name
+	FabricType       string `json:"fabricType,omitempty"`       // Fabric type
+	FabricDomainType string `json:"fabricDomainType,omitempty"` // Fabric Domain type
 }
 type ResponseSdaAddFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of api. status=success when api competed successfully, status=failed when api failed and has not completed the user request, status=pending when api execution is still in progression and user needs to track its further progress via taskId field.
