@@ -419,11 +419,20 @@ type ResponseApplicationPolicyDeleteApplicationResponse struct {
 }
 type ResponseApplicationPolicyGetApplications []ResponseItemApplicationPolicyGetApplications // Array of ResponseApplicationPolicyGetApplications
 type ResponseItemApplicationPolicyGetApplications struct {
-	ID                  string                                                             `json:"id,omitempty"`                  // Id
-	Name                string                                                             `json:"name,omitempty"`                // Name
-	NetworkApplications *[]ResponseItemApplicationPolicyGetApplicationsNetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     *[]ResponseItemApplicationPolicyGetApplicationsNetworkIDentity     `json:"networkIdentity,omitempty"`     //
-	ApplicationSet      *ResponseItemApplicationPolicyGetApplicationsApplicationSet        `json:"applicationSet,omitempty"`      //
+	ID                        string                                                                   `json:"id,omitempty"`                        // Id
+	Name                      string                                                                   `json:"name,omitempty"`                      // Name
+	IndicativeNetworkIDentity *[]ResponseItemApplicationPolicyGetApplicationsIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
+	NetworkApplications       *[]ResponseItemApplicationPolicyGetApplicationsNetworkApplications       `json:"networkApplications,omitempty"`       //
+	NetworkIDentity           *[]ResponseItemApplicationPolicyGetApplicationsNetworkIDentity           `json:"networkIdentity,omitempty"`           //
+	ApplicationSet            *ResponseItemApplicationPolicyGetApplicationsApplicationSet              `json:"applicationSet,omitempty"`            //
+}
+type ResponseItemApplicationPolicyGetApplicationsIndicativeNetworkIDentity struct {
+	ID          string `json:"id,omitempty"`          // id
+	DisplayName string `json:"displayName,omitempty"` // displayName
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
+	Ports       string `json:"ports,omitempty"`       // ports
+	Protocol    string `json:"protocol,omitempty"`    // protocol
+	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
 }
 type ResponseItemApplicationPolicyGetApplicationsNetworkApplications struct {
 	ID                 string `json:"id,omitempty"`                 // Id
