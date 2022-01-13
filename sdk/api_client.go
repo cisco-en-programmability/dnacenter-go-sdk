@@ -89,8 +89,61 @@ var Error map[string]interface{}
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewClient() (*Client, error) {
 	var err error
-	var username = ""
-	var password = ""
+	c, err := NewClientNoAuth()
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.AuthClient()
+	if err != nil {
+		return c, err
+	}
+
+	return c, nil
+}
+
+//NewClientWithOptions is the client with options passed with parameters
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+	var err error
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify)
+	if err != nil {
+		return nil, err
+	}
+
+	return NewClient()
+}
+
+//SetOptions sets the environment variables
+func SetOptions(baseURL string, username string, password string, debug string, sslVerify string) error {
+	var err error
+	err = os.Setenv(DNAC_BASE_URL, baseURL)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_USERNAME, username)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_PASSWORD, password)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_DEBUG, debug)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_SSL_VERIFY, sslVerify)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+//NewClientNoAuth returns the client object without trying to authenticate
+func NewClientNoAuth() (*Client, error) {
+	var err error
+
 	client := resty.New()
 	c := &Client{}
 	c.common.client = client
@@ -104,21 +157,9 @@ func NewClient() (*Client, error) {
 	}
 
 	if os.Getenv(DNAC_BASE_URL) != "" {
-		client.SetHostURL(os.Getenv("DNAC_BASE_URL"))
+		client.SetHostURL(os.Getenv(DNAC_BASE_URL))
 	} else {
 		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
-	}
-
-	if os.Getenv(DNAC_USERNAME) != "" {
-		username = os.Getenv(DNAC_USERNAME)
-	} else {
-		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_USERNAME)
-	}
-
-	if os.Getenv(DNAC_PASSWORD) != "" {
-		password = os.Getenv(DNAC_PASSWORD)
-	} else {
-		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_PASSWORD)
 	}
 
 	if err != nil {
@@ -163,42 +204,54 @@ func NewClient() (*Client, error) {
 	c.Users = (*UsersService)(&c.common)
 	c.Wireless = (*WirelessService)(&c.common)
 
-	result, response, err := c.Authentication.AuthenticationAPI(username, password)
-	if err != nil {
-		return c, err
-	}
-	if response.StatusCode() > 399 {
-		error := response.Error()
-		return c, fmt.Errorf("%s", error)
-	}
-	client.SetHeader("X-Auth-Token", result.Token)
 	return c, nil
 }
 
-//NewClientWithOptions is the client with options passed with parameters
-func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+//NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
+func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
 	var err error
-	err = os.Setenv("DNAC_BASE_URL", baseURL)
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify)
 	if err != nil {
 		return nil, err
 	}
-	err = os.Setenv("DNAC_USERNAME", username)
-	if err != nil {
-		return nil, err
+
+	return NewClientNoAuth()
+}
+
+func (s *Client) AuthClient() error {
+	var err error
+
+	var username = ""
+	var password = ""
+
+	if os.Getenv(DNAC_USERNAME) != "" {
+		username = os.Getenv(DNAC_USERNAME)
+	} else {
+		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_USERNAME)
 	}
-	err = os.Setenv("DNAC_PASSWORD", password)
-	if err != nil {
-		return nil, err
+
+	if os.Getenv(DNAC_PASSWORD) != "" {
+		password = os.Getenv(DNAC_PASSWORD)
+	} else {
+		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_PASSWORD)
 	}
-	err = os.Setenv("DNAC_DEBUG", debug)
+
 	if err != nil {
-		return nil, err
+		return err
 	}
-	err = os.Setenv("DNAC_SSL_VERIFY", sslVerify)
+
+	result, response, err := s.Authentication.AuthenticationAPI(username, password)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return NewClient()
+	if response.StatusCode() > 399 {
+		error := response.Error()
+		return fmt.Errorf("%s", error)
+	}
+	s.common.client.SetHeader("X-Auth-Token", result.Token)
+
+	return nil
 }
 
 // RestyClient returns the resty.Client used by the sdk

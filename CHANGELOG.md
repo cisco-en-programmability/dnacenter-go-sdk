@@ -6,7 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.1.1] - 2021-12-24
+## [3.2.0] - 2022-01-13
+
+### Added
+- Adds "Separating Authentication" [#17](https://github.com/cisco-en-programmability/dnacenter-go-sdk/pull/17):
+    + Adds `SetOptions` function.
+    + Adds `NewClientNoAuth` function.
+    + Adds `NewClientWithOptionsNoAuth` function.
+    + Adds `AuthClient ` function.
+
+### Fixed
+- Fixes "Add ability to test via Resty httpmock" [#10](https://github.com/cisco-en-programmability/dnacenter-go-sdk/issues/10)
+- Changes type from int to float64 for GoodPercentage in topology.go
+
+## [3.1.1] - 2022-01-10
 
 ### Added
 - Adds `FabricName` property to `ResponseSdaGetSdaFabricInfo`
@@ -71,6 +84,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     + RequestConfigurationTemplatesUpdateTemplateValidationErrors
 - Change GetProjectsDetails, GetTemplatesDetails response struct to ResponseConfigurationTemplatesGetProjectsDetails, ResponseConfigurationTemplatesGetTemplatesDetails (which adds response property with a list of previous struct definition)
 
+## [2.2.0] - 2022-01-13
+
+### Added
+- Adds "Separating Authentication" [#17](https://github.com/cisco-en-programmability/dnacenter-go-sdk/pull/17):
+    + Adds `SetOptions` function.
+    + Adds `NewClientNoAuth` function.
+    + Adds `NewClientWithOptionsNoAuth` function.
+    + Adds `AuthClient ` function.
+
 ## [2.1.2] - 2021-12-14
 ### Fixed
 - Fixes ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct
@@ -92,6 +114,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update to use DNAC 2.2.2.3
 
+## [1.2.0] - 2022-01-13
+
+### Added
+- Adds "Separating Authentication" [#17](https://github.com/cisco-en-programmability/dnacenter-go-sdk/pull/17):
+    + Adds `SetOptions` function.
+    + Adds `NewClientNoAuth` function.
+    + Adds `NewClientWithOptionsNoAuth` function.
+    + Adds `AuthClient ` function.
 ## [1.1.0] - 2021-12-06
 
 ### Added
@@ -159,12 +189,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.0...v0.1.1
 [1.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.1...v1.0.0
 [1.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v1.1.0
+[1.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.1.0...v1.2.0
 [2.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v2.0.0
 [2.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v2.1.0
 [2.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.0...v2.1.1
 [2.1.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.1...v2.1.2
+[2.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.2...v2.2.0
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
 [3.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.0.1
 [3.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.1...v3.0.2
 [3.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...v3.1.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...main
+[3.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.0...v3.1.1
+[3.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.1...v3.2.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...main
