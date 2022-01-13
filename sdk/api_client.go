@@ -117,23 +117,23 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 //SetOptions sets the environment variables
 func SetOptions(baseURL string, username string, password string, debug string, sslVerify string) error {
 	var err error
-	err = os.Setenv("DNAC_BASE_URL", baseURL)
+	err = os.Setenv(DNAC_BASE_URL, baseURL)
 	if err != nil {
 		return err
 	}
-	err = os.Setenv("DNAC_USERNAME", username)
+	err = os.Setenv(DNAC_USERNAME, username)
 	if err != nil {
 		return err
 	}
-	err = os.Setenv("DNAC_PASSWORD", password)
+	err = os.Setenv(DNAC_PASSWORD, password)
 	if err != nil {
 		return err
 	}
-	err = os.Setenv("DNAC_DEBUG", debug)
+	err = os.Setenv(DNAC_DEBUG, debug)
 	if err != nil {
 		return err
 	}
-	err = os.Setenv("DNAC_SSL_VERIFY", sslVerify)
+	err = os.Setenv(DNAC_SSL_VERIFY, sslVerify)
 	if err != nil {
 		return err
 	}
@@ -157,7 +157,7 @@ func NewClientNoAuth() (*Client, error) {
 	}
 
 	if os.Getenv(DNAC_BASE_URL) != "" {
-		client.SetHostURL(os.Getenv("DNAC_BASE_URL"))
+		client.SetHostURL(os.Getenv(DNAC_BASE_URL))
 	} else {
 		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
 	}
