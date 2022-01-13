@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2022-01-13
+
+### Added
+- application_policy - Adds IndicativeNetworkIdentity property to ResponseItemApplicationPolicyGetApplications struct
+- application_policy - Adds ResponseItemApplicationPolicyGetApplicationsIndicativeNetworkIDentity struct
+
+### Fixed
+- Fix SetAuthToken to use DNAC X-Auth-Token
+- sites - Response of ResponseSitesGetSiteCount type changes from string to *int
+
 ## [3.2.0] - 2022-01-13
 
 ### Added
@@ -17,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fixes "Add ability to test via Resty httpmock" [#10](https://github.com/cisco-en-programmability/dnacenter-go-sdk/issues/10)
-- Changes type from int to float64 for GoodPercentage in topology.go
+- Changes type from int to float64 for ResponseTopologyGetOverallNetworkHealthHealthDistirubution.GoodPercentage in topology.go
 
 ## [3.1.1] - 2022-01-10
 
@@ -84,6 +94,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     + RequestConfigurationTemplatesUpdateTemplateValidationErrors
 - Change GetProjectsDetails, GetTemplatesDetails response struct to ResponseConfigurationTemplatesGetProjectsDetails, ResponseConfigurationTemplatesGetTemplatesDetails (which adds response property with a list of previous struct definition)
 
+## [2.2.1] - 2022-01-13
+
+### Fixed
+- Fix SetAuthToken to use DNAC X-Auth-Token
+
 ## [2.2.0] - 2022-01-13
 
 ### Added
@@ -113,6 +128,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Update to use DNAC 2.2.2.3
+
+## [1.2.1] - 2022-01-13
+
+### Fixed
+- Fix SetAuthToken to use DNAC X-Auth-Token
 
 ## [1.2.0] - 2022-01-13
 
@@ -190,15 +210,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v0.1.1...v1.0.0
 [1.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v1.1.0
 [1.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.1.0...v1.2.0
+[1.2.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.2.0...v1.2.1
 [2.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v1.0.0...v2.0.0
 [2.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v2.1.0
 [2.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.0...v2.1.1
 [2.1.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.1...v2.1.2
 [2.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.1.2...v2.2.0
+[2.2.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.2.0...v2.2.1
 [3.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v2.0.0...v3.0.0
 [3.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.0...v3.0.1
 [3.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.1...v3.0.2
 [3.1.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.0.2...v3.1.0
 [3.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.0...v3.1.1
 [3.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.1...v3.2.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...main
+[3.3.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...v3.3.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...main
