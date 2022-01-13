@@ -185,7 +185,7 @@ type ResponseSitesGetSiteHealthResponseApplicationHealthStatsDefaultHealthAppCou
 	Good *float64 `json:"good,omitempty"` // Good
 }
 type ResponseSitesGetSiteCount struct {
-	Response string `json:"response,omitempty"` // Response
+	Response *int   `json:"response,omitempty"` // Response
 	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseSitesUpdateSite struct {
