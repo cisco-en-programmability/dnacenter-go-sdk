@@ -12,7 +12,13 @@ import (
 
 var apiURL = "https://sandboxdnac.cisco.com"
 
-// Client manages communication with the Webex Teams API API v1.0.0
+const DNAC_BASE_URL = "DNAC_BASE_URL"
+const DNAC_USERNAME = "DNAC_USERNAME"
+const DNAC_PASSWORD = "DNAC_PASSWORD"
+const DNAC_DEBUG = "DNAC_DEBUG"
+const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
+
+// Client manages communication with the Cisco DNA Center API v2.1.2
 // In most cases there should be only one, shared, APIClient.
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
@@ -53,33 +59,93 @@ type service struct {
 
 // SetAuthToken defines the Authorization token sent in the request
 func (s *Client) SetAuthToken(accessToken string) {
-	s.common.client.SetAuthToken(accessToken)
+	s.SetAuthToken(accessToken)
+}
+
+// Error indicates an error from the invocation of a Cisco DNA Center API.
+type Error struct {
+	Error string `json:"error,omitempty"` // Error message
 }
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
 // optionally a custom http.Client to allow for advanced features such as caching.
 func NewClient() (*Client, error) {
-	var username = ""
-	var password = ""
+	var err error
+	c, err := NewClientNoAuth()
+	if err != nil {
+		return nil, err
+	}
+
+	err = c.AuthClient()
+	if err != nil {
+		return c, err
+	}
+
+	return c, nil
+}
+
+//NewClientWithOptions is the client with options passed with parameters
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+	var err error
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify)
+	if err != nil {
+		return nil, err
+	}
+
+	return NewClient()
+}
+
+//SetOptions sets the environment variables
+func SetOptions(baseURL string, username string, password string, debug string, sslVerify string) error {
+	var err error
+	err = os.Setenv(DNAC_BASE_URL, baseURL)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_USERNAME, username)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_PASSWORD, password)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_DEBUG, debug)
+	if err != nil {
+		return err
+	}
+	err = os.Setenv(DNAC_SSL_VERIFY, sslVerify)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+//NewClientNoAuth returns the client object without trying to authenticate
+func NewClientNoAuth() (*Client, error) {
+	var err error
+
 	client := resty.New()
 	c := &Client{}
 	c.common.client = client
 
-	if os.Getenv("DNAC_DEBUG") == "true" {
+	if os.Getenv(DNAC_DEBUG) == "true" {
 		client.SetDebug(true)
 	}
-	if os.Getenv("DNAC_SSL_VERIFY") == "false" {
+
+	if os.Getenv(DNAC_SSL_VERIFY) == "false" {
 		client.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 	}
 
-	if os.Getenv("DNAC_BASE_URL") != "" {
-		c.common.client.SetHostURL(os.Getenv("DNAC_BASE_URL"))
+	if os.Getenv(DNAC_BASE_URL) != "" {
+		client.SetHostURL(os.Getenv(DNAC_BASE_URL))
+	} else {
+		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
 	}
-	if os.Getenv("DNAC_USERNAME") != "" {
-		username = os.Getenv("DNAC_USERNAME")
-	}
-	if os.Getenv("DNAC_PASSWORD") != "" {
-		password = os.Getenv("DNAC_PASSWORD")
+
+	if err != nil {
+		return nil, err
 	}
 	// API Services
 	c.Authentication = (*AuthenticationService)(&c.common)
@@ -110,49 +176,57 @@ func NewClient() (*Client, error) {
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 
-	result, response, err := c.Authentication.AuthenticationAPI(username, password)
-	if err != nil {
-		return c, err
-	}
-	if response.StatusCode() > 399 {
-		error := response.Error()
-		return c, fmt.Errorf("%s", error)
-	}
-	client.SetHeader("X-Auth-Token", result.Token)
 	return c, nil
 }
 
-//NewClientWithOptions is the client with options passed with parameters
-func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+//NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
+func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
 	var err error
-	err = os.Setenv("DNAC_BASE_URL", baseURL)
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify)
 	if err != nil {
 		return nil, err
 	}
-	err = os.Setenv("DNAC_USERNAME", username)
-	if err != nil {
-		return nil, err
-	}
-	err = os.Setenv("DNAC_PASSWORD", password)
-	if err != nil {
-		return nil, err
-	}
-	err = os.Setenv("DNAC_DEBUG", debug)
-	if err != nil {
-		return nil, err
-	}
-	err = os.Setenv("DNAC_SSL_VERIFY", sslVerify)
-	if err != nil {
-		return nil, err
-	}
-	return NewClient()
+
+	return NewClientNoAuth()
 }
 
-// Error indicates an error from the invocation of a Cisco DNA Center API.
-type Error struct {
-	Error string `json:"error,omitempty"` // Error message
+func (s *Client) AuthClient() error {
+	var err error
+
+	var username = ""
+	var password = ""
+
+	if os.Getenv(DNAC_USERNAME) != "" {
+		username = os.Getenv(DNAC_USERNAME)
+	} else {
+		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_USERNAME)
+	}
+
+	if os.Getenv(DNAC_PASSWORD) != "" {
+		password = os.Getenv(DNAC_PASSWORD)
+	} else {
+		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_PASSWORD)
+	}
+
+	if err != nil {
+		return err
+	}
+
+	result, response, err := s.Authentication.AuthenticationAPI(username, password)
+	if err != nil {
+		return err
+	}
+	if response.StatusCode() > 399 {
+		error := response.Error()
+		return fmt.Errorf("%s", error)
+	}
+	s.common.client.SetHeader("X-Auth-Token", result.Token)
+
+	return nil
 }
 
+// RestyClient returns the resty.Client used by the sdk
 func (s *Client) RestyClient() *resty.Client {
 	return s.common.client
 }
