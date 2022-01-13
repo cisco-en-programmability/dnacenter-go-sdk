@@ -74,9 +74,9 @@ type service struct {
 	client *resty.Client
 }
 
-// SetAuthToken defines the Authorization token sent in the request
+// SetAuthToken defines the X-Auth-Token token sent in the request
 func (s *Client) SetAuthToken(accessToken string) {
-	s.SetAuthToken(accessToken)
+	s.common.client.SetHeader("X-Auth-Token", accessToken)
 }
 
 // Error indicates an error from the invocation of a Cisco DNA Center API.
@@ -243,7 +243,7 @@ func (s *Client) AuthClient() error {
 		error := response.Error()
 		return fmt.Errorf("%s", error)
 	}
-	s.common.client.SetHeader("X-Auth-Token", result.Token)
+	s.SetAuthToken(result.Token)
 
 	return nil
 }
