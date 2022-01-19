@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.1] - 2022-01-19
+
+### Added
+- Creation of a new `ResponseApplicationPolicyGetApplicationsResponse` structure.
+
+### Changed
+- On `Network Settings` changed the type of the following variables:
+    + `CreateTime`            from string to int
+    + `LastUpdateTime`        from string to int
+    + `TotalIPAddressCount`   from string to int 64
+    + `UsedIPAddressCount`    from string to int 64
+- Changed type of the following variables on `ResponseApplicationPolicyGetApplicationsResponseNetworkApplications` struct
+    + `Popularity`  from string to int
+    + `Rank`        from string to int
+- Changed type of the following variables on `ResponseApplicationPolicyGetApplicationsResponseNetworkIDentity` struct
+    + `LowertPort`    from string to int
+    + `UpperPort`     from string to int
+
 ## [3.3.0] - 2022-01-13
 
 ### Added
@@ -224,4 +242,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.1.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.0...v3.1.1
 [3.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.1...v3.2.0
 [3.3.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...v3.3.0
+[3.3.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...v3.3.1
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...main

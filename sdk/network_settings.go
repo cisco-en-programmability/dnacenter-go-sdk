@@ -138,10 +138,10 @@ type ResponseNetworkSettingsGetGlobalPoolResponse struct {
 	IPPoolName            string                                                     `json:"ipPoolName,omitempty"`            // Ip Pool Name
 	DhcpServerIPs         []string                                                   `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
 	Gateways              []string                                                   `json:"gateways,omitempty"`              // Gateways
-	CreateTime            string                                                     `json:"createTime,omitempty"`            // Create Time
-	LastUpdateTime        string                                                     `json:"lastUpdateTime,omitempty"`        // Last Update Time
-	TotalIPAddressCount   string                                                     `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
-	UsedIPAddressCount    string                                                     `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
+	CreateTime            *int                                                       `json:"createTime,omitempty"`            // Create Time
+	LastUpdateTime        *int                                                       `json:"lastUpdateTime,omitempty"`        // Last Update Time
+	TotalIPAddressCount   *int64                                                     `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
+	UsedIPAddressCount    *int64                                                     `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
 	ParentUUID            string                                                     `json:"parentUuid,omitempty"`            // Parent Uuid
 	Owner                 string                                                     `json:"owner,omitempty"`                 // Owner
 	Shared                string                                                     `json:"shared,omitempty"`                // Shared
@@ -225,8 +225,8 @@ type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools struct {
 	Gateways              []string                                                                  `json:"gateways,omitempty"`              // Gateways
 	CreateTime            *int                                                                      `json:"createTime,omitempty"`            // Create Time
 	LastUpdateTime        *int                                                                      `json:"lastUpdateTime,omitempty"`        // Last Update Time
-	TotalIPAddressCount   *int                                                                      `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
-	UsedIPAddressCount    *int                                                                      `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
+	TotalIPAddressCount   *int64                                                                    `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
+	UsedIPAddressCount    *int64                                                                    `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
 	ParentUUID            string                                                                    `json:"parentUuid,omitempty"`            // Parent Uuid
 	Owner                 string                                                                    `json:"owner,omitempty"`                 // Owner
 	Shared                *bool                                                                     `json:"shared,omitempty"`                // Shared
