@@ -280,11 +280,11 @@ type ResponseEventManagementCountOfNotifications struct {
 }
 type ResponseEventManagementGetEventSubscriptions []ResponseItemEventManagementGetEventSubscriptions // Array of ResponseEventManagementGetEventSubscriptions
 type ResponseItemEventManagementGetEventSubscriptions struct {
-	Version               string                                                                   `json:"version,omitempty"`               // Version
-	Name                  string                                                                   `json:"name,omitempty"`                  // Name
 	SubscriptionID        string                                                                   `json:"subscriptionId,omitempty"`        // Subscription Id
 	IsPrivate             string                                                                   `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                   `json:"tenantId,omitempty"`              // Tenant Id
+	Version               string                                                                   `json:"version,omitempty"`               // Version
+	Name                  string                                                                   `json:"name,omitempty"`                  // Name
 	Description           string                                                                   `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
 	Filter                *ResponseItemEventManagementGetEventSubscriptionsFilter                  `json:"filter,omitempty"`                //
