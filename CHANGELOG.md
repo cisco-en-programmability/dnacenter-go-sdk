@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+- Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
+
 ## [3.3.1] - 2022-01-19
 
 ### Added
