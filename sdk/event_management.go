@@ -533,13 +533,13 @@ type ResponseItemEventManagementGetEventArtifacts struct {
 	Domain                  string                                                        `json:"domain,omitempty"`                  // Domain
 	SubDomain               string                                                        `json:"subDomain,omitempty"`               // Sub Domain
 	Tags                    []string                                                      `json:"tags,omitempty"`                    // Tags
-	IsTemplateEnabled       string                                                        `json:"isTemplateEnabled,omitempty"`       // Is Template Enabled
+	IsTemplateEnabled       *bool                                                         `json:"isTemplateEnabled,omitempty"`       // Is Template Enabled
 	CiscoDnaEventLink       string                                                        `json:"ciscoDNAEventLink,omitempty"`       // Cisco D N A Event Link
 	Note                    string                                                        `json:"note,omitempty"`                    // Note
 	IsPrivate               *bool                                                         `json:"isPrivate,omitempty"`               // Is Private
 	EventPayload            *ResponseItemEventManagementGetEventArtifactsEventPayload     `json:"eventPayload,omitempty"`            //
 	EventTemplates          *[]ResponseItemEventManagementGetEventArtifactsEventTemplates `json:"eventTemplates,omitempty"`          // Event Templates
-	IsTenantAware           string                                                        `json:"isTenantAware,omitempty"`           // Is Tenant Aware
+	IsTenantAware           *bool                                                         `json:"isTenantAware,omitempty"`           // Is Tenant Aware
 	SupportedConnectorTypes []string                                                      `json:"supportedConnectorTypes,omitempty"` // Supported Connector Types
 	TenantID                string                                                        `json:"tenantId,omitempty"`                // Tenant Id
 }
