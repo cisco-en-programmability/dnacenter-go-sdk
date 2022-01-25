@@ -703,10 +703,11 @@ type RequestItemApplicationPolicyCreateApplicationSet struct {
 }
 type RequestApplicationPolicyCreateApplication []RequestItemApplicationPolicyCreateApplication // Array of RequestApplicationPolicyCreateApplication
 type RequestItemApplicationPolicyCreateApplication struct {
-	Name                string                                                              `json:"name,omitempty"`                // Name
-	NetworkApplications *[]RequestItemApplicationPolicyCreateApplicationNetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     *[]RequestItemApplicationPolicyCreateApplicationNetworkIDentity     `json:"networkIdentity,omitempty"`     //
-	ApplicationSet      *RequestItemApplicationPolicyCreateApplicationApplicationSet        `json:"applicationSet,omitempty"`      //
+	Name                      string                                                                    `json:"name,omitempty"`                      // Name
+	NetworkApplications       *[]RequestItemApplicationPolicyCreateApplicationNetworkApplications       `json:"networkApplications,omitempty"`       //
+	NetworkIDentity           *[]RequestItemApplicationPolicyCreateApplicationNetworkIDentity           `json:"networkIdentity,omitempty"`           //
+	ApplicationSet            *RequestItemApplicationPolicyCreateApplicationApplicationSet              `json:"applicationSet,omitempty"`            //
+	IndicativeNetworkIDentity *[]RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
 }
 type RequestItemApplicationPolicyCreateApplicationNetworkApplications struct {
 	AppProtocol        string `json:"appProtocol,omitempty"`        // App Protocol
@@ -735,6 +736,14 @@ type RequestItemApplicationPolicyCreateApplicationNetworkIDentity struct {
 }
 type RequestItemApplicationPolicyCreateApplicationApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
+}
+type RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity struct {
+	ID          string `json:"id,omitempty"`          // id
+	DisplayName string `json:"displayName,omitempty"` // displayName
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
+	Ports       string `json:"ports,omitempty"`       // ports
+	Protocol    string `json:"protocol,omitempty"`    // protocol
+	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
 }
 type RequestApplicationPolicyEditApplication []RequestItemApplicationPolicyEditApplication // Array of RequestApplicationPolicyEditApplication
 type RequestItemApplicationPolicyEditApplication struct {
