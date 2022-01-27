@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
+- Added IsDeletable to ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject of configutations_templates.
 
 ### Removed
 Removes ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping,
@@ -16,7 +17,8 @@ ResponseItemFabricWirelessAddWLCToFabricDomain.
 
 ### Changed
 
-Changes ResponseFabricWirelessAddSSIDToIPPoolMapping to prev ResponseItemFabricWirelessAddSSIDToIPPoolMapping, ResponseFabricWirelessUpdateSSIDToIPPoolMapping to prev ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseFabricWirelessAddWLCToFabricDomain to prev ResponseItemFabricWirelessAddWLCToFabricDomain.
+Changes ResponseFabricWirelessAddSSIDToIPPoolMapping to prev ResponseItemFabricWirelessAddSSIDToIPPoolMapping, ResponseFabricWirelessUpdateSSIDToIPPoolMapping to prev ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseFabricWirelessAddWLCToFabricDomain to prev ResponseItemFabricWirelessAddWLCToFabricDomain,
+ResponseDeviceOnboardingPnpGetDeviceList2 to prev ResponseItemDeviceOnboardingPnpGetDeviceList2.
 
 ## [3.3.1] - 2022-01-19
 
