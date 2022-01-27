@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
 - Added IsDeletable to ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject of configutations_templates.
+- Add ID to RequestDevicesSyncDevices2
 
 ### Removed
 - Removes ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping,ResponseItemFabricWirelessAddWLCToFabricDomain from fabric_wireless.
