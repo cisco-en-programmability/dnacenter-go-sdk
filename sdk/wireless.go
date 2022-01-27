@@ -189,14 +189,16 @@ type ResponseWirelessDeleteWirelessProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseWirelessApProvision []ResponseItemWirelessApProvision // Array of ResponseWirelessAPProvision
-type ResponseItemWirelessApProvision struct {
+
+// type ResponseWirelessApProvision []ResponseItemWirelessApProvision // Array of ResponseWirelessAPProvision
+type ResponseWirelessApProvision struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
 	Message      string `json:"message,omitempty"`      // Message
 }
-type ResponseWirelessCreateUpdateDynamicInterface []ResponseItemWirelessCreateUpdateDynamicInterface // Array of ResponseWirelessCreateUpdateDynamicInterface
-type ResponseItemWirelessCreateUpdateDynamicInterface struct {
+
+// type ResponseWirelessCreateUpdateDynamicInterface []ResponseItemWirelessCreateUpdateDynamicInterface // Array of ResponseWirelessCreateUpdateDynamicInterface
+type ResponseWirelessCreateUpdateDynamicInterface struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
 	Message      string `json:"message,omitempty"`      // Message

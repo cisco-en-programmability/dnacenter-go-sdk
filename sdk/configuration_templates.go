@@ -331,6 +331,7 @@ type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject struct {
 	LastUpdateTime *int                                                                    `json:"lastUpdateTime,omitempty"` // Update time of project
 	Name           string                                                                  `json:"name,omitempty"`           // Name of project
 	Templates      *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates `json:"templates,omitempty"`      // List of templates within the project
+	IsDeletable    *bool                                                                   `json:"isDeletable,omitempty"`    // Is deletable
 }
 type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTags struct {
 	ID   string `json:"id,omitempty"`   // UUID of tag

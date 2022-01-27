@@ -1394,6 +1394,7 @@ type RequestDevicesSyncDevices2 struct {
 	Type                    string                                               `json:"type,omitempty"`                    //
 	UpdateMgmtIPaddressList *[]RequestDevicesSyncDevices2UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
 	UserName                string                                               `json:"userName,omitempty"`                //
+	ID                      string                                               `json:"id,omitempty"`                      //
 }
 type RequestDevicesSyncDevices2UpdateMgmtIPaddressList struct {
 	ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` //

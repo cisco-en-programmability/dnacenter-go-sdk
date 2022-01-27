@@ -280,6 +280,9 @@ type ResponseEventManagementCountOfNotifications struct {
 }
 type ResponseEventManagementGetEventSubscriptions []ResponseItemEventManagementGetEventSubscriptions // Array of ResponseEventManagementGetEventSubscriptions
 type ResponseItemEventManagementGetEventSubscriptions struct {
+	SubscriptionID        string                                                                   `json:"subscriptionId,omitempty"`        // Subscription Id
+	IsPrivate             *bool                                                                    `json:"isPrivate,omitempty"`             // Is Private
+	TenantID              string                                                                   `json:"tenantId,omitempty"`              // Tenant Id
 	Version               string                                                                   `json:"version,omitempty"`               // Version
 	Name                  string                                                                   `json:"name,omitempty"`                  // Name
 	Description           string                                                                   `json:"description,omitempty"`           // Description
@@ -369,7 +372,7 @@ type ResponseItemEventManagementGetEmailEventSubscriptions struct {
 	Description           string                                                                        `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetEmailEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
 	Filter                *ResponseItemEventManagementGetEmailEventSubscriptionsFilter                  `json:"filter,omitempty"`                //
-	IsPrivate             string                                                                        `json:"isPrivate,omitempty"`             // Is Private
+	IsPrivate             *bool                                                                         `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                        `json:"tenantId,omitempty"`              // Tenant Id
 }
 type ResponseItemEventManagementGetEmailEventSubscriptionsSubscriptionEndpoints struct {
@@ -406,7 +409,7 @@ type ResponseItemEventManagementGetRestWebhookEventSubscriptions struct {
 	Description           string                                                                              `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetRestWebhookEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
 	Filter                *ResponseItemEventManagementGetRestWebhookEventSubscriptionsFilter                  `json:"filter,omitempty"`                //
-	IsPrivate             string                                                                              `json:"isPrivate,omitempty"`             // Is Private
+	IsPrivate             *bool                                                                               `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                              `json:"tenantId,omitempty"`              // Tenant Id
 }
 type ResponseItemEventManagementGetRestWebhookEventSubscriptionsSubscriptionEndpoints struct {
@@ -466,7 +469,7 @@ type ResponseItemEventManagementGetSyslogEventSubscriptions struct {
 	Description           string                                                                         `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
 	Filter                *ResponseItemEventManagementGetSyslogEventSubscriptionsFilter                  `json:"filter,omitempty"`                //
-	IsPrivate             string                                                                         `json:"isPrivate,omitempty"`             // Is Private
+	IsPrivate             *bool                                                                          `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                         `json:"tenantId,omitempty"`              // Tenant Id
 }
 type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints struct {
@@ -530,13 +533,13 @@ type ResponseItemEventManagementGetEventArtifacts struct {
 	Domain                  string                                                        `json:"domain,omitempty"`                  // Domain
 	SubDomain               string                                                        `json:"subDomain,omitempty"`               // Sub Domain
 	Tags                    []string                                                      `json:"tags,omitempty"`                    // Tags
-	IsTemplateEnabled       string                                                        `json:"isTemplateEnabled,omitempty"`       // Is Template Enabled
+	IsTemplateEnabled       *bool                                                         `json:"isTemplateEnabled,omitempty"`       // Is Template Enabled
 	CiscoDnaEventLink       string                                                        `json:"ciscoDNAEventLink,omitempty"`       // Cisco D N A Event Link
 	Note                    string                                                        `json:"note,omitempty"`                    // Note
-	IsPrivate               string                                                        `json:"isPrivate,omitempty"`               // Is Private
+	IsPrivate               *bool                                                         `json:"isPrivate,omitempty"`               // Is Private
 	EventPayload            *ResponseItemEventManagementGetEventArtifactsEventPayload     `json:"eventPayload,omitempty"`            //
 	EventTemplates          *[]ResponseItemEventManagementGetEventArtifactsEventTemplates `json:"eventTemplates,omitempty"`          // Event Templates
-	IsTenantAware           string                                                        `json:"isTenantAware,omitempty"`           // Is Tenant Aware
+	IsTenantAware           *bool                                                         `json:"isTenantAware,omitempty"`           // Is Tenant Aware
 	SupportedConnectorTypes []string                                                      `json:"supportedConnectorTypes,omitempty"` // Supported Connector Types
 	TenantID                string                                                        `json:"tenantId,omitempty"`                // Tenant Id
 }

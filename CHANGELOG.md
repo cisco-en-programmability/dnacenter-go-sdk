@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2022-01-27
+### Added
+- Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
+- Added IsDeletable to ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject of configutations_templates.
+- Add ID to RequestDevicesSyncDevices2
+
+### Removed
+- Removes ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping,ResponseItemFabricWirelessAddWLCToFabricDomain from fabric_wireless.
+- Removes ResponseItemWirelessApProvision, ResponseItemWirelessCreateUpdateDynamicInterface from wireless.
+
+### Changed
+
+- Changes ResponseFabricWirelessAddSSIDToIPPoolMapping to prev ResponseItemFabricWirelessAddSSIDToIPPoolMapping, ResponseFabricWirelessUpdateSSIDToIPPoolMapping to prev ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseFabricWirelessAddWLCToFabricDomain to prev ResponseItemFabricWirelessAddWLCToFabricDomain, ResponseDeviceOnboardingPnpGetDeviceList2 to prev ResponseItemDeviceOnboardingPnpGetDeviceList2.
+- Changes ResponseWirelessApProvision to prev ResponseItemWirelessApProvision.
+- Changes ResponseWirelessCreateUpdateDynamicInterface to prev ResponseItemWirelessCreateUpdateDynamicInterface.
+
 ## [3.3.1] - 2022-01-19
 
 ### Added
@@ -243,4 +259,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.1...v3.2.0
 [3.3.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...v3.3.0
 [3.3.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...v3.3.1
+[3.4.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.1...v3.4.0
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...main
