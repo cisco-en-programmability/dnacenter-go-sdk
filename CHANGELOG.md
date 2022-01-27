@@ -6,8 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## Added
+### Added
 - Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
+
+### Removed
+Removes ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping,
+ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping,
+ResponseItemFabricWirelessAddWLCToFabricDomain.
+
+### Changed
+
+Changes ResponseFabricWirelessAddSSIDToIPPoolMapping to prev ResponseItemFabricWirelessAddSSIDToIPPoolMapping, ResponseFabricWirelessUpdateSSIDToIPPoolMapping to prev ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping, ResponseFabricWirelessAddWLCToFabricDomain to prev ResponseItemFabricWirelessAddWLCToFabricDomain.
 
 ## [3.3.1] - 2022-01-19
 
