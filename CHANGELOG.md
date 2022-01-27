@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2022-01-27
 ### Added
 - Added SubscriptionID, IsPrivate, TenantID to ResponseItemEventManagementGetEventSubscriptions of event_management.
 - Added IsDeletable to ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject of configutations_templates.
@@ -258,4 +259,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.2.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.1.1...v3.2.0
 [3.3.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.2.0...v3.3.0
 [3.3.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...v3.3.1
+[3.4.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.1...v3.4.0
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...main
