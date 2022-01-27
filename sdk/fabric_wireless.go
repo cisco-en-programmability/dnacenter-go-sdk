@@ -17,14 +17,15 @@ type RemoveWLCFromFabricDomainQueryParams struct {
 	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device Management IP Address
 }
 
-type ResponseFabricWirelessAddSSIDToIPPoolMapping []ResponseItemFabricWirelessAddSSIDToIPPoolMapping // Array of ResponseFabricWirelessAddSSIDToIPPoolMapping
-type ResponseItemFabricWirelessAddSSIDToIPPoolMapping struct {
+// type ResponseFabricWirelessAddSSIDToIPPoolMapping []ResponseItemFabricWirelessAddSSIDToIPPoolMapping // Array of ResponseFabricWirelessAddSSIDToIPPoolMapping
+type ResponseFabricWirelessAddSSIDToIPPoolMapping struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
 }
-type ResponseFabricWirelessUpdateSSIDToIPPoolMapping []ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping // Array of ResponseFabricWirelessUpdateSSIDToIPPoolMapping
-type ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping struct {
+
+// type ResponseFabricWirelessUpdateSSIDToIPPoolMapping []ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping // Array of ResponseFabricWirelessUpdateSSIDToIPPoolMapping
+type ResponseFabricWirelessUpdateSSIDToIPPoolMapping struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
@@ -42,8 +43,9 @@ type ResponseFabricWirelessRemoveWLCFromFabricDomain struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseFabricWirelessAddWLCToFabricDomain []ResponseItemFabricWirelessAddWLCToFabricDomain // Array of ResponseFabricWirelessAddWLCToFabricDomain
-type ResponseItemFabricWirelessAddWLCToFabricDomain struct {
+
+// type ResponseFabricWirelessAddWLCToFabricDomain []ResponseItemFabricWirelessAddWLCToFabricDomain // Array of ResponseFabricWirelessAddWLCToFabricDomain
+type ResponseFabricWirelessAddWLCToFabricDomain struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
