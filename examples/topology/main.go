@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v3/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
 )
 
 // Client is DNA Center API client
@@ -47,7 +47,7 @@ func main() {
 	}
 
 	fmt.Println("Printing VLAN Information...")
-	vlanInformation, _, err := Client.Topology.GetVLANDetails()
+	vlanInformation, _, err := Client.Topology.GetVLanDetails()
 	if err != nil {
 		fmt.Println(err)
 	}
