@@ -10,20 +10,20 @@ import (
 type DeviceReplacementService service
 
 type ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams struct {
-	FaultyDeviceName              string   `url:"faultyDeviceName,omitempty"`              //Faulty Device Name
-	FaultyDevicePlatform          string   `url:"faultyDevicePlatform,omitempty"`          //Faulty Device Platform
-	ReplacementDevicePlatform     string   `url:"replacementDevicePlatform,omitempty"`     //Replacement Device Platform
-	FaultyDeviceSerialNumber      string   `url:"faultyDeviceSerialNumber,omitempty"`      //Faulty Device Serial Number
-	ReplacementDeviceSerialNumber string   `url:"replacementDeviceSerialNumber,omitempty"` //Replacement Device Serial Number
-	ReplacementStatus             []string `url:"replacementStatus,omitempty"`             //Device Replacement status [READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR, NETWORK_READINESS_REQUESTED, NETWORK_READINESS_FAILED]
-	Family                        []string `url:"family,omitempty"`                        //List of families[Routers, Switches and Hubs, AP]
-	SortBy                        string   `url:"sortBy,omitempty"`                        //SortBy this field. SortBy is mandatory when order is used.
-	SortOrder                     string   `url:"sortOrder,omitempty"`                     //Order on displayName[ASC,DESC]
-	Offset                        int      `url:"offset,omitempty"`                        //offset
-	Limit                         int      `url:"limit,omitempty"`                         //limit
+	FaultyDeviceName              string `url:"faultyDeviceName,omitempty"`              //Faulty Device Name
+	FaultyDevicePlatform          string `url:"faultyDevicePlatform,omitempty"`          //Faulty Device Platform
+	ReplacementDevicePlatform     string `url:"replacementDevicePlatform,omitempty"`     //Replacement Device Platform
+	FaultyDeviceSerialNumber      string `url:"faultyDeviceSerialNumber,omitempty"`      //Faulty Device Serial Number
+	ReplacementDeviceSerialNumber string `url:"replacementDeviceSerialNumber,omitempty"` //Replacement Device Serial Number
+	ReplacementStatus             string `url:"replacementStatus,omitempty"`             //Device Replacement status [READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR, NETWORK_READINESS_REQUESTED, NETWORK_READINESS_FAILED]
+	Family                        string `url:"family,omitempty"`                        //List of families[Routers, Switches and Hubs, AP]
+	SortBy                        string `url:"sortBy,omitempty"`                        //SortBy this field. SortBy is mandatory when order is used.
+	SortOrder                     string `url:"sortOrder,omitempty"`                     //Order on displayName[ASC,DESC]
+	Offset                        int    `url:"offset,omitempty"`                        //offset
+	Limit                         int    `url:"limit,omitempty"`                         //limit
 }
 type ReturnReplacementDevicesCountQueryParams struct {
-	ReplacementStatus []string `url:"replacementStatus,omitempty"` //Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
+	ReplacementStatus string `url:"replacementStatus,omitempty"` //Device Replacement status list[READY-FOR-REPLACEMENT, REPLACEMENT-IN-PROGRESS, REPLACEMENT-SCHEDULED, REPLACED, ERROR]
 }
 
 type ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails struct {

@@ -54,6 +54,7 @@ type Client struct {
 	HealthAndPerformance        *HealthAndPerformanceService
 	Itsm                        *ItsmService
 	Issues                      *IssuesService
+	LanAutomation               *LanAutomationService
 	Licenses                    *LicensesService
 	NetworkSettings             *NetworkSettingsService
 	PathTrace                   *PathTraceService
@@ -66,6 +67,7 @@ type Client struct {
 	SiteDesign                  *SiteDesignService
 	Sites                       *SitesService
 	SoftwareImageManagementSwim *SoftwareImageManagementSwimService
+	SystemSettings              *SystemSettingsService
 	Tag                         *TagService
 	Task                        *TaskService
 	Topology                    *TopologyService
@@ -186,6 +188,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.HealthAndPerformance = (*HealthAndPerformanceService)(&c.common)
 	c.Itsm = (*ItsmService)(&c.common)
 	c.Issues = (*IssuesService)(&c.common)
+	c.LanAutomation = (*LanAutomationService)(&c.common)
 	c.Licenses = (*LicensesService)(&c.common)
 	c.NetworkSettings = (*NetworkSettingsService)(&c.common)
 	c.PathTrace = (*PathTraceService)(&c.common)
@@ -198,6 +201,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.SiteDesign = (*SiteDesignService)(&c.common)
 	c.Sites = (*SitesService)(&c.common)
 	c.SoftwareImageManagementSwim = (*SoftwareImageManagementSwimService)(&c.common)
+	c.SystemSettings = (*SystemSettingsService)(&c.common)
 	c.Tag = (*TagService)(&c.common)
 	c.Task = (*TaskService)(&c.common)
 	c.Topology = (*TopologyService)(&c.common)

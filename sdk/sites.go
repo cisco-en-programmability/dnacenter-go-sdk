@@ -25,8 +25,8 @@ type GetSiteQueryParams struct {
 	Name   string `url:"name,omitempty"`   //siteNameHierarchy (ex: global/groupName)
 	SiteID string `url:"siteId,omitempty"` //Site id to which site details to retrieve.
 	Type   string `url:"type,omitempty"`   //type (ex: area, building, floor)
-	Offset string `url:"offset,omitempty"` //offset/starting row
-	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved
+	Offset string `url:"offset,omitempty"` //offset/starting row. The default value is 1
+	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
 }
 type GetSiteHealthQueryParams struct {
 	Timestamp string  `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
@@ -185,7 +185,7 @@ type ResponseSitesGetSiteHealthResponseApplicationHealthStatsDefaultHealthAppCou
 	Good *float64 `json:"good,omitempty"` // Good
 }
 type ResponseSitesGetSiteCount struct {
-	Response *int   `json:"response,omitempty"` // Response
+	Response string `json:"response,omitempty"` // Response
 	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseSitesUpdateSite struct {
@@ -238,7 +238,7 @@ type RequestSitesCreateSiteSiteBuilding struct {
 type RequestSitesCreateSiteSiteFloor struct {
 	Name       string   `json:"name,omitempty"`       // Name of the floor (eg:floor-1)
 	ParentName string   `json:"parentName,omitempty"` // Parent name of the floor to be created
-	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'.
+	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor (eg: Cubes And Walled Offices0
 	Width      *float64 `json:"width,omitempty"`      // Width of the floor (eg:100)
 	Length     *float64 `json:"length,omitempty"`     // Length of the floor (eg: 100)
 	Height     *float64 `json:"height,omitempty"`     // Height of the floor (eg: 15)
@@ -265,7 +265,7 @@ type RequestSitesUpdateSiteSiteBuilding struct {
 }
 type RequestSitesUpdateSiteSiteFloor struct {
 	Name    string   `json:"name,omitempty"`    // Name
-	RfModel string   `json:"rfModel,omitempty"` // Rf Model. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'
+	RfModel string   `json:"rfModel,omitempty"` // Rf Model
 	Width   *float64 `json:"width,omitempty"`   // Width
 	Length  *float64 `json:"length,omitempty"`  // Length
 	Height  *float64 `json:"height,omitempty"`  // Height

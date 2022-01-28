@@ -31,15 +31,15 @@ type GetDiscoveredDevicesByRangeQueryParams struct {
 	TaskID string `url:"taskId,omitempty"` //taskId
 }
 type GetNetworkDevicesFromDiscoveryQueryParams struct {
-	TaskID        string   `url:"taskId,omitempty"`        //taskId
-	SortBy        string   `url:"sortBy,omitempty"`        //sortBy
-	SortOrder     string   `url:"sortOrder,omitempty"`     //sortOrder
-	IPAddress     []string `url:"ipAddress,omitempty"`     //ipAddress
-	PingStatus    []string `url:"pingStatus,omitempty"`    //pingStatus
-	SNMPStatus    []string `url:"snmpStatus,omitempty"`    //snmpStatus
-	CliStatus     []string `url:"cliStatus,omitempty"`     //cliStatus
-	NetconfStatus []string `url:"netconfStatus,omitempty"` //netconfStatus
-	HTTPStatus    []string `url:"httpStatus,omitempty"`    //httpStatus
+	TaskID        string `url:"taskId,omitempty"`        //taskId
+	SortBy        string `url:"sortBy,omitempty"`        //sortBy
+	SortOrder     string `url:"sortOrder,omitempty"`     //sortOrder
+	IPAddress     string `url:"ipAddress,omitempty"`     //ipAddress
+	PingStatus    string `url:"pingStatus,omitempty"`    //pingStatus
+	SNMPStatus    string `url:"snmpStatus,omitempty"`    //snmpStatus
+	CliStatus     string `url:"cliStatus,omitempty"`     //cliStatus
+	NetconfStatus string `url:"netconfStatus,omitempty"` //netconfStatus
+	HTTPStatus    string `url:"httpStatus,omitempty"`    //httpStatus
 }
 type GetGlobalCredentialsQueryParams struct {
 	CredentialSubType string `url:"credentialSubType,omitempty"` //Credential type as CLI / SNMPV2_READ_COMMUNITY / SNMPV2_WRITE_COMMUNITY / SNMPV3 / HTTP_WRITE / HTTP_READ / NETCONF
