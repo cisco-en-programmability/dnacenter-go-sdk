@@ -189,15 +189,11 @@ type ResponseWirelessDeleteWirelessProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-
-// type ResponseWirelessApProvision []ResponseItemWirelessApProvision // Array of ResponseWirelessAPProvision
 type ResponseWirelessApProvision struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
 	Message      string `json:"message,omitempty"`      // Message
 }
-
-// type ResponseWirelessCreateUpdateDynamicInterface []ResponseItemWirelessCreateUpdateDynamicInterface // Array of ResponseWirelessCreateUpdateDynamicInterface
 type ResponseWirelessCreateUpdateDynamicInterface struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
@@ -1187,7 +1183,7 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 /* Delete RF profile(s)
 
 
-@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
+@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) non-custom RF profile cannot be deleted
 
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {
