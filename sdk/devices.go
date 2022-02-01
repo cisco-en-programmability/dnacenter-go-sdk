@@ -160,7 +160,7 @@ type ReturnsPoeInterfaceDetailsForTheDeviceQueryParams struct {
 type DeleteDeviceByIDQueryParams struct {
 	CleanConfig bool `url:"cleanConfig,omitempty"` //cleanConfig
 }
-type GetDeviceInterfaceVLansQueryParams struct {
+type GetDeviceInterfaceVLANsQueryParams struct {
 	InterfaceType string `url:"interfaceType,omitempty"` //Vlan assocaited with sub-interface
 }
 
@@ -1449,11 +1449,11 @@ type ResponseDevicesGetOrganizationListForMeraki struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
-type ResponseDevicesGetDeviceInterfaceVLans struct {
-	Response *[]ResponseDevicesGetDeviceInterfaceVLansResponse `json:"response,omitempty"` //
+type ResponseDevicesGetDeviceInterfaceVLANs struct {
+	Response *[]ResponseDevicesGetDeviceInterfaceVLANsResponse `json:"response,omitempty"` //
 	Version  string                                            `json:"version,omitempty"`  //
 }
-type ResponseDevicesGetDeviceInterfaceVLansResponse struct {
+type ResponseDevicesGetDeviceInterfaceVLANsResponse struct {
 	InterfaceName  string `json:"interfaceName,omitempty"`  //
 	IPAddress      string `json:"ipAddress,omitempty"`      //
 	Mask           *int   `json:"mask,omitempty"`           //
@@ -3118,14 +3118,14 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevic
 
 }
 
-//GetDeviceInterfaceVLans Get Device Interface VLANs - 288d-f949-4f2a-9746
+//GetDeviceInterfaceVLANs Get Device Interface VLANs - 288d-f949-4f2a-9746
 /* Returns Device Interface VLANs
 
 
 @param id id path parameter.
 @param GetDeviceInterfaceVLANsQueryParams Filtering parameter
 */
-func (s *DevicesService) GetDeviceInterfaceVLans(id string, GetDeviceInterfaceVLANsQueryParams *GetDeviceInterfaceVLansQueryParams) (*ResponseDevicesGetDeviceInterfaceVLans, *resty.Response, error) {
+func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVLANsQueryParams *GetDeviceInterfaceVLANsQueryParams) (*ResponseDevicesGetDeviceInterfaceVLANs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/vlan"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -3134,7 +3134,7 @@ func (s *DevicesService) GetDeviceInterfaceVLans(id string, GetDeviceInterfaceVL
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceInterfaceVLans{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceInterfaceVLANs{}).
 		SetError(&Error).
 		Get(path)
 
@@ -3144,10 +3144,10 @@ func (s *DevicesService) GetDeviceInterfaceVLans(id string, GetDeviceInterfaceVL
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceVLans")
+		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceVlans")
 	}
 
-	result := response.Result().(*ResponseDevicesGetDeviceInterfaceVLans)
+	result := response.Result().(*ResponseDevicesGetDeviceInterfaceVLANs)
 	return result, response, err
 
 }

@@ -8,7 +8,7 @@ import (
 
 type SystemSettingsService service
 
-type ResponseSystemSettingsCustomPromptSupportGETApI struct {
+type ResponseSystemSettingsCustomPromptSupportGetAPI struct {
 	Response *ResponseSystemSettingsCustomPromptSupportGETAPIResponse `json:"response,omitempty"` //
 	Version  string                                                   `json:"version,omitempty"`  // Version
 }
@@ -18,7 +18,7 @@ type ResponseSystemSettingsCustomPromptSupportGETAPIResponse struct {
 	DefaultUsernamePrompt string `json:"defaultUsernamePrompt,omitempty"` // Default Username
 	DefaultPasswordPrompt string `json:"defaultPasswordPrompt,omitempty"` // Default Password
 }
-type ResponseSystemSettingsCustomPromptPOSTApI struct {
+type ResponseSystemSettingsCustomPromptPostAPI struct {
 	Response *ResponseSystemSettingsCustomPromptPOSTAPIResponse `json:"response,omitempty"` //
 	Version  string                                             `json:"version,omitempty"`  // Version
 }
@@ -26,23 +26,23 @@ type ResponseSystemSettingsCustomPromptPOSTAPIResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
-type RequestSystemSettingsCustomPromptPOSTApI struct {
+type RequestSystemSettingsCustomPromptPostAPI struct {
 	UsernamePrompt string `json:"usernamePrompt,omitempty"` // Username Prompt
 	PasswordPrompt string `json:"passwordPrompt,omitempty"` // Password Prompt
 }
 
-//CustomPromptSupportGETApI Custom-prompt support GET API - 2aa8-f90e-4ebb-a629
+//CustomPromptSupportGetAPI Custom-prompt support GET API - 2aa8-f90e-4ebb-a629
 /* Returns supported custom prompts by DNAC
 
 
  */
-func (s *SystemSettingsService) CustomPromptSupportGETApI() (*ResponseSystemSettingsCustomPromptSupportGETApI, *resty.Response, error) {
+func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSettingsCustomPromptSupportGetAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSystemSettingsCustomPromptSupportGETApI{}).
+		SetResult(&ResponseSystemSettingsCustomPromptSupportGetAPI{}).
 		SetError(&Error).
 		Get(path)
 
@@ -52,27 +52,27 @@ func (s *SystemSettingsService) CustomPromptSupportGETApI() (*ResponseSystemSett
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CustomPromptSupportGETApI")
+		return nil, response, fmt.Errorf("error with operation CustomPromptSupportGetApi")
 	}
 
-	result := response.Result().(*ResponseSystemSettingsCustomPromptSupportGETApI)
+	result := response.Result().(*ResponseSystemSettingsCustomPromptSupportGetAPI)
 	return result, response, err
 
 }
 
-//CustomPromptPOSTApI Custom Prompt POST API - f4b9-1a8a-4718-aa97
+//CustomPromptPostAPI Custom Prompt POST API - f4b9-1a8a-4718-aa97
 /* Save custom prompt added by user in DNAC . API will always override the existing prompts. User should provide all the custom prompt in case of any update
 
 
  */
-func (s *SystemSettingsService) CustomPromptPOSTApI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPOSTApI) (*ResponseSystemSettingsCustomPromptPOSTApI, *resty.Response, error) {
+func (s *SystemSettingsService) CustomPromptPostAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPostAPI) (*ResponseSystemSettingsCustomPromptPostAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestSystemSettingsCustomPromptPOSTAPI).
-		SetResult(&ResponseSystemSettingsCustomPromptPOSTApI{}).
+		SetResult(&ResponseSystemSettingsCustomPromptPostAPI{}).
 		SetError(&Error).
 		Post(path)
 
@@ -82,10 +82,10 @@ func (s *SystemSettingsService) CustomPromptPOSTApI(requestSystemSettingsCustomP
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CustomPromptPOSTApI")
+		return nil, response, fmt.Errorf("error with operation CustomPromptPostApi")
 	}
 
-	result := response.Result().(*ResponseSystemSettingsCustomPromptPOSTApI)
+	result := response.Result().(*ResponseSystemSettingsCustomPromptPostAPI)
 	return result, response, err
 
 }

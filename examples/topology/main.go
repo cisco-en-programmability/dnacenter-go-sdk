@@ -47,7 +47,7 @@ func main() {
 	}
 
 	fmt.Println("Printing VLAN Information...")
-	vlanInformation, _, err := Client.Topology.GetVLanDetails()
+	vlanInformation, _, err := Client.Topology.GetVLANDetails()
 	if err != nil {
 		fmt.Println(err)
 	}

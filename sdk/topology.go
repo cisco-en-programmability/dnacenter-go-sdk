@@ -268,7 +268,7 @@ type ResponseTopologyGetSiteTopologyResponseSites struct {
 	Name               string `json:"name,omitempty"`               //
 	ParentID           string `json:"parentId,omitempty"`           //
 }
-type ResponseTopologyGetVLanDetails struct {
+type ResponseTopologyGetVLANDetails struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
@@ -430,18 +430,18 @@ func (s *TopologyService) GetSiteTopology() (*ResponseTopologyGetSiteTopology, *
 
 }
 
-//GetVLanDetails Get VLAN details - 6284-db46-49aa-8d31
+//GetVLANDetails Get VLAN details - 6284-db46-49aa-8d31
 /* Returns the list of VLAN names
 
 
  */
-func (s *TopologyService) GetVLanDetails() (*ResponseTopologyGetVLanDetails, *resty.Response, error) {
+func (s *TopologyService) GetVLANDetails() (*ResponseTopologyGetVLANDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/vlan/vlan-names"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseTopologyGetVLanDetails{}).
+		SetResult(&ResponseTopologyGetVLANDetails{}).
 		SetError(&Error).
 		Get(path)
 
@@ -451,10 +451,10 @@ func (s *TopologyService) GetVLanDetails() (*ResponseTopologyGetVLanDetails, *re
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetVLanDetails")
+		return nil, response, fmt.Errorf("error with operation GetVlanDetails")
 	}
 
-	result := response.Result().(*ResponseTopologyGetVLanDetails)
+	result := response.Result().(*ResponseTopologyGetVLANDetails)
 	return result, response, err
 
 }
