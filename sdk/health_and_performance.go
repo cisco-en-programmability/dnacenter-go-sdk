@@ -105,9 +105,7 @@ type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisLegendsNetwor
 type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisLegendsNetworkrxRate struct {
 	Units string `json:"units,omitempty"` // Units for network rx_rate
 }
-type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisData struct {
-	T1 []string `json:"t1,omitempty"` // Time in  'YYYY-MM-DDT00:00:00Z' format with values for legends
-}
+type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisData map[string][]string // Time in  'YYYY-MM-DDT00:00:00Z' format with values for legends
 
 //SystemHealthApI System Health API - 6085-eb1b-4f48-9740
 /* This API retrieves the latest system events
