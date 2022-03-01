@@ -442,7 +442,7 @@ func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLoca
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ImportLocalSoftwareImage")
+		return nil, response, fmt.Errorf("error with operation ImportLocalSoftwareImage => %v", response)
 	}
 
 	result := response.Result().(*ResponseSoftwareImageManagementSwimImportLocalSoftwareImage)

@@ -252,6 +252,11 @@ type ResponseWirelessProvisionProvisioningTasks struct {
 	Success []string `json:"success,omitempty"` // Success
 	Failed  []string `json:"failed,omitempty"`  // Failed
 }
+type ResponseWirelessPSKOverride struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
 type ResponseWirelessRetrieveRfProfiles struct {
 	Response *[]ResponseWirelessRetrieveRfProfilesResponse `json:"response,omitempty"` //
 }
@@ -866,26 +871,28 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 
 
  */
-func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*resty.Response, error) {
+func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*ResponseWirelessPSKOverride, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/psk-override"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessPSKOverride).
+		SetResult(&ResponseWirelessPSKOverride{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation PSKOverride")
+		return nil, response, fmt.Errorf("error with operation PSKOverride")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessPSKOverride)
+	return result, response, err
 
 }
 
