@@ -274,7 +274,7 @@ type ResponseNetworkSettingsGetServiceProviderDetailsResponse struct {
 	Namespace          string                                                           `json:"namespace,omitempty"`          // Namespace
 	Type               string                                                           `json:"type,omitempty"`               // Type
 	Key                string                                                           `json:"key,omitempty"`                // Key
-	Version            string                                                           `json:"version,omitempty"`            // Version
+	Version            *int                                                             `json:"version,omitempty"`            // Version
 	Value              *[]ResponseNetworkSettingsGetServiceProviderDetailsResponseValue `json:"value,omitempty"`              //
 	GroupUUID          string                                                           `json:"groupUuid,omitempty"`          // Group Uuid
 	InheritedGroupUUID string                                                           `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
