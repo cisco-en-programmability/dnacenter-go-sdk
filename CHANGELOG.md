@@ -6,6 +6,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.5.1] - 2022-03-1
+### Added
+- Added new struct `ResponseWirelessPSKOverride`  on `wireless`for `PSKOverride` response.
+### Changed
+- Changed type of following variable on `RequestTagUpdatesTagMembership` struct of `tag`.
+    + `MemberToTags` from []RequestTagUpdatesTagMembershipMemberToTags to map[string][]string.
+### Removed
+- Removed `RequestTagUpdatesTagMembershipMemberToTags` struct from `tag`.
+
+## [3.5.0] - 2022-02-17
+### Added
+- Added `Password`, `Port`, `Secure`, `Username`, `NetconfPort`, `ReadCommunity` and `WriteCommunity` to
+`ResponseDiscoveryGetGlobalCredentialsResponse` of `discovery`
+### Changed
+- Changed type of the following variable on `ResponseNetworkSettingsGetServiceProviderDetailsResponse` struct of `network-settings`
+    + `Version` from string to int
+- Changed type of the following variable on `ResponseSitesGetSiteResponse` struct of `sites`
+    + `AdditionalInfo` from string to `[]ResponseSitesGetSiteResponseAdditionalInfo`
+
 ## [3.4.1] - 2022-02-01
 ### Added
 - Added ImageInfo, ConfigInfo and Hostname to RequestDeviceOnboardingPnpClaimADeviceToASite struct in device_onboarding_pnp file.
@@ -268,4 +287,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.3.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.0...v3.3.1
 [3.4.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.3.1...v3.4.0
 [3.4.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.4.0...v3.4.1
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.4.1...main
+[3.5.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.4.1...v3.5.0
+[3.5.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.0...v3.5.1
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.1...main
