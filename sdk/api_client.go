@@ -204,6 +204,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.Topology = (*TopologyService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
 	c.Wireless = (*WirelessService)(&c.common)
+	c.CustomCall = (*CustomCallService)(&c.common)
 
 	return c, nil
 }

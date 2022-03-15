@@ -4,22 +4,29 @@ import (
 	"fmt"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 )
 
 type CustomCallService service
 
-func (s *CustomCallService) GetCustomCall(QueryParms *interface{}, ResourcePath string) (*resty.Response, error) {
+func (s *CustomCallService) GetCustomCall(ResourcePath string, QueryParms *map[string]string) (*resty.Response, error) {
 	path := ResourcePath
+	var response *resty.Response
+	var err error
 
-	queryString, _ := query.Values(QueryParms)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetsAListOfProjects{}).
-		SetError(&Error).
-		Get(path)
+	if QueryParms != nil {
+		response, err = s.client.R().
+			SetHeader("Content-Type", "application/json").
+			SetHeader("Accept", "application/json").
+			SetQueryParams(*QueryParms).
+			SetError(&Error).
+			Get(path)
+	} else {
+		response, err = s.client.R().
+			SetHeader("Content-Type", "application/json").
+			SetHeader("Accept", "application/json").
+			SetError(&Error).
+			Get(path)
+	}
 
 	if err != nil {
 		return nil, err
