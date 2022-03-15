@@ -12,22 +12,14 @@ func (s *CustomCallService) GetCustomCall(ResourcePath string, QueryParms *map[s
 	path := ResourcePath
 	var response *resty.Response
 	var err error
-
+	request := s.client.R()
+	request.SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error)
 	if QueryParms != nil {
-		response, err = s.client.R().
-			SetHeader("Content-Type", "application/json").
-			SetHeader("Accept", "application/json").
-			SetQueryParams(*QueryParms).
-			SetError(&Error).
-			Get(path)
-	} else {
-		response, err = s.client.R().
-			SetHeader("Content-Type", "application/json").
-			SetHeader("Accept", "application/json").
-			SetError(&Error).
-			Get(path)
+		request.SetQueryParams(*QueryParms)
 	}
-
+	response, err = request.Get(path)
 	if err != nil {
 		return nil, err
 

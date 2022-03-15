@@ -20,7 +20,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("Getting device count")
+	fmt.Println("Getting task")
 	resourcePath := "/api/v1/image/task"
 	query := make(map[string]string)
 	query["taskUuid"] = "2bdff4eb-a05e-494e-9715-6ebb3d874ad2"
