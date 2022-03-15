@@ -71,6 +71,7 @@ type Client struct {
 	Topology                    *TopologyService
 	Users                       *UsersService
 	Wireless                    *WirelessService
+	CustomCall                  *CustomCallService
 }
 
 type service struct {
