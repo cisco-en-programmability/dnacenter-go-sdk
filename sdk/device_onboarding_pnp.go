@@ -3284,24 +3284,24 @@ type RequestDeviceOnboardingPnpResetDeviceDeviceResetListConfigListConfigParamet
 	Value string `json:"value,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASite struct {
-	DeviceID   string                                                   `json:"deviceId,omitempty"`   //
-	SiteID     string                                                   `json:"siteId,omitempty"`     //
-	Type       string                                                   `json:"type,omitempty"`       //
-	ImageInfo  *RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo,omitempty"`  //
-	ConfigInfo *RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo,omitempty"` //
-	Hostname   string                                                   `json:"hostname,omitempty"`   //
+	DeviceID   string                                                  `json:"deviceId,omitempty"` //
+	SiteID     string                                                  `json:"siteId,omitempty"`   //
+	Type       string                                                  `json:"type,omitempty"`     //
+	ImageInfo  RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`          //
+	ConfigInfo RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`         //
+	Hostname   string                                                  `json:"hostname,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
-	ImageID string `json:"imageId,omitempty"` //
-	Skip    *bool  `json:"skip,omitempty"`    //
+	ImageID string `json:"imageId"`
+	Skip    bool   `json:"skip"                ` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
-	ConfigID         string                                                                     `json:"configId,omitempty"`         //
-	ConfigParameters *[]RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters,omitempty"` //
+	ConfigID         string                                                                    `json:"configId"`         //
+	ConfigParameters []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters struct {
-	Key   string `json:"key,omitempty"`   //
-	Value string `json:"value,omitempty"` //
+	Key   string `json:"key"`   //
+	Value string `json:"value"` //
 }
 type RequestDeviceOnboardingPnpPreviewConfig struct {
 	DeviceID string `json:"deviceId,omitempty"` //
