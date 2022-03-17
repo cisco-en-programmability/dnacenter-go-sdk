@@ -316,4 +316,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.5.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.0...v3.5.1
 [3.6.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.1...v3.6.0
 [3.6.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.0...v3.6.1
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...main
+[3.6.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...v3.6.2
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.2...main
