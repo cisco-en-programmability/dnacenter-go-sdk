@@ -2370,7 +2370,7 @@ type RequestConfigurationTemplatesDeployTemplateV2TargetInfo struct {
 	Type                string                                                                   `json:"type,omitempty"`                // Target type of device
 	VersionedTemplateID string                                                                   `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
-type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams interface{}
+type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams map[string]interface{}
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams interface{}
 
 //GetsAListOfProjects Gets a list of projects - 4f80-08c2-400b-98ee
