@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [3.6.2] - 2022-03-17
+### Changed
+- Changed `ResponseDevicesGetDeviceBySerialNumberResponse.LastUpdateTime` from `string` to `*int`
+- Changed `RequestConfigurationTemplatesDeployTemplateTargetInfoParams` from `interface` to `map[string]interface{}`
 ## [3.6.1] - 2022-03-16
 ### Removed
 - Removed from `RequestDeviceOnboardingPnpClaimADeviceToASite` following pointers.
@@ -312,4 +316,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.5.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.0...v3.5.1
 [3.6.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.5.1...v3.6.0
 [3.6.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.0...v3.6.1
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...main
+[3.6.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...v3.6.2
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.2...main
