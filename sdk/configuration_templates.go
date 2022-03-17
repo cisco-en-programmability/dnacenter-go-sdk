@@ -2337,7 +2337,7 @@ type RequestConfigurationTemplatesDeployTemplateTargetInfo struct {
 	Type                string                                                                 `json:"type,omitempty"`                // Target type of device
 	VersionedTemplateID string                                                                 `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
-type RequestConfigurationTemplatesDeployTemplateTargetInfoParams interface{}
+type RequestConfigurationTemplatesDeployTemplateTargetInfoParams map[string]interface{}
 type RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams interface{}
 type RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria []RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria // Array of RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria
 type RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria interface{}

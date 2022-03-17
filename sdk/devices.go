@@ -969,7 +969,7 @@ type ResponseDevicesGetDeviceBySerialNumberResponse struct {
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-	LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
+	LastUpdateTime            *int   `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
 	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
