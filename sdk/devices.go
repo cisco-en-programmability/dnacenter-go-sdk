@@ -10,6 +10,11 @@ import (
 
 type DevicesService service
 
+type GetPlannedAccessPointsForBuildingQueryParams struct {
+	Limit  float64 `url:"limit,omitempty"`  //limit
+	Offset float64 `url:"offset,omitempty"` //offset
+	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
+}
 type GetDeviceDetailQueryParams struct {
 	Timestamp  string `url:"timestamp,omitempty"`  //Epoch time(in milliseconds) when the device data is required
 	SearchBy   string `url:"searchBy,omitempty"`   //MAC Address or Device Name value or UUID of the network device
@@ -28,12 +33,23 @@ type DevicesQueryParams struct {
 	Limit      float64 `url:"limit,omitempty"`      //Max number of device entries in the response (default to 50.  Max at 1000)
 	Offset     float64 `url:"offset,omitempty"`     //The offset of the first device in the returned data
 }
+type GetPlannedAccessPointsForFloorQueryParams struct {
+	Limit  float64 `url:"limit,omitempty"`  //limit
+	Offset float64 `url:"offset,omitempty"` //offset
+	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
+}
 type GetAllInterfacesQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //offset
 	Limit  float64 `url:"limit,omitempty"`  //limit
 }
 type GetInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams struct {
 	Name string `url:"name,omitempty"` //Interface name
+}
+type UpdateInterfaceDetailsQueryParams struct {
+	DeploymentMode string `url:"deploymentMode,omitempty"` //Preview/Deploy ['Preview' means the configuration is not pushed to the device. 'Deploy' makes the configuration pushed to the device]
+}
+type ClearMacAddressTableQueryParams struct {
+	DeploymentMode string `url:"deploymentMode,omitempty"` //Preview/Deploy ['Preview' means the configuration is not pushed to the device. 'Deploy' makes the configuration pushed to the device]
 }
 type GetDeviceListQueryParams struct {
 	Hostname                  []string `url:"hostname,omitempty"`                   //hostname
@@ -68,6 +84,8 @@ type GetDeviceListQueryParams struct {
 	Moduleoperationstatecode  []string `url:"module+operationstatecode,omitempty"`  //moduleOperationStateCode
 	ID                        string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
 	DeviceSupportLevel        string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
+	Offset                    float64  `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
+	Limit                     float64  `url:"limit,omitempty"`                      //1 <= limit <= 500 [max. no. of devices to be returned in the result]
 }
 type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
 	VrfName                   string  `url:"vrfName,omitempty"`                   //vrfName
@@ -104,7 +122,7 @@ type InventoryInsightDeviceLinkMismatchApIQueryParams struct {
 	SortBy   string `url:"sortBy,omitempty"`   //Sort By
 	Order    string `url:"order,omitempty"`    //Order.  Value can be asc or desc.  Default value is asc
 }
-type ReturnsDevicesAddedToDnaCWithSNMPV3DESQueryParams struct {
+type ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams struct {
 	Offset string `url:"offset,omitempty"` //Row Number.  Default value is 1
 	Limit  string `url:"limit,omitempty"`  //Default value is 500
 	SortBy string `url:"sortBy,omitempty"` //Sort By
@@ -146,6 +164,62 @@ type GetDeviceInterfaceVLANsQueryParams struct {
 	InterfaceType string `url:"interfaceType,omitempty"` //Vlan assocaited with sub-interface
 }
 
+type ResponseDevicesGetPlannedAccessPointsForBuilding struct {
+	Response *[]ResponseDevicesGetPlannedAccessPointsForBuildingResponse `json:"response,omitempty"` //
+	Version  *int                                                        `json:"version,omitempty"`  // Version
+	Total    *int                                                        `json:"total,omitempty"`    // Total
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponse struct {
+	Attributes *ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributes `json:"attributes,omitempty"` //
+	Location   *ResponseDevicesGetPlannedAccessPointsForBuildingResponseLocation   `json:"location,omitempty"`   // Location
+	Position   *ResponseDevicesGetPlannedAccessPointsForBuildingResponsePosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                                `json:"radioCount,omitempty"` // Radio Count
+	Radios     *[]ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadios   `json:"radios,omitempty"`     //
+	IsSensor   *bool                                                               `json:"isSensor,omitempty"`   // Is Sensor
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributes struct {
+	ID            *int                                                                          `json:"id,omitempty"`            // Id
+	InstanceUUID  string                                                                        `json:"instanceUuid,omitempty"`  // Instance Uuid
+	Name          string                                                                        `json:"name,omitempty"`          // Name
+	TypeString    string                                                                        `json:"typeString,omitempty"`    // Type String
+	Domain        string                                                                        `json:"domain,omitempty"`        // Domain
+	HeirarchyName string                                                                        `json:"heirarchyName,omitempty"` // Heirarchy Name
+	Source        string                                                                        `json:"source,omitempty"`        // Source
+	CreateDate    *int                                                                          `json:"createDate,omitempty"`    // Create Date
+	Macaddress    *ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributesMacaddress `json:"macaddress,omitempty"`    // Macaddress
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributesMacaddress interface{}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseLocation interface{}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponsePosition struct {
+	X *float64 `json:"x,omitempty"` // X
+	Y *float64 `json:"y,omitempty"` // Y
+	Z *float64 `json:"z,omitempty"` // Z
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadios struct {
+	Attributes *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributes `json:"attributes,omitempty"` //
+	Antenna    *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAntenna    `json:"antenna,omitempty"`    //
+	IsSensor   *bool                                                                     `json:"isSensor,omitempty"`   // Is Sensor
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributes struct {
+	ID            *int                                                                                   `json:"id,omitempty"`            // Id
+	InstanceUUID  string                                                                                 `json:"instanceUuid,omitempty"`  // Instance Uuid
+	SlotID        *int                                                                                   `json:"slotId,omitempty"`        // Slot Id
+	IfTypeString  string                                                                                 `json:"ifTypeString,omitempty"`  // If Type String
+	IfTypeSubband string                                                                                 `json:"ifTypeSubband,omitempty"` // If Type Subband
+	Channel       *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributesChannel       `json:"channel,omitempty"`       // Channel
+	ChannelString *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributesChannelString `json:"channelString,omitempty"` // Channel String
+	IfMode        string                                                                                 `json:"ifMode,omitempty"`        // If Mode
+}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributesChannel interface{}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributesChannelString interface{}
+type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAntenna struct {
+	Name           string   `json:"name,omitempty"`           // Name
+	Type           string   `json:"type,omitempty"`           // Type
+	Mode           string   `json:"mode,omitempty"`           // Mode
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth Angle
+	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation Angle
+	Gain           *float64 `json:"gain,omitempty"`           // Gain
+}
 type ResponseDevicesGetDeviceDetail struct {
 	Response *ResponseDevicesGetDeviceDetailResponse `json:"response,omitempty"` //
 }
@@ -340,6 +414,62 @@ type ResponseDevicesDevicesResponseUtilizationHealth struct {
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
 	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
 	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
+}
+type ResponseDevicesGetPlannedAccessPointsForFloor struct {
+	Response *[]ResponseDevicesGetPlannedAccessPointsForFloorResponse `json:"response,omitempty"` //
+	Version  *int                                                     `json:"version,omitempty"`  // Version
+	Total    *int                                                     `json:"total,omitempty"`    // Total
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponse struct {
+	Attributes *ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributes `json:"attributes,omitempty"` //
+	Location   *ResponseDevicesGetPlannedAccessPointsForFloorResponseLocation   `json:"location,omitempty"`   // Location
+	Position   *ResponseDevicesGetPlannedAccessPointsForFloorResponsePosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                             `json:"radioCount,omitempty"` // Radio Count
+	Radios     *[]ResponseDevicesGetPlannedAccessPointsForFloorResponseRadios   `json:"radios,omitempty"`     //
+	IsSensor   *bool                                                            `json:"isSensor,omitempty"`   // Is Sensor
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributes struct {
+	ID            *int                                                                       `json:"id,omitempty"`            // Id
+	InstanceUUID  string                                                                     `json:"instanceUuid,omitempty"`  // Instance Uuid
+	Name          string                                                                     `json:"name,omitempty"`          // Name
+	TypeString    string                                                                     `json:"typeString,omitempty"`    // Type String
+	Domain        string                                                                     `json:"domain,omitempty"`        // Domain
+	HeirarchyName string                                                                     `json:"heirarchyName,omitempty"` // Heirarchy Name
+	Source        string                                                                     `json:"source,omitempty"`        // Source
+	CreateDate    *int                                                                       `json:"createDate,omitempty"`    // Create Date
+	Macaddress    *ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributesMacaddress `json:"macaddress,omitempty"`    // Macaddress
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributesMacaddress interface{}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseLocation interface{}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponsePosition struct {
+	X *float64 `json:"x,omitempty"` // X
+	Y *float64 `json:"y,omitempty"` // Y
+	Z *float64 `json:"z,omitempty"` // Z
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadios struct {
+	Attributes *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributes `json:"attributes,omitempty"` //
+	Antenna    *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAntenna    `json:"antenna,omitempty"`    //
+	IsSensor   *bool                                                                  `json:"isSensor,omitempty"`   // Is Sensor
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributes struct {
+	ID            *int                                                                                `json:"id,omitempty"`            // Id
+	InstanceUUID  string                                                                              `json:"instanceUuid,omitempty"`  // Instance Uuid
+	SlotID        *int                                                                                `json:"slotId,omitempty"`        // Slot Id
+	IfTypeString  string                                                                              `json:"ifTypeString,omitempty"`  // If Type String
+	IfTypeSubband string                                                                              `json:"ifTypeSubband,omitempty"` // If Type Subband
+	Channel       *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributesChannel       `json:"channel,omitempty"`       // Channel
+	ChannelString *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributesChannelString `json:"channelString,omitempty"` // Channel String
+	IfMode        string                                                                              `json:"ifMode,omitempty"`        // If Mode
+}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributesChannel interface{}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributesChannelString interface{}
+type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAntenna struct {
+	Name           string   `json:"name,omitempty"`           // Name
+	Type           string   `json:"type,omitempty"`           // Type
+	Mode           string   `json:"mode,omitempty"`           // Mode
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth Angle
+	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation Angle
+	Gain           *float64 `json:"gain,omitempty"`           // Gain
 }
 type ResponseDevicesGetAllInterfaces struct {
 	Response *[]ResponseDevicesGetAllInterfacesResponse `json:"response,omitempty"` //
@@ -637,6 +767,102 @@ type ResponseDevicesGetInterfaceByIDResponse struct {
 	VLANID                      string `json:"vlanId,omitempty"`                      //
 	VoiceVLAN                   string `json:"voiceVlan,omitempty"`                   //
 }
+type ResponseDevicesUpdateInterfaceDetails struct {
+	Response *ResponseDevicesUpdateInterfaceDetailsResponse `json:"response,omitempty"` //
+	Version  *ResponseDevicesUpdateInterfaceDetailsVersion  `json:"version,omitempty"`  //
+}
+type ResponseDevicesUpdateInterfaceDetailsResponse struct {
+	Type       string                                                   `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesUpdateInterfaceDetailsResponseProperties `json:"properties,omitempty"` //
+	Required   []string                                                 `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesUpdateInterfaceDetailsResponseProperties struct {
+	TaskID *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID `json:"taskId,omitempty"` //
+	URL    *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL    `json:"url,omitempty"`    //
+}
+type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesUpdateInterfaceDetailsVersion struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterface struct {
+	Response *ResponseDevicesLegitOperationsForInterfaceResponse `json:"response,omitempty"` //
+	Version  *ResponseDevicesLegitOperationsForInterfaceVersion  `json:"version,omitempty"`  //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponse struct {
+	Type       string                                                        `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"` //
+	Required   []string                                                      `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesLegitOperationsForInterfaceResponseProperties struct {
+	InterfaceUUID *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID `json:"interfaceUuid,omitempty"` //
+	Properties    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties    `json:"properties,omitempty"`    //
+	Operations    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations    `json:"operations,omitempty"`    //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties struct {
+	Type  string                                                                         `json:"type,omitempty"`  // Type
+	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems `json:"items,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems struct {
+	Type       string                                                                                 `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties `json:"properties,omitempty"` //
+	Required   []string                                                                               `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties struct {
+	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName          `json:"name,omitempty"`          //
+	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations struct {
+	Type  string                                                                         `json:"type,omitempty"`  // Type
+	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems `json:"items,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems struct {
+	Type       string                                                                                 `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties `json:"properties,omitempty"` //
+	Required   []string                                                                               `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties struct {
+	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName          `json:"name,omitempty"`          //
+	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceVersion struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesClearMacAddressTable struct {
+	Response *ResponseDevicesClearMacAddressTableResponse `json:"response,omitempty"` //
+	Version  string                                       `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesClearMacAddressTableResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
 type ResponseDevicesGetDeviceList struct {
 	Response *[]ResponseDevicesGetDeviceListResponse `json:"response,omitempty"` //
 	Version  string                                  `json:"version,omitempty"`  // Version
@@ -710,8 +936,7 @@ type ResponseDevicesSyncDevices2Response struct {
 	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct {
-	Response []string `json:"response,omitempty"` //
-	Version  string   `json:"version,omitempty"`  //
+	object string `json:"object,omitempty"` // object
 }
 type ResponseDevicesUpdateDeviceRole struct {
 	Response *ResponseDevicesUpdateDeviceRoleResponse `json:"response,omitempty"` //
@@ -841,11 +1066,11 @@ type ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse struct {
 	InstanceUUID            string   `json:"instanceUuid,omitempty"`            // Unique instance id
 	InstanceTenantID        string   `json:"instanceTenantId,omitempty"`        // Instance tenant id
 }
-type ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DES struct {
-	Response *[]ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DESResponse `json:"response,omitempty"` //
-	Version  string                                                           `json:"version,omitempty"`  // Version
+type ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES struct {
+	Response *[]ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESResponse `json:"response,omitempty"` //
+	Version  string                                                                     `json:"version,omitempty"`  // Version
 }
-type ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DESResponse struct {
+type ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESResponse struct {
 	ID                  string `json:"id,omitempty"`                  // Id
 	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // Management Ip Address
 	Hostname            string `json:"hostname,omitempty"`            // Hostname
@@ -969,7 +1194,7 @@ type ResponseDevicesGetDeviceBySerialNumberResponse struct {
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-	LastUpdateTime            *int   `json:"lastUpdateTime,omitempty"`            //
+	LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
 	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -1121,6 +1346,15 @@ type ResponseDevicesReturnsPoeInterfaceDetailsForTheDeviceResponse struct {
 	AllocatedPower string `json:"allocatedPower,omitempty"` // Allocated Power
 	PortPowerDrawn string `json:"portPowerDrawn,omitempty"` // Port Power Drawn
 }
+type ResponseDevicesGetConnectedDeviceDetail struct {
+	Response *ResponseDevicesGetConnectedDeviceDetailResponse `json:"response,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesGetConnectedDeviceDetailResponse struct {
+	NeighborDevice string   `json:"neighborDevice,omitempty"` // Neighbor Device
+	NeighborPort   string   `json:"neighborPort,omitempty"`   // Neighbor Port
+	Capabilities   []string `json:"capabilities,omitempty"`   // Capabilities
+}
 type ResponseDevicesGetLinecardDetails struct {
 	Response *[]ResponseDevicesGetLinecardDetailsResponse `json:"response,omitempty"` //
 	Version  string                                       `json:"version,omitempty"`  // Version
@@ -1169,7 +1403,7 @@ type ResponseDevicesGetDeviceByIDResponse struct {
 	InstanceUUID              string `json:"instanceUuid,omitempty"`              //
 	InterfaceCount            string `json:"interfaceCount,omitempty"`            //
 	InventoryStatusDetail     string `json:"inventoryStatusDetail,omitempty"`     //
-	LastUpdateTime            *int   `json:"lastUpdateTime,omitempty"`            //
+	LastUpdateTime            string `json:"lastUpdateTime,omitempty"`            //
 	LastUpdated               string `json:"lastUpdated,omitempty"`               //
 	LineCardCount             string `json:"lineCardCount,omitempty"`             //
 	LineCardID                string `json:"lineCardId,omitempty"`                //
@@ -1301,38 +1535,17 @@ type ResponseDevicesGetNetworkDeviceByPaginationRangeResponse struct {
 	UpTime                    string `json:"upTime,omitempty"`                    //
 	WaasDeviceMode            string `json:"waasDeviceMode,omitempty"`            //
 }
-type ResponseDevicesThreatDetails struct {
-	Response   *[]ResponseDevicesThreatDetailsResponse `json:"response,omitempty"`   //
-	TotalCount *int                                    `json:"totalCount,omitempty"` // Total Count
-	Version    string                                  `json:"version,omitempty"`    // Version
+type RequestDevicesUpdateInterfaceDetails struct {
+	Description string `json:"description,omitempty"` // Description
+	AdminStatus string `json:"adminStatus,omitempty"` // Admin Status
+	VLANID      *int   `json:"vlanId,omitempty"`      // Vlan Id
+	VoiceVLANID *int   `json:"voiceVlanId,omitempty"` // Voice Vlan Id
 }
-type ResponseDevicesThreatDetailsResponse struct {
-	MacAddress        string `json:"macAddress,omitempty"`        // Mac Address
-	UpdatedTime       *int   `json:"updatedTime,omitempty"`       // Updated Time
-	Vendor            string `json:"vendor,omitempty"`            // Vendor
-	ThreatType        string `json:"threatType,omitempty"`        // Threat Type
-	ThreatLevel       string `json:"threatLevel,omitempty"`       // Threat Level
-	ApName            string `json:"apName,omitempty"`            // Ap Name
-	SSID              string `json:"ssid,omitempty"`              // Ssid
-	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+type RequestDevicesClearMacAddressTable struct {
+	Operation string                                     `json:"operation,omitempty"` // Operation
+	Payload   *RequestDevicesClearMacAddressTablePayload `json:"payload,omitempty"`   // Payload
 }
-type ResponseDevicesThreatDetailCount struct {
-	Response *int   `json:"response,omitempty"` // Response
-	Version  string `json:"version,omitempty"`  // Version
-}
-type ResponseDevicesThreatSummary struct {
-	Response *[]ResponseDevicesThreatSummaryResponse `json:"response,omitempty"` //
-	Version  string                                  `json:"version,omitempty"`  // Version
-}
-type ResponseDevicesThreatSummaryResponse struct {
-	Timestamp  *int                                              `json:"timestamp,omitempty"`  // Timestamp
-	ThreatData *[]ResponseDevicesThreatSummaryResponseThreatData `json:"threatData,omitempty"` //
-}
-type ResponseDevicesThreatSummaryResponseThreatData struct {
-	ThreatType  string `json:"threatType,omitempty"`  // Threat Type
-	ThreatLevel string `json:"threatLevel,omitempty"` // Threat Level
-	ThreatCount *int   `json:"threatCount,omitempty"` // Threat Count
-}
+type RequestDevicesClearMacAddressTablePayload interface{}
 type RequestDevicesAddDevice2 struct {
 	CliTransport            string                                             `json:"cliTransport,omitempty"`            //
 	ComputeDevice           *bool                                              `json:"computeDevice,omitempty"`           //
@@ -1394,7 +1607,6 @@ type RequestDevicesSyncDevices2 struct {
 	Type                    string                                               `json:"type,omitempty"`                    //
 	UpdateMgmtIPaddressList *[]RequestDevicesSyncDevices2UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
 	UserName                string                                               `json:"userName,omitempty"`                //
-	ID                      string                                               `json:"id,omitempty"`                      //
 }
 type RequestDevicesSyncDevices2UpdateMgmtIPaddressList struct {
 	ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` //
@@ -1414,32 +1626,40 @@ type RequestDevicesExportDeviceList struct {
 }
 type RequestDevicesSyncDevices []RequestItemDevicesSyncDevices // Array of RequestDevicesSyncDevices
 type RequestItemDevicesSyncDevices interface{}
-type RequestDevicesThreatDetails struct {
-	Offset      *int     `json:"offset,omitempty"`      // Offset
-	Limit       *int     `json:"limit,omitempty"`       // Limit
-	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
-	EndTime     *int     `json:"endTime,omitempty"`     // End Time
-	SiteID      []string `json:"siteId,omitempty"`      // Site Id
-	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
-	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
-}
-type RequestDevicesThreatDetailCount struct {
-	Offset      *int     `json:"offset,omitempty"`      // Offset
-	Limit       *int     `json:"limit,omitempty"`       // Limit
-	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
-	EndTime     *int     `json:"endTime,omitempty"`     // End Time
-	SiteID      []string `json:"siteId,omitempty"`      // Site Id
-	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
-	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
-}
-type RequestDevicesThreatSummary struct {
-	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
-	EndTime     *int     `json:"endTime,omitempty"`     // End Time
-	SiteID      []string `json:"siteId,omitempty"`      // Site Id
-	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+
+//GetPlannedAccessPointsForBuilding Get Planned Access Points for Building - b699-9b85-4e3b-acdd
+/* Provides a list of Planned Access Points for the Building it is requested for
+
+
+@param buildingID buildingId path parameter. Building Id
+
+@param GetPlannedAccessPointsForBuildingQueryParams Filtering parameter
+*/
+func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, GetPlannedAccessPointsForBuildingQueryParams *GetPlannedAccessPointsForBuildingQueryParams) (*ResponseDevicesGetPlannedAccessPointsForBuilding, *resty.Response, error) {
+	path := "/dna/intent/api/v1/buildings/{buildingId}/planned-access-points"
+	path = strings.Replace(path, "{buildingId}", fmt.Sprintf("%v", buildingID), -1)
+
+	queryString, _ := query.Values(GetPlannedAccessPointsForBuildingQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetPlannedAccessPointsForBuilding{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetPlannedAccessPointsForBuilding")
+	}
+
+	result := response.Result().(*ResponseDevicesGetPlannedAccessPointsForBuilding)
+	return result, response, err
+
 }
 
 //GetDeviceDetail Get Device Detail - 89b2-fb14-4f5b-b09b
@@ -1548,6 +1768,41 @@ func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*Respo
 	}
 
 	result := response.Result().(*ResponseDevicesDevices)
+	return result, response, err
+
+}
+
+//GetPlannedAccessPointsForFloor Get Planned Access Points for Floor - 6780-6977-4589-9a54
+/* Provides a list of Planned Access Points for the Floor it is requested for
+
+
+@param floorID floorId path parameter. Floor Id
+
+@param GetPlannedAccessPointsForFloorQueryParams Filtering parameter
+*/
+func (s *DevicesService) GetPlannedAccessPointsForFloor(floorID string, GetPlannedAccessPointsForFloorQueryParams *GetPlannedAccessPointsForFloorQueryParams) (*ResponseDevicesGetPlannedAccessPointsForFloor, *resty.Response, error) {
+	path := "/dna/intent/api/v1/floors/{floorId}/planned-access-points"
+	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
+
+	queryString, _ := query.Values(GetPlannedAccessPointsForFloorQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetPlannedAccessPointsForFloor{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetPlannedAccessPointsForFloor")
+	}
+
+	result := response.Result().(*ResponseDevicesGetPlannedAccessPointsForFloor)
 	return result, response, err
 
 }
@@ -1872,9 +2127,41 @@ func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfa
 
 }
 
+//LegitOperationsForInterface Legit operations for interface - 87a3-3a52-46ea-a40e
+/* Get list of all properties & operations valid for an interface.
+
+
+@param interfaceUUID interfaceUuid path parameter. Interface ID
+
+*/
+func (s *DevicesService) LegitOperationsForInterface(interfaceUUID string) (*ResponseDevicesLegitOperationsForInterface, *resty.Response, error) {
+	path := "/dna/intent/api/v1/interface/{interfaceUuid}/legit-operation"
+	path = strings.Replace(path, "{interfaceUuid}", fmt.Sprintf("%v", interfaceUUID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesLegitOperationsForInterface{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation LegitOperationsForInterface")
+	}
+
+	result := response.Result().(*ResponseDevicesLegitOperationsForInterface)
+	return result, response, err
+
+}
+
 //GetDeviceList Get Device list - 20b1-9b52-464b-8972
 /* Returns list of network devices based on filter criteria such as management IP address, mac address, hostname, etc. You can use the .* in any value to conduct a wildcard search. For example, to find all hostnames beginning with myhost in the IP address range 192.25.18.n, issue the following request: GET /dna/intent/api/v1/network-device?hostname=myhost.*&managementIpAddress=192.25.18..*
-If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters.
+If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters. You can also specify offset & limit to get the required list.
 
 
 @param GetDeviceListQueryParams Filtering parameter
@@ -2151,23 +2438,23 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, In
 
 }
 
-//ReturnsDevicesAddedToDnaCWithSNMPV3DES Returns devices added to DNAC with snmp v3 DES. - afba-7a69-4d38-8de1
-/* Returns devices added to DNAC with snmp v3 DES, where siteId is mandatory & accepts offset, limit, sortby, order which are optional.
+//ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES Returns devices added to Cisco DNA center with snmp v3 DES. - afba-7a69-4d38-8de1
+/* Returns devices added to Cisco DNA center with snmp v3 DES, where siteId is mandatory & accepts offset, limit, sortby, order which are optional.
 
 
 @param siteID siteId path parameter.
-@param ReturnsDevicesAddedToDNACWithSnmpV3DESQueryParams Filtering parameter
+@param ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams Filtering parameter
 */
-func (s *DevicesService) ReturnsDevicesAddedToDnaCWithSNMPV3DES(siteID string, ReturnsDevicesAddedToDNACWithSnmpV3DESQueryParams *ReturnsDevicesAddedToDnaCWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DES, *resty.Response, error) {
+func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/insecure-connection"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
-	queryString, _ := query.Values(ReturnsDevicesAddedToDNACWithSnmpV3DESQueryParams)
+	queryString, _ := query.Values(ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DES{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES{}).
 		SetError(&Error).
 		Get(path)
 
@@ -2177,10 +2464,10 @@ func (s *DevicesService) ReturnsDevicesAddedToDnaCWithSNMPV3DES(siteID string, R
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ReturnsDevicesAddedToDnaCWithSnmpV3DES")
+		return nil, response, fmt.Errorf("error with operation ReturnsDevicesAddedToCiscoDnaCenterWithSnmpV3DES")
 	}
 
-	result := response.Result().(*ResponseDevicesReturnsDevicesAddedToDnaCWithSNMPV3DES)
+	result := response.Result().(*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES)
 	return result, response, err
 
 }
@@ -2282,10 +2569,11 @@ func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCoun
 }
 
 //GetModuleInfoByID Get Module Info by Id - 0db7-da74-4c0b-83d8
-/* Returns Module info by id
+/* Returns Module info by 'module id'
 
 
-@param id id path parameter.
+@param id id path parameter. Module id
+
 */
 func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModuleInfoByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module/{id}"
@@ -2505,6 +2793,41 @@ func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID strin
 	}
 
 	result := response.Result().(*ResponseDevicesReturnsPoeInterfaceDetailsForTheDevice)
+	return result, response, err
+
+}
+
+//GetConnectedDeviceDetail Get connected device detail - a8aa-ca21-4c09-8388
+/* Get connected device detail for given deviceUuid and interfaceUuid
+
+
+@param deviceUUID deviceUuid path parameter. instanceuuid of Device
+
+@param interfaceUUID interfaceUuid path parameter. instanceuuid of interface
+
+*/
+func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUUID string) (*ResponseDevicesGetConnectedDeviceDetail, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/{interfaceUuid}/neighbor"
+	path = strings.Replace(path, "{deviceUuid}", fmt.Sprintf("%v", deviceUUID), -1)
+	path = strings.Replace(path, "{interfaceUuid}", fmt.Sprintf("%v", interfaceUUID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesGetConnectedDeviceDetail{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetConnectedDeviceDetail")
+	}
+
+	result := response.Result().(*ResponseDevicesGetConnectedDeviceDetail)
 	return result, response, err
 
 }
@@ -2864,6 +3187,42 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 
 }
 
+//ClearMacAddressTable Clear Mac-Address table - 24be-a97f-43f9-bc65
+/* Clear mac-address on an individual port. In request body, operation needs to be specified as 'ClearMacAddress'. In the future more possible operations will be added to this API
+
+
+@param interfaceUUID interfaceUuid path parameter. Interface Id
+
+@param ClearMacAddressTableQueryParams Filtering parameter
+*/
+func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevicesClearMacAddressTable *RequestDevicesClearMacAddressTable, ClearMacAddressTableQueryParams *ClearMacAddressTableQueryParams) (*ResponseDevicesClearMacAddressTable, *resty.Response, error) {
+	path := "/dna/intent/api/v1/interface/{interfaceUuid}/operation"
+	path = strings.Replace(path, "{interfaceUuid}", fmt.Sprintf("%v", interfaceUUID), -1)
+
+	queryString, _ := query.Values(ClearMacAddressTableQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetBody(requestDevicesClearMacAddressTable).
+		SetResult(&ResponseDevicesClearMacAddressTable{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ClearMacAddressTable")
+	}
+
+	result := response.Result().(*ResponseDevicesClearMacAddressTable)
+	return result, response, err
+
+}
+
 //AddDevice2 Add Device - 4bb2-2af0-46fa-8f08
 /* Adds the device with given credential
 
@@ -2924,21 +3283,27 @@ func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *Reques
 
 }
 
-//ThreatDetails Threat Details - f6bf-c880-435a-ae2a
-/* The details for the Rogue and aWIPS threats
+//UpdateInterfaceDetails Update Interface details - 868b-5a60-4be8-a2d7
+/* Add/Update Interface description, VLAN membership, Voice VLAN and change Interface admin status ('UP'/'DOWN') from Request body.
 
 
- */
-func (s *DevicesService) ThreatDetails(requestDevicesThreatDetails *RequestDevicesThreatDetails) (*ResponseDevicesThreatDetails, *resty.Response, error) {
-	path := "/dna/intent/api/v1/security/threats/details"
+@param interfaceUUID interfaceUuid path parameter. Interface ID
+
+@param UpdateInterfaceDetailsQueryParams Filtering parameter
+*/
+func (s *DevicesService) UpdateInterfaceDetails(interfaceUUID string, requestDevicesUpdateInterfaceDetails *RequestDevicesUpdateInterfaceDetails, UpdateInterfaceDetailsQueryParams *UpdateInterfaceDetailsQueryParams) (*ResponseDevicesUpdateInterfaceDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/interface/{interfaceUuid}"
+	path = strings.Replace(path, "{interfaceUuid}", fmt.Sprintf("%v", interfaceUUID), -1)
+
+	queryString, _ := query.Values(UpdateInterfaceDetailsQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesThreatDetails).
-		SetResult(&ResponseDevicesThreatDetails{}).
+		SetQueryString(queryString.Encode()).SetBody(requestDevicesUpdateInterfaceDetails).
+		SetResult(&ResponseDevicesUpdateInterfaceDetails{}).
 		SetError(&Error).
-		Post(path)
+		Put(path)
 
 	if err != nil {
 		return nil, nil, err
@@ -2946,70 +3311,10 @@ func (s *DevicesService) ThreatDetails(requestDevicesThreatDetails *RequestDevic
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ThreatDetails")
+		return nil, response, fmt.Errorf("error with operation UpdateInterfaceDetails")
 	}
 
-	result := response.Result().(*ResponseDevicesThreatDetails)
-	return result, response, err
-
-}
-
-//ThreatDetailCount Threat Detail Count - eb8c-2a83-45aa-871f
-/* The details count for the Rogue and aWIPS threats
-
-
- */
-func (s *DevicesService) ThreatDetailCount(requestDevicesThreatDetailCount *RequestDevicesThreatDetailCount) (*ResponseDevicesThreatDetailCount, *resty.Response, error) {
-	path := "/dna/intent/api/v1/security/threats/details/count"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesThreatDetailCount).
-		SetResult(&ResponseDevicesThreatDetailCount{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ThreatDetailCount")
-	}
-
-	result := response.Result().(*ResponseDevicesThreatDetailCount)
-	return result, response, err
-
-}
-
-//ThreatSummary Threat Summary - 3b98-98f0-4cfb-b74b
-/* The Threat Summary for the Rogues and aWIPS
-
-
- */
-func (s *DevicesService) ThreatSummary(requestDevicesThreatSummary *RequestDevicesThreatSummary) (*ResponseDevicesThreatSummary, *resty.Response, error) {
-	path := "/dna/intent/api/v1/security/threats/summary"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesThreatSummary).
-		SetResult(&ResponseDevicesThreatSummary{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ThreatSummary")
-	}
-
-	result := response.Result().(*ResponseDevicesThreatSummary)
+	result := response.Result().(*ResponseDevicesUpdateInterfaceDetails)
 	return result, response, err
 
 }

@@ -17,12 +17,8 @@ type RemoveWLCFromFabricDomainQueryParams struct {
 	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device Management IP Address
 }
 
-type ResponseFabricWirelessAddSSIDToIPPoolMapping struct {
-	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
-	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
-	Message            string `json:"message,omitempty"`            // message
-}
-type ResponseFabricWirelessUpdateSSIDToIPPoolMapping struct {
+type ResponseFabricWirelessUpdateSSIDToIPPoolMapping2 []ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping2 // Array of ResponseFabricWirelessUpdateSSIDToIPPoolMapping2
+type ResponseItemFabricWirelessUpdateSSIDToIPPoolMapping2 struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
@@ -40,18 +36,13 @@ type ResponseFabricWirelessRemoveWLCFromFabricDomain struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseFabricWirelessAddWLCToFabricDomain struct {
+type ResponseFabricWirelessAddWLCToFabricDomain []ResponseItemFabricWirelessAddWLCToFabricDomain // Array of ResponseFabricWirelessAddWLCToFabricDomain
+type ResponseItemFabricWirelessAddWLCToFabricDomain struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
 }
-type RequestFabricWirelessAddSSIDToIPPoolMapping struct {
-	VLANName          string   `json:"vlanName,omitempty"`          // VLAN Name
-	ScalableGroupName string   `json:"scalableGroupName,omitempty"` // Scalable Group Name
-	SSIDNames         []string `json:"ssidNames,omitempty"`         // List of SSIDs
-	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
-}
-type RequestFabricWirelessUpdateSSIDToIPPoolMapping struct {
+type RequestFabricWirelessUpdateSSIDToIPPoolMapping2 struct {
 	VLANName          string   `json:"vlanName,omitempty"`          // VLAN Name
 	ScalableGroupName string   `json:"scalableGroupName,omitempty"` // Scalable Group Name
 	SSIDNames         []string `json:"ssidNames,omitempty"`         // List of SSIDs
@@ -94,36 +85,6 @@ func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQue
 
 }
 
-//AddSSIDToIPPoolMapping Add SSID to IP Pool Mapping - b783-49d9-463a-98dd
-/* Add SSID to IP Pool Mapping.
-
-
- */
-func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddSSIDToIPPoolMapping *RequestFabricWirelessAddSSIDToIPPoolMapping) (*ResponseFabricWirelessAddSSIDToIPPoolMapping, *resty.Response, error) {
-	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestFabricWirelessAddSSIDToIPPoolMapping).
-		SetResult(&ResponseFabricWirelessAddSSIDToIPPoolMapping{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddSsidToIpPoolMapping")
-	}
-
-	result := response.Result().(*ResponseFabricWirelessAddSSIDToIPPoolMapping)
-	return result, response, err
-
-}
-
 //AddWLCToFabricDomain Add WLC to Fabric Domain - f4ad-b85b-4f19-ae86
 /* Add WLC to Fabric Domain
 
@@ -154,19 +115,19 @@ func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLC
 
 }
 
-//UpdateSSIDToIPPoolMapping Update SSID to IP Pool Mapping - a7bf-1936-424b-91f0
+//UpdateSSIDToIPPoolMapping2 Update SSID to IP Pool Mapping - a7bf-1936-424b-91f0
 /* Update SSID to IP Pool Mapping.
 
 
  */
-func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessUpdateSSIDToIPPoolMapping *RequestFabricWirelessUpdateSSIDToIPPoolMapping) (*ResponseFabricWirelessUpdateSSIDToIPPoolMapping, *resty.Response, error) {
+func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping2(requestFabricWirelessUpdateSSIDToIPPoolMapping2 *RequestFabricWirelessUpdateSSIDToIPPoolMapping2) (*ResponseFabricWirelessUpdateSSIDToIPPoolMapping2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestFabricWirelessUpdateSSIDToIPPoolMapping).
-		SetResult(&ResponseFabricWirelessUpdateSSIDToIPPoolMapping{}).
+		SetBody(requestFabricWirelessUpdateSSIDToIPPoolMapping2).
+		SetResult(&ResponseFabricWirelessUpdateSSIDToIPPoolMapping2{}).
 		SetError(&Error).
 		Put(path)
 
@@ -176,10 +137,10 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessU
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateSsidToIpPoolMapping")
+		return nil, response, fmt.Errorf("error with operation UpdateSsidToIpPoolMapping2")
 	}
 
-	result := response.Result().(*ResponseFabricWirelessUpdateSSIDToIPPoolMapping)
+	result := response.Result().(*ResponseFabricWirelessUpdateSSIDToIPPoolMapping2)
 	return result, response, err
 
 }

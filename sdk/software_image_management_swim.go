@@ -409,8 +409,7 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 }
 
 //ImportLocalSoftwareImage Import local software image - 4dbe-3bc7-43a8-91bc
-/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2.
-Upload the file to the **file** form data field
+/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
 
 
 @param ImportLocalSoftwareImageQueryParams Filtering parameter
