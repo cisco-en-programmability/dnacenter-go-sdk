@@ -26,7 +26,7 @@ func (s *CustomCallService) GetCustomCall(ResourcePath string, QueryParms *map[s
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with custom operation %s", ResourcePath)
+		return response, fmt.Errorf("error with operation GetsAListOfProjects")
 	}
 
 	return response, err

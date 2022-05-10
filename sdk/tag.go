@@ -203,6 +203,7 @@ type RequestTagUpdatesTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
 	MemberType   string              `json:"memberType,omitempty"`   //
 }
+
 type RequestTagAddMembersToTheTag map[string][]string
 
 //GetTag Get Tag - ee9a-ab01-487a-8896

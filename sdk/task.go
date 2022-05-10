@@ -49,6 +49,7 @@ type ResponseTaskGetBusinessAPIExecutionDetails struct {
 	EndTimeEpoch      *int   `json:"endTimeEpoch,omitempty"`      // Execution End Time of the Business API (Epoch Milliseconds)
 	TimeDuration      *int   `json:"timeDuration,omitempty"`      // Time taken for Business API Execution (Milliseconds)
 	Status            string `json:"status,omitempty"`            // Execution status of the Business API
+	BapiError         string `json:"bapiError,omitempty"`         // Bapi Error
 	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
 }
 type ResponseTaskGetTasks struct {
@@ -58,7 +59,7 @@ type ResponseTaskGetTasks struct {
 type ResponseTaskGetTasksResponse struct {
 	AdditionalStatusURL string                                       `json:"additionalStatusURL,omitempty"` //
 	Data                string                                       `json:"data,omitempty"`                //
-	EndTime             string                                       `json:"endTime,omitempty"`             //
+	EndTime             *int                                         `json:"endTime,omitempty"`             //
 	ErrorCode           string                                       `json:"errorCode,omitempty"`           //
 	ErrorKey            string                                       `json:"errorKey,omitempty"`            //
 	FailureReason       string                                       `json:"failureReason,omitempty"`       //
@@ -71,7 +72,7 @@ type ResponseTaskGetTasksResponse struct {
 	Progress            string                                       `json:"progress,omitempty"`            //
 	RootID              string                                       `json:"rootId,omitempty"`              //
 	ServiceType         string                                       `json:"serviceType,omitempty"`         //
-	StartTime           string                                       `json:"startTime,omitempty"`           //
+	StartTime           *int                                         `json:"startTime,omitempty"`           //
 	Username            string                                       `json:"username,omitempty"`            //
 	Version             *int                                         `json:"version,omitempty"`             //
 }
@@ -112,20 +113,20 @@ type ResponseTaskGetTaskByID struct {
 type ResponseTaskGetTaskByIDResponse struct {
 	AdditionalStatusURL string                                          `json:"additionalStatusURL,omitempty"` //
 	Data                string                                          `json:"data,omitempty"`                //
-	EndTime             string                                          `json:"endTime,omitempty"`             //
+	EndTime             *int                                            `json:"endTime,omitempty"`             //
 	ErrorCode           string                                          `json:"errorCode,omitempty"`           //
 	ErrorKey            string                                          `json:"errorKey,omitempty"`            //
 	FailureReason       string                                          `json:"failureReason,omitempty"`       //
 	ID                  string                                          `json:"id,omitempty"`                  //
 	InstanceTenantID    string                                          `json:"instanceTenantId,omitempty"`    //
 	IsError             *bool                                           `json:"isError,omitempty"`             //
-	LastUpdate          string                                          `json:"lastUpdate,omitempty"`          //
+	LastUpdate          *int                                            `json:"lastUpdate,omitempty"`          //
 	OperationIDList     *ResponseTaskGetTaskByIDResponseOperationIDList `json:"operationIdList,omitempty"`     //
 	ParentID            string                                          `json:"parentId,omitempty"`            //
 	Progress            string                                          `json:"progress,omitempty"`            //
 	RootID              string                                          `json:"rootId,omitempty"`              //
 	ServiceType         string                                          `json:"serviceType,omitempty"`         //
-	StartTime           string                                          `json:"startTime,omitempty"`           //
+	StartTime           *int                                            `json:"startTime,omitempty"`           //
 	Username            string                                          `json:"username,omitempty"`            //
 	Version             *int                                            `json:"version,omitempty"`             //
 }

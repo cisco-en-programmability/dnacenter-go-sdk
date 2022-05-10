@@ -67,12 +67,12 @@ type ResponseComplianceGetComplianceDetail struct {
 }
 type ResponseComplianceGetComplianceDetailResponse struct {
 	ComplianceType string `json:"complianceType,omitempty"` // Compliance Type
-	LastSyncTime   string `json:"lastSyncTime,omitempty"`   // Last Sync Time
+	LastSyncTime   *int   `json:"lastSyncTime,omitempty"`   // Last Sync Time
 	DeviceUUID     string `json:"deviceUuid,omitempty"`     // Device Uuid
 	DisplayName    string `json:"displayName,omitempty"`    // Display Name
 	Status         string `json:"status,omitempty"`         // Status
 	Category       string `json:"category,omitempty"`       // Category
-	LastUpdateTime string `json:"lastUpdateTime,omitempty"` // Last Update Time
+	LastUpdateTime *int   `json:"lastUpdateTime,omitempty"` // Last Update Time
 	State          string `json:"state,omitempty"`          // State
 }
 type ResponseComplianceGetComplianceDetailCount struct {
@@ -98,7 +98,7 @@ type ResponseComplianceComplianceDetailsOfDevice struct {
 type ResponseComplianceComplianceDetailsOfDeviceResponse struct {
 	DisplayName       string                                                               `json:"displayName,omitempty"`       // Display Name
 	ComplianceType    string                                                               `json:"complianceType,omitempty"`    // Compliance Type
-	LastSyncTime      string                                                               `json:"lastSyncTime,omitempty"`      // Last Sync Time
+	LastSyncTime      *int                                                                 `json:"lastSyncTime,omitempty"`      // Last Sync Time
 	AdditionalDataURL string                                                               `json:"additionalDataURL,omitempty"` // Additional Data U R L
 	SourceInfoList    *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList `json:"sourceInfoList,omitempty"`    //
 	DeviceUUID        string                                                               `json:"deviceUuid,omitempty"`        // Device Uuid
@@ -106,7 +106,7 @@ type ResponseComplianceComplianceDetailsOfDeviceResponse struct {
 	State             string                                                               `json:"state,omitempty"`             // State
 	Status            string                                                               `json:"status,omitempty"`            // Status
 	Category          string                                                               `json:"category,omitempty"`          // Category
-	LastUpdateTime    string                                                               `json:"lastUpdateTime,omitempty"`    // Last Update Time
+	LastUpdateTime    *int                                                                 `json:"lastUpdateTime,omitempty"`    // Last Update Time
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList struct {
 	Count               *float64                                                                      `json:"count,omitempty"`               // Count

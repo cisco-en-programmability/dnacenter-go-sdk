@@ -2,18 +2,12 @@ package dnac
 
 import (
 	"fmt"
-	"io"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
 )
 
 type FileService service
-
-type UploadFileMultipartFields struct {
-	File     io.Reader
-	FileName string
-}
 
 type ResponseFileGetListOfAvailableNamespaces struct {
 	Response []string `json:"response,omitempty"` //
@@ -39,7 +33,6 @@ type ResponseFileGetListOfFilesResponse struct {
 }
 type ResponseFileGetListOfFilesResponseAttributeInfo interface{}
 type ResponseFileGetListOfFilesResponseSftpServerList interface{}
-type ResponseFileUploadFile interface{}
 
 //GetListOfAvailableNamespaces Get list of available namespaces - 3f89-bbfc-4f6b-8b50
 /* Returns list of available namespaces
@@ -134,46 +127,5 @@ func (s *FileService) DownloadAFileByFileID(fileID string) (FileDownload, *resty
 	fdownload.FileName = strings.ReplaceAll(fname[1], "\"", "")
 
 	return fdownload, response, err
-
-}
-
-//UploadFile uploadFile - 15bf-fb0f-44c8-98f2
-/* Uploads a new file within a specific nameSpace
-
-
-@param nameSpace nameSpace path parameter.
-*/
-func (s *FileService) UploadFile(nameSpace string, UploadFileMultipartFields *UploadFileMultipartFields) (*ResponseFileUploadFile, *resty.Response, error) {
-	path := "/dna/intent/api/v1/file/{nameSpace}"
-	path = strings.Replace(path, "{nameSpace}", fmt.Sprintf("%v", nameSpace), -1)
-
-	var response *resty.Response
-	var err error
-	clientRequest := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json")
-
-	if UploadFileMultipartFields != nil {
-		clientRequest = clientRequest.SetFileReader("file", UploadFileMultipartFields.FileName, UploadFileMultipartFields.File)
-	}
-
-	response, err = clientRequest.
-
-		// SetResult(&ResponseFileUploadFile{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UploadFile")
-	}
-
-	result := response.Result().(ResponseFileUploadFile)
-
-	return &result, response, err
 
 }

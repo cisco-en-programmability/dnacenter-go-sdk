@@ -10,11 +10,6 @@ import (
 
 type SitesService service
 
-type AssignDevicesToSiteHeaderParams struct {
-	Runsync           string `url:"__runsync,omitempty"`           //Expects type bool. Enable this parameter to execute the API and return a response synchronously
-	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
-	Runsynctimeout    string `url:"__runsynctimeout,omitempty"`    //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
-}
 type GetMembershipQueryParams struct {
 	Offset       string `url:"offset,omitempty"`       //offset/starting row
 	Limit        string `url:"limit,omitempty"`        //Number of sites to be retrieved
@@ -30,8 +25,8 @@ type GetSiteQueryParams struct {
 	Name   string `url:"name,omitempty"`   //siteNameHierarchy (ex: global/groupName)
 	SiteID string `url:"siteId,omitempty"` //Site id to which site details to retrieve.
 	Type   string `url:"type,omitempty"`   //type (ex: area, building, floor)
-	Offset string `url:"offset,omitempty"` //offset/starting row. The default value is 1
-	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
+	Offset string `url:"offset,omitempty"` //offset/starting row
+	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved
 }
 type GetSiteHealthQueryParams struct {
 	Timestamp string  `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
@@ -47,12 +42,12 @@ type UpdateSiteHeaderParams struct {
 	Timeout           string `url:"__timeout,omitempty"`           //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
 }
-
-type ResponseSitesAssignDevicesToSite struct {
-	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-	Message            string `json:"message,omitempty"`            // Message
+type AssignDeviceToSiteHeaderParams struct {
+	Runsync           string `url:"__runsync,omitempty"`           //Expects type bool. Enable this parameter to execute the API and return a response synchronously
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
+	Runsynctimeout    string `url:"__runsynctimeout,omitempty"`    //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
 }
+
 type ResponseSitesGetMembership struct {
 	Site   *ResponseSitesGetMembershipSite     `json:"site,omitempty"`   //
 	Device *[]ResponseSitesGetMembershipDevice `json:"device,omitempty"` //
@@ -73,17 +68,39 @@ type ResponseSitesCreateSite struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
+
 type ResponseSitesGetSite struct {
 	Response *[]ResponseSitesGetSiteResponse `json:"response,omitempty"` //
 }
 type ResponseSitesGetSiteResponse struct {
-	ParentID          string   `json:"parentId,omitempty"`          // Parent Id
-	Name              string   `json:"name,omitempty"`              // Name
-	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    // Additional Info
-	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
-	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
-	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
-	ID                string   `json:"id,omitempty"`                // Id
+	AdditionalInfo    []ResponseSitesGetSiteResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	ID                string                                       `json:"id,omitempty"`                //
+	InstanceTenantID  string                                       `json:"instanceTenantId,omitempty"`  //
+	Name              string                                       `json:"name,omitempty"`              //
+	ParentID          string                                       `json:"parentId,omitempty"`          //
+	SiteHierarchy     string                                       `json:"siteHierarchy,omitempty"`     //
+	SiteNameHierarchy string                                       `json:"siteNameHierarchy,omitempty"` //
+}
+
+type ResponseSitesGetSiteResponseAdditionalInfo struct {
+	Namespace  string                                               `json:"nameSpace,omitempty"`  //
+	Attributes ResponseSitesGetSiteResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
+}
+
+type ResponseSitesGetSiteResponseAdditionalInfoAttributes struct {
+	Country              string `json:"country,omitempty"`
+	Address              string `json:"address,omitempty"`
+	Latitude             string `json:"latitude,omitempty"`
+	AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"`
+	Type                 string `json:"type,omitempty"`
+	Longitude            string `json:"longitude,omitempty"`
+	OffsetX              string `json:"offsetX,omitempty"`
+	OffsetY              string `json:"offsetY,omitempty"`
+	Length               string `json:"length,omitempty"`
+	Width                string `json:"width,omitempty"`
+	Height               string `json:"height,omitempty"`
+	RfModel              string `json:"rfModel,omitempty"`
+	FloorIndex           string `json:"floorIndex,omitempty"`
 }
 type ResponseSitesGetSiteHealth struct {
 	Response *[]ResponseSitesGetSiteHealthResponse `json:"response,omitempty"` //
@@ -190,7 +207,7 @@ type ResponseSitesGetSiteHealthResponseApplicationHealthStatsDefaultHealthAppCou
 	Good *float64 `json:"good,omitempty"` // Good
 }
 type ResponseSitesGetSiteCount struct {
-	Response string `json:"response,omitempty"` // Response
+	Response *int   `json:"response,omitempty"` // Response
 	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseSitesUpdateSite struct {
@@ -215,11 +232,10 @@ type ResponseSitesDeleteSite struct {
 	Status  string `json:"status,omitempty"`  // Status
 	Message string `json:"message,omitempty"` // Message
 }
-type RequestSitesAssignDevicesToSite struct {
-	Device *[]RequestSitesAssignDevicesToSiteDevice `json:"device,omitempty"` //
-}
-type RequestSitesAssignDevicesToSiteDevice struct {
-	IP string `json:"ip,omitempty"` // Device ip (eg: 10.104.240.64)
+type ResponseSitesAssignDeviceToSite struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
 }
 type RequestSitesCreateSite struct {
 	Type string                      `json:"type,omitempty"` // Type of site to create (eg: area, building, floor)
@@ -240,16 +256,14 @@ type RequestSitesCreateSiteSiteBuilding struct {
 	ParentName string   `json:"parentName,omitempty"` // Parent name of building to be created
 	Latitude   *float64 `json:"latitude,omitempty"`   // Latitude coordinate of the building (eg:37.338)
 	Longitude  *float64 `json:"longitude,omitempty"`  // Longitude coordinate of the building (eg:-121.832)
-	Country    string   `json:"country,omitempty"`    // Country (eg:United States)
 }
 type RequestSitesCreateSiteSiteFloor struct {
-	Name        string   `json:"name,omitempty"`        // Name of the floor (eg:floor-1)
-	ParentName  string   `json:"parentName,omitempty"`  // Parent name of the floor to be created
-	RfModel     string   `json:"rfModel,omitempty"`     // Type of floor (eg: Cubes And Walled Offices0
-	Width       *float64 `json:"width,omitempty"`       // Width of the floor. Unit of measure is ft. (eg: 100)
-	Length      *float64 `json:"length,omitempty"`      // Length of the floor. Unit of measure is ft. (eg: 100)
-	Height      *float64 `json:"height,omitempty"`      // Height of the floor. Unit of measure is ft. (eg: 15)
-	FloorNumber *float64 `json:"floorNumber,omitempty"` // Floor number. (eg: 5)
+	Name       string   `json:"name,omitempty"`       // Name of the floor (eg:floor-1)
+	ParentName string   `json:"parentName,omitempty"` // Parent name of the floor to be created
+	RfModel    string   `json:"rfModel,omitempty"`    // Type of floor. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'.
+	Width      *float64 `json:"width,omitempty"`      // Width of the floor (eg:100)
+	Length     *float64 `json:"length,omitempty"`     // Length of the floor (eg: 100)
+	Height     *float64 `json:"height,omitempty"`     // Height of the floor (eg: 15)
 }
 type RequestSitesUpdateSite struct {
 	Type string                      `json:"type,omitempty"` // Type
@@ -273,10 +287,16 @@ type RequestSitesUpdateSiteSiteBuilding struct {
 }
 type RequestSitesUpdateSiteSiteFloor struct {
 	Name    string   `json:"name,omitempty"`    // Name
-	RfModel string   `json:"rfModel,omitempty"` // Rf Model
+	RfModel string   `json:"rfModel,omitempty"` // Rf Model. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'
 	Width   *float64 `json:"width,omitempty"`   // Width
 	Length  *float64 `json:"length,omitempty"`  // Length
 	Height  *float64 `json:"height,omitempty"`  // Height
+}
+type RequestSitesAssignDeviceToSite struct {
+	Device *[]RequestSitesAssignDeviceToSiteDevice `json:"device,omitempty"` //
+}
+type RequestSitesAssignDeviceToSiteDevice struct {
+	IP string `json:"ip,omitempty"` // Device ip (eg: 10.104.240.64)
 }
 
 //GetMembership Get Membership - eba6-6905-4e08-a60e
@@ -410,60 +430,6 @@ func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryPa
 
 }
 
-//AssignDevicesToSite Assign Devices To Site - eeb1-68eb-4198-8e07
-/* Assigns unassigned devices to a site. This API does not move assigned devices to other sites.
-
-
-@param siteID siteId path parameter. Site id to which site the device to assign
-
-@param AssignDevicesToSiteHeaderParams Custom header parameters
-*/
-func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevicesToSite *RequestSitesAssignDevicesToSite, AssignDevicesToSiteHeaderParams *AssignDevicesToSiteHeaderParams) (*ResponseSitesAssignDevicesToSite, *resty.Response, error) {
-	path := "/dna/intent/api/v1/assign-device-to-site/{siteId}/device"
-	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
-
-	var response *resty.Response
-	var err error
-	clientRequest := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json")
-
-	if AssignDevicesToSiteHeaderParams != nil {
-
-		if AssignDevicesToSiteHeaderParams.Runsync != "" {
-			clientRequest = clientRequest.SetHeader("__runsync", AssignDevicesToSiteHeaderParams.Runsync)
-		}
-
-		if AssignDevicesToSiteHeaderParams.Persistbapioutput != "" {
-			clientRequest = clientRequest.SetHeader("__persistbapioutput", AssignDevicesToSiteHeaderParams.Persistbapioutput)
-		}
-
-		if AssignDevicesToSiteHeaderParams.Runsynctimeout != "" {
-			clientRequest = clientRequest.SetHeader("__runsynctimeout", AssignDevicesToSiteHeaderParams.Runsynctimeout)
-		}
-
-	}
-
-	response, err = clientRequest.
-		SetBody(requestSitesAssignDevicesToSite).
-		SetResult(&ResponseSitesAssignDevicesToSite{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AssignDevicesToSite")
-	}
-
-	result := response.Result().(*ResponseSitesAssignDevicesToSite)
-	return result, response, err
-
-}
-
 //CreateSite Create Site - 50b5-89fd-4c7a-930a
 /* Creates site with area/building/floor with specified hierarchy.
 
@@ -511,6 +477,60 @@ func (s *SitesService) CreateSite(requestSitesCreateSite *RequestSitesCreateSite
 	}
 
 	result := response.Result().(*ResponseSitesCreateSite)
+	return result, response, err
+
+}
+
+//AssignDeviceToSite Assign Device To Site - eeb1-68eb-4198-8e07
+/* Assigns list of devices to a site
+
+
+@param siteID siteId path parameter. Site id to which site the device to assign
+
+@param AssignDeviceToSiteHeaderParams Custom header parameters
+*/
+func (s *SitesService) AssignDeviceToSite(siteID string, requestSitesAssignDeviceToSite *RequestSitesAssignDeviceToSite, AssignDeviceToSiteHeaderParams *AssignDeviceToSiteHeaderParams) (*ResponseSitesAssignDeviceToSite, *resty.Response, error) {
+	path := "/dna/system/api/v1/site/{siteId}/device"
+	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if AssignDeviceToSiteHeaderParams != nil {
+
+		if AssignDeviceToSiteHeaderParams.Runsync != "" {
+			clientRequest = clientRequest.SetHeader("__runsync", AssignDeviceToSiteHeaderParams.Runsync)
+		}
+
+		if AssignDeviceToSiteHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", AssignDeviceToSiteHeaderParams.Persistbapioutput)
+		}
+
+		if AssignDeviceToSiteHeaderParams.Runsynctimeout != "" {
+			clientRequest = clientRequest.SetHeader("__runsynctimeout", AssignDeviceToSiteHeaderParams.Runsynctimeout)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestSitesAssignDeviceToSite).
+		SetResult(&ResponseSitesAssignDeviceToSite{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation AssignDeviceToSite")
+	}
+
+	result := response.Result().(*ResponseSitesAssignDeviceToSite)
 	return result, response, err
 
 }

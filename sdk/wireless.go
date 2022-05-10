@@ -46,7 +46,7 @@ type ProvisionUpdateHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string. Enable this parameter to execute the API and return a response asynchronously.
 }
 type RetrieveRfProfilesQueryParams struct {
-	RfProfileName string `url:"rf-profile-name,omitempty"` //RF Profile Name
+	RfProfileName string `url:"rf-profile-name,omitempty"` //
 }
 
 type ResponseWirelessSensorTestResults struct {
@@ -155,20 +155,19 @@ type ResponseItemWirelessGetEnterpriseSSID struct {
 	InheritedGroupName string                                              `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseItemWirelessGetEnterpriseSSIDSSIDDetails struct {
-	Name                string   `json:"name,omitempty"`                // SSID Name
-	WLANType            string   `json:"wlanType,omitempty"`            // Wlan Type
-	EnableFastLane      *bool    `json:"enableFastLane,omitempty"`      // Enable Fast Lane
-	SecurityLevel       string   `json:"securityLevel,omitempty"`       // Security Level
-	AuthServer          string   `json:"authServer,omitempty"`          // Auth Server
-	Passphrase          string   `json:"passphrase,omitempty"`          // Passphrase
-	TrafficType         string   `json:"trafficType,omitempty"`         // Traffic Type
-	EnableMacFiltering  *bool    `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
-	IsEnabled           *bool    `json:"isEnabled,omitempty"`           // Is Enabled
-	IsFabric            *bool    `json:"isFabric,omitempty"`            // Is Fabric
-	FastTransition      string   `json:"fastTransition,omitempty"`      // Fast Transition
-	RadioPolicy         string   `json:"radioPolicy,omitempty"`         // Radio Policy
-	EnableBroadcastSSID *bool    `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
-	NasOptions          []string `json:"nasOptions,omitempty"`          // Nas Options
+	Name                string `json:"name,omitempty"`                // SSID Name
+	WLANType            string `json:"wlanType,omitempty"`            // Wlan Type
+	EnableFastLane      *bool  `json:"enableFastLane,omitempty"`      // Enable Fast Lane
+	SecurityLevel       string `json:"securityLevel,omitempty"`       // Security Level
+	AuthServer          string `json:"authServer,omitempty"`          // Auth Server
+	Passphrase          string `json:"passphrase,omitempty"`          // Passphrase
+	TrafficType         string `json:"trafficType,omitempty"`         // Traffic Type
+	EnableMacFiltering  *bool  `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
+	IsEnabled           *bool  `json:"isEnabled,omitempty"`           // Is Enabled
+	IsFabric            *bool  `json:"isFabric,omitempty"`            // Is Fabric
+	FastTransition      string `json:"fastTransition,omitempty"`      // Fast Transition
+	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy
+	EnableBroadcastSSID *bool  `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
 }
 type ResponseWirelessCreateEnterpriseSSID struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
@@ -190,14 +189,12 @@ type ResponseWirelessDeleteWirelessProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseWirelessApProvision []ResponseItemWirelessApProvision // Array of ResponseWirelessAPProvision
-type ResponseItemWirelessApProvision struct {
+type ResponseWirelessApProvision struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
 	Message      string `json:"message,omitempty"`      // Message
 }
-type ResponseWirelessCreateUpdateDynamicInterface []ResponseItemWirelessCreateUpdateDynamicInterface // Array of ResponseWirelessCreateUpdateDynamicInterface
-type ResponseItemWirelessCreateUpdateDynamicInterface struct {
+type ResponseWirelessCreateUpdateDynamicInterface struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
 	Message      string `json:"message,omitempty"`      // Message
@@ -255,40 +252,44 @@ type ResponseWirelessProvisionProvisioningTasks struct {
 	Success []string `json:"success,omitempty"` // Success
 	Failed  []string `json:"failed,omitempty"`  // Failed
 }
+type ResponseWirelessPSKOverride struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
 type ResponseWirelessRetrieveRfProfiles struct {
 	Response *[]ResponseWirelessRetrieveRfProfilesResponse `json:"response,omitempty"` //
 }
 type ResponseWirelessRetrieveRfProfilesResponse struct {
-	Name                string `json:"name,omitempty"`                // Name
-	ParentProfileA      string `json:"parentProfileA,omitempty"`      // Parent Profile A
-	ParentProfileB      string `json:"parentProfileB,omitempty"`      // Parent Profile B
-	EnableARadioType    *bool  `json:"enableARadioType,omitempty"`    // Enable ARadio Type
-	EnableBRadioType    *bool  `json:"enableBRadioType,omitempty"`    // Enable BRadio Type
-	EnableCRadioType    *bool  `json:"enableCRadioType,omitempty"`    // Enable CRadio Type
-	ChannelWidth        string `json:"channelWidth,omitempty"`        // Channel Width
-	ARadioChannels      string `json:"aRadioChannels,omitempty"`      // A Radio Channels
-	BRadioChannels      string `json:"bRadioChannels,omitempty"`      // B Radio Channels
-	CRadioChannels      string `json:"cRadioChannels,omitempty"`      // C Radio Channels
-	DataRatesA          string `json:"dataRatesA,omitempty"`          // Data Rates A
-	DataRatesB          string `json:"dataRatesB,omitempty"`          // Data Rates B
-	DataRatesC          string `json:"dataRatesC,omitempty"`          // Data Rates C
-	MandatoryDataRatesA string `json:"mandatoryDataRatesA,omitempty"` // Mandatory Data Rates A
-	MandatoryDataRatesB string `json:"mandatoryDataRatesB,omitempty"` // Mandatory Data Rates B
-	MandatoryDataRatesC string `json:"mandatoryDataRatesC,omitempty"` // Mandatory Data Rates C
-	EnableCustom        *bool  `json:"enableCustom,omitempty"`        // Enable Custom
-	MinPowerLevelA      string `json:"minPowerLevelA,omitempty"`      // Min Power Level A
-	MinPowerLevelB      string `json:"minPowerLevelB,omitempty"`      // Min Power Level B
-	MinPowerLevelC      string `json:"minPowerLevelC,omitempty"`      // Min Power Level C
-	MaxPowerLevelA      string `json:"maxPowerLevelA,omitempty"`      // Max Power Level A
-	MaxPowerLevelB      string `json:"maxPowerLevelB,omitempty"`      // Max Power Level B
-	PowerThresholdV1A   *int   `json:"powerThresholdV1A,omitempty"`   // Power Threshold V1 A
-	PowerThresholdV1B   *int   `json:"powerThresholdV1B,omitempty"`   // Power Threshold V1 B
-	PowerThresholdV1C   *int   `json:"powerThresholdV1C,omitempty"`   // Power Threshold V1 C
-	RxSopThresholdA     string `json:"rxSopThresholdA,omitempty"`     // Rx Sop Threshold A
-	RxSopThresholdB     string `json:"rxSopThresholdB,omitempty"`     // Rx Sop Threshold B
-	RxSopThresholdC     string `json:"rxSopThresholdC,omitempty"`     // Rx Sop Threshold C
-	DefaultRfProfile    *bool  `json:"defaultRfProfile,omitempty"`    // Default Rf Profile
-	EnableBrownField    *bool  `json:"enableBrownField,omitempty"`    // Enable Brown Field
+	Name                 string                                                          `json:"name,omitempty"`                 // radio profile name
+	DefaultRfProfile     *bool                                                           `json:"defaultRfProfile,omitempty"`     // is default radio profile
+	ChannelWidth         string                                                          `json:"channelWidth,omitempty"`         // Channel Width
+	EnableBrownField     *bool                                                           `json:"enableBrownField,omitempty"`     // is brownfield enabled
+	EnableCustom         *bool                                                           `json:"enableCustom,omitempty"`         // is Custom Enable
+	EnableRadioTypeA     *bool                                                           `json:"enableRadioTypeA,omitempty"`     // Enable Radio Type A
+	EnableRadioTypeB     *bool                                                           `json:"enableRadioTypeB,omitempty"`     // Enable Radio Type B
+	RadioTypeAProperties *ResponseWirelessRetrieveRfProfilesResponseRadioTypeAProperties `json:"radioTypeAProperties,omitempty"` //
+	RadioTypeBProperties *ResponseWirelessRetrieveRfProfilesResponseRadioTypeBProperties `json:"radioTypeBProperties,omitempty"` //
+}
+type ResponseWirelessRetrieveRfProfilesResponseRadioTypeAProperties struct {
+	ParentProfile      string `json:"parentProfile,omitempty"`      // Parent Profile name
+	RadioChannels      string `json:"radioChannels,omitempty"`      // Radio Channels
+	DataRates          string `json:"dataRates,omitempty"`          // Data Rates
+	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
+	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
+	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
+	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Min Power Level
+	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Max Power Level
+}
+type ResponseWirelessRetrieveRfProfilesResponseRadioTypeBProperties struct {
+	ParentProfile      string `json:"parentProfile,omitempty"`      // Parent Profile name
+	RadioChannels      string `json:"radioChannels,omitempty"`      // Radio Channels
+	DataRates          string `json:"dataRates,omitempty"`          // Data Rates
+	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
+	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
+	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
+	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Min Power Level
+	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Max Power Level
 }
 type ResponseWirelessCreateOrUpdateRfProfile struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
@@ -314,7 +315,7 @@ type RequestWirelessCreateAndProvisionSSIDSSIDDetails struct {
 	Passphrase          string `json:"passphrase,omitempty"`          // Pass Phrase ( Only applicable for SSID with PERSONAL auth type )
 	TrafficType         string `json:"trafficType,omitempty"`         // Traffic Type
 	EnableBroadcastSSID *bool  `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
-	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy
+	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'.
 	EnableMacFiltering  *bool  `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
 	FastTransition      string `json:"fastTransition,omitempty"`      // Fast Transition
 	WebAuthURL          string `json:"webAuthURL,omitempty"`          // Web Auth URL
@@ -324,46 +325,44 @@ type RequestWirelessCreateAndProvisionSSIDFlexConnect struct {
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan (range is 1 to 4094)
 }
 type RequestWirelessCreateEnterpriseSSID struct {
-	Name                             string   `json:"name,omitempty"`                             // SSID NAME
-	SecurityLevel                    string   `json:"securityLevel,omitempty"`                    // Security Level
-	Passphrase                       string   `json:"passphrase,omitempty"`                       // Passphrase
-	EnableFastLane                   *bool    `json:"enableFastLane,omitempty"`                   // Enable FastLane
-	EnableMacFiltering               *bool    `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
-	TrafficType                      string   `json:"trafficType,omitempty"`                      // Traffic Type Enum (voicedata or data )
-	RadioPolicy                      string   `json:"radioPolicy,omitempty"`                      // Radio Policy Enum (enum: Triple band operation (2.4GHz, 5GHz and 6GHz), Triple band operation with band select, 5GHz only, 2.4GHz only, 6GHz only)
-	EnableBroadcastSSID              *bool    `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcase SSID
-	FastTransition                   string   `json:"fastTransition,omitempty"`                   // Fast Transition
-	EnableSessionTimeOut             *bool    `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
-	SessionTimeOut                   *int     `json:"sessionTimeOut,omitempty"`                   // Session Time Out
-	EnableClientExclusion            *bool    `json:"enableClientExclusion,omitempty"`            // Enable Client Exclusion
-	ClientExclusionTimeout           *int     `json:"clientExclusionTimeout,omitempty"`           // Client Exclusion Timeout
-	EnableBasicServiceSetMaxIDle     *bool    `json:"enableBasicServiceSetMaxIdle,omitempty"`     // Enable Basic Service Set Max Idle
-	BasicServiceSetClientIDleTimeout *int     `json:"basicServiceSetClientIdleTimeout,omitempty"` // Basic Service Set Client Idle Timeout
-	EnableDirectedMulticastService   *bool    `json:"enableDirectedMulticastService,omitempty"`   // Enable Directed Multicast Service
-	EnableNeighborList               *bool    `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
-	MfpClientProtection              string   `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
-	NasOptions                       []string `json:"nasOptions,omitempty"`                       // Nas Options
+	Name                             string `json:"name,omitempty"`                             // Enter SSID Name
+	SecurityLevel                    string `json:"securityLevel,omitempty"`                    // Security Level
+	Passphrase                       string `json:"passphrase,omitempty"`                       // Pass Phrase (Only applicable for SSID with PERSONAL security level)
+	EnableFastLane                   *bool  `json:"enableFastLane,omitempty"`                   // Enable Fast Lane
+	EnableMacFiltering               *bool  `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
+	TrafficType                      string `json:"trafficType,omitempty"`                      // Traffic Type
+	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'.
+	EnableBroadcastSSID              *bool  `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcast SSID
+	FastTransition                   string `json:"fastTransition,omitempty"`                   // Fast Transition
+	EnableSessionTimeOut             *bool  `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
+	SessionTimeOut                   *int   `json:"sessionTimeOut,omitempty"`                   // Session Time Out
+	EnableClientExclusion            *bool  `json:"enableClientExclusion,omitempty"`            // Enable Client Exclusion
+	ClientExclusionTimeout           *int   `json:"clientExclusionTimeout,omitempty"`           // Client Exclusion Timeout
+	EnableBasicServiceSetMaxIDle     *bool  `json:"enableBasicServiceSetMaxIdle,omitempty"`     // Enable Basic Service Set Max Idle
+	BasicServiceSetClientIDleTimeout *int   `json:"basicServiceSetClientIdleTimeout,omitempty"` // Basic Service Set Client Idle Timeout
+	EnableDirectedMulticastService   *bool  `json:"enableDirectedMulticastService,omitempty"`   // Enable Directed Multicast Service
+	EnableNeighborList               *bool  `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
+	MfpClientProtection              string `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
 }
 type RequestWirelessUpdateEnterpriseSSID struct {
-	Name                             string   `json:"name,omitempty"`                             // SSID NAME
-	SecurityLevel                    string   `json:"securityLevel,omitempty"`                    // Security Level
-	Passphrase                       string   `json:"passphrase,omitempty"`                       // Passphrase
-	EnableFastLane                   *bool    `json:"enableFastLane,omitempty"`                   // Enable FastLane
-	EnableMacFiltering               *bool    `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
-	TrafficType                      string   `json:"trafficType,omitempty"`                      // Traffic Type Enum (voicedata or data )
-	RadioPolicy                      string   `json:"radioPolicy,omitempty"`                      // Radio Policy Enum (enum: Triple band operation (2.4GHz, 5GHz and 6GHz), Triple band operation with band select, 5GHz only, 2.4GHz only, 6GHz only)
-	EnableBroadcastSSID              *bool    `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcase SSID
-	FastTransition                   string   `json:"fastTransition,omitempty"`                   // Fast Transition
-	EnableSessionTimeOut             *bool    `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
-	SessionTimeOut                   *int     `json:"sessionTimeOut,omitempty"`                   // Session Time Out
-	EnableClientExclusion            *bool    `json:"enableClientExclusion,omitempty"`            // Enable Client Exclusion
-	ClientExclusionTimeout           *int     `json:"clientExclusionTimeout,omitempty"`           // Client Exclusion Timeout
-	EnableBasicServiceSetMaxIDle     *bool    `json:"enableBasicServiceSetMaxIdle,omitempty"`     // Enable Basic Service Set Max Idle
-	BasicServiceSetClientIDleTimeout *int     `json:"basicServiceSetClientIdleTimeout,omitempty"` // Basic Service Set Client Idle Timeout
-	EnableDirectedMulticastService   *bool    `json:"enableDirectedMulticastService,omitempty"`   // Enable Directed Multicast Service
-	EnableNeighborList               *bool    `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
-	MfpClientProtection              string   `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
-	NasOptions                       []string `json:"nasOptions,omitempty"`                       // Nas Options
+	Name                             string `json:"name,omitempty"`                             // Enter SSID Name
+	SecurityLevel                    string `json:"securityLevel,omitempty"`                    // Security Level
+	Passphrase                       string `json:"passphrase,omitempty"`                       // Pass Phrase (Only applicable for SSID with PERSONAL security level)
+	EnableFastLane                   *bool  `json:"enableFastLane,omitempty"`                   // Enable Fast Lane
+	EnableMacFiltering               *bool  `json:"enableMACFiltering,omitempty"`               // Enable MAC Filtering
+	TrafficType                      string `json:"trafficType,omitempty"`                      // Traffic Type
+	RadioPolicy                      string `json:"radioPolicy,omitempty"`                      // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'
+	EnableBroadcastSSID              *bool  `json:"enableBroadcastSSID,omitempty"`              // Enable Broadcast SSID
+	FastTransition                   string `json:"fastTransition,omitempty"`                   // Fast Transition
+	EnableSessionTimeOut             *bool  `json:"enableSessionTimeOut,omitempty"`             // Enable Session Timeout
+	SessionTimeOut                   *int   `json:"sessionTimeOut,omitempty"`                   // Session Time Out
+	EnableClientExclusion            *bool  `json:"enableClientExclusion,omitempty"`            // Enable Client Exclusion
+	ClientExclusionTimeout           *int   `json:"clientExclusionTimeout,omitempty"`           // Client Exclusion Timeout
+	EnableBasicServiceSetMaxIDle     *bool  `json:"enableBasicServiceSetMaxIdle,omitempty"`     // Enable Basic Service Set Max Idle
+	BasicServiceSetClientIDleTimeout *int   `json:"basicServiceSetClientIdleTimeout,omitempty"` // Basic Service Set Client Idle Timeout
+	EnableDirectedMulticastService   *bool  `json:"enableDirectedMulticastService,omitempty"`   // Enable Directed Multicast Service
+	EnableNeighborList               *bool  `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
+	MfpClientProtection              string `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
 }
 type RequestWirelessApProvision []RequestItemWirelessApProvision // Array of RequestWirelessAPProvision
 type RequestItemWirelessApProvision struct {
@@ -453,30 +452,28 @@ type RequestItemWirelessPSKOverride struct {
 	PassPhrase string `json:"passPhrase,omitempty"` // Pass phrase (create/update)
 }
 type RequestWirelessCreateOrUpdateRfProfile struct {
-	Name                 string                                                      `json:"name,omitempty"`                 // RF Profile Name
-	DefaultRfProfile     *bool                                                       `json:"defaultRfProfile,omitempty"`     // is Default Rf Profile
-	EnableRadioTypeA     *bool                                                       `json:"enableRadioTypeA,omitempty"`     // Enable Radio Type A
-	EnableRadioTypeB     *bool                                                       `json:"enableRadioTypeB,omitempty"`     // Enable Radio Type B
-	ChannelWidth         string                                                      `json:"channelWidth,omitempty"`         // Channel Width
-	EnableCustom         *bool                                                       `json:"enableCustom,omitempty"`         // Enable Custom
-	EnableBrownField     *bool                                                       `json:"enableBrownField,omitempty"`     // Enable Brown Field
+	Name                 string                                                      `json:"name,omitempty"`                 // custom RF profile name
+	DefaultRfProfile     *bool                                                       `json:"defaultRfProfile,omitempty"`     // isDefault rf-profile
+	EnableRadioTypeA     *bool                                                       `json:"enableRadioTypeA,omitempty"`     // tru if Enable Radio Type A else false
+	EnableRadioTypeB     *bool                                                       `json:"enableRadioTypeB,omitempty"`     // true if Enable Radio Type B else false
+	ChannelWidth         string                                                      `json:"channelWidth,omitempty"`         // rf-profile channel width
+	EnableCustom         *bool                                                       `json:"enableCustom,omitempty"`         // true if enable custom rf-profile else false
+	EnableBrownField     *bool                                                       `json:"enableBrownField,omitempty"`     // true if enable brown field for rf-profile else false
 	RadioTypeAProperties *RequestWirelessCreateOrUpdateRfProfileRadioTypeAProperties `json:"radioTypeAProperties,omitempty"` //
 	RadioTypeBProperties *RequestWirelessCreateOrUpdateRfProfileRadioTypeBProperties `json:"radioTypeBProperties,omitempty"` //
-	RadioTypeCProperties *RequestWirelessCreateOrUpdateRfProfileRadioTypeCProperties `json:"radioTypeCProperties,omitempty"` //
-	EnableRadioTypeC     *bool                                                       `json:"enableRadioTypeC,omitempty"`     // Enable Radio Type C (6GHz)
 }
 type RequestWirelessCreateOrUpdateRfProfileRadioTypeAProperties struct {
-	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
+	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent rf-profile name
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
 	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
-	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Rx Sop Threshold
+	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
 }
 type RequestWirelessCreateOrUpdateRfProfileRadioTypeBProperties struct {
-	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
+	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent rf-profile name
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
@@ -484,16 +481,6 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeBProperties struct {
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
-}
-type RequestWirelessCreateOrUpdateRfProfileRadioTypeCProperties struct {
-	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
-	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
-	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
-	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
-	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
-	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level
-	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
 }
 
 //SensorTestResults Sensor Test Results - 87ae-7b21-4f0b-a838
@@ -820,7 +807,7 @@ func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpda
 }
 
 //CreateWirelessProfile Create Wireless Profile - 7097-6962-4bf9-88d5
-/* Creates Wireless Network Profile on Cisco DNA Center and associates sites and SSIDs to it.
+/* Creates Wireless Network Profile on DNAC and associates sites and SSIDs to it.
 
 
  */
@@ -884,26 +871,28 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 
 
  */
-func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*resty.Response, error) {
+func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*ResponseWirelessPSKOverride, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/psk-override"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestWirelessPSKOverride).
+		SetResult(&ResponseWirelessPSKOverride{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation PSKOverride")
+		return nil, response, fmt.Errorf("error with operation PSKOverride")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseWirelessPSKOverride)
+	return result, response, err
 
 }
 
@@ -1119,7 +1108,7 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirele
 }
 
 //DeleteWirelessProfile Delete Wireless Profile - e395-88a5-4949-82c4
-/* Delete the Wireless Profile from Cisco DNA Center whose name is provided.
+/* Delete the Wireless Profile from DNAC whose name is provided.
 
 
 @param wirelessProfileName wirelessProfileName path parameter. Wireless Profile Name
@@ -1201,7 +1190,7 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 /* Delete RF profile(s)
 
 
-@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
+@param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) non-custom RF profile cannot be deleted
 
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {

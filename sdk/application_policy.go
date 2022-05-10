@@ -219,7 +219,7 @@ type ResponseApplicationPolicyGetApplicationPolicyDefaultResponseExclusiveContra
 	InstanceUpdatedOn *int     `json:"instanceUpdatedOn,omitempty"` // Instance updated on
 	InstanceVersion   *float64 `json:"instanceVersion,omitempty"`   // Instance version
 	Priority          *int     `json:"priority,omitempty"`          // Priority
-	Type              string   `json:"type,omitempty"`              // Type
+	Type              string   `json:"type,omitempty"`              // Type. (Example: BUSINESS_RELEVANCE.)
 	RelevanceLevel    string   `json:"relevanceLevel,omitempty"`    // Relevance level
 }
 type ResponseApplicationPolicyGetApplicationPolicyDefaultResponseIDentitySource struct {
@@ -417,15 +417,26 @@ type ResponseApplicationPolicyDeleteApplicationResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
-type ResponseApplicationPolicyGetApplications []ResponseItemApplicationPolicyGetApplications // Array of ResponseApplicationPolicyGetApplications
-type ResponseItemApplicationPolicyGetApplications struct {
-	ID                  string                                                             `json:"id,omitempty"`                  // Id
-	Name                string                                                             `json:"name,omitempty"`                // Name
-	NetworkApplications *[]ResponseItemApplicationPolicyGetApplicationsNetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     *[]ResponseItemApplicationPolicyGetApplicationsNetworkIDentity     `json:"networkIdentity,omitempty"`     //
-	ApplicationSet      *ResponseItemApplicationPolicyGetApplicationsApplicationSet        `json:"applicationSet,omitempty"`      //
+type ResponseApplicationPolicyGetApplications struct {
+	Response *[]ResponseApplicationPolicyGetApplicationsResponse `json:"response,omitempty"` //
 }
-type ResponseItemApplicationPolicyGetApplicationsNetworkApplications struct {
+type ResponseApplicationPolicyGetApplicationsResponse struct {
+	ID                        string                                                                       `json:"id,omitempty"`                        // Id
+	Name                      string                                                                       `json:"name,omitempty"`                      // Name
+	IndicativeNetworkIDentity *[]ResponseApplicationPolicyGetApplicationsResponseIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
+	NetworkApplications       *[]ResponseApplicationPolicyGetApplicationsResponseNetworkApplications       `json:"networkApplications,omitempty"`       //
+	NetworkIDentity           *[]ResponseApplicationPolicyGetApplicationsResponseNetworkIDentity           `json:"networkIdentity,omitempty"`           //
+	ApplicationSet            *ResponseApplicationPolicyGetApplicationsResponseApplicationSet              `json:"applicationSet,omitempty"`            //
+}
+type ResponseApplicationPolicyGetApplicationsResponseIndicativeNetworkIDentity struct {
+	ID          string `json:"id,omitempty"`          // id
+	DisplayName string `json:"displayName,omitempty"` // displayName
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
+	Ports       string `json:"ports,omitempty"`       // ports
+	Protocol    string `json:"protocol,omitempty"`    // protocol
+	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
+}
+type ResponseApplicationPolicyGetApplicationsResponseNetworkApplications struct {
 	ID                 string `json:"id,omitempty"`                 // Id
 	AppProtocol        string `json:"appProtocol,omitempty"`        // App Protocol
 	ApplicationSubType string `json:"applicationSubType,omitempty"` // Application Sub Type
@@ -436,27 +447,27 @@ type ResponseItemApplicationPolicyGetApplicationsNetworkApplications struct {
 	HelpString         string `json:"helpString,omitempty"`         // Help String
 	LongDescription    string `json:"longDescription,omitempty"`    // Long Description
 	Name               string `json:"name,omitempty"`               // Name
-	Popularity         string `json:"popularity,omitempty"`         // Popularity
-	Rank               string `json:"rank,omitempty"`               // Rank
+	Popularity         *int   `json:"popularity,omitempty"`         // Popularity
+	Rank               *int   `json:"rank,omitempty"`               // Rank
 	TrafficClass       string `json:"trafficClass,omitempty"`       // Traffic Class
 	ServerName         string `json:"serverName,omitempty"`         // Server Name
 	URL                string `json:"url,omitempty"`                // Url
 	Dscp               string `json:"dscp,omitempty"`               // Dscp
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     // Ignore Conflict
 }
-type ResponseItemApplicationPolicyGetApplicationsNetworkIDentity struct {
+type ResponseApplicationPolicyGetApplicationsResponseNetworkIDentity struct {
 	ID          string `json:"id,omitempty"`          // Id
 	DisplayName string `json:"displayName,omitempty"` // Display Name
-	LowerPort   string `json:"lowerPort,omitempty"`   // Lower Port
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // Lower Port
 	Ports       string `json:"ports,omitempty"`       // Ports
 	Protocol    string `json:"protocol,omitempty"`    // Protocol
-	UpperPort   string `json:"upperPort,omitempty"`   // Upper Port
+	UpperPort   *int   `json:"upperPort,omitempty"`   // Upper Port
 }
-type ResponseItemApplicationPolicyGetApplicationsApplicationSet struct {
+type ResponseApplicationPolicyGetApplicationsResponseApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
 type ResponseApplicationPolicyGetApplicationsCount struct {
-	Response string `json:"response,omitempty"` // Response
+	Response *int   `json:"response,omitempty"` // Response
 	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyGetQosDeviceInterfaceInfo struct {
@@ -692,10 +703,11 @@ type RequestItemApplicationPolicyCreateApplicationSet struct {
 }
 type RequestApplicationPolicyCreateApplication []RequestItemApplicationPolicyCreateApplication // Array of RequestApplicationPolicyCreateApplication
 type RequestItemApplicationPolicyCreateApplication struct {
-	Name                string                                                              `json:"name,omitempty"`                // Name
-	NetworkApplications *[]RequestItemApplicationPolicyCreateApplicationNetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     *[]RequestItemApplicationPolicyCreateApplicationNetworkIDentity     `json:"networkIdentity,omitempty"`     //
-	ApplicationSet      *RequestItemApplicationPolicyCreateApplicationApplicationSet        `json:"applicationSet,omitempty"`      //
+	Name                      string                                                                    `json:"name,omitempty"`                      // Name
+	NetworkApplications       *[]RequestItemApplicationPolicyCreateApplicationNetworkApplications       `json:"networkApplications,omitempty"`       //
+	NetworkIDentity           *[]RequestItemApplicationPolicyCreateApplicationNetworkIDentity           `json:"networkIdentity,omitempty"`           //
+	ApplicationSet            *RequestItemApplicationPolicyCreateApplicationApplicationSet              `json:"applicationSet,omitempty"`            //
+	IndicativeNetworkIDentity *[]RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
 }
 type RequestItemApplicationPolicyCreateApplicationNetworkApplications struct {
 	AppProtocol        string `json:"appProtocol,omitempty"`        // App Protocol
@@ -724,6 +736,14 @@ type RequestItemApplicationPolicyCreateApplicationNetworkIDentity struct {
 }
 type RequestItemApplicationPolicyCreateApplicationApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
+}
+type RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity struct {
+	ID          string `json:"id,omitempty"`          // id
+	DisplayName string `json:"displayName,omitempty"` // displayName
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
+	Ports       string `json:"ports,omitempty"`       // ports
+	Protocol    string `json:"protocol,omitempty"`    // protocol
+	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
 }
 type RequestApplicationPolicyEditApplication []RequestItemApplicationPolicyEditApplication // Array of RequestApplicationPolicyEditApplication
 type RequestItemApplicationPolicyEditApplication struct {
