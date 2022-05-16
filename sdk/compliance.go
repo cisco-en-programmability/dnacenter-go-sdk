@@ -72,7 +72,7 @@ type ResponseComplianceGetComplianceDetailResponse struct {
 	DisplayName    string `json:"displayName,omitempty"`    // Display Name
 	Status         string `json:"status,omitempty"`         // Status
 	Category       string `json:"category,omitempty"`       // Category
-	LastUpdateTime string `json:"lastUpdateTime,omitempty"` // Last Update Time
+	LastUpdateTime *int   `json:"lastUpdateTime,omitempty"` // Last Update Time
 	State          string `json:"state,omitempty"`          // State
 }
 type ResponseComplianceGetComplianceDetailCount struct {
@@ -106,7 +106,7 @@ type ResponseComplianceComplianceDetailsOfDeviceResponse struct {
 	State             string                                                               `json:"state,omitempty"`             // State
 	Status            string                                                               `json:"status,omitempty"`            // Status
 	Category          string                                                               `json:"category,omitempty"`          // Category
-	LastUpdateTime    string                                                               `json:"lastUpdateTime,omitempty"`    // Last Update Time
+	LastUpdateTime    *int                                                                 `json:"lastUpdateTime,omitempty"`    // Last Update Time
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList struct {
 	Count               *float64                                                                      `json:"count,omitempty"`               // Count
