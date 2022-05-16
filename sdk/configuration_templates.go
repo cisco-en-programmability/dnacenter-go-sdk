@@ -10,6 +10,9 @@ import (
 
 type ConfigurationTemplatesService service
 
+type CreatesACloneOfTheGivenTemplateQueryParams struct {
+	ProjectID string `url:"projectId,omitempty"` //UUID of the project in which the template needs to be created
+}
 type GetsAListOfProjectsQueryParams struct {
 	Name      string `url:"name,omitempty"`      //Name of project to be searched
 	SortOrder string `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (des)
@@ -110,7 +113,6 @@ type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct {
 	CustomParamsOrder       *bool                                                                                   `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                                  `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                                   `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                                  `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                                  `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                                  `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -118,7 +120,6 @@ type ResponseItemConfigurationTemplatesGetsAListOfProjectsTemplates struct {
 	LatestVersionTime       *int                                                                                    `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                                  `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                                  `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                                   `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                                  `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                                  `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                                  `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -346,7 +347,6 @@ type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct
 	CustomParamsOrder       *bool                                                                                         `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                                        `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                                         `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                                        `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                                        `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                                        `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -354,7 +354,6 @@ type ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProjectTemplates struct
 	LatestVersionTime       *int                                                                                          `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                                        `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                                        `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                                         `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                                        `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                                        `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                                        `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -683,7 +682,6 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate struct {
 	CustomParamsOrder       *bool                                                                              `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                             `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                              `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                             `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                             `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                             `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -691,7 +689,6 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate struct {
 	LatestVersionTime       *int                                                                               `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                             `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                             `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                              `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                             `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                             `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                             `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -899,7 +896,6 @@ type ResponseConfigurationTemplatesGetProjectsDetailsResponseTemplates struct {
 	CustomParamsOrder       *bool                                                                                      `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                                     `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]ResponseConfigurationTemplatesGetProjectsDetailsResponseTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                                      `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                                     `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                                     `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                                     `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -907,7 +903,6 @@ type ResponseConfigurationTemplatesGetProjectsDetailsResponseTemplates struct {
 	LatestVersionTime       *int                                                                                       `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                                     `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                                     `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                                      `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                                     `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                                     `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                                     `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -1329,7 +1324,6 @@ type RequestConfigurationTemplatesCreateProjectTemplates struct {
 	CustomParamsOrder       *bool                                                                        `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                       `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]RequestConfigurationTemplatesCreateProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                        `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                       `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                       `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                       `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -1337,7 +1331,6 @@ type RequestConfigurationTemplatesCreateProjectTemplates struct {
 	LatestVersionTime       *int                                                                         `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                       `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                       `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                        `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                       `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                       `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                       `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -1540,7 +1533,6 @@ type RequestConfigurationTemplatesUpdateProjectTemplates struct {
 	CustomParamsOrder       *bool                                                                        `json:"customParamsOrder,omitempty"`       // Custom Params Order
 	Description             string                                                                       `json:"description,omitempty"`             // Description of template
 	DeviceTypes             *[]RequestConfigurationTemplatesUpdateProjectTemplatesDeviceTypes            `json:"deviceTypes,omitempty"`             //
-	DocumentDatabase        *bool                                                                        `json:"documentDatabase,omitempty"`        // Document Database
 	FailurePolicy           string                                                                       `json:"failurePolicy,omitempty"`           // Define failure policy if template provisioning fails
 	ID                      string                                                                       `json:"id,omitempty"`                      // UUID of template
 	Language                string                                                                       `json:"language,omitempty"`                // Template language (JINJA or VELOCITY)
@@ -1548,7 +1540,6 @@ type RequestConfigurationTemplatesUpdateProjectTemplates struct {
 	LatestVersionTime       *int                                                                         `json:"latestVersionTime,omitempty"`       // Latest versioned template time
 	Name                    string                                                                       `json:"name,omitempty"`                    // Name of template
 	ParentTemplateID        string                                                                       `json:"parentTemplateId,omitempty"`        // Parent templateID
-	ProjectAssociated       *bool                                                                        `json:"projectAssociated,omitempty"`       // Project Associated
 	ProjectID               string                                                                       `json:"projectId,omitempty"`               // Project UUID
 	ProjectName             string                                                                       `json:"projectName,omitempty"`             // Project name
 	RollbackTemplateContent string                                                                       `json:"rollbackTemplateContent,omitempty"` // Rollback template content
@@ -1728,7 +1719,7 @@ type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrors struct 
 	TemplateVersion        string                                                                                       `json:"templateVersion,omitempty"`        // Current version of template
 }
 type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsRollbackTemplateErrors interface{}
-type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsTemplateErrors interface{}
+type RequestConfigurationTemplatesUpdateProjectTemplatesValidationErrorsTemplateErrors interface{}                                           // # Review unknown case
 type RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria []RequestItemConfigurationTemplatesExportsTheProjectsForAGivenCriteria // Array of RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria
 type RequestItemConfigurationTemplatesExportsTheProjectsForAGivenCriteria interface{}
 type RequestConfigurationTemplatesImportsTheTemplatesProvided []RequestItemConfigurationTemplatesImportsTheTemplatesProvided // Array of RequestConfigurationTemplatesImportsTheTemplatesProvided
@@ -2640,18 +2631,21 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQ
 
 @param templateID templateId path parameter. UUID of the template to clone it
 
-@param projectID projectId path parameter. UUID of the project in which the template needs to be created
-
+@param projectID projectId path parameter.
+@param CreatesACloneOfTheGivenTemplateQueryParams Filtering parameter
 */
-func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string, CreatesACloneOfTheGivenTemplateQueryParams *CreatesACloneOfTheGivenTemplateQueryParams) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/clone/name/{name}/project/{projectId}/template/{templateId}"
 	path = strings.Replace(path, "{name}", fmt.Sprintf("%v", name), -1)
 	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
 	path = strings.Replace(path, "{projectId}", fmt.Sprintf("%v", projectID), -1)
 
+	queryString, _ := query.Values(CreatesACloneOfTheGivenTemplateQueryParams)
+
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).
 		SetResult(&ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate{}).
 		SetError(&Error).
 		Post(path)
