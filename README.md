@@ -82,10 +82,12 @@ if devices.Response != nil {
 ```
 
 ## Documentation
-
-[dnacenter-go-sdk/v3](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v3)
-[dnacenter-go-sdk/v2](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v2)
-[dnacenter-go-sdk](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk)
+### dnacenter-go-sdk/v3
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v3)
+### dnacenter-go-sdk/v2
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v2)
+### dnacenter-go-sdk
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk)
 
 ## Compatibility matrix
 
