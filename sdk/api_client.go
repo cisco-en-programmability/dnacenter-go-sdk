@@ -37,7 +37,7 @@ type Client struct {
 	Authentication              *AuthenticationService
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
-	AuthenticationManagement    *AuthenticationManagementService
+	CiscoDnaCenterSystem        *CiscoDnaCenterSystemService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService
 	Compliance                  *ComplianceService
@@ -46,7 +46,6 @@ type Client struct {
 	DeviceOnboardingPnp         *DeviceOnboardingPnpService
 	DeviceReplacement           *DeviceReplacementService
 	Devices                     *DevicesService
-	DisasterRecovery            *DisasterRecoveryService
 	Discovery                   *DiscoveryService
 	EventManagement             *EventManagementService
 	FabricWireless              *FabricWirelessService
@@ -54,11 +53,11 @@ type Client struct {
 	HealthAndPerformance        *HealthAndPerformanceService
 	Itsm                        *ItsmService
 	Issues                      *IssuesService
+	LanAutomation               *LanAutomationService
 	Licenses                    *LicensesService
 	NetworkSettings             *NetworkSettingsService
 	PathTrace                   *PathTraceService
 	PlatformConfiguration       *PlatformConfigurationService
-	Policy                      *PolicyService
 	Reports                     *ReportsService
 	Sda                         *SdaService
 	SecurityAdvisories          *SecurityAdvisoriesService
@@ -66,6 +65,7 @@ type Client struct {
 	SiteDesign                  *SiteDesignService
 	Sites                       *SitesService
 	SoftwareImageManagementSwim *SoftwareImageManagementSwimService
+	SystemSettings              *SystemSettingsService
 	Tag                         *TagService
 	Task                        *TaskService
 	Topology                    *TopologyService
@@ -170,7 +170,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.Authentication = (*AuthenticationService)(&c.common)
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
-	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
+	c.CiscoDnaCenterSystem = (*CiscoDnaCenterSystemService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
 	c.Compliance = (*ComplianceService)(&c.common)
@@ -179,7 +179,6 @@ func NewClientNoAuth() (*Client, error) {
 	c.DeviceOnboardingPnp = (*DeviceOnboardingPnpService)(&c.common)
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 	c.Devices = (*DevicesService)(&c.common)
-	c.DisasterRecovery = (*DisasterRecoveryService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.FabricWireless = (*FabricWirelessService)(&c.common)
@@ -187,11 +186,11 @@ func NewClientNoAuth() (*Client, error) {
 	c.HealthAndPerformance = (*HealthAndPerformanceService)(&c.common)
 	c.Itsm = (*ItsmService)(&c.common)
 	c.Issues = (*IssuesService)(&c.common)
+	c.LanAutomation = (*LanAutomationService)(&c.common)
 	c.Licenses = (*LicensesService)(&c.common)
 	c.NetworkSettings = (*NetworkSettingsService)(&c.common)
 	c.PathTrace = (*PathTraceService)(&c.common)
 	c.PlatformConfiguration = (*PlatformConfigurationService)(&c.common)
-	c.Policy = (*PolicyService)(&c.common)
 	c.Reports = (*ReportsService)(&c.common)
 	c.Sda = (*SdaService)(&c.common)
 	c.SecurityAdvisories = (*SecurityAdvisoriesService)(&c.common)
@@ -199,6 +198,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.SiteDesign = (*SiteDesignService)(&c.common)
 	c.Sites = (*SitesService)(&c.common)
 	c.SoftwareImageManagementSwim = (*SoftwareImageManagementSwimService)(&c.common)
+	c.SystemSettings = (*SystemSettingsService)(&c.common)
 	c.Tag = (*TagService)(&c.common)
 	c.Task = (*TaskService)(&c.common)
 	c.Topology = (*TopologyService)(&c.common)

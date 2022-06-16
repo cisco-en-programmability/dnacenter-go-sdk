@@ -396,7 +396,7 @@ type ResponseDiscoveryGetGlobalCredentialsResponse struct {
 	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
 	Password         string `json:"password,omitempty"`         //
 	Port             *int   `json:"port,omitempty"`             //
-	Secure           *bool  `json:"secure,omitempty"`           //
+	Secure           *int   `json:"secure,omitempty"`           //
 	Username         string `json:"username,omitempty"`         //
 	NetconfPort      string `json:"netconfPort,omitempty"`      //
 	ReadCommunity    string `json:"readCommunity,omitempty"`    //
