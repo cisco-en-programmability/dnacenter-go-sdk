@@ -3284,16 +3284,24 @@ type RequestDeviceOnboardingPnpResetDeviceDeviceResetListConfigListConfigParamet
 	Value string `json:"value,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASite struct {
-	DeviceID   string                                                  `json:"deviceId,omitempty"` //
-	SiteID     string                                                  `json:"siteId,omitempty"`   //
-	Type       string                                                  `json:"type,omitempty"`     //
-	ImageInfo  RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`          //
-	ConfigInfo RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`         //
-	Hostname   string                                                  `json:"hostname,omitempty"` //
+	DeviceID        string                                                  `json:"deviceId,omitempty"`        //
+	SiteID          string                                                  `json:"siteId,omitempty"`          //
+	Type            string                                                  `json:"type,omitempty"`            //
+	ImageInfo       RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`                 //
+	ConfigInfo      RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`                //
+	Hostname        string                                                  `json:"hostname,omitempty"`        //
+	Gateway         string                                                  `json:"gateway,omitempty"`         //
+	ImageID         string                                                  `json:"imageId,omitempty"`         //
+	RemoveInactive  *bool                                                   `json:"removeInactive,omitempty"`  //
+	IPInterfaceName string                                                  `json:"ipInterfaceName,omitempty"` //
+	RfProfile       string                                                  `json:"rfProfile,omitempty"`       //
+	StaticIP        string                                                  `json:"staticIP,omitempty"`        //
+	SubnetMask      string                                                  `json:"subnetMask,omitempty"`      //
+	VLANID          string                                                  `json:"vlanId,omitempty"`          //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
-	ImageID string `json:"imageId"`
-	Skip    bool   `json:"skip"                ` //
+	ImageID string `json:"imageId"` //
+	Skip    bool   `json:"skip"`    //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
 	ConfigID         string                                                                    `json:"configId"`         //

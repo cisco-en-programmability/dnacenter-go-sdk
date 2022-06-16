@@ -5,14 +5,14 @@ dnacenter-go-sdk is a Go client library for [DNA Center Platform](https://develo
 ## Usage
 
 ```go
-import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v3/sdk"
+import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
 ```
 
 ## Introduction
 
 The dnacenter-go-sdk makes it easier to work with the Cisco DNA Center Platform RESTFul APIs from Go.
 
-It supports version 2.2.3.3, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.2.3.3.
+It supports version 2.3.3.0, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.3.3.0.
 
 ## Getting started
 
@@ -82,13 +82,14 @@ if devices.Response != nil {
 ```
 
 ## Documentation
+### dnacenter-go-sdk/v4
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v4)
 ### dnacenter-go-sdk/v3
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v3)
 ### dnacenter-go-sdk/v2
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v2)
 ### dnacenter-go-sdk
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk)
-
 ## Compatibility matrix
 
 | SDK versions | Cisco DNA Center version supported |
@@ -97,6 +98,7 @@ if devices.Response != nil {
 | 1.y.z        |  2.1.2                             |
 | 2.y.z        |  2.2.2.3                           |
 | 3.y.z        |  2.2.3.3                           |
+| 4.y.z        |  2.3.3.0                           |
 
 ## Changelog
 

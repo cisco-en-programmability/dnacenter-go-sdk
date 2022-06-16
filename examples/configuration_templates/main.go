@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v3/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
 )
 
 // client is DNA Center API client
@@ -86,7 +86,7 @@ func main() {
 
 	// /v2 endpoints can't test
 
-	fmt.Println("Creates a CLONE")
+	/*fmt.Println("Creates a CLONE")
 	respCreatesAClone, _, err := client.ConfigurationTemplates.CreatesACloneOfTheGivenTemplate("DMVPN for Cloud Router - System Default", templateId, projectID)
 
 	if err != nil {
@@ -129,5 +129,5 @@ func main() {
 		fmt.Println("There's no data on Creates a CLONE response")
 		return
 	}
-
+	*/
 }

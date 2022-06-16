@@ -219,7 +219,7 @@ type ResponseApplicationPolicyGetApplicationPolicyDefaultResponseExclusiveContra
 	InstanceUpdatedOn *int     `json:"instanceUpdatedOn,omitempty"` // Instance updated on
 	InstanceVersion   *float64 `json:"instanceVersion,omitempty"`   // Instance version
 	Priority          *int     `json:"priority,omitempty"`          // Priority
-	Type              string   `json:"type,omitempty"`              // Type. (Example: BUSINESS_RELEVANCE.)
+	Type              string   `json:"type,omitempty"`              // Type
 	RelevanceLevel    string   `json:"relevanceLevel,omitempty"`    // Relevance level
 }
 type ResponseApplicationPolicyGetApplicationPolicyDefaultResponseIDentitySource struct {

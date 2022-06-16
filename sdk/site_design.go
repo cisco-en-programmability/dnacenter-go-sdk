@@ -373,7 +373,7 @@ type RequestSiteDesignCreateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg: Access 4018)
 }
 type RequestSiteDesignCreateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
 	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)' and 'Day-N-Template(s)'.
 }
@@ -417,12 +417,10 @@ type RequestSiteDesignUpdateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg. Access 4018)
 }
 type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
 	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)', 'Day-N-Template(s)'.
 }
-type RequestSiteDesignCreateFloormap interface{}
-type RequestSiteDesignUpdateFloormap interface{}
 
 //GetDeviceDetailsByIP Get Device details by IP - 9cb2-cb3f-494a-824f
 /* Returns provisioning device information for the specified IP address.
@@ -488,63 +486,6 @@ func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *G
 
 	result := response.Result().(*ResponseSiteDesignGetNfvProfile)
 	return result, response, err
-
-}
-
-//ListFloormaps List Floormaps - d78f-8888-4b9a-a5fe
-/* List all floor maps
-
-
- */
-func (s *SiteDesignService) ListFloormaps() (*resty.Response, error) {
-	path := "/dna/intent/api/v1/wireless/floormap/all"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation ListFloormaps")
-	}
-
-	return response, err
-
-}
-
-//ListSpecifiedFloormaps List Specified Floormap(s) - 5fb3-1896-43f8-9acf
-/* List specified floor map(s)
-
-
-@param floorID floorId path parameter. Group Id of the specified floormap
-
-*/
-func (s *SiteDesignService) ListSpecifiedFloormaps(floorID string) (*resty.Response, error) {
-	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
-	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation ListSpecifiedFloormaps")
-	}
-
-	return response, err
 
 }
 
@@ -715,34 +656,6 @@ func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *
 
 }
 
-//CreateFloormap Create Floormap - 2fad-58dc-4689-893d
-/* Service to create a floor map with callback
-
-
- */
-func (s *SiteDesignService) CreateFloormap(requestSiteDesignCreateFloormap *RequestSiteDesignCreateFloormap) (*resty.Response, error) {
-	path := "/dna/intent/api/v1/wireless/floormap"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignCreateFloormap).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation CreateFloormap")
-	}
-
-	return response, err
-
-}
-
 //UpdateNfvProfile Update NFV Profile - 0fa0-0adf-4869-8287
 /* API to update a NFV Network profile
 
@@ -776,37 +689,6 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 
 	result := response.Result().(*ResponseSiteDesignUpdateNfvProfile)
 	return result, response, err
-
-}
-
-//UpdateFloormap Update Floormap - df9a-1912-43c9-96da
-/* Service to create a floor map with callback
-
-
-@param floorID floorId path parameter. Group ID of the floor to be modified
-
-*/
-func (s *SiteDesignService) UpdateFloormap(floorID string, requestSiteDesignUpdateFloormap *RequestSiteDesignUpdateFloormap) (*resty.Response, error) {
-	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
-	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignUpdateFloormap).
-		SetError(&Error).
-		Put(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation UpdateFloormap")
-	}
-
-	return response, err
 
 }
 
@@ -877,35 +759,5 @@ func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryPar
 
 	result := response.Result().(*ResponseSiteDesignDeleteNfvProfile)
 	return result, response, err
-
-}
-
-//DeleteFloormap Delete Floormap - 9fb8-7a26-401a-a33e
-/* Service to delete an (empty) floor map with callback
-
-
-@param floorID floorId path parameter. Group ID of floor to be deleted
-
-*/
-func (s *SiteDesignService) DeleteFloormap(floorID string) (*resty.Response, error) {
-	path := "/dna/intent/api/v1/wireless/floormap/{floorId}"
-	path = strings.Replace(path, "{floorId}", fmt.Sprintf("%v", floorID), -1)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetError(&Error).
-		Delete(path)
-
-	if err != nil {
-		return nil, err
-
-	}
-
-	if response.IsError() {
-		return response, fmt.Errorf("error with operation DeleteFloormap")
-	}
-
-	return response, err
 
 }
