@@ -769,7 +769,7 @@ type ResponseDevicesGetInterfaceByIDResponse struct {
 }
 type ResponseDevicesUpdateInterfaceDetails struct {
 	Response *ResponseDevicesUpdateInterfaceDetailsResponse `json:"response,omitempty"` //
-	Version  *ResponseDevicesUpdateInterfaceDetailsVersion  `json:"version,omitempty"`  //
+	Version  string                                         `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateInterfaceDetailsResponse struct {
 	Type       string                                                   `json:"type,omitempty"`       // Type
@@ -786,75 +786,28 @@ type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID struct {
 type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL struct {
 	Type string `json:"type,omitempty"` // Type
 }
-type ResponseDevicesUpdateInterfaceDetailsVersion struct {
-	Type string `json:"type,omitempty"` // Type
-}
+
 type ResponseDevicesLegitOperationsForInterface struct {
 	Response *ResponseDevicesLegitOperationsForInterfaceResponse `json:"response,omitempty"` //
-	Version  *ResponseDevicesLegitOperationsForInterfaceVersion  `json:"version,omitempty"`  //
+	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesLegitOperationsForInterfaceResponse struct {
-	Type       string                                                        `json:"type,omitempty"`       // Type
-	Properties *ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"` //
-	Required   []string                                                      `json:"required,omitempty"`   // Required
+	InterfaceUUID string                                                          `json:"interfaceUuid,omitempty"` // Interface Uuid
+	Properties    *[]ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"`    //
+	Operations    *[]ResponseDevicesLegitOperationsForInterfaceResponseOperations `json:"operations,omitempty"`    //
 }
 type ResponseDevicesLegitOperationsForInterfaceResponseProperties struct {
-	InterfaceUUID *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID `json:"interfaceUuid,omitempty"` //
-	Properties    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties    `json:"properties,omitempty"`    //
-	Operations    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations    `json:"operations,omitempty"`    //
+	Name          string                                                                     `json:"name,omitempty"`          // Name
+	Applicable    *bool                                                                      `json:"applicable,omitempty"`    // Applicable
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesFailureReason `json:"failureReason,omitempty"` // Failure Reason
 }
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID struct {
-	Type string `json:"type,omitempty"` // Type
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesFailureReason interface{}
+type ResponseDevicesLegitOperationsForInterfaceResponseOperations struct {
+	Name          string                                                                     `json:"name,omitempty"`          // Name
+	Applicable    *bool                                                                      `json:"applicable,omitempty"`    // Applicable
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponseOperationsFailureReason `json:"failureReason,omitempty"` // Failure Reason
 }
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties struct {
-	Type  string                                                                         `json:"type,omitempty"`  // Type
-	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems `json:"items,omitempty"` //
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems struct {
-	Type       string                                                                                 `json:"type,omitempty"`       // Type
-	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties `json:"properties,omitempty"` //
-	Required   []string                                                                               `json:"required,omitempty"`   // Required
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties struct {
-	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName          `json:"name,omitempty"`          //
-	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
-	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations struct {
-	Type  string                                                                         `json:"type,omitempty"`  // Type
-	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems `json:"items,omitempty"` //
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems struct {
-	Type       string                                                                                 `json:"type,omitempty"`       // Type
-	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties `json:"properties,omitempty"` //
-	Required   []string                                                                               `json:"required,omitempty"`   // Required
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties struct {
-	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName          `json:"name,omitempty"`          //
-	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
-	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesLegitOperationsForInterfaceVersion struct {
-	Type string `json:"type,omitempty"` // Type
-}
+type ResponseDevicesLegitOperationsForInterfaceResponseOperationsFailureReason interface{}
 type ResponseDevicesClearMacAddressTable struct {
 	Response *ResponseDevicesClearMacAddressTableResponse `json:"response,omitempty"` //
 	Version  string                                       `json:"version,omitempty"`  // Version

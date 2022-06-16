@@ -1,4 +1,4 @@
-module github.com/cisco-en-programmability/dnacenter-go-sdk/v3
+module github.com/cisco-en-programmability/dnacenter-go-sdk/v4
 
 go 1.17
 
@@ -7,4 +7,4 @@ require (
 	github.com/google/go-querystring v1.1.0
 )
 
-require golang.org/x/net v0.0.0-20211029224645-99673261e6eb // indirect
+require golang.org/x/net v0.0.0-20220615171555-694bf12d69de // indirect

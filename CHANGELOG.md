@@ -5,6 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [4.0.0] - 2022-06-16
+
+### Added
+New services for Cisco DNA Center 2.3.3.0's API:
+- CiscoDnaCenterSystem *CiscoDnaCenterSystemService
+- LanAutomation *LanAutomationService
+- SystemSettings *SystemSettingsService
+
+### Removed
+Services removed on Cisco DNA Center 2.3.3.0's API:
+- AuthenticationManagement *AuthenticationManagementService
+- DisasterRecovery *DisasterRecoveryService
+- Policy *PolicyService
+  
+
 ## [3.6.3] - 2022-03-17
 ### Changed
 - Changed `RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams` from `interface` to `map[string]interface{}`
@@ -321,4 +336,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [3.6.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.0...v3.6.1
 [3.6.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...v3.6.2
 [3.6.3]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.2...v3.6.3
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.3...main
+[4.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.3...v4.0.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.0...main

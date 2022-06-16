@@ -158,7 +158,7 @@ func NewClientNoAuth() (*Client, error) {
 	}
 
 	if os.Getenv(DNAC_BASE_URL) != "" {
-		client.SetBaseURL(os.Getenv(DNAC_BASE_URL))
+		client.SetHostURL(os.Getenv(DNAC_BASE_URL))
 	} else {
 		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
 	}

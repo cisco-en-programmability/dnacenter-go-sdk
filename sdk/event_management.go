@@ -219,24 +219,30 @@ type ResponseItemEventManagementGetAuditLogParentRecords struct {
 	Timestamp         *int                                                                  `json:"timestamp,omitempty"`         // Timestamp
 	Tags              *[]ResponseItemEventManagementGetAuditLogParentRecordsTags            `json:"tags,omitempty"`              // Tags
 	Details           *ResponseItemEventManagementGetAuditLogParentRecordsDetails           `json:"details,omitempty"`           // Details
-	CiscoDnaEventLink string                                                                `json:"ciscoDnaEventLink,omitempty"` // Cisco Dna Event Link
-	Note              string                                                                `json:"note,omitempty"`              // Note
+	CiscoDnaEventLink *ResponseItemEventManagementGetAuditLogParentRecordsCiscoDnaEventLink `json:"ciscoDnaEventLink,omitempty"` // Cisco Dna Event Link
+	Note              *ResponseItemEventManagementGetAuditLogParentRecordsNote              `json:"note,omitempty"`              // Note
 	TntID             string                                                                `json:"tntId,omitempty"`             // Tnt Id
 	Context           string                                                                `json:"context,omitempty"`           // Context
 	UserID            string                                                                `json:"userId,omitempty"`            // User Id
 	I18N              string                                                                `json:"i18n,omitempty"`              // I18n
-	EventHierarchy    string                                                                `json:"eventHierarchy,omitempty"`    // Event Hierarchy
+	EventHierarchy    *ResponseItemEventManagementGetAuditLogParentRecordsEventHierarchy    `json:"eventHierarchy,omitempty"`    // Event Hierarchy
 	Message           string                                                                `json:"message,omitempty"`           // Message
-	MessageParams     string                                                                `json:"messageParams,omitempty"`     // Message Params
+	MessageParams     *ResponseItemEventManagementGetAuditLogParentRecordsMessageParams     `json:"messageParams,omitempty"`     // Message Params
 	AdditionalDetails *ResponseItemEventManagementGetAuditLogParentRecordsAdditionalDetails `json:"additionalDetails,omitempty"` // Additional Details
-	ParentInstanceID  string                                                                `json:"parentInstanceId,omitempty"`  // Parent Instance Id
-	Network           string                                                                `json:"network,omitempty"`           // Network
+	ParentInstanceID  *ResponseItemEventManagementGetAuditLogParentRecordsParentInstanceID  `json:"parentInstanceId,omitempty"`  // Parent Instance Id
+	Network           *ResponseItemEventManagementGetAuditLogParentRecordsNetwork           `json:"network,omitempty"`           // Network
 	ChildCount        *float64                                                              `json:"childCount,omitempty"`        // Child Count
 	TenantID          string                                                                `json:"tenantId,omitempty"`          // Tenant Id
 }
 type ResponseItemEventManagementGetAuditLogParentRecordsTags interface{}
 type ResponseItemEventManagementGetAuditLogParentRecordsDetails interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsCiscoDnaEventLink interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsNote interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsEventHierarchy interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsMessageParams interface{}
 type ResponseItemEventManagementGetAuditLogParentRecordsAdditionalDetails interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsParentInstanceID interface{}
+type ResponseItemEventManagementGetAuditLogParentRecordsNetwork interface{}
 type ResponseEventManagementGetAuditLogSummary []ResponseItemEventManagementGetAuditLogSummary // Array of ResponseEventManagementGetAuditLogSummary
 type ResponseItemEventManagementGetAuditLogSummary struct {
 	Count        *int `json:"count,omitempty"`        // Count
@@ -682,8 +688,8 @@ type ResponseEventManagementGetConnectorTypes []ResponseItemEventManagementGetCo
 type ResponseItemEventManagementGetConnectorTypes struct {
 	ConnectorType      string `json:"connectorType,omitempty"`      // Connector Type
 	DisplayName        string `json:"displayName,omitempty"`        // Display Name
-	IsDefaultSupported string `json:"isDefaultSupported,omitempty"` // Is Default Supported
-	IsCustomConnector  string `json:"isCustomConnector,omitempty"`  // Is Custom Connector
+	IsDefaultSupported *bool  `json:"isDefaultSupported,omitempty"` // Is Default Supported
+	IsCustomConnector  *bool  `json:"isCustomConnector,omitempty"`  // Is Custom Connector
 }
 type RequestEventManagementUpdateEmailDestination struct {
 	EmailConfigID       string                                                           `json:"emailConfigId,omitempty"`       // Required only for update email configuration

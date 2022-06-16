@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v3/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
 )
 
 // client is DNA Center API client
@@ -85,7 +85,7 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		}
-		fmt.Println(fileResponse)
+		fmt.Println(fileResponse.FileName)
 		return
 	}
 	fmt.Println("There's no data on task response")

@@ -394,6 +394,13 @@ type ResponseDiscoveryGetGlobalCredentialsResponse struct {
 	ID               string `json:"id,omitempty"`               //
 	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
 	InstanceUUID     string `json:"instanceUuid,omitempty"`     //
+	Password         string `json:"password,omitempty"`         //
+	Port             *int   `json:"port,omitempty"`             //
+	Secure           *int   `json:"secure,omitempty"`           //
+	Username         string `json:"username,omitempty"`         //
+	NetconfPort      string `json:"netconfPort,omitempty"`      //
+	ReadCommunity    string `json:"readCommunity,omitempty"`    //
+	WriteCommunity   string `json:"writeCommunity,omitempty"`   //
 }
 type ResponseDiscoveryUpdateCliCredentials struct {
 	Response *ResponseDiscoveryUpdateCliCredentialsResponse `json:"response,omitempty"` //
