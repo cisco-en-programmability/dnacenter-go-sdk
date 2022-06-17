@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [4.0.1] - 2022-06-17
+### Changed
+- `discovery.ResponseDiscoveryGetGlobalCredentialsResponse.Secure` parameter turns to `boolean`.
+- `event_management.ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsSyslogConfig.Port` turns to `int`.
+
 ## [4.0.0] - 2022-06-16
 
 ### Added

@@ -548,8 +548,8 @@ type ResponseEventManagementCreateSyslogEventSubscription struct {
 }
 type ResponseEventManagementGetSyslogEventSubscriptions []ResponseItemEventManagementGetSyslogEventSubscriptions // Array of ResponseEventManagementGetSyslogEventSubscriptions
 type ResponseItemEventManagementGetSyslogEventSubscriptions struct {
-	Version               string                                                                         `json:"version,omitempty"`               // Version
-	SubscriptionID        string                                                                         `json:"subscriptionId,omitempty"`        // Subscription Id
+	Version               *ResponseItemEventManagementGetSyslogEventSubscriptionsVersion                 `json:"version,omitempty"`               // Version
+	SubscriptionID        *ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionID          `json:"subscriptionId,omitempty"`        // Subscription Id
 	Name                  string                                                                         `json:"name,omitempty"`                  // Name
 	Description           string                                                                         `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
@@ -557,6 +557,8 @@ type ResponseItemEventManagementGetSyslogEventSubscriptions struct {
 	IsPrivate             *bool                                                                          `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                         `json:"tenantId,omitempty"`              // Tenant Id
 }
+type ResponseItemEventManagementGetSyslogEventSubscriptionsVersion interface{}
+type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionID interface{}
 type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints struct {
 	InstanceID          string                                                                                          `json:"instanceId,omitempty"`          // Instance Id
 	SubscriptionDetails *ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpointsSubscriptionDetails `json:"subscriptionDetails,omitempty"` //
@@ -576,7 +578,7 @@ type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints
 	Name        string `json:"name,omitempty"`        // Name
 	Description string `json:"description,omitempty"` // Description
 	Host        string `json:"host,omitempty"`        // Host
-	Port        string `json:"port,omitempty"`        // Port
+	Port        *int   `json:"port,omitempty"`        // Port
 }
 type ResponseItemEventManagementGetSyslogEventSubscriptionsFilter struct {
 	EventIDs          []string                                                                         `json:"eventIds,omitempty"`          // Event Ids
