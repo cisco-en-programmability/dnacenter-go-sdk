@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [4.0.1] - 2022-06-17
+### Changed
+- `discovery.ResponseDiscoveryGetGlobalCredentialsResponse.Secure` parameter turns to `boolean`.
+- `event_management.ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsSyslogConfig.Port` turns to `int`.
+
 ## [4.0.0] - 2022-06-16
 
 ### Added
@@ -339,4 +344,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [3.6.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.1...v3.6.2
 [3.6.3]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.2...v3.6.3
 [4.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v3.6.3...v4.0.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.0...main
+[4.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.0...v4.0.1
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.1...main
