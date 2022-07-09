@@ -347,13 +347,13 @@ type ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscr
 	BasePath       string                                                                                                 `json:"basePath,omitempty"`       // Base Path
 	Resource       string                                                                                                 `json:"resource,omitempty"`       // Resource
 	Method         string                                                                                                 `json:"method,omitempty"`         // Method
-	TrustCert      string                                                                                                 `json:"trustCert,omitempty"`      // Trust Cert
+	TrustCert      *bool                                                                                                  `json:"trustCert,omitempty"`      // Trust Cert **
 	Headers        *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsHeaders     `json:"headers,omitempty"`        //
 	QueryParams    *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsQueryParams `json:"queryParams,omitempty"`    //
 	PathParams     *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsPathParams  `json:"pathParams,omitempty"`     //
 	Body           string                                                                                                 `json:"body,omitempty"`           // Body
-	ConnectTimeout string                                                                                                 `json:"connectTimeout,omitempty"` // Connect Timeout
-	ReadTimeout    string                                                                                                 `json:"readTimeout,omitempty"`    // Read Timeout
+	ConnectTimeout *int                                                                                                   `json:"connectTimeout,omitempty"` // Connect Timeout **
+	ReadTimeout    *int                                                                                                   `json:"readTimeout,omitempty"`    // Read Timeout **
 }
 type ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsHeaders struct {
 	String string `json:"string,omitempty"` // String

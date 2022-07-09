@@ -370,9 +370,13 @@ type ResponseSdaGetEdgeDeviceFromSdaFabric struct {
 	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
 }
 type ResponseSdaGetSiteFromSdaFabric struct {
-	Status             string `json:"status,omitempty"`             // Status
-	Description        string `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	SiteNameHierarchy  *string `json:"siteNameHierarchy,omitempty"`  // SiteNameHierarchy **
+	FabricName         *string `json:"fabricName,omitempty"`         // FabricName **
+	FabricType         *string `json:"fabricType,omitempty"`         // FabricType **
+	FabricDomainType   *string `json:"fabricDomainType,omitempty"`   // FabricDomainType **
+	Status             string  `json:"status,omitempty"`             // Status
+	Description        string  `json:"description,omitempty"`        // Description
+	ExecutionStatusURL string  `json:"executionStatusUrl,omitempty"` // Execution Status Url
 }
 type ResponseSdaDeleteSiteFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.

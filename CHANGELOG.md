@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.2] - 2022-07-08
+### Changed
+- `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.TrustCert` parameter turns to `boolean`.
+- `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.ConnectTimeout` parameter turns to `number`.
+- `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.ReadTimeout` parameter turns to `number`.
+  
+### Added
+- Added `SiteNameHierarchy`, `FabricName`, `FabricType` and `FabricDomainType` to
+`ResponseSdaGetSiteFromSdaFabric` of `sda`
 ## [4.0.1] - 2022-06-17
 ### Changed
 - `discovery.ResponseDiscoveryGetGlobalCredentialsResponse.Secure` parameter turns to `boolean`.
