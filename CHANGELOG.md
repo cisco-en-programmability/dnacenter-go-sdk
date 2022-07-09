@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `SiteNameHierarchy`, `FabricName`, `FabricType` and `FabricDomainType` to
 `ResponseSdaGetSiteFromSdaFabric` of `sda`
+
 ## [4.0.1] - 2022-06-17
 ### Changed
 - `discovery.ResponseDiscoveryGetGlobalCredentialsResponse.Secure` parameter turns to `boolean`.
