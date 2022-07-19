@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.4] - 2022-07-19
+- `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric.Payload` atributte removed from `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric`.
+  
 ## [4.0.3] - 2022-07-12
 ## Changed
 - `[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork` becomes to `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork`.
@@ -362,4 +365,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.0...v4.0.1
 [4.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.1...v4.0.2
 [4.0.3]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.2...v4.0.3
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.3...main
+[4.0.4]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.3...v4.0.4
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...main
