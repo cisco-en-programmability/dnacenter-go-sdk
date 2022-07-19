@@ -146,156 +146,153 @@ type ResponseSdaAddBorderDeviceInSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetBorderDeviceDetailFromSdaFabric struct {
-	Status      string                                                `json:"status,omitempty"`      // Status
-	Description string                                                `json:"description,omitempty"` // Description
-	Payload     *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayload `json:"payload,omitempty"`     //
+	Status                         string                                                              `json:"status,omitempty"`                         // Status
+	Description                    string                                                              `json:"description,omitempty"`                    // Description
+	ID                             string                                                              `json:"id,omitempty"`                             // Id
+	InstanceID                     *int                                                                `json:"instanceId,omitempty"`                     // Instance Id
+	AuthEntityID                   *int                                                                `json:"authEntityId,omitempty"`                   // Auth Entity Id
+	DisplayName                    string                                                              `json:"displayName,omitempty"`                    // Display Name
+	AuthEntityClass                *int                                                                `json:"authEntityClass,omitempty"`                // Auth Entity Class
+	InstanceTenantID               string                                                              `json:"instanceTenantId,omitempty"`               // Instance Tenant Id
+	DeployPending                  string                                                              `json:"deployPending,omitempty"`                  // Deploy Pending
+	InstanceVersion                *int                                                                `json:"instanceVersion,omitempty"`                // Instance Version
+	CreateTime                     *int                                                                `json:"createTime,omitempty"`                     // Create Time
+	Deployed                       *bool                                                               `json:"deployed,omitempty"`                       // Deployed
+	IsSeeded                       *bool                                                               `json:"isSeeded,omitempty"`                       // Is Seeded
+	IsStale                        *bool                                                               `json:"isStale,omitempty"`                        // Is Stale
+	LastUpdateTime                 *int                                                                `json:"lastUpdateTime,omitempty"`                 // Last Update Time
+	Name                           string                                                              `json:"name,omitempty"`                           // Name
+	Namespace                      string                                                              `json:"namespace,omitempty"`                      // Namespace
+	ProvisioningState              string                                                              `json:"provisioningState,omitempty"`              // Provisioning State
+	ResourceVersion                *int                                                                `json:"resourceVersion,omitempty"`                // Resource Version
+	TargetIDList                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricTargetIDList        `json:"targetIdList,omitempty"`                   // Target Id List
+	Type                           string                                                              `json:"type,omitempty"`                           // Type
+	CfsChangeInfo                  *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricCfsChangeInfo       `json:"cfsChangeInfo,omitempty"`                  // Cfs Change Info
+	CustomProvisions               *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricCustomProvisions    `json:"customProvisions,omitempty"`               // Custom Provisions
+	Configs                        *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricConfigs             `json:"configs,omitempty"`                        // Configs
+	ManagedSites                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricManagedSites        `json:"managedSites,omitempty"`                   // Managed Sites
+	NetworkDeviceID                string                                                              `json:"networkDeviceId,omitempty"`                // Network Device Id
+	Roles                          []string                                                            `json:"roles,omitempty"`                          // Roles
+	SaveWanConnectivityDetailsOnly *bool                                                               `json:"saveWanConnectivityDetailsOnly,omitempty"` // Save Wan Connectivity Details Only
+	SiteID                         string                                                              `json:"siteId,omitempty"`                         // Site Id
+	AkcSettingsCfs                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricAkcSettingsCfs      `json:"akcSettingsCfs,omitempty"`                 // Akc Settings Cfs
+	DeviceInterfaceInfo            *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceInterfaceInfo `json:"deviceInterfaceInfo,omitempty"`            // Device Interface Info
+	DeviceSettings                 *ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettings        `json:"deviceSettings,omitempty"`                 //
+	NetworkWideSettings            *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettings   `json:"networkWideSettings,omitempty"`            //
+	OtherDevice                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricOtherDevice         `json:"otherDevice,omitempty"`                    // Other Device
+	TransitNetworks                *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricTransitNetworks     `json:"transitNetworks,omitempty"`                //
+	VirtualNetwork                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricVirtualNetwork      `json:"virtualNetwork,omitempty"`                 // Virtual Network
+	WLAN                           *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricWLAN                `json:"wlan,omitempty"`                           // Wlan
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayload struct {
-	ID                             string                                                                     `json:"id,omitempty"`                             // Id
-	InstanceID                     *int                                                                       `json:"instanceId,omitempty"`                     // Instance Id
-	AuthEntityID                   *int                                                                       `json:"authEntityId,omitempty"`                   // Auth Entity Id
-	DisplayName                    string                                                                     `json:"displayName,omitempty"`                    // Display Name
-	AuthEntityClass                *int                                                                       `json:"authEntityClass,omitempty"`                // Auth Entity Class
-	InstanceTenantID               string                                                                     `json:"instanceTenantId,omitempty"`               // Instance Tenant Id
-	DeployPending                  string                                                                     `json:"deployPending,omitempty"`                  // Deploy Pending
-	InstanceVersion                *int                                                                       `json:"instanceVersion,omitempty"`                // Instance Version
-	CreateTime                     *int                                                                       `json:"createTime,omitempty"`                     // Create Time
-	Deployed                       *bool                                                                      `json:"deployed,omitempty"`                       // Deployed
-	IsSeeded                       *bool                                                                      `json:"isSeeded,omitempty"`                       // Is Seeded
-	IsStale                        *bool                                                                      `json:"isStale,omitempty"`                        // Is Stale
-	LastUpdateTime                 *int                                                                       `json:"lastUpdateTime,omitempty"`                 // Last Update Time
-	Name                           string                                                                     `json:"name,omitempty"`                           // Name
-	Namespace                      string                                                                     `json:"namespace,omitempty"`                      // Namespace
-	ProvisioningState              string                                                                     `json:"provisioningState,omitempty"`              // Provisioning State
-	ResourceVersion                *int                                                                       `json:"resourceVersion,omitempty"`                // Resource Version
-	TargetIDList                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTargetIDList        `json:"targetIdList,omitempty"`                   // Target Id List
-	Type                           string                                                                     `json:"type,omitempty"`                           // Type
-	CfsChangeInfo                  *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCfsChangeInfo       `json:"cfsChangeInfo,omitempty"`                  // Cfs Change Info
-	CustomProvisions               *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCustomProvisions    `json:"customProvisions,omitempty"`               // Custom Provisions
-	Configs                        *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadConfigs             `json:"configs,omitempty"`                        // Configs
-	ManagedSites                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadManagedSites        `json:"managedSites,omitempty"`                   // Managed Sites
-	NetworkDeviceID                string                                                                     `json:"networkDeviceId,omitempty"`                // Network Device Id
-	Roles                          []string                                                                   `json:"roles,omitempty"`                          // Roles
-	SaveWanConnectivityDetailsOnly *bool                                                                      `json:"saveWanConnectivityDetailsOnly,omitempty"` // Save Wan Connectivity Details Only
-	SiteID                         string                                                                     `json:"siteId,omitempty"`                         // Site Id
-	AkcSettingsCfs                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadAkcSettingsCfs      `json:"akcSettingsCfs,omitempty"`                 // Akc Settings Cfs
-	DeviceInterfaceInfo            *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceInterfaceInfo `json:"deviceInterfaceInfo,omitempty"`            // Device Interface Info
-	DeviceSettings                 *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettings        `json:"deviceSettings,omitempty"`                 //
-	NetworkWideSettings            *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettings   `json:"networkWideSettings,omitempty"`            //
-	OtherDevice                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadOtherDevice         `json:"otherDevice,omitempty"`                    // Other Device
-	TransitNetworks                *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTransitNetworks     `json:"transitNetworks,omitempty"`                //
-	VirtualNetwork                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadVirtualNetwork      `json:"virtualNetwork,omitempty"`                 // Virtual Network
-	WLAN                           *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadWLAN                `json:"wlan,omitempty"`                           // Wlan
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricTargetIDList interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricCfsChangeInfo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricCustomProvisions interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricConfigs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricManagedSites interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricAkcSettingsCfs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceInterfaceInfo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettings struct {
+	ID                            string                                                                                `json:"id,omitempty"`                            // Id
+	InstanceID                    *int                                                                                  `json:"instanceId,omitempty"`                    // Instance Id
+	DisplayName                   string                                                                                `json:"displayName,omitempty"`                   // Display Name
+	InstanceTenantID              string                                                                                `json:"instanceTenantId,omitempty"`              // Instance Tenant Id
+	DeployPending                 string                                                                                `json:"deployPending,omitempty"`                 // Deploy Pending
+	InstanceVersion               *int                                                                                  `json:"instanceVersion,omitempty"`               // Instance Version
+	ConnectedTo                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsConnectedTo             `json:"connectedTo,omitempty"`                   // Connected To
+	CPU                           *float64                                                                              `json:"cpu,omitempty"`                           // Cpu
+	DhcpEnabled                   *bool                                                                                 `json:"dhcpEnabled,omitempty"`                   // Dhcp Enabled
+	ExternalConnectivityIPPool    string                                                                                `json:"externalConnectivityIpPool,omitempty"`    // External Connectivity Ip Pool
+	ExternalDomainRoutingProtocol string                                                                                `json:"externalDomainRoutingProtocol,omitempty"` // External Domain Routing Protocol
+	InternalDomainProtocolNumber  string                                                                                `json:"internalDomainProtocolNumber,omitempty"`  // Internal Domain Protocol Number
+	Memory                        *float64                                                                              `json:"memory,omitempty"`                        // Memory
+	NodeType                      []string                                                                              `json:"nodeType,omitempty"`                      // Node Type
+	Storage                       *float64                                                                              `json:"storage,omitempty"`                       // Storage
+	ExtConnectivitySettings       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTargetIDList interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCfsChangeInfo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCustomProvisions interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadConfigs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadManagedSites interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadAkcSettingsCfs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceInterfaceInfo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettings struct {
-	ID                            string                                                                                       `json:"id,omitempty"`                            // Id
-	InstanceID                    *int                                                                                         `json:"instanceId,omitempty"`                    // Instance Id
-	DisplayName                   string                                                                                       `json:"displayName,omitempty"`                   // Display Name
-	InstanceTenantID              string                                                                                       `json:"instanceTenantId,omitempty"`              // Instance Tenant Id
-	DeployPending                 string                                                                                       `json:"deployPending,omitempty"`                 // Deploy Pending
-	InstanceVersion               *int                                                                                         `json:"instanceVersion,omitempty"`               // Instance Version
-	ConnectedTo                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsConnectedTo             `json:"connectedTo,omitempty"`                   // Connected To
-	CPU                           *float64                                                                                     `json:"cpu,omitempty"`                           // Cpu
-	DhcpEnabled                   *bool                                                                                        `json:"dhcpEnabled,omitempty"`                   // Dhcp Enabled
-	ExternalConnectivityIPPool    string                                                                                       `json:"externalConnectivityIpPool,omitempty"`    // External Connectivity Ip Pool
-	ExternalDomainRoutingProtocol string                                                                                       `json:"externalDomainRoutingProtocol,omitempty"` // External Domain Routing Protocol
-	InternalDomainProtocolNumber  string                                                                                       `json:"internalDomainProtocolNumber,omitempty"`  // Internal Domain Protocol Number
-	Memory                        *float64                                                                                     `json:"memory,omitempty"`                        // Memory
-	NodeType                      []string                                                                                     `json:"nodeType,omitempty"`                      // Node Type
-	Storage                       *float64                                                                                     `json:"storage,omitempty"`                       // Storage
-	ExtConnectivitySettings       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsConnectedTo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettings struct {
+	ID                           string                                                                                         `json:"id,omitempty"`                           // Id
+	InstanceID                   *int                                                                                           `json:"instanceId,omitempty"`                   // Instance Id
+	DisplayName                  string                                                                                         `json:"displayName,omitempty"`                  // Display Name
+	InstanceTenantID             string                                                                                         `json:"instanceTenantId,omitempty"`             // Instance Tenant Id
+	DeployPending                string                                                                                         `json:"deployPending,omitempty"`                // Deploy Pending
+	InstanceVersion              *int                                                                                           `json:"instanceVersion,omitempty"`              // Instance Version
+	ExternalDomainProtocolNumber string                                                                                         `json:"externalDomainProtocolNumber,omitempty"` // External Domain Protocol Number
+	InterfaceUUID                string                                                                                         `json:"interfaceUuid,omitempty"`                // Interface Uuid
+	PolicyPropagationEnabled     *bool                                                                                          `json:"policyPropagationEnabled,omitempty"`     // Policy Propagation Enabled
+	PolicySgtTag                 *float64                                                                                       `json:"policySgtTag,omitempty"`                 // Policy Sgt Tag
+	L2Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL2Handoff `json:"l2Handoff,omitempty"`                    // L2 Handoff
+	L3Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                    //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsConnectedTo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettings struct {
-	ID                           string                                                                                                `json:"id,omitempty"`                           // Id
-	InstanceID                   *int                                                                                                  `json:"instanceId,omitempty"`                   // Instance Id
-	DisplayName                  string                                                                                                `json:"displayName,omitempty"`                  // Display Name
-	InstanceTenantID             string                                                                                                `json:"instanceTenantId,omitempty"`             // Instance Tenant Id
-	DeployPending                string                                                                                                `json:"deployPending,omitempty"`                // Deploy Pending
-	InstanceVersion              *int                                                                                                  `json:"instanceVersion,omitempty"`              // Instance Version
-	ExternalDomainProtocolNumber string                                                                                                `json:"externalDomainProtocolNumber,omitempty"` // External Domain Protocol Number
-	InterfaceUUID                string                                                                                                `json:"interfaceUuid,omitempty"`                // Interface Uuid
-	PolicyPropagationEnabled     *bool                                                                                                 `json:"policyPropagationEnabled,omitempty"`     // Policy Propagation Enabled
-	PolicySgtTag                 *float64                                                                                              `json:"policySgtTag,omitempty"`                 // Policy Sgt Tag
-	L2Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL2Handoff `json:"l2Handoff,omitempty"`                    // L2 Handoff
-	L3Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                    //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL2Handoff interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3Handoff struct {
+	ID               string                                                                                                     `json:"id,omitempty"`               // Id
+	InstanceID       *int                                                                                                       `json:"instanceId,omitempty"`       // Instance Id
+	DisplayName      string                                                                                                     `json:"displayName,omitempty"`      // Display Name
+	InstanceTenantID string                                                                                                     `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	DeployPending    string                                                                                                     `json:"deployPending,omitempty"`    // Deploy Pending
+	InstanceVersion  *float64                                                                                                   `json:"instanceVersion,omitempty"`  // Instance Version
+	LocalIPAddress   string                                                                                                     `json:"localIpAddress,omitempty"`   // Local Ip Address
+	RemoteIPAddress  string                                                                                                     `json:"remoteIpAddress,omitempty"`  // Remote Ip Address
+	VLANID           *int                                                                                                       `json:"vlanId,omitempty"`           // Vlan Id
+	VirtualNetwork   *ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"`   //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL2Handoff interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3Handoff struct {
-	ID               string                                                                                                            `json:"id,omitempty"`               // Id
-	InstanceID       *int                                                                                                              `json:"instanceId,omitempty"`       // Instance Id
-	DisplayName      string                                                                                                            `json:"displayName,omitempty"`      // Display Name
-	InstanceTenantID string                                                                                                            `json:"instanceTenantId,omitempty"` // Instance Tenant Id
-	DeployPending    string                                                                                                            `json:"deployPending,omitempty"`    // Deploy Pending
-	InstanceVersion  *float64                                                                                                          `json:"instanceVersion,omitempty"`  // Instance Version
-	LocalIPAddress   string                                                                                                            `json:"localIpAddress,omitempty"`   // Local Ip Address
-	RemoteIPAddress  string                                                                                                            `json:"remoteIpAddress,omitempty"`  // Remote Ip Address
-	VLANID           *int                                                                                                              `json:"vlanId,omitempty"`           // Vlan Id
-	VirtualNetwork   *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"`   //
-}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettings struct {
-	ID               string                                                                               `json:"id,omitempty"`               // Id
-	InstanceID       *int                                                                                 `json:"instanceId,omitempty"`       // Instance Id
-	DisplayName      string                                                                               `json:"displayName,omitempty"`      // Display Name
-	InstanceTenantID string                                                                               `json:"instanceTenantId,omitempty"` // Instance Tenant Id
-	DeployPending    string                                                                               `json:"deployPending,omitempty"`    // Deploy Pending
-	InstanceVersion  *int                                                                                 `json:"instanceVersion,omitempty"`  // Instance Version
-	AAA              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsAAA        `json:"aaa,omitempty"`              // Aaa
-	Cmx              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsCmx        `json:"cmx,omitempty"`              // Cmx
-	Dhcp             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcp       `json:"dhcp,omitempty"`             //
-	DNS              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNS        `json:"dns,omitempty"`              //
-	Ldap             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsLdap       `json:"ldap,omitempty"`             // Ldap
-	NativeVLAN       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNativeVLAN `json:"nativeVlan,omitempty"`       // Native Vlan
-	Netflow          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNetflow    `json:"netflow,omitempty"`          // Netflow
-	Ntp              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNtp        `json:"ntp,omitempty"`              // Ntp
-	SNMP             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSNMP       `json:"snmp,omitempty"`             // Snmp
-	Syslogs          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSyslogs    `json:"syslogs,omitempty"`          // Syslogs
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettings struct {
+	ID               string                                                                        `json:"id,omitempty"`               // Id
+	InstanceID       *int                                                                          `json:"instanceId,omitempty"`       // Instance Id
+	DisplayName      string                                                                        `json:"displayName,omitempty"`      // Display Name
+	InstanceTenantID string                                                                        `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	DeployPending    string                                                                        `json:"deployPending,omitempty"`    // Deploy Pending
+	InstanceVersion  *int                                                                          `json:"instanceVersion,omitempty"`  // Instance Version
+	AAA              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsAAA        `json:"aaa,omitempty"`              // Aaa
+	Cmx              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsCmx        `json:"cmx,omitempty"`              // Cmx
+	Dhcp             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcp       `json:"dhcp,omitempty"`             //
+	DNS              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNS        `json:"dns,omitempty"`              //
+	Ldap             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsLdap       `json:"ldap,omitempty"`             // Ldap
+	NativeVLAN       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNativeVLAN `json:"nativeVlan,omitempty"`       // Native Vlan
+	Netflow          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNetflow    `json:"netflow,omitempty"`          // Netflow
+	Ntp              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNtp        `json:"ntp,omitempty"`              // Ntp
+	SNMP             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSNMP       `json:"snmp,omitempty"`             // Snmp
+	Syslogs          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSyslogs    `json:"syslogs,omitempty"`          // Syslogs
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsAAA interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsCmx interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcp struct {
-	ID        string                                                                                `json:"id,omitempty"`        // Id
-	IPAddress *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcpIPAddress `json:"ipAddress,omitempty"` //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsAAA interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsCmx interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcp struct {
+	ID        string                                                                         `json:"id,omitempty"`        // Id
+	IPAddress *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcpIPAddress `json:"ipAddress,omitempty"` //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcpIPAddress struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcpIPAddress struct {
 	ID            string `json:"id,omitempty"`            // Id
 	PaddedAddress string `json:"paddedAddress,omitempty"` // Padded Address
 	AddressType   string `json:"addressType,omitempty"`   // Address Type
 	Address       string `json:"address,omitempty"`       // Address
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNS struct {
-	ID         string                                                                        `json:"id,omitempty"`         // Id
-	DomainName string                                                                        `json:"domainName,omitempty"` // Domain Name
-	IP         *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNSIP `json:"ip,omitempty"`         //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNS struct {
+	ID         string                                                                 `json:"id,omitempty"`         // Id
+	DomainName string                                                                 `json:"domainName,omitempty"` // Domain Name
+	IP         *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNSIP `json:"ip,omitempty"`         //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNSIP struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNSIP struct {
 	ID            string `json:"id,omitempty"`            // Id
 	PaddedAddress string `json:"paddedAddress,omitempty"` // Padded Address
 	AddressType   string `json:"addressType,omitempty"`   // Address Type
 	Address       string `json:"address,omitempty"`       // Address
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsLdap interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNativeVLAN interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNetflow interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNtp interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSNMP interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSyslogs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadOtherDevice interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTransitNetworks struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsLdap interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNativeVLAN interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNetflow interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNtp interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSNMP interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSyslogs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricOtherDevice interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricTransitNetworks struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadVirtualNetwork interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadWLAN interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricVirtualNetwork interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricWLAN interface{}
 type ResponseSdaDeleteBorderDeviceFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
 	Description        string `json:"description,omitempty"`        // provides detailed information for API success or failure.
