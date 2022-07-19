@@ -365,4 +365,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.0...v4.0.1
 [4.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.1...v4.0.2
 [4.0.3]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.2...v4.0.3
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.3...main
+[4.0.4]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.3...v4.0.4
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...main
