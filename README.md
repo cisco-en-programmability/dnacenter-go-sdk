@@ -30,6 +30,7 @@ The client could be generated with the following parameters:
 - `password`: The password for the API authentication and authorization.
 - `debug`: Boolean to enable debugging
 - `sslVerify`: Boolean to enable or disable SSL certificate verification.
+- `waitTimeToManyRequest`: Time in minutes SDK will wait after API responds with 429 status code (to many requests) it defaults is in 1 minute.
 
 ```go
 Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
