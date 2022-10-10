@@ -19,7 +19,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	client.SetDNACWaitTimeToManyRequest(2)
+	// client.SetDNACWaitTimeToManyRequest(2)
 	for i := 0; i < 10; i++ {
 		nResponse, _, err := client.ApplicationPolicy.GetApplicationsCount()
 		if err != nil {
