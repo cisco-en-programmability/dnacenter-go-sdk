@@ -14,17 +14,19 @@ func main() {
 	fmt.Println("Authenticating")
 	client, err = dnac.NewClientWithOptions("https://192.168.196.2/",
 		"altus", "Altus123",
-		"true", "false")
+		"true", "false", nil)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-
-	nResponse, _, err := client.ApplicationPolicy.GetApplicationsCount()
-	if err != nil {
-		fmt.Println(err)
-		return
+	// client.SetDNACWaitTimeToManyRequest(2)
+	for i := 0; i < 10; i++ {
+		nResponse, _, err := client.ApplicationPolicy.GetApplicationsCount()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(nResponse.Response)
 	}
-	fmt.Println(nResponse.Response)
 
 }

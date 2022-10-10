@@ -34,7 +34,7 @@ The client could be generated with the following parameters:
 ```go
 Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
     "devnetuser", "Cisco123!",
-    "false", "false")
+    "false", "false", nil)
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 ```
 
@@ -47,6 +47,7 @@ The client can be configured with the following environment variables:
 - `DNAC_PASSWORD`: The password for the API authentication and authorization.
 - `DNAC_DEBUG`: Boolean to enable debugging
 - `DNAC_SSL_VERIFY`: Boolean to enable or disable SSL certificate verification.
+- `DNAC_WAIT_TIME`: Time in minutes SDK will wait after API responds with 429 status code (to many requests) it defaults is in 1 minute.
 
 ```go
 Client, err = dnac.NewClient()
@@ -60,7 +61,7 @@ Here is an example of how we can generate a client, get a device count and then 
 ```go
 Client, err = dnac.NewClientWithOptions("https://sandboxdnac.cisco.com",
     "devnetuser", "Cisco123!",
-    "false", "false")
+    "false", "false",nil)
 devicesCount, _, err := Client.Devices.GetDeviceCount()
 if err != nil {
     fmt.Println(err)

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.5] - 2022-07-19
+- Adding `to many request` handle. New parameter on configuration options of SDK API Client.
+- Method `SetDNACWaitTimeToManyRequest` added for update wait time (in minutes) to reintent API requests that fails due `429` status code.
+- Adding `GetSiteByID` method.
+
 ## [4.0.4] - 2022-07-19
 - `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric.Payload` atributte removed from `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric`.
   
@@ -366,4 +371,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.1...v4.0.2
 [4.0.3]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.2...v4.0.3
 [4.0.4]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.3...v4.0.4
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...main
+[4.0.5]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...v4.0.5
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.5...main
