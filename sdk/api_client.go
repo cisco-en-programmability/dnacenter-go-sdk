@@ -3,7 +3,11 @@ package dnac
 import (
 	"crypto/tls"
 	"fmt"
+	"internal/itoa"
+	"net/http"
 	"os"
+	"strconv"
+	"time"
 
 	"io/ioutil"
 	"path/filepath"
@@ -18,6 +22,7 @@ const DNAC_USERNAME = "DNAC_USERNAME"
 const DNAC_PASSWORD = "DNAC_PASSWORD"
 const DNAC_DEBUG = "DNAC_DEBUG"
 const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
+const DNAC_WAIT_TIME = "DNAC_WAIT_TIME"
 
 type FileDownload struct {
 	FileName string
@@ -104,10 +109,10 @@ func NewClient() (*Client, error) {
 }
 
 //NewClientWithOptions is the client with options passed with parameters
-func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
 	var err error
 
-	err = SetOptions(baseURL, username, password, debug, sslVerify)
+	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +121,7 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 }
 
 //SetOptions sets the environment variables
-func SetOptions(baseURL string, username string, password string, debug string, sslVerify string) error {
+func SetOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) error {
 	var err error
 	err = os.Setenv(DNAC_BASE_URL, baseURL)
 	if err != nil {
@@ -138,6 +143,17 @@ func SetOptions(baseURL string, username string, password string, debug string, 
 	if err != nil {
 		return err
 	}
+	if waitTimeToManyRequest != nil {
+		err = os.Setenv(DNAC_WAIT_TIME, itoa.Itoa(*waitTimeToManyRequest))
+		if err != nil {
+			return err
+		}
+	} else {
+		err = os.Setenv(DNAC_WAIT_TIME, "1")
+		if err != nil {
+			return err
+		}
+	}
 	return nil
 }
 
@@ -148,6 +164,7 @@ func NewClientNoAuth() (*Client, error) {
 	client := resty.New()
 	c := &Client{}
 	c.common.client = client
+	waitTimeToManyRequest := 0
 
 	if os.Getenv(DNAC_DEBUG) == "true" {
 		client.SetDebug(true)
@@ -162,7 +179,30 @@ func NewClientNoAuth() (*Client, error) {
 	} else {
 		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
 	}
-
+	if os.Getenv(DNAC_WAIT_TIME) != "" {
+		waitTimeToManyRequest, err = strconv.Atoi(os.Getenv(DNAC_WAIT_TIME))
+		if err != nil {
+			waitTimeToManyRequest = 1
+		}
+	} else {
+		waitTimeToManyRequest = 1
+	}
+	c.common.client.AddRetryCondition(
+		// RetryConditionFunc type is for retry condition function
+		// input: non-nil Response OR request execution error
+		func(r *resty.Response, err error) bool {
+			return r.StatusCode() == http.StatusTooManyRequests
+		},
+	)
+	c.common.client.
+		// Set retry count to non zero to enable retries
+		SetRetryCount(1).
+		// You can override initial retry wait time.
+		// Default is 100 milliseconds.
+		SetRetryWaitTime(time.Duration(waitTimeToManyRequest) * time.Minute).
+		// MaxWaitTime can be overridden as well.
+		// Default is 2 seconds.
+		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Minute)
 	if err != nil {
 		return nil, err
 	}
@@ -210,10 +250,10 @@ func NewClientNoAuth() (*Client, error) {
 }
 
 //NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
-func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string) (*Client, error) {
+func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
 	var err error
 
-	err = SetOptions(baseURL, username, password, debug, sslVerify)
+	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest)
 	if err != nil {
 		return nil, err
 	}
@@ -259,4 +299,22 @@ func (s *Client) AuthClient() error {
 // RestyClient returns the resty.Client used by the sdk
 func (s *Client) RestyClient() *resty.Client {
 	return s.common.client
+}
+
+func (s *Client) SetDNACWaitTimeToManyRequest(waitTimeToManyRequest int) error {
+
+	err := os.Setenv(DNAC_WAIT_TIME, itoa.Itoa(waitTimeToManyRequest))
+	if err != nil {
+		return err
+	}
+	s.common.client.
+		// Set retry count to non zero to enable retries
+		SetRetryCount(1).
+		// You can override initial retry wait time.
+		// Default is 100 milliseconds.
+		SetRetryWaitTime(time.Duration(waitTimeToManyRequest) * time.Minute).
+		// MaxWaitTime can be overridden as well.
+		// Default is 2 seconds.
+		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Minute)
+	return err
 }

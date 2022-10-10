@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.5] - 2022-07-19
+- Adding `to many request` handle. New parameter on configuration options of SDK API Client.
+- Method `SetDNACWaitTimeToManyRequest` added for update wait time (in minutes) to reintent API requests that fails due `429` status code.
+- Adding `GetSiteByID` method.
+
 ## [4.0.4] - 2022-07-19
 - `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric.Payload` atributte removed from `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric`.
   

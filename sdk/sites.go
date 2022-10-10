@@ -365,6 +365,40 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 
 }
 
+//GetSiteByID Get Site by ID - 6fb4-ab36-43fa-a80f
+/* Get site using siteNameHierarchy/siteId/type ,return a site using sit_id parameter.
+
+
+@param GetSiteQueryParams Filtering parameter
+*/
+func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSitesGetSiteResponse, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+	getSiteQueryParams := GetSiteQueryParams{}
+	getSiteQueryParams.SiteID = vSiteID
+
+	queryString, _ := query.Values(getSiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetSiteResponse{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSite")
+	}
+
+	result := response.Result().(*ResponseSitesGetSiteResponse)
+	return result, response, err
+
+}
+
 //GetSiteHealth Get Site Health - 15b7-aa0c-4dda-8e85
 /* Returns Overall Health information for all sites
 

@@ -1054,7 +1054,7 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 	if response.IsError() {
 		return nil, response, fmt.Errorf("error with operation GetApplicationsCount")
 	}
-
+	print("probando...")
 	result := response.Result().(*ResponseApplicationPolicyGetApplicationsCount)
 	return result, response, err
 

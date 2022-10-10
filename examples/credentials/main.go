@@ -14,7 +14,7 @@ func main() {
 	var err error
 	client, err = dnac.NewClientWithOptions("https://192.168.196.2/",
 		"altus", "Altus123",
-		"false", "false")
+		"false", "false", nil)
 	if err != nil {
 		fmt.Println(err)
 		return
