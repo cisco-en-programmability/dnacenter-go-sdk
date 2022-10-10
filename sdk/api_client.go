@@ -3,7 +3,6 @@ package dnac
 import (
 	"crypto/tls"
 	"fmt"
-	"internal/itoa"
 	"net/http"
 	"os"
 	"strconv"
@@ -144,7 +143,7 @@ func SetOptions(baseURL string, username string, password string, debug string, 
 		return err
 	}
 	if waitTimeToManyRequest != nil {
-		err = os.Setenv(DNAC_WAIT_TIME, itoa.Itoa(*waitTimeToManyRequest))
+		err = os.Setenv(DNAC_WAIT_TIME, strconv.Itoa(*waitTimeToManyRequest))
 		if err != nil {
 			return err
 		}
@@ -303,7 +302,7 @@ func (s *Client) RestyClient() *resty.Client {
 
 func (s *Client) SetDNACWaitTimeToManyRequest(waitTimeToManyRequest int) error {
 
-	err := os.Setenv(DNAC_WAIT_TIME, itoa.Itoa(waitTimeToManyRequest))
+	err := os.Setenv(DNAC_WAIT_TIME, strconv.Itoa(waitTimeToManyRequest))
 	if err != nil {
 		return err
 	}
