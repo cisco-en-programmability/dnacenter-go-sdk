@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	dnac "dnacenter-go-sdk/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
 )
 
 // client is DNA Center API client
