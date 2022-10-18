@@ -231,8 +231,9 @@ type ResponseSitesUpdateSiteResponse struct {
 	ID               string   `json:"id,omitempty"`               // Id
 }
 type ResponseSitesDeleteSite struct {
-	Status  string `json:"status,omitempty"`  // Status
-	Message string `json:"message,omitempty"` // Message
+	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain ISSUE
+	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL ISSUE
+	Message            string `json:"message,omitempty"`            // message ISSUE
 }
 type RequestSitesAssignDevicesToSite struct {
 	Device *[]RequestSitesAssignDevicesToSiteDevice `json:"device,omitempty"` //
