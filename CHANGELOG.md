@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.8] - 2022-10-21
+- Change `ResponseSiteGetSite struct added.` response struct.
+
 ## [4.0.7] - 2022-10-18
 - Change `ResponseSitesDeleteSite` response struct.
 
@@ -380,4 +383,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.5]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...v4.0.5
 [4.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.5...v4.0.6
 [4.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.6...v4.0.7
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.6...main
+[4.08]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.7...v4.0.8
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...main
