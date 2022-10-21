@@ -76,6 +76,11 @@ type ResponseSitesCreateSite struct {
 type ResponseSitesGetSite struct {
 	Response *[]ResponseSitesGetSiteResponse `json:"response,omitempty"` //
 }
+
+type ResponseSiteGetSite struct {
+	Response *ResponseSitesGetSiteResponse `json:"response,omitempty"` //
+}
+
 type ResponseSitesGetSiteResponse struct {
 	ParentID          string                                       `json:"parentId,omitempty"`          // Parent Id
 	Name              string                                       `json:"name,omitempty"`              // Name
@@ -372,7 +377,7 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 
 @param GetSiteQueryParams Filtering parameter
 */
-func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSitesGetSiteResponse, *resty.Response, error) {
+func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSiteGetSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
 	getSiteQueryParams := GetSiteQueryParams{}
 	getSiteQueryParams.SiteID = vSiteID
@@ -382,7 +387,7 @@ func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSitesGetSiteRespons
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetSiteResponse{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSiteGetSite{}).
 		SetError(&Error).
 		Get(path)
 
@@ -395,7 +400,7 @@ func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSitesGetSiteRespons
 		return nil, response, fmt.Errorf("error with operation GetSite")
 	}
 
-	result := response.Result().(*ResponseSitesGetSiteResponse)
+	result := response.Result().(*ResponseSiteGetSite)
 	return result, response, err
 
 }
