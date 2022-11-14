@@ -5,26 +5,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [4.0.9] - 2022-11-14
+### Changed
+- Change `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff` to allow array.
 
 ## [4.0.8] - 2022-10-21
+### Added
 - Adding `ResponseSiteGetSite` response struct.
 
 ## [4.0.7] - 2022-10-18
+### Changed
 - Change `ResponseSitesDeleteSite` response struct.
 
 ## [4.0.6] - 2022-07-19
+### Added
 - Adding `GetSiteByID` method.
 
 ## [4.0.5] - 2022-07-19
+### Changed
 - Adding `to many request` handle. New parameter on configuration options of SDK API Client.
 - Method `SetDNACWaitTimeToManyRequest` added for update wait time (in minutes) to reintent API requests that fails due `429` status code.
 - Adding `GetSiteByID` method.
 
 ## [4.0.4] - 2022-07-19
+### Changed
 - `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric.Payload` atributte removed from `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric`.
   
 ## [4.0.3] - 2022-07-12
-## Changed
+### Changed
 - `[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork` becomes to `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork`.
   
 ## [4.0.2] - 2022-07-08
@@ -384,4 +392,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.5...v4.0.6
 [4.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.6...v4.0.7
 [4.08]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.7...v4.0.8
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...main
+[4.09]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...v4.0.9
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.9...main
