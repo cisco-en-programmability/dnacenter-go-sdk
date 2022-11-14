@@ -674,7 +674,7 @@ type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettings struct
 	L2Handoff                     *[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL2Handoff `json:"l2Handoff,omitempty"`                     //
 }
 type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff struct {
-	VirtualNetwork *RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"` //**
+	VirtualNetwork *[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"` //
 }
 type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork struct {
 	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name, that is associated to Fabric Site
