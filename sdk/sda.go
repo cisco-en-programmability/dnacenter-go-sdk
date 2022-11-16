@@ -661,9 +661,9 @@ type RequestItemSdaAddBorderDeviceInSdaFabric struct {
 	ExternalConnectivityIPPoolName    string                                                                  `json:"externalConnectivityIpPoolName,omitempty"`    // External Connectivity IpPool Name
 	InternalAutonomouSystemNumber     string                                                                  `json:"internalAutonomouSystemNumber,omitempty"`     // Internal Autonomouns System Number (e.g.,1-65535)
 	BorderSessionType                 string                                                                  `json:"borderSessionType,omitempty"`                 // Border Session Type
-	ConnectedToInternet               *bool                                                                   `json:"connectedToInternet,omitempty"`               // Connected to Internet
+	ConnectedToInternet               string                                                                  `json:"connectedToInternet,omitempty"`               // Connected to Internet
 	SdaTransitNetworkName             string                                                                  `json:"sdaTransitNetworkName,omitempty"`             // SD-Access Transit Network Name
-	BorderWithExternalConnectivity    *bool                                                                   `json:"borderWithExternalConnectivity,omitempty"`    // Border With External Connectivity (Note: True for transit and False for non-transit border)
+	BorderWithExternalConnectivity    string                                                                  `json:"borderWithExternalConnectivity,omitempty"`    // Border With External Connectivity (Note: True for transit and False for non-transit border)
 	ExternalConnectivitySettings      *[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      //
 }
 type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettings struct {
