@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.10] - 2022-11-15
+- Change`RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL2Handoff` to allow array.
+  
 ## [4.0.9] - 2022-11-14
 ### Changed
 - Change `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff` to allow array.
@@ -391,6 +395,7 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.5]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.4...v4.0.5
 [4.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.5...v4.0.6
 [4.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.6...v4.0.7
-[4.08]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.7...v4.0.8
-[4.09]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...v4.0.9
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.9...main
+[4.0.8]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.7...v4.0.8
+[4.0.9]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...v4.0.9
+[4.0.10]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.9...v4.0.10
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.10...main
