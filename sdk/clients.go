@@ -48,7 +48,7 @@ type ResponseClientsGetClientDetailDetail struct {
 	HostIPV6         []string                                               `json:"hostIpV6,omitempty"`         // Host Ip V6
 	AuthType         string                                                 `json:"authType,omitempty"`         // Auth Type
 	VLANID           string                                                 `json:"vlanId,omitempty"`           // Vlan Id
-	Vnid             string                                                 `json:"vnid,omitempty"`             // Vnid
+	Vnid             *int                                                   `json:"vnid,omitempty"`             // Vnid
 	SSID             string                                                 `json:"ssid,omitempty"`             // Ssid
 	Frequency        string                                                 `json:"frequency,omitempty"`        // Frequency
 	Channel          string                                                 `json:"channel,omitempty"`          // Channel
