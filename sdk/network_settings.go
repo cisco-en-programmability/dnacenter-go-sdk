@@ -17,8 +17,8 @@ type GetDeviceCredentialDetailsQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to retrieve the credential details associated with the site.
 }
 type GetGlobalPoolQueryParams struct {
-	Offset string `url:"offset,omitempty"` //offset/starting row
-	Limit  string `url:"limit,omitempty"`  //No of Global Pools to be retrieved
+	Offset int `url:"offset,omitempty"` //offset/starting row
+	Limit  int `url:"limit,omitempty"`  //No of Global Pools to be retrieved
 }
 type GetNetworkQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to get the network settings associated with the site.
@@ -28,8 +28,8 @@ type CreateNetworkHeaderParams struct {
 }
 type GetReserveIPSubpoolQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //site id to get the reserve ip associated with the site
-	Offset string `url:"offset,omitempty"` //offset/starting row
-	Limit  string `url:"limit,omitempty"`  //No of Global Pools to be retrieved
+	Offset int    `url:"offset,omitempty"` //offset/starting row
+	Limit  int    `url:"limit,omitempty"`  //No of Global Pools to be retrieved
 }
 type UpdateReserveIPSubpoolQueryParams struct {
 	ID string `url:"id,omitempty"` //Id of subpool to be associated with the site

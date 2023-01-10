@@ -11,9 +11,9 @@ import (
 type DevicesService service
 
 type GetPlannedAccessPointsForBuildingQueryParams struct {
-	Limit  float64 `url:"limit,omitempty"`  //limit
-	Offset float64 `url:"offset,omitempty"` //offset
-	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
+	Limit  int  `url:"limit,omitempty"`  //limit
+	Offset int  `url:"offset,omitempty"` //offset
+	Radios bool `url:"radios,omitempty"` //inlcude planned radio details
 }
 type GetDeviceDetailQueryParams struct {
 	Timestamp  string `url:"timestamp,omitempty"`  //Epoch time(in milliseconds) when the device data is required
@@ -30,17 +30,17 @@ type DevicesQueryParams struct {
 	Health     string  `url:"health,omitempty"`     //The device overall health (One of POOR, FAIR, GOOD)
 	StartTime  float64 `url:"startTime,omitempty"`  //UTC epoch time in milliseconds
 	EndTime    float64 `url:"endTime,omitempty"`    //UTC epoch time in miliseconds
-	Limit      float64 `url:"limit,omitempty"`      //Max number of device entries in the response (default to 50.  Max at 1000)
-	Offset     float64 `url:"offset,omitempty"`     //The offset of the first device in the returned data
+	Limit      int     `url:"limit,omitempty"`      //Max number of device entries in the response (default to 50.  Max at 1000)
+	Offset     int     `url:"offset,omitempty"`     //The offset of the first device in the returned data
 }
 type GetPlannedAccessPointsForFloorQueryParams struct {
-	Limit  float64 `url:"limit,omitempty"`  //limit
-	Offset float64 `url:"offset,omitempty"` //offset
-	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
+	Limit  int  `url:"limit,omitempty"`  //limit
+	Offset int  `url:"offset,omitempty"` //offset
+	Radios bool `url:"radios,omitempty"` //inlcude planned radio details
 }
 type GetAllInterfacesQueryParams struct {
-	Offset float64 `url:"offset,omitempty"` //offset
-	Limit  float64 `url:"limit,omitempty"`  //limit
+	Offset int `url:"offset,omitempty"` //offset
+	Limit  int `url:"limit,omitempty"`  //limit
 }
 type GetInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams struct {
 	Name string `url:"name,omitempty"` //Interface name
@@ -84,54 +84,54 @@ type GetDeviceListQueryParams struct {
 	Moduleoperationstatecode  []string `url:"module+operationstatecode,omitempty"`  //moduleOperationStateCode
 	ID                        string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
 	DeviceSupportLevel        string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
-	Offset                    float64  `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
-	Limit                     float64  `url:"limit,omitempty"`                      //1 <= limit <= 500 [max. no. of devices to be returned in the result]
+	Offset                    int      `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
+	Limit                     int      `url:"limit,omitempty"`                      //1 <= limit <= 500 [max. no. of devices to be returned in the result]
 }
 type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
-	VrfName                   string  `url:"vrfName,omitempty"`                   //vrfName
-	ManagementIPAddress       string  `url:"managementIpAddress,omitempty"`       //managementIpAddress
-	Hostname                  string  `url:"hostname,omitempty"`                  //hostname
-	MacAddress                string  `url:"macAddress,omitempty"`                //macAddress
-	Family                    string  `url:"family,omitempty"`                    //family
-	CollectionStatus          string  `url:"collectionStatus,omitempty"`          //collectionStatus
-	CollectionInterval        string  `url:"collectionInterval,omitempty"`        //collectionInterval
-	SoftwareVersion           string  `url:"softwareVersion,omitempty"`           //softwareVersion
-	SoftwareType              string  `url:"softwareType,omitempty"`              //softwareType
-	ReachabilityStatus        string  `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
-	ReachabilityFailureReason string  `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
-	ErrorCode                 string  `url:"errorCode,omitempty"`                 //errorCode
-	PlatformID                string  `url:"platformId,omitempty"`                //platformId
-	Series                    string  `url:"series,omitempty"`                    //series
-	Type                      string  `url:"type,omitempty"`                      //type
-	SerialNumber              string  `url:"serialNumber,omitempty"`              //serialNumber
-	UpTime                    string  `url:"upTime,omitempty"`                    //upTime
-	Role                      string  `url:"role,omitempty"`                      //role
-	RoleSource                string  `url:"roleSource,omitempty"`                //roleSource
-	AssociatedWlcIP           string  `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
-	Offset                    float64 `url:"offset,omitempty"`                    //offset
-	Limit                     float64 `url:"limit,omitempty"`                     //limit
+	VrfName                   string `url:"vrfName,omitempty"`                   //vrfName
+	ManagementIPAddress       string `url:"managementIpAddress,omitempty"`       //managementIpAddress
+	Hostname                  string `url:"hostname,omitempty"`                  //hostname
+	MacAddress                string `url:"macAddress,omitempty"`                //macAddress
+	Family                    string `url:"family,omitempty"`                    //family
+	CollectionStatus          string `url:"collectionStatus,omitempty"`          //collectionStatus
+	CollectionInterval        string `url:"collectionInterval,omitempty"`        //collectionInterval
+	SoftwareVersion           string `url:"softwareVersion,omitempty"`           //softwareVersion
+	SoftwareType              string `url:"softwareType,omitempty"`              //softwareType
+	ReachabilityStatus        string `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
+	ReachabilityFailureReason string `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
+	ErrorCode                 string `url:"errorCode,omitempty"`                 //errorCode
+	PlatformID                string `url:"platformId,omitempty"`                //platformId
+	Series                    string `url:"series,omitempty"`                    //series
+	Type                      string `url:"type,omitempty"`                      //type
+	SerialNumber              string `url:"serialNumber,omitempty"`              //serialNumber
+	UpTime                    string `url:"upTime,omitempty"`                    //upTime
+	Role                      string `url:"role,omitempty"`                      //role
+	RoleSource                string `url:"roleSource,omitempty"`                //roleSource
+	AssociatedWlcIP           string `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
+	Offset                    int    `url:"offset,omitempty"`                    //offset
+	Limit                     int    `url:"limit,omitempty"`                     //limit
 }
 type GetFunctionalCapabilityForDevicesQueryParams struct {
 	DeviceID     string   `url:"deviceId,omitempty"`     //Accepts comma separated deviceid's and return list of functional-capabilities for the given id's. If invalid or not-found id's are provided, null entry will be returned in the list.
 	FunctionName []string `url:"functionName,omitempty"` //functionName
 }
 type InventoryInsightDeviceLinkMismatchApIQueryParams struct {
-	Offset   string `url:"offset,omitempty"`   //Row Number.  Default value is 1
-	Limit    string `url:"limit,omitempty"`    //Default value is 500
+	Offset   int    `url:"offset,omitempty"`   //Row Number.  Default value is 1
+	Limit    int    `url:"limit,omitempty"`    //Default value is 500
 	Category string `url:"category,omitempty"` //Links mismatch category.  Value can be speed-duplex or vlan.
 	SortBy   string `url:"sortBy,omitempty"`   //Sort By
 	Order    string `url:"order,omitempty"`    //Order.  Value can be asc or desc.  Default value is asc
 }
 type ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams struct {
-	Offset string `url:"offset,omitempty"` //Row Number.  Default value is 1
-	Limit  string `url:"limit,omitempty"`  //Default value is 500
+	Offset int    `url:"offset,omitempty"` //Row Number.  Default value is 1
+	Limit  int    `url:"limit,omitempty"`  //Default value is 500
 	SortBy string `url:"sortBy,omitempty"` //Sort By
 	Order  string `url:"order,omitempty"`  //Order
 }
 type GetModulesQueryParams struct {
 	DeviceID                 string   `url:"deviceId,omitempty"`                 //deviceId
-	Limit                    string   `url:"limit,omitempty"`                    //limit
-	Offset                   string   `url:"offset,omitempty"`                   //offset
+	Limit                    int      `url:"limit,omitempty"`                    //limit
+	Offset                   int      `url:"offset,omitempty"`                   //offset
 	NameList                 []string `url:"nameList,omitempty"`                 //nameList
 	VendorEquipmentTypeList  []string `url:"vendorEquipmentTypeList,omitempty"`  //vendorEquipmentTypeList
 	PartNumberList           []string `url:"partNumberList,omitempty"`           //partNumberList

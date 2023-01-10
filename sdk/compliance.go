@@ -11,10 +11,10 @@ import (
 type ComplianceService service
 
 type GetComplianceStatusQueryParams struct {
-	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
-	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
-	Offset           float64 `url:"offset,omitempty"`           //offset/starting row
-	Limit            float64 `url:"limit,omitempty"`            //Number of records to be retrieved
+	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
+	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
+	Offset           int    `url:"offset,omitempty"`           //offset/starting row
+	Limit            int    `url:"limit,omitempty"`            //Number of records to be retrieved
 }
 type GetComplianceStatusCountQueryParams struct {
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
@@ -23,8 +23,8 @@ type GetComplianceDetailQueryParams struct {
 	ComplianceType   string `url:"complianceType,omitempty"`   //complianceType can have any value among 'NETWORK_PROFILE', 'IMAGE', 'APPLICATION_VISIBILITY', 'FABRIC', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
 	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
-	Offset           string `url:"offset,omitempty"`           //offset/starting row
-	Limit            string `url:"limit,omitempty"`            //Number of records to be retrieved
+	Offset           int    `url:"offset,omitempty"`           //offset/starting row
+	Limit            int    `url:"limit,omitempty"`            //Number of records to be retrieved
 }
 type GetComplianceDetailCountQueryParams struct {
 	ComplianceType   string `url:"complianceType,omitempty"`   //complianceType can have any value among 'NETWORK_PROFILE', 'IMAGE', 'APPLICATION_VISIBILITY', 'FABRIC', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.

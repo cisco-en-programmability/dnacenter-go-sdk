@@ -10,11 +10,11 @@ import (
 type HealthAndPerformanceService service
 
 type SystemHealthApIQueryParams struct {
-	Summary   bool    `url:"summary,omitempty"`   //Fetch the latest high severity event
-	Domain    string  `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
-	Subdomain string  `url:"subdomain,omitempty"` //Fetch system events with this subdomain. Possible values of subdomain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
-	Limit     float64 `url:"limit,omitempty"`     //limit
-	Offset    float64 `url:"offset,omitempty"`    //offset
+	Summary   bool   `url:"summary,omitempty"`   //Fetch the latest high severity event
+	Domain    string `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
+	Subdomain string `url:"subdomain,omitempty"` //Fetch system events with this subdomain. Possible values of subdomain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
+	Limit     int    `url:"limit,omitempty"`     //limit
+	Offset    int    `url:"offset,omitempty"`    //offset
 }
 type SystemHealthCountApIQueryParams struct {
 	Domain    string `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events

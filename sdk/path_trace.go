@@ -22,8 +22,8 @@ type RetrivesAllPreviousPathtracesSummaryQueryParams struct {
 	Status          string `url:"status,omitempty"`          //Status
 	TaskID          string `url:"taskId,omitempty"`          //Task ID
 	LastUpdateTime  string `url:"lastUpdateTime,omitempty"`  //Last update time
-	Limit           string `url:"limit,omitempty"`           //Number of resources returned
-	Offset          string `url:"offset,omitempty"`          //Start index of resources returned (1-based)
+	Limit           int    `url:"limit,omitempty"`           //Number of resources returned
+	Offset          int    `url:"offset,omitempty"`          //Start index of resources returned (1-based)
 	Order           string `url:"order,omitempty"`           //Order by this field
 	SortBy          string `url:"sortBy,omitempty"`          //Sort by this field
 }

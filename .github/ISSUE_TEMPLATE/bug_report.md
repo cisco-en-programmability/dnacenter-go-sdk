@@ -10,6 +10,7 @@ assignees: ''
 **Prerequisites**
 * [ ] Have you tested the operation in the API directly?
 * [ ] Do you have the latest SDK version?
+* [ ] Review [compability matrix](https://github.com/cisco-en-programmability/dnacenter-go-sdk/tree/main#compatibility-matrix)
 
 **Describe the bug**
 A clear and concise description of what the bug is.

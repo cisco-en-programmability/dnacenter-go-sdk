@@ -21,8 +21,8 @@ type GetTasksQueryParams struct {
 	IsError       string `url:"isError,omitempty"`       //Fetch tasks ended as success or failure. Valid values: true, false
 	FailureReason string `url:"failureReason,omitempty"` //Fetch tasks that contains this failure reason
 	ParentID      string `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
-	Offset        string `url:"offset,omitempty"`        //offset
-	Limit         string `url:"limit,omitempty"`         //limit
+	Offset        int    `url:"offset,omitempty"`        //offset
+	Limit         int    `url:"limit,omitempty"`         //limit
 	SortBy        string `url:"sortBy,omitempty"`        //Sort results by this field
 	Order         string `url:"order,omitempty"`         //Sort order - asc or dsc
 }

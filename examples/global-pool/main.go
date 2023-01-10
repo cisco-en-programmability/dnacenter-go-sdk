@@ -20,13 +20,12 @@ func main() {
 		return
 	}
 
-	queryParams := &dnac.ApplicationsQueryParams{
-		SiteID: "1",
+	queryParams := &dnac.GetGlobalPoolQueryParams{
 		Offset: 1,
 		Limit:  5,
 	}
 
-	nResponse, _, err := client.Applications.Applications(queryParams)
+	nResponse, _, err := client.NetworkSettings.GetGlobalPool(queryParams)
 	if err != nil {
 		fmt.Println(err)
 		return

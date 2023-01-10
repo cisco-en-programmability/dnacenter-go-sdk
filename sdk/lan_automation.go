@@ -11,12 +11,12 @@ import (
 type LanAutomationService service
 
 type LanAutomationLogQueryParams struct {
-	Offset string `url:"offset,omitempty"` //Starting index of the LAN Automation session. Minimum value is 1.
-	Limit  string `url:"limit,omitempty"`  //Number of LAN Automation sessions to be retrieved. Limit value can range between 1 to 10.
+	Offset int `url:"offset,omitempty"` //Starting index of the LAN Automation session. Minimum value is 1.
+	Limit  int `url:"limit,omitempty"`  //Number of LAN Automation sessions to be retrieved. Limit value can range between 1 to 10.
 }
 type LanAutomationStatusQueryParams struct {
-	Offset string `url:"offset,omitempty"` //Starting index of the LAN Automation session. Minimum value is 1.
-	Limit  string `url:"limit,omitempty"`  //Number of LAN Automation sessions to be retrieved. Limit value can range between 1 to 10.
+	Offset int `url:"offset,omitempty"` //Starting index of the LAN Automation session. Minimum value is 1.
+	Limit  int `url:"limit,omitempty"`  //Number of LAN Automation sessions to be retrieved. Limit value can range between 1 to 10.
 }
 
 type ResponseLanAutomationLanAutomation2 struct {

@@ -26,8 +26,8 @@ type GetAuditLogParentRecordsQueryParams struct {
 	DeviceID       string  `url:"deviceId,omitempty"`       //Audit Log notification's deviceId.
 	IsSystemEvents bool    `url:"isSystemEvents,omitempty"` //Parameter to filter system generated audit-logs.
 	Description    string  `url:"description,omitempty"`    //String full/partial search - (Provided input string is case insensitively matched for records).
-	Offset         float64 `url:"offset,omitempty"`         //Position of a particular Audit Log record in the data.
-	Limit          float64 `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page.
+	Offset         int     `url:"offset,omitempty"`         //Position of a particular Audit Log record in the data.
+	Limit          int     `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page.
 	StartTime      float64 `url:"startTime,omitempty"`      //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime        float64 `url:"endTime,omitempty"`        //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy         string  `url:"sortBy,omitempty"`         //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -71,8 +71,8 @@ type GetAuditLogRecordsQueryParams struct {
 	DeviceID         string  `url:"deviceId,omitempty"`         //Audit Log notification's deviceId.
 	IsSystemEvents   bool    `url:"isSystemEvents,omitempty"`   //Parameter to filter system generated audit-logs.
 	Description      string  `url:"description,omitempty"`      //String full/partial search - (Provided input string is case insensitively matched for records).
-	Offset           float64 `url:"offset,omitempty"`           //Position of a particular Audit Log record in the data.
-	Limit            float64 `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page.
+	Offset           int     `url:"offset,omitempty"`           //Position of a particular Audit Log record in the data.
+	Limit            int     `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page.
 	StartTime        float64 `url:"startTime,omitempty"`        //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime          float64 `url:"endTime,omitempty"`          //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy           string  `url:"sortBy,omitempty"`           //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -88,8 +88,8 @@ type GetNotificationsQueryParams struct {
 	Domain    string  `url:"domain,omitempty"`    //Domain
 	SubDomain string  `url:"subDomain,omitempty"` //Sub Domain
 	Source    string  `url:"source,omitempty"`    //Source
-	Offset    float64 `url:"offset,omitempty"`    //Start Offset
-	Limit     float64 `url:"limit,omitempty"`     //# of records
+	Offset    int     `url:"offset,omitempty"`    //Start Offset
+	Limit     int     `url:"limit,omitempty"`     //# of records
 	SortBy    string  `url:"sortBy,omitempty"`    //Sort By column
 	Order     string  `url:"order,omitempty"`     //Ascending/Descending order [asc/desc]
 	Tags      string  `url:"tags,omitempty"`      //Tags
@@ -108,98 +108,98 @@ type CountOfNotificationsQueryParams struct {
 	Source    string  `url:"source,omitempty"`    //Source
 }
 type GetEventSubscriptionsQueryParams struct {
-	EventIDs string  `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
-	Offset   float64 `url:"offset,omitempty"`   //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit    float64 `url:"limit,omitempty"`    //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy   string  `url:"sortBy,omitempty"`   //SortBy field name
-	Order    string  `url:"order,omitempty"`    //order(asc/desc)
+	EventIDs string `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
+	Offset   int    `url:"offset,omitempty"`   //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit    int    `url:"limit,omitempty"`    //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy   string `url:"sortBy,omitempty"`   //SortBy field name
+	Order    string `url:"order,omitempty"`    //order(asc/desc)
 }
 type DeleteEventSubscriptionsQueryParams struct {
 	Subscriptions string `url:"subscriptions,omitempty"` //List of EventSubscriptionId's for removal
 }
 type GetEmailSubscriptionDetailsQueryParams struct {
-	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     float64 `url:"offset,omitempty"`     //The number of Email Subscription detail's to offset in the resultset whose default value 0
-	Limit      float64 `url:"limit,omitempty"`      //The number of Email Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string  `url:"order,omitempty"`      //order(asc/desc)
+	Name       string `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     int    `url:"offset,omitempty"`     //The number of Email Subscription detail's to offset in the resultset whose default value 0
+	Limit      int    `url:"limit,omitempty"`      //The number of Email Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string `url:"order,omitempty"`      //order(asc/desc)
 }
 type GetRestWebhookSubscriptionDetailsQueryParams struct {
-	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     float64 `url:"offset,omitempty"`     //The number of Rest/Webhook Subscription detail's to offset in the resultset whose default value 0
-	Limit      float64 `url:"limit,omitempty"`      //The number of Rest/Webhook Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string  `url:"order,omitempty"`      //order(asc/desc)
+	Name       string `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     int    `url:"offset,omitempty"`     //The number of Rest/Webhook Subscription detail's to offset in the resultset whose default value 0
+	Limit      int    `url:"limit,omitempty"`      //The number of Rest/Webhook Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string `url:"order,omitempty"`      //order(asc/desc)
 }
 type GetSyslogSubscriptionDetailsQueryParams struct {
-	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     float64 `url:"offset,omitempty"`     //The number of Syslog Subscription detail's to offset in the resultset whose default value 0
-	Limit      float64 `url:"limit,omitempty"`      //The number of Syslog Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string  `url:"order,omitempty"`      //order(asc/desc)
+	Name       string `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     int    `url:"offset,omitempty"`     //The number of Syslog Subscription detail's to offset in the resultset whose default value 0
+	Limit      int    `url:"limit,omitempty"`      //The number of Syslog Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string `url:"order,omitempty"`      //order(asc/desc)
 }
 type CountOfEventSubscriptionsQueryParams struct {
 	EventIDs string `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
 }
 type GetEmailEventSubscriptionsQueryParams struct {
-	EventIDs  string  `url:"eventIds,omitempty"`  //List of email subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string  `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string  `url:"domain,omitempty"`    //List of email subscriptions related to the respective domain
-	SubDomain string  `url:"subDomain,omitempty"` //List of email subscriptions related to the respective sub-domain
-	Category  string  `url:"category,omitempty"`  //List of email subscriptions related to the respective category
-	Type      string  `url:"type,omitempty"`      //List of email subscriptions related to the respective type
-	Name      string  `url:"name,omitempty"`      //List of email subscriptions related to the respective name
+	EventIDs  string `url:"eventIds,omitempty"`  //List of email subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string `url:"domain,omitempty"`    //List of email subscriptions related to the respective domain
+	SubDomain string `url:"subDomain,omitempty"` //List of email subscriptions related to the respective sub-domain
+	Category  string `url:"category,omitempty"`  //List of email subscriptions related to the respective category
+	Type      string `url:"type,omitempty"`      //List of email subscriptions related to the respective type
+	Name      string `url:"name,omitempty"`      //List of email subscriptions related to the respective name
 }
 type GetRestWebhookEventSubscriptionsQueryParams struct {
-	EventIDs  string  `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string  `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string  `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
-	SubDomain string  `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
-	Category  string  `url:"category,omitempty"`  //List of subscriptions related to the respective category
-	Type      string  `url:"type,omitempty"`      //List of subscriptions related to the respective type
-	Name      string  `url:"name,omitempty"`      //List of subscriptions related to the respective name
+	EventIDs  string `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
+	SubDomain string `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
+	Category  string `url:"category,omitempty"`  //List of subscriptions related to the respective category
+	Type      string `url:"type,omitempty"`      //List of subscriptions related to the respective type
+	Name      string `url:"name,omitempty"`      //List of subscriptions related to the respective name
 }
 type GetSyslogEventSubscriptionsQueryParams struct {
-	EventIDs  string  `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string  `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string  `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
-	SubDomain string  `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
-	Category  string  `url:"category,omitempty"`  //List of subscriptions related to the respective category
-	Type      string  `url:"type,omitempty"`      //List of subscriptions related to the respective type
-	Name      string  `url:"name,omitempty"`      //List of subscriptions related to the respective name
+	EventIDs  string `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
+	SubDomain string `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
+	Category  string `url:"category,omitempty"`  //List of subscriptions related to the respective category
+	Type      string `url:"type,omitempty"`      //List of subscriptions related to the respective type
+	Name      string `url:"name,omitempty"`      //List of subscriptions related to the respective name
 }
 type GetEventsQueryParams struct {
-	EventID string  `url:"eventId,omitempty"` //The registered EventId should be provided
-	Tags    string  `url:"tags,omitempty"`    //The registered Tags should be provided
-	Offset  float64 `url:"offset,omitempty"`  //The number of Registries to offset in the resultset whose default value 0
-	Limit   float64 `url:"limit,omitempty"`   //The number of Registries to limit in the resultset whose default value 10
-	SortBy  string  `url:"sortBy,omitempty"`  //SortBy field name
-	Order   string  `url:"order,omitempty"`   //order(asc/desc)
+	EventID string `url:"eventId,omitempty"` //The registered EventId should be provided
+	Tags    string `url:"tags,omitempty"`    //The registered Tags should be provided
+	Offset  int    `url:"offset,omitempty"`  //The number of Registries to offset in the resultset whose default value 0
+	Limit   int    `url:"limit,omitempty"`   //The number of Registries to limit in the resultset whose default value 10
+	SortBy  string `url:"sortBy,omitempty"`  //SortBy field name
+	Order   string `url:"order,omitempty"`   //order(asc/desc)
 }
 type CountOfEventsQueryParams struct {
 	EventID string `url:"eventId,omitempty"` //The registered EventId should be provided
 	Tags    string `url:"tags,omitempty"`    //The registered Tags should be provided
 }
 type GetEventArtifactsQueryParams struct {
-	EventIDs string  `url:"eventIds,omitempty"` //List of eventIds
-	Tags     string  `url:"tags,omitempty"`     //Tags defined
-	Offset   float64 `url:"offset,omitempty"`   //Record start offset
-	Limit    float64 `url:"limit,omitempty"`    //# of records to return in result set
-	SortBy   string  `url:"sortBy,omitempty"`   //Sort by field
-	Order    string  `url:"order,omitempty"`    //sorting order (asc/desc)
-	Search   string  `url:"search,omitempty"`   //findd matches in name, description, eventId, type, category
+	EventIDs string `url:"eventIds,omitempty"` //List of eventIds
+	Tags     string `url:"tags,omitempty"`     //Tags defined
+	Offset   int    `url:"offset,omitempty"`   //Record start offset
+	Limit    int    `url:"limit,omitempty"`    //# of records to return in result set
+	SortBy   string `url:"sortBy,omitempty"`   //Sort by field
+	Order    string `url:"order,omitempty"`    //sorting order (asc/desc)
+	Search   string `url:"search,omitempty"`   //findd matches in name, description, eventId, type, category
 }
 
 type ResponseEventManagementGetAuditLogParentRecords []ResponseItemEventManagementGetAuditLogParentRecords // Array of ResponseEventManagementGetAuditLogParentRecords
