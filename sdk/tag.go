@@ -15,8 +15,8 @@ type GetTagQueryParams struct {
 	AdditionalInfonameSpace  string `url:"additionalInfo.nameSpace,omitempty"`  //nameSpace
 	AdditionalInfoattributes string `url:"additionalInfo.attributes,omitempty"` //attributeName
 	Level                    string `url:"level,omitempty"`                     //levelArg
-	Offset                   string `url:"offset,omitempty"`                    //offset
-	Limit                    string `url:"limit,omitempty"`                     //limit
+	Offset                   int    `url:"offset,omitempty"`                    //offset
+	Limit                    int    `url:"limit,omitempty"`                     //limit
 	Size                     string `url:"size,omitempty"`                      //size in kilobytes(KB)
 	Field                    string `url:"field,omitempty"`                     //Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'
 	SortBy                   string `url:"sortBy,omitempty"`                    //Only supported attribute is name. SortyBy is mandatory when order is used.
@@ -33,8 +33,8 @@ type GetTagCountQueryParams struct {
 }
 type GetTagMembersByIDQueryParams struct {
 	MemberType            string `url:"memberType,omitempty"`            //Entity type of the member. Possible values can be retrieved by using /tag/member/type API
-	Offset                string `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
-	Limit                 string `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
+	Offset                int    `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
+	Limit                 int    `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
 	MemberAssociationType string `url:"memberAssociationType,omitempty"` //Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
 	Level                 string `url:"level,omitempty"`                 //level
 }

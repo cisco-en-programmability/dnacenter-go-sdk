@@ -27,8 +27,8 @@ type UpdateNfvProfileQueryParams struct {
 	Name string `url:"name,omitempty"` //Name of the profile to be updated
 }
 type GetNfvProfileQueryParams struct {
-	Offset string `url:"offset,omitempty"` //offset/starting row
-	Limit  string `url:"limit,omitempty"`  //Number of profile to be retrieved
+	Offset int    `url:"offset,omitempty"` //offset/starting row
+	Limit  int    `url:"limit,omitempty"`  //Number of profile to be retrieved
 	Name   string `url:"name,omitempty"`   //Name of network profile to be retrieved
 }
 type DeleteNfvProfileQueryParams struct {

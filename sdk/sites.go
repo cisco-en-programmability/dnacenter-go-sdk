@@ -16,8 +16,8 @@ type AssignDevicesToSiteHeaderParams struct {
 	Runsynctimeout    string `url:"__runsynctimeout,omitempty"`    //Expects type float64. During synchronous execution, this defines the maximum time to wait for a response, before the API execution is terminated
 }
 type GetMembershipQueryParams struct {
-	Offset       string `url:"offset,omitempty"`       //offset/starting row
-	Limit        string `url:"limit,omitempty"`        //Number of sites to be retrieved
+	Offset       int    `url:"offset,omitempty"`       //offset/starting row
+	Limit        int    `url:"limit,omitempty"`        //Number of sites to be retrieved
 	DeviceFamily string `url:"deviceFamily,omitempty"` //Device family name
 	SerialNumber string `url:"serialNumber,omitempty"` //Device serial number
 }
@@ -30,14 +30,14 @@ type GetSiteQueryParams struct {
 	Name   string `url:"name,omitempty"`   //siteNameHierarchy (ex: global/groupName)
 	SiteID string `url:"siteId,omitempty"` //Site id to which site details to retrieve.
 	Type   string `url:"type,omitempty"`   //type (ex: area, building, floor)
-	Offset string `url:"offset,omitempty"` //offset/starting row. The default value is 1
-	Limit  string `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
+	Offset int    `url:"offset,omitempty"` //offset/starting row. The default value is 1
+	Limit  int    `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
 }
 type GetSiteHealthQueryParams struct {
-	Timestamp string  `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
-	SiteType  string  `url:"siteType,omitempty"`  //Type of the site to return.  AREA or BUILDING.  Default to AREA
-	Offset    float64 `url:"offset,omitempty"`    //The offset value, starting from 1, of the first returned site entry.  Default is 1.
-	Limit     float64 `url:"limit,omitempty"`     //The max number of sites in the returned data set.  Default is 25, and max at 50
+	Timestamp string `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
+	SiteType  string `url:"siteType,omitempty"`  //Type of the site to return.  AREA or BUILDING.  Default to AREA
+	Offset    int    `url:"offset,omitempty"`    //The offset value, starting from 1, of the first returned site entry.  Default is 1.
+	Limit     int    `url:"limit,omitempty"`     //The max number of sites in the returned data set.  Default is 25, and max at 50
 }
 type GetSiteCountQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to retrieve site count.

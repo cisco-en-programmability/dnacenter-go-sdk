@@ -17,9 +17,9 @@ type GetApplicationPolicyQueuingProfileQueryParams struct {
 	Name string `url:"name,omitempty"` //queuing profile name
 }
 type GetApplicationSetsQueryParams struct {
-	Offset float64 `url:"offset,omitempty"` //
-	Limit  float64 `url:"limit,omitempty"`  //
-	Name   string  `url:"name,omitempty"`   //
+	Offset int    `url:"offset,omitempty"` //
+	Limit  int    `url:"limit,omitempty"`  //
+	Name   string `url:"name,omitempty"`   //
 }
 type DeleteApplicationSetQueryParams struct {
 	ID string `url:"id,omitempty"` //
@@ -28,9 +28,9 @@ type DeleteApplicationQueryParams struct {
 	ID string `url:"id,omitempty"` //Application's Id
 }
 type GetApplicationsQueryParams struct {
-	Offset float64 `url:"offset,omitempty"` //The offset of the first application to be returned
-	Limit  float64 `url:"limit,omitempty"`  //The maximum number of applications to be returned
-	Name   string  `url:"name,omitempty"`   //Application's name
+	Offset int    `url:"offset,omitempty"` //The offset of the first application to be returned
+	Limit  int    `url:"limit,omitempty"`  //The maximum number of applications to be returned
+	Name   string `url:"name,omitempty"`   //Application's name
 }
 type GetQosDeviceInterfaceInfoQueryParams struct {
 	NetworkDeviceID string `url:"networkDeviceId,omitempty"` //network device id
