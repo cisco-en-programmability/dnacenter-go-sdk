@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.13] - 2023-02-02
+- ID attribute added to `ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessList` on `device_onboarding_pnp` service.
+
 ## [4.0.12] - 2023-01-10
 - Query params `offset` and `limit` change to `int`.
 
