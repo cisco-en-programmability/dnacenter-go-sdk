@@ -768,7 +768,8 @@ type ResponseDeviceOnboardingPnpImportDevicesInBulk struct {
 	FailureList *[]ResponseDeviceOnboardingPnpImportDevicesInBulkFailureList `json:"failureList,omitempty"` //
 }
 type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessList struct {
-	TypeID               string                                                                         `json:"_id,omitempty"`                  // Id
+	TypeID               string                                                                         `json:"_id,omitempty"`                  //_Id
+	ID                   string                                                                         `json:"id,omitempty"`                   //Id
 	DeviceInfo           *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfo           `json:"deviceInfo,omitempty"`           //
 	SystemResetWorkflow  *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListSystemResetWorkflow  `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListSystemWorkflow       `json:"systemWorkflow,omitempty"`       //
