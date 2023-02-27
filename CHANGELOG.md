@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.14] - 2023-02-27
+- `ResponseClientsGetClientDetailDetail.Detail.VlanId` atributte change type from `string` to `*int` in `clients` service.
+
 ## [4.0.13] - 2023-02-02
 - ID attribute added to `ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessList` on `device_onboarding_pnp` service.
 
@@ -408,4 +411,7 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.9]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.8...v4.0.9
 [4.0.10]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.9...v4.0.10
 [4.0.11]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.10...v4.0.11
+[4.0.12]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...v4.0.12
+[4.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.12...v4.0.13
+[4.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.13...v4.0.14
 [Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...main
