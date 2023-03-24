@@ -46,7 +46,7 @@ type ResponseTopologyGetOverallNetworkHealthHealthDistirubution struct {
 	Category        string                                                                  `json:"category,omitempty"`        // Category
 	TotalCount      *int                                                                    `json:"totalCount,omitempty"`      // Total Count
 	HealthScore     *int                                                                    `json:"healthScore,omitempty"`     // Health Score
-	GoodPercentage  *float64                                                                `json:"goodPercentage,omitempty"`  // Good Percentage
+	GoodPercentage  *int                                                                    `json:"goodPercentage,omitempty"`  // Good Percentage
 	BadPercentage   *float64                                                                `json:"badPercentage,omitempty"`   // Bad Percentage
 	FairPercentage  *float64                                                                `json:"fairPercentage,omitempty"`  // Fair Percentage
 	UnmonPercentage *float64                                                                `json:"unmonPercentage,omitempty"` // Unmon Percentage

@@ -916,14 +916,14 @@ type ResponsePathTraceDeletesPathtraceByIDResponse struct {
 	URL    string `json:"url,omitempty"`    //
 }
 type RequestPathTraceInitiateANewPathtrace struct {
-	ControlPath     *bool    `json:"controlPath,omitempty"`     //
-	DestIP          string   `json:"destIP,omitempty"`          //
-	DestPort        string   `json:"destPort,omitempty"`        //
-	Inclusions      []string `json:"inclusions,omitempty"`      //
-	PeriodicRefresh *bool    `json:"periodicRefresh,omitempty"` //
-	Protocol        string   `json:"protocol,omitempty"`        //
-	SourceIP        string   `json:"sourceIP,omitempty"`        //
-	SourcePort      string   `json:"sourcePort,omitempty"`      //
+	ControlPath     *bool    `json:"controlPath,omitempty"`     // Control path tracing
+	DestIP          string   `json:"destIP,omitempty"`          // Destination IP address
+	DestPort        string   `json:"destPort,omitempty"`        // Destination Port
+	Inclusions      []string `json:"inclusions,omitempty"`      // Subset of {INTERFACE-STATS, QOS-STATS, DEVICE-STATS, PERFORMANCE-STATS, ACL-TRACE}
+	PeriodicRefresh *bool    `json:"periodicRefresh,omitempty"` // Periodic refresh of path for every 30 sec
+	Protocol        string   `json:"protocol,omitempty"`        // Protocol
+	SourceIP        string   `json:"sourceIP,omitempty"`        // Source IP address
+	SourcePort      string   `json:"sourcePort,omitempty"`      // Source Port
 }
 
 //RetrivesAllPreviousPathtracesSummary Retrives all previous Pathtraces summary - 55bc-3bf9-4e38-b6ff
@@ -1028,6 +1028,7 @@ func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPat
 
 */
 func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*ResponsePathTraceDeletesPathtraceByID, *resty.Response, error) {
+	//flowAnalysisID string
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
 	path = strings.Replace(path, "{flowAnalysisId}", fmt.Sprintf("%v", flowAnalysisID), -1)
 

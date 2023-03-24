@@ -11,10 +11,10 @@ import (
 type ComplianceService service
 
 type GetComplianceStatusQueryParams struct {
-	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
-	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
-	Offset           int    `url:"offset,omitempty"`           //offset/starting row
-	Limit            int    `url:"limit,omitempty"`            //Number of records to be retrieved
+	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
+	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
+	Offset           float64 `url:"offset,omitempty"`           //offset/starting row
+	Limit            float64 `url:"limit,omitempty"`            //Number of records to be retrieved
 }
 type GetComplianceStatusCountQueryParams struct {
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'

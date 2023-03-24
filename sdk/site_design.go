@@ -330,7 +330,7 @@ type RequestSiteDesignCreateNfvProfile struct {
 	Device      *[]RequestSiteDesignCreateNfvProfileDevice `json:"device,omitempty"`      //
 }
 type RequestSiteDesignCreateNfvProfileDevice struct {
-	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco 5100 Enterprise Network Compute System'.
+	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile
 	DeviceTag                       string                                                           `json:"deviceTag,omitempty"`                       // Device Tag name(eg: dev1)
 	ServiceProviderProfile          *[]RequestSiteDesignCreateNfvProfileDeviceServiceProviderProfile `json:"serviceProviderProfile,omitempty"`          //
 	DirectInternetAccessForFirewall *bool                                                            `json:"directInternetAccessForFirewall,omitempty"` // Direct internet access value should be boolean (eg: false or true)
@@ -373,9 +373,9 @@ type RequestSiteDesignCreateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg: Access 4018)
 }
 type RequestSiteDesignCreateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)' and 'Day-N-Template(s)'.
+	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates)
 }
 type RequestSiteDesignUpdateNfvProfile struct {
 	Device *[]RequestSiteDesignUpdateNfvProfileDevice `json:"device,omitempty"` //
@@ -417,9 +417,9 @@ type RequestSiteDesignUpdateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg. Access 4018)
 }
 type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)', 'Day-N-Template(s)'.
+	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates)
 }
 
 //GetDeviceDetailsByIP Get Device details by IP - 9cb2-cb3f-494a-824f
@@ -702,6 +702,7 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 
 */
 func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string) (*ResponseSiteDesignDisassociate, *resty.Response, error) {
+	//networkProfileID string,siteID string
 	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
 	path = strings.Replace(path, "{networkProfileId}", fmt.Sprintf("%v", networkProfileID), -1)
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
@@ -736,6 +737,7 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 @param DeleteNFVProfileQueryParams Filtering parameter
 */
 func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams) (*ResponseSiteDesignDeleteNfvProfile, *resty.Response, error) {
+	//id string,DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams
 	path := "/dna/intent/api/v1/nfv/network-profile/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

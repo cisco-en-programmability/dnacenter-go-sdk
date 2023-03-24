@@ -41,6 +41,7 @@ type Client struct {
 	Authentication              *AuthenticationService
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
+	AuthenticationManagement    *AuthenticationManagementService
 	CiscoDnaCenterSystem        *CiscoDnaCenterSystemService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService
@@ -51,17 +52,19 @@ type Client struct {
 	DeviceReplacement           *DeviceReplacementService
 	Devices                     *DevicesService
 	Discovery                   *DiscoveryService
+	EoX                         *EoXService
 	EventManagement             *EventManagementService
 	FabricWireless              *FabricWirelessService
 	File                        *FileService
 	HealthAndPerformance        *HealthAndPerformanceService
 	Itsm                        *ItsmService
+	ItsmIntegration             *ItsmIntegrationService
 	Issues                      *IssuesService
 	LanAutomation               *LanAutomationService
 	Licenses                    *LicensesService
 	NetworkSettings             *NetworkSettingsService
 	PathTrace                   *PathTraceService
-	PlatformConfiguration       *PlatformConfigurationService
+	Platform                    *PlatformService
 	Reports                     *ReportsService
 	Sda                         *SdaService
 	SecurityAdvisories          *SecurityAdvisoriesService
@@ -73,6 +76,7 @@ type Client struct {
 	Tag                         *TagService
 	Task                        *TaskService
 	Topology                    *TopologyService
+	UserandRoles                *UserandRolesService
 	Users                       *UsersService
 	Wireless                    *WirelessService
 	CustomCall                  *CustomCallService
@@ -107,7 +111,7 @@ func NewClient() (*Client, error) {
 	return c, nil
 }
 
-//NewClientWithOptions is the client with options passed with parameters
+// NewClientWithOptions is the client with options passed with parameters
 func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
 	var err error
 
@@ -119,7 +123,7 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 	return NewClient()
 }
 
-//SetOptions sets the environment variables
+// SetOptions sets the environment variables
 func SetOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) error {
 	var err error
 	err = os.Setenv(DNAC_BASE_URL, baseURL)
@@ -156,7 +160,7 @@ func SetOptions(baseURL string, username string, password string, debug string, 
 	return nil
 }
 
-//NewClientNoAuth returns the client object without trying to authenticate
+// NewClientNoAuth returns the client object without trying to authenticate
 func NewClientNoAuth() (*Client, error) {
 	var err error
 
@@ -209,6 +213,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.Authentication = (*AuthenticationService)(&c.common)
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
+	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
 	c.CiscoDnaCenterSystem = (*CiscoDnaCenterSystemService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
@@ -219,17 +224,19 @@ func NewClientNoAuth() (*Client, error) {
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 	c.Devices = (*DevicesService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
+	c.EoX = (*EoXService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.FabricWireless = (*FabricWirelessService)(&c.common)
 	c.File = (*FileService)(&c.common)
 	c.HealthAndPerformance = (*HealthAndPerformanceService)(&c.common)
 	c.Itsm = (*ItsmService)(&c.common)
+	c.ItsmIntegration = (*ItsmIntegrationService)(&c.common)
 	c.Issues = (*IssuesService)(&c.common)
 	c.LanAutomation = (*LanAutomationService)(&c.common)
 	c.Licenses = (*LicensesService)(&c.common)
 	c.NetworkSettings = (*NetworkSettingsService)(&c.common)
 	c.PathTrace = (*PathTraceService)(&c.common)
-	c.PlatformConfiguration = (*PlatformConfigurationService)(&c.common)
+	c.Platform = (*PlatformService)(&c.common)
 	c.Reports = (*ReportsService)(&c.common)
 	c.Sda = (*SdaService)(&c.common)
 	c.SecurityAdvisories = (*SecurityAdvisoriesService)(&c.common)
@@ -241,6 +248,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.Tag = (*TagService)(&c.common)
 	c.Task = (*TaskService)(&c.common)
 	c.Topology = (*TopologyService)(&c.common)
+	c.UserandRoles = (*UserandRolesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
 	c.Wireless = (*WirelessService)(&c.common)
 	c.CustomCall = (*CustomCallService)(&c.common)
@@ -248,7 +256,7 @@ func NewClientNoAuth() (*Client, error) {
 	return c, nil
 }
 
-//NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
+// NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
 func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
 	var err error
 

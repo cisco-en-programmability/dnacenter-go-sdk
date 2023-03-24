@@ -409,8 +409,7 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 }
 
 //ImportLocalSoftwareImage Import local software image - 4dbe-3bc7-43a8-91bc
-/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2.
-Upload the file to the **file** form data field
+/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
 
 
 @param ImportLocalSoftwareImageQueryParams Filtering parameter
@@ -497,6 +496,7 @@ func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSo
 
 */
 func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID string, deviceFamilyIDentifier string, deviceRole string, imageID string) (*ResponseSoftwareImageManagementSwimRemoveGoldenTagForImage, *resty.Response, error) {
+	//siteID string,deviceFamilyIDentifier string,deviceRole string,imageID string
 	path := "/dna/intent/api/v1/image/importation/golden/site/{siteId}/family/{deviceFamilyIdentifier}/role/{deviceRole}/image/{imageId}"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 	path = strings.Replace(path, "{deviceFamilyIdentifier}", fmt.Sprintf("%v", deviceFamilyIDentifier), -1)

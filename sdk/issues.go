@@ -24,6 +24,17 @@ type IssuesQueryParams struct {
 	IssueStatus string  `url:"issueStatus,omitempty"` //The issue's status value (One of ACTIVE, IGNORED, RESOLVED)
 }
 
+type ResponseIssuesExecuteSuggestedActionsCommands []ResponseItemIssuesExecuteSuggestedActionsCommands // Array of ResponseIssuesExecuteSuggestedActionsCommands
+type ResponseItemIssuesExecuteSuggestedActionsCommands struct {
+	ActionInfo       string                                                          `json:"actionInfo,omitempty"`       // Actions Info
+	StepsCount       *int                                                            `json:"stepsCount,omitempty"`       // Steps Count
+	EntityID         string                                                          `json:"entityId,omitempty"`         // Entity Id
+	Hostname         string                                                          `json:"hostname,omitempty"`         // Hostname
+	StepsDescription string                                                          `json:"stepsDescription,omitempty"` // Steps Description
+	Command          string                                                          `json:"command,omitempty"`          // Command
+	CommandOutput    *ResponseItemIssuesExecuteSuggestedActionsCommandsCommandOutput `json:"commandOutput,omitempty"`    // Command Output
+}
+type ResponseItemIssuesExecuteSuggestedActionsCommandsCommandOutput interface{}
 type ResponseIssuesGetIssueEnrichmentDetails struct {
 	IssueDetails *ResponseIssuesGetIssueEnrichmentDetailsIssueDetails `json:"issueDetails,omitempty"` //
 }
@@ -69,6 +80,10 @@ type ResponseIssuesIssuesResponse struct {
 	Priority            string `json:"priority,omitempty"`              // Priority
 	Category            string `json:"category,omitempty"`              // Category
 	LastOccurenceTime   *int   `json:"last_occurence_time,omitempty"`   // Last Occurence Time
+}
+type RequestIssuesExecuteSuggestedActionsCommands struct {
+	EntityType  string `json:"entity_type,omitempty"`  // Commands provided as part of the suggested actions for an issue can be executed based on issue id. The value here must be issue_id
+	EntityValue string `json:"entity_value,omitempty"` // Contains the actual value for the entity type that has been defined
 }
 
 //GetIssueEnrichmentDetails Get Issue Enrichment Details - 8684-39bb-4e89-a6e4
@@ -145,6 +160,37 @@ func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseI
 	}
 
 	result := response.Result().(*ResponseIssuesIssues)
+	return result, response, err
+
+}
+
+//ExecuteSuggestedActionsCommands Execute Suggested Actions Commands - cfb2-ab10-4cea-bfbb
+/* This API triggers the execution of the suggested actions for an issue, given the Issue Id. It will return an execution Id. At the completion of the execution, the output of the commands associated with the suggested actions will be provided
+Invoking this API would provide the execution id. Execute the 'Get Business API Execution Details' API with this execution id, to receive the suggested actions commands output.
+
+
+*/
+func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSuggestedActionsCommands *RequestIssuesExecuteSuggestedActionsCommands) (*ResponseIssuesExecuteSuggestedActionsCommands, *resty.Response, error) {
+	path := "/dna/intent/api/v1/execute-suggested-actions-commands"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestIssuesExecuteSuggestedActionsCommands).
+		SetResult(&ResponseIssuesExecuteSuggestedActionsCommands{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ExecuteSuggestedActionsCommands")
+	}
+
+	result := response.Result().(*ResponseIssuesExecuteSuggestedActionsCommands)
 	return result, response, err
 
 }

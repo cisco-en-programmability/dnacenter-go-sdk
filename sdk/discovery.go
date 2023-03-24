@@ -553,6 +553,109 @@ type ResponseDiscoveryCreateUpdateSNMPPropertiesResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
+type ResponseDiscoveryUpdateGlobalCredentialsV2 struct {
+	Response *ResponseDiscoveryUpdateGlobalCredentialsV2Response `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseDiscoveryUpdateGlobalCredentialsV2Response struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseDiscoveryCreateGlobalCredentialsV2 struct {
+	Response *ResponseDiscoveryCreateGlobalCredentialsV2Response `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseDiscoveryCreateGlobalCredentialsV2Response struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2 struct {
+	Response *ResponseDiscoveryGetAllGlobalCredentialsV2Response `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2Response struct {
+	CliCredential *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseCliCredential `json:"cliCredential,omitempty"` //
+	SNMPV2CRead   *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV2CRead   `json:"snmpV2cRead,omitempty"`   //
+	SNMPV2CWrite  *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV2CWrite  `json:"snmpV2cWrite,omitempty"`  //
+	HTTPSRead     *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseHTTPSRead     `json:"httpsRead,omitempty"`     //
+	HTTPSWrite    *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseHTTPSWrite    `json:"httpsWrite,omitempty"`    //
+	SNMPV3        *[]ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV3        `json:"snmpV3,omitempty"`        //
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseCliCredential struct {
+	Password         string `json:"password,omitempty"`         // Password
+	Username         string `json:"username,omitempty"`         // Username
+	EnablePassword   string `json:"enablePassword,omitempty"`   // Enable Password
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV2CRead struct {
+	ReadCommunity    string `json:"readCommunity,omitempty"`    // Read Community
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV2CWrite struct {
+	WriteCommunity   string `json:"writeCommunity,omitempty"`   // Write Community
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseHTTPSRead struct {
+	Password         string `json:"password,omitempty"`         // Password
+	Port             *int   `json:"port,omitempty"`             // Port
+	Username         string `json:"username,omitempty"`         // Username
+	Secure           *bool  `json:"secure,omitempty"`           // Secure
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseHTTPSWrite struct {
+	Password         string `json:"password,omitempty"`         // Password
+	Port             *int   `json:"port,omitempty"`             // Port
+	Username         string `json:"username,omitempty"`         // Username
+	Secure           *bool  `json:"secure,omitempty"`           // Secure
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryGetAllGlobalCredentialsV2ResponseSNMPV3 struct {
+	Username         string `json:"username,omitempty"`         // Username
+	AuthPassword     string `json:"authPassword,omitempty"`     // Auth Password
+	AuthType         string `json:"authType,omitempty"`         // Auth Type
+	PrivacyPassword  string `json:"privacyPassword,omitempty"`  // Privacy Password
+	PrivacyType      string `json:"privacyType,omitempty"`      // Privacy Type
+	SNMPMode         string `json:"snmpMode,omitempty"`         // Snmp Mode
+	Description      string `json:"description,omitempty"`      // Description
+	Comments         string `json:"comments,omitempty"`         // Comments
+	CredentialType   string `json:"credentialType,omitempty"`   // Credential Type
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	InstanceUUID     string `json:"instanceUuid,omitempty"`     // Instance Uuid
+	ID               string `json:"id,omitempty"`               // Id
+}
+type ResponseDiscoveryDeleteGlobalCredentialV2 struct {
+	Response *ResponseDiscoveryDeleteGlobalCredentialV2Response `json:"response,omitempty"` //
+	Version  string                                             `json:"version,omitempty"`  // Version
+}
+type ResponseDiscoveryDeleteGlobalCredentialV2Response struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
 type RequestDiscoveryUpdatesAnExistingDiscoveryBySpecifiedID struct {
 	AttributeInfo          *RequestDiscoveryUpdatesAnExistingDiscoveryBySpecifiedIDAttributeInfo       `json:"attributeInfo,omitempty"`          //
 	CdpLevel               *int                                                                        `json:"cdpLevel,omitempty"`               //
@@ -618,12 +721,12 @@ type RequestDiscoveryUpdatesAnExistingDiscoveryBySpecifiedIDHTTPWriteCredential 
 }
 type RequestDiscoveryStartDiscovery struct {
 	CdpLevel               *int                                               `json:"cdpLevel,omitempty"`               // CDP level to which neighbor devices to be discovered
-	DiscoveryType          string                                             `json:"discoveryType,omitempty"`          // Type of Discovery. 'SINGLE', 'RANGE', 'MULTI RANGE', 'CDP', 'LLDP'
+	DiscoveryType          string                                             `json:"discoveryType,omitempty"`          // Type of Discovery. 'SINGLE', 'RANGE', 'MULTI RANGE', 'CDP', 'LLDP', 'CIDR'
 	EnablePasswordList     []string                                           `json:"enablePasswordList,omitempty"`     // Enable Password of the devices to be discovered
 	GlobalCredentialIDList []string                                           `json:"globalCredentialIdList,omitempty"` // Global Credential Ids to be used for discovery
 	HTTPReadCredential     *RequestDiscoveryStartDiscoveryHTTPReadCredential  `json:"httpReadCredential,omitempty"`     //
 	HTTPWriteCredential    *RequestDiscoveryStartDiscoveryHTTPWriteCredential `json:"httpWriteCredential,omitempty"`    //
-	IPAddressList          string                                             `json:"ipAddressList,omitempty"`          // IP Address of devices to be discovered. Ex: '172.30.0.1' for SINGLE, CDP and LLDP; '72.30.0.1-172.30.0.4' for RANGE; '72.30.0.1-172.30.0.4,172.31.0.1-172.31.0.4' for MULTI RANGE
+	IPAddressList          string                                             `json:"ipAddressList,omitempty"`          // IP Address of devices to be discovered. Ex: '172.30.0.1' for SINGLE, CDP and LLDP; '72.30.0.1-172.30.0.4' for RANGE; '72.30.0.1-172.30.0.4,172.31.0.1-172.31.0.4' for MULTI RANGE; '172.30.0.1/20' for CIDR
 	IPFilterList           []string                                           `json:"ipFilterList,omitempty"`           // IP Addresses of the devices to be filtered out during discovery
 	LldpLevel              *int                                               `json:"lldpLevel,omitempty"`              // LLDP level to which neighbor devices to be discovered
 	Name                   string                                             `json:"name,omitempty"`                   // Name of the discovery
@@ -817,6 +920,98 @@ type RequestItemDiscoveryCreateUpdateSNMPProperties struct {
 	InstanceUUID       string `json:"instanceUuid,omitempty"`       //
 	IntValue           *int   `json:"intValue,omitempty"`           //
 	SystemPropertyName string `json:"systemPropertyName,omitempty"` //
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2 struct {
+	CliCredential *RequestDiscoveryUpdateGlobalCredentialsV2CliCredential `json:"cliCredential,omitempty"` //
+	SNMPV2CRead   *RequestDiscoveryUpdateGlobalCredentialsV2SNMPV2CRead   `json:"snmpV2cRead,omitempty"`   //
+	SNMPV2CWrite  *RequestDiscoveryUpdateGlobalCredentialsV2SNMPV2CWrite  `json:"snmpV2cWrite,omitempty"`  //
+	SNMPV3        *RequestDiscoveryUpdateGlobalCredentialsV2SNMPV3        `json:"snmpV3,omitempty"`        //
+	HTTPSRead     *RequestDiscoveryUpdateGlobalCredentialsV2HTTPSRead     `json:"httpsRead,omitempty"`     //
+	HTTPSWrite    *RequestDiscoveryUpdateGlobalCredentialsV2HTTPSWrite    `json:"httpsWrite,omitempty"`    //
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2CliCredential struct {
+	Description    string `json:"description,omitempty"`    // Description
+	Username       string `json:"username,omitempty"`       // Username
+	Password       string `json:"password,omitempty"`       // Password
+	EnablePassword string `json:"enablePassword,omitempty"` // Enable Password
+	ID             string `json:"id,omitempty"`             // Id
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2SNMPV2CRead struct {
+	Description   string `json:"description,omitempty"`   // Description
+	ReadCommunity string `json:"readCommunity,omitempty"` // Read Community
+	ID            string `json:"id,omitempty"`            // Id
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2SNMPV2CWrite struct {
+	Description    string `json:"description,omitempty"`    // Description
+	WriteCommunity string `json:"writeCommunity,omitempty"` // Write Community
+	ID             string `json:"id,omitempty"`             // Id
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2SNMPV3 struct {
+	AuthPassword    string `json:"authPassword,omitempty"`    // Auth Password
+	AuthType        string `json:"authType,omitempty"`        // Auth Type
+	SNMPMode        string `json:"snmpMode,omitempty"`        // Snmp Mode
+	PrivacyPassword string `json:"privacyPassword,omitempty"` // Privacy Password
+	PrivacyType     string `json:"privacyType,omitempty"`     // Privacy Type
+	Username        string `json:"username,omitempty"`        // Username
+	Description     string `json:"description,omitempty"`     // Description
+	ID              string `json:"id,omitempty"`              // Id
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2HTTPSRead struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Username string `json:"username,omitempty"` // Username
+	Password string `json:"password,omitempty"` // Password
+	Port     *int   `json:"port,omitempty"`     // Port
+	ID       string `json:"id,omitempty"`       // Id
+}
+type RequestDiscoveryUpdateGlobalCredentialsV2HTTPSWrite struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Username string `json:"username,omitempty"` // Username
+	Password string `json:"password,omitempty"` // Password
+	Port     *int   `json:"port,omitempty"`     // Port
+	ID       string `json:"id,omitempty"`       // Id
+}
+type RequestDiscoveryCreateGlobalCredentialsV2 struct {
+	CliCredential *[]RequestDiscoveryCreateGlobalCredentialsV2CliCredential `json:"cliCredential,omitempty"` //
+	SNMPV2CRead   *[]RequestDiscoveryCreateGlobalCredentialsV2SNMPV2CRead   `json:"snmpV2cRead,omitempty"`   //
+	SNMPV2CWrite  *[]RequestDiscoveryCreateGlobalCredentialsV2SNMPV2CWrite  `json:"snmpV2cWrite,omitempty"`  //
+	SNMPV3        *[]RequestDiscoveryCreateGlobalCredentialsV2SNMPV3        `json:"snmpV3,omitempty"`        //
+	HTTPSRead     *[]RequestDiscoveryCreateGlobalCredentialsV2HTTPSRead     `json:"httpsRead,omitempty"`     //
+	HTTPSWrite    *[]RequestDiscoveryCreateGlobalCredentialsV2HTTPSWrite    `json:"httpsWrite,omitempty"`    //
+}
+type RequestDiscoveryCreateGlobalCredentialsV2CliCredential struct {
+	Description    string `json:"description,omitempty"`    // Description
+	Username       string `json:"username,omitempty"`       // Username
+	Password       string `json:"password,omitempty"`       // Password
+	EnablePassword string `json:"enablePassword,omitempty"` // Enable Password
+}
+type RequestDiscoveryCreateGlobalCredentialsV2SNMPV2CRead struct {
+	Description   string `json:"description,omitempty"`   // Description
+	ReadCommunity string `json:"readCommunity,omitempty"` // Read Community
+}
+type RequestDiscoveryCreateGlobalCredentialsV2SNMPV2CWrite struct {
+	Description    string `json:"description,omitempty"`    // Description
+	WriteCommunity string `json:"writeCommunity,omitempty"` // Write Community
+}
+type RequestDiscoveryCreateGlobalCredentialsV2SNMPV3 struct {
+	Description     string `json:"description,omitempty"`     // Description
+	Username        string `json:"username,omitempty"`        // Username
+	PrivacyType     string `json:"privacyType,omitempty"`     // Privacy Type
+	PrivacyPassword string `json:"privacyPassword,omitempty"` // Privacy Password
+	AuthType        string `json:"authType,omitempty"`        // Auth Type
+	AuthPassword    string `json:"authPassword,omitempty"`    // Auth Password
+	SNMPMode        string `json:"snmpMode,omitempty"`        // Snmp Mode
+}
+type RequestDiscoveryCreateGlobalCredentialsV2HTTPSRead struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Username string `json:"username,omitempty"` // Username
+	Password string `json:"password,omitempty"` // Password
+	Port     *int   `json:"port,omitempty"`     // Port
+}
+type RequestDiscoveryCreateGlobalCredentialsV2HTTPSWrite struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Username string `json:"username,omitempty"` // Username
+	Password string `json:"password,omitempty"` // Password
+	Port     *int   `json:"port,omitempty"`     // Port
 }
 
 //GetCountOfAllDiscoveryJobs Get count of all discovery jobs - 069d-9823-451b-892d
@@ -1221,6 +1416,35 @@ func (s *DiscoveryService) GetSNMPProperties() (*ResponseDiscoveryGetSNMPPropert
 
 }
 
+//GetAllGlobalCredentialsV2 Get All Global Credentials V2 - 6088-4a03-4b5b-8252
+/* API to get device credentials' details. It fetches all global credentials of all types at once, without the need to pass any input parameters.
+
+
+ */
+func (s *DiscoveryService) GetAllGlobalCredentialsV2() (*ResponseDiscoveryGetAllGlobalCredentialsV2, *resty.Response, error) {
+	path := "/dna/intent/api/v2/global-credential"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDiscoveryGetAllGlobalCredentialsV2{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAllGlobalCredentialsV2")
+	}
+
+	result := response.Result().(*ResponseDiscoveryGetAllGlobalCredentialsV2)
+	return result, response, err
+
+}
+
 //StartDiscovery Start discovery - 55b4-39dc-4239-b140
 /* Initiates discovery with the given parameters
 
@@ -1487,6 +1711,36 @@ func (s *DiscoveryService) CreateUpdateSNMPProperties(requestDiscoveryCreateUpda
 	}
 
 	result := response.Result().(*ResponseDiscoveryCreateUpdateSNMPProperties)
+	return result, response, err
+
+}
+
+//CreateGlobalCredentialsV2 Create Global Credentials V2 - 4ca1-8b14-4059-82b0
+/* API to create new global credentials. Multiple credentials of various types can be passed at once. Please refer sample Request Body for more information.
+
+
+ */
+func (s *DiscoveryService) CreateGlobalCredentialsV2(requestDiscoveryCreateGlobalCredentialsV2 *RequestDiscoveryCreateGlobalCredentialsV2) (*ResponseDiscoveryCreateGlobalCredentialsV2, *resty.Response, error) {
+	path := "/dna/intent/api/v2/global-credential"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDiscoveryCreateGlobalCredentialsV2).
+		SetResult(&ResponseDiscoveryCreateGlobalCredentialsV2{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateGlobalCredentialsV2")
+	}
+
+	result := response.Result().(*ResponseDiscoveryCreateGlobalCredentialsV2)
 	return result, response, err
 
 }
@@ -1764,12 +2018,43 @@ func (s *DiscoveryService) UpdateGlobalCredentials(globalCredentialID string, re
 
 }
 
+//UpdateGlobalCredentialsV2 Update Global Credentials V2 - a7bb-8baa-487a-acf6
+/* API to update device credentials. Multiple credentials can be passed at once, but only a single credential of a given type can be passed at once. Please refer sample Request Body for more information.
+
+
+ */
+func (s *DiscoveryService) UpdateGlobalCredentialsV2(requestDiscoveryUpdateGlobalCredentialsV2 *RequestDiscoveryUpdateGlobalCredentialsV2) (*ResponseDiscoveryUpdateGlobalCredentialsV2, *resty.Response, error) {
+	path := "/dna/intent/api/v2/global-credential"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDiscoveryUpdateGlobalCredentialsV2).
+		SetResult(&ResponseDiscoveryUpdateGlobalCredentialsV2{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateGlobalCredentialsV2")
+	}
+
+	result := response.Result().(*ResponseDiscoveryUpdateGlobalCredentialsV2)
+	return result, response, err
+
+}
+
 //DeleteAllDiscovery Delete all discovery - db8e-0923-4a98-8bab
 /* Stops all the discoveries and removes them
 
 
  */
 func (s *DiscoveryService) DeleteAllDiscovery() (*ResponseDiscoveryDeleteAllDiscovery, *resty.Response, error) {
+	//
 	path := "/dna/intent/api/v1/discovery"
 
 	response, err := s.client.R().
@@ -1801,6 +2086,7 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*ResponseDiscoveryDeleteAllDisc
 
 */
 func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*ResponseDiscoveryDeleteDiscoveryByID, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/discovery/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -1835,6 +2121,7 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*ResponseDiscoveryDel
 
 */
 func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recordsToDelete int) (*ResponseDiscoveryDeleteDiscoveryBySpecifiedRange, *resty.Response, error) {
+	//startIndex int,recordsToDelete int
 	path := "/dna/intent/api/v1/discovery/{startIndex}/{recordsToDelete}"
 	path = strings.Replace(path, "{startIndex}", fmt.Sprintf("%v", startIndex), -1)
 	path = strings.Replace(path, "{recordsToDelete}", fmt.Sprintf("%v", recordsToDelete), -1)
@@ -1868,6 +2155,7 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 
 */
 func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string) (*ResponseDiscoveryDeleteGlobalCredentialsByID, *resty.Response, error) {
+	//globalCredentialID string
 	path := "/dna/intent/api/v1/global-credential/{globalCredentialId}"
 	path = strings.Replace(path, "{globalCredentialId}", fmt.Sprintf("%v", globalCredentialID), -1)
 
@@ -1888,6 +2176,39 @@ func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string
 	}
 
 	result := response.Result().(*ResponseDiscoveryDeleteGlobalCredentialsByID)
+	return result, response, err
+
+}
+
+//DeleteGlobalCredentialV2 Delete Global Credential V2 - 6487-3b18-4f48-be33
+/* Delete a global credential. Only 'id' of the credential has to be passed.
+
+
+@param id id path parameter. Global Credential id
+
+*/
+func (s *DiscoveryService) DeleteGlobalCredentialV2(id string) (*ResponseDiscoveryDeleteGlobalCredentialV2, *resty.Response, error) {
+	//id string
+	path := "/dna/intent/api/v2/global-credential/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDiscoveryDeleteGlobalCredentialV2{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DeleteGlobalCredentialV2")
+	}
+
+	result := response.Result().(*ResponseDiscoveryDeleteGlobalCredentialV2)
 	return result, response, err
 
 }

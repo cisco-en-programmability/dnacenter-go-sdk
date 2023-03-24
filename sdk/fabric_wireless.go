@@ -9,6 +9,9 @@ import (
 
 type FabricWirelessService service
 
+type AddSSIDToIPPoolMappingHeaderParams struct {
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string. Enable this parameter to execute the API and return a response asynchronously.
+}
 type GetSSIDToIPPoolMappingQueryParams struct {
 	VLANName          string `url:"vlanName,omitempty"`          //VLAN Name
 	SiteNameHierarchy string `url:"siteNameHierarchy,omitempty"` //Site Name Heirarchy
@@ -16,8 +19,17 @@ type GetSSIDToIPPoolMappingQueryParams struct {
 type RemoveWLCFromFabricDomainQueryParams struct {
 	DeviceIPAddress string `url:"deviceIPAddress,omitempty"` //Device Management IP Address
 }
+type RemoveWLCFromFabricDomainHeaderParams struct {
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string. Enable this parameter to execute the API and return a response asynchronously.
+}
 
-type ResponseFabricWirelessUpdateSSIDToIPPoolMapping2 struct {
+type ResponseFabricWirelessAddSSIDToIPPoolMapping []ResponseItemFabricWirelessAddSSIDToIPPoolMapping // Array of ResponseFabricWirelessAddSSIDToIPPoolMapping
+type ResponseItemFabricWirelessAddSSIDToIPPoolMapping struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
+	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
+	Message            string `json:"message,omitempty"`            // message
+}
+type ResponseFabricWirelessUpdateSSIDToIPPoolMapping struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
@@ -35,12 +47,13 @@ type ResponseFabricWirelessRemoveWLCFromFabricDomain struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseFabricWirelessAddWLCToFabricDomain struct {
-	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
-	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
-	Message            string `json:"message,omitempty"`            // message
+type RequestFabricWirelessAddSSIDToIPPoolMapping struct {
+	VLANName          string   `json:"vlanName,omitempty"`          // VLAN Name
+	ScalableGroupName string   `json:"scalableGroupName,omitempty"` // Scalable Group Name
+	SSIDNames         []string `json:"ssidNames,omitempty"`         // List of SSIDs
+	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
 }
-type RequestFabricWirelessUpdateSSIDToIPPoolMapping2 struct {
+type RequestFabricWirelessUpdateSSIDToIPPoolMapping struct {
 	VLANName          string   `json:"vlanName,omitempty"`          // VLAN Name
 	ScalableGroupName string   `json:"scalableGroupName,omitempty"` // Scalable Group Name
 	SSIDNames         []string `json:"ssidNames,omitempty"`         // List of SSIDs
@@ -83,19 +96,32 @@ func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQue
 
 }
 
-//AddWLCToFabricDomain Add WLC to Fabric Domain - f4ad-b85b-4f19-ae86
-/* Add WLC to Fabric Domain
+//AddSSIDToIPPoolMapping Add SSID to IP Pool Mapping - b783-49d9-463a-98dd
+/* Add SSID to IP Pool Mapping.
 
 
- */
-func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain *RequestFabricWirelessAddWLCToFabricDomain) (*ResponseFabricWirelessAddWLCToFabricDomain, *resty.Response, error) {
-	path := "/dna/intent/api/v1/business/sda/wireless-controller"
+@param AddSSIDToIPPoolMappingHeaderParams Custom header parameters
+*/
+func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddSSIDToIPPoolMapping *RequestFabricWirelessAddSSIDToIPPoolMapping, AddSSIDToIPPoolMappingHeaderParams *AddSSIDToIPPoolMappingHeaderParams) (*ResponseFabricWirelessAddSSIDToIPPoolMapping, *resty.Response, error) {
+	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
 
-	response, err := s.client.R().
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
 		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestFabricWirelessAddWLCToFabricDomain).
-		SetResult(&ResponseFabricWirelessAddWLCToFabricDomain{}).
+		SetHeader("Accept", "application/json")
+
+	if AddSSIDToIPPoolMappingHeaderParams != nil {
+
+		if AddSSIDToIPPoolMappingHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", AddSSIDToIPPoolMappingHeaderParams.Persistbapioutput)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestFabricWirelessAddSSIDToIPPoolMapping).
+		SetResult(&ResponseFabricWirelessAddSSIDToIPPoolMapping{}).
 		SetError(&Error).
 		Post(path)
 
@@ -105,27 +131,55 @@ func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLC
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AddWLCToFabricDomain")
+		return nil, response, fmt.Errorf("error with operation AddSsidToIpPoolMapping")
 	}
 
-	result := response.Result().(*ResponseFabricWirelessAddWLCToFabricDomain)
+	result := response.Result().(*ResponseFabricWirelessAddSSIDToIPPoolMapping)
 	return result, response, err
 
 }
 
-//UpdateSSIDToIPPoolMapping2 Update SSID to IP Pool Mapping - a7bf-1936-424b-91f0
+//AddWLCToFabricDomain Add WLC to Fabric Domain - f4ad-b85b-4f19-ae86
+/* Add WLC to Fabric Domain
+
+
+ */
+func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain *RequestFabricWirelessAddWLCToFabricDomain) (*resty.Response, error) {
+	path := "/dna/intent/api/v1/business/sda/wireless-controller"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestFabricWirelessAddWLCToFabricDomain).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		return response, fmt.Errorf("error with operation AddWLCToFabricDomain")
+	}
+
+	return response, err
+
+}
+
+//UpdateSSIDToIPPoolMapping Update SSID to IP Pool Mapping - a7bf-1936-424b-91f0
 /* Update SSID to IP Pool Mapping.
 
 
  */
-func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping2(requestFabricWirelessUpdateSSIDToIPPoolMapping2 *RequestFabricWirelessUpdateSSIDToIPPoolMapping2) (*ResponseFabricWirelessUpdateSSIDToIPPoolMapping2, *resty.Response, error) {
+func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessUpdateSSIDToIPPoolMapping *RequestFabricWirelessUpdateSSIDToIPPoolMapping) (*ResponseFabricWirelessUpdateSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestFabricWirelessUpdateSSIDToIPPoolMapping2).
-		SetResult(&ResponseFabricWirelessUpdateSSIDToIPPoolMapping2{}).
+		SetBody(requestFabricWirelessUpdateSSIDToIPPoolMapping).
+		SetResult(&ResponseFabricWirelessUpdateSSIDToIPPoolMapping{}).
 		SetError(&Error).
 		Put(path)
 
@@ -135,10 +189,10 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping2(requestFabricWireless
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation UpdateSsidToIpPoolMapping2")
+		return nil, response, fmt.Errorf("error with operation UpdateSsidToIpPoolMapping")
 	}
 
-	result := response.Result().(*ResponseFabricWirelessUpdateSSIDToIPPoolMapping2)
+	result := response.Result().(*ResponseFabricWirelessUpdateSSIDToIPPoolMapping)
 	return result, response, err
 
 }
@@ -147,16 +201,30 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping2(requestFabricWireless
 /* Remove WLC from Fabric Domain
 
 
+@param RemoveWLCFromFabricDomainHeaderParams Custom header parameters
 @param RemoveWLCFromFabricDomainQueryParams Filtering parameter
 */
-func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams) (*ResponseFabricWirelessRemoveWLCFromFabricDomain, *resty.Response, error) {
+func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams) (*ResponseFabricWirelessRemoveWLCFromFabricDomain, *resty.Response, error) {
+	//RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams,RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams
 	path := "/dna/intent/api/v1/business/sda/wireless-controller"
 
 	queryString, _ := query.Values(RemoveWLCFromFabricDomainQueryParams)
 
-	response, err := s.client.R().
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
 		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if RemoveWLCFromFabricDomainHeaderParams != nil {
+
+		if RemoveWLCFromFabricDomainHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", RemoveWLCFromFabricDomainHeaderParams.Persistbapioutput)
+		}
+
+	}
+
+	response, err = clientRequest.
 		SetQueryString(queryString.Encode()).SetResult(&ResponseFabricWirelessRemoveWLCFromFabricDomain{}).
 		SetError(&Error).
 		Delete(path)

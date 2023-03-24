@@ -608,6 +608,7 @@ func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleA
 
 */
 func (s *ReportsService) DeleteAScheduledReport(reportID string) (*ResponseReportsDeleteAScheduledReport, *resty.Response, error) {
+	//reportID string
 	path := "/dna/intent/api/v1/data/reports/{reportId}"
 	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
 

@@ -768,8 +768,8 @@ type ResponseDeviceOnboardingPnpImportDevicesInBulk struct {
 	FailureList *[]ResponseDeviceOnboardingPnpImportDevicesInBulkFailureList `json:"failureList,omitempty"` //
 }
 type ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessList struct {
-	TypeID               string                                                                         `json:"_id,omitempty"`                  //_Id
-	ID                   string                                                                         `json:"id,omitempty"`                   //Id
+	TypeID               string                                                                         `json:"_id,omitempty"`                  // _Id
+	ID                   string                                                                         `json:"id,omitempty"`                   // Id
 	DeviceInfo           *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListDeviceInfo           `json:"deviceInfo,omitempty"`           //
 	SystemResetWorkflow  *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListSystemResetWorkflow  `json:"systemResetWorkflow,omitempty"`  //
 	SystemWorkflow       *ResponseDeviceOnboardingPnpImportDevicesInBulkSuccessListSystemWorkflow       `json:"systemWorkflow,omitempty"`       //
@@ -3285,32 +3285,30 @@ type RequestDeviceOnboardingPnpResetDeviceDeviceResetListConfigListConfigParamet
 	Value string `json:"value,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASite struct {
-	DeviceID        string                                                  `json:"deviceId,omitempty"`        //
-	SiteID          string                                                  `json:"siteId,omitempty"`          //
-	Type            string                                                  `json:"type,omitempty"`            //
-	ImageInfo       RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`                 //
-	ConfigInfo      RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`                //
-	Hostname        string                                                  `json:"hostname,omitempty"`        //
-	Gateway         string                                                  `json:"gateway,omitempty"`         //
-	ImageID         string                                                  `json:"imageId,omitempty"`         //
-	RemoveInactive  *bool                                                   `json:"removeInactive,omitempty"`  //
-	IPInterfaceName string                                                  `json:"ipInterfaceName,omitempty"` //
-	RfProfile       string                                                  `json:"rfProfile,omitempty"`       //
-	StaticIP        string                                                  `json:"staticIP,omitempty"`        //
-	SubnetMask      string                                                  `json:"subnetMask,omitempty"`      //
-	VLANID          string                                                  `json:"vlanId,omitempty"`          //
+	DeviceID      string                                                    `json:"deviceId,omitempty"`      // Device Id
+	SiteID        string                                                    `json:"siteId,omitempty"`        // Site Id
+	Type          string                                                    `json:"type,omitempty"`          // Type
+	ImageInfo     RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo    `json:"imageInfo"`               //
+	ConfigInfo    []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`              //
+	RfProfile     string                                                    `json:"rfProfile,omitempty"`     // for Access Points
+	StaticIP      string                                                    `json:"staticIP,omitempty"`      // for CatalystWLC/MobilityExpress
+	SubnetMask    string                                                    `json:"subnetMask,omitempty"`    // for CatalystWLC/MobilityExpress
+	Gateway       string                                                    `json:"gateway,omitempty"`       // for CatalystWLC/MobilityExpress
+	VLANID        string                                                    `json:"vlanID,omitempty"`        // for Catalyst 9800 WLC
+	InterfaceName string                                                    `json:"interfaceName,omitempty"` // for Catalyst 9800 WLC
+	SensorProfile string                                                    `json:"sensorProfile,omitempty"` // for Sensors
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
-	ImageID string `json:"imageId"` //
-	Skip    bool   `json:"skip"`    //
+	ImageID string `json:"imageId"` // Image Id
+	Skip    bool   `json:"skip"`    // Skip
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
-	ConfigID         string                                                                    `json:"configId"`         //
-	ConfigParameters []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
+	ConfigID         string                                                                  `json:"configId"`         // Config Id
+	ConfigParameters RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters struct {
-	Key   string `json:"key"`   //
-	Value string `json:"value"` //
+	Key   string `json:"key"`   // Key
+	Value string `json:"value"` // Value
 }
 type RequestDeviceOnboardingPnpPreviewConfig struct {
 	DeviceID string `json:"deviceId,omitempty"` //
@@ -4343,10 +4341,14 @@ func (s *DeviceOnboardingPnpService) ResetDevice(requestDeviceOnboardingPnpReset
 }
 
 //ClaimADeviceToASite Claim a Device to a Site - 5889-fb84-4939-a13b
-/* Claim a device based on DNA-C Site based design process. Different parameters are required for different device platforms.
+/* Claim a device based on DNA-C Site-based design process. Some required parameters differ based on device platform:
+Default/StackSwitch: imageInfo, configInfo.
+AccessPoints: rfProfile.
+Sensors: sensorProfile.
+CatalystWLC/MobilityExpress/EWC: staticIP, subnetMask, gateway. vlanID and ipInterfaceName are also allowed for Catalyst 9800 WLCs.
 
 
- */
+*/
 func (s *DeviceOnboardingPnpService) ClaimADeviceToASite(requestDeviceOnboardingPnpClaimADeviceToASite *RequestDeviceOnboardingPnpClaimADeviceToASite) (*ResponseDeviceOnboardingPnpClaimADeviceToASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/site-claim"
 
@@ -4653,6 +4655,7 @@ func (s *DeviceOnboardingPnpService) UpdateWorkflow(id string, requestDeviceOnbo
 @param id id path parameter.
 */
 func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*ResponseDeviceOnboardingPnpDeleteDeviceByIDFromPnp, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -4684,6 +4687,7 @@ func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*Respon
 @param DeregisterVirtualAccountQueryParams Filtering parameter
 */
 func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams) (*ResponseDeviceOnboardingPnpDeregisterVirtualAccount, *resty.Response, error) {
+	//DeregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/vacct"
 
 	queryString, _ := query.Values(DeregisterVirtualAccountQueryParams)
@@ -4716,6 +4720,7 @@ func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualA
 @param id id path parameter.
 */
 func (s *DeviceOnboardingPnpService) DeleteWorkflowByID(id string) (*ResponseDeviceOnboardingPnpDeleteWorkflowByID, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

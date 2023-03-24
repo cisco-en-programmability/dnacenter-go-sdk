@@ -17,9 +17,9 @@ type GetApplicationPolicyQueuingProfileQueryParams struct {
 	Name string `url:"name,omitempty"` //queuing profile name
 }
 type GetApplicationSetsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` //
-	Limit  int    `url:"limit,omitempty"`  //
-	Name   string `url:"name,omitempty"`   //
+	Offset float64 `url:"offset,omitempty"` //
+	Limit  float64 `url:"limit,omitempty"`  //
+	Name   string  `url:"name,omitempty"`   //
 }
 type DeleteApplicationSetQueryParams struct {
 	ID string `url:"id,omitempty"` //
@@ -28,9 +28,9 @@ type DeleteApplicationQueryParams struct {
 	ID string `url:"id,omitempty"` //Application's Id
 }
 type GetApplicationsQueryParams struct {
-	Offset int    `url:"offset,omitempty"` //The offset of the first application to be returned
-	Limit  int    `url:"limit,omitempty"`  //The maximum number of applications to be returned
-	Name   string `url:"name,omitempty"`   //Application's name
+	Offset float64 `url:"offset,omitempty"` //The offset of the first application to be returned
+	Limit  float64 `url:"limit,omitempty"`  //The maximum number of applications to be returned
+	Name   string  `url:"name,omitempty"`   //Application's name
 }
 type GetQosDeviceInterfaceInfoQueryParams struct {
 	NetworkDeviceID string `url:"networkDeviceId,omitempty"` //network device id
@@ -1054,7 +1054,7 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 	if response.IsError() {
 		return nil, response, fmt.Errorf("error with operation GetApplicationsCount")
 	}
-	print("probando...")
+
 	result := response.Result().(*ResponseApplicationPolicyGetApplicationsCount)
 	return result, response, err
 
@@ -1369,6 +1369,7 @@ func (s *ApplicationPolicyService) UpdateQosDeviceInterfaceInfo(requestApplicati
 
 */
 func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id string) (*ResponseApplicationPolicyDeleteApplicationPolicyQueuingProfile, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/app-policy-queuing-profile/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -1400,6 +1401,7 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 @param DeleteApplicationSetQueryParams Filtering parameter
 */
 func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*ResponseApplicationPolicyDeleteApplicationSet, *resty.Response, error) {
+	//DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
 	queryString, _ := query.Values(DeleteApplicationSetQueryParams)
@@ -1432,6 +1434,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQuer
 @param DeleteApplicationQueryParams Filtering parameter
 */
 func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParams *DeleteApplicationQueryParams) (*ResponseApplicationPolicyDeleteApplication, *resty.Response, error) {
+	//DeleteApplicationQueryParams *DeleteApplicationQueryParams
 	path := "/dna/intent/api/v1/applications"
 
 	queryString, _ := query.Values(DeleteApplicationQueryParams)
@@ -1465,6 +1468,7 @@ func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParam
 
 */
 func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*ResponseApplicationPolicyDeleteQosDeviceInterfaceInfo, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/qos-device-interface-info/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

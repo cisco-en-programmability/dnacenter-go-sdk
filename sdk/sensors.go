@@ -682,6 +682,7 @@ func (s *SensorsService) DuplicateSensorTestTemplate(requestSensorsDuplicateSens
 @param DeleteSensorTestQueryParams Filtering parameter
 */
 func (s *SensorsService) DeleteSensorTest(DeleteSensorTestQueryParams *DeleteSensorTestQueryParams) (*ResponseSensorsDeleteSensorTest, *resty.Response, error) {
+	//DeleteSensorTestQueryParams *DeleteSensorTestQueryParams
 	path := "/dna/intent/api/v1/sensor"
 
 	queryString, _ := query.Values(DeleteSensorTestQueryParams)
