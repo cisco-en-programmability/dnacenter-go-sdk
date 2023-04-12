@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.1] - 2023-04-12
+### Changed
+- Mulicast -> Multicast on RequestItemLanAutomationLanAutomationStart
+
 ## [5.0.0] - 2023-04-12
 ### Added
 - New services for Cisco DNA Center 2.3.5.3's API:
