@@ -530,6 +530,8 @@ type RequestSensorsDuplicateSensorTestTemplate struct {
 
 
 @param SensorsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensors
 */
 func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*ResponseSensorsSensors, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sensor"
@@ -561,7 +563,9 @@ func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*Respo
 /* Intent API to create a SENSOR test template with a new SSID, existing SSID, or both new and existing SSID
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sensor-test-template
+*/
 func (s *SensorsService) CreateSensorTestTemplate(requestSensorsCreateSensorTestTemplate *RequestSensorsCreateSensorTestTemplate) (*ResponseSensorsCreateSensorTestTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sensor"
 
@@ -680,6 +684,8 @@ func (s *SensorsService) DuplicateSensorTestTemplate(requestSensorsDuplicateSens
 
 
 @param DeleteSensorTestQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sensor-test
 */
 func (s *SensorsService) DeleteSensorTest(DeleteSensorTestQueryParams *DeleteSensorTestQueryParams) (*ResponseSensorsDeleteSensorTest, *resty.Response, error) {
 	//DeleteSensorTestQueryParams *DeleteSensorTestQueryParams

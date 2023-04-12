@@ -1772,6 +1772,8 @@ type RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams inter
 
 
 @param GetsAListOfProjectsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-list-of-projects
 */
 func (s *ConfigurationTemplatesService) GetsAListOfProjects(GetsAListOfProjectsQueryParams *GetsAListOfProjectsQueryParams) (*ResponseConfigurationTemplatesGetsAListOfProjects, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project"
@@ -1805,6 +1807,8 @@ func (s *ConfigurationTemplatesService) GetsAListOfProjects(GetsAListOfProjectsQ
 
 @param projectID projectId path parameter. projectId(UUID) of project to get project details
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-details-of-a-given-project
 */
 func (s *ConfigurationTemplatesService) GetsTheDetailsOfAGivenProject(projectID string) (*ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}"
@@ -1836,6 +1840,8 @@ func (s *ConfigurationTemplatesService) GetsTheDetailsOfAGivenProject(projectID 
 
 
 @param GetsTheTemplatesAvailableQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-templates-available
 */
 func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(GetsTheTemplatesAvailableQueryParams *GetsTheTemplatesAvailableQueryParams) (*ResponseConfigurationTemplatesGetsTheTemplatesAvailable, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template"
@@ -1869,6 +1875,8 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(GetsTheTemplat
 
 @param deploymentID deploymentId path parameter. UUID of deployment to retrieve template deployment status
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!status-of-template-deployment
 */
 func (s *ConfigurationTemplatesService) StatusOfTemplateDeployment(deploymentID string) (*ResponseConfigurationTemplatesStatusOfTemplateDeployment, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/deploy/status/{deploymentId}"
@@ -1901,6 +1909,8 @@ func (s *ConfigurationTemplatesService) StatusOfTemplateDeployment(deploymentID 
 
 @param templateID templateId path parameter. templateId(UUID) to get list of versioned templates
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-all-the-versions-of-a-given-template
 */
 func (s *ConfigurationTemplatesService) GetsAllTheVersionsOfAGivenTemplate(templateID string) (*ResponseConfigurationTemplatesGetsAllTheVersionsOfAGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/version/{templateId}"
@@ -1934,6 +1944,8 @@ func (s *ConfigurationTemplatesService) GetsAllTheVersionsOfAGivenTemplate(templ
 @param templateID templateId path parameter. TemplateId(UUID) to get details of the template
 
 @param GetsDetailsOfAGivenTemplateQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-details-of-a-given-template
 */
 func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID string, GetsDetailsOfAGivenTemplateQueryParams *GetsDetailsOfAGivenTemplateQueryParams) (*ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/{templateId}"
@@ -1967,6 +1979,8 @@ func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID s
 
 
 @param GetProjectsDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-projects-details
 */
 func (s *ConfigurationTemplatesService) GetProjectsDetails(GetProjectsDetailsQueryParams *GetProjectsDetailsQueryParams) (*ResponseConfigurationTemplatesGetProjectsDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v2/template-programmer/project"
@@ -1999,6 +2013,8 @@ func (s *ConfigurationTemplatesService) GetProjectsDetails(GetProjectsDetailsQue
 
 
 @param GetTemplatesDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-templates-details
 */
 func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQueryParams *GetTemplatesDetailsQueryParams) (*ResponseConfigurationTemplatesGetTemplatesDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v2/template-programmer/template"
@@ -2036,6 +2052,8 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQ
 
 @param projectID projectId path parameter.
 @param CreatesACloneOfTheGivenTemplateQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-clone-of-the-given-template
 */
 func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string, CreatesACloneOfTheGivenTemplateQueryParams *CreatesACloneOfTheGivenTemplateQueryParams) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/clone/name/{name}/project/{projectId}/template/{templateId}"
@@ -2071,7 +2089,9 @@ func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name str
 /* This API is used to create a new project.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-project
+*/
 func (s *ConfigurationTemplatesService) CreateProject(requestConfigurationTemplatesCreateProject *RequestConfigurationTemplatesCreateProject) (*ResponseConfigurationTemplatesCreateProject, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project"
 
@@ -2102,6 +2122,8 @@ func (s *ConfigurationTemplatesService) CreateProject(requestConfigurationTempla
 
 
 @param ImportsTheProjectsProvidedQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-projects-provided
 */
 func (s *ConfigurationTemplatesService) ImportsTheProjectsProvided(ImportsTheProjectsProvidedQueryParams *ImportsTheProjectsProvidedQueryParams) (*ResponseConfigurationTemplatesImportsTheProjectsProvided, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/importprojects"
@@ -2134,7 +2156,9 @@ func (s *ConfigurationTemplatesService) ImportsTheProjectsProvided(ImportsThePro
 /* Exports the projects for given projectNames.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-projects-for-a-given-criteria
+*/
 func (s *ConfigurationTemplatesService) ExportsTheProjectsForAGivenCriteria(requestConfigurationTemplatesExportsTheProjectsForAGivenCriteria *RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria) (*ResponseConfigurationTemplatesExportsTheProjectsForAGivenCriteria, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/name/exportprojects"
 
@@ -2167,6 +2191,8 @@ func (s *ConfigurationTemplatesService) ExportsTheProjectsForAGivenCriteria(requ
 @param projectName projectName path parameter. Project name to create template under the project
 
 @param ImportsTheTemplatesProvidedQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-templates-provided
 */
 func (s *ConfigurationTemplatesService) ImportsTheTemplatesProvided(projectName string, requestConfigurationTemplatesImportsTheTemplatesProvided *RequestConfigurationTemplatesImportsTheTemplatesProvided, ImportsTheTemplatesProvidedQueryParams *ImportsTheTemplatesProvidedQueryParams) (*ResponseConfigurationTemplatesImportsTheTemplatesProvided, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/name/{projectName}/template/importtemplates"
@@ -2202,6 +2228,8 @@ func (s *ConfigurationTemplatesService) ImportsTheTemplatesProvided(projectName 
 
 @param projectID projectId path parameter. UUID of the project in which the template needs to be created
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-template
 */
 func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, requestConfigurationTemplatesCreateTemplate *RequestConfigurationTemplatesCreateTemplate) (*ResponseConfigurationTemplatesCreateTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}/template"
@@ -2233,7 +2261,9 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, request
 /* API to deploy a template.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deploy-template
+*/
 func (s *ConfigurationTemplatesService) DeployTemplate(requestConfigurationTemplatesDeployTemplate *RequestConfigurationTemplatesDeployTemplate) (*ResponseConfigurationTemplatesDeployTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/deploy"
 
@@ -2263,7 +2293,9 @@ func (s *ConfigurationTemplatesService) DeployTemplate(requestConfigurationTempl
 /* Exports the templates for given templateIds.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-templates-for-a-given-criteria
+*/
 func (s *ConfigurationTemplatesService) ExportsTheTemplatesForAGivenCriteria(requestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria *RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria) (*ResponseConfigurationTemplatesExportsTheTemplatesForAGivenCriteria, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/exporttemplates"
 
@@ -2293,7 +2325,9 @@ func (s *ConfigurationTemplatesService) ExportsTheTemplatesForAGivenCriteria(req
 /* API to version the current contents of the template.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!version-template
+*/
 func (s *ConfigurationTemplatesService) VersionTemplate(requestConfigurationTemplatesVersionTemplate *RequestConfigurationTemplatesVersionTemplate) (*ResponseConfigurationTemplatesVersionTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/version"
 
@@ -2323,7 +2357,9 @@ func (s *ConfigurationTemplatesService) VersionTemplate(requestConfigurationTemp
 /* V2 API to deploy a template.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deploy-template-v2
+*/
 func (s *ConfigurationTemplatesService) DeployTemplateV2(requestConfigurationTemplatesDeployTemplateV2 *RequestConfigurationTemplatesDeployTemplateV2) (*ResponseConfigurationTemplatesDeployTemplateV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/template-programmer/template/deploy"
 
@@ -2445,6 +2481,8 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(requestConfigurationTemp
 
 @param projectID projectId path parameter. projectId(UUID) of project to be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-project
 */
 func (s *ConfigurationTemplatesService) DeletesTheProject(projectID string) (*ResponseConfigurationTemplatesDeletesTheProject, *resty.Response, error) {
 	//projectID string
@@ -2478,6 +2516,8 @@ func (s *ConfigurationTemplatesService) DeletesTheProject(projectID string) (*Re
 
 @param templateID templateId path parameter. templateId(UUID) of template to be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-template
 */
 func (s *ConfigurationTemplatesService) DeletesTheTemplate(templateID string) (*ResponseConfigurationTemplatesDeletesTheTemplate, *resty.Response, error) {
 	//templateID string

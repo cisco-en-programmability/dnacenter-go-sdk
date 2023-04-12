@@ -931,6 +931,8 @@ type RequestPathTraceInitiateANewPathtrace struct {
 
 
 @param RetrivesAllPreviousPathtracesSummaryQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrives-all-previous-pathtraces-summary
 */
 func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(RetrivesAllPreviousPathtracesSummaryQueryParams *RetrivesAllPreviousPathtracesSummaryQueryParams) (*ResponsePathTraceRetrivesAllPreviousPathtracesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis"
@@ -964,6 +966,8 @@ func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(RetrivesAllPrevi
 
 @param flowAnalysisID flowAnalysisId path parameter. Flow analysis request id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-previous-pathtrace
 */
 func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*ResponsePathTraceRetrievesPreviousPathtrace, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
@@ -994,7 +998,9 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*R
 /* Initiates a new flow analysis with periodic refresh and stat collection options. Returns a request id and a task id to get results and follow progress.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!initiate-a-new-pathtrace
+*/
 func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPathtrace *RequestPathTraceInitiateANewPathtrace) (*ResponsePathTraceInitiateANewPathtrace, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis"
 
@@ -1026,6 +1032,8 @@ func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPat
 
 @param flowAnalysisID flowAnalysisId path parameter. Flow analysis request id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-pathtrace-by-id
 */
 func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*ResponsePathTraceDeletesPathtraceByID, *resty.Response, error) {
 	//flowAnalysisID string

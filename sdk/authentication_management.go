@@ -58,6 +58,8 @@ type ResponseAuthenticationManagementAuthenticationApI struct {
 
 
 @param ImportCertificateQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-certificate
 */
 func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQueryParams *ImportCertificateQueryParams, ImportCertificateMultipartFields *ImportCertificateMultipartFields) (*ResponseAuthenticationManagementImportCertificate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/certificate"
@@ -100,6 +102,8 @@ func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQue
 
 
 @param ImportCertificateP12QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-certificate-p12
 */
 func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificateP12QueryParams *ImportCertificateP12QueryParams, ImportCertificateP12MultipartFields *ImportCertificateP12MultipartFields) (*ResponseAuthenticationManagementImportCertificateP12, *resty.Response, error) {
 	path := "/dna/intent/api/v1/certificate-p12"
@@ -140,7 +144,9 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 /* API to obtain an access token, which remains valid for 1 hour. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco DNA Center.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!authentication-api
+*/
 func (s *AuthenticationManagementService) AuthenticationApI() (*ResponseAuthenticationManagementAuthenticationApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/auth/token"
 

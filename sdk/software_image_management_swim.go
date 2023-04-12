@@ -201,6 +201,8 @@ type RequestItemSoftwareImageManagementSwimImportSoftwareImageViaURL struct {
 
 
 @param GetSoftwareImageDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-software-image-details
 */
 func (s *SoftwareImageManagementSwimService) GetSoftwareImageDetails(GetSoftwareImageDetailsQueryParams *GetSoftwareImageDetailsQueryParams) (*ResponseSoftwareImageManagementSwimGetSoftwareImageDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation"
@@ -232,7 +234,9 @@ func (s *SoftwareImageManagementSwimService) GetSoftwareImageDetails(GetSoftware
 /* API to get Device Family Identifiers for all Device Families that can be used for tagging an image golden.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-family-identifiers
+*/
 func (s *SoftwareImageManagementSwimService) GetDeviceFamilyIDentifiers() (*ResponseSoftwareImageManagementSwimGetDeviceFamilyIDentifiers, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/device-family-identifiers"
 
@@ -269,6 +273,8 @@ func (s *SoftwareImageManagementSwimService) GetDeviceFamilyIDentifiers() (*Resp
 
 @param imageID imageId path parameter. Image Id in uuid format.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-golden-tag-status-of-an-image
 */
 func (s *SoftwareImageManagementSwimService) GetGoldenTagStatusOfAnImage(siteID string, deviceFamilyIDentifier string, deviceRole string, imageID string) (*ResponseSoftwareImageManagementSwimGetGoldenTagStatusOfAnImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/golden/site/{siteId}/family/{deviceFamilyIdentifier}/role/{deviceRole}/image/{imageId}"
@@ -304,6 +310,8 @@ func (s *SoftwareImageManagementSwimService) GetGoldenTagStatusOfAnImage(siteID 
 
 @param TriggerSoftwareImageActivationHeaderParams Custom header parameters
 @param TriggerSoftwareImageActivationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-activation
 */
 func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageActivation(requestSoftwareImageManagementSwimTriggerSoftwareImageActivation *RequestSoftwareImageManagementSwimTriggerSoftwareImageActivation, TriggerSoftwareImageActivationHeaderParams *TriggerSoftwareImageActivationHeaderParams, TriggerSoftwareImageActivationQueryParams *TriggerSoftwareImageActivationQueryParams) (*ResponseSoftwareImageManagementSwimTriggerSoftwareImageActivation, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/activation/device"
@@ -352,7 +360,9 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageActivation(requ
 /* Distributes a software image on a given device. Software image must be imported successfully into DNA Center before it can be distributed
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-distribution
+*/
 func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageDistribution(requestSoftwareImageManagementSwimTriggerSoftwareImageDistribution *RequestSoftwareImageManagementSwimTriggerSoftwareImageDistribution) (*ResponseSoftwareImageManagementSwimTriggerSoftwareImageDistribution, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/distribution"
 
@@ -382,7 +392,9 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageDistribution(re
 /* Golden Tag image. Set siteId as -1 for Global site.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!tag-as-golden-image
+*/
 func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareImageManagementSwimTagAsGoldenImage *RequestSoftwareImageManagementSwimTagAsGoldenImage) (*ResponseSoftwareImageManagementSwimTagAsGoldenImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/golden"
 
@@ -413,6 +425,8 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 
 
 @param ImportLocalSoftwareImageQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-local-software-image
 */
 func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams, ImportLocalSoftwareImageMultipartFields *ImportLocalSoftwareImageMultipartFields) (*ResponseSoftwareImageManagementSwimImportLocalSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/source/file"
@@ -454,6 +468,8 @@ func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLoca
 
 
 @param ImportSoftwareImageViaURLQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-software-image-via-url
 */
 func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSoftwareImageManagementSwimImportSoftwareImageViaURL *RequestSoftwareImageManagementSwimImportSoftwareImageViaURL, ImportSoftwareImageViaURLQueryParams *ImportSoftwareImageViaURLQueryParams) (*ResponseSoftwareImageManagementSwimImportSoftwareImageViaURL, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/source/url"
@@ -494,6 +510,8 @@ func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSo
 
 @param imageID imageId path parameter. Image Id in uuid format.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-golden-tag-for-image
 */
 func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID string, deviceFamilyIDentifier string, deviceRole string, imageID string) (*ResponseSoftwareImageManagementSwimRemoveGoldenTagForImage, *resty.Response, error) {
 	//siteID string,deviceFamilyIDentifier string,deviceRole string,imageID string

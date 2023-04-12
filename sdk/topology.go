@@ -278,6 +278,8 @@ type ResponseTopologyGetVLANDetails struct {
 
 
 @param GetOverallNetworkHealthQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-network-health
 */
 func (s *TopologyService) GetOverallNetworkHealth(GetOverallNetworkHealthQueryParams *GetOverallNetworkHealthQueryParams) (*ResponseTopologyGetOverallNetworkHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-health"
@@ -311,6 +313,8 @@ func (s *TopologyService) GetOverallNetworkHealth(GetOverallNetworkHealthQueryPa
 
 @param vlanID vlanID path parameter. Vlan Name for e.g Vlan1, Vlan23 etc
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-topology-details
 */
 func (s *TopologyService) GetTopologyDetails(vlanID string) (*ResponseTopologyGetTopologyDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/l2/{vlanID}"
@@ -343,6 +347,8 @@ func (s *TopologyService) GetTopologyDetails(vlanID string) (*ResponseTopologyGe
 
 @param topologyType topologyType path parameter. Type of topology(OSPF,ISIS,etc)
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-l3-topology-details
 */
 func (s *TopologyService) GetL3TopologyDetails(topologyType string) (*ResponseTopologyGetL3TopologyDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/l3/{topologyType}"
@@ -374,6 +380,8 @@ func (s *TopologyService) GetL3TopologyDetails(topologyType string) (*ResponseTo
 
 
 @param GetPhysicalTopologyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-physical-topology
 */
 func (s *TopologyService) GetPhysicalTopology(GetPhysicalTopologyQueryParams *GetPhysicalTopologyQueryParams) (*ResponseTopologyGetPhysicalTopology, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/physical-topology"
@@ -405,7 +413,9 @@ func (s *TopologyService) GetPhysicalTopology(GetPhysicalTopologyQueryParams *Ge
 /* Returns site topology
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-topology
+*/
 func (s *TopologyService) GetSiteTopology() (*ResponseTopologyGetSiteTopology, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/site-topology"
 
@@ -434,7 +444,9 @@ func (s *TopologyService) GetSiteTopology() (*ResponseTopologyGetSiteTopology, *
 /* Returns the list of VLAN names
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-v-lan-details
+*/
 func (s *TopologyService) GetVLANDetails() (*ResponseTopologyGetVLANDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/vlan/vlan-names"
 

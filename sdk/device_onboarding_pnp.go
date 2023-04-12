@@ -3878,6 +3878,8 @@ type RequestDeviceOnboardingPnpUpdateWorkflowTasksWorkItemList struct {
 
 
 @param GetDeviceList2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-list2
 */
 func (s *DeviceOnboardingPnpService) GetDeviceList2(GetDeviceList2QueryParams *GetDeviceList2QueryParams) (*ResponseDeviceOnboardingPnpGetDeviceList2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device"
@@ -3910,6 +3912,8 @@ func (s *DeviceOnboardingPnpService) GetDeviceList2(GetDeviceList2QueryParams *G
 
 
 @param GetDeviceCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-count
 */
 func (s *DeviceOnboardingPnpService) GetDeviceCount(GetDeviceCountQueryParams *GetDeviceCountQueryParams) (*ResponseDeviceOnboardingPnpGetDeviceCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/count"
@@ -3942,6 +3946,8 @@ func (s *DeviceOnboardingPnpService) GetDeviceCount(GetDeviceCountQueryParams *G
 
 
 @param GetDeviceHistoryQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-history
 */
 func (s *DeviceOnboardingPnpService) GetDeviceHistory(GetDeviceHistoryQueryParams *GetDeviceHistoryQueryParams) (*ResponseDeviceOnboardingPnpGetDeviceHistory, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/history"
@@ -3977,6 +3983,8 @@ func (s *DeviceOnboardingPnpService) GetDeviceHistory(GetDeviceHistoryQueryParam
 
 @param name name path parameter. Virtual Account Name
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-sync-result-for-virtual-account
 */
 func (s *DeviceOnboardingPnpService) GetSyncResultForVirtualAccount(domain string, name string) (*ResponseDeviceOnboardingPnpGetSyncResultForVirtualAccount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/sacct/{domain}/vacct/{name}/sync-result"
@@ -4009,6 +4017,8 @@ func (s *DeviceOnboardingPnpService) GetSyncResultForVirtualAccount(domain strin
 
 
 @param id id path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-id
 */
 func (s *DeviceOnboardingPnpService) GetDeviceByID(id string) (*ResponseDeviceOnboardingPnpGetDeviceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/{id}"
@@ -4039,7 +4049,9 @@ func (s *DeviceOnboardingPnpService) GetDeviceByID(id string) (*ResponseDeviceOn
 /* Returns global PnP settings of the user
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-pn-p-global-settings
+*/
 func (s *DeviceOnboardingPnpService) GetPnpGlobalSettings() (*ResponseDeviceOnboardingPnpGetPnpGlobalSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-settings"
 
@@ -4068,7 +4080,9 @@ func (s *DeviceOnboardingPnpService) GetPnpGlobalSettings() (*ResponseDeviceOnbo
 /* Returns the list of Smart Account domains
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-smart-account-list
+*/
 func (s *DeviceOnboardingPnpService) GetSmartAccountList() (*ResponseDeviceOnboardingPnpGetSmartAccountList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct"
 
@@ -4099,6 +4113,8 @@ func (s *DeviceOnboardingPnpService) GetSmartAccountList() (*ResponseDeviceOnboa
 
 @param domain domain path parameter. Smart Account Domain
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-account-list
 */
 func (s *DeviceOnboardingPnpService) GetVirtualAccountList(domain string) (*ResponseDeviceOnboardingPnpGetVirtualAccountList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/sacct/{domain}/vacct"
@@ -4130,6 +4146,8 @@ func (s *DeviceOnboardingPnpService) GetVirtualAccountList(domain string) (*Resp
 
 
 @param GetWorkflowsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-workflows
 */
 func (s *DeviceOnboardingPnpService) GetWorkflows(GetWorkflowsQueryParams *GetWorkflowsQueryParams) (*ResponseDeviceOnboardingPnpGetWorkflows, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow"
@@ -4162,6 +4180,8 @@ func (s *DeviceOnboardingPnpService) GetWorkflows(GetWorkflowsQueryParams *GetWo
 
 
 @param GetWorkflowCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-workflow-count
 */
 func (s *DeviceOnboardingPnpService) GetWorkflowCount(GetWorkflowCountQueryParams *GetWorkflowCountQueryParams) (*ResponseDeviceOnboardingPnpGetWorkflowCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/count"
@@ -4194,6 +4214,8 @@ func (s *DeviceOnboardingPnpService) GetWorkflowCount(GetWorkflowCountQueryParam
 
 
 @param id id path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-workflow-by-id
 */
 func (s *DeviceOnboardingPnpService) GetWorkflowByID(id string) (*ResponseDeviceOnboardingPnpGetWorkflowByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow/{id}"
@@ -4224,7 +4246,9 @@ func (s *DeviceOnboardingPnpService) GetWorkflowByID(id string) (*ResponseDevice
 /* Adds a device to the PnP database.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-device
+*/
 func (s *DeviceOnboardingPnpService) AddDevice(requestDeviceOnboardingPnpAddDevice *RequestDeviceOnboardingPnpAddDevice) (*ResponseDeviceOnboardingPnpAddDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device"
 
@@ -4254,7 +4278,9 @@ func (s *DeviceOnboardingPnpService) AddDevice(requestDeviceOnboardingPnpAddDevi
 /* Claims one of more devices with specified workflow
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-device
+*/
 func (s *DeviceOnboardingPnpService) ClaimDevice(requestDeviceOnboardingPnpClaimDevice *RequestDeviceOnboardingPnpClaimDevice) (*ResponseDeviceOnboardingPnpClaimDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/claim"
 
@@ -4284,7 +4310,9 @@ func (s *DeviceOnboardingPnpService) ClaimDevice(requestDeviceOnboardingPnpClaim
 /* Add devices to PnP in bulk
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-devices-in-bulk
+*/
 func (s *DeviceOnboardingPnpService) ImportDevicesInBulk(requestDeviceOnboardingPnpImportDevicesInBulk *RequestDeviceOnboardingPnpImportDevicesInBulk) (*ResponseDeviceOnboardingPnpImportDevicesInBulk, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/import"
 
@@ -4314,7 +4342,9 @@ func (s *DeviceOnboardingPnpService) ImportDevicesInBulk(requestDeviceOnboarding
 /* Recovers a device from a Workflow Execution Error state
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reset-device
+*/
 func (s *DeviceOnboardingPnpService) ResetDevice(requestDeviceOnboardingPnpResetDevice *RequestDeviceOnboardingPnpResetDevice) (*ResponseDeviceOnboardingPnpResetDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/reset"
 
@@ -4348,6 +4378,8 @@ Sensors: sensorProfile.
 CatalystWLC/MobilityExpress/EWC: staticIP, subnetMask, gateway. vlanID and ipInterfaceName are also allowed for Catalyst 9800 WLCs.
 
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!claim-a-device-to-a-site
 */
 func (s *DeviceOnboardingPnpService) ClaimADeviceToASite(requestDeviceOnboardingPnpClaimADeviceToASite *RequestDeviceOnboardingPnpClaimADeviceToASite) (*ResponseDeviceOnboardingPnpClaimADeviceToASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/site-claim"
@@ -4378,7 +4410,9 @@ func (s *DeviceOnboardingPnpService) ClaimADeviceToASite(requestDeviceOnboarding
 /* Triggers a preview for site-based Day 0 Configuration
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!preview-config
+*/
 func (s *DeviceOnboardingPnpService) PreviewConfig(requestDeviceOnboardingPnpPreviewConfig *RequestDeviceOnboardingPnpPreviewConfig) (*ResponseDeviceOnboardingPnpPreviewConfig, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/site-config-preview"
 
@@ -4408,7 +4442,9 @@ func (s *DeviceOnboardingPnpService) PreviewConfig(requestDeviceOnboardingPnpPre
 /* Un-Claims one of more devices with specified workflow
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!un-claim-device
+*/
 func (s *DeviceOnboardingPnpService) UnClaimDevice(requestDeviceOnboardingPnpUnClaimDevice *RequestDeviceOnboardingPnpUnClaimDevice) (*ResponseDeviceOnboardingPnpUnClaimDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/unclaim"
 
@@ -4438,7 +4474,9 @@ func (s *DeviceOnboardingPnpService) UnClaimDevice(requestDeviceOnboardingPnpUnC
 /* Synchronizes the device info from the given smart account & virtual account with the PnP database. The response payload returns a list of synced devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sync-virtual-account-devices
+*/
 func (s *DeviceOnboardingPnpService) SyncVirtualAccountDevices(requestDeviceOnboardingPnpSyncVirtualAccountDevices *RequestDeviceOnboardingPnpSyncVirtualAccountDevices) (*ResponseDeviceOnboardingPnpSyncVirtualAccountDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-device/vacct-sync"
 
@@ -4468,7 +4506,9 @@ func (s *DeviceOnboardingPnpService) SyncVirtualAccountDevices(requestDeviceOnbo
 /* Registers a Smart Account, Virtual Account and the relevant server profile info with the PnP System & database. The devices present in the registered virtual account are synced with the PnP database as well. The response payload returns the new profile
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-virtual-account
+*/
 func (s *DeviceOnboardingPnpService) AddVirtualAccount(requestDeviceOnboardingPnpAddVirtualAccount *RequestDeviceOnboardingPnpAddVirtualAccount) (*ResponseDeviceOnboardingPnpAddVirtualAccount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-settings/savacct"
 
@@ -4498,7 +4538,9 @@ func (s *DeviceOnboardingPnpService) AddVirtualAccount(requestDeviceOnboardingPn
 /* Adds a PnP Workflow along with the relevant tasks in the workflow into the PnP database
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-a-workflow
+*/
 func (s *DeviceOnboardingPnpService) AddAWorkflow(requestDeviceOnboardingPnpAddAWorkflow *RequestDeviceOnboardingPnpAddAWorkflow) (*ResponseDeviceOnboardingPnpAddAWorkflow, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-workflow"
 
@@ -4653,6 +4695,8 @@ func (s *DeviceOnboardingPnpService) UpdateWorkflow(id string, requestDeviceOnbo
 
 
 @param id id path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id-from-pn-p
 */
 func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*ResponseDeviceOnboardingPnpDeleteDeviceByIDFromPnp, *resty.Response, error) {
 	//id string
@@ -4685,6 +4729,8 @@ func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*Respon
 
 
 @param DeregisterVirtualAccountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deregister-virtual-account
 */
 func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams) (*ResponseDeviceOnboardingPnpDeregisterVirtualAccount, *resty.Response, error) {
 	//DeregisterVirtualAccountQueryParams *DeregisterVirtualAccountQueryParams
@@ -4718,6 +4764,8 @@ func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualA
 
 
 @param id id path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-workflow-by-id
 */
 func (s *DeviceOnboardingPnpService) DeleteWorkflowByID(id string) (*ResponseDeviceOnboardingPnpDeleteWorkflowByID, *resty.Response, error) {
 	//id string

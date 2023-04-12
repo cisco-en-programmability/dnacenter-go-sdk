@@ -64,6 +64,8 @@ type RequestItsmRetryIntegrationEvents []string // Array of RequestItsmRetryInte
 
 
 @param GetCMDBSyncStatusQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-c-m-d-b-sync-status
 */
 func (s *ItsmService) GetCmdbSyncStatus(GetCMDBSyncStatusQueryParams *GetCmdbSyncStatusQueryParams) (*ResponseItsmGetCmdbSyncStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/cmdb-sync/detail"
@@ -96,6 +98,8 @@ func (s *ItsmService) GetCmdbSyncStatus(GetCMDBSyncStatusQueryParams *GetCmdbSyn
 
 
 @param GetFailedITSMEventsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-failed-itsm-events
 */
 func (s *ItsmService) GetFailedItsmEvents(GetFailedITSMEventsQueryParams *GetFailedItsmEventsQueryParams) (*ResponseItsmGetFailedItsmEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration/events"
@@ -127,7 +131,9 @@ func (s *ItsmService) GetFailedItsmEvents(GetFailedITSMEventsQueryParams *GetFai
 /* Allows retry of multiple failed ITSM event instances. The retry request payload can be given as a list of strings: ["instance1","instance2","instance3",..] A minimum of one instance Id is mandatory. The list of failed event instance Ids can be retrieved using the 'Get Failed ITSM Events' API in the 'instanceId' attribute.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retry-integration-events
+*/
 func (s *ItsmService) RetryIntegrationEvents(requestItsmRetryIntegrationEvents *RequestItsmRetryIntegrationEvents) (*ResponseItsmRetryIntegrationEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration/events"
 

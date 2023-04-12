@@ -165,6 +165,8 @@ type ResponseItemUsersGetUserEnrichmentDetailsConnectedDeviceDeviceDetailsNeighb
 
 
 @param GetUserEnrichmentDetailsHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-user-enrichment-details
 */
 func (s *UsersService) GetUserEnrichmentDetails(GetUserEnrichmentDetailsHeaderParams *GetUserEnrichmentDetailsHeaderParams) (*ResponseUsersGetUserEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/user-enrichment-details"

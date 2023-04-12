@@ -239,6 +239,8 @@ type RequestLicensesChangeVirtualAccount2 struct {
 
 
 @param DeviceCountDetails2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-count-details2
 */
 func (s *LicensesService) DeviceCountDetails2(DeviceCountDetails2QueryParams *DeviceCountDetails2QueryParams) (*ResponseLicensesDeviceCountDetails2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/count"
@@ -271,6 +273,8 @@ func (s *LicensesService) DeviceCountDetails2(DeviceCountDetails2QueryParams *De
 
 
 @param DeviceLicenseSummary2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-summary2
 */
 func (s *LicensesService) DeviceLicenseSummary2(DeviceLicenseSummary2QueryParams *DeviceLicenseSummary2QueryParams) (*ResponseLicensesDeviceLicenseSummary2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/summary"
@@ -304,6 +308,8 @@ func (s *LicensesService) DeviceLicenseSummary2(DeviceLicenseSummary2QueryParams
 
 @param deviceuuid device_uuid path parameter. Id of device
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-details2
 */
 func (s *LicensesService) DeviceLicenseDetails2(deviceuuid string) (*ResponseLicensesDeviceLicenseDetails2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/{device_uuid}/details"
@@ -336,6 +342,8 @@ func (s *LicensesService) DeviceLicenseDetails2(deviceuuid string) (*ResponseLic
 
 @param smartaccountTypeID smart_account_id path parameter. Id of smart account
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!virtual-account-details2
 */
 func (s *LicensesService) VirtualAccountDetails2(smartaccountTypeID string) (*ResponseLicensesVirtualAccountDetails2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccount/{smart_account_id}/virtualAccounts"
@@ -366,7 +374,9 @@ func (s *LicensesService) VirtualAccountDetails2(smartaccountTypeID string) (*Re
 /* Get detail of all smart accounts.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!smart-account-details
+*/
 func (s *LicensesService) SmartAccountDetails() (*ResponseLicensesSmartAccountDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccounts"
 
@@ -400,6 +410,8 @@ func (s *LicensesService) SmartAccountDetails() (*ResponseLicensesSmartAccountDe
 @param virtualaccountname virtual_account_name path parameter. Name of virtual account. Putting "All" will give license term detail for all virtual accounts.
 
 @param LicenseTermDetails2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-term-details2
 */
 func (s *LicensesService) LicenseTermDetails2(smartaccountTypeID string, virtualaccountname string, LicenseTermDetails2QueryParams *LicenseTermDetails2QueryParams) (*ResponseLicensesLicenseTermDetails2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/term/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}"
@@ -438,6 +450,8 @@ func (s *LicensesService) LicenseTermDetails2(smartaccountTypeID string, virtual
 @param virtualaccountname virtual_account_name path parameter. Name of virtual account. Putting "All" will give license term detail for all virtual accounts.
 
 @param LicenseUsageDetails2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-usage-details2
 */
 func (s *LicensesService) LicenseUsageDetails2(smartaccountTypeID string, virtualaccountname string, LicenseUsageDetails2QueryParams *LicenseUsageDetails2QueryParams) (*ResponseLicensesLicenseUsageDetails2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/usage/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}"
@@ -475,6 +489,8 @@ func (s *LicensesService) LicenseUsageDetails2(smartaccountTypeID string, virtua
 
 @param virtualaccountname virtual_account_name path parameter. Name of target virtual account
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!change-virtual-account2
 */
 func (s *LicensesService) ChangeVirtualAccount2(smartaccountTypeID string, virtualaccountname string, requestLicensesChangeVirtualAccount2 *RequestLicensesChangeVirtualAccount2) (*ResponseLicensesChangeVirtualAccount2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}/device/transfer"

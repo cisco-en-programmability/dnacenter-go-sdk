@@ -427,6 +427,8 @@ type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
 
 
 @param GetDeviceDetailsByIPQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-details-by-ip
 */
 func (s *SiteDesignService) GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams *GetDeviceDetailsByIPQueryParams) (*ResponseSiteDesignGetDeviceDetailsByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/nfv/provisioningDetail"
@@ -461,6 +463,8 @@ func (s *SiteDesignService) GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams
 @param id id path parameter. ID of network profile to retrieve.
 
 @param GetNFVProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-nfv-profile
 */
 func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *GetNfvProfileQueryParams) (*ResponseSiteDesignGetNfvProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv/network-profile/{id}"
@@ -494,6 +498,8 @@ func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *G
 
 
 @param ProvisionNFVHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-nfv
 */
 func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestSiteDesignProvisionNfv, ProvisionNFVHeaderParams *ProvisionNfvHeaderParams) (*ResponseSiteDesignProvisionNfv, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/nfv"
@@ -548,6 +554,8 @@ func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestS
 
 @param siteID siteId path parameter. Site Id to be associated
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!associate
 */
 func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*ResponseSiteDesignAssociate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
@@ -580,6 +588,8 @@ func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*
 
 
 @param NFVProvisioningDetailHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!nfv-provisioning-detail
 */
 func (s *SiteDesignService) NfvProvisioningDetail(requestSiteDesignNFVProvisioningDetail *RequestSiteDesignNfvProvisioningDetail, NFVProvisioningDetailHeaderParams *NfvProvisioningDetailHeaderParams) (*ResponseSiteDesignNfvProvisioningDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv-provision-detail"
@@ -630,7 +640,9 @@ func (s *SiteDesignService) NfvProvisioningDetail(requestSiteDesignNFVProvisioni
 /* API to create network profile for different NFV topologies
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-nfv-profile
+*/
 func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *RequestSiteDesignCreateNfvProfile) (*ResponseSiteDesignCreateNfvProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv/network-profile"
 
@@ -700,6 +712,8 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 
 @param siteID siteId path parameter. Site Id to be associated
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disassociate
 */
 func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string) (*ResponseSiteDesignDisassociate, *resty.Response, error) {
 	//networkProfileID string,siteID string
@@ -735,6 +749,8 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 @param id id path parameter. Id of nfv network profile to delete.
 
 @param DeleteNFVProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-nfv-profile
 */
 func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams) (*ResponseSiteDesignDeleteNfvProfile, *resty.Response, error) {
 	//id string,DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams

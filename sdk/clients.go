@@ -428,6 +428,8 @@ type ResponseClientsClientProximity struct {
 
 
 @param GetClientDetailQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-detail
 */
 func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDetailQueryParams) (*ResponseClientsGetClientDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-detail"
@@ -460,6 +462,8 @@ func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDe
 
 
 @param GetClientEnrichmentDetailsHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-enrichment-details
 */
 func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHeaderParams *GetClientEnrichmentDetailsHeaderParams) (*ResponseClientsGetClientEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-enrichment-details"
@@ -510,6 +514,8 @@ func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHe
 
 
 @param GetOverallClientHealthQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-client-health
 */
 func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParams *GetOverallClientHealthQueryParams) (*ResponseClientsGetOverallClientHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-health"
@@ -542,6 +548,8 @@ func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParam
 
 
 @param ClientProximityQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!client-proximity
 */
 func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProximityQueryParams) (*ResponseClientsClientProximity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-proximity"

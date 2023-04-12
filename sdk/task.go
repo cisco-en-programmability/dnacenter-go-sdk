@@ -163,6 +163,8 @@ type ResponseTaskGetTaskTreeResponseOperationIDList interface{}
 
 @param executionID executionId path parameter. Execution Id of API
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-business-api-execution-details
 */
 func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*ResponseTaskGetBusinessAPIExecutionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnacaap/management/execution-status/{executionId}"
@@ -194,6 +196,8 @@ func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*Respo
 
 
 @param GetTasksQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks
 */
 func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*ResponseTaskGetTasks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task"
@@ -226,6 +230,8 @@ func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*Respo
 
 
 @param GetTaskCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-count
 */
 func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryParams) (*ResponseTaskGetTaskCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/count"
@@ -262,6 +268,8 @@ func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryPar
 
 @param limit limit path parameter. The maximum value of {limit} supported is 500. <br/> Base 1 indexing for {limit}, minimum value is 1
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-operation-id
 */
 func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit int) (*ResponseTaskGetTaskByOperationID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/operation/{operationId}/{offset}/{limit}"
@@ -296,6 +304,8 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 
 @param taskID taskId path parameter. UUID of the Task
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-id
 */
 func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}"
@@ -328,6 +338,8 @@ func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *res
 
 @param taskID taskId path parameter. UUID of the Task
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-tree
 */
 func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}/tree"

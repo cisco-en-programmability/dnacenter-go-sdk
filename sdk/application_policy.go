@@ -821,6 +821,8 @@ type RequestItemApplicationPolicyCreateQosDeviceInterfaceInfoQosDeviceInterfaceI
 
 
 @param GetApplicationPolicyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy
 */
 func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQueryParams *GetApplicationPolicyQueryParams) (*ResponseApplicationPolicyGetApplicationPolicy, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy"
@@ -852,7 +854,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQuer
 /* Get default application policy
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-default
+*/
 func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseApplicationPolicyGetApplicationPolicyDefault, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-default"
 
@@ -882,6 +886,8 @@ func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseAppli
 
 
 @param GetApplicationPolicyQueuingProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplicationPolicyQueuingProfileQueryParams *GetApplicationPolicyQueuingProfileQueryParams) (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
@@ -913,7 +919,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplica
 /* Get the number of all existing  application policy queuing profile
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-count
+*/
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfileCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile-count"
 
@@ -943,6 +951,8 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*R
 
 
 @param GetApplicationSetsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets
 */
 func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryParams *GetApplicationSetsQueryParams) (*ResponseApplicationPolicyGetApplicationSets, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
@@ -974,7 +984,9 @@ func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryPar
 /* Get the number of existing application-sets
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-count
+*/
 func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicationPolicyGetApplicationSetsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set-count"
 
@@ -1004,6 +1016,8 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicati
 
 
 @param GetApplicationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications
 */
 func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *GetApplicationsQueryParams) (*ResponseApplicationPolicyGetApplications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
@@ -1035,7 +1049,9 @@ func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *G
 /* Get the number of all existing applications
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-count
+*/
 func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationPolicyGetApplicationsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications-count"
 
@@ -1065,6 +1081,8 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 
 
 @param GetQosDeviceInterfaceInfoQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info
 */
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfaceInfoQueryParams *GetQosDeviceInterfaceInfoQueryParams) (*ResponseApplicationPolicyGetQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
@@ -1096,7 +1114,9 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfa
 /* Get the number of all existing qos device interface infos group by network device id
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-count
+*/
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseApplicationPolicyGetQosDeviceInterfaceInfoCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info-count"
 
@@ -1125,7 +1145,9 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseAp
 /* Create/Update/Delete application policy
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!application-policy-intent
+*/
 func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPolicyApplicationPolicyIntent *RequestApplicationPolicyApplicationPolicyIntent) (*ResponseApplicationPolicyApplicationPolicyIntent, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-intent"
 
@@ -1155,7 +1177,9 @@ func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPol
 /* Create new custom application queuing profile
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-policy-queuing-profile
+*/
 func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(requestApplicationPolicyCreateApplicationPolicyQueuingProfile *RequestApplicationPolicyCreateApplicationPolicyQueuingProfile) (*ResponseApplicationPolicyCreateApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
 
@@ -1185,7 +1209,9 @@ func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(request
 /* Create new custom application-set/s
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-set
+*/
 func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicyCreateApplicationSet *RequestApplicationPolicyCreateApplicationSet) (*ResponseApplicationPolicyCreateApplicationSet, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
@@ -1215,7 +1241,9 @@ func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicy
 /* Create new Custom application
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application
+*/
 func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCreateApplication *RequestApplicationPolicyCreateApplication) (*ResponseApplicationPolicyCreateApplication, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
 
@@ -1245,7 +1273,9 @@ func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCre
 /* Create qos device interface infos associate with network device id to allow the user to mark specific interfaces as WAN, to associate WAN interfaces with specific SP Profile and to be able to define a shaper on WAN interfaces
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-qos-device-interface-info
+*/
 func (s *ApplicationPolicyService) CreateQosDeviceInterfaceInfo(requestApplicationPolicyCreateQosDeviceInterfaceInfo *RequestApplicationPolicyCreateQosDeviceInterfaceInfo) (*ResponseApplicationPolicyCreateQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
 
@@ -1367,6 +1397,8 @@ func (s *ApplicationPolicyService) UpdateQosDeviceInterfaceInfo(requestApplicati
 
 @param id id path parameter. Id of custom queuing profile to delete
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-policy-queuing-profile
 */
 func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id string) (*ResponseApplicationPolicyDeleteApplicationPolicyQueuingProfile, *resty.Response, error) {
 	//id string
@@ -1399,6 +1431,8 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 
 
 @param DeleteApplicationSetQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set
 */
 func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*ResponseApplicationPolicyDeleteApplicationSet, *resty.Response, error) {
 	//DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams
@@ -1432,6 +1466,8 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQuer
 
 
 @param DeleteApplicationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application
 */
 func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParams *DeleteApplicationQueryParams) (*ResponseApplicationPolicyDeleteApplication, *resty.Response, error) {
 	//DeleteApplicationQueryParams *DeleteApplicationQueryParams
@@ -1466,6 +1502,8 @@ func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParam
 
 @param id id path parameter. Id of the qos device info, this object holds all qos device interface infos associate with network device id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-qos-device-interface-info
 */
 func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*ResponseApplicationPolicyDeleteQosDeviceInterfaceInfo, *resty.Response, error) {
 	//id string

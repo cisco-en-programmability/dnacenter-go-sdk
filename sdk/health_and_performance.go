@@ -113,6 +113,8 @@ type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisData map[stri
 
 
 @param SystemHealthAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-api
 */
 func (s *HealthAndPerformanceService) SystemHealthApI(SystemHealthAPIQueryParams *SystemHealthApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health"
@@ -145,6 +147,8 @@ func (s *HealthAndPerformanceService) SystemHealthApI(SystemHealthAPIQueryParams
 
 
 @param SystemHealthCountAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-count-api
 */
 func (s *HealthAndPerformanceService) SystemHealthCountApI(SystemHealthCountAPIQueryParams *SystemHealthCountApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthCountApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health/count"
@@ -177,6 +181,8 @@ func (s *HealthAndPerformanceService) SystemHealthCountApI(SystemHealthCountAPIQ
 
 
 @param SystemPerformanceAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-api
 */
 func (s *HealthAndPerformanceService) SystemPerformanceApI(SystemPerformanceAPIQueryParams *SystemPerformanceApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance"
@@ -209,6 +215,8 @@ func (s *HealthAndPerformanceService) SystemPerformanceApI(SystemPerformanceAPIQ
 
 
 @param SystemPerformanceHistoricalAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-historical-api
 */
 func (s *HealthAndPerformanceService) SystemPerformanceHistoricalApI(SystemPerformanceHistoricalAPIQueryParams *SystemPerformanceHistoricalApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceHistoricalApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance/history"

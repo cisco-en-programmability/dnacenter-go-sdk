@@ -69,7 +69,9 @@ type ResponseEoXGetEoXSummaryResponse struct {
 /* Retrieves EoX status for all devices in the network
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eo-x-status-for-all-devices
+*/
 func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/device"
 
@@ -100,6 +102,8 @@ func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 
 @param deviceID deviceId path parameter. Device instance UUID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eo-x-details-per-device
 */
 func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoXDetailsPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/device/{deviceId}"
@@ -130,7 +134,9 @@ func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoX
 /* Retrieves EoX summary for all devices in the network
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eo-x-summary
+*/
 func (s *EoXService) GetEoXSummary() (*ResponseEoXGetEoXSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/summary"
 

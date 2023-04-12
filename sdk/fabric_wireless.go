@@ -47,6 +47,11 @@ type ResponseFabricWirelessRemoveWLCFromFabricDomain struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
+type ResponseFabricWirelessAddWLCToFabricDomain struct {
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
+	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	Message            string `json:"message,omitempty"`            // Message
+}
 type RequestFabricWirelessAddSSIDToIPPoolMapping struct {
 	VLANName          string   `json:"vlanName,omitempty"`          // VLAN Name
 	ScalableGroupName string   `json:"scalableGroupName,omitempty"` // Scalable Group Name
@@ -69,6 +74,8 @@ type RequestFabricWirelessAddWLCToFabricDomain struct {
 
 
 @param GetSSIDToIPPoolMappingQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-to-ip-pool-mapping
 */
 func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQueryParams *GetSSIDToIPPoolMappingQueryParams) (*ResponseFabricWirelessGetSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
@@ -101,6 +108,8 @@ func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQue
 
 
 @param AddSSIDToIPPoolMappingHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ssid-to-ip-pool-mapping
 */
 func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddSSIDToIPPoolMapping *RequestFabricWirelessAddSSIDToIPPoolMapping, AddSSIDToIPPoolMappingHeaderParams *AddSSIDToIPPoolMappingHeaderParams) (*ResponseFabricWirelessAddSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
@@ -143,27 +152,31 @@ func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddS
 /* Add WLC to Fabric Domain
 
 
- */
-func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain *RequestFabricWirelessAddWLCToFabricDomain) (*resty.Response, error) {
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-w-l-c-to-fabric-domain
+*/
+func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain *RequestFabricWirelessAddWLCToFabricDomain) (*ResponseFabricWirelessAddWLCToFabricDomain, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/wireless-controller"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
 		SetBody(requestFabricWirelessAddWLCToFabricDomain).
+		SetResult(&ResponseFabricWirelessAddWLCToFabricDomain{}).
 		SetError(&Error).
 		Post(path)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 
 	}
 
 	if response.IsError() {
-		return response, fmt.Errorf("error with operation AddWLCToFabricDomain")
+		return nil, response, fmt.Errorf("error with operation AddWLCToFabricDomain")
 	}
 
-	return response, err
+	result := response.Result().(*ResponseFabricWirelessAddWLCToFabricDomain)
+	return result, response, err
 
 }
 
@@ -203,6 +216,8 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessU
 
 @param RemoveWLCFromFabricDomainHeaderParams Custom header parameters
 @param RemoveWLCFromFabricDomainQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-w-l-c-from-fabric-domain
 */
 func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams) (*ResponseFabricWirelessRemoveWLCFromFabricDomain, *resty.Response, error) {
 	//RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams,RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams

@@ -206,6 +206,8 @@ type RequestTagAddMembersToTheTag map[string][]string
 
 
 @param GetTagQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag
 */
 func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagGetTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
@@ -238,6 +240,8 @@ func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagG
 
 
 @param GetTagCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-count
 */
 func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams) (*ResponseTagGetTagCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/count"
@@ -269,7 +273,9 @@ func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams)
 /* Returns list of supported resource types
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-resource-types
+*/
 func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/member/type"
 
@@ -300,6 +306,8 @@ func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *re
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-by-id
 */
 func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}"
@@ -333,6 +341,8 @@ func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Respo
 @param id id path parameter. Tag ID
 
 @param GetTagMembersByIdQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-members-by-id
 */
 func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *GetTagMembersByIDQueryParams) (*ResponseTagGetTagMembersByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -368,6 +378,8 @@ func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *
 @param id id path parameter. Tag ID
 
 @param GetTagMemberCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-member-count
 */
 func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *GetTagMemberCountQueryParams) (*ResponseTagGetTagMemberCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member/count"
@@ -400,7 +412,9 @@ func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *
 /* Creates tag with specified tag attributes
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-tag
+*/
 func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*ResponseTagCreateTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
 
@@ -432,6 +446,8 @@ func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*Respo
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-members-to-the-tag
 */
 func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag *RequestTagAddMembersToTheTag) (*ResponseTagAddMembersToTheTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -525,6 +541,8 @@ func (s *TagService) UpdatesTagMembership(requestTagUpdatesTagMembership *Reques
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-tag
 */
 func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Response, error) {
 	//id string
@@ -560,6 +578,8 @@ func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Respons
 
 @param memberID memberId path parameter. TagMember id to be removed from tag
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-tag-member
 */
 func (s *TagService) RemoveTagMember(id string, memberID string) (*ResponseTagRemoveTagMember, *resty.Response, error) {
 	//id string,memberID string

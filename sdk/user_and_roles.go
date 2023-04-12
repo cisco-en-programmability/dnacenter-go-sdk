@@ -122,7 +122,9 @@ type RequestUserandRolesUpdateUserApI struct {
 /* Get permissions for a role from Cisco DNA Center System
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-permissions-api
+*/
 func (s *UserandRolesService) GetPermissionsApI() (*ResponseUserandRolesGetPermissionsApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/role/permissions"
 
@@ -152,6 +154,8 @@ func (s *UserandRolesService) GetPermissionsApI() (*ResponseUserandRolesGetPermi
 
 
 @param GetRolesAPIHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-roles-api
 */
 func (s *UserandRolesService) GetRolesApI(GetRolesAPIHeaderParams *GetRolesApIHeaderParams) (*ResponseUserandRolesGetRolesApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/roles"
@@ -194,6 +198,8 @@ func (s *UserandRolesService) GetRolesApI(GetRolesAPIHeaderParams *GetRolesApIHe
 
 
 @param GetUsersAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-users-api
 */
 func (s *UserandRolesService) GetUsersApI(GetUsersAPIQueryParams *GetUsersApIQueryParams) (*ResponseUserandRolesGetUsersApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
@@ -226,6 +232,8 @@ func (s *UserandRolesService) GetUsersApI(GetUsersAPIQueryParams *GetUsersApIQue
 
 
 @param GetExternalAuthenticationServersAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-servers-api
 */
 func (s *UserandRolesService) GetExternalAuthenticationServersApI(GetExternalAuthenticationServersAPIQueryParams *GetExternalAuthenticationServersApIQueryParams) (*ResponseUserandRolesGetExternalAuthenticationServersApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-servers"
@@ -257,7 +265,9 @@ func (s *UserandRolesService) GetExternalAuthenticationServersApI(GetExternalAut
 /* Add a new user for Cisco DNA Center system
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-user-api
+*/
 func (s *UserandRolesService) AddUserApI(requestUserandRolesAddUserAPI *RequestUserandRolesAddUserApI) (*ResponseUserandRolesAddUserApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
 

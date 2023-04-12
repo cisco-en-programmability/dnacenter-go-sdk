@@ -287,6 +287,8 @@ type RequestSitesUpdateSiteSiteFloor struct {
 @param siteID siteId path parameter. Site id to retrieve device associated with the site.
 
 @param GetMembershipQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-membership
 */
 func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *GetMembershipQueryParams) (*ResponseSitesGetMembership, *resty.Response, error) {
 	path := "/dna/intent/api/v1/membership/{siteId}"
@@ -320,6 +322,8 @@ func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *Ge
 
 
 @param GetSiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site
 */
 func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -352,6 +356,8 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 
 
 @param GetSiteHealthQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-health
 */
 func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQueryParams) (*ResponseSitesGetSiteHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site-health"
@@ -384,6 +390,8 @@ func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQuer
 
 
 @param GetSiteCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-count
 */
 func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryParams) (*ResponseSitesGetSiteCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site/count"
@@ -418,6 +426,8 @@ func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryPa
 @param siteID siteId path parameter. Site id to which site the device to assign
 
 @param AssignDevicesToSiteHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-devices-to-site
 */
 func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevicesToSite *RequestSitesAssignDevicesToSite, AssignDevicesToSiteHeaderParams *AssignDevicesToSiteHeaderParams) (*ResponseSitesAssignDevicesToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assign-device-to-site/{siteId}/device"
@@ -470,6 +480,8 @@ func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevi
 
 
 @param CreateSiteHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-site
 */
 func (s *SitesService) CreateSite(requestSitesCreateSite *RequestSitesCreateSite, CreateSiteHeaderParams *CreateSiteHeaderParams) (*ResponseSitesCreateSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -576,6 +588,8 @@ func (s *SitesService) UpdateSite(siteID string, requestSitesUpdateSite *Request
 
 @param siteID siteId path parameter. Site id to which site details to be deleted.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site
 */
 func (s *SitesService) DeleteSite(siteID string) (*ResponseSitesDeleteSite, *resty.Response, error) {
 	//siteID string

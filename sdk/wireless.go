@@ -383,8 +383,7 @@ type ResponseWirelessGetAccessPointConfigurationInternalKey struct {
 	LongType string   `json:"longType,omitempty"` //
 	URL      string   `json:"url,omitempty"`      //
 }
-type ResponseWirelessApProvision []ResponseItemWirelessApProvision // Array of ResponseWirelessAPProvision
-type ResponseItemWirelessApProvision struct {
+type ResponseWirelessApProvision struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
 	ExecutionURL string `json:"executionUrl,omitempty"` // Execution URL
 	Message      string `json:"message,omitempty"`      // Response
@@ -775,6 +774,8 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeCProperties struct {
 
 
 @param SensorTestResultsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensor-test-results
 */
 func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *SensorTestResultsQueryParams) (*ResponseWirelessSensorTestResults, *resty.Response, error) {
 	path := "/dna/intent/api/v1/AssuranceGetSensorTestResults"
@@ -807,6 +808,8 @@ func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *Sensor
 
 
 @param GetAccessPointRebootTaskResultQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-reboot-task-result
 */
 func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTaskResultQueryParams *GetAccessPointRebootTaskResultQueryParams) (*ResponseWirelessGetAccessPointRebootTaskResult, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-reboot/apreboot/status"
@@ -839,6 +842,8 @@ func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTas
 
 
 @param GetEnterpriseSSIDQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-enterprise-ssid
 */
 func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnterpriseSSIDQueryParams) (*ResponseWirelessGetEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
@@ -872,6 +877,8 @@ func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnt
 
 @param taskTypeID task_id path parameter. task id information of ap config
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration-task-result
 */
 func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID string) (*ResponseWirelessGetAccessPointConfigurationTaskResult, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/details/{task_id}"
@@ -903,6 +910,8 @@ func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID strin
 
 
 @param GetAccessPointConfigurationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration
 */
 func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfigurationQueryParams *GetAccessPointConfigurationQueryParams) (*ResponseWirelessGetAccessPointConfiguration, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/summary"
@@ -935,6 +944,8 @@ func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfiguratio
 
 
 @param GetDynamicInterfaceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-dynamic-interface
 */
 func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *GetDynamicInterfaceQueryParams) (*ResponseWirelessGetDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -967,6 +978,8 @@ func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *Ge
 
 
 @param GetWirelessProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile
 */
 func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*ResponseWirelessGetWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
@@ -999,6 +1012,8 @@ func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetW
 
 
 @param RetrieveRFProfilesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-rf-profiles
 */
 func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *RetrieveRfProfilesQueryParams) (*ResponseWirelessRetrieveRfProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
@@ -1031,6 +1046,8 @@ func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *Retr
 
 
 @param CreateAndProvisionSSIDHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-and-provision-ssid
 */
 func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisionSSID *RequestWirelessCreateAndProvisionSSID, CreateAndProvisionSSIDHeaderParams *CreateAndProvisionSSIDHeaderParams) (*ResponseWirelessCreateAndProvisionSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/ssid"
@@ -1073,7 +1090,9 @@ func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisi
 /* Users can reboot multiple access points up-to 200 at a time using this API
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-access-points
+*/
 func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *RequestWirelessRebootAccessPoints) (*ResponseWirelessRebootAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-reboot/apreboot"
 
@@ -1103,7 +1122,9 @@ func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *
 /* Creates enterprise SSID
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-enterprise-ssid
+*/
 func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSSID *RequestWirelessCreateEnterpriseSSID) (*ResponseWirelessCreateEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
 
@@ -1133,7 +1154,9 @@ func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSS
 /* User can configure multiple access points with required options using this intent API
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!configure-access-points
+*/
 func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPoints *RequestWirelessConfigureAccessPoints) (*ResponseWirelessConfigureAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration"
 
@@ -1164,6 +1187,8 @@ func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPo
 
 
 @param APProvisionHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!a-p-provision
 */
 func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWirelessApProvision, APProvisionHeaderParams *ApProvisionHeaderParams) (*ResponseWirelessApProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/ap-provision"
@@ -1207,6 +1232,8 @@ func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWireles
 
 
 @param CreateUpdateDynamicInterfaceHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-dynamic-interface
 */
 func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpdateDynamicInterface *RequestWirelessCreateUpdateDynamicInterface, CreateUpdateDynamicInterfaceHeaderParams *CreateUpdateDynamicInterfaceHeaderParams) (*ResponseWirelessCreateUpdateDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -1253,7 +1280,9 @@ func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpda
 /* Creates Wireless Network Profile on Cisco DNA Center and associates sites and SSIDs to it.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile
+*/
 func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessProfile *RequestWirelessCreateWirelessProfile) (*ResponseWirelessCreateWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
 
@@ -1283,7 +1312,9 @@ func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessPro
 /* Provision wireless devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision
+*/
 func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessProvision) (*ResponseWirelessProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/provision"
 
@@ -1313,7 +1344,9 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 /* Update/override pass phrase of enterprise SSID
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-s-k-override
+*/
 func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*ResponseWirelessPSKOverride, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/psk-override"
 
@@ -1343,7 +1376,9 @@ func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWireles
 /* Create or Update RF profile
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-r-f-profile
+*/
 func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateRFProfile *RequestWirelessCreateOrUpdateRfProfile) (*ResponseWirelessCreateOrUpdateRfProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
 
@@ -1479,6 +1514,8 @@ func (s *WirelessService) ProvisionUpdate(requestWirelessProvisionUpdate *Reques
 @param ssidName ssidName path parameter.
 @param managedAPLocations managedAPLocations path parameter.
 @param DeleteSSIDAndProvisionItToDevicesHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid-and-provision-it-to-devices
 */
 func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, managedAPLocations string, DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams) (*ResponseWirelessDeleteSSIDAndProvisionItToDevices, *resty.Response, error) {
 	//ssidName string,managedAPLocations string,DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams
@@ -1525,6 +1562,8 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 
 @param ssidName ssidName path parameter. Enter the SSID name to be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-enterprise-ssid
 */
 func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirelessDeleteEnterpriseSSID, *resty.Response, error) {
 	//ssidName string
@@ -1558,6 +1597,8 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirele
 
 @param wirelessProfileName wirelessProfileName path parameter. Wireless Profile Name
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile
 */
 func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*ResponseWirelessDeleteWirelessProfile, *resty.Response, error) {
 	//wirelessProfileName string
@@ -1592,6 +1633,8 @@ func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*Re
 @param interfaceName interfaceName path parameter. valid interface-name to be deleted
 
 @param DeleteDynamicInterfaceHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-dynamic-interface
 */
 func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams) (*resty.Response, error) {
 	//interfaceName string,DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams
@@ -1639,6 +1682,8 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 
 @param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-r-f-profiles
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {
 	//rfProfileName string

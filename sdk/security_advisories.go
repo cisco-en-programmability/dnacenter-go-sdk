@@ -98,7 +98,9 @@ type ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponse struct {
 /* Retrieves list of advisories on the network
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-list
+*/
 func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdvisoriesGetAdvisoriesList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory"
 
@@ -127,7 +129,9 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdviso
 /* Retrieves summary of advisories on the network.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-summary
+*/
 func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdvisoriesGetAdvisoriesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/aggregate"
 
@@ -158,6 +162,8 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdv
 
 @param advisoryID advisoryId path parameter. Advisory ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-per-advisory
 */
 func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*ResponseSecurityAdvisoriesGetDevicesPerAdvisory, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/{advisoryId}/device"
@@ -190,6 +196,8 @@ func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*R
 
 @param deviceID deviceId path parameter. Device instance UUID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisory-ids-per-device
 */
 func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoryIDsPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}"
@@ -222,6 +230,8 @@ func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*R
 
 @param deviceID deviceId path parameter. Device instance UUID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-per-device
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesPerDevice(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoriesPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}/advisory"

@@ -91,6 +91,8 @@ type RequestIssuesExecuteSuggestedActionsCommands struct {
 
 
 @param GetIssueEnrichmentDetailsHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-enrichment-details
 */
 func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeaderParams *GetIssueEnrichmentDetailsHeaderParams) (*ResponseIssuesGetIssueEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issue-enrichment-details"
@@ -137,6 +139,8 @@ func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeade
 
 
 @param IssuesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!issues
 */
 func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseIssuesIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issues"
@@ -169,6 +173,8 @@ func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseI
 Invoking this API would provide the execution id. Execute the 'Get Business API Execution Details' API with this execution id, to receive the suggested actions commands output.
 
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!execute-suggested-actions-commands
 */
 func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSuggestedActionsCommands *RequestIssuesExecuteSuggestedActionsCommands) (*ResponseIssuesExecuteSuggestedActionsCommands, *resty.Response, error) {
 	path := "/dna/intent/api/v1/execute-suggested-actions-commands"

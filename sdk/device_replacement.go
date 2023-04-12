@@ -118,6 +118,8 @@ type RequestDeviceReplacementDeployDeviceReplacementWorkflow struct {
 
 
 @param ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!return-list-of-replacement-devices-with-replacement-details
 */
 func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacementDetails(ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams *ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams) (*ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement"
@@ -150,6 +152,8 @@ func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacement
 
 
 @param ReturnReplacementDevicesCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!return-replacement-devices-count
 */
 func (s *DeviceReplacementService) ReturnReplacementDevicesCount(ReturnReplacementDevicesCountQueryParams *ReturnReplacementDevicesCountQueryParams) (*ResponseDeviceReplacementReturnReplacementDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement/count"
@@ -181,7 +185,9 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(ReturnReplaceme
 /* Marks device for replacement
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!mark-device-for-replacement
+*/
 func (s *DeviceReplacementService) MarkDeviceForReplacement(requestDeviceReplacementMarkDeviceForReplacement *RequestDeviceReplacementMarkDeviceForReplacement) (*ResponseDeviceReplacementMarkDeviceForReplacement, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement"
 
@@ -211,7 +217,9 @@ func (s *DeviceReplacementService) MarkDeviceForReplacement(requestDeviceReplace
 /* API to trigger RMA workflow that will replace faulty device with replacement device with same configuration and images
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deploy-device-replacement-workflow
+*/
 func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(requestDeviceReplacementDeployDeviceReplacementWorkflow *RequestDeviceReplacementDeployDeviceReplacementWorkflow) (*ResponseDeviceReplacementDeployDeviceReplacementWorkflow, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-replacement/workflow"
 

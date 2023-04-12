@@ -819,6 +819,8 @@ type RequestNetworkSettingsUpdateSpProfileV2SettingsQos struct {
 
 
 @param GetDeviceCredentialDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-details
 */
 func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialDetailsQueryParams *GetDeviceCredentialDetailsQueryParams) (*ResponseNetworkSettingsGetDeviceCredentialDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
@@ -851,6 +853,8 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialD
 
 
 @param GetGlobalPoolQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-pool
 */
 func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlobalPoolQueryParams) (*ResponseNetworkSettingsGetGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
@@ -883,6 +887,8 @@ func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlob
 
 
 @param GetNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network
 */
 func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQueryParams) (*ResponseNetworkSettingsGetNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network"
@@ -915,6 +921,8 @@ func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQue
 
 
 @param GetReserveIPSubpoolQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-reserve-ip-subpool
 */
 func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryParams *GetReserveIPSubpoolQueryParams) (*ResponseNetworkSettingsGetReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool"
@@ -946,7 +954,9 @@ func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryPar
 /* API to get service provider details (QoS).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details
+*/
 func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSettingsGetServiceProviderDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
 
@@ -976,6 +986,8 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSe
 
 
 @param GetNetworkV2QueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-v2
 */
 func (s *NetworkSettingsService) GetNetworkV2(GetNetworkV2QueryParams *GetNetworkV2QueryParams) (*ResponseNetworkSettingsGetNetworkV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/network"
@@ -1007,7 +1019,9 @@ func (s *NetworkSettingsService) GetNetworkV2(GetNetworkV2QueryParams *GetNetwor
 /* API to get Service Provider details (QoS).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details-v2
+*/
 func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetworkSettingsGetServiceProviderDetailsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/service-provider"
 
@@ -1039,6 +1053,8 @@ func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetwork
 @param siteID siteId path parameter. site id to assign credential.
 
 @param AssignDeviceCredentialToSiteHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site
 */
 func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, requestNetworkSettingsAssignDeviceCredentialToSite *RequestNetworkSettingsAssignDeviceCredentialToSite, AssignDeviceCredentialToSiteHeaderParams *AssignDeviceCredentialToSiteHeaderParams) (*ResponseNetworkSettingsAssignDeviceCredentialToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/credential-to-site/{siteId}"
@@ -1082,7 +1098,9 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, req
 /* API to create device credentials.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-credentials
+*/
 func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsCreateDeviceCredentials *RequestNetworkSettingsCreateDeviceCredentials) (*ResponseNetworkSettingsCreateDeviceCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
 
@@ -1112,7 +1130,9 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsC
 /* API to create global pool.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-global-pool
+*/
 func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGlobalPool *RequestNetworkSettingsCreateGlobalPool) (*ResponseNetworkSettingsCreateGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
 
@@ -1145,6 +1165,8 @@ func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGl
 @param siteID siteId path parameter. Site id to which site details to associate with the network settings.
 
 @param CreateNetworkHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
 */
 func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSettingsCreateNetwork *RequestNetworkSettingsCreateNetwork, CreateNetworkHeaderParams *CreateNetworkHeaderParams) (*ResponseNetworkSettingsCreateNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network/{siteId}"
@@ -1190,6 +1212,8 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSett
 
 @param siteID siteId path parameter. Site id to reserve the ip sub pool.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reserve-ip-subpool
 */
 func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkSettingsReserveIPSubpool *RequestNetworkSettingsReserveIPSubpool) (*ResponseNetworkSettingsReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool/{siteId}"
@@ -1221,7 +1245,9 @@ func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkS
 /* API to create Service Provider Profile(QOS).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-p-profile
+*/
 func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPProfile *RequestNetworkSettingsCreateSpProfile) (*ResponseNetworkSettingsCreateSpProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
 
@@ -1253,6 +1279,8 @@ func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPP
 
 @param siteID siteId path parameter. Site Id to assign credential.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site-v2
 */
 func (s *NetworkSettingsService) AssignDeviceCredentialToSiteV2(siteID string, requestNetworkSettingsAssignDeviceCredentialToSiteV2 *RequestNetworkSettingsAssignDeviceCredentialToSiteV2) (*ResponseNetworkSettingsAssignDeviceCredentialToSiteV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/credential-to-site/{siteId}"
@@ -1286,6 +1314,8 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSiteV2(siteID string, r
 
 @param siteID siteId path parameter. Site Id to which site details to associate with the network settings.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-v2
 */
 func (s *NetworkSettingsService) CreateNetworkV2(siteID string, requestNetworkSettingsCreateNetworkV2 *RequestNetworkSettingsCreateNetworkV2) (*ResponseNetworkSettingsCreateNetworkV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/network/{siteId}"
@@ -1317,7 +1347,9 @@ func (s *NetworkSettingsService) CreateNetworkV2(siteID string, requestNetworkSe
 /* API to create Service Provider Profile(QOS).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-p-profile-v2
+*/
 func (s *NetworkSettingsService) CreateSpProfileV2(requestNetworkSettingsCreateSPProfileV2 *RequestNetworkSettingsCreateSpProfileV2) (*ResponseNetworkSettingsCreateSpProfileV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/service-provider"
 
@@ -1571,6 +1603,8 @@ func (s *NetworkSettingsService) UpdateSpProfileV2(requestNetworkSettingsUpdateS
 
 @param id id path parameter. global credential id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-credential
 */
 func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNetworkSettingsDeleteDeviceCredential, *resty.Response, error) {
 	//id string
@@ -1604,6 +1638,8 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 
 @param id id path parameter. global pool id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-ip-pool
 */
 func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetworkSettingsDeleteGlobalIPPool, *resty.Response, error) {
 	//id string
@@ -1637,6 +1673,8 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetwork
 
 @param id id path parameter. Id of reserve ip subpool to be deleted.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-reserve-ip-subpool
 */
 func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNetworkSettingsReleaseReserveIPSubpool, *resty.Response, error) {
 	//id string
@@ -1670,6 +1708,8 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 
 @param spProfileName spProfileName path parameter. sp profile name
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-s-p-profile
 */
 func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfile, *resty.Response, error) {
 	//spProfileName string
@@ -1703,6 +1743,8 @@ func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*Respons
 
 @param spProfileName spProfileName path parameter. sp profile name
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-s-p-profile-v2
 */
 func (s *NetworkSettingsService) DeleteSpProfileV2(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfileV2, *resty.Response, error) {
 	//spProfileName string

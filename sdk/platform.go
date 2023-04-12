@@ -87,7 +87,9 @@ type ResponsePlatformCiscoDnaCenterNodesConfigurationSummaryResponseNodesPlatfor
 /* Provides information such as name, version of packages installed on the DNA center.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-packages-summary
+*/
 func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCiscoDnaCenterPackagesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-packages"
 
@@ -116,7 +118,9 @@ func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCisc
 /* Provides information such as API version, mandatory core packages for installation or upgrade, optional packages, Cisco DNA Center name and version, supported direct updates, and tenant ID.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-release-summary
+*/
 func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCiscoDnaCenterReleaseSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-release"
 
@@ -145,7 +149,9 @@ func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCisco
 /* Provides details about the current Cisco DNA Center node configuration, such as API version, node name, NTP server, intracluster link, LACP mode, network static routes, DNS server, subnet mask, host IP, default gateway, and interface information.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-nodes-configuration-summary
+*/
 func (s *PlatformService) CiscoDnaCenterNodesConfigurationSummary() (*ResponsePlatformCiscoDnaCenterNodesConfigurationSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nodes-config"
 

@@ -89,6 +89,8 @@ type RequestSystemSettingsCustomPromptPostAPI struct {
 
 
 @param GetAuthenticationAndPolicyServersQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-authentication-and-policy-servers
 */
 func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticationAndPolicyServersQueryParams *GetAuthenticationAndPolicyServersQueryParams) (*ResponseSystemSettingsGetAuthenticationAndPolicyServers, *resty.Response, error) {
 	path := "/dna/intent/api/v1/authentication-policy-servers"
@@ -120,7 +122,9 @@ func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticat
 /* Returns supported custom prompts by Cisco DNA Center
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-support-get-api
+*/
 func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSettingsCustomPromptSupportGetAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
@@ -149,7 +153,9 @@ func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSett
 /* Save custom prompt added by user in Cisco DNA Center. API will always override the existing prompts. User should provide all the custom prompt in case of any update
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-p-o-s-t-api
+*/
 func (s *SystemSettingsService) CustomPromptPostAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPostAPI) (*ResponseSystemSettingsCustomPromptPostAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
