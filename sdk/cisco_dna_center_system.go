@@ -25,7 +25,9 @@ type RequestCiscoDnaCenterSystemAuthorizeDevice struct {
 /* Authorizes one of more devices. A device can only be authorized if Authorization is set in Device Settings.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!authorize-device
+*/
 func (s *CiscoDnaCenterSystemService) AuthorizeDevice(requestCiscoDnaCenterSystemAuthorizeDevice *RequestCiscoDnaCenterSystemAuthorizeDevice) (*ResponseCiscoDnaCenterSystemAuthorizeDevice, *resty.Response, error) {
 	path := "/api/v1/onboarding/pnp-device/authorize"
 

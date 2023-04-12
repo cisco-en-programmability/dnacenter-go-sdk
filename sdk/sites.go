@@ -34,10 +34,10 @@ type GetSiteQueryParams struct {
 	Limit  int    `url:"limit,omitempty"`  //Number of sites to be retrieved. The default value is 500
 }
 type GetSiteHealthQueryParams struct {
-	Timestamp string `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
-	SiteType  string `url:"siteType,omitempty"`  //Type of the site to return.  AREA or BUILDING.  Default to AREA
-	Offset    int    `url:"offset,omitempty"`    //The offset value, starting from 1, of the first returned site entry.  Default is 1.
-	Limit     int    `url:"limit,omitempty"`     //The max number of sites in the returned data set.  Default is 25, and max at 50
+	Timestamp string  `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Site Hierarchy data is required
+	SiteType  string  `url:"siteType,omitempty"`  //Type of the site to return.  AREA or BUILDING.  Default to AREA
+	Offset    float64 `url:"offset,omitempty"`    //The offset value, starting from 1, of the first returned site entry.  Default is 1.
+	Limit     float64 `url:"limit,omitempty"`     //The max number of sites in the returned data set.  Default is 25, and max at 50
 }
 type GetSiteCountQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to retrieve site count.
@@ -76,38 +76,14 @@ type ResponseSitesCreateSite struct {
 type ResponseSitesGetSite struct {
 	Response *[]ResponseSitesGetSiteResponse `json:"response,omitempty"` //
 }
-
-type ResponseSiteGetSite struct {
-	Response *ResponseSitesGetSiteResponse `json:"response,omitempty"` //
-}
-
 type ResponseSitesGetSiteResponse struct {
-	ParentID          string                                       `json:"parentId,omitempty"`          // Parent Id
-	Name              string                                       `json:"name,omitempty"`              // Name
-	AdditionalInfo    []ResponseSitesGetSiteResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
-	SiteHierarchy     string                                       `json:"siteHierarchy,omitempty"`     // Site Hierarchy
-	SiteNameHierarchy string                                       `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
-	InstanceTenantID  string                                       `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
-	ID                string                                       `json:"id,omitempty"`                // Id
-}
-type ResponseSitesGetSiteResponseAdditionalInfo struct {
-	Namespace  string                                               `json:"nameSpace,omitempty"`  //
-	Attributes ResponseSitesGetSiteResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
-}
-type ResponseSitesGetSiteResponseAdditionalInfoAttributes struct {
-	Country              string `json:"country,omitempty"`              //
-	Address              string `json:"address,omitempty"`              //
-	Latitude             string `json:"latitude,omitempty"`             //
-	AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"` //
-	Type                 string `json:"type,omitempty"`                 //
-	Longitude            string `json:"longitude,omitempty"`            //
-	OffsetX              string `json:"offsetX,omitempty"`              //
-	OffsetY              string `json:"offsetY,omitempty"`              //
-	Length               string `json:"length,omitempty"`               //
-	Width                string `json:"width,omitempty"`                //
-	Height               string `json:"height,omitempty"`               //
-	RfModel              string `json:"rfModel,omitempty"`              //
-	FloorIndex           string `json:"floorIndex,omitempty"`           //
+	ParentID          string   `json:"parentId,omitempty"`          // Parent Id
+	Name              string   `json:"name,omitempty"`              // Name
+	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    // Additional Info
+	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
+	ID                string   `json:"id,omitempty"`                // Id
 }
 type ResponseSitesGetSiteHealth struct {
 	Response *[]ResponseSitesGetSiteHealthResponse `json:"response,omitempty"` //
@@ -236,9 +212,9 @@ type ResponseSitesUpdateSiteResponse struct {
 	ID               string   `json:"id,omitempty"`               // Id
 }
 type ResponseSitesDeleteSite struct {
-	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain ISSUE
-	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL ISSUE
-	Message            string `json:"message,omitempty"`            // message ISSUE
+	ExecutionID        string `json:"executionId,omitempty"`        // executionId
+	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
+	Message            string `json:"message,omitempty"`            // Message
 }
 type RequestSitesAssignDevicesToSite struct {
 	Device *[]RequestSitesAssignDevicesToSiteDevice `json:"device,omitempty"` //
@@ -298,7 +274,7 @@ type RequestSitesUpdateSiteSiteBuilding struct {
 }
 type RequestSitesUpdateSiteSiteFloor struct {
 	Name    string   `json:"name,omitempty"`    // Name
-	RfModel string   `json:"rfModel,omitempty"` // Rf Model. Allowed values are 'Cubes And Walled Offices', 'Drywall Office Only', 'Indoor High Ceiling', 'Outdoor Open Space'
+	RfModel string   `json:"rfModel,omitempty"` // Rf Model
 	Width   *float64 `json:"width,omitempty"`   // Width
 	Length  *float64 `json:"length,omitempty"`  // Length
 	Height  *float64 `json:"height,omitempty"`  // Height
@@ -311,6 +287,8 @@ type RequestSitesUpdateSiteSiteFloor struct {
 @param siteID siteId path parameter. Site id to retrieve device associated with the site.
 
 @param GetMembershipQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-membership
 */
 func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *GetMembershipQueryParams) (*ResponseSitesGetMembership, *resty.Response, error) {
 	path := "/dna/intent/api/v1/membership/{siteId}"
@@ -344,6 +322,8 @@ func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *Ge
 
 
 @param GetSiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site
 */
 func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -371,45 +351,13 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 
 }
 
-//GetSiteByID Get Site by ID - 6fb4-ab36-43fa-a80f
-/* Get site using siteNameHierarchy/siteId/type ,return a site using sit_id parameter.
-
-
-@param GetSiteQueryParams Filtering parameter
-*/
-func (s *SitesService) GetSiteByID(vSiteID string) (*ResponseSiteGetSite, *resty.Response, error) {
-	path := "/dna/intent/api/v1/site"
-	getSiteQueryParams := GetSiteQueryParams{}
-	getSiteQueryParams.SiteID = vSiteID
-
-	queryString, _ := query.Values(getSiteQueryParams)
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSiteGetSite{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation GetSite")
-	}
-
-	result := response.Result().(*ResponseSiteGetSite)
-	return result, response, err
-
-}
-
 //GetSiteHealth Get Site Health - 15b7-aa0c-4dda-8e85
 /* Returns Overall Health information for all sites
 
 
 @param GetSiteHealthQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-health
 */
 func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQueryParams) (*ResponseSitesGetSiteHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site-health"
@@ -442,6 +390,8 @@ func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQuer
 
 
 @param GetSiteCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-count
 */
 func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryParams) (*ResponseSitesGetSiteCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site/count"
@@ -476,6 +426,8 @@ func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryPa
 @param siteID siteId path parameter. Site id to which site the device to assign
 
 @param AssignDevicesToSiteHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-devices-to-site
 */
 func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevicesToSite *RequestSitesAssignDevicesToSite, AssignDevicesToSiteHeaderParams *AssignDevicesToSiteHeaderParams) (*ResponseSitesAssignDevicesToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assign-device-to-site/{siteId}/device"
@@ -528,6 +480,8 @@ func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevi
 
 
 @param CreateSiteHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-site
 */
 func (s *SitesService) CreateSite(requestSitesCreateSite *RequestSitesCreateSite, CreateSiteHeaderParams *CreateSiteHeaderParams) (*ResponseSitesCreateSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -634,8 +588,11 @@ func (s *SitesService) UpdateSite(siteID string, requestSitesUpdateSite *Request
 
 @param siteID siteId path parameter. Site id to which site details to be deleted.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site
 */
 func (s *SitesService) DeleteSite(siteID string) (*ResponseSitesDeleteSite, *resty.Response, error) {
+	//siteID string
 	path := "/dna/intent/api/v1/site/{siteId}"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 

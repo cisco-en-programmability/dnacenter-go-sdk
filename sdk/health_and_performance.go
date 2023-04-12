@@ -10,11 +10,11 @@ import (
 type HealthAndPerformanceService service
 
 type SystemHealthApIQueryParams struct {
-	Summary   bool   `url:"summary,omitempty"`   //Fetch the latest high severity event
-	Domain    string `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
-	Subdomain string `url:"subdomain,omitempty"` //Fetch system events with this subdomain. Possible values of subdomain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
-	Limit     int    `url:"limit,omitempty"`     //limit
-	Offset    int    `url:"offset,omitempty"`    //offset
+	Summary   bool    `url:"summary,omitempty"`   //Fetch the latest high severity event
+	Domain    string  `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
+	Subdomain string  `url:"subdomain,omitempty"` //Fetch system events with this subdomain. Possible values of subdomain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
+	Limit     float64 `url:"limit,omitempty"`     //limit
+	Offset    float64 `url:"offset,omitempty"`    //offset
 }
 type SystemHealthCountApIQueryParams struct {
 	Domain    string `url:"domain,omitempty"`    //Fetch system events with this domain. Possible values of domain are listed here : /dna/platform/app/consumer-portal/developer-toolkit/events
@@ -113,6 +113,8 @@ type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisData map[stri
 
 
 @param SystemHealthAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-api
 */
 func (s *HealthAndPerformanceService) SystemHealthApI(SystemHealthAPIQueryParams *SystemHealthApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health"
@@ -145,6 +147,8 @@ func (s *HealthAndPerformanceService) SystemHealthApI(SystemHealthAPIQueryParams
 
 
 @param SystemHealthCountAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-count-api
 */
 func (s *HealthAndPerformanceService) SystemHealthCountApI(SystemHealthCountAPIQueryParams *SystemHealthCountApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthCountApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health/count"
@@ -177,6 +181,8 @@ func (s *HealthAndPerformanceService) SystemHealthCountApI(SystemHealthCountAPIQ
 
 
 @param SystemPerformanceAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-api
 */
 func (s *HealthAndPerformanceService) SystemPerformanceApI(SystemPerformanceAPIQueryParams *SystemPerformanceApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance"
@@ -209,6 +215,8 @@ func (s *HealthAndPerformanceService) SystemPerformanceApI(SystemPerformanceAPIQ
 
 
 @param SystemPerformanceHistoricalAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-historical-api
 */
 func (s *HealthAndPerformanceService) SystemPerformanceHistoricalApI(SystemPerformanceHistoricalAPIQueryParams *SystemPerformanceHistoricalApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceHistoricalApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance/history"

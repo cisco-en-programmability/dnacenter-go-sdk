@@ -22,8 +22,14 @@ type CreateAndProvisionSSIDHeaderParams struct {
 type DeleteSSIDAndProvisionItToDevicesHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string. Enable this parameter to execute the API and return a response asynchronously.
 }
+type GetAccessPointRebootTaskResultQueryParams struct {
+	ParentTaskID string `url:"parentTaskId,omitempty"` //task id of ap reboot request
+}
 type GetEnterpriseSSIDQueryParams struct {
 	SSIDName string `url:"ssidName,omitempty"` //Enter the enterprise SSID name that needs to be retrieved. If not entered, all the enterprise SSIDs will be retrieved.
+}
+type GetAccessPointConfigurationQueryParams struct {
+	Key string `url:"key,omitempty"` //The ethernet MAC address of Access point
 }
 type ApProvisionHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string.
@@ -145,6 +151,25 @@ type ResponseWirelessDeleteSSIDAndProvisionItToDevices struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
+type ResponseWirelessRebootAccessPoints struct {
+	Response *ResponseWirelessRebootAccessPointsResponse `json:"response,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  //
+}
+type ResponseWirelessRebootAccessPointsResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+type ResponseWirelessGetAccessPointRebootTaskResult []ResponseItemWirelessGetAccessPointRebootTaskResult // Array of ResponseWirelessGetAccessPointRebootTaskResult
+type ResponseItemWirelessGetAccessPointRebootTaskResult struct {
+	WlcIP  string                                                      `json:"wlcIP,omitempty"`  //
+	ApList *[]ResponseItemWirelessGetAccessPointRebootTaskResultApList `json:"apList,omitempty"` //
+}
+type ResponseItemWirelessGetAccessPointRebootTaskResultApList struct {
+	ApName        string                                                                 `json:"apName,omitempty"`        //
+	RebootStatus  string                                                                 `json:"rebootStatus,omitempty"`  //
+	FailureReason *ResponseItemWirelessGetAccessPointRebootTaskResultApListFailureReason `json:"failureReason,omitempty"` //
+}
+type ResponseItemWirelessGetAccessPointRebootTaskResultApListFailureReason interface{}
 type ResponseWirelessGetEnterpriseSSID []ResponseItemWirelessGetEnterpriseSSID // Array of ResponseWirelessGetEnterpriseSSID
 type ResponseItemWirelessGetEnterpriseSSID struct {
 	InstanceUUID       string                                              `json:"instanceUuid,omitempty"`       // Instance Uuid
@@ -155,20 +180,30 @@ type ResponseItemWirelessGetEnterpriseSSID struct {
 	InheritedGroupName string                                              `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseItemWirelessGetEnterpriseSSIDSSIDDetails struct {
-	Name                string   `json:"name,omitempty"`                // SSID Name
-	WLANType            string   `json:"wlanType,omitempty"`            // Wlan Type
-	EnableFastLane      *bool    `json:"enableFastLane,omitempty"`      // Enable Fast Lane
-	SecurityLevel       string   `json:"securityLevel,omitempty"`       // Security Level
-	AuthServer          string   `json:"authServer,omitempty"`          // Auth Server
-	Passphrase          string   `json:"passphrase,omitempty"`          // Passphrase
-	TrafficType         string   `json:"trafficType,omitempty"`         // Traffic Type
-	EnableMacFiltering  *bool    `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
-	IsEnabled           *bool    `json:"isEnabled,omitempty"`           // Is Enabled
-	IsFabric            *bool    `json:"isFabric,omitempty"`            // Is Fabric
-	FastTransition      string   `json:"fastTransition,omitempty"`      // Fast Transition
-	RadioPolicy         string   `json:"radioPolicy,omitempty"`         // Radio Policy
-	EnableBroadcastSSID *bool    `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
-	NasOptions          []string `json:"nasOptions,omitempty"`          // Nas Options
+	Name                        string                                                              `json:"name,omitempty"`                        // SSID Name
+	WLANType                    string                                                              `json:"wlanType,omitempty"`                    // Wlan Type
+	EnableFastLane              *bool                                                               `json:"enableFastLane,omitempty"`              // Enable Fast Lane
+	SecurityLevel               string                                                              `json:"securityLevel,omitempty"`               // Security Level
+	AuthServer                  string                                                              `json:"authServer,omitempty"`                  // Auth Server
+	Passphrase                  string                                                              `json:"passphrase,omitempty"`                  // Passphrase
+	TrafficType                 string                                                              `json:"trafficType,omitempty"`                 // Traffic Type
+	EnableMacFiltering          *bool                                                               `json:"enableMACFiltering,omitempty"`          // Enable MAC Filtering
+	IsEnabled                   *bool                                                               `json:"isEnabled,omitempty"`                   // Is Enabled
+	IsFabric                    *bool                                                               `json:"isFabric,omitempty"`                    // Is Fabric
+	FastTransition              string                                                              `json:"fastTransition,omitempty"`              // Fast Transition
+	RadioPolicy                 string                                                              `json:"radioPolicy,omitempty"`                 // Radio Policy
+	EnableBroadcastSSID         *bool                                                               `json:"enableBroadcastSSID,omitempty"`         // Enable Broadcast SSID
+	NasOptions                  []string                                                            `json:"nasOptions,omitempty"`                  // Nas Options
+	AAAOverride                 *bool                                                               `json:"aaaOverride,omitempty"`                 // Aaa Override
+	CoverageHoleDetectionEnable *bool                                                               `json:"coverageHoleDetectionEnable,omitempty"` // Coverage Hole Detection Enable
+	ProtectedManagementFrame    string                                                              `json:"protectedManagementFrame,omitempty"`    // Protected Management Frame
+	MultipSKSettings            *[]ResponseItemWirelessGetEnterpriseSSIDSSIDDetailsMultipSKSettings `json:"multiPSKSettings,omitempty"`            //
+	ClientRateLimit             *float64                                                            `json:"clientRateLimit,omitempty"`             // Client Rate Limit. (in bits per second)
+}
+type ResponseItemWirelessGetEnterpriseSSIDSSIDDetailsMultipSKSettings struct {
+	Priority       *int   `json:"priority,omitempty"`       // Priority
+	PassphraseType string `json:"passphraseType,omitempty"` // Passphrase Type
+	Passphrase     string `json:"passphrase,omitempty"`     // Passphrase
 }
 type ResponseWirelessCreateEnterpriseSSID struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
@@ -190,15 +225,174 @@ type ResponseWirelessDeleteWirelessProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
+type ResponseWirelessConfigureAccessPoints struct {
+	Response *ResponseWirelessConfigureAccessPointsResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  //
+}
+type ResponseWirelessConfigureAccessPointsResponse struct {
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
+}
+type ResponseWirelessGetAccessPointConfigurationTaskResult []ResponseItemWirelessGetAccessPointConfigurationTaskResult // Array of ResponseWirelessGetAccessPointConfigurationTaskResult
+type ResponseItemWirelessGetAccessPointConfigurationTaskResult struct {
+	InstanceUUID           *ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceUUID           `json:"instanceUuid,omitempty"`            //
+	InstanceID             *float64                                                                         `json:"instanceId,omitempty"`              //
+	AuthEntityID           *ResponseItemWirelessGetAccessPointConfigurationTaskResultAuthEntityID           `json:"authEntityId,omitempty"`            //
+	DisplayName            string                                                                           `json:"displayName,omitempty"`             //
+	AuthEntityClass        *ResponseItemWirelessGetAccessPointConfigurationTaskResultAuthEntityClass        `json:"authEntityClass,omitempty"`         //
+	InstanceTenantID       string                                                                           `json:"instanceTenantId,omitempty"`        //
+	OrderedListOEIndex     *float64                                                                         `json:"_orderedListOEIndex,omitempty"`     //
+	OrderedListOEAssocName *ResponseItemWirelessGetAccessPointConfigurationTaskResultOrderedListOEAssocName `json:"_orderedListOEAssocName,omitempty"` //
+	CreationOrderIndex     *float64                                                                         `json:"_creationOrderIndex,omitempty"`     //
+	IsBeingChanged         *bool                                                                            `json:"_isBeingChanged,omitempty"`         //
+	DeployPending          string                                                                           `json:"deployPending,omitempty"`           //
+	InstanceCreatedOn      *ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceCreatedOn      `json:"instanceCreatedOn,omitempty"`       //
+	InstanceUpdatedOn      *ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceUpdatedOn      `json:"instanceUpdatedOn,omitempty"`       //
+	ChangeLogList          *ResponseItemWirelessGetAccessPointConfigurationTaskResultChangeLogList          `json:"changeLogList,omitempty"`           //
+	InstanceOrigin         *ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceOrigin         `json:"instanceOrigin,omitempty"`          //
+	LazyLoadedEntities     *ResponseItemWirelessGetAccessPointConfigurationTaskResultLazyLoadedEntities     `json:"lazyLoadedEntities,omitempty"`      //
+	InstanceVersion        *float64                                                                         `json:"instanceVersion,omitempty"`         //
+	ApName                 string                                                                           `json:"apName,omitempty"`                  //
+	ControllerName         string                                                                           `json:"controllerName,omitempty"`          //
+	LocationHeirarchy      string                                                                           `json:"locationHeirarchy,omitempty"`       //
+	MacAddress             string                                                                           `json:"macAddress,omitempty"`              //
+	Status                 string                                                                           `json:"status,omitempty"`                  //
+	StatusDetails          string                                                                           `json:"statusDetails,omitempty"`           //
+	InternalKey            *ResponseItemWirelessGetAccessPointConfigurationTaskResultInternalKey            `json:"internalKey,omitempty"`             //
+}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceUUID interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultAuthEntityID interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultAuthEntityClass interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultOrderedListOEAssocName interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceCreatedOn interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceUpdatedOn interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultChangeLogList interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultInstanceOrigin interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultLazyLoadedEntities interface{}
+type ResponseItemWirelessGetAccessPointConfigurationTaskResultInternalKey struct {
+	Type     string   `json:"type,omitempty"`     //
+	ID       *float64 `json:"id,omitempty"`       //
+	LongType string   `json:"longType,omitempty"` //
+	URL      string   `json:"url,omitempty"`      //
+}
+type ResponseWirelessGetAccessPointConfiguration struct {
+	InstanceUUID            *ResponseWirelessGetAccessPointConfigurationInstanceUUID           `json:"instanceUuid,omitempty"`            //
+	InstanceID              *float64                                                           `json:"instanceId,omitempty"`              //
+	AuthEntityID            *ResponseWirelessGetAccessPointConfigurationAuthEntityID           `json:"authEntityId,omitempty"`            //
+	DisplayName             string                                                             `json:"displayName,omitempty"`             //
+	AuthEntityClass         *ResponseWirelessGetAccessPointConfigurationAuthEntityClass        `json:"authEntityClass,omitempty"`         //
+	InstanceTenantID        string                                                             `json:"instanceTenantId,omitempty"`        //
+	OrderedListOEIndex      *float64                                                           `json:"_orderedListOEIndex,omitempty"`     //
+	OrderedListOEAssocName  *ResponseWirelessGetAccessPointConfigurationOrderedListOEAssocName `json:"_orderedListOEAssocName,omitempty"` //
+	CreationOrderIndex      *float64                                                           `json:"_creationOrderIndex,omitempty"`     //
+	IsBeingChanged          *bool                                                              `json:"_isBeingChanged,omitempty"`         //
+	DeployPending           string                                                             `json:"deployPending,omitempty"`           //
+	InstanceCreatedOn       *ResponseWirelessGetAccessPointConfigurationInstanceCreatedOn      `json:"instanceCreatedOn,omitempty"`       //
+	InstanceUpdatedOn       *ResponseWirelessGetAccessPointConfigurationInstanceUpdatedOn      `json:"instanceUpdatedOn,omitempty"`       //
+	ChangeLogList           *ResponseWirelessGetAccessPointConfigurationChangeLogList          `json:"changeLogList,omitempty"`           //
+	InstanceOrigin          *ResponseWirelessGetAccessPointConfigurationInstanceOrigin         `json:"instanceOrigin,omitempty"`          //
+	LazyLoadedEntities      *ResponseWirelessGetAccessPointConfigurationLazyLoadedEntities     `json:"lazyLoadedEntities,omitempty"`      //
+	InstanceVersion         *float64                                                           `json:"instanceVersion,omitempty"`         //
+	AdminStatus             string                                                             `json:"adminStatus,omitempty"`             //
+	ApHeight                *float64                                                           `json:"apHeight,omitempty"`                //
+	ApMode                  string                                                             `json:"apMode,omitempty"`                  //
+	ApName                  string                                                             `json:"apName,omitempty"`                  //
+	EthMac                  string                                                             `json:"ethMac,omitempty"`                  //
+	FailoverPriority        string                                                             `json:"failoverPriority,omitempty"`        //
+	LedBrightnessLevel      *int                                                               `json:"ledBrightnessLevel,omitempty"`      //
+	LedStatus               string                                                             `json:"ledStatus,omitempty"`               //
+	Location                string                                                             `json:"location,omitempty"`                //
+	MacAddress              string                                                             `json:"macAddress,omitempty"`              //
+	PrimaryControllerName   string                                                             `json:"primaryControllerName,omitempty"`   //
+	PrimaryIPAddress        string                                                             `json:"primaryIpAddress,omitempty"`        //
+	SecondaryControllerName string                                                             `json:"secondaryControllerName,omitempty"` //
+	SecondaryIPAddress      string                                                             `json:"secondaryIpAddress,omitempty"`      //
+	TertiaryControllerName  string                                                             `json:"tertiaryControllerName,omitempty"`  //
+	TertiaryIPAddress       string                                                             `json:"tertiaryIpAddress,omitempty"`       //
+	MeshDTOs                *[]ResponseWirelessGetAccessPointConfigurationMeshDTOs             `json:"meshDTOs,omitempty"`                //
+	RadioDTOs               *[]ResponseWirelessGetAccessPointConfigurationRadioDTOs            `json:"radioDTOs,omitempty"`               //
+	InternalKey             *ResponseWirelessGetAccessPointConfigurationInternalKey            `json:"internalKey,omitempty"`             //
+}
+type ResponseWirelessGetAccessPointConfigurationInstanceUUID interface{}
+type ResponseWirelessGetAccessPointConfigurationAuthEntityID interface{}
+type ResponseWirelessGetAccessPointConfigurationAuthEntityClass interface{}
+type ResponseWirelessGetAccessPointConfigurationOrderedListOEAssocName interface{}
+type ResponseWirelessGetAccessPointConfigurationInstanceCreatedOn interface{}
+type ResponseWirelessGetAccessPointConfigurationInstanceUpdatedOn interface{}
+type ResponseWirelessGetAccessPointConfigurationChangeLogList interface{}
+type ResponseWirelessGetAccessPointConfigurationInstanceOrigin interface{}
+type ResponseWirelessGetAccessPointConfigurationLazyLoadedEntities interface{}
+type ResponseWirelessGetAccessPointConfigurationMeshDTOs interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOs struct {
+	InstanceUUID           *ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceUUID           `json:"instanceUuid,omitempty"`            //
+	InstanceID             *float64                                                                    `json:"instanceId,omitempty"`              //
+	AuthEntityID           *ResponseWirelessGetAccessPointConfigurationRadioDTOsAuthEntityID           `json:"authEntityId,omitempty"`            //
+	DisplayName            string                                                                      `json:"displayName,omitempty"`             //
+	AuthEntityClass        *ResponseWirelessGetAccessPointConfigurationRadioDTOsAuthEntityClass        `json:"authEntityClass,omitempty"`         //
+	InstanceTenantID       string                                                                      `json:"instanceTenantId,omitempty"`        //
+	OrderedListOEIndex     *float64                                                                    `json:"_orderedListOEIndex,omitempty"`     //
+	OrderedListOEAssocName *ResponseWirelessGetAccessPointConfigurationRadioDTOsOrderedListOEAssocName `json:"_orderedListOEAssocName,omitempty"` //
+	CreationOrderIndex     *float64                                                                    `json:"_creationOrderIndex,omitempty"`     //
+	IsBeingChanged         *bool                                                                       `json:"_isBeingChanged,omitempty"`         //
+	DeployPending          string                                                                      `json:"deployPending,omitempty"`           //
+	InstanceCreatedOn      *ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceCreatedOn      `json:"instanceCreatedOn,omitempty"`       //
+	InstanceUpdatedOn      *ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceUpdatedOn      `json:"instanceUpdatedOn,omitempty"`       //
+	ChangeLogList          *ResponseWirelessGetAccessPointConfigurationRadioDTOsChangeLogList          `json:"changeLogList,omitempty"`           //
+	InstanceOrigin         *ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceOrigin         `json:"instanceOrigin,omitempty"`          //
+	LazyLoadedEntities     *ResponseWirelessGetAccessPointConfigurationRadioDTOsLazyLoadedEntities     `json:"lazyLoadedEntities,omitempty"`      //
+	InstanceVersion        *float64                                                                    `json:"instanceVersion,omitempty"`         //
+	AdminStatus            string                                                                      `json:"adminStatus,omitempty"`             //
+	AntennaAngle           *float64                                                                    `json:"antennaAngle,omitempty"`            //
+	AntennaElevAngle       *float64                                                                    `json:"antennaElevAngle,omitempty"`        //
+	AntennaGain            *int                                                                        `json:"antennaGain,omitempty"`             //
+	AntennaPatternName     string                                                                      `json:"antennaPatternName,omitempty"`      //
+	ChannelAssignmentMode  string                                                                      `json:"channelAssignmentMode,omitempty"`   //
+	ChannelNumber          *int                                                                        `json:"channelNumber,omitempty"`           //
+	ChannelWidth           string                                                                      `json:"channelWidth,omitempty"`            //
+	CleanAirSI             string                                                                      `json:"cleanAirSI,omitempty"`              //
+	IfType                 *int                                                                        `json:"ifType,omitempty"`                  //
+	IfTypeValue            string                                                                      `json:"ifTypeValue,omitempty"`             //
+	MacAddress             string                                                                      `json:"macAddress,omitempty"`              //
+	PowerAssignmentMode    string                                                                      `json:"powerAssignmentMode,omitempty"`     //
+	Powerlevel             *int                                                                        `json:"powerlevel,omitempty"`              //
+	RadioBand              *ResponseWirelessGetAccessPointConfigurationRadioDTOsRadioBand              `json:"radioBand,omitempty"`               //
+	RadioRoleAssignment    *ResponseWirelessGetAccessPointConfigurationRadioDTOsRadioRoleAssignment    `json:"radioRoleAssignment,omitempty"`     //
+	SlotID                 *int                                                                        `json:"slotId,omitempty"`                  //
+	InternalKey            *ResponseWirelessGetAccessPointConfigurationRadioDTOsInternalKey            `json:"internalKey,omitempty"`             //
+}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceUUID interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsAuthEntityID interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsAuthEntityClass interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsOrderedListOEAssocName interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceCreatedOn interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceUpdatedOn interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsChangeLogList interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsInstanceOrigin interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsLazyLoadedEntities interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsRadioBand interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsRadioRoleAssignment interface{}
+type ResponseWirelessGetAccessPointConfigurationRadioDTOsInternalKey struct {
+	Type     string   `json:"type,omitempty"`     //
+	ID       *float64 `json:"id,omitempty"`       //
+	LongType string   `json:"longType,omitempty"` //
+	URL      string   `json:"url,omitempty"`      //
+}
+type ResponseWirelessGetAccessPointConfigurationInternalKey struct {
+	Type     string   `json:"type,omitempty"`     //
+	ID       *float64 `json:"id,omitempty"`       //
+	LongType string   `json:"longType,omitempty"` //
+	URL      string   `json:"url,omitempty"`      //
+}
 type ResponseWirelessApProvision struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
-	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
-	Message      string `json:"message,omitempty"`      // Message
+	ExecutionURL string `json:"executionUrl,omitempty"` // Execution URL
+	Message      string `json:"message,omitempty"`      // Response
 }
-type ResponseWirelessCreateUpdateDynamicInterface struct {
+type ResponseWirelessCreateUpdateDynamicInterface []ResponseItemWirelessCreateUpdateDynamicInterface // Array of ResponseWirelessCreateUpdateDynamicInterface
+type ResponseItemWirelessCreateUpdateDynamicInterface struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
-	ExecutionURL string `json:"executionUrl,omitempty"` // Execution Url
-	Message      string `json:"message,omitempty"`      // Message
+	ExecutionURL string `json:"executionUrl,omitempty"` // Execution URL
+	Message      string `json:"message,omitempty"`      // Response
 }
 type ResponseWirelessGetDynamicInterface []ResponseItemWirelessGetDynamicInterface // Array of ResponseWirelessGetDynamicInterface
 type ResponseItemWirelessGetDynamicInterface struct {
@@ -317,7 +511,7 @@ type RequestWirelessCreateAndProvisionSSIDSSIDDetails struct {
 	Passphrase          string `json:"passphrase,omitempty"`          // Pass Phrase ( Only applicable for SSID with PERSONAL auth type )
 	TrafficType         string `json:"trafficType,omitempty"`         // Traffic Type
 	EnableBroadcastSSID *bool  `json:"enableBroadcastSSID,omitempty"` // Enable Broadcast SSID
-	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy. Allowed values are 'Dual band operation (2.4GHz and 5GHz)', 'Dual band operation with band select', '5GHz only', '2.4GHz only'.
+	RadioPolicy         string `json:"radioPolicy,omitempty"`         // Radio Policy
 	EnableMacFiltering  *bool  `json:"enableMACFiltering,omitempty"`  // Enable MAC Filtering
 	FastTransition      string `json:"fastTransition,omitempty"`      // Fast Transition
 	WebAuthURL          string `json:"webAuthURL,omitempty"`          // Web Auth URL
@@ -325,6 +519,9 @@ type RequestWirelessCreateAndProvisionSSIDSSIDDetails struct {
 type RequestWirelessCreateAndProvisionSSIDFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // Enable Flex Connect
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan (range is 1 to 4094)
+}
+type RequestWirelessRebootAccessPoints struct {
+	ApMacAddresses []string `json:"apMacAddresses,omitempty"` // The ethernet MAC address of the access point.
 }
 type RequestWirelessCreateEnterpriseSSID struct {
 	Name                             string   `json:"name,omitempty"`                             // SSID NAME
@@ -368,6 +565,74 @@ type RequestWirelessUpdateEnterpriseSSID struct {
 	MfpClientProtection              string   `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
 	NasOptions                       []string `json:"nasOptions,omitempty"`                       // Nas Options
 }
+type RequestWirelessConfigureAccessPoints struct {
+	ApList                      *[]RequestWirelessConfigureAccessPointsApList              `json:"apList,omitempty"`                      //
+	ConfigureAdminStatus        *bool                                                      `json:"configureAdminStatus,omitempty"`        // To change the access point's admin status, set this parameter's value to "true".
+	AdminStatus                 *bool                                                      `json:"adminStatus,omitempty"`                 // Configure the access point's admin status. Set this parameter's value to "true" to enable it and "false" to disable it.
+	ConfigureApMode             *bool                                                      `json:"configureApMode,omitempty"`             // To change the access point's mode, set this parameter's value to "true".
+	ApMode                      *int                                                       `json:"apMode,omitempty"`                      // Configure the access point's mode: for local/flexconnect mode, set "0"; for monitor mode, set "1"; for sniffer mode, set "4"; and for bridge/flex+bridge mode, set "5".
+	ConfigureApHeight           *bool                                                      `json:"configureApHeight,omitempty"`           // To change the access point's height, set this parameter's value to "true".
+	ApHeight                    *float64                                                   `json:"apHeight,omitempty"`                    // Configure the height of the access point by setting a value between 3 and height of the floor.
+	ConfigureFailoverPriority   *bool                                                      `json:"configureFailoverPriority,omitempty"`   // To change the access point's failover priority, set this parameter's value to "true".
+	FailoverPriority            *int                                                       `json:"failoverPriority,omitempty"`            // Configure the acess point's failover priority: for low, set "1"; for medium, set "2"; for high, set "3"; and for critical, set "4".
+	ConfigureLedStatus          *bool                                                      `json:"configureLedStatus,omitempty"`          // To change the access point's LED status, set this parameter's value to "true".
+	LedStatus                   *bool                                                      `json:"ledStatus,omitempty"`                   // Configure the access point's LED status. Set "true" to enable its status and "false" to disable it.
+	ConfigureLedBrightnessLevel *bool                                                      `json:"configureLedBrightnessLevel,omitempty"` // To change the access point's LED brightness level, set this parameter's value to "true".
+	LedBrightnessLevel          *int                                                       `json:"ledBrightnessLevel,omitempty"`          // Configure the access point's LED brightness level by setting a value between 1 and 8.
+	ConfigureLocation           *bool                                                      `json:"configureLocation,omitempty"`           // To change the access point's location, set this parameter's value to "true".
+	Location                    string                                                     `json:"location,omitempty"`                    // Configure the access point's location.
+	ConfigureHAController       *bool                                                      `json:"configureHAController,omitempty"`       // To change the access point's HA controller, set this parameter's value to "true".
+	PrimaryControllerName       string                                                     `json:"primaryControllerName,omitempty"`       // Configure the hostname for an access point's primary controller.
+	PrimaryIPAddress            *RequestWirelessConfigureAccessPointsPrimaryIPAddress      `json:"primaryIpAddress,omitempty"`            //
+	SecondaryControllerName     string                                                     `json:"secondaryControllerName,omitempty"`     // Configure the hostname for an access point's secondary controller.
+	SecondaryIPAddress          *RequestWirelessConfigureAccessPointsSecondaryIPAddress    `json:"secondaryIpAddress,omitempty"`          //
+	TertiaryControllerName      string                                                     `json:"tertiaryControllerName,omitempty"`      // Configure the hostname for an access point's tertiary controller.
+	TertiaryIPAddress           *RequestWirelessConfigureAccessPointsTertiaryIPAddress     `json:"tertiaryIpAddress,omitempty"`           //
+	RadioConfigurations         *[]RequestWirelessConfigureAccessPointsRadioConfigurations `json:"radioConfigurations,omitempty"`         //
+}
+type RequestWirelessConfigureAccessPointsApList struct {
+	ApName     string `json:"apName,omitempty"`     // The current host name of the access point.
+	MacAddress string `json:"macAddress,omitempty"` // The ethernet MAC address of the access point.
+	ApNameNew  string `json:"apNameNew,omitempty"`  // The modified hostname of the access point.
+}
+type RequestWirelessConfigureAccessPointsPrimaryIPAddress struct {
+	Address string `json:"address,omitempty"` // Configure the IP address for an access point's primary controller.
+}
+type RequestWirelessConfigureAccessPointsSecondaryIPAddress struct {
+	Address string `json:"address,omitempty"` // Configure the IP address for an access point's secondary controller.
+}
+type RequestWirelessConfigureAccessPointsTertiaryIPAddress struct {
+	Address string `json:"address,omitempty"` // Configure the IP address for an access point's tertiary controller.
+}
+type RequestWirelessConfigureAccessPointsRadioConfigurations struct {
+	ConfigureRadioRoleAssignment *bool    `json:"configureRadioRoleAssignment,omitempty"` // To change the radio role on the specified radio for an access point, set this parameter's value to "true".
+	RadioRoleAssignment          string   `json:"radioRoleAssignment,omitempty"`          // Configure one of the following roles on the specified radio for an access point: "auto", "serving", or "monitor".
+	RadioBand                    string   `json:"radioBand,omitempty"`                    // Configure the band on the specified radio for an access point: for 2.4 GHz, set "RADIO24"; for 5 GHz, set "RADIO5".
+	ConfigureAdminStatus         *bool    `json:"configureAdminStatus,omitempty"`         // To change the admin status on the specified radio for an access point, set this parameter's value to "true".
+	AdminStatus                  *bool    `json:"adminStatus,omitempty"`                  // Configure the admin status on the specified radio for an access point. Set this parameter's value to "true" to enable it and "false" to disable it.
+	ConfigureAntennaDegree       *bool    `json:"configureAntennaDegree,omitempty"`       // To change the antenna degree on the specified radio for an access point, set this parameter's value to "true".
+	AntennaDegree                *int     `json:"antennaDegree,omitempty"`                // Configure the antenna degree on the specified radio for an access point.
+	ConfigureElevAngleDegree     *bool    `json:"configureElevAngleDegree,omitempty"`     // To change the elevation angle degree on the specified radio for an access point, set this parameter's value to "true".
+	AntennaElevAngleDegree       *int     `json:"antennaElevAngleDegree,omitempty"`       // Configure the antenna elevation angle on the specified radio for an access point.
+	AntennaElevAngleSign         *int     `json:"antennaElevAngleSign,omitempty"`         // Configure the antenna elevation angle direction on the specified radio for an access point: for up, set "1"; for down, set "-1".
+	ConfigureAntennaPatternName  *bool    `json:"configureAntennaPatternName,omitempty"`  // To change the antenna pattern name on the specified radio for an access point, set the value for this parameter to "true".
+	AntennaPatternName           string   `json:"antennaPatternName,omitempty"`           // Configure the antenna pattern name on the specified radio for an access point. If antenna gain needs to be configured, set this parameter's value to "other".
+	AntennaGain                  *int     `json:"antennaGain,omitempty"`                  // Configure the antenna gain on the specified radio for an access point by setting a decimal value (in dBi).
+	ConfigureAntennaCable        *bool    `json:"configureAntennaCable,omitempty"`        // To change the antenna cable name on the specified radio for an access point, set this parameter's value to "true".
+	AntennaCableName             string   `json:"antennaCableName,omitempty"`             // Configure the antenna cable name on the specified radio for an access point. If cable loss needs to be configured, set this parameter's value to "other".
+	CableLoss                    *float64 `json:"cableLoss,omitempty"`                    // Configure the cable loss on the specified radio for an access point by setting a decimal value (in dBi).
+	ConfigureChannel             *bool    `json:"configureChannel,omitempty"`             // To change the channel on the specified radio for an access point, set this parameter's value to "true".
+	ChannelAssignmentMode        *int     `json:"channelAssignmentMode,omitempty"`        // Configure the channel assignment mode on the specified radio for an access point: for global mode, set "1"; and for custom mode, set "2".
+	ChannelNumber                *int     `json:"channelNumber,omitempty"`                // Configure the channel number on the specified radio for an access point.
+	ConfigureChannelWidth        *bool    `json:"configureChannelWidth,omitempty"`        // To change the channel width on the specified radio for an access point, set this parameter's value to "true".
+	ChannelWidth                 *int     `json:"channelWidth,omitempty"`                 // Configure the channel width on the specified radio for an access point: for 20 MHz, set "3"; for 40 MHz, set "4"; for 80 MHz, set "5"; and for 160 MHz, set "6".
+	ConfigurePower               *bool    `json:"configurePower,omitempty"`               // To change the power assignment mode on the specified radio for an access point, set this parameter's value to "true".
+	PowerAssignmentMode          *int     `json:"powerAssignmentMode,omitempty"`          // Configure the power assignment mode on the specified radio for an access point: for global mode, set "1"; and for custom mode, set "2".
+	Powerlevel                   *int     `json:"powerlevel,omitempty"`                   // Configure the power level on the specified radio for an access point by setting a value between 1 and 8.
+	ConfigureCleanAirSI          *bool    `json:"configureCleanAirSI,omitempty"`          // To enable or disable either CleanAir or Spectrum Intelligence on the specified radio for an access point, set this parameter's value to "true".
+	CleanAirSI                   *int     `json:"cleanAirSI,omitempty"`                   // Configure CleanAir or Spectrum Intelligence on the specified radio for an access point. Set this parameter's value to "0" to disable the feature or "1" to enable it.
+	RadioType                    *int     `json:"radioType,omitempty"`                    // Configure an access point's radio band: for 2.4 GHz, set "1"; for 5 GHz, set "2"; for XOR, set "3"; and for 6 GHz, set "6".
+}
 type RequestWirelessApProvision []RequestItemWirelessApProvision // Array of RequestWirelessAPProvision
 type RequestItemWirelessApProvision struct {
 	RfProfile           string   `json:"rfProfile,omitempty"`           // Radio frequency profile name
@@ -391,15 +656,17 @@ type RequestWirelessUpdateWirelessProfileProfileDetails struct {
 	SSIDDetails *[]RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetails `json:"ssidDetails,omitempty"` //
 }
 type RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetails struct {
-	Name          string                                                                    `json:"name,omitempty"`          // Ssid Name
-	Type          string                                                                    `json:"type,omitempty"`          // Ssid Type(enum: Enterprise/Guest)
-	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true is ssid is fabric else false
-	FlexConnect   *RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
-	InterfaceName string                                                                    `json:"interfaceName,omitempty"` // Interface Name
+	Name              string                                                                    `json:"name,omitempty"`              // Ssid Name
+	Type              string                                                                    `json:"type,omitempty"`              // Ssid Type(enum: Enterprise/Guest)
+	EnableFabric      *bool                                                                     `json:"enableFabric,omitempty"`      // true if ssid is fabric else false
+	FlexConnect       *RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`       //
+	InterfaceName     string                                                                    `json:"interfaceName,omitempty"`     // Interface Name
+	WLANProfileName   string                                                                    `json:"wlanProfileName,omitempty"`   // WLAN Profile Name
+	PolicyProfileName string                                                                    `json:"policyProfileName,omitempty"` // Policy Profile Name
 }
 type RequestWirelessUpdateWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
-	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan
+	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan Id
 }
 type RequestWirelessCreateWirelessProfile struct {
 	ProfileDetails *RequestWirelessCreateWirelessProfileProfileDetails `json:"profileDetails,omitempty"` //
@@ -410,15 +677,17 @@ type RequestWirelessCreateWirelessProfileProfileDetails struct {
 	SSIDDetails *[]RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetails `json:"ssidDetails,omitempty"` //
 }
 type RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetails struct {
-	Name          string                                                                    `json:"name,omitempty"`          // Ssid Name
-	Type          string                                                                    `json:"type,omitempty"`          // Ssid Type(enum: Enterprise/Guest)
-	EnableFabric  *bool                                                                     `json:"enableFabric,omitempty"`  // true is ssid is fabric else false
-	FlexConnect   *RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
-	InterfaceName string                                                                    `json:"interfaceName,omitempty"` // Interface Name
+	Name              string                                                                    `json:"name,omitempty"`              // Ssid Name
+	Type              string                                                                    `json:"type,omitempty"`              // Ssid Type(enum: Enterprise/Guest)
+	EnableFabric      *bool                                                                     `json:"enableFabric,omitempty"`      // true if ssid is fabric else false
+	FlexConnect       *RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`       //
+	InterfaceName     string                                                                    `json:"interfaceName,omitempty"`     // Interface Name
+	WLANProfileName   string                                                                    `json:"wlanProfileName,omitempty"`   // WLAN Profile Name
+	PolicyProfileName string                                                                    `json:"policyProfileName,omitempty"` // Policy Profile Name
 }
 type RequestWirelessCreateWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
-	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan
+	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To Vlan Id
 }
 type RequestWirelessProvisionUpdate []RequestItemWirelessProvisionUpdate // Array of RequestWirelessProvisionUpdate
 type RequestItemWirelessProvisionUpdate struct {
@@ -451,9 +720,10 @@ type RequestItemWirelessProvisionDynamicInterfaces struct {
 }
 type RequestWirelessPSKOverride []RequestItemWirelessPSKOverride // Array of RequestWirelessPSKOverride
 type RequestItemWirelessPSKOverride struct {
-	SSID       string `json:"ssid,omitempty"`       // enterprise ssid name(already created/present)
-	Site       string `json:"site,omitempty"`       // site name hierarchy (ex: Global/aaa/zzz/...)
-	PassPhrase string `json:"passPhrase,omitempty"` // Pass phrase (create/update)
+	SSID            string `json:"ssid,omitempty"`            // enterprise ssid name(already created/present)
+	Site            string `json:"site,omitempty"`            // site name hierarchy (ex: Global/aaa/zzz/...)
+	PassPhrase      string `json:"passPhrase,omitempty"`      // Pass phrase (create/update)
+	WLANProfileName string `json:"wlanProfileName,omitempty"` // WLAN Profile Name
 }
 type RequestWirelessCreateOrUpdateRfProfile struct {
 	Name                 string                                                      `json:"name,omitempty"`                 // RF Profile Name
@@ -504,6 +774,8 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeCProperties struct {
 
 
 @param SensorTestResultsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensor-test-results
 */
 func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *SensorTestResultsQueryParams) (*ResponseWirelessSensorTestResults, *resty.Response, error) {
 	path := "/dna/intent/api/v1/AssuranceGetSensorTestResults"
@@ -531,11 +803,47 @@ func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *Sensor
 
 }
 
+//GetAccessPointRebootTaskResult Get Access Point Reboot task result - c4b5-e9ce-460a-a8a3
+/* Users can query the access point reboot status using this intent API
+
+
+@param GetAccessPointRebootTaskResultQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-reboot-task-result
+*/
+func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTaskResultQueryParams *GetAccessPointRebootTaskResultQueryParams) (*ResponseWirelessGetAccessPointRebootTaskResult, *resty.Response, error) {
+	path := "/dna/intent/api/v1/device-reboot/apreboot/status"
+
+	queryString, _ := query.Values(GetAccessPointRebootTaskResultQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetAccessPointRebootTaskResult{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAccessPointRebootTaskResult")
+	}
+
+	result := response.Result().(*ResponseWirelessGetAccessPointRebootTaskResult)
+	return result, response, err
+
+}
+
 //GetEnterpriseSSID Get Enterprise SSID - cca5-19ba-45eb-b423
 /* Gets either one or all the enterprise SSID
 
 
 @param GetEnterpriseSSIDQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-enterprise-ssid
 */
 func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnterpriseSSIDQueryParams) (*ResponseWirelessGetEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
@@ -563,11 +871,81 @@ func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnt
 
 }
 
+//GetAccessPointConfigurationTaskResult Get Access Point Configuration task result - fb90-69dc-4aeb-9afb
+/* Users can query the access point configuration result using this intent API
+
+
+@param taskTypeID task_id path parameter. task id information of ap config
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration-task-result
+*/
+func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID string) (*ResponseWirelessGetAccessPointConfigurationTaskResult, *resty.Response, error) {
+	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/details/{task_id}"
+	path = strings.Replace(path, "{task_id}", fmt.Sprintf("%v", taskTypeID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseWirelessGetAccessPointConfigurationTaskResult{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAccessPointConfigurationTaskResult")
+	}
+
+	result := response.Result().(*ResponseWirelessGetAccessPointConfigurationTaskResult)
+	return result, response, err
+
+}
+
+//GetAccessPointConfiguration Get Access Point Configuration - a191-f9f2-4cb8-9a55
+/* Users can query the access point configuration information per device using the ethernet MAC address
+
+
+@param GetAccessPointConfigurationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration
+*/
+func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfigurationQueryParams *GetAccessPointConfigurationQueryParams) (*ResponseWirelessGetAccessPointConfiguration, *resty.Response, error) {
+	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/summary"
+
+	queryString, _ := query.Values(GetAccessPointConfigurationQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseWirelessGetAccessPointConfiguration{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAccessPointConfiguration")
+	}
+
+	result := response.Result().(*ResponseWirelessGetAccessPointConfiguration)
+	return result, response, err
+
+}
+
 //GetDynamicInterface Get dynamic interface - c5b0-c978-4dfb-90b4
 /* Get one or all dynamic interface(s)
 
 
 @param GetDynamicInterfaceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-dynamic-interface
 */
 func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *GetDynamicInterfaceQueryParams) (*ResponseWirelessGetDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -600,6 +978,8 @@ func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *Ge
 
 
 @param GetWirelessProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile
 */
 func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*ResponseWirelessGetWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
@@ -632,6 +1012,8 @@ func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetW
 
 
 @param RetrieveRFProfilesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-rf-profiles
 */
 func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *RetrieveRfProfilesQueryParams) (*ResponseWirelessRetrieveRfProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
@@ -664,6 +1046,8 @@ func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *Retr
 
 
 @param CreateAndProvisionSSIDHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-and-provision-ssid
 */
 func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisionSSID *RequestWirelessCreateAndProvisionSSID, CreateAndProvisionSSIDHeaderParams *CreateAndProvisionSSIDHeaderParams) (*ResponseWirelessCreateAndProvisionSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/ssid"
@@ -702,11 +1086,45 @@ func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisi
 
 }
 
+//RebootAccessPoints Reboot Access Points - 6092-d8f1-468b-99ab
+/* Users can reboot multiple access points up-to 200 at a time using this API
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-access-points
+*/
+func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *RequestWirelessRebootAccessPoints) (*ResponseWirelessRebootAccessPoints, *resty.Response, error) {
+	path := "/dna/intent/api/v1/device-reboot/apreboot"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessRebootAccessPoints).
+		SetResult(&ResponseWirelessRebootAccessPoints{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation RebootAccessPoints")
+	}
+
+	result := response.Result().(*ResponseWirelessRebootAccessPoints)
+	return result, response, err
+
+}
+
 //CreateEnterpriseSSID Create Enterprise SSID - 8a96-fb95-4d09-a349
 /* Creates enterprise SSID
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-enterprise-ssid
+*/
 func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSSID *RequestWirelessCreateEnterpriseSSID) (*ResponseWirelessCreateEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
 
@@ -732,11 +1150,45 @@ func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSS
 
 }
 
+//ConfigureAccessPoints Configure Access Points - 0081-cb89-4708-888f
+/* User can configure multiple access points with required options using this intent API
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!configure-access-points
+*/
+func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPoints *RequestWirelessConfigureAccessPoints) (*ResponseWirelessConfigureAccessPoints, *resty.Response, error) {
+	path := "/dna/intent/api/v1/wireless/accesspoint-configuration"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestWirelessConfigureAccessPoints).
+		SetResult(&ResponseWirelessConfigureAccessPoints{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation ConfigureAccessPoints")
+	}
+
+	result := response.Result().(*ResponseWirelessConfigureAccessPoints)
+	return result, response, err
+
+}
+
 //ApProvision AP Provision - d897-19b8-47aa-a9c4
 /* Access Point Provision and ReProvision
 
 
 @param APProvisionHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!a-p-provision
 */
 func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWirelessApProvision, APProvisionHeaderParams *ApProvisionHeaderParams) (*ResponseWirelessApProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/ap-provision"
@@ -780,6 +1232,8 @@ func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWireles
 
 
 @param CreateUpdateDynamicInterfaceHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-dynamic-interface
 */
 func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpdateDynamicInterface *RequestWirelessCreateUpdateDynamicInterface, CreateUpdateDynamicInterfaceHeaderParams *CreateUpdateDynamicInterfaceHeaderParams) (*ResponseWirelessCreateUpdateDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -826,7 +1280,9 @@ func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpda
 /* Creates Wireless Network Profile on Cisco DNA Center and associates sites and SSIDs to it.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile
+*/
 func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessProfile *RequestWirelessCreateWirelessProfile) (*ResponseWirelessCreateWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
 
@@ -856,7 +1312,9 @@ func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessPro
 /* Provision wireless devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision
+*/
 func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessProvision) (*ResponseWirelessProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/provision"
 
@@ -886,7 +1344,9 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 /* Update/override pass phrase of enterprise SSID
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-s-k-override
+*/
 func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*ResponseWirelessPSKOverride, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/psk-override"
 
@@ -916,7 +1376,9 @@ func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWireles
 /* Create or Update RF profile
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-r-f-profile
+*/
 func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateRFProfile *RequestWirelessCreateOrUpdateRfProfile) (*ResponseWirelessCreateOrUpdateRfProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
 
@@ -1052,8 +1514,11 @@ func (s *WirelessService) ProvisionUpdate(requestWirelessProvisionUpdate *Reques
 @param ssidName ssidName path parameter.
 @param managedAPLocations managedAPLocations path parameter.
 @param DeleteSSIDAndProvisionItToDevicesHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid-and-provision-it-to-devices
 */
 func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, managedAPLocations string, DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams) (*ResponseWirelessDeleteSSIDAndProvisionItToDevices, *resty.Response, error) {
+	//ssidName string,managedAPLocations string,DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams
 	path := "/dna/intent/api/v1/business/ssid/{ssidName}/{managedAPLocations}"
 	path = strings.Replace(path, "{ssidName}", fmt.Sprintf("%v", ssidName), -1)
 	path = strings.Replace(path, "{managedAPLocations}", fmt.Sprintf("%v", managedAPLocations), -1)
@@ -1097,8 +1562,11 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 
 @param ssidName ssidName path parameter. Enter the SSID name to be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-enterprise-ssid
 */
 func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirelessDeleteEnterpriseSSID, *resty.Response, error) {
+	//ssidName string
 	path := "/dna/intent/api/v1/enterprise-ssid/{ssidName}"
 	path = strings.Replace(path, "{ssidName}", fmt.Sprintf("%v", ssidName), -1)
 
@@ -1129,8 +1597,11 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirele
 
 @param wirelessProfileName wirelessProfileName path parameter. Wireless Profile Name
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile
 */
 func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*ResponseWirelessDeleteWirelessProfile, *resty.Response, error) {
+	//wirelessProfileName string
 	path := "/dna/intent/api/v1/wireless-profile/{wirelessProfileName}"
 	path = strings.Replace(path, "{wirelessProfileName}", fmt.Sprintf("%v", wirelessProfileName), -1)
 
@@ -1162,8 +1633,11 @@ func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*Re
 @param interfaceName interfaceName path parameter. valid interface-name to be deleted
 
 @param DeleteDynamicInterfaceHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-dynamic-interface
 */
 func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams) (*resty.Response, error) {
+	//interfaceName string,DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams
 	path := "/dna/intent/api/v1/wireless/dynamic-interface/{interfaceName}"
 	path = strings.Replace(path, "{interfaceName}", fmt.Sprintf("%v", interfaceName), -1)
 
@@ -1208,8 +1682,11 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 
 @param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-r-f-profiles
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {
+	//rfProfileName string
 	path := "/dna/intent/api/v1/wireless/rf-profile/{rfProfileName}"
 	path = strings.Replace(path, "{rfProfileName}", fmt.Sprintf("%v", rfProfileName), -1)
 

@@ -108,10 +108,16 @@ type GetVirtualNetworkWithScalableGroupsQueryParams struct {
 	VirtualNetworkName string `url:"virtualNetworkName,omitempty"` //virtualNetworkName
 }
 
-type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
-	SiteNameHierarchy        string `json:"siteNameHierarchy,omitempty"`        // Site Name Hierarchy
-	AuthenticateTemplateName string `json:"authenticateTemplateName,omitempty"` // Authenticate Template Name
-	AuthenticateTemplateID   string `json:"authenticateTemplateId,omitempty"`   // Authenticate Template Id
+type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric []ResponseItemSdaGetDefaultAuthenticationProfileFromSdaFabric // Array of ResponseSdaGetDefaultAuthenticationProfileFromSDAFabric
+type ResponseItemSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
+	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
+	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order
+	Dot1XToMabFallbackTimeout string `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
+	WakeOnLan                 *bool  `json:"wakeOnLan,omitempty"`                 // Wake On Lan
+	NumberOfHosts             string `json:"numberOfHosts,omitempty"`             // Number Of Hosts
+	Status                    string `json:"status,omitempty"`                    // Status
+	Description               string `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
 }
 type ResponseSdaAddDefaultAuthenticationTemplateInSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -146,153 +152,156 @@ type ResponseSdaAddBorderDeviceInSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetBorderDeviceDetailFromSdaFabric struct {
-	Status                         string                                                              `json:"status,omitempty"`                         // Status
-	Description                    string                                                              `json:"description,omitempty"`                    // Description
-	ID                             string                                                              `json:"id,omitempty"`                             // Id
-	InstanceID                     *int                                                                `json:"instanceId,omitempty"`                     // Instance Id
-	AuthEntityID                   *int                                                                `json:"authEntityId,omitempty"`                   // Auth Entity Id
-	DisplayName                    string                                                              `json:"displayName,omitempty"`                    // Display Name
-	AuthEntityClass                *int                                                                `json:"authEntityClass,omitempty"`                // Auth Entity Class
-	InstanceTenantID               string                                                              `json:"instanceTenantId,omitempty"`               // Instance Tenant Id
-	DeployPending                  string                                                              `json:"deployPending,omitempty"`                  // Deploy Pending
-	InstanceVersion                *int                                                                `json:"instanceVersion,omitempty"`                // Instance Version
-	CreateTime                     *int                                                                `json:"createTime,omitempty"`                     // Create Time
-	Deployed                       *bool                                                               `json:"deployed,omitempty"`                       // Deployed
-	IsSeeded                       *bool                                                               `json:"isSeeded,omitempty"`                       // Is Seeded
-	IsStale                        *bool                                                               `json:"isStale,omitempty"`                        // Is Stale
-	LastUpdateTime                 *int                                                                `json:"lastUpdateTime,omitempty"`                 // Last Update Time
-	Name                           string                                                              `json:"name,omitempty"`                           // Name
-	Namespace                      string                                                              `json:"namespace,omitempty"`                      // Namespace
-	ProvisioningState              string                                                              `json:"provisioningState,omitempty"`              // Provisioning State
-	ResourceVersion                *int                                                                `json:"resourceVersion,omitempty"`                // Resource Version
-	TargetIDList                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricTargetIDList        `json:"targetIdList,omitempty"`                   // Target Id List
-	Type                           string                                                              `json:"type,omitempty"`                           // Type
-	CfsChangeInfo                  *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricCfsChangeInfo       `json:"cfsChangeInfo,omitempty"`                  // Cfs Change Info
-	CustomProvisions               *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricCustomProvisions    `json:"customProvisions,omitempty"`               // Custom Provisions
-	Configs                        *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricConfigs             `json:"configs,omitempty"`                        // Configs
-	ManagedSites                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricManagedSites        `json:"managedSites,omitempty"`                   // Managed Sites
-	NetworkDeviceID                string                                                              `json:"networkDeviceId,omitempty"`                // Network Device Id
-	Roles                          []string                                                            `json:"roles,omitempty"`                          // Roles
-	SaveWanConnectivityDetailsOnly *bool                                                               `json:"saveWanConnectivityDetailsOnly,omitempty"` // Save Wan Connectivity Details Only
-	SiteID                         string                                                              `json:"siteId,omitempty"`                         // Site Id
-	AkcSettingsCfs                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricAkcSettingsCfs      `json:"akcSettingsCfs,omitempty"`                 // Akc Settings Cfs
-	DeviceInterfaceInfo            *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceInterfaceInfo `json:"deviceInterfaceInfo,omitempty"`            // Device Interface Info
-	DeviceSettings                 *ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettings        `json:"deviceSettings,omitempty"`                 //
-	NetworkWideSettings            *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettings   `json:"networkWideSettings,omitempty"`            //
-	OtherDevice                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricOtherDevice         `json:"otherDevice,omitempty"`                    // Other Device
-	TransitNetworks                *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricTransitNetworks     `json:"transitNetworks,omitempty"`                //
-	VirtualNetwork                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricVirtualNetwork      `json:"virtualNetwork,omitempty"`                 // Virtual Network
-	WLAN                           *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricWLAN                `json:"wlan,omitempty"`                           // Wlan
+	Status      string                                                `json:"status,omitempty"`      // Status
+	Description string                                                `json:"description,omitempty"` // Description
+	Payload     *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayload `json:"payload,omitempty"`     //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricTargetIDList interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricCfsChangeInfo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricCustomProvisions interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricConfigs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricManagedSites interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricAkcSettingsCfs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceInterfaceInfo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettings struct {
-	ID                            string                                                                                `json:"id,omitempty"`                            // Id
-	InstanceID                    *int                                                                                  `json:"instanceId,omitempty"`                    // Instance Id
-	DisplayName                   string                                                                                `json:"displayName,omitempty"`                   // Display Name
-	InstanceTenantID              string                                                                                `json:"instanceTenantId,omitempty"`              // Instance Tenant Id
-	DeployPending                 string                                                                                `json:"deployPending,omitempty"`                 // Deploy Pending
-	InstanceVersion               *int                                                                                  `json:"instanceVersion,omitempty"`               // Instance Version
-	ConnectedTo                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsConnectedTo             `json:"connectedTo,omitempty"`                   // Connected To
-	CPU                           *float64                                                                              `json:"cpu,omitempty"`                           // Cpu
-	DhcpEnabled                   *bool                                                                                 `json:"dhcpEnabled,omitempty"`                   // Dhcp Enabled
-	ExternalConnectivityIPPool    string                                                                                `json:"externalConnectivityIpPool,omitempty"`    // External Connectivity Ip Pool
-	ExternalDomainRoutingProtocol string                                                                                `json:"externalDomainRoutingProtocol,omitempty"` // External Domain Routing Protocol
-	InternalDomainProtocolNumber  string                                                                                `json:"internalDomainProtocolNumber,omitempty"`  // Internal Domain Protocol Number
-	Memory                        *float64                                                                              `json:"memory,omitempty"`                        // Memory
-	NodeType                      []string                                                                              `json:"nodeType,omitempty"`                      // Node Type
-	Storage                       *float64                                                                              `json:"storage,omitempty"`                       // Storage
-	ExtConnectivitySettings       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayload struct {
+	ID                             string                                                                     `json:"id,omitempty"`                             // Id
+	InstanceID                     *int                                                                       `json:"instanceId,omitempty"`                     // Instance Id
+	AuthEntityID                   *int                                                                       `json:"authEntityId,omitempty"`                   // Auth Entity Id
+	DisplayName                    string                                                                     `json:"displayName,omitempty"`                    // Display Name
+	AuthEntityClass                *int                                                                       `json:"authEntityClass,omitempty"`                // Auth Entity Class
+	InstanceTenantID               string                                                                     `json:"instanceTenantId,omitempty"`               // Instance Tenant Id
+	DeployPending                  string                                                                     `json:"deployPending,omitempty"`                  // Deploy Pending
+	InstanceVersion                *int                                                                       `json:"instanceVersion,omitempty"`                // Instance Version
+	CreateTime                     *int                                                                       `json:"createTime,omitempty"`                     // Create Time
+	Deployed                       *bool                                                                      `json:"deployed,omitempty"`                       // Deployed
+	IsSeeded                       *bool                                                                      `json:"isSeeded,omitempty"`                       // Is Seeded
+	IsStale                        *bool                                                                      `json:"isStale,omitempty"`                        // Is Stale
+	LastUpdateTime                 *int                                                                       `json:"lastUpdateTime,omitempty"`                 // Last Update Time
+	Name                           string                                                                     `json:"name,omitempty"`                           // Name
+	Namespace                      string                                                                     `json:"namespace,omitempty"`                      // Namespace
+	ProvisioningState              string                                                                     `json:"provisioningState,omitempty"`              // Provisioning State
+	ResourceVersion                *int                                                                       `json:"resourceVersion,omitempty"`                // Resource Version
+	TargetIDList                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTargetIDList        `json:"targetIdList,omitempty"`                   // Target Id List
+	Type                           string                                                                     `json:"type,omitempty"`                           // Type
+	CfsChangeInfo                  *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCfsChangeInfo       `json:"cfsChangeInfo,omitempty"`                  // Cfs Change Info
+	CustomProvisions               *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCustomProvisions    `json:"customProvisions,omitempty"`               // Custom Provisions
+	Configs                        *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadConfigs             `json:"configs,omitempty"`                        // Configs
+	ManagedSites                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadManagedSites        `json:"managedSites,omitempty"`                   // Managed Sites
+	NetworkDeviceID                string                                                                     `json:"networkDeviceId,omitempty"`                // Network Device Id
+	Roles                          []string                                                                   `json:"roles,omitempty"`                          // Roles
+	SaveWanConnectivityDetailsOnly *bool                                                                      `json:"saveWanConnectivityDetailsOnly,omitempty"` // Save Wan Connectivity Details Only
+	SiteID                         string                                                                     `json:"siteId,omitempty"`                         // Site Id
+	AkcSettingsCfs                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadAkcSettingsCfs      `json:"akcSettingsCfs,omitempty"`                 // Akc Settings Cfs
+	DeviceInterfaceInfo            *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceInterfaceInfo `json:"deviceInterfaceInfo,omitempty"`            // Device Interface Info
+	DeviceSettings                 *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettings        `json:"deviceSettings,omitempty"`                 //
+	NetworkWideSettings            *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettings   `json:"networkWideSettings,omitempty"`            //
+	OtherDevice                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadOtherDevice         `json:"otherDevice,omitempty"`                    // Other Device
+	TransitNetworks                *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTransitNetworks     `json:"transitNetworks,omitempty"`                //
+	VirtualNetwork                 *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadVirtualNetwork      `json:"virtualNetwork,omitempty"`                 // Virtual Network
+	WLAN                           *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadWLAN                `json:"wlan,omitempty"`                           // Wlan
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsConnectedTo interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettings struct {
-	ID                           string                                                                                         `json:"id,omitempty"`                           // Id
-	InstanceID                   *int                                                                                           `json:"instanceId,omitempty"`                   // Instance Id
-	DisplayName                  string                                                                                         `json:"displayName,omitempty"`                  // Display Name
-	InstanceTenantID             string                                                                                         `json:"instanceTenantId,omitempty"`             // Instance Tenant Id
-	DeployPending                string                                                                                         `json:"deployPending,omitempty"`                // Deploy Pending
-	InstanceVersion              *int                                                                                           `json:"instanceVersion,omitempty"`              // Instance Version
-	ExternalDomainProtocolNumber string                                                                                         `json:"externalDomainProtocolNumber,omitempty"` // External Domain Protocol Number
-	InterfaceUUID                string                                                                                         `json:"interfaceUuid,omitempty"`                // Interface Uuid
-	PolicyPropagationEnabled     *bool                                                                                          `json:"policyPropagationEnabled,omitempty"`     // Policy Propagation Enabled
-	PolicySgtTag                 *float64                                                                                       `json:"policySgtTag,omitempty"`                 // Policy Sgt Tag
-	L2Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL2Handoff `json:"l2Handoff,omitempty"`                    // L2 Handoff
-	L3Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                    //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTargetIDList interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCfsChangeInfo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadCustomProvisions interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadConfigs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadManagedSites interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadAkcSettingsCfs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceInterfaceInfo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettings struct {
+	ID                            string                                                                                       `json:"id,omitempty"`                            // Id
+	InstanceID                    *int                                                                                         `json:"instanceId,omitempty"`                    // Instance Id
+	DisplayName                   string                                                                                       `json:"displayName,omitempty"`                   // Display Name
+	InstanceTenantID              string                                                                                       `json:"instanceTenantId,omitempty"`              // Instance Tenant Id
+	DeployPending                 string                                                                                       `json:"deployPending,omitempty"`                 // Deploy Pending
+	InstanceVersion               *int                                                                                         `json:"instanceVersion,omitempty"`               // Instance Version
+	ConnectedTo                   *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsConnectedTo             `json:"connectedTo,omitempty"`                   // Connected To
+	CPU                           *float64                                                                                     `json:"cpu,omitempty"`                           // Cpu
+	DhcpEnabled                   *bool                                                                                        `json:"dhcpEnabled,omitempty"`                   // Dhcp Enabled
+	ExternalConnectivityIPPool    string                                                                                       `json:"externalConnectivityIpPool,omitempty"`    // External Connectivity Ip Pool
+	ExternalDomainRoutingProtocol string                                                                                       `json:"externalDomainRoutingProtocol,omitempty"` // External Domain Routing Protocol
+	InternalDomainProtocolNumber  string                                                                                       `json:"internalDomainProtocolNumber,omitempty"`  // Internal Domain Protocol Number
+	Memory                        *float64                                                                                     `json:"memory,omitempty"`                        // Memory
+	NodeType                      []string                                                                                     `json:"nodeType,omitempty"`                      // Node Type
+	Storage                       *float64                                                                                     `json:"storage,omitempty"`                       // Storage
+	ExtConnectivitySettings       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettings `json:"extConnectivitySettings,omitempty"`       //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL2Handoff interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3Handoff struct {
-	ID               string                                                                                                     `json:"id,omitempty"`               // Id
-	InstanceID       *int                                                                                                       `json:"instanceId,omitempty"`       // Instance Id
-	DisplayName      string                                                                                                     `json:"displayName,omitempty"`      // Display Name
-	InstanceTenantID string                                                                                                     `json:"instanceTenantId,omitempty"` // Instance Tenant Id
-	DeployPending    string                                                                                                     `json:"deployPending,omitempty"`    // Deploy Pending
-	InstanceVersion  *float64                                                                                                   `json:"instanceVersion,omitempty"`  // Instance Version
-	LocalIPAddress   string                                                                                                     `json:"localIpAddress,omitempty"`   // Local Ip Address
-	RemoteIPAddress  string                                                                                                     `json:"remoteIpAddress,omitempty"`  // Remote Ip Address
-	VLANID           *int                                                                                                       `json:"vlanId,omitempty"`           // Vlan Id
-	VirtualNetwork   *ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"`   //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsConnectedTo interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettings struct {
+	ID                           string                                                                                                `json:"id,omitempty"`                           // Id
+	InstanceID                   *int                                                                                                  `json:"instanceId,omitempty"`                   // Instance Id
+	DisplayName                  string                                                                                                `json:"displayName,omitempty"`                  // Display Name
+	InstanceTenantID             string                                                                                                `json:"instanceTenantId,omitempty"`             // Instance Tenant Id
+	DeployPending                string                                                                                                `json:"deployPending,omitempty"`                // Deploy Pending
+	InstanceVersion              *int                                                                                                  `json:"instanceVersion,omitempty"`              // Instance Version
+	ExternalDomainProtocolNumber string                                                                                                `json:"externalDomainProtocolNumber,omitempty"` // External Domain Protocol Number
+	InterfaceUUID                string                                                                                                `json:"interfaceUuid,omitempty"`                // Interface Uuid
+	PolicyPropagationEnabled     *bool                                                                                                 `json:"policyPropagationEnabled,omitempty"`     // Policy Propagation Enabled
+	PolicySgtTag                 *float64                                                                                              `json:"policySgtTag,omitempty"`                 // Policy Sgt Tag
+	L2Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL2Handoff `json:"l2Handoff,omitempty"`                    // L2 Handoff
+	L3Handoff                    *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3Handoff `json:"l3Handoff,omitempty"`                    //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL2Handoff interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3Handoff struct {
+	ID               string                                                                                                            `json:"id,omitempty"`               // Id
+	InstanceID       *int                                                                                                              `json:"instanceId,omitempty"`       // Instance Id
+	DisplayName      string                                                                                                            `json:"displayName,omitempty"`      // Display Name
+	InstanceTenantID string                                                                                                            `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	DeployPending    string                                                                                                            `json:"deployPending,omitempty"`    // Deploy Pending
+	InstanceVersion  *float64                                                                                                          `json:"instanceVersion,omitempty"`  // Instance Version
+	LocalIPAddress   string                                                                                                            `json:"localIpAddress,omitempty"`   // Local Ip Address
+	RemoteIPAddress  string                                                                                                            `json:"remoteIpAddress,omitempty"`  // Remote Ip Address
+	VLANID           *int                                                                                                              `json:"vlanId,omitempty"`           // Vlan Id
+	VirtualNetwork   *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork `json:"virtualNetwork,omitempty"`   //
+}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadDeviceSettingsExtConnectivitySettingsL3HandoffVirtualNetwork struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettings struct {
-	ID               string                                                                        `json:"id,omitempty"`               // Id
-	InstanceID       *int                                                                          `json:"instanceId,omitempty"`       // Instance Id
-	DisplayName      string                                                                        `json:"displayName,omitempty"`      // Display Name
-	InstanceTenantID string                                                                        `json:"instanceTenantId,omitempty"` // Instance Tenant Id
-	DeployPending    string                                                                        `json:"deployPending,omitempty"`    // Deploy Pending
-	InstanceVersion  *int                                                                          `json:"instanceVersion,omitempty"`  // Instance Version
-	AAA              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsAAA        `json:"aaa,omitempty"`              // Aaa
-	Cmx              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsCmx        `json:"cmx,omitempty"`              // Cmx
-	Dhcp             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcp       `json:"dhcp,omitempty"`             //
-	DNS              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNS        `json:"dns,omitempty"`              //
-	Ldap             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsLdap       `json:"ldap,omitempty"`             // Ldap
-	NativeVLAN       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNativeVLAN `json:"nativeVlan,omitempty"`       // Native Vlan
-	Netflow          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNetflow    `json:"netflow,omitempty"`          // Netflow
-	Ntp              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNtp        `json:"ntp,omitempty"`              // Ntp
-	SNMP             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSNMP       `json:"snmp,omitempty"`             // Snmp
-	Syslogs          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSyslogs    `json:"syslogs,omitempty"`          // Syslogs
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettings struct {
+	ID               string                                                                               `json:"id,omitempty"`               // Id
+	InstanceID       *int                                                                                 `json:"instanceId,omitempty"`       // Instance Id
+	DisplayName      string                                                                               `json:"displayName,omitempty"`      // Display Name
+	InstanceTenantID string                                                                               `json:"instanceTenantId,omitempty"` // Instance Tenant Id
+	DeployPending    string                                                                               `json:"deployPending,omitempty"`    // Deploy Pending
+	InstanceVersion  *int                                                                                 `json:"instanceVersion,omitempty"`  // Instance Version
+	AAA              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsAAA        `json:"aaa,omitempty"`              // Aaa
+	Cmx              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsCmx        `json:"cmx,omitempty"`              // Cmx
+	Dhcp             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcp       `json:"dhcp,omitempty"`             //
+	DNS              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNS        `json:"dns,omitempty"`              //
+	Ldap             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsLdap       `json:"ldap,omitempty"`             // Ldap
+	NativeVLAN       *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNativeVLAN `json:"nativeVlan,omitempty"`       // Native Vlan
+	Netflow          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNetflow    `json:"netflow,omitempty"`          // Netflow
+	Ntp              *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNtp        `json:"ntp,omitempty"`              // Ntp
+	SNMP             *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSNMP       `json:"snmp,omitempty"`             // Snmp
+	Syslogs          *[]ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSyslogs    `json:"syslogs,omitempty"`          // Syslogs
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsAAA interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsCmx interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcp struct {
-	ID        string                                                                         `json:"id,omitempty"`        // Id
-	IPAddress *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcpIPAddress `json:"ipAddress,omitempty"` //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsAAA interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsCmx interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcp struct {
+	ID        string                                                                                `json:"id,omitempty"`        // Id
+	IPAddress *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcpIPAddress `json:"ipAddress,omitempty"` //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDhcpIPAddress struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDhcpIPAddress struct {
 	ID            string `json:"id,omitempty"`            // Id
 	PaddedAddress string `json:"paddedAddress,omitempty"` // Padded Address
 	AddressType   string `json:"addressType,omitempty"`   // Address Type
 	Address       string `json:"address,omitempty"`       // Address
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNS struct {
-	ID         string                                                                 `json:"id,omitempty"`         // Id
-	DomainName string                                                                 `json:"domainName,omitempty"` // Domain Name
-	IP         *ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNSIP `json:"ip,omitempty"`         //
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNS struct {
+	ID         string                                                                        `json:"id,omitempty"`         // Id
+	DomainName string                                                                        `json:"domainName,omitempty"` // Domain Name
+	IP         *ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNSIP `json:"ip,omitempty"`         //
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsDNSIP struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsDNSIP struct {
 	ID            string `json:"id,omitempty"`            // Id
 	PaddedAddress string `json:"paddedAddress,omitempty"` // Padded Address
 	AddressType   string `json:"addressType,omitempty"`   // Address Type
 	Address       string `json:"address,omitempty"`       // Address
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsLdap interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNativeVLAN interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNetflow interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsNtp interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSNMP interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricNetworkWideSettingsSyslogs interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricOtherDevice interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricTransitNetworks struct {
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsLdap interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNativeVLAN interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNetflow interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsNtp interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSNMP interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadNetworkWideSettingsSyslogs interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadOtherDevice interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadTransitNetworks struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricVirtualNetwork interface{}
-type ResponseSdaGetBorderDeviceDetailFromSdaFabricWLAN interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadVirtualNetwork interface{}
+type ResponseSdaGetBorderDeviceDetailFromSdaFabricPayloadWLAN interface{}
 type ResponseSdaDeleteBorderDeviceFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
 	Description        string `json:"description,omitempty"`        // provides detailed information for API success or failure.
@@ -310,12 +319,13 @@ type ResponseSdaDeleteControlPlaneDeviceInSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetControlPlaneDeviceFromSdaFabric struct {
-	Status                    string   `json:"status,omitempty"`                    // Status
-	Description               string   `json:"description,omitempty"`               // Description
-	Name                      string   `json:"name,omitempty"`                      // Name
-	Roles                     []string `json:"roles,omitempty"`                     // Roles
-	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
+	DeviceName                string `json:"deviceName,omitempty"`                // Device Name
+	Roles                     string `json:"roles,omitempty"`                     // Assigned roles
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+	RouteDistributionProtocol string `json:"routeDistributionProtocol,omitempty"` // routeDistributionProtocol
+	Status                    string `json:"status,omitempty"`                    // Status
+	Description               string `json:"description,omitempty"`               // Control plane device info retrieved successfully in sda fabric
 }
 type ResponseSdaAddControlPlaneDeviceInSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -359,21 +369,21 @@ type ResponseSdaDeleteEdgeDeviceFromSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetEdgeDeviceFromSdaFabric struct {
-	Status                    string   `json:"status,omitempty"`                    // Status
-	Description               string   `json:"description,omitempty"`               // Description
-	Name                      string   `json:"name,omitempty"`                      // Name
-	Roles                     []string `json:"roles,omitempty"`                     // Roles
-	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
+	DeviceName                string `json:"deviceName,omitempty"`                // Device Name
+	Roles                     string `json:"roles,omitempty"`                     // Assigned roles
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+	FabricSiteNameHierarchy   string `json:"fabricSiteNameHierarchy,omitempty"`   // Fabric Site Name Hierarchy
+	Status                    string `json:"status,omitempty"`                    // Status
+	Description               string `json:"description,omitempty"`               // Edge device info retrieved successfully in sda fabric
 }
 type ResponseSdaGetSiteFromSdaFabric struct {
-	SiteNameHierarchy  *string `json:"siteNameHierarchy,omitempty"`  // SiteNameHierarchy **
-	FabricName         *string `json:"fabricName,omitempty"`         // FabricName **
-	FabricType         *string `json:"fabricType,omitempty"`         // FabricType **
-	FabricDomainType   *string `json:"fabricDomainType,omitempty"`   // FabricDomainType **
-	Status             string  `json:"status,omitempty"`             // Status
-	Description        string  `json:"description,omitempty"`        // Description
-	ExecutionStatusURL string  `json:"executionStatusUrl,omitempty"` // Execution Status Url
+	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	FabricName        string `json:"fabricName,omitempty"`        // Fabric Name
+	FabricType        string `json:"fabricType,omitempty"`        // Fabric Type
+	FabricDomainType  string `json:"fabricDomainType,omitempty"`  // Fabric Domain Type
+	Status            string `json:"status,omitempty"`            // Status
+	Description       string `json:"description,omitempty"`       // Fabric Site info successfully retrieved from sda fabric
 }
 type ResponseSdaDeleteSiteFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -454,21 +464,22 @@ type ResponseSdaAddMulticastInSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabric struct {
-	SiteNameHierarchy string                                                        `json:"siteNameHierarchy,omitempty"` // Full path of sda Fabric Site
-	MulticastMethod   string                                                        `json:"multicastMethod,omitempty"`   // Multicast Method
-	MulticastType     string                                                        `json:"multicastType,omitempty"`     // Multicast Type
-	MulticastVnInfo   *[]ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`   //
+	MulticastMethod string                                                        `json:"multicastMethod,omitempty"` // Multicast Method
+	MulticastType   string                                                        `json:"multicastType,omitempty"`   // Multicast Type
+	MulticastVnInfo *[]ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"` //
+	Status          string                                                        `json:"status,omitempty"`          // Status
+	Description     string                                                        `json:"description,omitempty"`     // multicast configuration info retrieved successfully from sda fabric
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfo struct {
-	VirtualNetworkName  string                                                             `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to Fabric Site
-	IPPoolName          string                                                             `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to Fabric Site
-	InternalRpIPAddress []string                                                           `json:"internalRpIpAddress,omitempty"` // InternalRpIpAddress, required if multicastType is asm_with_internal_rp
-	ExternalRpIPAddress string                                                             `json:"externalRpIpAddress,omitempty"` // ExternalRpIpAddress, required if multicastType is asm_with_external_rp
-	SsmInfo             *ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             //
+	VirtualNetworkName  string                                                               `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to Fabric Site
+	IPPoolName          string                                                               `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to Fabric Site
+	InternalRpIPAddress []string                                                             `json:"internalRpIpAddress,omitempty"` // InternalRpIpAddress
+	ExternalRpIPAddress string                                                               `json:"externalRpIpAddress,omitempty"` // ExternalRpIpAddress
+	SsmInfo             *[]ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             //
 }
 type ResponseSdaGetMulticastDetailsFromSdaFabricMulticastVnInfoSsmInfo struct {
-	SsmGroupRange   string `json:"ssmGroupRange,omitempty"`   // Valid SSM group range ip address(e.g., 230.0.0.0)
-	SsmWildcardMask string `json:"ssmWildcardMask,omitempty"` // Valid SSM Wildcard Mask ip address(e.g.,0.255.255.255)
+	SsmGroupRange   string `json:"ssmGroupRange,omitempty"`   // SSM group range
+	SsmWildcardMask string `json:"ssmWildcardMask,omitempty"` // SSM Wildcard Mask
 }
 type ResponseSdaDeleteMulticastFromSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -503,13 +514,10 @@ type ResponseSdaProvisionWiredDevice struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetProvisionedWiredDevice struct {
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the device to be provisioned
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy for device location(only building / floor level)
 	Status                    string `json:"status,omitempty"`                    // Status
-	Description               string `json:"description,omitempty"`               // Description
-	TaskID                    string `json:"taskId,omitempty"`                    // Task Id
-	TaskStatusURL             string `json:"taskStatusUrl,omitempty"`             // Task Status Url
-	ExecutionStatusURL        string `json:"executionStatusUrl,omitempty"`        // Execution Status Url
+	Description               string `json:"description,omitempty"`               // Wired Provisioned device detail retrieved successfully
 }
 type ResponseSdaDeleteTransitPeerNetwork struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -524,17 +532,19 @@ type ResponseSdaGetTransitPeerNetworkInfo struct {
 	TransitPeerNetworkType string                                                  `json:"transitPeerNetworkType,omitempty"` // Transit Peer Network Type
 	IPTransitSettings      *ResponseSdaGetTransitPeerNetworkInfoIPTransitSettings  `json:"ipTransitSettings,omitempty"`      //
 	SdaTransitSettings     *ResponseSdaGetTransitPeerNetworkInfoSdaTransitSettings `json:"sdaTransitSettings,omitempty"`     //
+	Status                 string                                                  `json:"status,omitempty"`                 // status
+	Description            string                                                  `json:"description,omitempty"`            // Transit Peer network info retrieved successfully
 }
 type ResponseSdaGetTransitPeerNetworkInfoIPTransitSettings struct {
 	RoutingProtocolName    string `json:"routingProtocolName,omitempty"`    // Routing Protocol Name
-	AutonomousSystemNumber string `json:"autonomousSystemNumber,omitempty"` // Autonomous System Number  (e.g.,1-65535)
+	AutonomousSystemNumber string `json:"autonomousSystemNumber,omitempty"` // Autonomous System Number
 }
 type ResponseSdaGetTransitPeerNetworkInfoSdaTransitSettings struct {
 	TransitControlPlaneSettings *[]ResponseSdaGetTransitPeerNetworkInfoSdaTransitSettingsTransitControlPlaneSettings `json:"transitControlPlaneSettings,omitempty"` //
 }
 type ResponseSdaGetTransitPeerNetworkInfoSdaTransitSettingsTransitControlPlaneSettings struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy where device is provisioned
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address of provisioned device
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy
+	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
 }
 type ResponseSdaAddTransitPeerNetwork struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -553,12 +563,13 @@ type ResponseSdaDeleteVnFromSdaFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetVnFromSdaFabric struct {
-	Status                    string   `json:"status,omitempty"`                    // Status
-	Description               string   `json:"description,omitempty"`               // Description
-	Name                      string   `json:"name,omitempty"`                      // Name
-	Roles                     []string `json:"roles,omitempty"`                     // Roles
-	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address
-	SiteHierarchy             string   `json:"siteHierarchy,omitempty"`             // Site Hierarchy
+	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Path of sda Fabric Site
+	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
+	FabricName         string `json:"fabricName,omitempty"`         // Fabric Name
+	IsInfraVn          string `json:"isInfraVN,omitempty"`          // Infra VN
+	IsDefaultVn        string `json:"isDefaultVN,omitempty"`        // Default VN
+	Status             string `json:"status,omitempty"`             // Status
+	Description        string `json:"description,omitempty"`        // Virtual Network info retrieved successfully from SDA Fabric
 }
 type ResponseSdaAddVnInFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -569,13 +580,14 @@ type ResponseSdaAddVnInFabric struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetVirtualNetworkSummary struct {
-	Response *ResponseSdaGetVirtualNetworkSummaryResponse `json:"response,omitempty"` //
-	Version  string                                       `json:"version,omitempty"`  // Version
+	VirtualNetworkCount   *int                                                        `json:"virtualNetworkCount,omitempty"`   // Virtual Networks Count
+	VirtualNetworkSummary *[]ResponseSdaGetVirtualNetworkSummaryVirtualNetworkSummary `json:"virtualNetworkSummary,omitempty"` //
+	Status                string                                                      `json:"status,omitempty"`                // Status
+	Description           string                                                      `json:"description,omitempty"`           // Virtual Network summary retrieved successfully from SDA Fabric
 }
-type ResponseSdaGetVirtualNetworkSummaryResponse struct {
-	Status      string `json:"status,omitempty"`      // Status
-	Description string `json:"description,omitempty"` // Description
-	FabricCount string `json:"fabricCount,omitempty"` // Fabric Count
+type ResponseSdaGetVirtualNetworkSummaryVirtualNetworkSummary struct {
+	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Site Name Hierarchy
+	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
 }
 type ResponseSdaGetIPPoolFromSdaVirtualNetwork struct {
 	Status                   string `json:"status,omitempty"`                   // Status
@@ -621,14 +633,12 @@ type ResponseSdaDeleteVirtualNetworkWithScalableGroups struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // uuid for API execution status
 }
 type ResponseSdaGetVirtualNetworkWithScalableGroups struct {
-	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name
-	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // Is Guest Virtual Network
+	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned at global level
+	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // Guest Virtual Network
 	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group Names
+	VManageVpnID          string   `json:"vManageVpnId,omitempty"`          // vManage vpn id for SD-WAN
 	Status                string   `json:"status,omitempty"`                // Status
-	Description           string   `json:"description,omitempty"`           // Description
-	TaskID                string   `json:"taskId,omitempty"`                // Task Id
-	TaskStatusURL         string   `json:"taskStatusUrl,omitempty"`         // Task Status Url
-	ExecutionStatusURL    string   `json:"executionStatusUrl,omitempty"`    // Execution Status Url
+	Description           string   `json:"description,omitempty"`           // Virtual network info retrieved successfully
 }
 type ResponseSdaUpdateVirtualNetworkWithScalableGroups struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -657,13 +667,15 @@ type RequestItemSdaAddBorderDeviceInSdaFabric struct {
 	DeviceManagementIPAddress         string                                                                  `json:"deviceManagementIpAddress,omitempty"`         // Management Ip Address of the provisioned Device
 	SiteNameHierarchy                 string                                                                  `json:"siteNameHierarchy,omitempty"`                 // Site Name Hierarchy of provisioned Device(site should be part of Fabric Site)
 	DeviceRole                        []string                                                                `json:"deviceRole,omitempty"`                        // Supported Device Roles in SD-Access fabric. Allowed roles are "Border_Node","Control_Plane_Node","Edge_Node". E.g. ["Border_Node"] or ["Border_Node", "Control_Plane_Node"] or ["Border_Node", "Control_Plane_Node","Edge_Node"]
+	RouteDistributionProtocol         string                                                                  `json:"routeDistributionProtocol,omitempty"`         // Route Distribution Protocol for Control Plane Device. Allowed values are "LISP_BGP" or "LISP_PUB_SUB". Default value is "LISP_BGP"
 	ExternalDomainRoutingProtocolName string                                                                  `json:"externalDomainRoutingProtocolName,omitempty"` // External Domain Routing Protocol Name
 	ExternalConnectivityIPPoolName    string                                                                  `json:"externalConnectivityIpPoolName,omitempty"`    // External Connectivity IpPool Name
 	InternalAutonomouSystemNumber     string                                                                  `json:"internalAutonomouSystemNumber,omitempty"`     // Internal Autonomouns System Number (e.g.,1-65535)
+	BorderPriority                    string                                                                  `json:"borderPriority,omitempty"`                    // Border priority associated with a given device. Allowed range for Border Priority is [1-9]. A lower value indicates higher priority. E.g., a priority of 1 takes precedence over 5. Default priority would be set to 10.
 	BorderSessionType                 string                                                                  `json:"borderSessionType,omitempty"`                 // Border Session Type
-	ConnectedToInternet               string                                                                  `json:"connectedToInternet,omitempty"`               // Connected to Internet
+	ConnectedToInternet               *bool                                                                   `json:"connectedToInternet,omitempty"`               // Connected to Internet
 	SdaTransitNetworkName             string                                                                  `json:"sdaTransitNetworkName,omitempty"`             // SD-Access Transit Network Name
-	BorderWithExternalConnectivity    string                                                                  `json:"borderWithExternalConnectivity,omitempty"`    // Border With External Connectivity (Note: True for transit and False for non-transit border)
+	BorderWithExternalConnectivity    *bool                                                                   `json:"borderWithExternalConnectivity,omitempty"`    // Border With External Connectivity (Note: True for transit and False for non-transit border)
 	ExternalConnectivitySettings      *[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettings `json:"externalConnectivitySettings,omitempty"`      //
 }
 type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettings struct {
@@ -684,19 +696,19 @@ type RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL2Hando
 	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name, that is associated to Fabric Site
 	VLANName           string `json:"vlanName,omitempty"`           // Vlan Name of L2 Handoff
 }
-type RequestSdaAddControlPlaneDeviceInSdaFabric []RequestItemSdaAddControlPlaneDeviceInSdaFabric // Array of RequestSdaAddControlPlaneDeviceInSDAFabric
-type RequestItemSdaAddControlPlaneDeviceInSdaFabric struct {
+type RequestSdaAddControlPlaneDeviceInSdaFabric struct {
 	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // siteNameHierarchy of the Provisioned Device(site should be part of Fabric Site(site should be part of  Fabric Site)
+	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // siteNameHierarchy of the Provisioned Device(site should be part of Fabric Site)
+	RouteDistributionProtocol string `json:"routeDistributionProtocol,omitempty"` // Route Distribution Protocol for Control Plane Device. Allowed values are "LISP_BGP" or "LISP_PUB_SUB". Default value is "LISP_BGP"
 }
-type RequestSdaAddEdgeDeviceInSdaFabric []RequestItemSdaAddEdgeDeviceInSdaFabric // Array of RequestSdaAddEdgeDeviceInSDAFabric
-type RequestItemSdaAddEdgeDeviceInSdaFabric struct {
+type RequestSdaAddEdgeDeviceInSdaFabric struct {
 	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Device which is provisioned successfully
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // siteNameHierarchy of the Provisioned Device(site should be part of Fabric Site)
 }
 type RequestSdaAddSiteInSdaFabric struct {
 	FabricName        string `json:"fabricName,omitempty"`        // Warning - Starting DNA Center 2.2.3.5 release, this field has been deprecated. SD-Access Fabric does not need it anymore.  It will be removed in future DNA Center releases.
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Existing site name hierarchy available at global level. For Example "Global/Chicago/Building21/Floor1"
+	FabricType        string `json:"fabricType,omitempty"`        // Type of SD-Access Fabric. Allowed values are "FABRIC_SITE" or "FABRIC_ZONE".  Default value is "FABRIC_SITE".
 }
 type RequestSdaAddPortAssignmentForAccessPointInSdaFabric struct {
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
@@ -707,14 +719,15 @@ type RequestSdaAddPortAssignmentForAccessPointInSdaFabric struct {
 	InterfaceDescription      string `json:"interfaceDescription,omitempty"`      // Details or note of interface port assignment
 }
 type RequestSdaAddPortAssignmentForUserDeviceInSdaFabric struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Complete Path of SD-Access Fabric Site
-	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the edge device
-	InterfaceName             string `json:"interfaceName,omitempty"`             // Interface Name of the Edge Node
-	DataIPAddressPoolName     string `json:"dataIpAddressPoolName,omitempty"`     // Ip Pool Name, that is assigned to virtual network with traffic type as DATA(can't be empty if voiceIpAddressPoolName is empty)
-	VoiceIPAddressPoolName    string `json:"voiceIpAddressPoolName,omitempty"`    // Ip Pool Name, that is assigned to virtual network with traffic type as VOICE(can't be empty if dataIpAddressPoolName is empty)
-	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate TemplateName associated with siteNameHierarchy
-	ScalableGroupName         string `json:"scalableGroupName,omitempty"`         // Scalable Group name associated with VN
-	InterfaceDescription      string `json:"interfaceDescription,omitempty"`      // User defined text message for this port
+	SiteNameHierarchy         string   `json:"siteNameHierarchy,omitempty"`         // Complete Path of SD-Access Fabric Site.
+	DeviceManagementIPAddress string   `json:"deviceManagementIpAddress,omitempty"` // Management Ip Address of the Edge Node Device.
+	InterfaceName             string   `json:"interfaceName,omitempty"`             // Interface Name on the Edge Node Device.
+	InterfaceNames            []string `json:"interfaceNames,omitempty"`            // List of Interface Names on the Edge Node Device. E.g.["GigabitEthernet1/0/3","GigabitEthernet1/0/4"]
+	DataIPAddressPoolName     string   `json:"dataIpAddressPoolName,omitempty"`     // Ip Pool Name, that is assigned to virtual network with traffic type as DATA(can't be empty if voiceIpAddressPoolName is empty)
+	VoiceIPAddressPoolName    string   `json:"voiceIpAddressPoolName,omitempty"`    // Ip Pool Name, that is assigned to virtual network with traffic type as VOICE(can't be empty if dataIpAddressPoolName is empty)
+	AuthenticateTemplateName  string   `json:"authenticateTemplateName,omitempty"`  // Authenticate TemplateName associated with siteNameHierarchy
+	ScalableGroupName         string   `json:"scalableGroupName,omitempty"`         // Scalable Group name associated with VN
+	InterfaceDescription      string   `json:"interfaceDescription,omitempty"`      // User defined text message for port assignment
 }
 type RequestSdaAddMulticastInSdaFabric struct {
 	SiteNameHierarchy string                                              `json:"siteNameHierarchy,omitempty"` // Full path of sda Fabric Site
@@ -723,11 +736,11 @@ type RequestSdaAddMulticastInSdaFabric struct {
 	MulticastVnInfo   *[]RequestSdaAddMulticastInSdaFabricMulticastVnInfo `json:"multicastVnInfo,omitempty"`   //
 }
 type RequestSdaAddMulticastInSdaFabricMulticastVnInfo struct {
-	VirtualNetworkName  string                                                   `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to Fabric Site
-	IPPoolName          string                                                   `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to Fabric Site
-	InternalRpIPAddress []string                                                 `json:"internalRpIpAddress,omitempty"` // InternalRpIpAddress, required if multicastType is asm_with_internal_rp
-	ExternalRpIPAddress string                                                   `json:"externalRpIpAddress,omitempty"` // ExternalRpIpAddress, required if multicastType is asm_with_external_rp
-	SsmInfo             *RequestSdaAddMulticastInSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             //
+	VirtualNetworkName  string                                                     `json:"virtualNetworkName,omitempty"`  // Virtual Network Name, that is associated to Fabric Site
+	IPPoolName          string                                                     `json:"ipPoolName,omitempty"`          // Ip Pool Name, that is reserved to Fabric Site
+	InternalRpIPAddress []string                                                   `json:"internalRpIpAddress,omitempty"` // InternalRpIpAddress, required if multicastType is asm_with_internal_rp
+	ExternalRpIPAddress string                                                     `json:"externalRpIpAddress,omitempty"` // ExternalRpIpAddress, required if multicastType is asm_with_external_rp
+	SsmInfo             *[]RequestSdaAddMulticastInSdaFabricMulticastVnInfoSsmInfo `json:"ssmInfo,omitempty"`             //
 }
 type RequestSdaAddMulticastInSdaFabricMulticastVnInfoSsmInfo struct {
 	SsmGroupRange   string `json:"ssmGroupRange,omitempty"`   // Valid SSM group range ip address(e.g., 230.0.0.0)
@@ -758,8 +771,7 @@ type RequestSdaAddTransitPeerNetworkSdaTransitSettingsTransitControlPlaneSetting
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Site Name Hierarchy where device is provisioned
 	DeviceManagementIPAddress string `json:"deviceManagementIpAddress,omitempty"` // Device Management Ip Address of provisioned device
 }
-type RequestSdaAddVnInFabric []RequestItemSdaAddVnInFabric // Array of RequestSdaAddVNInFabric
-type RequestItemSdaAddVnInFabric struct {
+type RequestSdaAddVnInFabric struct {
 	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name, that is created at Global level
 	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Path of sda Fabric Site
 }
@@ -774,21 +786,24 @@ type RequestSdaAddIPPoolInSdaVirtualNetwork struct {
 	TrafficType           string `json:"trafficType,omitempty"`           // Traffic type(applicable for L3  and L2)
 	ScalableGroupName     string `json:"scalableGroupName,omitempty"`     // Scalable Group Name(applicable for L3)
 	IsL2FloodingEnabled   *bool  `json:"isL2FloodingEnabled,omitempty"`   // Layer2 flooding enablement flag(applicable for L3 , L2 and always true for L2 and default value is False )
-	IsThisCriticalPool    *bool  `json:"isThisCriticalPool,omitempty"`    // Critical pool enablement(applicable for L3 and default value is False )
+	IsThisCriticalPool    *bool  `json:"isThisCriticalPool,omitempty"`    // Critical pool enablement flag(applicable for L3 and default value is False )
 	IsWirelessPool        *bool  `json:"isWirelessPool,omitempty"`        // Wireless Pool enablement flag(applicable for L3  and L2 and default value is False )
 	IsIPDirectedBroadcast *bool  `json:"isIpDirectedBroadcast,omitempty"` // Ip Directed Broadcast enablement flag(applicable for L3 and default value is False )
 	IsCommonPool          *bool  `json:"isCommonPool,omitempty"`          // Common Pool enablement flag(applicable for L3 and L2 and default value is False )
-	PoolType              string `json:"poolType,omitempty"`              // Pool Type (applicable for  INFRA_VN)
+	IsBridgeModeVm        *bool  `json:"isBridgeModeVm,omitempty"`        // Bridge Mode Vm enablement flag (applicable for L3 and L2 and default value is False )
+	PoolType              string `json:"poolType,omitempty"`              // Pool Type (applicable for INFRA_VN)
 }
 type RequestSdaAddVirtualNetworkWithScalableGroups struct {
 	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned at global level
-	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
+	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // Guest Virtual Network enablement flag, default value is False.
 	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group to be associated to virtual network
+	VManageVpnID          string   `json:"vManageVpnId,omitempty"`          // vManage vpn id for SD-WAN
 }
 type RequestSdaUpdateVirtualNetworkWithScalableGroups struct {
 	VirtualNetworkName    string   `json:"virtualNetworkName,omitempty"`    // Virtual Network Name to be assigned global level
-	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // To create guest virtual network
+	IsGuestVirtualNetwork *bool    `json:"isGuestVirtualNetwork,omitempty"` // Indicates whether to set this as guest virtual network or not, default value is False.
 	ScalableGroupNames    []string `json:"scalableGroupNames,omitempty"`    // Scalable Group Name to be associated to virtual network
+	VManageVpnID          string   `json:"vManageVpnId,omitempty"`          // vManage vpn id for SD-WAN
 }
 
 //GetDefaultAuthenticationProfileFromSdaFabric Get default authentication profile from SDA Fabric - 8b90-8a4e-4c5a-9a23
@@ -796,6 +811,8 @@ type RequestSdaUpdateVirtualNetworkWithScalableGroups struct {
 
 
 @param GetDefaultAuthenticationProfileFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-default-authentication-profile-from-sda-fabric
 */
 func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuthenticationProfileFromSDAFabricQueryParams *GetDefaultAuthenticationProfileFromSdaFabricQueryParams) (*ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
@@ -828,6 +845,8 @@ func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuth
 
 
 @param GetBorderDeviceDetailFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-border-device-detail-from-sda-fabric
 */
 func (s *SdaService) GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFromSDAFabricQueryParams *GetBorderDeviceDetailFromSdaFabricQueryParams) (*ResponseSdaGetBorderDeviceDetailFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/border-device"
@@ -860,6 +879,8 @@ func (s *SdaService) GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFro
 
 
 @param GetControlPlaneDeviceFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-control-plane-device-from-sda-fabric
 */
 func (s *SdaService) GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFromSDAFabricQueryParams *GetControlPlaneDeviceFromSdaFabricQueryParams) (*ResponseSdaGetControlPlaneDeviceFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
@@ -892,6 +913,8 @@ func (s *SdaService) GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFro
 
 
 @param GetDeviceInfoFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-info-from-sda-fabric
 */
 func (s *SdaService) GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryParams *GetDeviceInfoFromSdaFabricQueryParams) (*ResponseSdaGetDeviceInfoFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/device"
@@ -924,6 +947,8 @@ func (s *SdaService) GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryP
 
 
 @param GetDeviceRoleInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-role-in-sda-fabric
 */
 func (s *SdaService) GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParams *GetDeviceRoleInSdaFabricQueryParams) (*ResponseSdaGetDeviceRoleInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/device/role"
@@ -956,6 +981,8 @@ func (s *SdaService) GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParam
 
 
 @param GetEdgeDeviceFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-edge-device-from-sda-fabric
 */
 func (s *SdaService) GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryParams *GetEdgeDeviceFromSdaFabricQueryParams) (*ResponseSdaGetEdgeDeviceFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/edge-device"
@@ -988,6 +1015,8 @@ func (s *SdaService) GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryP
 
 
 @param GetSiteFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-from-sda-fabric
 */
 func (s *SdaService) GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams *GetSiteFromSdaFabricQueryParams) (*ResponseSdaGetSiteFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
@@ -1020,6 +1049,8 @@ func (s *SdaService) GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams *GetSi
 
 
 @param GetPortAssignmentForAccessPointInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-access-point-in-sda-fabric
 */
 func (s *SdaService) GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmentForAccessPointInSDAFabricQueryParams *GetPortAssignmentForAccessPointInSdaFabricQueryParams) (*ResponseSdaGetPortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
@@ -1052,6 +1083,8 @@ func (s *SdaService) GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmen
 
 
 @param GetPortAssignmentForUserDeviceInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-user-device-in-sda-fabric
 */
 func (s *SdaService) GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignmentForUserDeviceInSDAFabricQueryParams *GetPortAssignmentForUserDeviceInSdaFabricQueryParams) (*ResponseSdaGetPortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
@@ -1084,6 +1117,8 @@ func (s *SdaService) GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignment
 
 
 @param GetMulticastDetailsFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-details-from-sda-fabric
 */
 func (s *SdaService) GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDAFabricQueryParams *GetMulticastDetailsFromSdaFabricQueryParams) (*ResponseSdaGetMulticastDetailsFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/multicast"
@@ -1116,6 +1151,8 @@ func (s *SdaService) GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDA
 
 
 @param GetProvisionedWiredDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-wired-device
 */
 func (s *SdaService) GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryParams *GetProvisionedWiredDeviceQueryParams) (*ResponseSdaGetProvisionedWiredDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/provision-device"
@@ -1148,6 +1185,8 @@ func (s *SdaService) GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryPar
 
 
 @param GetTransitPeerNetworkInfoQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-peer-network-info
 */
 func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryParams *GetTransitPeerNetworkInfoQueryParams) (*ResponseSdaGetTransitPeerNetworkInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/transit-peer-network"
@@ -1180,6 +1219,8 @@ func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryPar
 
 
 @param GetVNFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-v-n-from-sda-fabric
 */
 func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFromSdaFabricQueryParams) (*ResponseSdaGetVnFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
@@ -1212,6 +1253,8 @@ func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFrom
 
 
 @param GetVirtualNetworkSummaryQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-summary
 */
 func (s *SdaService) GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParams *GetVirtualNetworkSummaryQueryParams) (*ResponseSdaGetVirtualNetworkSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network/summary"
@@ -1244,6 +1287,8 @@ func (s *SdaService) GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParam
 
 
 @param GetIPPoolFromSDAVirtualNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ip-pool-from-sda-virtual-network
 */
 func (s *SdaService) GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetworkQueryParams *GetIPPoolFromSdaVirtualNetworkQueryParams) (*ResponseSdaGetIPPoolFromSdaVirtualNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
@@ -1276,6 +1321,8 @@ func (s *SdaService) GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetwo
 
 
 @param GetVirtualNetworkWithScalableGroupsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-with-scalable-groups
 */
 func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithScalableGroupsQueryParams *GetVirtualNetworkWithScalableGroupsQueryParams) (*ResponseSdaGetVirtualNetworkWithScalableGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/virtual-network"
@@ -1307,7 +1354,9 @@ func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithSc
 /* Add default authentication template in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-default-authentication-template-in-sda-fabric
+*/
 func (s *SdaService) AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDefaultAuthenticationTemplateInSDAFabric *RequestSdaAddDefaultAuthenticationTemplateInSdaFabric) (*ResponseSdaAddDefaultAuthenticationTemplateInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
@@ -1337,7 +1386,9 @@ func (s *SdaService) AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDe
 /* Add border device in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-border-device-in-sda-fabric
+*/
 func (s *SdaService) AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFabric *RequestSdaAddBorderDeviceInSdaFabric) (*ResponseSdaAddBorderDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/border-device"
 
@@ -1367,7 +1418,9 @@ func (s *SdaService) AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFa
 /* Add control plane device in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-control-plane-device-in-sda-fabric
+*/
 func (s *SdaService) AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneDeviceInSDAFabric *RequestSdaAddControlPlaneDeviceInSdaFabric) (*ResponseSdaAddControlPlaneDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
 
@@ -1397,7 +1450,9 @@ func (s *SdaService) AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneD
 /* Add edge device in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-edge-device-in-sda-fabric
+*/
 func (s *SdaService) AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric *RequestSdaAddEdgeDeviceInSdaFabric) (*ResponseSdaAddEdgeDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/edge-device"
 
@@ -1427,7 +1482,9 @@ func (s *SdaService) AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric
 /* Add Site in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-site-in-sda-fabric
+*/
 func (s *SdaService) AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric *RequestSdaAddSiteInSdaFabric) (*ResponseSdaAddSiteInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
@@ -1457,7 +1514,9 @@ func (s *SdaService) AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric *RequestSda
 /* Add Port assignment for access point in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-access-point-in-sda-fabric
+*/
 func (s *SdaService) AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPortAssignmentForAccessPointInSDAFabric *RequestSdaAddPortAssignmentForAccessPointInSdaFabric) (*ResponseSdaAddPortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
@@ -1487,7 +1546,9 @@ func (s *SdaService) AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPor
 /* Add Port assignment for user device in SDA Fabric.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-user-device-in-sda-fabric
+*/
 func (s *SdaService) AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPortAssignmentForUserDeviceInSDAFabric *RequestSdaAddPortAssignmentForUserDeviceInSdaFabric) (*ResponseSdaAddPortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
@@ -1517,7 +1578,9 @@ func (s *SdaService) AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPort
 /* Add multicast in SDA fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-multicast-in-sda-fabric
+*/
 func (s *SdaService) AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric *RequestSdaAddMulticastInSdaFabric) (*ResponseSdaAddMulticastInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/multicast"
 
@@ -1547,7 +1610,9 @@ func (s *SdaService) AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric *
 /* Provision Wired Device
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-wired-device
+*/
 func (s *SdaService) ProvisionWiredDevice(requestSdaProvisionWiredDevice *RequestSdaProvisionWiredDevice) (*ResponseSdaProvisionWiredDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/provision-device"
 
@@ -1577,7 +1642,9 @@ func (s *SdaService) ProvisionWiredDevice(requestSdaProvisionWiredDevice *Reques
 /* Add Transit Peer Network in SD-Access
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-transit-peer-network
+*/
 func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *RequestSdaAddTransitPeerNetwork) (*ResponseSdaAddTransitPeerNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/transit-peer-network"
 
@@ -1607,7 +1674,9 @@ func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *Requ
 /* Add virtual network (VN) in SDA Fabric
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-v-n-in-fabric
+*/
 func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFabric) (*ResponseSdaAddVnInFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
 
@@ -1637,7 +1706,9 @@ func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFab
 /* Add IP Pool in SDA Virtual Network
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ip-pool-in-sda-virtual-network
+*/
 func (s *SdaService) AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtualNetwork *RequestSdaAddIPPoolInSdaVirtualNetwork) (*ResponseSdaAddIPPoolInSdaVirtualNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
@@ -1667,7 +1738,9 @@ func (s *SdaService) AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtua
 /* Add virtual network with scalable groups at global level
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-virtual-network-with-scalable-groups
+*/
 func (s *SdaService) AddVirtualNetworkWithScalableGroups(requestSdaAddVirtualNetworkWithScalableGroups *RequestSdaAddVirtualNetworkWithScalableGroups) (*ResponseSdaAddVirtualNetworkWithScalableGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/virtual-network"
 
@@ -1788,8 +1861,11 @@ func (s *SdaService) UpdateVirtualNetworkWithScalableGroups(requestSdaUpdateVirt
 
 
 @param DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-default-authentication-profile-from-sda-fabric
 */
 func (s *SdaService) DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSdaFabricQueryParams) (*ResponseSdaDeleteDefaultAuthenticationProfileFromSdaFabric, *resty.Response, error) {
+	//DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
 
 	queryString, _ := query.Values(DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams)
@@ -1820,8 +1896,11 @@ func (s *SdaService) DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefau
 
 
 @param DeleteBorderDeviceFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-border-device-from-sda-fabric
 */
 func (s *SdaService) DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFabricQueryParams *DeleteBorderDeviceFromSdaFabricQueryParams) (*ResponseSdaDeleteBorderDeviceFromSdaFabric, *resty.Response, error) {
+	//DeleteBorderDeviceFromSDAFabricQueryParams *DeleteBorderDeviceFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/border-device"
 
 	queryString, _ := query.Values(DeleteBorderDeviceFromSDAFabricQueryParams)
@@ -1852,8 +1931,11 @@ func (s *SdaService) DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFa
 
 
 @param DeleteControlPlaneDeviceInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-control-plane-device-in-sda-fabric
 */
 func (s *SdaService) DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSdaFabricQueryParams) (*ResponseSdaDeleteControlPlaneDeviceInSdaFabric, *resty.Response, error) {
+	//DeleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
 
 	queryString, _ := query.Values(DeleteControlPlaneDeviceInSDAFabricQueryParams)
@@ -1884,8 +1966,11 @@ func (s *SdaService) DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDevic
 
 
 @param DeleteEdgeDeviceFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-edge-device-from-sda-fabric
 */
 func (s *SdaService) DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSdaFabricQueryParams) (*ResponseSdaDeleteEdgeDeviceFromSdaFabric, *resty.Response, error) {
+	//DeleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/edge-device"
 
 	queryString, _ := query.Values(DeleteEdgeDeviceFromSDAFabricQueryParams)
@@ -1916,8 +2001,11 @@ func (s *SdaService) DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabric
 
 
 @param DeleteSiteFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site-from-sda-fabric
 */
 func (s *SdaService) DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams *DeleteSiteFromSdaFabricQueryParams) (*ResponseSdaDeleteSiteFromSdaFabric, *resty.Response, error) {
+	//DeleteSiteFromSDAFabricQueryParams *DeleteSiteFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
 
 	queryString, _ := query.Values(DeleteSiteFromSDAFabricQueryParams)
@@ -1948,8 +2036,11 @@ func (s *SdaService) DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams 
 
 
 @param DeletePortAssignmentForAccessPointInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-access-point-in-sda-fabric
 */
 func (s *SdaService) DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSdaFabricQueryParams) (*ResponseSdaDeletePortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
+	//DeletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
 
 	queryString, _ := query.Values(DeletePortAssignmentForAccessPointInSDAFabricQueryParams)
@@ -1980,8 +2071,11 @@ func (s *SdaService) DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAss
 
 
 @param DeletePortAssignmentForUserDeviceInSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-user-device-in-sda-fabric
 */
 func (s *SdaService) DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSdaFabricQueryParams) (*ResponseSdaDeletePortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
+	//DeletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
 
 	queryString, _ := query.Values(DeletePortAssignmentForUserDeviceInSDAFabricQueryParams)
@@ -2012,8 +2106,11 @@ func (s *SdaService) DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssi
 
 
 @param DeleteMulticastFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-multicast-from-sda-fabric
 */
 func (s *SdaService) DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQueryParams *DeleteMulticastFromSdaFabricQueryParams) (*ResponseSdaDeleteMulticastFromSdaFabric, *resty.Response, error) {
+	//DeleteMulticastFromSDAFabricQueryParams *DeleteMulticastFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/multicast"
 
 	queryString, _ := query.Values(DeleteMulticastFromSDAFabricQueryParams)
@@ -2044,8 +2141,11 @@ func (s *SdaService) DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQu
 
 
 @param DeleteProvisionedWiredDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-wired-device
 */
 func (s *SdaService) DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQueryParams *DeleteProvisionedWiredDeviceQueryParams) (*ResponseSdaDeleteProvisionedWiredDevice, *resty.Response, error) {
+	//DeleteProvisionedWiredDeviceQueryParams *DeleteProvisionedWiredDeviceQueryParams
 	path := "/dna/intent/api/v1/business/sda/provision-device"
 
 	queryString, _ := query.Values(DeleteProvisionedWiredDeviceQueryParams)
@@ -2076,8 +2176,11 @@ func (s *SdaService) DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQu
 
 
 @param DeleteTransitPeerNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-transit-peer-network
 */
 func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParams *DeleteTransitPeerNetworkQueryParams) (*ResponseSdaDeleteTransitPeerNetwork, *resty.Response, error) {
+	//DeleteTransitPeerNetworkQueryParams *DeleteTransitPeerNetworkQueryParams
 	path := "/dna/intent/api/v1/business/sda/transit-peer-network"
 
 	queryString, _ := query.Values(DeleteTransitPeerNetworkQueryParams)
@@ -2108,8 +2211,11 @@ func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParam
 
 
 @param DeleteVNFromSDAFabricQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-v-n-from-sda-fabric
 */
 func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams) (*ResponseSdaDeleteVnFromSdaFabric, *resty.Response, error) {
+	//DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
 
 	queryString, _ := query.Values(DeleteVNFromSDAFabricQueryParams)
@@ -2140,8 +2246,11 @@ func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *Del
 
 
 @param DeleteIPPoolFromSDAVirtualNetworkQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ip-pool-from-sda-virtual-network
 */
 func (s *SdaService) DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSdaVirtualNetworkQueryParams) (*ResponseSdaDeleteIPPoolFromSdaVirtualNetwork, *resty.Response, error) {
+	//DeleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSdaVirtualNetworkQueryParams
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
 
 	queryString, _ := query.Values(DeleteIPPoolFromSDAVirtualNetworkQueryParams)
@@ -2172,8 +2281,11 @@ func (s *SdaService) DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtua
 
 
 @param DeleteVirtualNetworkWithScalableGroupsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-virtual-network-with-scalable-groups
 */
 func (s *SdaService) DeleteVirtualNetworkWithScalableGroups(DeleteVirtualNetworkWithScalableGroupsQueryParams *DeleteVirtualNetworkWithScalableGroupsQueryParams) (*ResponseSdaDeleteVirtualNetworkWithScalableGroups, *resty.Response, error) {
+	//DeleteVirtualNetworkWithScalableGroupsQueryParams *DeleteVirtualNetworkWithScalableGroupsQueryParams
 	path := "/dna/intent/api/v1/virtual-network"
 
 	queryString, _ := query.Values(DeleteVirtualNetworkWithScalableGroupsQueryParams)

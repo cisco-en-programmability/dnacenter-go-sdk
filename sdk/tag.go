@@ -33,8 +33,8 @@ type GetTagCountQueryParams struct {
 }
 type GetTagMembersByIDQueryParams struct {
 	MemberType            string `url:"memberType,omitempty"`            //Entity type of the member. Possible values can be retrieved by using /tag/member/type API
-	Offset                int    `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
-	Limit                 int    `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
+	Offset                string `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
+	Limit                 string `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
 	MemberAssociationType string `url:"memberAssociationType,omitempty"` //Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
 	Level                 string `url:"level,omitempty"`                 //level
 }
@@ -69,13 +69,12 @@ type ResponseTagGetTagResponseDynamicRules struct {
 	Rules      *ResponseTagGetTagResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagResponseDynamicRulesRules struct {
-	Values    []string                                           `json:"values,omitempty"`    //
-	Items     *[]ResponseTagGetTagResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                             `json:"operation,omitempty"` //
-	Name      string                                             `json:"name,omitempty"`      //
-	Value     string                                             `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+	Items     string   `json:"items,omitempty"`     //
+	Operation string   `json:"operation,omitempty"` //
+	Name      string   `json:"name,omitempty"`      //
+	Value     string   `json:"value,omitempty"`     //
 }
-type ResponseTagGetTagResponseDynamicRulesRulesItems interface{}
 type ResponseTagCreateTag struct {
 	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagCreateTagResponse `json:"response,omitempty"` //
@@ -125,13 +124,12 @@ type ResponseTagGetTagByIDResponseDynamicRules struct {
 	Rules      *ResponseTagGetTagByIDResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagByIDResponseDynamicRulesRules struct {
-	Values    []string                                               `json:"values,omitempty"`    //
-	Items     *[]ResponseTagGetTagByIDResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                                 `json:"operation,omitempty"` //
-	Name      string                                                 `json:"name,omitempty"`      //
-	Value     string                                                 `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+	Items     string   `json:"items,omitempty"`     //
+	Operation string   `json:"operation,omitempty"` //
+	Name      string   `json:"name,omitempty"`      //
+	Value     string   `json:"value,omitempty"`     //
 }
-type ResponseTagGetTagByIDResponseDynamicRulesRulesItems interface{}
 type ResponseTagGetTagMembersByID struct {
 	Version  string                                  `json:"version,omitempty"`  //
 	Response *[]ResponseTagGetTagMembersByIDResponse `json:"response,omitempty"` //
@@ -172,13 +170,12 @@ type RequestTagUpdateTagDynamicRules struct {
 	Rules      *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagUpdateTagDynamicRulesRules struct {
-	Values    []string                                     `json:"values,omitempty"`    //
-	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                       `json:"operation,omitempty"` //
-	Name      string                                       `json:"name,omitempty"`      //
-	Value     string                                       `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+	Items     []string `json:"items,omitempty"`     //
+	Operation string   `json:"operation,omitempty"` //
+	Name      string   `json:"name,omitempty"`      //
+	Value     string   `json:"value,omitempty"`     //
 }
-type RequestTagUpdateTagDynamicRulesRulesItems interface{}
 type RequestTagCreateTag struct {
 	SystemTag        *bool                              `json:"systemTag,omitempty"`        //
 	Description      string                             `json:"description,omitempty"`      //
@@ -192,13 +189,12 @@ type RequestTagCreateTagDynamicRules struct {
 	Rules      *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagCreateTagDynamicRulesRules struct {
-	Values    []string                                     `json:"values,omitempty"`    //
-	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                       `json:"operation,omitempty"` //
-	Name      string                                       `json:"name,omitempty"`      //
-	Value     string                                       `json:"value,omitempty"`     //
+	Values    []string `json:"values,omitempty"`    //
+	Items     string   `json:"items,omitempty"`     //
+	Operation string   `json:"operation,omitempty"` //
+	Name      string   `json:"name,omitempty"`      //
+	Value     string   `json:"value,omitempty"`     //
 }
-type RequestTagCreateTagDynamicRulesRulesItems interface{}
 type RequestTagUpdatesTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
 	MemberType   string              `json:"memberType,omitempty"`   //
@@ -210,6 +206,8 @@ type RequestTagAddMembersToTheTag map[string][]string
 
 
 @param GetTagQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag
 */
 func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagGetTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
@@ -242,6 +240,8 @@ func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagG
 
 
 @param GetTagCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-count
 */
 func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams) (*ResponseTagGetTagCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/count"
@@ -273,7 +273,9 @@ func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams)
 /* Returns list of supported resource types
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-resource-types
+*/
 func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/member/type"
 
@@ -304,6 +306,8 @@ func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *re
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-by-id
 */
 func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}"
@@ -337,6 +341,8 @@ func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Respo
 @param id id path parameter. Tag ID
 
 @param GetTagMembersByIdQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-members-by-id
 */
 func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *GetTagMembersByIDQueryParams) (*ResponseTagGetTagMembersByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -372,6 +378,8 @@ func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *
 @param id id path parameter. Tag ID
 
 @param GetTagMemberCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-member-count
 */
 func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *GetTagMemberCountQueryParams) (*ResponseTagGetTagMemberCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member/count"
@@ -404,7 +412,9 @@ func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *
 /* Creates tag with specified tag attributes
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-tag
+*/
 func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*ResponseTagCreateTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
 
@@ -436,6 +446,8 @@ func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*Respo
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-members-to-the-tag
 */
 func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag *RequestTagAddMembersToTheTag) (*ResponseTagAddMembersToTheTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -529,8 +541,11 @@ func (s *TagService) UpdatesTagMembership(requestTagUpdatesTagMembership *Reques
 
 @param id id path parameter. Tag ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-tag
 */
 func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Response, error) {
+	//id string
 	path := "/dna/intent/api/v1/tag/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -563,8 +578,11 @@ func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Respons
 
 @param memberID memberId path parameter. TagMember id to be removed from tag
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-tag-member
 */
 func (s *TagService) RemoveTagMember(id string, memberID string) (*ResponseTagRemoveTagMember, *resty.Response, error) {
+	//id string,memberID string
 	path := "/dna/intent/api/v1/tag/{id}/member/{memberId}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 	path = strings.Replace(path, "{memberId}", fmt.Sprintf("%v", memberID), -1)

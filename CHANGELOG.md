@@ -6,6 +6,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2023-04-12
+### Added
+- New services for Cisco DNA Center 2.3.5.3's API:
+  - AuthenticationManagement *AuthenticationManagementService
+  - DisasterRecovery *DisasterRecoveryService
+  - EoX *EoXService
+  - ItsmIntegration *ItsmIntegrationService
+  - *PlatformConfigurationService turns to *PlatformService
+  - Policy *PolicyService
+  - UserandRoles *UserandRolesService
+- New API Methods for previous Services:
+  - DevicesService.CreateUserDefinedField
+  - DevicesService.UpdateUserDefinedField
+  - DevicesService.AddUserDefinedFieldToDevice
+  - DevicesService.DeleteUserDefinedField
+  - DevicesService.RemoveUserDefinedFieldFromDevice
+  - DiscoveryService.GetAllGlobalCredentialsV2
+  - DiscoveryService.CreateGlobalCredentialsV2
+  - DiscoveryService.UpdateGlobalCredentialsV2
+  - DiscoveryService.DeleteGlobalCredentialV2
+  - EventManagementService.GetEmailDestination
+  - EventManagementService.GetSNMPDestination
+  - EventManagementService.GetSyslogDestination
+  - EventManagementService.GetWebhookDestination
+  - FabricWirelessService.AddSSIDToIPPoolMapping
+  - IssuesService.ExecuteSuggestedActionsCommands
+  - LanAutomationService.LanAutomationLogsForIndividualDevices
+  - LanAutomationService.LanAutomationActiveSessions
+  - NetworkSettingsService.GetNetworkV2
+  - NetworkSettingsService.GetServiceProviderDetailsV2
+  - NetworkSettingsService.AssignDeviceCredentialToSiteV2
+  - NetworkSettingsService.CreateNetworkV2
+  - NetworkSettingsService.CreateSpProfileV2
+  - NetworkSettingsService.UpdateNetworkV2
+  - NetworkSettingsService.UpdateSpProfileV2
+  - NetworkSettingsService.DeleteSpProfileV2
+  - SystemSettingsService.GetAuthenticationAndPolicyServers
+  - WirelessService.GetAccessPointRebootTaskResult
+  - WirelessService.GetAccessPointConfigurationTaskResult
+  - WirelessService.GetAccessPointConfiguration
+  - WirelessService.RebootAccessPoints
+  - WirelessService.ConfigureAccessPoints
+
+- The SDK was updated with the official DNA Center API 2.3.5.3 documentation, therefore some structures or data types may have changed.[Oficial Documentation](https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-2-3-5-api-overview).
+
+
+
 ## [4.0.14] - 2023-02-27
 - `ResponseClientsGetClientDetailDetail.Detail.VlanId` atributte change type from `string` to `*int` in `clients` service.
 
@@ -414,4 +461,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.12]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...v4.0.12
 [4.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.12...v4.0.13
 [4.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.13...v4.0.14
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...main
+[5.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.14...v5.0.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.0...main

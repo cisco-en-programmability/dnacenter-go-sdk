@@ -11,9 +11,9 @@ import (
 type DevicesService service
 
 type GetPlannedAccessPointsForBuildingQueryParams struct {
-	Limit  int  `url:"limit,omitempty"`  //limit
-	Offset int  `url:"offset,omitempty"` //offset
-	Radios bool `url:"radios,omitempty"` //inlcude planned radio details
+	Limit  float64 `url:"limit,omitempty"`  //limit
+	Offset float64 `url:"offset,omitempty"` //offset
+	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
 }
 type GetDeviceDetailQueryParams struct {
 	Timestamp  string `url:"timestamp,omitempty"`  //Epoch time(in milliseconds) when the device data is required
@@ -30,17 +30,19 @@ type DevicesQueryParams struct {
 	Health     string  `url:"health,omitempty"`     //The device overall health (One of POOR, FAIR, GOOD)
 	StartTime  float64 `url:"startTime,omitempty"`  //UTC epoch time in milliseconds
 	EndTime    float64 `url:"endTime,omitempty"`    //UTC epoch time in miliseconds
-	Limit      int     `url:"limit,omitempty"`      //Max number of device entries in the response (default to 50.  Max at 1000)
-	Offset     int     `url:"offset,omitempty"`     //The offset of the first device in the returned data
+	Limit      float64 `url:"limit,omitempty"`      //Max number of device entries in the response (default to 50.  Max at 1000)
+	Offset     float64 `url:"offset,omitempty"`     //The offset of the first device in the returned data
 }
 type GetPlannedAccessPointsForFloorQueryParams struct {
-	Limit  int  `url:"limit,omitempty"`  //limit
-	Offset int  `url:"offset,omitempty"` //offset
-	Radios bool `url:"radios,omitempty"` //inlcude planned radio details
+	Limit  float64 `url:"limit,omitempty"`  //limit
+	Offset float64 `url:"offset,omitempty"` //offset
+	Radios bool    `url:"radios,omitempty"` //inlcude planned radio details
 }
 type GetAllInterfacesQueryParams struct {
-	Offset int `url:"offset,omitempty"` //offset
-	Limit  int `url:"limit,omitempty"`  //limit
+	Offset         float64 `url:"offset,omitempty"`         //Offset
+	Limit          float64 `url:"limit,omitempty"`          //Limit
+	LastInputTime  string  `url:"lastInputTime,omitempty"`  //Last Input Time
+	LastOutputTime string  `url:"lastOutputTime,omitempty"` //Last Output Time
 }
 type GetInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams struct {
 	Name string `url:"name,omitempty"` //Interface name
@@ -84,32 +86,32 @@ type GetDeviceListQueryParams struct {
 	Moduleoperationstatecode  []string `url:"module+operationstatecode,omitempty"`  //moduleOperationStateCode
 	ID                        string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
 	DeviceSupportLevel        string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
-	Offset                    int      `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
-	Limit                     int      `url:"limit,omitempty"`                      //1 <= limit <= 500 [max. no. of devices to be returned in the result]
+	Offset                    float64  `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
+	Limit                     float64  `url:"limit,omitempty"`                      //1 <= limit <= 500 [max. no. of devices to be returned in the result]
 }
 type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
-	VrfName                   string `url:"vrfName,omitempty"`                   //vrfName
-	ManagementIPAddress       string `url:"managementIpAddress,omitempty"`       //managementIpAddress
-	Hostname                  string `url:"hostname,omitempty"`                  //hostname
-	MacAddress                string `url:"macAddress,omitempty"`                //macAddress
-	Family                    string `url:"family,omitempty"`                    //family
-	CollectionStatus          string `url:"collectionStatus,omitempty"`          //collectionStatus
-	CollectionInterval        string `url:"collectionInterval,omitempty"`        //collectionInterval
-	SoftwareVersion           string `url:"softwareVersion,omitempty"`           //softwareVersion
-	SoftwareType              string `url:"softwareType,omitempty"`              //softwareType
-	ReachabilityStatus        string `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
-	ReachabilityFailureReason string `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
-	ErrorCode                 string `url:"errorCode,omitempty"`                 //errorCode
-	PlatformID                string `url:"platformId,omitempty"`                //platformId
-	Series                    string `url:"series,omitempty"`                    //series
-	Type                      string `url:"type,omitempty"`                      //type
-	SerialNumber              string `url:"serialNumber,omitempty"`              //serialNumber
-	UpTime                    string `url:"upTime,omitempty"`                    //upTime
-	Role                      string `url:"role,omitempty"`                      //role
-	RoleSource                string `url:"roleSource,omitempty"`                //roleSource
-	AssociatedWlcIP           string `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
-	Offset                    int    `url:"offset,omitempty"`                    //offset
-	Limit                     int    `url:"limit,omitempty"`                     //limit
+	VrfName                   string  `url:"vrfName,omitempty"`                   //vrfName
+	ManagementIPAddress       string  `url:"managementIpAddress,omitempty"`       //managementIpAddress
+	Hostname                  string  `url:"hostname,omitempty"`                  //hostname
+	MacAddress                string  `url:"macAddress,omitempty"`                //macAddress
+	Family                    string  `url:"family,omitempty"`                    //family
+	CollectionStatus          string  `url:"collectionStatus,omitempty"`          //collectionStatus
+	CollectionInterval        string  `url:"collectionInterval,omitempty"`        //collectionInterval
+	SoftwareVersion           string  `url:"softwareVersion,omitempty"`           //softwareVersion
+	SoftwareType              string  `url:"softwareType,omitempty"`              //softwareType
+	ReachabilityStatus        string  `url:"reachabilityStatus,omitempty"`        //reachabilityStatus
+	ReachabilityFailureReason string  `url:"reachabilityFailureReason,omitempty"` //reachabilityFailureReason
+	ErrorCode                 string  `url:"errorCode,omitempty"`                 //errorCode
+	PlatformID                string  `url:"platformId,omitempty"`                //platformId
+	Series                    string  `url:"series,omitempty"`                    //series
+	Type                      string  `url:"type,omitempty"`                      //type
+	SerialNumber              string  `url:"serialNumber,omitempty"`              //serialNumber
+	UpTime                    string  `url:"upTime,omitempty"`                    //upTime
+	Role                      string  `url:"role,omitempty"`                      //role
+	RoleSource                string  `url:"roleSource,omitempty"`                //roleSource
+	AssociatedWlcIP           string  `url:"associatedWlcIp,omitempty"`           //associatedWlcIp
+	Offset                    float64 `url:"offset,omitempty"`                    //offset
+	Limit                     float64 `url:"limit,omitempty"`                     //limit
 }
 type GetFunctionalCapabilityForDevicesQueryParams struct {
 	DeviceID     string   `url:"deviceId,omitempty"`     //Accepts comma separated deviceid's and return list of functional-capabilities for the given id's. If invalid or not-found id's are provided, null entry will be returned in the list.
@@ -147,12 +149,19 @@ type GetModuleCountQueryParams struct {
 type SyncDevicesQueryParams struct {
 	ForceSync bool `url:"forceSync,omitempty"` //forceSync
 }
-type RegisterDeviceForWsaQueryParams struct {
+type GetDevicesRegisteredForWsaNotificationQueryParams struct {
 	SerialNumber string `url:"serialNumber,omitempty"` //Serial number of the device
 	Macaddress   string `url:"macaddress,omitempty"`   //Mac addres of the device
 }
+type GetAllUserDefinedFieldsQueryParams struct {
+	ID   string `url:"id,omitempty"`   //Comma-seperated id(s) used for search/filtering
+	Name string `url:"name,omitempty"` //Comma-seperated name(s) used for search/filtering
+}
+type RemoveUserDefinedFieldFromDeviceQueryParams struct {
+	Name string `url:"name,omitempty"` //Name of UDF to be removed
+}
 type ReturnPowerSupplyFanDetailsForTheGivenDeviceQueryParams struct {
-	Type string `url:"type,omitempty"` //Type value should be PowerSupply or Fan
+	Type string `url:"type,omitempty"` //Type value can be PowerSupply, Fan, Chassis, Backplane, Module, PROCESSOR, Other, SFP. If no type is mentioned, All equipments are fetched for the device.
 }
 type ReturnsPoeInterfaceDetailsForTheDeviceQueryParams struct {
 	InterfaceNameList string `url:"interfaceNameList,omitempty"` //comma seperated interface names
@@ -769,7 +778,7 @@ type ResponseDevicesGetInterfaceByIDResponse struct {
 }
 type ResponseDevicesUpdateInterfaceDetails struct {
 	Response *ResponseDevicesUpdateInterfaceDetailsResponse `json:"response,omitempty"` //
-	Version  string                                         `json:"version,omitempty"`  //
+	Version  *ResponseDevicesUpdateInterfaceDetailsVersion  `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateInterfaceDetailsResponse struct {
 	Type       string                                                   `json:"type,omitempty"`       // Type
@@ -786,28 +795,75 @@ type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID struct {
 type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL struct {
 	Type string `json:"type,omitempty"` // Type
 }
-
+type ResponseDevicesUpdateInterfaceDetailsVersion struct {
+	Type string `json:"type,omitempty"` // Type
+}
 type ResponseDevicesLegitOperationsForInterface struct {
 	Response *ResponseDevicesLegitOperationsForInterfaceResponse `json:"response,omitempty"` //
-	Version  string                                              `json:"version,omitempty"`  // Version
+	Version  *ResponseDevicesLegitOperationsForInterfaceVersion  `json:"version,omitempty"`  //
 }
 type ResponseDevicesLegitOperationsForInterfaceResponse struct {
-	InterfaceUUID string                                                          `json:"interfaceUuid,omitempty"` // Interface Uuid
-	Properties    *[]ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"`    //
-	Operations    *[]ResponseDevicesLegitOperationsForInterfaceResponseOperations `json:"operations,omitempty"`    //
+	Type       string                                                        `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"` //
+	Required   []string                                                      `json:"required,omitempty"`   // Required
 }
 type ResponseDevicesLegitOperationsForInterfaceResponseProperties struct {
-	Name          string                                                                     `json:"name,omitempty"`          // Name
-	Applicable    *bool                                                                      `json:"applicable,omitempty"`    // Applicable
-	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesFailureReason `json:"failureReason,omitempty"` // Failure Reason
+	InterfaceUUID *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID `json:"interfaceUuid,omitempty"` //
+	Properties    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties    `json:"properties,omitempty"`    //
+	Operations    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations    `json:"operations,omitempty"`    //
 }
-type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesFailureReason interface{}
-type ResponseDevicesLegitOperationsForInterfaceResponseOperations struct {
-	Name          string                                                                     `json:"name,omitempty"`          // Name
-	Applicable    *bool                                                                      `json:"applicable,omitempty"`    // Applicable
-	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponseOperationsFailureReason `json:"failureReason,omitempty"` // Failure Reason
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesInterfaceUUID struct {
+	Type string `json:"type,omitempty"` // Type
 }
-type ResponseDevicesLegitOperationsForInterfaceResponseOperationsFailureReason interface{}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesProperties struct {
+	Type  string                                                                         `json:"type,omitempty"`  // Type
+	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems `json:"items,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItems struct {
+	Type       string                                                                                 `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties `json:"properties,omitempty"` //
+	Required   []string                                                                               `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsProperties struct {
+	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName          `json:"name,omitempty"`          //
+	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesName struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesApplicable struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesPropertiesItemsPropertiesFailureReason struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperations struct {
+	Type  string                                                                         `json:"type,omitempty"`  // Type
+	Items *[]ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems `json:"items,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItems struct {
+	Type       string                                                                                 `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties `json:"properties,omitempty"` //
+	Required   []string                                                                               `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsProperties struct {
+	Name          *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName          `json:"name,omitempty"`          //
+	Applicable    *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable    `json:"applicable,omitempty"`    //
+	FailureReason *ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason `json:"failureReason,omitempty"` //
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesName struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesApplicable struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceResponsePropertiesOperationsItemsPropertiesFailureReason struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesLegitOperationsForInterfaceVersion struct {
+	Type string `json:"type,omitempty"` // Type
+}
 type ResponseDevicesClearMacAddressTable struct {
 	Response *ResponseDevicesClearMacAddressTableResponse `json:"response,omitempty"` //
 	Version  string                                       `json:"version,omitempty"`  // Version
@@ -1182,16 +1238,49 @@ type ResponseDevicesSyncDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-type ResponseDevicesRegisterDeviceForWsa struct {
-	Response *ResponseDevicesRegisterDeviceForWsaResponse `json:"response,omitempty"` //
-	Version  string                                       `json:"version,omitempty"`  //
+type ResponseDevicesGetDevicesRegisteredForWsaNotification struct {
+	Response *ResponseDevicesGetDevicesRegisteredForWsaNotificationResponse `json:"response,omitempty"` //
+	Version  string                                                         `json:"version,omitempty"`  //
 }
-type ResponseDevicesRegisterDeviceForWsaResponse struct {
+type ResponseDevicesGetDevicesRegisteredForWsaNotificationResponse struct {
 	MacAddress   string `json:"macAddress,omitempty"`   //
 	ModelNumber  string `json:"modelNumber,omitempty"`  //
 	Name         string `json:"name,omitempty"`         //
 	SerialNumber string `json:"serialNumber,omitempty"` //
 	TenantID     string `json:"tenantId,omitempty"`     //
+}
+type ResponseDevicesGetAllUserDefinedFields struct {
+	Response *[]ResponseDevicesGetAllUserDefinedFieldsResponse `json:"response,omitempty"` //
+	Version  string                                            `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesGetAllUserDefinedFieldsResponse struct {
+	ID          string `json:"id,omitempty"`          // Id
+	Name        string `json:"name,omitempty"`        // Name
+	Description string `json:"description,omitempty"` // Description
+}
+type ResponseDevicesCreateUserDefinedField struct {
+	Response *ResponseDevicesCreateUserDefinedFieldResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesCreateUserDefinedFieldResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseDevicesUpdateUserDefinedField struct {
+	Response *ResponseDevicesUpdateUserDefinedFieldResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesUpdateUserDefinedFieldResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseDevicesDeleteUserDefinedField struct {
+	Response *ResponseDevicesDeleteUserDefinedFieldResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesDeleteUserDefinedFieldResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesGetChassisDetailsForDevice struct {
 	Response *[]ResponseDevicesGetChassisDetailsForDeviceResponse `json:"response,omitempty"` //
@@ -1274,6 +1363,22 @@ type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSv
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberPepSettings struct {
 	DadEnabled       *bool  `json:"dadEnabled,omitempty"`       // If dadInterface is configured for dual active detection
 	DadInterfaceName string `json:"dadInterfaceName,omitempty"` // Interface for dual active detection
+}
+type ResponseDevicesRemoveUserDefinedFieldFromDevice struct {
+	Response *ResponseDevicesRemoveUserDefinedFieldFromDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                   `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesRemoveUserDefinedFieldFromDeviceResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseDevicesAddUserDefinedFieldToDevice struct {
+	Response *ResponseDevicesAddUserDefinedFieldToDeviceResponse `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesAddUserDefinedFieldToDeviceResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesReturnPowerSupplyFanDetailsForTheGivenDevice struct {
 	Response *[]ResponseDevicesReturnPowerSupplyFanDetailsForTheGivenDeviceResponse `json:"response,omitempty"` //
@@ -1580,6 +1685,19 @@ type RequestDevicesExportDeviceList struct {
 }
 type RequestDevicesSyncDevices []RequestItemDevicesSyncDevices // Array of RequestDevicesSyncDevices
 type RequestItemDevicesSyncDevices interface{}
+type RequestDevicesCreateUserDefinedField struct {
+	Name        string `json:"name,omitempty"`        // Name of UDF
+	Description string `json:"description,omitempty"` // Description of UDF
+}
+type RequestDevicesUpdateUserDefinedField struct {
+	Name        string `json:"name,omitempty"`        // Name of UDF
+	Description string `json:"description,omitempty"` // Description of UDF
+}
+type RequestDevicesAddUserDefinedFieldToDevice []RequestItemDevicesAddUserDefinedFieldToDevice // Array of RequestDevicesAddUserDefinedFieldToDevice
+type RequestItemDevicesAddUserDefinedFieldToDevice struct {
+	Name  string `json:"name,omitempty"`  // Name
+	Value string `json:"value,omitempty"` // Value
+}
 
 //GetPlannedAccessPointsForBuilding Get Planned Access Points for Building - b699-9b85-4e3b-acdd
 /* Provides a list of Planned Access Points for the Building it is requested for
@@ -1588,6 +1706,8 @@ type RequestItemDevicesSyncDevices interface{}
 @param buildingID buildingId path parameter. Building Id
 
 @param GetPlannedAccessPointsForBuildingQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-building
 */
 func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, GetPlannedAccessPointsForBuildingQueryParams *GetPlannedAccessPointsForBuildingQueryParams) (*ResponseDevicesGetPlannedAccessPointsForBuilding, *resty.Response, error) {
 	path := "/dna/intent/api/v1/buildings/{buildingId}/planned-access-points"
@@ -1621,6 +1741,8 @@ func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, Ge
 
 
 @param GetDeviceDetailQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-detail
 */
 func (s *DevicesService) GetDeviceDetail(GetDeviceDetailQueryParams *GetDeviceDetailQueryParams) (*ResponseDevicesGetDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-detail"
@@ -1653,6 +1775,8 @@ func (s *DevicesService) GetDeviceDetail(GetDeviceDetailQueryParams *GetDeviceDe
 
 
 @param GetDeviceEnrichmentDetailsHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-enrichment-details
 */
 func (s *DevicesService) GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHeaderParams *GetDeviceEnrichmentDetailsHeaderParams) (*ResponseDevicesGetDeviceEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-enrichment-details"
@@ -1699,6 +1823,8 @@ func (s *DevicesService) GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHe
 
 
 @param DevicesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!devices
 */
 func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*ResponseDevicesDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-health"
@@ -1733,6 +1859,8 @@ func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*Respo
 @param floorID floorId path parameter. Floor Id
 
 @param GetPlannedAccessPointsForFloorQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-floor
 */
 func (s *DevicesService) GetPlannedAccessPointsForFloor(floorID string, GetPlannedAccessPointsForFloorQueryParams *GetPlannedAccessPointsForFloorQueryParams) (*ResponseDevicesGetPlannedAccessPointsForFloor, *resty.Response, error) {
 	path := "/dna/intent/api/v1/floors/{floorId}/planned-access-points"
@@ -1766,6 +1894,8 @@ func (s *DevicesService) GetPlannedAccessPointsForFloor(floorID string, GetPlann
 
 
 @param GetAllInterfacesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-interfaces
 */
 func (s *DevicesService) GetAllInterfaces(GetAllInterfacesQueryParams *GetAllInterfacesQueryParams) (*ResponseDevicesGetAllInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface"
@@ -1797,7 +1927,9 @@ func (s *DevicesService) GetAllInterfaces(GetAllInterfacesQueryParams *GetAllInt
 /* Returns the count of interfaces for all devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count
+*/
 func (s *DevicesService) GetDeviceInterfaceCount() (*ResponseDevicesGetDeviceInterfaceCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/count"
 
@@ -1828,6 +1960,8 @@ func (s *DevicesService) GetDeviceInterfaceCount() (*ResponseDevicesGetDeviceInt
 
 @param ipAddress ipAddress path parameter. IP address of the interface
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-ip
 */
 func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGetInterfaceByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/ip-address/{ipAddress}"
@@ -1858,7 +1992,9 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGet
 /* Returns the interfaces that has ISIS enabled
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-i-s-i-s-interfaces
+*/
 func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/isis"
 
@@ -1889,6 +2025,8 @@ func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces,
 
 @param deviceID deviceId path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-info-by-id
 */
 func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*ResponseDevicesGetInterfaceInfoByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}"
@@ -1921,6 +2059,8 @@ func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*ResponseDevices
 
 @param deviceID deviceId path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count2
 */
 func (s *DevicesService) GetDeviceInterfaceCount2(deviceID string) (*ResponseDevicesGetDeviceInterfaceCount2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/count"
@@ -1954,6 +2094,8 @@ func (s *DevicesService) GetDeviceInterfaceCount2(deviceID string) (*ResponseDev
 @param deviceID deviceId path parameter. Device ID
 
 @param GetInterfaceDetailsByDeviceIdAndInterfaceNameQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-details-by-device-id-and-interface-name
 */
 func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID string, GetInterfaceDetailsByDeviceIdAndInterfaceNameQueryParams *GetInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams) (*ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceName, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/interface-name"
@@ -1992,6 +2134,8 @@ func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID 
 
 @param recordsToReturn recordsToReturn path parameter. Number of records to return
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interfaces-by-specified-range
 */
 func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, startIndex int, recordsToReturn int) (*ResponseDevicesGetDeviceInterfacesBySpecifiedRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/{startIndex}/{recordsToReturn}"
@@ -2024,7 +2168,9 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 /* Returns the interfaces that has OSPF enabled
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-o-s-p-f-interfaces
+*/
 func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/ospf"
 
@@ -2055,6 +2201,8 @@ func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces,
 
 @param id id path parameter. Interface ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-id
 */
 func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfaceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{id}"
@@ -2087,6 +2235,8 @@ func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfa
 
 @param interfaceUUID interfaceUuid path parameter. Interface ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!legit-operations-for-interface
 */
 func (s *DevicesService) LegitOperationsForInterface(interfaceUUID string) (*ResponseDevicesLegitOperationsForInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{interfaceUuid}/legit-operation"
@@ -2119,6 +2269,8 @@ If id parameter is provided with comma separated ids, it will return the list of
 
 
 @param GetDeviceListQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-list
 */
 func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQueryParams) (*ResponseDevicesGetDeviceList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device"
@@ -2151,6 +2303,8 @@ func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQu
 
 
 @param GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-values-that-match-fully-or-partially-an-attribute
 */
 func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams *GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams) (*ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/autocomplete"
@@ -2182,7 +2336,9 @@ func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(Get
 /* Returns polling interval of all devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-for-all-devices
+*/
 func (s *DevicesService) GetPollingIntervalForAllDevices() (*ResponseDevicesGetPollingIntervalForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/collection-schedule/global"
 
@@ -2211,7 +2367,9 @@ func (s *DevicesService) GetPollingIntervalForAllDevices() (*ResponseDevicesGetP
 /* Returns the config for all devices
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-for-all-devices
+*/
 func (s *DevicesService) GetDeviceConfigForAllDevices() (*ResponseDevicesGetDeviceConfigForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/config"
 
@@ -2240,7 +2398,9 @@ func (s *DevicesService) GetDeviceConfigForAllDevices() (*ResponseDevicesGetDevi
 /* Returns the count of device configs
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-count
+*/
 func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfigCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/config/count"
 
@@ -2269,7 +2429,9 @@ func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfig
 /* Returns the count of network devices based on the filter criteria by management IP address, mac address, hostname and location name
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-count2
+*/
 func (s *DevicesService) GetDeviceCount2() (*ResponseDevicesGetDeviceCount2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/count"
 
@@ -2299,6 +2461,8 @@ func (s *DevicesService) GetDeviceCount2() (*ResponseDevicesGetDeviceCount2, *re
 
 
 @param GetFunctionalCapabilityForDevicesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-for-devices
 */
 func (s *DevicesService) GetFunctionalCapabilityForDevices(GetFunctionalCapabilityForDevicesQueryParams *GetFunctionalCapabilityForDevicesQueryParams) (*ResponseDevicesGetFunctionalCapabilityForDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/functional-capability"
@@ -2332,6 +2496,8 @@ func (s *DevicesService) GetFunctionalCapabilityForDevices(GetFunctionalCapabili
 
 @param id id path parameter. Functional Capability UUID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-by-id
 */
 func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevicesGetFunctionalCapabilityByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/functional-capability/{id}"
@@ -2364,6 +2530,8 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 
 @param siteID siteId path parameter.
 @param InventoryInsightDeviceLinkMismatchAPIQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!inventory-insight-device-link-mismatch-api
 */
 func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, InventoryInsightDeviceLinkMismatchAPIQueryParams *InventoryInsightDeviceLinkMismatchApIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/device-link"
@@ -2398,6 +2566,8 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, In
 
 @param siteID siteId path parameter.
 @param ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-devices-added-to-cisco-d-n-a-center-with-snmp-v3-des
 */
 func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/insecure-connection"
@@ -2432,6 +2602,8 @@ func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID
 
 @param ipAddress ipAddress path parameter. Device IP address
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-ip
 */
 func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevicesGetNetworkDeviceByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/ip-address/{ipAddress}"
@@ -2463,6 +2635,8 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevice
 
 
 @param GetModulesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-modules
 */
 func (s *DevicesService) GetModules(GetModulesQueryParams *GetModulesQueryParams) (*ResponseDevicesGetModules, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module"
@@ -2495,6 +2669,8 @@ func (s *DevicesService) GetModules(GetModulesQueryParams *GetModulesQueryParams
 
 
 @param GetModuleCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-count
 */
 func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCountQueryParams) (*ResponseDevicesGetModuleCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module/count"
@@ -2528,6 +2704,8 @@ func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCoun
 
 @param id id path parameter. Module id
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-info-by-id
 */
 func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModuleInfoByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module/{id}"
@@ -2555,11 +2733,13 @@ func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModule
 }
 
 //GetDeviceBySerialNumber Get Device by Serial number - d888-ab6d-4d59-a8c1
-/* Returns the network device with given serial number
+/* Returns the network device if the given serial number matches with any of the serial numbers collected.
 
 
 @param serialNumber serialNumber path parameter. Device serial number
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-serial-number
 */
 func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*ResponseDevicesGetDeviceBySerialNumber, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/serial-number/{serialNumber}"
@@ -2586,21 +2766,23 @@ func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*Response
 
 }
 
-//RegisterDeviceForWsa Register device for WSA - c980-9b67-44f8-a502
-/* Registers a device for WSA notification
+//GetDevicesRegisteredForWsaNotification Get Devices registered for WSA Notification - c980-9b67-44f8-a502
+/* It fetches devices which are registered to receive WSA notifications. The device serial number and/or MAC address are required to be provided as query parameters.
 
 
-@param RegisterDeviceForWSAQueryParams Filtering parameter
+@param GetDevicesRegisteredForWSANotificationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-registered-for-wsa-notification
 */
-func (s *DevicesService) RegisterDeviceForWsa(RegisterDeviceForWSAQueryParams *RegisterDeviceForWsaQueryParams) (*ResponseDevicesRegisterDeviceForWsa, *resty.Response, error) {
+func (s *DevicesService) GetDevicesRegisteredForWsaNotification(GetDevicesRegisteredForWSANotificationQueryParams *GetDevicesRegisteredForWsaNotificationQueryParams) (*ResponseDevicesGetDevicesRegisteredForWsaNotification, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/tenantinfo/macaddress"
 
-	queryString, _ := query.Values(RegisterDeviceForWSAQueryParams)
+	queryString, _ := query.Values(GetDevicesRegisteredForWSANotificationQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesRegisterDeviceForWsa{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDevicesRegisteredForWsaNotification{}).
 		SetError(&Error).
 		Get(path)
 
@@ -2610,10 +2792,44 @@ func (s *DevicesService) RegisterDeviceForWsa(RegisterDeviceForWSAQueryParams *R
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation RegisterDeviceForWsa")
+		return nil, response, fmt.Errorf("error with operation GetDevicesRegisteredForWsaNotification")
 	}
 
-	result := response.Result().(*ResponseDevicesRegisterDeviceForWsa)
+	result := response.Result().(*ResponseDevicesGetDevicesRegisteredForWsaNotification)
+	return result, response, err
+
+}
+
+//GetAllUserDefinedFields Get All User-Defined-Fields - 058d-2a92-4899-b7bb
+/* Gets existing global User Defined Fields. If no input is given, it fetches ALL the Global UDFs. Filter/search is supported either by UDF Id(s) or by UDF name(s), but not both.
+
+
+@param GetAllUserDefinedFieldsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-user-defined-fields
+*/
+func (s *DevicesService) GetAllUserDefinedFields(GetAllUserDefinedFieldsQueryParams *GetAllUserDefinedFieldsQueryParams) (*ResponseDevicesGetAllUserDefinedFields, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/user-defined-field"
+
+	queryString, _ := query.Values(GetAllUserDefinedFieldsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetAllUserDefinedFields{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetAllUserDefinedFields")
+	}
+
+	result := response.Result().(*ResponseDevicesGetAllUserDefinedFields)
 	return result, response, err
 
 }
@@ -2624,6 +2840,8 @@ func (s *DevicesService) RegisterDeviceForWsa(RegisterDeviceForWSAQueryParams *R
 
 @param deviceID deviceId path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-chassis-details-for-device
 */
 func (s *DevicesService) GetChassisDetailsForDevice(deviceID string) (*ResponseDevicesGetChassisDetailsForDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceId}/chassis"
@@ -2656,6 +2874,8 @@ func (s *DevicesService) GetChassisDetailsForDevice(deviceID string) (*ResponseD
 
 @param deviceID deviceId path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-stack-details-for-device
 */
 func (s *DevicesService) GetStackDetailsForDevice(deviceID string) (*ResponseDevicesGetStackDetailsForDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceId}/stack"
@@ -2688,6 +2908,8 @@ func (s *DevicesService) GetStackDetailsForDevice(deviceID string) (*ResponseDev
 
 @param deviceUUID deviceUuid path parameter.
 @param ReturnPowerSupplyFanDetailsForTheGivenDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!return-power-supply-fan-details-for-the-given-device
 */
 func (s *DevicesService) ReturnPowerSupplyFanDetailsForTheGivenDevice(deviceUUID string, ReturnPowerSupplyFanDetailsForTheGivenDeviceQueryParams *ReturnPowerSupplyFanDetailsForTheGivenDeviceQueryParams) (*ResponseDevicesReturnPowerSupplyFanDetailsForTheGivenDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/equipment"
@@ -2723,6 +2945,8 @@ func (s *DevicesService) ReturnPowerSupplyFanDetailsForTheGivenDevice(deviceUUID
 @param deviceUUID deviceUuid path parameter. uuid of the device
 
 @param ReturnsPOEInterfaceDetailsForTheDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-p-o-e-interface-details-for-the-device
 */
 func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID string, ReturnsPOEInterfaceDetailsForTheDeviceQueryParams *ReturnsPoeInterfaceDetailsForTheDeviceQueryParams) (*ResponseDevicesReturnsPoeInterfaceDetailsForTheDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/poe-detail"
@@ -2759,6 +2983,8 @@ func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID strin
 
 @param interfaceUUID interfaceUuid path parameter. instanceuuid of interface
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-connected-device-detail
 */
 func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUUID string) (*ResponseDevicesGetConnectedDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/{interfaceUuid}/neighbor"
@@ -2792,6 +3018,8 @@ func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUU
 
 @param deviceUUID deviceUuid path parameter. instanceuuid of device
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-linecard-details
 */
 func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevicesGetLinecardDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/line-card"
@@ -2824,6 +3052,8 @@ func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevices
 
 @param deviceUUID deviceUuid path parameter. uuid of the device
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-o-e-details
 */
 func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/poe"
@@ -2856,6 +3086,8 @@ func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetai
 
 @param deviceUUID deviceUuid path parameter. instanceuuid of device
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-supervisor-card-detail
 */
 func (s *DevicesService) GetSupervisorCardDetail(deviceUUID string) (*ResponseDevicesGetSupervisorCardDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/supervisor-card"
@@ -2888,6 +3120,8 @@ func (s *DevicesService) GetSupervisorCardDetail(deviceUUID string) (*ResponseDe
 
 @param id id path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-id
 */
 func (s *DevicesService) GetDeviceByID(id string) (*ResponseDevicesGetDeviceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}"
@@ -2920,6 +3154,8 @@ func (s *DevicesService) GetDeviceByID(id string) (*ResponseDevicesGetDeviceByID
 
 @param id id path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-summary
 */
 func (s *DevicesService) GetDeviceSummary(id string) (*ResponseDevicesGetDeviceSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/brief"
@@ -2952,6 +3188,8 @@ func (s *DevicesService) GetDeviceSummary(id string) (*ResponseDevicesGetDeviceS
 
 @param id id path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-by-id
 */
 func (s *DevicesService) GetPollingIntervalByID(id string) (*ResponseDevicesGetPollingIntervalByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/collection-schedule"
@@ -2983,6 +3221,8 @@ func (s *DevicesService) GetPollingIntervalByID(id string) (*ResponseDevicesGetP
 
 
 @param id id path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-list-for-meraki
 */
 func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevicesGetOrganizationListForMeraki, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/meraki-organization"
@@ -3015,6 +3255,8 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevic
 
 @param id id path parameter.
 @param GetDeviceInterfaceVLANsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-v-lans
 */
 func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVLANsQueryParams *GetDeviceInterfaceVLANsQueryParams) (*ResponseDevicesGetDeviceInterfaceVLANs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/vlan"
@@ -3049,6 +3291,8 @@ func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVL
 
 @param id id path parameter. Device ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-lan-controller-details-by-id
 */
 func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*ResponseDevicesGetWirelessLanControllerDetailsByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/wireless-info"
@@ -3080,6 +3324,8 @@ func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*Respon
 
 
 @param networkDeviceID networkDeviceId path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-by-id
 */
 func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*ResponseDevicesGetDeviceConfigByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{networkDeviceId}/config"
@@ -3107,13 +3353,15 @@ func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*ResponseD
 }
 
 //GetNetworkDeviceByPaginationRange Get Network Device by pagination range - f495-48c5-4be8-a3e2
-/* Returns the list of network devices for the given pagination range
+/* Returns the list of network devices for the given pagination range. The maximum number of records that can be retrieved is 500
 
 
-@param startIndex startIndex path parameter. Start index
+@param startIndex startIndex path parameter. Start index [>=1]
 
-@param recordsToReturn recordsToReturn path parameter. Number of records to return
+@param recordsToReturn recordsToReturn path parameter. Number of records to return [1<= recordsToReturn <= 500]
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-pagination-range
 */
 func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recordsToReturn int) (*ResponseDevicesGetNetworkDeviceByPaginationRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{startIndex}/{recordsToReturn}"
@@ -3148,6 +3396,8 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 @param interfaceUUID interfaceUuid path parameter. Interface Id
 
 @param ClearMacAddressTableQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!clear-mac-address-table
 */
 func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevicesClearMacAddressTable *RequestDevicesClearMacAddressTable, ClearMacAddressTableQueryParams *ClearMacAddressTableQueryParams) (*ResponseDevicesClearMacAddressTable, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{interfaceUuid}/operation"
@@ -3181,7 +3431,9 @@ func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevic
 /* Adds the device with given credential
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-device2
+*/
 func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddDevice2) (*ResponseDevicesAddDevice2, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device"
 
@@ -3211,7 +3463,9 @@ func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddD
 /* Exports the selected network device to a file
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-list
+*/
 func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *RequestDevicesExportDeviceList) (*ResponseDevicesExportDeviceList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/file"
 
@@ -3233,6 +3487,38 @@ func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *Reques
 	}
 
 	result := response.Result().(*ResponseDevicesExportDeviceList)
+	return result, response, err
+
+}
+
+//CreateUserDefinedField Create User-Defined-Field - 0a9c-18e7-4caa-8b07
+/* Creates a new global User Defined Field, which can be assigned to devices
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-user-defined-field
+*/
+func (s *DevicesService) CreateUserDefinedField(requestDevicesCreateUserDefinedField *RequestDevicesCreateUserDefinedField) (*ResponseDevicesCreateUserDefinedField, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/user-defined-field"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesCreateUserDefinedField).
+		SetResult(&ResponseDevicesCreateUserDefinedField{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation CreateUserDefinedField")
+	}
+
+	result := response.Result().(*ResponseDevicesCreateUserDefinedField)
 	return result, response, err
 
 }
@@ -3366,6 +3652,145 @@ func (s *DevicesService) SyncDevices(requestDevicesSyncDevices *RequestDevicesSy
 
 }
 
+//UpdateUserDefinedField Update User-Defined-Field - aa8c-ea8f-41aa-a346
+/* Updates an existing global User Defined Field, using it's id.
+
+
+@param id id path parameter. UDF id
+
+*/
+func (s *DevicesService) UpdateUserDefinedField(id string, requestDevicesUpdateUserDefinedField *RequestDevicesUpdateUserDefinedField) (*ResponseDevicesUpdateUserDefinedField, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/user-defined-field/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesUpdateUserDefinedField).
+		SetResult(&ResponseDevicesUpdateUserDefinedField{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation UpdateUserDefinedField")
+	}
+
+	result := response.Result().(*ResponseDevicesUpdateUserDefinedField)
+	return result, response, err
+
+}
+
+//AddUserDefinedFieldToDevice Add User-Defined-Field to device - d3af-395c-4669-adaf
+/* Assigns an existing Global User-Defined-Field to a device. If the UDF is already assigned to the specific device, then it updates the device UDF value accordingly. Please note that the assigning UDF 'name' must be an existing global UDF. Otherwise error shall be shown.
+
+
+@param deviceID deviceId path parameter. UUID of device to which UDF has to be added
+
+*/
+func (s *DevicesService) AddUserDefinedFieldToDevice(deviceID string, requestDevicesAddUserDefinedFieldToDevice *RequestDevicesAddUserDefinedFieldToDevice) (*ResponseDevicesAddUserDefinedFieldToDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/{deviceId}/user-defined-field"
+	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesAddUserDefinedFieldToDevice).
+		SetResult(&ResponseDevicesAddUserDefinedFieldToDevice{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation AddUserDefinedFieldToDevice")
+	}
+
+	result := response.Result().(*ResponseDevicesAddUserDefinedFieldToDevice)
+	return result, response, err
+
+}
+
+//DeleteUserDefinedField Delete User-Defined-Field - 78a3-c8b1-4799-892e
+/* Deletes an existing Global User-Defined-Field using it's id.
+
+
+@param id id path parameter. UDF id
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-user-defined-field
+*/
+func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDeleteUserDefinedField, *resty.Response, error) {
+	//id string
+	path := "/dna/intent/api/v1/network-device/user-defined-field/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesDeleteUserDefinedField{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation DeleteUserDefinedField")
+	}
+
+	result := response.Result().(*ResponseDevicesDeleteUserDefinedField)
+	return result, response, err
+
+}
+
+//RemoveUserDefinedFieldFromDevice Remove User-Defined-Field from device - 8c9f-d9e8-4cab-bf96
+/* Remove a User-Defined-Field from device. Name of UDF has to be passed as the query parameter. Please note that Global UDF will not be deleted by this operation.
+
+
+@param deviceID deviceId path parameter. UUID of device from which UDF has to be removed
+
+@param RemoveUserDefinedFieldFromDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-user-defined-field-from-device
+*/
+func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, RemoveUserDefinedFieldFromDeviceQueryParams *RemoveUserDefinedFieldFromDeviceQueryParams) (*ResponseDevicesRemoveUserDefinedFieldFromDevice, *resty.Response, error) {
+	//deviceID string,RemoveUserDefinedFieldFromDeviceQueryParams *RemoveUserDefinedFieldFromDeviceQueryParams
+	path := "/dna/intent/api/v1/network-device/{deviceId}/user-defined-field"
+	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+
+	queryString, _ := query.Values(RemoveUserDefinedFieldFromDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesRemoveUserDefinedFieldFromDevice{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation RemoveUserDefinedFieldFromDevice")
+	}
+
+	result := response.Result().(*ResponseDevicesRemoveUserDefinedFieldFromDevice)
+	return result, response, err
+
+}
+
 //DeleteDeviceByID Delete Device by Id - 1c89-4b58-48ea-b214
 /* Deletes the network device for the given Id
 
@@ -3373,8 +3798,11 @@ func (s *DevicesService) SyncDevices(requestDevicesSyncDevices *RequestDevicesSy
 @param id id path parameter. Device ID
 
 @param DeleteDeviceByIdQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id
 */
 func (s *DevicesService) DeleteDeviceByID(id string, DeleteDeviceByIdQueryParams *DeleteDeviceByIDQueryParams) (*ResponseDevicesDeleteDeviceByID, *resty.Response, error) {
+	//id string,DeleteDeviceByIdQueryParams *DeleteDeviceByIDQueryParams
 	path := "/dna/intent/api/v1/network-device/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

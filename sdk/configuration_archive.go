@@ -25,7 +25,9 @@ type RequestConfigurationArchiveExportDeviceConfigurations struct {
 /* Export Device configurations to an encrypted zip file.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-configurations
+*/
 func (s *ConfigurationArchiveService) ExportDeviceConfigurations(requestConfigurationArchiveExportDeviceConfigurations *RequestConfigurationArchiveExportDeviceConfigurations) (*ResponseConfigurationArchiveExportDeviceConfigurations, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-archive/cleartext"
 
