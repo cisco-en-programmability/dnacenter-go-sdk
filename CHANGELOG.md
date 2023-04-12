@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [5.0.0]
+## [5.0.0] - 2023-04-12
 ### Added
 - New services for Cisco DNA Center 2.3.5.3's API:
   - AuthenticationManagement *AuthenticationManagementService
@@ -49,19 +49,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - WirelessService.RebootAccessPoints
   - WirelessService.ConfigureAccessPoints
 
-### Changed
-- LicenseService
-  - DeviceCountDetails -> DeviceCountDetails2
-  - DeviceLicenseSummary -> DeviceLicenseSummary2
-  - DeviceLicenseDetails -> DeviceLicenseDetails2
-  - VirtualAccountDetails -> VirtualAccountDetails2
-  - LicenseTermDetails -> LicenseTermDetails2
-  - LicenseUsageDetails -> LicenseUsageDetails2
-  - ChangeVirtualAccount -> ChangeVirtualAccount2
-  - DeviceDeregistration -> DeviceDeregistration2
-  - DeviceRegistration -> DeviceRegistration2
-- NetworkSettingsService
-  - AssignCredentialToSite -> AssignDeviceCredentialToSite
 - The SDK was updated with the official DNA Center API 2.3.5.3 documentation, therefore some structures or data types may have changed.[Oficial Documentation](https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-2-3-5-api-overview).
 
 
