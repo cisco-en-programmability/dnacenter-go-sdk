@@ -5,7 +5,7 @@ dnacenter-go-sdk is a Go client library for [DNA Center Platform](https://develo
 ## Usage
 
 ```go
-import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v4/sdk"
+import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
 ```
 
 ## Introduction
@@ -67,7 +67,7 @@ devicesCount, _, err := Client.Devices.GetDeviceCount()
 if err != nil {
     fmt.Println(err)
 }
-fmt.Println('Device Count:', devicesCount.Response)
+fmt.Println("Device Count:", devicesCount.Response)
 getDeviceListQueryParams = &dnac.GetDeviceListQueryParams{
     PlatformID: []string{"C9300-24UX"},
 }
@@ -84,6 +84,8 @@ if devices.Response != nil {
 ```
 
 ## Documentation
+### dnacenter-go-sdk/v5
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v5)
 ### dnacenter-go-sdk/v4
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v4)
 ### dnacenter-go-sdk/v3
@@ -101,6 +103,7 @@ if devices.Response != nil {
 | 2.y.z        |  2.2.2.3                           |
 | 3.y.z        |  2.2.3.3                           |
 | 4.y.z        |  2.3.3.0                           |
+| 5.y.z        |  2.3.5.3                          |
 
 ## Changelog
 

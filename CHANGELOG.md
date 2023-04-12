@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [5.0.0]
 ### Added
 - New services for Cisco DNA Center 2.3.5.3's API:
   - AuthenticationManagement *AuthenticationManagementService
@@ -472,4 +474,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.12]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...v4.0.12
 [4.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.12...v4.0.13
 [4.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.13...v4.0.14
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.11...main
+[5.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.14...v5.0.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.0...main
