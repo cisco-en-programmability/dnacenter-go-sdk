@@ -159,7 +159,7 @@ type RequestItemLanAutomationLanAutomationStart struct {
 	PeerDeviceManagmentIPAddress      string                                               `json:"peerDeviceManagmentIPAddress,omitempty"`      // Peer seed management IP address.
 	PrimaryDeviceInterfaceNames       []string                                             `json:"primaryDeviceInterfaceNames,omitempty"`       // The list of interfaces on primary seed via which the discovered devices are connected.
 	IPPools                           *[]RequestItemLanAutomationLanAutomationStartIPPools `json:"ipPools,omitempty"`                           //
-	MulitcastEnabled                  *bool                                                `json:"mulitcastEnabled,omitempty"`                  // To enable underlay native multicast.
+	MulticastEnabled                  *bool                                                `json:"multicastEnabled,omitempty"`                  // To enable underlay native multicast.
 	HostNamePrefix                    string                                               `json:"hostNamePrefix,omitempty"`                    // Host name prefix which shall be assigned to the discovered device.
 	HostNameFileID                    string                                               `json:"hostNameFileId,omitempty"`                    // Use /dna/intent/api/v1/file/namespace/nw_orch api to get the file id for the already uploaded file in nw_orch namespace.
 	IsisDomainPwd                     string                                               `json:"isisDomainPwd,omitempty"`                     // IS-IS domain password in plain text.
