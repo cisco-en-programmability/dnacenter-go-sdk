@@ -26,8 +26,8 @@ type GetAuditLogParentRecordsQueryParams struct {
 	DeviceID       string  `url:"deviceId,omitempty"`       //Audit Log notification's deviceId.
 	IsSystemEvents bool    `url:"isSystemEvents,omitempty"` //Parameter to filter system generated audit-logs.
 	Description    string  `url:"description,omitempty"`    //String full/partial search - (Provided input string is case insensitively matched for records).
-	Offset         int     `url:"offset,omitempty"`         //Position of a particular Audit Log record in the data.
-	Limit          int     `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page.
+	Offset         float64 `url:"offset,omitempty"`         //Position of a particular Audit Log record in the data.
+	Limit          float64 `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page.
 	StartTime      float64 `url:"startTime,omitempty"`      //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime        float64 `url:"endTime,omitempty"`        //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy         string  `url:"sortBy,omitempty"`         //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -71,8 +71,8 @@ type GetAuditLogRecordsQueryParams struct {
 	DeviceID         string  `url:"deviceId,omitempty"`         //Audit Log notification's deviceId.
 	IsSystemEvents   bool    `url:"isSystemEvents,omitempty"`   //Parameter to filter system generated audit-logs.
 	Description      string  `url:"description,omitempty"`      //String full/partial search - (Provided input string is case insensitively matched for records).
-	Offset           int     `url:"offset,omitempty"`           //Position of a particular Audit Log record in the data.
-	Limit            int     `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page.
+	Offset           float64 `url:"offset,omitempty"`           //Position of a particular Audit Log record in the data.
+	Limit            float64 `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page.
 	StartTime        float64 `url:"startTime,omitempty"`        //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime          float64 `url:"endTime,omitempty"`          //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy           string  `url:"sortBy,omitempty"`           //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -88,8 +88,8 @@ type GetNotificationsQueryParams struct {
 	Domain    string  `url:"domain,omitempty"`    //Domain
 	SubDomain string  `url:"subDomain,omitempty"` //Sub Domain
 	Source    string  `url:"source,omitempty"`    //Source
-	Offset    int     `url:"offset,omitempty"`    //Start Offset
-	Limit     int     `url:"limit,omitempty"`     //# of records
+	Offset    float64 `url:"offset,omitempty"`    //Start Offset
+	Limit     float64 `url:"limit,omitempty"`     //# of records
 	SortBy    string  `url:"sortBy,omitempty"`    //Sort By column
 	Order     string  `url:"order,omitempty"`     //Ascending/Descending order [asc/desc]
 	Tags      string  `url:"tags,omitempty"`      //Tags
@@ -107,99 +107,122 @@ type CountOfNotificationsQueryParams struct {
 	SubDomain string  `url:"subDomain,omitempty"` //Sub Domain
 	Source    string  `url:"source,omitempty"`    //Source
 }
+type GetSNMPDestinationQueryParams struct {
+	ConfigID string  `url:"configId,omitempty"` //List of SNMP configurations
+	Offset   float64 `url:"offset,omitempty"`   //The number of SNMP configuration's to offset in the resultset whose default value 0
+	Limit    float64 `url:"limit,omitempty"`    //The number of SNMP configuration's to limit in the resultset whose default value 10
+	SortBy   string  `url:"sortBy,omitempty"`   //SortBy field name
+	Order    string  `url:"order,omitempty"`    //order(asc/desc)
+}
 type GetEventSubscriptionsQueryParams struct {
-	EventIDs string `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
-	Offset   int    `url:"offset,omitempty"`   //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit    int    `url:"limit,omitempty"`    //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy   string `url:"sortBy,omitempty"`   //SortBy field name
-	Order    string `url:"order,omitempty"`    //order(asc/desc)
+	EventIDs string  `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
+	Offset   float64 `url:"offset,omitempty"`   //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit    float64 `url:"limit,omitempty"`    //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy   string  `url:"sortBy,omitempty"`   //SortBy field name
+	Order    string  `url:"order,omitempty"`    //order(asc/desc)
 }
 type DeleteEventSubscriptionsQueryParams struct {
 	Subscriptions string `url:"subscriptions,omitempty"` //List of EventSubscriptionId's for removal
 }
 type GetEmailSubscriptionDetailsQueryParams struct {
-	Name       string `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     int    `url:"offset,omitempty"`     //The number of Email Subscription detail's to offset in the resultset whose default value 0
-	Limit      int    `url:"limit,omitempty"`      //The number of Email Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string `url:"order,omitempty"`      //order(asc/desc)
+	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     float64 `url:"offset,omitempty"`     //The number of Email Subscription detail's to offset in the resultset whose default value 0
+	Limit      float64 `url:"limit,omitempty"`      //The number of Email Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string  `url:"order,omitempty"`      //order(asc/desc)
 }
 type GetRestWebhookSubscriptionDetailsQueryParams struct {
-	Name       string `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     int    `url:"offset,omitempty"`     //The number of Rest/Webhook Subscription detail's to offset in the resultset whose default value 0
-	Limit      int    `url:"limit,omitempty"`      //The number of Rest/Webhook Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string `url:"order,omitempty"`      //order(asc/desc)
+	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     float64 `url:"offset,omitempty"`     //The number of Rest/Webhook Subscription detail's to offset in the resultset whose default value 0
+	Limit      float64 `url:"limit,omitempty"`      //The number of Rest/Webhook Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string  `url:"order,omitempty"`      //order(asc/desc)
 }
 type GetSyslogSubscriptionDetailsQueryParams struct {
-	Name       string `url:"name,omitempty"`       //Name of the specific configuration
-	InstanceID string `url:"instanceId,omitempty"` //Instance Id of the specific configuration
-	Offset     int    `url:"offset,omitempty"`     //The number of Syslog Subscription detail's to offset in the resultset whose default value 0
-	Limit      int    `url:"limit,omitempty"`      //The number of Syslog Subscription detail's to limit in the resultset whose default value 10
-	SortBy     string `url:"sortBy,omitempty"`     //SortBy field name
-	Order      string `url:"order,omitempty"`      //order(asc/desc)
+	Name       string  `url:"name,omitempty"`       //Name of the specific configuration
+	InstanceID string  `url:"instanceId,omitempty"` //Instance Id of the specific configuration
+	Offset     float64 `url:"offset,omitempty"`     //The number of Syslog Subscription detail's to offset in the resultset whose default value 0
+	Limit      float64 `url:"limit,omitempty"`      //The number of Syslog Subscription detail's to limit in the resultset whose default value 10
+	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string  `url:"order,omitempty"`      //order(asc/desc)
 }
 type CountOfEventSubscriptionsQueryParams struct {
 	EventIDs string `url:"eventIds,omitempty"` //List of subscriptions related to the respective eventIds
 }
 type GetEmailEventSubscriptionsQueryParams struct {
-	EventIDs  string `url:"eventIds,omitempty"`  //List of email subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string `url:"domain,omitempty"`    //List of email subscriptions related to the respective domain
-	SubDomain string `url:"subDomain,omitempty"` //List of email subscriptions related to the respective sub-domain
-	Category  string `url:"category,omitempty"`  //List of email subscriptions related to the respective category
-	Type      string `url:"type,omitempty"`      //List of email subscriptions related to the respective type
-	Name      string `url:"name,omitempty"`      //List of email subscriptions related to the respective name
+	EventIDs  string  `url:"eventIds,omitempty"`  //List of email subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string  `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string  `url:"domain,omitempty"`    //List of email subscriptions related to the respective domain
+	SubDomain string  `url:"subDomain,omitempty"` //List of email subscriptions related to the respective sub-domain
+	Category  string  `url:"category,omitempty"`  //List of email subscriptions related to the respective category
+	Type      string  `url:"type,omitempty"`      //List of email subscriptions related to the respective type
+	Name      string  `url:"name,omitempty"`      //List of email subscriptions related to the respective name
 }
 type GetRestWebhookEventSubscriptionsQueryParams struct {
-	EventIDs  string `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
-	SubDomain string `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
-	Category  string `url:"category,omitempty"`  //List of subscriptions related to the respective category
-	Type      string `url:"type,omitempty"`      //List of subscriptions related to the respective type
-	Name      string `url:"name,omitempty"`      //List of subscriptions related to the respective name
+	EventIDs  string  `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string  `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string  `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
+	SubDomain string  `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
+	Category  string  `url:"category,omitempty"`  //List of subscriptions related to the respective category
+	Type      string  `url:"type,omitempty"`      //List of subscriptions related to the respective type
+	Name      string  `url:"name,omitempty"`      //List of subscriptions related to the respective name
 }
 type GetSyslogEventSubscriptionsQueryParams struct {
-	EventIDs  string `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
-	Offset    int    `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
-	Limit     int    `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
-	SortBy    string `url:"sortBy,omitempty"`    //SortBy field name
-	Order     string `url:"order,omitempty"`     //order(asc/desc)
-	Domain    string `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
-	SubDomain string `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
-	Category  string `url:"category,omitempty"`  //List of subscriptions related to the respective category
-	Type      string `url:"type,omitempty"`      //List of subscriptions related to the respective type
-	Name      string `url:"name,omitempty"`      //List of subscriptions related to the respective name
+	EventIDs  string  `url:"eventIds,omitempty"`  //List of subscriptions related to the respective eventIds (Comma separated event ids)
+	Offset    float64 `url:"offset,omitempty"`    //The number of Subscriptions's to offset in the resultset whose default value 0
+	Limit     float64 `url:"limit,omitempty"`     //The number of Subscriptions's to limit in the resultset whose default value 10
+	SortBy    string  `url:"sortBy,omitempty"`    //SortBy field name
+	Order     string  `url:"order,omitempty"`     //order(asc/desc)
+	Domain    string  `url:"domain,omitempty"`    //List of subscriptions related to the respective domain
+	SubDomain string  `url:"subDomain,omitempty"` //List of subscriptions related to the respective sub-domain
+	Category  string  `url:"category,omitempty"`  //List of subscriptions related to the respective category
+	Type      string  `url:"type,omitempty"`      //List of subscriptions related to the respective type
+	Name      string  `url:"name,omitempty"`      //List of subscriptions related to the respective name
+}
+type GetSyslogDestinationQueryParams struct {
+	ConfigID string  `url:"configId,omitempty"` //Config id of syslog server
+	Name     string  `url:"name,omitempty"`     //Name of syslog server
+	Protocol string  `url:"protocol,omitempty"` //Protocol of syslog server
+	Offset   float64 `url:"offset,omitempty"`   //The number of syslog configuration's to offset in the resultset whose default value 0
+	Limit    float64 `url:"limit,omitempty"`    //The number of syslog configuration's to limit in the resultset whose default value 10
+	SortBy   string  `url:"sortBy,omitempty"`   //SortBy field name
+	Order    string  `url:"order,omitempty"`    //order(asc/desc)
+}
+type GetWebhookDestinationQueryParams struct {
+	WebhookIDs string  `url:"webhookIds,omitempty"` //List of webhook configurations
+	Offset     float64 `url:"offset,omitempty"`     //The number of webhook configuration's to offset in the resultset whose default value 0
+	Limit      float64 `url:"limit,omitempty"`      //The number of webhook configuration's to limit in the resultset whose default value 10
+	SortBy     string  `url:"sortBy,omitempty"`     //SortBy field name
+	Order      string  `url:"order,omitempty"`      //order(asc/desc)
 }
 type GetEventsQueryParams struct {
-	EventID string `url:"eventId,omitempty"` //The registered EventId should be provided
-	Tags    string `url:"tags,omitempty"`    //The registered Tags should be provided
-	Offset  int    `url:"offset,omitempty"`  //The number of Registries to offset in the resultset whose default value 0
-	Limit   int    `url:"limit,omitempty"`   //The number of Registries to limit in the resultset whose default value 10
-	SortBy  string `url:"sortBy,omitempty"`  //SortBy field name
-	Order   string `url:"order,omitempty"`   //order(asc/desc)
+	EventID string  `url:"eventId,omitempty"` //The registered EventId should be provided
+	Tags    string  `url:"tags,omitempty"`    //The registered Tags should be provided
+	Offset  float64 `url:"offset,omitempty"`  //The number of Registries to offset in the resultset whose default value 0
+	Limit   float64 `url:"limit,omitempty"`   //The number of Registries to limit in the resultset whose default value 10
+	SortBy  string  `url:"sortBy,omitempty"`  //SortBy field name
+	Order   string  `url:"order,omitempty"`   //order(asc/desc)
 }
 type CountOfEventsQueryParams struct {
 	EventID string `url:"eventId,omitempty"` //The registered EventId should be provided
 	Tags    string `url:"tags,omitempty"`    //The registered Tags should be provided
 }
 type GetEventArtifactsQueryParams struct {
-	EventIDs string `url:"eventIds,omitempty"` //List of eventIds
-	Tags     string `url:"tags,omitempty"`     //Tags defined
-	Offset   int    `url:"offset,omitempty"`   //Record start offset
-	Limit    int    `url:"limit,omitempty"`    //# of records to return in result set
-	SortBy   string `url:"sortBy,omitempty"`   //Sort by field
-	Order    string `url:"order,omitempty"`    //sorting order (asc/desc)
-	Search   string `url:"search,omitempty"`   //findd matches in name, description, eventId, type, category
+	EventIDs string  `url:"eventIds,omitempty"` //List of eventIds
+	Tags     string  `url:"tags,omitempty"`     //Tags defined
+	Offset   float64 `url:"offset,omitempty"`   //Record start offset
+	Limit    float64 `url:"limit,omitempty"`    //# of records to return in result set
+	SortBy   string  `url:"sortBy,omitempty"`   //Sort by field
+	Order    string  `url:"order,omitempty"`    //sorting order (asc/desc)
+	Search   string  `url:"search,omitempty"`   //findd matches in name, description, eventId, type, category
 }
 
 type ResponseEventManagementGetAuditLogParentRecords []ResponseItemEventManagementGetAuditLogParentRecords // Array of ResponseEventManagementGetAuditLogParentRecords
@@ -219,30 +242,24 @@ type ResponseItemEventManagementGetAuditLogParentRecords struct {
 	Timestamp         *int                                                                  `json:"timestamp,omitempty"`         // Timestamp
 	Tags              *[]ResponseItemEventManagementGetAuditLogParentRecordsTags            `json:"tags,omitempty"`              // Tags
 	Details           *ResponseItemEventManagementGetAuditLogParentRecordsDetails           `json:"details,omitempty"`           // Details
-	CiscoDnaEventLink *ResponseItemEventManagementGetAuditLogParentRecordsCiscoDnaEventLink `json:"ciscoDnaEventLink,omitempty"` // Cisco Dna Event Link
-	Note              *ResponseItemEventManagementGetAuditLogParentRecordsNote              `json:"note,omitempty"`              // Note
+	CiscoDnaEventLink string                                                                `json:"ciscoDnaEventLink,omitempty"` // Cisco Dna Event Link
+	Note              string                                                                `json:"note,omitempty"`              // Note
 	TntID             string                                                                `json:"tntId,omitempty"`             // Tnt Id
 	Context           string                                                                `json:"context,omitempty"`           // Context
 	UserID            string                                                                `json:"userId,omitempty"`            // User Id
 	I18N              string                                                                `json:"i18n,omitempty"`              // I18n
-	EventHierarchy    *ResponseItemEventManagementGetAuditLogParentRecordsEventHierarchy    `json:"eventHierarchy,omitempty"`    // Event Hierarchy
+	EventHierarchy    string                                                                `json:"eventHierarchy,omitempty"`    // Event Hierarchy
 	Message           string                                                                `json:"message,omitempty"`           // Message
-	MessageParams     *ResponseItemEventManagementGetAuditLogParentRecordsMessageParams     `json:"messageParams,omitempty"`     // Message Params
+	MessageParams     string                                                                `json:"messageParams,omitempty"`     // Message Params
 	AdditionalDetails *ResponseItemEventManagementGetAuditLogParentRecordsAdditionalDetails `json:"additionalDetails,omitempty"` // Additional Details
-	ParentInstanceID  *ResponseItemEventManagementGetAuditLogParentRecordsParentInstanceID  `json:"parentInstanceId,omitempty"`  // Parent Instance Id
-	Network           *ResponseItemEventManagementGetAuditLogParentRecordsNetwork           `json:"network,omitempty"`           // Network
+	ParentInstanceID  string                                                                `json:"parentInstanceId,omitempty"`  // Parent Instance Id
+	Network           string                                                                `json:"network,omitempty"`           // Network
 	ChildCount        *float64                                                              `json:"childCount,omitempty"`        // Child Count
 	TenantID          string                                                                `json:"tenantId,omitempty"`          // Tenant Id
 }
 type ResponseItemEventManagementGetAuditLogParentRecordsTags interface{}
 type ResponseItemEventManagementGetAuditLogParentRecordsDetails interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsCiscoDnaEventLink interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsNote interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsEventHierarchy interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsMessageParams interface{}
 type ResponseItemEventManagementGetAuditLogParentRecordsAdditionalDetails interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsParentInstanceID interface{}
-type ResponseItemEventManagementGetAuditLogParentRecordsNetwork interface{}
 type ResponseEventManagementGetAuditLogSummary []ResponseItemEventManagementGetAuditLogSummary // Array of ResponseEventManagementGetAuditLogSummary
 type ResponseItemEventManagementGetAuditLogSummary struct {
 	Count        *int `json:"count,omitempty"`        // Count
@@ -293,6 +310,31 @@ type ResponseEventManagementGetStatusAPIForEventsErrorMessage interface{}
 type ResponseEventManagementUpdateEmailDestination struct {
 	StatusURI string `json:"statusUri,omitempty"` // Status Uri
 }
+type ResponseEventManagementGetEmailDestination []ResponseItemEventManagementGetEmailDestination // Array of ResponseEventManagementGetEmailDestination
+type ResponseItemEventManagementGetEmailDestination struct {
+	EmailConfigID       string                                                             `json:"emailConfigId,omitempty"`       // UUID
+	PrimarySmtpConfig   *ResponseItemEventManagementGetEmailDestinationPrimarySmtpConfig   `json:"primarySMTPConfig,omitempty"`   //
+	SecondarySmtpConfig *ResponseItemEventManagementGetEmailDestinationSecondarySmtpConfig `json:"secondarySMTPConfig,omitempty"` //
+	FromEmail           string                                                             `json:"fromEmail,omitempty"`           // From Email
+	ToEmail             string                                                             `json:"toEmail,omitempty"`             // To Email
+	Subject             string                                                             `json:"subject,omitempty"`             // Subject
+	Version             string                                                             `json:"version,omitempty"`             // Version
+	TenantID            string                                                             `json:"tenantId,omitempty"`            // Tenant Id
+}
+type ResponseItemEventManagementGetEmailDestinationPrimarySmtpConfig struct {
+	HostName string `json:"hostName,omitempty"` // Host Name
+	Port     string `json:"port,omitempty"`     // Port
+	UserName string `json:"userName,omitempty"` // User Name
+	Password string `json:"password,omitempty"` // Password
+	Security string `json:"security,omitempty"` // Security
+}
+type ResponseItemEventManagementGetEmailDestinationSecondarySmtpConfig struct {
+	HostName string `json:"hostName,omitempty"` // Host Name
+	Port     string `json:"port,omitempty"`     // Port
+	UserName string `json:"userName,omitempty"` // User Name
+	Password string `json:"password,omitempty"` // Password
+	Security string `json:"security,omitempty"` // Security
+}
 type ResponseEventManagementCreateEmailDestination struct {
 	StatusURI string `json:"statusUri,omitempty"` // Status Uri
 }
@@ -322,6 +364,31 @@ type ResponseItemEventManagementGetNotificationsNetwork struct {
 type ResponseEventManagementCountOfNotifications struct {
 	Response string `json:"response,omitempty"` // Response
 }
+type ResponseEventManagementGetSNMPDestination struct {
+	ErrorMessage  *ResponseEventManagementGetSNMPDestinationErrorMessage    `json:"errorMessage,omitempty"`  //
+	APIStatus     string                                                    `json:"apiStatus,omitempty"`     // Status
+	StatusMessage *[]ResponseEventManagementGetSNMPDestinationStatusMessage `json:"statusMessage,omitempty"` //
+}
+type ResponseEventManagementGetSNMPDestinationErrorMessage struct {
+	Errors []string `json:"errors,omitempty"` // Errors
+}
+type ResponseEventManagementGetSNMPDestinationStatusMessage struct {
+	Version         string `json:"version,omitempty"`         // Version
+	TenantID        string `json:"tenantId,omitempty"`        // Tenant Id
+	ConfigID        string `json:"configId,omitempty"`        // Config Id
+	Name            string `json:"name,omitempty"`            // Name
+	Description     string `json:"description,omitempty"`     // Description
+	IPAddress       string `json:"ipAddress,omitempty"`       // Ip Address
+	Port            *int   `json:"port,omitempty"`            // Port
+	SNMPVersion     string `json:"snmpVersion,omitempty"`     // Snmp Version
+	Community       string `json:"community,omitempty"`       // Community
+	UserName        string `json:"userName,omitempty"`        // User Name
+	SNMPMode        string `json:"snmpMode,omitempty"`        // Snmp Mode
+	SNMPAuthType    string `json:"snmpAuthType,omitempty"`    // Snmp Auth Type
+	AuthPassword    string `json:"authPassword,omitempty"`    // Auth Password
+	SNMPPrivacyType string `json:"snmpPrivacyType,omitempty"` // Snmp Privacy Type
+	PrivacyPassword string `json:"privacyPassword,omitempty"` // Privacy Password
+}
 type ResponseEventManagementGetEventSubscriptions []ResponseItemEventManagementGetEventSubscriptions // Array of ResponseEventManagementGetEventSubscriptions
 type ResponseItemEventManagementGetEventSubscriptions struct {
 	Version               string                                                                   `json:"version,omitempty"`               // Version
@@ -347,13 +414,13 @@ type ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscr
 	BasePath       string                                                                                                 `json:"basePath,omitempty"`       // Base Path
 	Resource       string                                                                                                 `json:"resource,omitempty"`       // Resource
 	Method         string                                                                                                 `json:"method,omitempty"`         // Method
-	TrustCert      *bool                                                                                                  `json:"trustCert,omitempty"`      // Trust Cert **
+	TrustCert      *bool                                                                                                  `json:"trustCert,omitempty"`      // Trust Cert
 	Headers        *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsHeaders     `json:"headers,omitempty"`        //
 	QueryParams    *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsQueryParams `json:"queryParams,omitempty"`    //
 	PathParams     *[]ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsPathParams  `json:"pathParams,omitempty"`     //
 	Body           string                                                                                                 `json:"body,omitempty"`           // Body
-	ConnectTimeout *int                                                                                                   `json:"connectTimeout,omitempty"` // Connect Timeout **
-	ReadTimeout    *int                                                                                                   `json:"readTimeout,omitempty"`    // Read Timeout **
+	ConnectTimeout *int                                                                                                   `json:"connectTimeout,omitempty"` // Connect Timeout
+	ReadTimeout    *int                                                                                                   `json:"readTimeout,omitempty"`    // Read Timeout
 }
 type ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetailsHeaders struct {
 	String string `json:"string,omitempty"` // String
@@ -489,7 +556,7 @@ type ResponseItemEventManagementGetRestWebhookEventSubscriptions struct {
 	Description           string                                                                              `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetRestWebhookEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
 	Filter                *ResponseItemEventManagementGetRestWebhookEventSubscriptionsFilter                  `json:"filter,omitempty"`                //
-	IsPrivate             *bool                                                                               `json:"isPrivate,omitempty"`             // Is Private
+	IsPrivate             string                                                                              `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                              `json:"tenantId,omitempty"`              // Tenant Id
 }
 type ResponseItemEventManagementGetRestWebhookEventSubscriptionsSubscriptionEndpoints struct {
@@ -548,8 +615,8 @@ type ResponseEventManagementCreateSyslogEventSubscription struct {
 }
 type ResponseEventManagementGetSyslogEventSubscriptions []ResponseItemEventManagementGetSyslogEventSubscriptions // Array of ResponseEventManagementGetSyslogEventSubscriptions
 type ResponseItemEventManagementGetSyslogEventSubscriptions struct {
-	Version               *ResponseItemEventManagementGetSyslogEventSubscriptionsVersion                 `json:"version,omitempty"`               // Version
-	SubscriptionID        *ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionID          `json:"subscriptionId,omitempty"`        // Subscription Id
+	Version               string                                                                         `json:"version,omitempty"`               // Version
+	SubscriptionID        string                                                                         `json:"subscriptionId,omitempty"`        // Subscription Id
 	Name                  string                                                                         `json:"name,omitempty"`                  // Name
 	Description           string                                                                         `json:"description,omitempty"`           // Description
 	SubscriptionEndpoints *[]ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints `json:"subscriptionEndpoints,omitempty"` //
@@ -557,8 +624,6 @@ type ResponseItemEventManagementGetSyslogEventSubscriptions struct {
 	IsPrivate             *bool                                                                          `json:"isPrivate,omitempty"`             // Is Private
 	TenantID              string                                                                         `json:"tenantId,omitempty"`              // Tenant Id
 }
-type ResponseItemEventManagementGetSyslogEventSubscriptionsVersion interface{}
-type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionID interface{}
 type ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpoints struct {
 	InstanceID          string                                                                                          `json:"instanceId,omitempty"`          // Instance Id
 	SubscriptionDetails *ResponseItemEventManagementGetSyslogEventSubscriptionsSubscriptionEndpointsSubscriptionDetails `json:"subscriptionDetails,omitempty"` //
@@ -603,6 +668,24 @@ type ResponseEventManagementUpdateSyslogDestination struct {
 type ResponseEventManagementUpdateSyslogDestinationErrorMessage struct {
 	Errors []string `json:"errors,omitempty"` // Errors
 }
+type ResponseEventManagementGetSyslogDestination struct {
+	ErrorMessage  *ResponseEventManagementGetSyslogDestinationErrorMessage    `json:"errorMessage,omitempty"`  //
+	APIStatus     string                                                      `json:"apiStatus,omitempty"`     // Status
+	StatusMessage *[]ResponseEventManagementGetSyslogDestinationStatusMessage `json:"statusMessage,omitempty"` //
+}
+type ResponseEventManagementGetSyslogDestinationErrorMessage struct {
+	Errors []string `json:"errors,omitempty"` // Errors
+}
+type ResponseEventManagementGetSyslogDestinationStatusMessage struct {
+	Version     string `json:"version,omitempty"`     // Version
+	TenantID    string `json:"tenantId,omitempty"`    // Tenant Id
+	ConfigID    string `json:"configId,omitempty"`    // UUID
+	Name        string `json:"name,omitempty"`        // Name
+	Description string `json:"description,omitempty"` // Description
+	Host        string `json:"host,omitempty"`        // Host
+	Port        *int   `json:"port,omitempty"`        // Port
+	Protocol    string `json:"protocol,omitempty"`    // Protocol
+}
 type ResponseEventManagementCreateSyslogDestination struct {
 	ErrorMessage  *ResponseEventManagementCreateSyslogDestinationErrorMessage `json:"errorMessage,omitempty"`  //
 	APIStatus     string                                                      `json:"apiStatus,omitempty"`     // Api Status
@@ -626,6 +709,31 @@ type ResponseEventManagementUpdateWebhookDestination struct {
 }
 type ResponseEventManagementUpdateWebhookDestinationErrorMessage struct {
 	Errors []string `json:"errors,omitempty"` // Errors
+}
+type ResponseEventManagementGetWebhookDestination struct {
+	ErrorMessage  *ResponseEventManagementGetWebhookDestinationErrorMessage    `json:"errorMessage,omitempty"`  //
+	APIStatus     string                                                       `json:"apiStatus,omitempty"`     // Status
+	StatusMessage *[]ResponseEventManagementGetWebhookDestinationStatusMessage `json:"statusMessage,omitempty"` //
+}
+type ResponseEventManagementGetWebhookDestinationErrorMessage struct {
+	Errors []string `json:"errors,omitempty"` // Errors
+}
+type ResponseEventManagementGetWebhookDestinationStatusMessage struct {
+	Version     string                                                              `json:"version,omitempty"`     // Version
+	TenantID    string                                                              `json:"tenantId,omitempty"`    // Tenant Id
+	WebhookID   string                                                              `json:"webhookId,omitempty"`   // Webhook Id
+	Name        string                                                              `json:"name,omitempty"`        // Name
+	Description string                                                              `json:"description,omitempty"` // Description
+	URL         string                                                              `json:"url,omitempty"`         // Url
+	Method      string                                                              `json:"method,omitempty"`      // Method
+	TrustCert   *bool                                                               `json:"trustCert,omitempty"`   // Trust Cert
+	Headers     *[]ResponseEventManagementGetWebhookDestinationStatusMessageHeaders `json:"headers,omitempty"`     //
+}
+type ResponseEventManagementGetWebhookDestinationStatusMessageHeaders struct {
+	Name         string `json:"name,omitempty"`         // Name
+	Value        string `json:"value,omitempty"`        // Value
+	DefaultValue string `json:"defaultValue,omitempty"` // Default Value
+	Encrypt      *bool  `json:"encrypt,omitempty"`      // Encrypt
 }
 type ResponseEventManagementGetEvents []ResponseItemEventManagementGetEvents // Array of ResponseEventManagementGetEvents
 type ResponseItemEventManagementGetEvents struct {
@@ -1027,6 +1135,8 @@ type RequestEventManagementUpdateWebhookDestinationHeaders struct {
 
 
 @param GetAuditLogParentRecordsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-audit-log-parent-records
 */
 func (s *EventManagementService) GetAuditLogParentRecords(GetAuditLogParentRecordsQueryParams *GetAuditLogParentRecordsQueryParams) (*ResponseEventManagementGetAuditLogParentRecords, *resty.Response, error) {
 	path := "/dna/data/api/v1/event/event-series/audit-log/parent-records"
@@ -1059,6 +1169,8 @@ func (s *EventManagementService) GetAuditLogParentRecords(GetAuditLogParentRecor
 
 
 @param GetAuditLogSummaryQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-audit-log-summary
 */
 func (s *EventManagementService) GetAuditLogSummary(GetAuditLogSummaryQueryParams *GetAuditLogSummaryQueryParams) (*ResponseEventManagementGetAuditLogSummary, *resty.Response, error) {
 	path := "/dna/data/api/v1/event/event-series/audit-log/summary"
@@ -1091,6 +1203,8 @@ func (s *EventManagementService) GetAuditLogSummary(GetAuditLogSummaryQueryParam
 
 
 @param GetAuditLogRecordsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-audit-log-records
 */
 func (s *EventManagementService) GetAuditLogRecords(GetAuditLogRecordsQueryParams *GetAuditLogRecordsQueryParams) (*ResponseEventManagementGetAuditLogRecords, *resty.Response, error) {
 	path := "/dna/data/api/v1/event/event-series/audit-logs"
@@ -1124,6 +1238,8 @@ func (s *EventManagementService) GetAuditLogRecords(GetAuditLogRecordsQueryParam
 
 @param executionID executionId path parameter. Execution ID
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-status-api-for-events
 */
 func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*ResponseEventManagementGetStatusAPIForEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/api-status/{executionId}"
@@ -1150,11 +1266,44 @@ func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*Res
 
 }
 
+//GetEmailDestination Get Email Destination - aebc-3bec-4858-8488
+/* Get Email Destination
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-email-destination
+*/
+func (s *EventManagementService) GetEmailDestination() (*ResponseEventManagementGetEmailDestination, *resty.Response, error) {
+	path := "/dna/intent/api/v1/event/email-config"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseEventManagementGetEmailDestination{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetEmailDestination")
+	}
+
+	result := response.Result().(*ResponseEventManagementGetEmailDestination)
+	return result, response, err
+
+}
+
 //GetNotifications Get Notifications - 8499-9b56-4afb-8657
 /* Get the list of Published Notifications
 
 
 @param GetNotificationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-notifications
 */
 func (s *EventManagementService) GetNotifications(GetNotificationsQueryParams *GetNotificationsQueryParams) (*ResponseEventManagementGetNotifications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/event-series"
@@ -1187,6 +1336,8 @@ func (s *EventManagementService) GetNotifications(GetNotificationsQueryParams *G
 
 
 @param CountOfNotificationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-notifications
 */
 func (s *EventManagementService) CountOfNotifications(CountOfNotificationsQueryParams *CountOfNotificationsQueryParams) (*ResponseEventManagementCountOfNotifications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/event-series/count"
@@ -1214,11 +1365,47 @@ func (s *EventManagementService) CountOfNotifications(CountOfNotificationsQueryP
 
 }
 
+//GetSNMPDestination Get SNMP Destination - ffbb-e92a-40e9-9ae6
+/* Get SNMP Destination
+
+
+@param GetSNMPDestinationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-s-n-m-p-destination
+*/
+func (s *EventManagementService) GetSNMPDestination(GetSNMPDestinationQueryParams *GetSNMPDestinationQueryParams) (*ResponseEventManagementGetSNMPDestination, *resty.Response, error) {
+	path := "/dna/intent/api/v1/event/snmp-config"
+
+	queryString, _ := query.Values(GetSNMPDestinationQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseEventManagementGetSNMPDestination{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSnmpDestination")
+	}
+
+	result := response.Result().(*ResponseEventManagementGetSNMPDestination)
+	return result, response, err
+
+}
+
 //GetEventSubscriptions Get Event Subscriptions - dcaa-6bde-4feb-9152
 /* Gets the list of Subscriptions's based on provided offset and limit (Deprecated)
 
 
 @param GetEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-event-subscriptions
 */
 func (s *EventManagementService) GetEventSubscriptions(GetEventSubscriptionsQueryParams *GetEventSubscriptionsQueryParams) (*ResponseEventManagementGetEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription"
@@ -1251,6 +1438,8 @@ func (s *EventManagementService) GetEventSubscriptions(GetEventSubscriptionsQuer
 
 
 @param GetEmailSubscriptionDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-email-subscription-details
 */
 func (s *EventManagementService) GetEmailSubscriptionDetails(GetEmailSubscriptionDetailsQueryParams *GetEmailSubscriptionDetailsQueryParams) (*ResponseEventManagementGetEmailSubscriptionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription-details/email"
@@ -1283,6 +1472,8 @@ func (s *EventManagementService) GetEmailSubscriptionDetails(GetEmailSubscriptio
 
 
 @param GetRestWebhookSubscriptionDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rest-webhook-subscription-details
 */
 func (s *EventManagementService) GetRestWebhookSubscriptionDetails(GetRestWebhookSubscriptionDetailsQueryParams *GetRestWebhookSubscriptionDetailsQueryParams) (*ResponseEventManagementGetRestWebhookSubscriptionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription-details/rest"
@@ -1315,6 +1506,8 @@ func (s *EventManagementService) GetRestWebhookSubscriptionDetails(GetRestWebhoo
 
 
 @param GetSyslogSubscriptionDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-syslog-subscription-details
 */
 func (s *EventManagementService) GetSyslogSubscriptionDetails(GetSyslogSubscriptionDetailsQueryParams *GetSyslogSubscriptionDetailsQueryParams) (*ResponseEventManagementGetSyslogSubscriptionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription-details/syslog"
@@ -1347,6 +1540,8 @@ func (s *EventManagementService) GetSyslogSubscriptionDetails(GetSyslogSubscript
 
 
 @param CountOfEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-event-subscriptions
 */
 func (s *EventManagementService) CountOfEventSubscriptions(CountOfEventSubscriptionsQueryParams *CountOfEventSubscriptionsQueryParams) (*ResponseEventManagementCountOfEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/count"
@@ -1379,6 +1574,8 @@ func (s *EventManagementService) CountOfEventSubscriptions(CountOfEventSubscript
 
 
 @param GetEmailEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-email-event-subscriptions
 */
 func (s *EventManagementService) GetEmailEventSubscriptions(GetEmailEventSubscriptionsQueryParams *GetEmailEventSubscriptionsQueryParams) (*ResponseEventManagementGetEmailEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/email"
@@ -1411,6 +1608,8 @@ func (s *EventManagementService) GetEmailEventSubscriptions(GetEmailEventSubscri
 
 
 @param GetRestWebhookEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rest-webhook-event-subscriptions
 */
 func (s *EventManagementService) GetRestWebhookEventSubscriptions(GetRestWebhookEventSubscriptionsQueryParams *GetRestWebhookEventSubscriptionsQueryParams) (*ResponseEventManagementGetRestWebhookEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/rest"
@@ -1443,6 +1642,8 @@ func (s *EventManagementService) GetRestWebhookEventSubscriptions(GetRestWebhook
 
 
 @param GetSyslogEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-syslog-event-subscriptions
 */
 func (s *EventManagementService) GetSyslogEventSubscriptions(GetSyslogEventSubscriptionsQueryParams *GetSyslogEventSubscriptionsQueryParams) (*ResponseEventManagementGetSyslogEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/syslog"
@@ -1470,11 +1671,81 @@ func (s *EventManagementService) GetSyslogEventSubscriptions(GetSyslogEventSubsc
 
 }
 
+//GetSyslogDestination Get Syslog Destination - 86a2-6b24-4828-b9dc
+/* Get Syslog Destination
+
+
+@param GetSyslogDestinationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-syslog-destination
+*/
+func (s *EventManagementService) GetSyslogDestination(GetSyslogDestinationQueryParams *GetSyslogDestinationQueryParams) (*ResponseEventManagementGetSyslogDestination, *resty.Response, error) {
+	path := "/dna/intent/api/v1/event/syslog-config"
+
+	queryString, _ := query.Values(GetSyslogDestinationQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseEventManagementGetSyslogDestination{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSyslogDestination")
+	}
+
+	result := response.Result().(*ResponseEventManagementGetSyslogDestination)
+	return result, response, err
+
+}
+
+//GetWebhookDestination Get Webhook Destination - 2395-8ba8-4a7b-bd72
+/* Get Webhook Destination
+
+
+@param GetWebhookDestinationQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-webhook-destination
+*/
+func (s *EventManagementService) GetWebhookDestination(GetWebhookDestinationQueryParams *GetWebhookDestinationQueryParams) (*ResponseEventManagementGetWebhookDestination, *resty.Response, error) {
+	path := "/dna/intent/api/v1/event/webhook"
+
+	queryString, _ := query.Values(GetWebhookDestinationQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseEventManagementGetWebhookDestination{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetWebhookDestination")
+	}
+
+	result := response.Result().(*ResponseEventManagementGetWebhookDestination)
+	return result, response, err
+
+}
+
 //GetEvents Get Events - 44a3-9a07-4a6a-82a2
 /* Gets the list of registered Events with provided eventIds or tags as mandatory
 
 
 @param GetEventsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-events
 */
 func (s *EventManagementService) GetEvents(GetEventsQueryParams *GetEventsQueryParams) (*ResponseEventManagementGetEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/events"
@@ -1507,6 +1778,8 @@ func (s *EventManagementService) GetEvents(GetEventsQueryParams *GetEventsQueryP
 
 
 @param CountOfEventsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-events
 */
 func (s *EventManagementService) CountOfEvents(CountOfEventsQueryParams *CountOfEventsQueryParams) (*ResponseEventManagementCountOfEvents, *resty.Response, error) {
 	path := "/dna/intent/api/v1/events/count"
@@ -1539,6 +1812,8 @@ func (s *EventManagementService) CountOfEvents(CountOfEventsQueryParams *CountOf
 
 
 @param GetEventArtifactsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-event-artifacts
 */
 func (s *EventManagementService) GetEventArtifacts(GetEventArtifactsQueryParams *GetEventArtifactsQueryParams) (*ResponseEventManagementGetEventArtifacts, *resty.Response, error) {
 	path := "/dna/system/api/v1/event/artifact"
@@ -1570,7 +1845,9 @@ func (s *EventManagementService) GetEventArtifacts(GetEventArtifactsQueryParams 
 /* Get the count of registered event artifacts with provided eventIds or tags as mandatory
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!event-artifact-count
+*/
 func (s *EventManagementService) EventArtifactCount() (*ResponseEventManagementEventArtifactCount, *resty.Response, error) {
 	path := "/dna/system/api/v1/event/artifact/count"
 
@@ -1599,7 +1876,9 @@ func (s *EventManagementService) EventArtifactCount() (*ResponseEventManagementE
 /* Get the list of connector types
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-connector-types
+*/
 func (s *EventManagementService) GetConnectorTypes() (*ResponseEventManagementGetConnectorTypes, *resty.Response, error) {
 	path := "/dna/system/api/v1/event/config/connector-types"
 
@@ -1628,7 +1907,9 @@ func (s *EventManagementService) GetConnectorTypes() (*ResponseEventManagementGe
 /* Create Email Destination
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-email-destination
+*/
 func (s *EventManagementService) CreateEmailDestination(requestEventManagementCreateEmailDestination *RequestEventManagementCreateEmailDestination) (*ResponseEventManagementCreateEmailDestination, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/email-config"
 
@@ -1658,7 +1939,9 @@ func (s *EventManagementService) CreateEmailDestination(requestEventManagementCr
 /* Subscribe SubscriptionEndpoint to list of registered events (Deprecated)
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-event-subscriptions
+*/
 func (s *EventManagementService) CreateEventSubscriptions(requestEventManagementCreateEventSubscriptions *RequestEventManagementCreateEventSubscriptions) (*ResponseEventManagementCreateEventSubscriptions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription"
 
@@ -1688,7 +1971,9 @@ func (s *EventManagementService) CreateEventSubscriptions(requestEventManagement
 /* Create Email Subscription Endpoint for list of registered events.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-email-event-subscription
+*/
 func (s *EventManagementService) CreateEmailEventSubscription(requestEventManagementCreateEmailEventSubscription *RequestEventManagementCreateEmailEventSubscription) (*ResponseEventManagementCreateEmailEventSubscription, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/email"
 
@@ -1718,7 +2003,9 @@ func (s *EventManagementService) CreateEmailEventSubscription(requestEventManage
 /* Create Rest/Webhook Subscription Endpoint for list of registered events
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-rest-webhook-event-subscription
+*/
 func (s *EventManagementService) CreateRestWebhookEventSubscription(requestEventManagementCreateRestWebhookEventSubscription *RequestEventManagementCreateRestWebhookEventSubscription) (*ResponseEventManagementCreateRestWebhookEventSubscription, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/rest"
 
@@ -1748,7 +2035,9 @@ func (s *EventManagementService) CreateRestWebhookEventSubscription(requestEvent
 /* Create Syslog Subscription Endpoint for list of registered events
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-syslog-event-subscription
+*/
 func (s *EventManagementService) CreateSyslogEventSubscription(requestEventManagementCreateSyslogEventSubscription *RequestEventManagementCreateSyslogEventSubscription) (*ResponseEventManagementCreateSyslogEventSubscription, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/subscription/syslog"
 
@@ -1778,9 +2067,11 @@ func (s *EventManagementService) CreateSyslogEventSubscription(requestEventManag
 /* Create Syslog Destination
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-syslog-destination
+*/
 func (s *EventManagementService) CreateSyslogDestination(requestEventManagementCreateSyslogDestination *RequestEventManagementCreateSyslogDestination) (*ResponseEventManagementCreateSyslogDestination, *resty.Response, error) {
-	path := "/dna/intent/api/v1/event/syslogConfig"
+	path := "/dna/intent/api/v1/event/syslog-config"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -1808,7 +2099,9 @@ func (s *EventManagementService) CreateSyslogDestination(requestEventManagementC
 /* Create Webhook Destination
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-webhook-destination
+*/
 func (s *EventManagementService) CreateWebhookDestination(requestEventManagementCreateWebhookDestination *RequestEventManagementCreateWebhookDestination) (*ResponseEventManagementCreateWebhookDestination, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/webhook"
 
@@ -1990,7 +2283,7 @@ func (s *EventManagementService) UpdateSyslogEventSubscription(requestEventManag
 
  */
 func (s *EventManagementService) UpdateSyslogDestination(requestEventManagementUpdateSyslogDestination *RequestEventManagementUpdateSyslogDestination) (*ResponseEventManagementUpdateSyslogDestination, *resty.Response, error) {
-	path := "/dna/intent/api/v1/event/syslogConfig"
+	path := "/dna/intent/api/v1/event/syslog-config"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -2049,8 +2342,11 @@ func (s *EventManagementService) UpdateWebhookDestination(requestEventManagement
 
 
 @param DeleteEventSubscriptionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-event-subscriptions
 */
 func (s *EventManagementService) DeleteEventSubscriptions(DeleteEventSubscriptionsQueryParams *DeleteEventSubscriptionsQueryParams) (*ResponseEventManagementDeleteEventSubscriptions, *resty.Response, error) {
+	//DeleteEventSubscriptionsQueryParams *DeleteEventSubscriptionsQueryParams
 	path := "/dna/intent/api/v1/event/subscription"
 
 	queryString, _ := query.Values(DeleteEventSubscriptionsQueryParams)

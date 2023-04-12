@@ -330,7 +330,7 @@ type RequestSiteDesignCreateNfvProfile struct {
 	Device      *[]RequestSiteDesignCreateNfvProfileDevice `json:"device,omitempty"`      //
 }
 type RequestSiteDesignCreateNfvProfileDevice struct {
-	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile. Allowed values are 'Cisco 5400 Enterprise Network Compute System', 'Cisco 5100 Enterprise Network Compute System'.
+	DeviceType                      string                                                           `json:"deviceType,omitempty"`                      // Name of the device used in creating nfv profile
 	DeviceTag                       string                                                           `json:"deviceTag,omitempty"`                       // Device Tag name(eg: dev1)
 	ServiceProviderProfile          *[]RequestSiteDesignCreateNfvProfileDeviceServiceProviderProfile `json:"serviceProviderProfile,omitempty"`          //
 	DirectInternetAccessForFirewall *bool                                                            `json:"directInternetAccessForFirewall,omitempty"` // Direct internet access value should be boolean (eg: false or true)
@@ -373,9 +373,9 @@ type RequestSiteDesignCreateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg: Access 4018)
 }
 type RequestSiteDesignCreateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)' and 'Day-N-Template(s)'.
+	TemplateType string `json:"templateType,omitempty"` // Name of the template type to which template is associated (eg: Cloud DayN Templates)
 }
 type RequestSiteDesignUpdateNfvProfile struct {
 	Device *[]RequestSiteDesignUpdateNfvProfileDevice `json:"device,omitempty"` //
@@ -417,9 +417,9 @@ type RequestSiteDesignUpdateNfvProfileDeviceVLANForL2 struct {
 	VLANDescription string   `json:"vlanDescription,omitempty"` // Vlan description(eg. Access 4018)
 }
 type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
-	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System), 'Cisco Integrated Services Virtual Router', 'Cisco Adaptive Security Virtual Appliance (ASAv)', 'NFVIS', 'ASAV'.
+	DeviceType   string `json:"deviceType,omitempty"`   // Type of the device(eg: Cisco 5400 Enterprise Network Compute System)
 	Template     string `json:"template,omitempty"`     // Name of the template(eg NFVIS template)
-	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates). Allowed values are 'Onboarding Template(s)', 'Day-N-Template(s)'.
+	TemplateType string `json:"templateType,omitempty"` // Name of the project to which template is associated (eg: Cloud DayN Templates)
 }
 
 //GetDeviceDetailsByIP Get Device details by IP - 9cb2-cb3f-494a-824f
@@ -427,6 +427,8 @@ type RequestSiteDesignUpdateNfvProfileDeviceCustomTemplate struct {
 
 
 @param GetDeviceDetailsByIPQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-details-by-ip
 */
 func (s *SiteDesignService) GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams *GetDeviceDetailsByIPQueryParams) (*ResponseSiteDesignGetDeviceDetailsByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/nfv/provisioningDetail"
@@ -461,6 +463,8 @@ func (s *SiteDesignService) GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams
 @param id id path parameter. ID of network profile to retrieve.
 
 @param GetNFVProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-nfv-profile
 */
 func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *GetNfvProfileQueryParams) (*ResponseSiteDesignGetNfvProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv/network-profile/{id}"
@@ -494,6 +498,8 @@ func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *G
 
 
 @param ProvisionNFVHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-nfv
 */
 func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestSiteDesignProvisionNfv, ProvisionNFVHeaderParams *ProvisionNfvHeaderParams) (*ResponseSiteDesignProvisionNfv, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/nfv"
@@ -548,6 +554,8 @@ func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestS
 
 @param siteID siteId path parameter. Site Id to be associated
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!associate
 */
 func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*ResponseSiteDesignAssociate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
@@ -580,6 +588,8 @@ func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*
 
 
 @param NFVProvisioningDetailHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!nfv-provisioning-detail
 */
 func (s *SiteDesignService) NfvProvisioningDetail(requestSiteDesignNFVProvisioningDetail *RequestSiteDesignNfvProvisioningDetail, NFVProvisioningDetailHeaderParams *NfvProvisioningDetailHeaderParams) (*ResponseSiteDesignNfvProvisioningDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv-provision-detail"
@@ -630,7 +640,9 @@ func (s *SiteDesignService) NfvProvisioningDetail(requestSiteDesignNFVProvisioni
 /* API to create network profile for different NFV topologies
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-nfv-profile
+*/
 func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *RequestSiteDesignCreateNfvProfile) (*ResponseSiteDesignCreateNfvProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nfv/network-profile"
 
@@ -700,8 +712,11 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 
 @param siteID siteId path parameter. Site Id to be associated
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disassociate
 */
 func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string) (*ResponseSiteDesignDisassociate, *resty.Response, error) {
+	//networkProfileID string,siteID string
 	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
 	path = strings.Replace(path, "{networkProfileId}", fmt.Sprintf("%v", networkProfileID), -1)
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
@@ -734,8 +749,11 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 @param id id path parameter. Id of nfv network profile to delete.
 
 @param DeleteNFVProfileQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-nfv-profile
 */
 func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams) (*ResponseSiteDesignDeleteNfvProfile, *resty.Response, error) {
+	//id string,DeleteNFVProfileQueryParams *DeleteNfvProfileQueryParams
 	path := "/dna/intent/api/v1/nfv/network-profile/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 

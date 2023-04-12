@@ -345,6 +345,8 @@ type RequestReportsCreateOrScheduleAReportViewFormat struct {
 
 
 @param GetListOfScheduledReportsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-scheduled-reports
 */
 func (s *ReportsService) GetListOfScheduledReports(GetListOfScheduledReportsQueryParams *GetListOfScheduledReportsQueryParams) (*ResponseReportsGetListOfScheduledReports, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports"
@@ -378,6 +380,8 @@ func (s *ReportsService) GetListOfScheduledReports(GetListOfScheduledReportsQuer
 
 @param reportID reportId path parameter. reportId of report
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-a-scheduled-report
 */
 func (s *ReportsService) GetAScheduledReport(reportID string) (*ResponseReportsGetAScheduledReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}"
@@ -410,6 +414,8 @@ func (s *ReportsService) GetAScheduledReport(reportID string) (*ResponseReportsG
 
 @param reportID reportId path parameter. reportId of report
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-execution-details-for-a-given-report
 */
 func (s *ReportsService) GetAllExecutionDetailsForAGivenReport(reportID string) (*ResponseReportsGetAllExecutionDetailsForAGivenReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}/executions"
@@ -444,6 +450,8 @@ func (s *ReportsService) GetAllExecutionDetailsForAGivenReport(reportID string) 
 
 @param executionID executionId path parameter. executionId of report execution
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-report-content
 */
 func (s *ReportsService) DownloadReportContent(reportID string, executionID string) (FileDownload, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}/executions/{executionId}"
@@ -478,7 +486,9 @@ func (s *ReportsService) DownloadReportContent(reportID string, executionID stri
 /* Gives a list of summary of all view groups.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-view-groups
+*/
 func (s *ReportsService) GetAllViewGroups() (*ResponseReportsGetAllViewGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups"
 
@@ -509,6 +519,8 @@ func (s *ReportsService) GetAllViewGroups() (*ResponseReportsGetAllViewGroups, *
 
 @param viewGroupID viewGroupId path parameter. viewGroupId of viewgroup.
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-views-for-a-given-view-group
 */
 func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*ResponseReportsGetViewsForAGivenViewGroup, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups/{viewGroupId}"
@@ -543,6 +555,8 @@ func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*Respon
 
 @param viewID viewId path parameter. view id of view
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-view-details-for-a-given-view-group-view
 */
 func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string, viewID string) (*ResponseReportsGetViewDetailsForAGivenViewGroupView, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups/{viewGroupId}/views/{viewId}"
@@ -574,7 +588,9 @@ func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string
 /* Create/Schedule a report configuration. Use "Get view details for a given view group & view" API to get the metadata required to configure a report.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-schedule-a-report
+*/
 func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleAReport *RequestReportsCreateOrScheduleAReport) (*ResponseReportsCreateOrScheduleAReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports"
 
@@ -606,8 +622,11 @@ func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleA
 
 @param reportID reportId path parameter. reportId of report
 
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a-scheduled-report
 */
 func (s *ReportsService) DeleteAScheduledReport(reportID string) (*ResponseReportsDeleteAScheduledReport, *resty.Response, error) {
+	//reportID string
 	path := "/dna/intent/api/v1/data/reports/{reportId}"
 	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
 

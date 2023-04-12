@@ -16,8 +16,8 @@ type ApplicationsQueryParams struct {
 	StartTime         float64 `url:"startTime,omitempty"`         //Starting epoch time in milliseconds of time window
 	EndTime           float64 `url:"endTime,omitempty"`           //Ending epoch time in milliseconds of time window
 	ApplicationHealth string  `url:"applicationHealth,omitempty"` //Application health category (POOR, FAIR, or GOOD.  Optionally use with siteId only)
-	Offset            int     `url:"offset,omitempty"`            //The offset of the first application in the returned data (optionally used with siteId only)
-	Limit             int     `url:"limit,omitempty"`             //The max number of application entries in returned data [1, 1000] (optionally used with siteId only)
+	Offset            float64 `url:"offset,omitempty"`            //The offset of the first application in the returned data (optionally used with siteId only)
+	Limit             float64 `url:"limit,omitempty"`             //The max number of application entries in returned data [1, 1000] (optionally used with siteId only)
 	ApplicationName   string  `url:"applicationName,omitempty"`   //The name of the application to get information on
 }
 
@@ -71,6 +71,8 @@ type ResponseApplicationsApplicationsResponseServerNetworkLatency interface{}
 
 
 @param ApplicationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!applications
 */
 func (s *ApplicationsService) Applications(ApplicationsQueryParams *ApplicationsQueryParams) (*ResponseApplicationsApplications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-health"

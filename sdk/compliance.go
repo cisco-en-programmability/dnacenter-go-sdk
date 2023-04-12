@@ -11,10 +11,10 @@ import (
 type ComplianceService service
 
 type GetComplianceStatusQueryParams struct {
-	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
-	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
-	Offset           int    `url:"offset,omitempty"`           //offset/starting row
-	Limit            int    `url:"limit,omitempty"`            //Number of records to be retrieved
+	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
+	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
+	Offset           float64 `url:"offset,omitempty"`           //offset/starting row
+	Limit            float64 `url:"limit,omitempty"`            //Number of records to be retrieved
 }
 type GetComplianceStatusCountQueryParams struct {
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
@@ -152,6 +152,8 @@ type RequestComplianceRunCompliance struct {
 
 
 @param GetComplianceStatusQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-compliance-status
 */
 func (s *ComplianceService) GetComplianceStatus(GetComplianceStatusQueryParams *GetComplianceStatusQueryParams) (*ResponseComplianceGetComplianceStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance"
@@ -184,6 +186,8 @@ func (s *ComplianceService) GetComplianceStatus(GetComplianceStatusQueryParams *
 
 
 @param GetComplianceStatusCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-compliance-status-count
 */
 func (s *ComplianceService) GetComplianceStatusCount(GetComplianceStatusCountQueryParams *GetComplianceStatusCountQueryParams) (*ResponseComplianceGetComplianceStatusCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/count"
@@ -216,6 +220,8 @@ func (s *ComplianceService) GetComplianceStatusCount(GetComplianceStatusCountQue
 
 
 @param GetComplianceDetailQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-compliance-detail
 */
 func (s *ComplianceService) GetComplianceDetail(GetComplianceDetailQueryParams *GetComplianceDetailQueryParams) (*ResponseComplianceGetComplianceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/detail"
@@ -248,6 +254,8 @@ func (s *ComplianceService) GetComplianceDetail(GetComplianceDetailQueryParams *
 
 
 @param GetComplianceDetailCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-compliance-detail-count
 */
 func (s *ComplianceService) GetComplianceDetailCount(GetComplianceDetailCountQueryParams *GetComplianceDetailCountQueryParams) (*ResponseComplianceGetComplianceDetailCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/detail/count"
@@ -280,6 +288,8 @@ func (s *ComplianceService) GetComplianceDetailCount(GetComplianceDetailCountQue
 
 
 @param deviceUUID deviceUuid path parameter.
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-compliance-status
 */
 func (s *ComplianceService) DeviceComplianceStatus(deviceUUID string) (*ResponseComplianceDeviceComplianceStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/{deviceUuid}"
@@ -312,6 +322,8 @@ func (s *ComplianceService) DeviceComplianceStatus(deviceUUID string) (*Response
 
 @param deviceUUID deviceUuid path parameter.
 @param ComplianceDetailsOfDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!compliance-details-of-device
 */
 func (s *ComplianceService) ComplianceDetailsOfDevice(deviceUUID string, ComplianceDetailsOfDeviceQueryParams *ComplianceDetailsOfDeviceQueryParams) (*ResponseComplianceComplianceDetailsOfDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/{deviceUuid}/detail"
@@ -344,7 +356,9 @@ func (s *ComplianceService) ComplianceDetailsOfDevice(deviceUUID string, Complia
 /* Run compliance check for device(s).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!run-compliance
+*/
 func (s *ComplianceService) RunCompliance(requestComplianceRunCompliance *RequestComplianceRunCompliance) (*ResponseComplianceRunCompliance, *resty.Response, error) {
 	path := "/dna/intent/api/v1/compliance/"
 
