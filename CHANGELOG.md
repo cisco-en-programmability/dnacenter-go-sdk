@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.2] - 2023-04-27
+### Changed
+- Adding struct for sites.ResponseSitesGetSiteResponse.AdditionalInfo
+
 ## [5.0.1] - 2023-04-12
 ### Changed
 - Mulicast -> Multicast on RequestItemLanAutomationLanAutomationStart
@@ -466,4 +470,6 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [4.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.12...v4.0.13
 [4.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.13...v4.0.14
 [5.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v4.0.14...v5.0.0
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.0...main
+[5.0.1]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.0...v5.0.1
+[5.0.2]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.1...v5.0.2
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.2...main

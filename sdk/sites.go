@@ -77,14 +77,36 @@ type ResponseSitesGetSite struct {
 	Response *[]ResponseSitesGetSiteResponse `json:"response,omitempty"` //
 }
 type ResponseSitesGetSiteResponse struct {
-	ParentID          string   `json:"parentId,omitempty"`          // Parent Id
-	Name              string   `json:"name,omitempty"`              // Name
-	AdditionalInfo    []string `json:"additionalInfo,omitempty"`    // Additional Info
-	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
-	SiteNameHierarchy string   `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
-	InstanceTenantID  string   `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
-	ID                string   `json:"id,omitempty"`                // Id
+	ParentID          string                                       `json:"parentId,omitempty"`          // Parent Id
+	Name              string                                       `json:"name,omitempty"`              // Name
+	AdditionalInfo    []ResponseSitesGetSiteResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	SiteHierarchy     string                                       `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteNameHierarchy string                                       `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	InstanceTenantID  string                                       `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
+	ID                string                                       `json:"id,omitempty"`                // Id
 }
+type ResponseSitesGetSiteResponseAdditionalInfo struct {
+	Namespace  string                                               `json:"nameSpace,omitempty"`  //
+	Attributes ResponseSitesGetSiteResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
+}
+
+type ResponseSitesGetSiteResponseAdditionalInfoAttributes map[string]string
+
+//	type ResponseSitesGetSiteResponseAdditionalInfoAttributes struct {
+//		Country              string `json:"country,omitempty"`              //
+//		Address              string `json:"address,omitempty"`              //
+//		Latitude             string `json:"latitude,omitempty"`             //
+//		AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"` //
+//		Type                 string `json:"type,omitempty"`                 //
+//		Longitude            string `json:"longitude,omitempty"`            //
+//		OffsetX              string `json:"offsetX,omitempty"`              //
+//		OffsetY              string `json:"offsetY,omitempty"`              //
+//		Length               string `json:"length,omitempty"`               //
+//		Width                string `json:"width,omitempty"`                //
+//		Height               string `json:"height,omitempty"`               //
+//		RfModel              string `json:"rfModel,omitempty"`              //
+//		FloorIndex           string `json:"floorIndex,omitempty"`           //
+//	}
 type ResponseSitesGetSiteHealth struct {
 	Response *[]ResponseSitesGetSiteHealthResponse `json:"response,omitempty"` //
 }
