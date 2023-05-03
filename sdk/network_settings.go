@@ -138,25 +138,31 @@ type ResponseNetworkSettingsGetGlobalPool struct {
 	Version  string                                          `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetGlobalPoolResponse struct {
-	IPPoolName            string                                                     `json:"ipPoolName,omitempty"`            // Ip Pool Name
-	DhcpServerIPs         []string                                                   `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
-	Gateways              []string                                                   `json:"gateways,omitempty"`              // Gateways
-	CreateTime            string                                                     `json:"createTime,omitempty"`            // Create Time
-	LastUpdateTime        string                                                     `json:"lastUpdateTime,omitempty"`        // Last Update Time
-	TotalIPAddressCount   string                                                     `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
-	UsedIPAddressCount    string                                                     `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
-	ParentUUID            string                                                     `json:"parentUuid,omitempty"`            // Parent Uuid
-	Owner                 string                                                     `json:"owner,omitempty"`                 // Owner
-	Shared                string                                                     `json:"shared,omitempty"`                // Shared
-	Overlapping           string                                                     `json:"overlapping,omitempty"`           // Overlapping
-	ConfigureExternalDhcp string                                                     `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
-	UsedPercentage        string                                                     `json:"usedPercentage,omitempty"`        // Used Percentage
-	ClientOptions         *ResponseNetworkSettingsGetGlobalPoolResponseClientOptions `json:"clientOptions,omitempty"`         // Client Options
-	DNSServerIPs          []string                                                   `json:"dnsServerIps,omitempty"`          // Dns Server Ips
-	Context               *[]ResponseNetworkSettingsGetGlobalPoolResponseContext     `json:"context,omitempty"`               //
-	IPv6                  string                                                     `json:"ipv6,omitempty"`                  // Ipv6
-	ID                    string                                                     `json:"id,omitempty"`                    // Id
-	IPPoolCidr            string                                                     `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
+	IPPoolName                    string                                                     `json:"ipPoolName,omitempty"`                    // Ip Pool Name
+	DhcpServerIPs                 []string                                                   `json:"dhcpServerIps,omitempty"`                 // Dhcp Server Ips
+	Gateways                      []string                                                   `json:"gateways,omitempty"`                      // Gateways
+	CreateTime                    int                                                        `json:"createTime,omitempty"`                    // Create Time
+	LastUpdateTime                int                                                        `json:"lastUpdateTime,omitempty"`                // Last Update Time
+	TotalIPAddressCount           int                                                        `json:"totalIpAddressCount,omitempty"`           // Total Ip Address Count
+	UsedIPAddressCount            int                                                        `json:"usedIpAddressCount,omitempty"`            // Used Ip Address Count
+	ParentUUID                    string                                                     `json:"parentUuid,omitempty"`                    // Parent Uuid
+	Owner                         string                                                     `json:"owner,omitempty"`                         // Owner
+	Shared                        *bool                                                      `json:"shared,omitempty"`                        // Shared
+	Overlapping                   *bool                                                      `json:"overlapping,omitempty"`                   // Overlapping
+	ConfigureExternalDhcp         *bool                                                      `json:"configureExternalDhcp,omitempty"`         // Configure External Dhcp
+	UsedPercentage                string                                                     `json:"usedPercentage,omitempty"`                // Used Percentage
+	ClientOptions                 *ResponseNetworkSettingsGetGlobalPoolResponseClientOptions `json:"clientOptions,omitempty"`                 // Client Options
+	DNSServerIPs                  []string                                                   `json:"dnsServerIps,omitempty"`                  // Dns Server Ips
+	Context                       *[]ResponseNetworkSettingsGetGlobalPoolResponseContext     `json:"context,omitempty"`                       //
+	IPv6                          *bool                                                      `json:"ipv6,omitempty"`                          // Ipv6
+	ID                            string                                                     `json:"id,omitempty"`                            // Id
+	IPPoolCidr                    string                                                     `json:"ipPoolCidr,omitempty"`                    // Ip Pool Cidr
+	IPPoolType                    string                                                     `json:"ipPoolType,omitempty"`                    // ipPoolType
+	UnavailableIpAddressCount     int                                                        `json:"unavailableIpAddressCount,omitempty"`     // unavailableIpAddressCount
+	AvailableIpAddressCount       int                                                        `json:"availableIpAddressCount,omitempty"`       // availableIpAddressCount
+	TotalAssignableIpAddressCount int                                                        `json:"totalAssignableIpAddressCount,omitempty"` // totalAssignableIpAddressCount
+	HasSubpools                   *bool                                                      `json:"hasSubpools,omitempty"`                   // hasSubpools
+	DefaultAssignedIpAddressCount int                                                        `json:"defaultAssignedIpAddressCount,omitempty"` // defaultAssignedIpAddressCount
 }
 type ResponseNetworkSettingsGetGlobalPoolResponseClientOptions interface{}
 type ResponseNetworkSettingsGetGlobalPoolResponseContext struct {
