@@ -108,8 +108,7 @@ type GetVirtualNetworkWithScalableGroupsQueryParams struct {
 	VirtualNetworkName string `url:"virtualNetworkName,omitempty"` //virtualNetworkName
 }
 
-type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric []ResponseItemSdaGetDefaultAuthenticationProfileFromSdaFabric // Array of ResponseSdaGetDefaultAuthenticationProfileFromSDAFabric
-type ResponseItemSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
+type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
 	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order
