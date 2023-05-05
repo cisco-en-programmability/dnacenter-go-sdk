@@ -565,8 +565,8 @@ type ResponseSdaGetVnFromSdaFabric struct {
 	SiteNameHierarchy  string `json:"siteNameHierarchy,omitempty"`  // Path of sda Fabric Site
 	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
 	FabricName         string `json:"fabricName,omitempty"`         // Fabric Name
-	IsInfraVn          string `json:"isInfraVN,omitempty"`          // Infra VN
-	IsDefaultVn        string `json:"isDefaultVN,omitempty"`        // Default VN
+	IsInfraVn          *bool  `json:"isInfraVN,omitempty"`          // Infra VN
+	IsDefaultVn        *bool  `json:"isDefaultVN,omitempty"`        // Default VN
 	Status             string `json:"status,omitempty"`             // Status
 	Description        string `json:"description,omitempty"`        // Virtual Network info retrieved successfully from SDA Fabric
 }
