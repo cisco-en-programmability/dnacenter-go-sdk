@@ -3303,8 +3303,8 @@ type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
 	Skip    bool   `json:"skip"`    // Skip
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
-	ConfigID         string                                                                  `json:"configId"`         // Config Id
-	ConfigParameters RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
+	ConfigID         string                                                                    `json:"configId"`         // Config Id
+	ConfigParameters []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters struct {
 	Key   string `json:"key"`   // Key
@@ -4050,7 +4050,7 @@ func (s *DeviceOnboardingPnpService) GetDeviceByID(id string) (*ResponseDeviceOn
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-pn-p-global-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-pnp-global-settings
 */
 func (s *DeviceOnboardingPnpService) GetPnpGlobalSettings() (*ResponseDeviceOnboardingPnpGetPnpGlobalSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/onboarding/pnp-settings"
@@ -4696,7 +4696,7 @@ func (s *DeviceOnboardingPnpService) UpdateWorkflow(id string, requestDeviceOnbo
 
 @param id id path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id-from-pn-p
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id-from-pnp
 */
 func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*ResponseDeviceOnboardingPnpDeleteDeviceByIDFromPnp, *resty.Response, error) {
 	//id string
