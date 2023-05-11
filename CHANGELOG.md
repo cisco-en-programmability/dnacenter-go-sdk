@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [5.0.5] - 2023-05-05
+## [5.0.5] - 2023-05-11
 ### Changed
 - Device onboarding Pnp Service Changes `ConfigParameters` change to `array` on `RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo` struct.
 
@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - SDA Service Changes `IsInfraVn` and `IsDefaultVn` change to `*bool` on `ResponseSdaGetVnFromSdaFabric` struct.
 
-## [5.0.3] - 2023-05-03q
+## [5.0.3] - 2023-05-03
 ### Changed
 - ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric is an object not an array.
 - ResponseNetworkSettingsGetGlobalPoolResponse adding new attributes and changing attributes types.
