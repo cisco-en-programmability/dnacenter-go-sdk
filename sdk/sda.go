@@ -113,7 +113,7 @@ type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
 	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
 	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order
 	Dot1XToMabFallbackTimeout string `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
-	WakeOnLan                 *bool  `json:"wakeOnLan,omitempty"`                 // Wake On Lan
+	WakeOnLan                 string `json:"wakeOnLan,omitempty"`                 // Wake On Lan
 	NumberOfHosts             string `json:"numberOfHosts,omitempty"`             // Number Of Hosts
 	Status                    string `json:"status,omitempty"`                    // Status
 	Description               string `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
