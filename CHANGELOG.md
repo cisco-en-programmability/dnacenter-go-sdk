@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.7] - 2023-07-12
+### Changed
+- `RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo` struct is now a pointer.
+- `ConfigParameters` struct is now a pointer.
+- `Skip` is a pointer.
+
 ## [5.0.6] - 2023-06-26
 ### Changed
 - Device onboarding Pnp Service Changes `ConfigInfo` change to `object` on `RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo` struct.
@@ -494,4 +500,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.4]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.3...v5.0.4
 [5.0.5]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.4...v5.0.5
 [5.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.5...v5.0.6
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.6...main
+[5.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.6...v5.0.7
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.7...main
