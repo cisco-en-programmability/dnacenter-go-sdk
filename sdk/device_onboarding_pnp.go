@@ -3285,26 +3285,26 @@ type RequestDeviceOnboardingPnpResetDeviceDeviceResetListConfigListConfigParamet
 	Value string `json:"value,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASite struct {
-	DeviceID      string                                                  `json:"deviceId,omitempty"`      // Device Id
-	SiteID        string                                                  `json:"siteId,omitempty"`        // Site Id
-	Type          string                                                  `json:"type,omitempty"`          // Type
-	ImageInfo     RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`               //
-	ConfigInfo    RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`              //
-	RfProfile     string                                                  `json:"rfProfile,omitempty"`     // for Access Points
-	StaticIP      string                                                  `json:"staticIP,omitempty"`      // for CatalystWLC/MobilityExpress
-	SubnetMask    string                                                  `json:"subnetMask,omitempty"`    // for CatalystWLC/MobilityExpress
-	Gateway       string                                                  `json:"gateway,omitempty"`       // for CatalystWLC/MobilityExpress
-	VLANID        string                                                  `json:"vlanID,omitempty"`        // for Catalyst 9800 WLC
-	InterfaceName string                                                  `json:"interfaceName,omitempty"` // for Catalyst 9800 WLC
-	SensorProfile string                                                  `json:"sensorProfile,omitempty"` // for Sensors
+	DeviceID      string                                                   `json:"deviceId,omitempty"`      // Device Id
+	SiteID        string                                                   `json:"siteId,omitempty"`        // Site Id
+	Type          string                                                   `json:"type,omitempty"`          // Type
+	ImageInfo     *RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`               //
+	ConfigInfo    *RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`              //
+	RfProfile     string                                                   `json:"rfProfile,omitempty"`     // for Access Points
+	StaticIP      string                                                   `json:"staticIP,omitempty"`      // for CatalystWLC/MobilityExpress
+	SubnetMask    string                                                   `json:"subnetMask,omitempty"`    // for CatalystWLC/MobilityExpress
+	Gateway       string                                                   `json:"gateway,omitempty"`       // for CatalystWLC/MobilityExpress
+	VLANID        string                                                   `json:"vlanID,omitempty"`        // for Catalyst 9800 WLC
+	InterfaceName string                                                   `json:"interfaceName,omitempty"` // for Catalyst 9800 WLC
+	SensorProfile string                                                   `json:"sensorProfile,omitempty"` // for Sensors
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
 	ImageID string `json:"imageId"` // Image Id
-	Skip    bool   `json:"skip"`    // Skip
+	Skip    *bool  `json:"skip"`    // Skip
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
-	ConfigID         string                                                                    `json:"configId"`         // Config Id
-	ConfigParameters []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
+	ConfigID         string                                                                     `json:"configId"`         // Config Id
+	ConfigParameters *[]RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters struct {
 	Key   string `json:"key"`   // Key
