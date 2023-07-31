@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.8] - 2023-07-31
+
+### Changed
+- `ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric.WakeOnLan` change from `string` to `interface`. To consider both `string` and `bool` response values.
+- `GetDefaultAuthenticationProfileFromSdaFabric` changes empty string response to `nil`
+
 ## [5.0.7] - 2023-07-12
 ### Changed
 - `RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo` struct is now a pointer.
@@ -501,4 +507,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.5]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.4...v5.0.5
 [5.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.5...v5.0.6
 [5.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.6...v5.0.7
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.7...main
+[5.0.8]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.7...v5.0.8
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.8...main
