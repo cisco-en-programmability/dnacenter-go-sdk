@@ -109,14 +109,14 @@ type GetVirtualNetworkWithScalableGroupsQueryParams struct {
 }
 
 type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
-	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
-	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order
-	Dot1XToMabFallbackTimeout string `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
+	SiteNameHierarchy         string      `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
+	AuthenticateTemplateName  string      `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
+	AuthenticationOrder       string      `json:"authenticationOrder,omitempty"`       // Authentication Order
+	Dot1XToMabFallbackTimeout string      `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
 	WakeOnLan                 interface{} `json:"wakeOnLan,omitempty"`                 // Wake On Lan
-	NumberOfHosts             string `json:"numberOfHosts,omitempty"`             // Number Of Hosts
-	Status                    string `json:"status,omitempty"`                    // Status
-	Description               string `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
+	NumberOfHosts             string      `json:"numberOfHosts,omitempty"`             // Number Of Hosts
+	Status                    string      `json:"status,omitempty"`                    // Status
+	Description               string      `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
 }
 type ResponseSdaAddDefaultAuthenticationTemplateInSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
