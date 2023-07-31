@@ -109,14 +109,14 @@ type GetVirtualNetworkWithScalableGroupsQueryParams struct {
 }
 
 type ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric struct {
-	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
-	AuthenticateTemplateName  string `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
-	AuthenticationOrder       string `json:"authenticationOrder,omitempty"`       // Authentication Order
-	Dot1XToMabFallbackTimeout string `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
-	WakeOnLan                 string `json:"wakeOnLan,omitempty"`                 // Wake On Lan
-	NumberOfHosts             string `json:"numberOfHosts,omitempty"`             // Number Of Hosts
-	Status                    string `json:"status,omitempty"`                    // Status
-	Description               string `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
+	SiteNameHierarchy         string      `json:"siteNameHierarchy,omitempty"`         // Path of sda Fabric Site
+	AuthenticateTemplateName  string      `json:"authenticateTemplateName,omitempty"`  // Authenticate Template Name
+	AuthenticationOrder       string      `json:"authenticationOrder,omitempty"`       // Authentication Order
+	Dot1XToMabFallbackTimeout string      `json:"dot1xToMabFallbackTimeout,omitempty"` // Dot1x To Mab Fallback Timeout
+	WakeOnLan                 interface{} `json:"wakeOnLan,omitempty"`                 // Wake On Lan
+	NumberOfHosts             string      `json:"numberOfHosts,omitempty"`             // Number Of Hosts
+	Status                    string      `json:"status,omitempty"`                    // Status
+	Description               string      `json:"description,omitempty"`               // Authenticate Template info reterieved successfully in sda fabric site
 }
 type ResponseSdaAddDefaultAuthenticationTemplateInSdaFabric struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
@@ -835,6 +835,16 @@ func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuth
 	}
 
 	result := response.Result().(*ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric)
+
+	// REVIEW: Custom code is needed to address different types (bool vs string)
+	// To follow the expected documentation, it converts the string responses to nil.
+	// Hopefully, actual API behavior could do this soon, so we could change it to a pointer to a bool instead to reflect the three states
+	if result != nil {
+		if result.WakeOnLan == "" {
+			result.WakeOnLan = nil
+		}
+	}
+
 	return result, response, err
 
 }
