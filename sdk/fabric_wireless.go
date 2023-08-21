@@ -23,8 +23,7 @@ type RemoveWLCFromFabricDomainHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string. Enable this parameter to execute the API and return a response asynchronously.
 }
 
-type ResponseFabricWirelessAddSSIDToIPPoolMapping []ResponseItemFabricWirelessAddSSIDToIPPoolMapping // Array of ResponseFabricWirelessAddSSIDToIPPoolMapping
-type ResponseItemFabricWirelessAddSSIDToIPPoolMapping struct {
+type ResponseFabricWirelessAddSSIDToIPPoolMapping struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Status of the job for wireless state change in fabric domain
 	ExecutionStatusURL string `json:"executionStatusURL,omitempty"` // executionStatusURL
 	Message            string `json:"message,omitempty"`            // message
