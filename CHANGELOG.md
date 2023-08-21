@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.9] - 2023-08-21
+
+### Changed
+-  `ResponseSitesGetSiteResponseAdditionalInfoAttributes` is transformed into a structure with the following attributes:
+   - Country `string`
+   - Address `string`
+   - Latitude `string`
+   - AddressInheritedFrom `string`
+   - Type `string`
+   - Longitude `string`
+   - OffsetX `string`
+   - OffsetY `string`
+   - Length `string`
+   - Width `string`
+   - Height `string`
+   - RfModel `string`
+   - FloorIndex `string`
+
 ## [5.0.8] - 2023-07-31
 
 ### Changed
@@ -508,4 +526,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.6]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.5...v5.0.6
 [5.0.7]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.6...v5.0.7
 [5.0.8]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.7...v5.0.8
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.8...main
+[5.0.9]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.8...v5.0.9
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.9...main

@@ -90,23 +90,81 @@ type ResponseSitesGetSiteResponseAdditionalInfo struct {
 	Attributes ResponseSitesGetSiteResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
 }
 
-type ResponseSitesGetSiteResponseAdditionalInfoAttributes map[string]string
+//type ResponseSitesGetSiteResponseAdditionalInfoAttributes map[string]string
 
-//	type ResponseSitesGetSiteResponseAdditionalInfoAttributes struct {
-//		Country              string `json:"country,omitempty"`              //
-//		Address              string `json:"address,omitempty"`              //
-//		Latitude             string `json:"latitude,omitempty"`             //
-//		AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"` //
-//		Type                 string `json:"type,omitempty"`                 //
-//		Longitude            string `json:"longitude,omitempty"`            //
-//		OffsetX              string `json:"offsetX,omitempty"`              //
-//		OffsetY              string `json:"offsetY,omitempty"`              //
-//		Length               string `json:"length,omitempty"`               //
-//		Width                string `json:"width,omitempty"`                //
-//		Height               string `json:"height,omitempty"`               //
-//		RfModel              string `json:"rfModel,omitempty"`              //
-//		FloorIndex           string `json:"floorIndex,omitempty"`           //
-//	}
+type ResponseSitesGetSiteResponseAdditionalInfoAttributes struct {
+	Country              string `json:"country,omitempty"`              //
+	Address              string `json:"address,omitempty"`              //
+	Latitude             string `json:"latitude,omitempty"`             //
+	AddressInheritedFrom string `json:"addressInheritedFrom,omitempty"` //
+	Type                 string `json:"type,omitempty"`                 //
+	Longitude            string `json:"longitude,omitempty"`            //
+	OffsetX              string `json:"offsetX,omitempty"`              //
+	OffsetY              string `json:"offsetY,omitempty"`              //
+	Length               string `json:"length,omitempty"`               //
+	Width                string `json:"width,omitempty"`                //
+	Height               string `json:"height,omitempty"`               //
+	RfModel              string `json:"rfModel,omitempty"`              //
+	FloorIndex           string `json:"floorIndex,omitempty"`           //
+}
+
+// Area
+type ResponseSitesGetArea struct {
+	Response *[]ResponseSitesGetAreaResponse `json:"response,omitempty"` //
+}
+type ResponseSitesGetAreaResponse struct {
+	ParentID          string                                       `json:"parentId,omitempty"`          // Parent Id
+	Name              string                                       `json:"name,omitempty"`              // Name
+	AdditionalInfo    []ResponseSitesGetAreaResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	SiteHierarchy     string                                       `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteNameHierarchy string                                       `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	InstanceTenantID  string                                       `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
+	ID                string                                       `json:"id,omitempty"`
+	ParentName        string                                       `json:"parent_name,omitempty"` // Id
+}
+type ResponseSitesGetAreaResponseAdditionalInfo struct {
+	Namespace  string                                               `json:"nameSpace,omitempty"`  //
+	Attributes ResponseSitesGetAreaResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
+}
+
+//type ResponseSitesGetSiteResponseAdditionalInfoAttributes map[string]string
+
+type ResponseSitesGetAreaResponseAdditionalInfoAttributes struct {
+	Name                 string `json:"name,omitempty"` //
+	ParentName           string `json:"parent_name,omitempty"`
+	AddressInheritedFrom string `json:"addressinheritedfrom,omitempty"` //
+	Type                 string `json:"type,omitempty"`                 //
+}
+
+// Floor
+type ResponseSitesGetFloor struct {
+	Response *[]ResponseSitesGetFloorResponse `json:"response,omitempty"` //
+}
+type ResponseSitesGetFloorResponse struct {
+	ParentID          string                                        `json:"parentId,omitempty"`          // Parent Id
+	Name              string                                        `json:"name,omitempty"`              // Name
+	AdditionalInfo    []ResponseSitesGetFloorResponseAdditionalInfo `json:"additionalInfo,omitempty"`    //
+	SiteHierarchy     string                                        `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteNameHierarchy string                                        `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+	InstanceTenantID  string                                        `json:"instanceTenantId,omitempty"`  // Instance Tenant Id
+	ID                string                                        `json:"id,omitempty"`
+	ParentName        string                                        `json:"parent_name,omitempty"` // Id
+}
+type ResponseSitesGetFloorResponseAdditionalInfo struct {
+	Namespace  string                                                `json:"nameSpace,omitempty"`  //
+	Attributes ResponseSitesGetFloorResponseAdditionalInfoAttributes `json:"attributes,omitempty"` //
+}
+
+type ResponseSitesGetFloorResponseAdditionalInfoAttributes struct {
+	FloorNumber string `json:"floor_number,omitempty"` //
+	Height      string `json:"height,omitempty"`
+	Length      string `json:"length,omitempty"`      //
+	Name        string `json:"name,omitempty"`        //
+	ParentName  string `json:"parent_name,omitempty"` //
+	RfModel     string `json:"rfmodel,omitempty"`     //
+	Width       string `json:"width,omitempty"`       //
+}
+
 type ResponseSitesGetSiteHealth struct {
 	Response *[]ResponseSitesGetSiteHealthResponse `json:"response,omitempty"` //
 }
@@ -369,6 +427,58 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 	}
 
 	result := response.Result().(*ResponseSitesGetSite)
+	return result, response, err
+
+}
+
+func (s *SitesService) GetFloor(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetFloor, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+
+	queryString, _ := query.Values(GetSiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetFloor{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSite")
+	}
+
+	result := response.Result().(*ResponseSitesGetFloor)
+	return result, response, err
+
+}
+
+func (s *SitesService) GetArea(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetArea, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+
+	queryString, _ := query.Values(GetSiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetArea{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		return nil, response, fmt.Errorf("error with operation GetSite")
+	}
+
+	result := response.Result().(*ResponseSitesGetArea)
 	return result, response, err
 
 }
