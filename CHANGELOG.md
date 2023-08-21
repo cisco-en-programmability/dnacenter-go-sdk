@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.9] - 2023-08-21
+
+### Changed
+-  `ResponseSitesGetSiteResponseAdditionalInfoAttributes` is transformed into a structure with the following attributes:
+   - Country `string`
+   - Address `string`
+   - Latitude `string`
+   - AddressInheritedFrom `string`
+   - Type `string`
+   - Longitude `string`
+   - OffsetX `string`
+   - OffsetY `string`
+   - Length `string`
+   - Width `string`
+   - Height `string`
+   - RfModel `string`
+   - FloorIndex `string`
+
 ## [5.0.8] - 2023-07-31
 
 ### Changed
