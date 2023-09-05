@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.11] - 2023-09-05
+### Changed
+- `VLANName` added to `ResponseSdaGetIPPoolFromSdaVirtualNetwork` struct.
+
 ## [5.0.10] - 2023-08-21
 ### Changed
 - `ResponseFabricWirelessAddSSIDToIPPoolMapping` is not array.
@@ -532,4 +536,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.8]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.7...v5.0.8
 [5.0.9]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.8...v5.0.9
 [5.0.10]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.9...v5.0.10
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.10...main
+[5.0.11]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.10...v5.0.11
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.11...main
