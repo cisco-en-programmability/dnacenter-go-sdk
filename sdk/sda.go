@@ -598,6 +598,7 @@ type ResponseSdaGetIPPoolFromSdaVirtualNetwork struct {
 	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        // Scalable Group Name
 	IsL2FloodingEnabled      *bool  `json:"isL2FloodingEnabled,omitempty"`      // Is L2 Flooding Enabled
 	IsThisCriticalPool       *bool  `json:"isThisCriticalPool,omitempty"`       // Is This Critical Pool
+	VLANName                 string `json:"vlanName,omitempty"`                 // Vlan Name of
 }
 type ResponseSdaDeleteIPPoolFromSdaVirtualNetwork struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
