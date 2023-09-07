@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [5.0.12] - 2023-09-07
+### Changed
+`FloorNumber` on ResponseSitesGetFloorResponseAdditionalInfoAttributes struct change to `FloorIndex`.
 
 ## [5.0.11] - 2023-09-05
 ### Changed
@@ -537,4 +540,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.9]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.8...v5.0.9
 [5.0.10]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.9...v5.0.10
 [5.0.11]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.10...v5.0.11
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.11...main
+[5.0.12]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.11...v5.0.12
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.12...main
