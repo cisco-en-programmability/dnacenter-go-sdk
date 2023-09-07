@@ -156,13 +156,13 @@ type ResponseSitesGetFloorResponseAdditionalInfo struct {
 }
 
 type ResponseSitesGetFloorResponseAdditionalInfoAttributes struct {
-	FloorNumber string `json:"floor_number,omitempty"` //
-	Height      string `json:"height,omitempty"`
-	Length      string `json:"length,omitempty"`      //
-	Name        string `json:"name,omitempty"`        //
-	ParentName  string `json:"parent_name,omitempty"` //
-	RfModel     string `json:"rfmodel,omitempty"`     //
-	Width       string `json:"width,omitempty"`       //
+	FloorIndex string `json:"floorIndex,omitempty"` //
+	Height     string `json:"height,omitempty"`
+	Length     string `json:"length,omitempty"`      //
+	Name       string `json:"name,omitempty"`        //
+	ParentName string `json:"parent_name,omitempty"` //
+	RfModel    string `json:"rfmodel,omitempty"`     //
+	Width      string `json:"width,omitempty"`       //
 }
 
 type ResponseSitesGetSiteHealth struct {
