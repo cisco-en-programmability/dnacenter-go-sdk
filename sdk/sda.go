@@ -589,16 +589,22 @@ type ResponseSdaGetVirtualNetworkSummaryVirtualNetworkSummary struct {
 	VirtualNetworkName string `json:"virtualNetworkName,omitempty"` // Virtual Network Name
 }
 type ResponseSdaGetIPPoolFromSdaVirtualNetwork struct {
-	Status                   string `json:"status,omitempty"`                   // Status
-	Description              string `json:"description,omitempty"`              // Description
-	VirtualNetworkName       string `json:"virtualNetworkName,omitempty"`       // Virtual Network Name
-	IPPoolName               string `json:"ipPoolName,omitempty"`               // Ip Pool Name
-	AuthenticationPolicyName string `json:"authenticationPolicyName,omitempty"` // Authentication Policy Name
-	TrafficType              string `json:"trafficType,omitempty"`              // Traffic Type
-	ScalableGroupName        string `json:"scalableGroupName,omitempty"`        // Scalable Group Name
-	IsL2FloodingEnabled      *bool  `json:"isL2FloodingEnabled,omitempty"`      // Is L2 Flooding Enabled
-	IsThisCriticalPool       *bool  `json:"isThisCriticalPool,omitempty"`       // Is This Critical Pool
-	VLANName                 string `json:"vlanName,omitempty"`                 // Vlan Name of
+	Status                     string `json:"status,omitempty"`                     // Status
+	Description                string `json:"description,omitempty"`                // Description
+	VirtualNetworkName         string `json:"virtualNetworkName,omitempty"`         // Virtual Network Name
+	IPPoolName                 string `json:"ipPoolName,omitempty"`                 // Ip Pool Name
+	AuthenticationPolicyName   string `json:"authenticationPolicyName,omitempty"`   // Authentication Policy Name
+	TrafficType                string `json:"trafficType,omitempty"`                // Traffic Type
+	ScalableGroupName          string `json:"scalableGroupName,omitempty"`          // Scalable Group Name
+	IsL2FloodingEnabled        *bool  `json:"isL2FloodingEnabled,omitempty"`        // Is L2 Flooding Enabled
+	IsThisCriticalPool         *bool  `json:"isThisCriticalPool,omitempty"`         // Is This Critical Pool
+	VLANName                   string `json:"vlanName,omitempty"`                   // Vlan Name of
+	IsCommonPool               *bool  `json:"isCommonPool,omitempty"`               //
+	IsWirelessPool             *bool  `json:"isWirelessPool,omitempty"`             //
+	IsLayer2OnlyPool           *bool  `json:"isLayer2OnlyPool,omitempty"`           //
+	IsIpDirectedBroadcast      *bool  `json:"isIpDirectedBroadcast,omitempty"`      //
+	IsSelectiveFloodingEnabled *bool  `json:"isSelectiveFloodingEnabled,omitempty"` //
+	IsBridgeModeVm             *bool  `json:"isBridgeModeVm,omitempty"`             //
 }
 type ResponseSdaDeleteIPPoolFromSdaVirtualNetwork struct {
 	Status             string `json:"status,omitempty"`             // represents return status of API. status=success when API completed successfully, status=failed when API failed and has not completed the user request, status=pending when API execution is still in progression and user needs to track its further progress via taskId field.
