@@ -29,7 +29,19 @@ func main() {
 	nResponse, _, err := client.Applications.Applications(queryParams)
 	if err != nil {
 		fmt.Println(err)
-		return
+		// return
 	}
-	fmt.Println(nResponse.Response)
+	if nResponse != nil {
+		fmt.Println(nResponse.Response)
+	}
+
+	// nResponse, _, err = client.Applications.Applications(queryParams)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	// return
+	// }
+	// if nResponse != nil {
+	// 	fmt.Println(nResponse.Response)
+	// }
+
 }

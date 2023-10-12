@@ -3,6 +3,7 @@ package dnac
 import (
 	"crypto/tls"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -168,7 +169,6 @@ func NewClientNoAuth() (*Client, error) {
 	c := &Client{}
 	c.common.client = client
 	waitTimeToManyRequest := 0
-
 	if os.Getenv(DNAC_DEBUG) == "true" {
 		client.SetDebug(true)
 	}
@@ -194,7 +194,35 @@ func NewClientNoAuth() (*Client, error) {
 		// RetryConditionFunc type is for retry condition function
 		// input: non-nil Response OR request execution error
 		func(r *resty.Response, err error) bool {
-			return r.StatusCode() == http.StatusTooManyRequests
+			if r.StatusCode() == http.StatusUnauthorized {
+				cl := resty.New()
+
+				username := os.Getenv("DNAC_USERNAME")
+				password := os.Getenv("DNAC_PASSWORD")
+				baseUrl := os.Getenv("DNAC_BASE_URL")
+				if os.Getenv(DNAC_SSL_VERIFY) == "false" {
+					cl.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+				}
+
+				cl.SetBaseURL(baseUrl)
+
+				response, err := cl.R().
+					SetBasicAuth(username, password).
+					SetResult(&AuthenticationAPIResponse{}).
+					Post("dna/system/api/v1/auth/token")
+				if err != nil {
+					log.Printf("Err: %s", err.Error())
+					return false
+				}
+				result := response.Result().(*AuthenticationAPIResponse)
+				// log.Printf("resty: %s", response.String())
+				// request.SetHeader("X-auth-token", result.Token)
+				// request.SetHeader("X-auth-token", result.Token)
+				c.common.client.SetHeader("X-auth-token", result.Token)
+				r.Request.SetHeader("X-auth-token", result.Token)
+			}
+
+			return r.StatusCode() == http.StatusTooManyRequests || r.StatusCode() == http.StatusUnauthorized
 		},
 	)
 	c.common.client.
