@@ -169,10 +169,6 @@ func NewClientNoAuth() (*Client, error) {
 	c := &Client{}
 	c.common.client = client
 	waitTimeToManyRequest := 0
-	setToken := func(accessToken string) error {
-		c.common.client.SetHeader("X-auth-token", accessToken)
-		return nil
-	}
 	if os.Getenv(DNAC_DEBUG) == "true" {
 		client.SetDebug(true)
 	}
@@ -222,7 +218,7 @@ func NewClientNoAuth() (*Client, error) {
 				// log.Printf("resty: %s", response.String())
 				// request.SetHeader("X-auth-token", result.Token)
 				// request.SetHeader("X-auth-token", result.Token)
-				setToken(result.Token)
+				c.common.client.SetHeader("X-auth-token", result.Token)
 				r.Request.SetHeader("X-auth-token", result.Token)
 			}
 
