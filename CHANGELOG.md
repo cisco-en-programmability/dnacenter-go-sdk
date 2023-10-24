@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [5.0.15] - 2023-10-24
+### Changed
+Handle `200 code` with a `Rate Limit` error.
+
 ## [5.0.14] - 2023-10-12
 ### Changed
 `dnacenter-go-sdk` now is able to handle `401` API code and refresh token if it's required.
@@ -556,4 +561,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.12]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.11...v5.0.12
 [5.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.12...v5.0.13
 [5.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.13...v5.0.14
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...main
+[5.0.15]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.15
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.15...main
