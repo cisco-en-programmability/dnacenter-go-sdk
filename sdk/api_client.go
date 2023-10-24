@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"io/ioutil"
@@ -194,6 +195,7 @@ func NewClientNoAuth() (*Client, error) {
 		// RetryConditionFunc type is for retry condition function
 		// input: non-nil Response OR request execution error
 		func(r *resty.Response, err error) bool {
+			retry := false
 			if r.StatusCode() == http.StatusUnauthorized {
 				cl := resty.New()
 
@@ -221,8 +223,12 @@ func NewClientNoAuth() (*Client, error) {
 				c.common.client.SetHeader("X-auth-token", result.Token)
 				r.Request.SetHeader("X-auth-token", result.Token)
 			}
-
-			return r.StatusCode() == http.StatusTooManyRequests || r.StatusCode() == http.StatusUnauthorized
+			if strings.Contains(r.Request.URL, "/dna/intent/api/v1/dnacaap/management/execution-status/") {
+				if strings.Contains(r.Request.Result.(*ResponseTaskGetBusinessAPIExecutionDetails).BapiError, "Rate Limit") && statusIsFailure(r.Request.Result.(*ResponseTaskGetBusinessAPIExecutionDetails).Status) {
+					retry = true
+				}
+			}
+			return r.StatusCode() == http.StatusTooManyRequests || r.StatusCode() == http.StatusUnauthorized || retry
 		},
 	)
 	c.common.client.
@@ -352,4 +358,8 @@ func (s *Client) SetDNACWaitTimeToManyRequest(waitTimeToManyRequest int) error {
 		// Default is 2 seconds.
 		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Minute)
 	return err
+}
+
+func statusIsFailure(status string) bool {
+	return status == "failed" || status == "FAILURE"
 }
