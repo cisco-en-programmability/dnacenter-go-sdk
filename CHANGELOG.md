@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.16] - 2023-10-24
+### Changed
+- Add `BapiSyncResponse` to `ResponseTaskGetBusinessAPIExecutionDetails`.
+
 ## [5.0.15] - 2023-10-24
 ### Changed
-Handle `200 code` with a `Rate Limit` error.
+- Handle `200 code` with a `Rate Limit` error.
 
 ## [5.0.14] - 2023-10-12
 ### Changed
@@ -562,4 +566,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.12...v5.0.13
 [5.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.13...v5.0.14
 [5.0.15]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.15
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.15...main
+[5.0.16]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.16
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.16...main
