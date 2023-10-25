@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.17] - 2023-10-25
+### Chaged
+- `GetBorderDeviceDetailFromSdaFabric` doesn't returns a `payload` parameter.
+- Add `MfpClientProtection` parameter to `ResponseItemWirelessGetEnterpriseSSIDSSIDDetails`.
+- Add `ProtectedManagementFrame` parameter for Create and Update `Wireless`.
+
 ## [5.0.16] - 2023-10-24
 ### Changed
 - Add `BapiSyncResponse` to `ResponseTaskGetBusinessAPIExecutionDetails`.
@@ -566,5 +572,6 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.13]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.12...v5.0.13
 [5.0.14]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.13...v5.0.14
 [5.0.15]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.15
-[5.0.16]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.16
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.16...main
+[5.0.16]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.15...v5.0.16
+[5.0.17]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.16...v5.0.17
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.17...main
