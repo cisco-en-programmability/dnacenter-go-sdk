@@ -197,6 +197,7 @@ type ResponseItemWirelessGetEnterpriseSSIDSSIDDetails struct {
 	AAAOverride                 *bool                                                               `json:"aaaOverride,omitempty"`                 // Aaa Override
 	CoverageHoleDetectionEnable *bool                                                               `json:"coverageHoleDetectionEnable,omitempty"` // Coverage Hole Detection Enable
 	ProtectedManagementFrame    string                                                              `json:"protectedManagementFrame,omitempty"`    // Protected Management Frame
+	MfpClientProtection         string                                                              `json:"mfpClientProtection,omitempty"`         // Protected Management Frame
 	MultipSKSettings            *[]ResponseItemWirelessGetEnterpriseSSIDSSIDDetailsMultipSKSettings `json:"multiPSKSettings,omitempty"`            //
 	ClientRateLimit             *float64                                                            `json:"clientRateLimit,omitempty"`             // Client Rate Limit. (in bits per second)
 }
@@ -543,6 +544,7 @@ type RequestWirelessCreateEnterpriseSSID struct {
 	EnableNeighborList               *bool    `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
 	MfpClientProtection              string   `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
 	NasOptions                       []string `json:"nasOptions,omitempty"`                       // Nas Options
+	ProtectedManagementFrame         string   `json:"protectedManagementFrame,omitempty"`         // Nas Options
 }
 type RequestWirelessUpdateEnterpriseSSID struct {
 	Name                             string   `json:"name,omitempty"`                             // SSID NAME
@@ -564,6 +566,7 @@ type RequestWirelessUpdateEnterpriseSSID struct {
 	EnableNeighborList               *bool    `json:"enableNeighborList,omitempty"`               // Enable Neighbor List
 	MfpClientProtection              string   `json:"mfpClientProtection,omitempty"`              // Management Frame Protection Client
 	NasOptions                       []string `json:"nasOptions,omitempty"`                       // Nas Options
+	ProtectedManagementFrame         string   `json:"protectedManagementFrame:,omitempty"`        // Nas Options
 }
 type RequestWirelessConfigureAccessPoints struct {
 	ApList                      *[]RequestWirelessConfigureAccessPointsApList              `json:"apList,omitempty"`                      //
