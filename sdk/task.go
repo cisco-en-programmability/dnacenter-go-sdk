@@ -50,6 +50,7 @@ type ResponseTaskGetBusinessAPIExecutionDetails struct {
 	TimeDuration      *int   `json:"timeDuration,omitempty"`      // Time taken for Business API Execution (Milliseconds)
 	Status            string `json:"status,omitempty"`            // Execution status of the Business API
 	BapiError         string `json:"bapiError,omitempty"`         // Bapi Error
+	BapiSyncResponse  string `json:"bapiSyncResponse,omitempty"`  // Bapi Sync Response
 	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
 }
 type ResponseTaskGetTasks struct {
