@@ -103,7 +103,7 @@ if devices.Response != nil {
 | 2.y.z        |  2.2.2.3                           |
 | 3.y.z        |  2.2.3.3                           |
 | 4.y.z        |  2.3.3.0                           |
-| 5.y.z        |  2.3.5.3                          |
+| 5.y.z        |  2.3.5.3                           |
 
 ## Changelog
 

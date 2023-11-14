@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.19] - 2023-11-14
+### Chaged
+- Add `Progress`parameter to `ResponseItemDeviceOnboardingPnpGetDeviceList2`.
+
 ## [5.0.18] - 2023-11-14
 ### Chaged
 - `tag service` updated to `Items` to array of `object`.
@@ -578,4 +582,6 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.15]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.14...v5.0.15
 [5.0.16]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.15...v5.0.16
 [5.0.17]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.16...v5.0.17
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.17...main
+[5.0.18]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.17...v5.0.18
+[5.0.19]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.18...v5.0.19
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.19...main
