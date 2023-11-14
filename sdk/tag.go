@@ -69,12 +69,19 @@ type ResponseTagGetTagResponseDynamicRules struct {
 	Rules      *ResponseTagGetTagResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagResponseDynamicRulesRules struct {
-	Values    []string `json:"values,omitempty"`    //
-	Items     string   `json:"items,omitempty"`     //
-	Operation string   `json:"operation,omitempty"` //
-	Name      string   `json:"name,omitempty"`      //
-	Value     string   `json:"value,omitempty"`     //
+	Values    []string                                           `json:"values,omitempty"`    //
+	Items     *[]ResponseTagGetTagResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                             `json:"operation,omitempty"` //
+	Name      string                                             `json:"name,omitempty"`      //
+	Value     string                                             `json:"value,omitempty"`     //
 }
+
+type ResponseTagGetTagResponseDynamicRulesRulesItems struct {
+	Operation string `json:"operation,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	Value     string `json:"value,omitempty"`     //
+}
+
 type ResponseTagCreateTag struct {
 	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagCreateTagResponse `json:"response,omitempty"` //
@@ -124,11 +131,17 @@ type ResponseTagGetTagByIDResponseDynamicRules struct {
 	Rules      *ResponseTagGetTagByIDResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagByIDResponseDynamicRulesRules struct {
-	Values    []string `json:"values,omitempty"`    //
-	Items     string   `json:"items,omitempty"`     //
-	Operation string   `json:"operation,omitempty"` //
-	Name      string   `json:"name,omitempty"`      //
-	Value     string   `json:"value,omitempty"`     //
+	Values    []string                                               `json:"values,omitempty"`    //
+	Items     *[]ResponseTagGetTagByIDResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                                 `json:"operation,omitempty"` //
+	Name      string                                                 `json:"name,omitempty"`      //
+	Value     string                                                 `json:"value,omitempty"`     //
+}
+
+type ResponseTagGetTagByIDResponseDynamicRulesRulesItems struct {
+	Operation string `json:"operation,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	Value     string `json:"value,omitempty"`     //
 }
 type ResponseTagGetTagMembersByID struct {
 	Version  string                                  `json:"version,omitempty"`  //
@@ -170,12 +183,19 @@ type RequestTagUpdateTagDynamicRules struct {
 	Rules      *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagUpdateTagDynamicRulesRules struct {
-	Values    []string `json:"values,omitempty"`    //
-	Items     []string `json:"items,omitempty"`     //
-	Operation string   `json:"operation,omitempty"` //
-	Name      string   `json:"name,omitempty"`      //
-	Value     string   `json:"value,omitempty"`     //
+	Values    []string                                     `json:"values,omitempty"`    //
+	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                       `json:"operation,omitempty"` //
+	Name      string                                       `json:"name,omitempty"`      //
+	Value     string                                       `json:"value,omitempty"`     //
 }
+
+type RequestTagUpdateTagDynamicRulesRulesItems struct {
+	Operation string `json:"operation,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	Value     string `json:"value,omitempty"`     //
+}
+
 type RequestTagCreateTag struct {
 	SystemTag        *bool                              `json:"systemTag,omitempty"`        //
 	Description      string                             `json:"description,omitempty"`      //
@@ -189,11 +209,13 @@ type RequestTagCreateTagDynamicRules struct {
 	Rules      *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagCreateTagDynamicRulesRules struct {
-	Values    []string `json:"values,omitempty"`    //
-	Items     string   `json:"items,omitempty"`     //
-	Operation string   `json:"operation,omitempty"` //
-	Name      string   `json:"name,omitempty"`      //
-	Value     string   `json:"value,omitempty"`     //
+	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                       `json:"operation,omitempty"` //
+}
+type RequestTagCreateTagDynamicRulesRulesItems struct {
+	Operation string `json:"operation,omitempty"` //
+	Name      string `json:"name,omitempty"`      //
+	Value     string `json:"value,omitempty"`     //
 }
 type RequestTagUpdatesTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
