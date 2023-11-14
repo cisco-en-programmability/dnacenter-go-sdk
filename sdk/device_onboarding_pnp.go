@@ -408,6 +408,7 @@ type ResponseItemDeviceOnboardingPnpGetDeviceList2 struct {
 	DayZeroConfigPreview *ResponseItemDeviceOnboardingPnpGetDeviceList2DayZeroConfigPreview `json:"dayZeroConfigPreview,omitempty"` // Day Zero Config Preview
 	Version              *float64                                                           `json:"version,omitempty"`              // Version
 	TenantID             string                                                             `json:"tenantId,omitempty"`             // Tenant Id
+	Progress             *ResponseItemDeviceOnboardingPnpGetDeviceList2Progress             `json:"progress,omitempty"`             //
 	ID                   string                                                             `json:"id,omitempty"`                   // Id
 }
 type ResponseItemDeviceOnboardingPnpGetDeviceList2DeviceInfo struct {
@@ -728,6 +729,11 @@ type ResponseDeviceOnboardingPnpClaimDevice struct {
 	JSONResponse      *ResponseDeviceOnboardingPnpClaimDeviceJSONResponse        `json:"jsonResponse,omitempty"`      // Json Response
 	Message           string                                                     `json:"message,omitempty"`           // Message
 	StatusCode        *float64                                                   `json:"statusCode,omitempty"`        // Status Code
+}
+type ResponseItemDeviceOnboardingPnpGetDeviceList2Progress struct {
+	Message         string `json:"message,omitempty"`
+	InProgress      bool   `json:"inProgress,omitempty"`
+	ProgressPercent int    `json:"progressPercent,omitempty"`
 }
 type ResponseDeviceOnboardingPnpClaimDeviceJSONArrayResponse interface{}
 type ResponseDeviceOnboardingPnpClaimDeviceJSONResponse interface{}
