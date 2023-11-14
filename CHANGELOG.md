@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.18] - 2023-11-14
+### Chaged
+- `tag service` updated to `Items` to array of `object`.
+
 ## [5.0.17] - 2023-10-25
 ### Chaged
 - `GetBorderDeviceDetailFromSdaFabric` doesn't returns a `payload` parameter.
