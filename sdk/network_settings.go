@@ -229,30 +229,33 @@ type ResponseNetworkSettingsGetReserveIPSubpoolResponse struct {
 	GroupOwner    string                                                       `json:"groupOwner,omitempty"`    // Group Owner
 }
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools struct {
-	IPPoolName            string                                                                    `json:"ipPoolName,omitempty"`            // Ip Pool Name
-	DhcpServerIPs         *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
-	Gateways              []string                                                                  `json:"gateways,omitempty"`              // Gateways
-	CreateTime            *int                                                                      `json:"createTime,omitempty"`            // Create Time
-	LastUpdateTime        *int                                                                      `json:"lastUpdateTime,omitempty"`        // Last Update Time
-	TotalIPAddressCount   *int                                                                      `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
-	UsedIPAddressCount    *int                                                                      `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
-	ParentUUID            string                                                                    `json:"parentUuid,omitempty"`            // Parent Uuid
-	Owner                 string                                                                    `json:"owner,omitempty"`                 // Owner
-	Shared                *bool                                                                     `json:"shared,omitempty"`                // Shared
-	Overlapping           *bool                                                                     `json:"overlapping,omitempty"`           // Overlapping
-	ConfigureExternalDhcp *bool                                                                     `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
-	UsedPercentage        string                                                                    `json:"usedPercentage,omitempty"`        // Used Percentage
-	ClientOptions         *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions   `json:"clientOptions,omitempty"`         // Client Options
-	GroupUUID             string                                                                    `json:"groupUuid,omitempty"`             // Group Uuid
-	DNSServerIPs          *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs  `json:"dnsServerIps,omitempty"`          // Dns Server Ips
-	Context               *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext       `json:"context,omitempty"`               //
-	IPv6                  *bool                                                                     `json:"ipv6,omitempty"`                  // Ipv6
-	ID                    string                                                                    `json:"id,omitempty"`                    // Id
-	IPPoolCidr            string                                                                    `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
+	IPPoolName            string                                                                  `json:"ipPoolName,omitempty"`            // Ip Pool Name
+	DhcpServerIPs         []string                                                                `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
+	Gateways              []string                                                                `json:"gateways,omitempty"`              // Gateways
+	CreateTime            *int                                                                    `json:"createTime,omitempty"`            // Create Time
+	LastUpdateTime        *int                                                                    `json:"lastUpdateTime,omitempty"`        // Last Update Time
+	TotalIPAddressCount   *int                                                                    `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
+	UsedIPAddressCount    *int                                                                    `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
+	ParentUUID            string                                                                  `json:"parentUuid,omitempty"`            // Parent Uuid
+	Owner                 string                                                                  `json:"owner,omitempty"`                 // Owner
+	Shared                *bool                                                                   `json:"shared,omitempty"`                // Shared
+	Overlapping           *bool                                                                   `json:"overlapping,omitempty"`           // Overlapping
+	ConfigureExternalDhcp *bool                                                                   `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
+	UsedPercentage        string                                                                  `json:"usedPercentage,omitempty"`        // Used Percentage
+	ClientOptions         *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions `json:"clientOptions,omitempty"`         // Client Options
+	GroupUUID             string                                                                  `json:"groupUuid,omitempty"`             // Group Uuid
+	DNSServerIPs          []string                                                                `json:"dnsServerIps,omitempty"`          // Dns Server Ips
+	Context               *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext     `json:"context,omitempty"`               //
+	IPv6                  *bool                                                                   `json:"ipv6,omitempty"`                  // Ipv6
+	ID                    string                                                                  `json:"id,omitempty"`                    // Id
+	IPPoolCidr            string                                                                  `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
 }
-type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs interface{}
+
+// type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs interface{}
+
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions interface{}
-type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs interface{}
+
+// type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext struct {
 	Owner        string `json:"owner,omitempty"`        // Owner
 	ContextKey   string `json:"contextKey,omitempty"`   // Context Key
