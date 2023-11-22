@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.21] - 2023-11-20
+- `ResponseConfigurationTemplatesGetProjectsDetails` is now an array.
+
 ## [5.0.20] - 2023-11-20
 ### Changed
 - `ResponseNetworkSettingsGetReserveIPSubpoolResponse` changes response.
@@ -589,4 +592,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.18]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.17...v5.0.18
 [5.0.19]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.18...v5.0.19
 [5.0.20]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.19...v5.0.20
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.20...main
+[5.0.21]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.20...v5.0.21
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.21...main

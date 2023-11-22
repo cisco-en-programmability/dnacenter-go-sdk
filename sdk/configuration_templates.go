@@ -868,7 +868,12 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors s
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors interface{}
+
 type ResponseConfigurationTemplatesGetProjectsDetails struct {
+	Response []ResponseConfigurationTemplatesGetProjectsDetailsResponse `json:"response,omitempty"` // Response
+}
+
+type ResponseConfigurationTemplatesGetProjectsDetailsResponse struct {
 	CreateTime     *int                                                       `json:"createTime,omitempty"`     // Create time of project
 	Description    string                                                     `json:"description,omitempty"`    // Description of project
 	ID             string                                                     `json:"id,omitempty"`             // UUID of project
