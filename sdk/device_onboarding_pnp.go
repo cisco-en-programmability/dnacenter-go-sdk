@@ -1872,6 +1872,7 @@ type ResponseDeviceOnboardingPnpGetDeviceByID struct {
 	DayZeroConfigPreview *ResponseDeviceOnboardingPnpGetDeviceByIDDayZeroConfigPreview `json:"dayZeroConfigPreview,omitempty"` // Day Zero Config Preview
 	Version              *float64                                                      `json:"version,omitempty"`              // Version
 	TenantID             string                                                        `json:"tenantId,omitempty"`             // Tenant Id
+	Progress             *ResponseDeviceOnboardingPnpGetDeviceByIDProgress             `json:"progress,omitempty"`             // Progress
 }
 type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfo struct {
 	Source                    string                                                                    `json:"source,omitempty"`                    // Source
@@ -1925,10 +1926,9 @@ type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfo struct {
 	PopulateInventory         *bool                                                                     `json:"populateInventory,omitempty"`         // Populate Inventory
 	SiteName                  string                                                                    `json:"siteName,omitempty"`                  // Site Name
 	Name                      string                                                                    `json:"name,omitempty"`                      // Name
-	Progress                  *ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoProgress               `json:"progress,omitempty"`                  // Progress
 }
 
-type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoProgress struct {
+type ResponseDeviceOnboardingPnpGetDeviceByIDProgress struct {
 	Message         string `json:"message,omitempty"`
 	InProgress      bool   `json:"inProgress,omitempty"`
 	ProgressPercent int    `json:"progressPercent,omitempty"`
