@@ -1925,7 +1925,15 @@ type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfo struct {
 	PopulateInventory         *bool                                                                     `json:"populateInventory,omitempty"`         // Populate Inventory
 	SiteName                  string                                                                    `json:"siteName,omitempty"`                  // Site Name
 	Name                      string                                                                    `json:"name,omitempty"`                      // Name
+	Progress                  *ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoProgress               `json:"progress,omitempty"`                  // Progress
 }
+
+type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoProgress struct {
+	Message         string `json:"message,omitempty"`
+	InProgress      bool   `json:"inProgress,omitempty"`
+	ProgressPercent int    `json:"progressPercent,omitempty"`
+}
+
 type ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoLocation struct {
 	SiteID    string `json:"siteId,omitempty"`    // Site Id
 	Address   string `json:"address,omitempty"`   // Address
