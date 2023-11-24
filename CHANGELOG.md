@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.23] - 2023-11-24
+- `Progress` struct removed from `ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfo`.
+- `Progress` struct added to `ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfoProgress`.
+
 ## [5.0.22] - 2023-11-24
 - `Progress` struct added to `ResponseDeviceOnboardingPnpGetDeviceByIDDeviceInfo`.
 
