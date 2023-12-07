@@ -3021,6 +3021,7 @@ type RequestItemDeviceOnboardingPnpImportDevicesInBulkDeviceInfo struct {
 	VirtualAccountID          string                                                                             `json:"virtualAccountId,omitempty"`          //
 	WorkflowID                string                                                                             `json:"workflowId,omitempty"`                //
 	WorkflowName              string                                                                             `json:"workflowName,omitempty"`              //
+	SiteID                    string                                                                             `json:"siteId,omitempty"`                    //
 }
 type RequestItemDeviceOnboardingPnpImportDevicesInBulkDeviceInfoAAACredentials struct {
 	Password string `json:"password,omitempty"` //

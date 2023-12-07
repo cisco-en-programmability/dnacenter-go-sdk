@@ -233,50 +233,51 @@ type ResponseDevicesGetDeviceDetail struct {
 	Response *ResponseDevicesGetDeviceDetailResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetDeviceDetailResponse struct {
-	HALastResetReason      string `json:"HALastResetReason,omitempty"`      // H A Last Reset Reason
-	ManagementIPAddr       string `json:"managementIpAddr,omitempty"`       // Management Ip Addr
-	HAPrimaryPowerStatus   string `json:"HAPrimaryPowerStatus,omitempty"`   // H A Primary Power Status
-	RedundancyMode         string `json:"redundancyMode,omitempty"`         // Redundancy Mode
-	CommunicationState     string `json:"communicationState,omitempty"`     // Communication State
-	NwDeviceName           string `json:"nwDeviceName,omitempty"`           // Nw Device Name
-	RedundancyUnit         string `json:"redundancyUnit,omitempty"`         // Redundancy Unit
-	PlatformID             string `json:"platformId,omitempty"`             // Platform Id
-	RedundancyPeerState    string `json:"redundancyPeerState,omitempty"`    // Redundancy Peer State
-	NwDeviceID             string `json:"nwDeviceId,omitempty"`             // Nw Device Id
-	RedundancyState        string `json:"redundancyState,omitempty"`        // Redundancy State
-	NwDeviceRole           string `json:"nwDeviceRole,omitempty"`           // Nw Device Role
-	NwDeviceFamily         string `json:"nwDeviceFamily,omitempty"`         // Nw Device Family
-	MacAddress             string `json:"macAddress,omitempty"`             // Mac Address
-	CollectionStatus       string `json:"collectionStatus,omitempty"`       // Collection Status
-	DeviceSeries           string `json:"deviceSeries,omitempty"`           // Device Series
-	OsType                 string `json:"osType,omitempty"`                 // Os Type
-	ClientCount            string `json:"clientCount,omitempty"`            // Client Count
-	HASecondaryPowerStatus string `json:"HASecondaryPowerStatus,omitempty"` // H A Secondary Power Status
-	SoftwareVersion        string `json:"softwareVersion,omitempty"`        // Software Version
-	NwDeviceType           string `json:"nwDeviceType,omitempty"`           // Nw Device Type
-	OverallHealth          *int   `json:"overallHealth,omitempty"`          // Overall Health
-	MemoryScore            *int   `json:"memoryScore,omitempty"`            // Memory Score
-	CPUScore               *int   `json:"cpuScore,omitempty"`               // Cpu Score
-	NoiseScore             *int   `json:"noiseScore,omitempty"`             // Noise Score
-	UtilizationScore       *int   `json:"utilizationScore,omitempty"`       // Utilization Score
-	AirQualityScore        *int   `json:"airQualityScore,omitempty"`        // Air Quality Score
-	InterferenceScore      *int   `json:"interferenceScore,omitempty"`      // Interference Score
-	WqeScore               *int   `json:"wqeScore,omitempty"`               // Wqe Score
-	FreeMbufScore          *int   `json:"freeMbufScore,omitempty"`          // Free Mbuf Score
-	PacketPoolScore        *int   `json:"packetPoolScore,omitempty"`        // Packet Pool Score
-	FreeTimerScore         *int   `json:"freeTimerScore,omitempty"`         // Free Timer Score
-	Memory                 string `json:"memory,omitempty"`                 // Memory
-	CPU                    string `json:"cpu,omitempty"`                    // Cpu
-	Noise                  string `json:"noise,omitempty"`                  // Noise
-	Utilization            string `json:"utilization,omitempty"`            // Utilization
-	AirQuality             string `json:"airQuality,omitempty"`             // Air Quality
-	Interference           string `json:"interference,omitempty"`           // Interference
-	Wqe                    string `json:"wqe,omitempty"`                    // Wqe
-	FreeMbuf               string `json:"freeMbuf,omitempty"`               // Free Mbuf
-	PacketPool             string `json:"packetPool,omitempty"`             // Packet Pool
-	FreeTimer              string `json:"freeTimer,omitempty"`              // Free Timer
-	Location               string `json:"location,omitempty"`               // Location
-	Timestamp              string `json:"timestamp,omitempty"`              // Timestamp
+	HALastResetReason      string    `json:"HALastResetReason,omitempty"`      // H A Last Reset Reason
+	ManagementIPAddr       string    `json:"managementIpAddr,omitempty"`       // Management Ip Addr
+	HAPrimaryPowerStatus   string    `json:"HAPrimaryPowerStatus,omitempty"`   // H A Primary Power Status
+	RedundancyMode         string    `json:"redundancyMode,omitempty"`         // Redundancy Mode
+	CommunicationState     string    `json:"communicationState,omitempty"`     // Communication State
+	NwDeviceName           string    `json:"nwDeviceName,omitempty"`           // Nw Device Name
+	RedundancyUnit         string    `json:"redundancyUnit,omitempty"`         // Redundancy Unit
+	PlatformID             string    `json:"platformId,omitempty"`             // Platform Id
+	RedundancyPeerState    string    `json:"redundancyPeerState,omitempty"`    // Redundancy Peer State
+	NwDeviceID             string    `json:"nwDeviceId,omitempty"`             // Nw Device Id
+	RedundancyState        string    `json:"redundancyState,omitempty"`        // Redundancy State
+	NwDeviceRole           string    `json:"nwDeviceRole,omitempty"`           // Nw Device Role
+	NwDeviceFamily         string    `json:"nwDeviceFamily,omitempty"`         // Nw Device Family
+	MacAddress             string    `json:"macAddress,omitempty"`             // Mac Address
+	CollectionStatus       string    `json:"collectionStatus,omitempty"`       // Collection Status
+	DeviceSeries           string    `json:"deviceSeries,omitempty"`           // Device Series
+	OsType                 string    `json:"osType,omitempty"`                 // Os Type
+	ClientCount            string    `json:"clientCount,omitempty"`            // Client Count
+	HASecondaryPowerStatus string    `json:"HASecondaryPowerStatus,omitempty"` // H A Secondary Power Status
+	SoftwareVersion        string    `json:"softwareVersion,omitempty"`        // Software Version
+	NwDeviceType           string    `json:"nwDeviceType,omitempty"`           // Nw Device Type
+	OverallHealth          *int      `json:"overallHealth,omitempty"`          // Overall Health
+	MemoryScore            *int      `json:"memoryScore,omitempty"`            // Memory Score
+	CPUScore               *int      `json:"cpuScore,omitempty"`               // Cpu Score
+	NoiseScore             *int      `json:"noiseScore,omitempty"`             // Noise Score
+	UtilizationScore       *int      `json:"utilizationScore,omitempty"`       // Utilization Score
+	AirQualityScore        *int      `json:"airQualityScore,omitempty"`        // Air Quality Score
+	InterferenceScore      *int      `json:"interferenceScore,omitempty"`      // Interference Score
+	WqeScore               *int      `json:"wqeScore,omitempty"`               // Wqe Score
+	FreeMbufScore          *int      `json:"freeMbufScore,omitempty"`          // Free Mbuf Score
+	PacketPoolScore        *int      `json:"packetPoolScore,omitempty"`        // Packet Pool Score
+	FreeTimerScore         *int      `json:"freeTimerScore,omitempty"`         // Free Timer Score
+	Memory                 string    `json:"memory,omitempty"`                 // Memory
+	CPU                    string    `json:"cpu,omitempty"`                    // Cpu
+	Noise                  string    `json:"noise,omitempty"`                  // Noise
+	Utilization            string    `json:"utilization,omitempty"`            // Utilization
+	AirQuality             string    `json:"airQuality,omitempty"`             // Air Quality
+	Interference           string    `json:"interference,omitempty"`           // Interference
+	Wqe                    string    `json:"wqe,omitempty"`                    // Wqe
+	FreeMbuf               string    `json:"freeMbuf,omitempty"`               // Free Mbuf
+	PacketPool             string    `json:"packetPool,omitempty"`             // Packet Pool
+	FreeTimer              string    `json:"freeTimer,omitempty"`              // Free Timer
+	Location               string    `json:"location,omitempty"`               // Location
+	Timestamp              *int      `json:"timestamp,omitempty"`              // Timestamp
+	TagIDList              *[]string `json:"tagIdList,omitempty"`              // Timestamp
 }
 type ResponseDevicesGetDeviceEnrichmentDetails []ResponseItemDevicesGetDeviceEnrichmentDetails // Array of ResponseDevicesGetDeviceEnrichmentDetails
 type ResponseItemDevicesGetDeviceEnrichmentDetails struct {
@@ -1546,8 +1547,8 @@ type ResponseDevicesGetWirelessLanControllerDetailsByIDResponse struct {
 	WirelessPackageInstalled *bool  `json:"wirelessPackageInstalled,omitempty"` //
 }
 type ResponseDevicesGetDeviceConfigByID struct {
-	Response string `json:"response,omitempty"` //
-	Version  string `json:"version,omitempty"`  //
+	Response interface{} `json:"response,omitempty"` //
+	Version  string      `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetNetworkDeviceByPaginationRange struct {
 	Response *[]ResponseDevicesGetNetworkDeviceByPaginationRangeResponse `json:"response,omitempty"` //

@@ -324,16 +324,16 @@ type ResponseNetworkSettingsGetNetworkV2 struct {
 	Response *[]ResponseNetworkSettingsGetNetworkV2Response `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsGetNetworkV2Response struct {
-	InstanceType       string   `json:"instanceType,omitempty"`       // Instance Type
-	InstanceUUID       string   `json:"instanceUuid,omitempty"`       // Instance Uuid
-	Namespace          string   `json:"namespace,omitempty"`          // Namespace
-	Type               string   `json:"type,omitempty"`               // Type
-	Key                string   `json:"key,omitempty"`                // Key
-	Version            *int     `json:"version,omitempty"`            // Version
-	Value              []string `json:"value,omitempty"`              // Value
-	GroupUUID          string   `json:"groupUuid,omitempty"`          // Group Uuid
-	InheritedGroupUUID string   `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-	InheritedGroupName string   `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string      `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string      `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string      `json:"namespace,omitempty"`          // Namespace
+	Type               string      `json:"type,omitempty"`               // Type
+	Key                string      `json:"key,omitempty"`                // Key
+	Version            *int        `json:"version,omitempty"`            // Version
+	Value              interface{} `json:"value,omitempty"`              // Value
+	GroupUUID          string      `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string      `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string      `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsCreateNetworkV2 struct {
 	Response *ResponseNetworkSettingsCreateNetworkV2Response `json:"response,omitempty"` //
