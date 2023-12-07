@@ -457,36 +457,47 @@ type ResponseWirelessRetrieveRfProfiles struct {
 	Response *[]ResponseWirelessRetrieveRfProfilesResponse `json:"response,omitempty"` //
 }
 type ResponseWirelessRetrieveRfProfilesResponse struct {
-	Name                string `json:"name,omitempty"`                // Name
-	ParentProfileA      string `json:"parentProfileA,omitempty"`      // Parent Profile A
-	ParentProfileB      string `json:"parentProfileB,omitempty"`      // Parent Profile B
-	EnableARadioType    *bool  `json:"enableARadioType,omitempty"`    // Enable ARadio Type
-	EnableBRadioType    *bool  `json:"enableBRadioType,omitempty"`    // Enable BRadio Type
-	EnableCRadioType    *bool  `json:"enableCRadioType,omitempty"`    // Enable CRadio Type
-	ChannelWidth        string `json:"channelWidth,omitempty"`        // Channel Width
-	ARadioChannels      string `json:"aRadioChannels,omitempty"`      // A Radio Channels
-	BRadioChannels      string `json:"bRadioChannels,omitempty"`      // B Radio Channels
-	CRadioChannels      string `json:"cRadioChannels,omitempty"`      // C Radio Channels
-	DataRatesA          string `json:"dataRatesA,omitempty"`          // Data Rates A
-	DataRatesB          string `json:"dataRatesB,omitempty"`          // Data Rates B
-	DataRatesC          string `json:"dataRatesC,omitempty"`          // Data Rates C
-	MandatoryDataRatesA string `json:"mandatoryDataRatesA,omitempty"` // Mandatory Data Rates A
-	MandatoryDataRatesB string `json:"mandatoryDataRatesB,omitempty"` // Mandatory Data Rates B
-	MandatoryDataRatesC string `json:"mandatoryDataRatesC,omitempty"` // Mandatory Data Rates C
-	EnableCustom        *bool  `json:"enableCustom,omitempty"`        // Enable Custom
-	MinPowerLevelA      string `json:"minPowerLevelA,omitempty"`      // Min Power Level A
-	MinPowerLevelB      string `json:"minPowerLevelB,omitempty"`      // Min Power Level B
-	MinPowerLevelC      string `json:"minPowerLevelC,omitempty"`      // Min Power Level C
-	MaxPowerLevelA      string `json:"maxPowerLevelA,omitempty"`      // Max Power Level A
-	MaxPowerLevelB      string `json:"maxPowerLevelB,omitempty"`      // Max Power Level B
-	PowerThresholdV1A   *int   `json:"powerThresholdV1A,omitempty"`   // Power Threshold V1 A
-	PowerThresholdV1B   *int   `json:"powerThresholdV1B,omitempty"`   // Power Threshold V1 B
-	PowerThresholdV1C   *int   `json:"powerThresholdV1C,omitempty"`   // Power Threshold V1 C
-	RxSopThresholdA     string `json:"rxSopThresholdA,omitempty"`     // Rx Sop Threshold A
-	RxSopThresholdB     string `json:"rxSopThresholdB,omitempty"`     // Rx Sop Threshold B
-	RxSopThresholdC     string `json:"rxSopThresholdC,omitempty"`     // Rx Sop Threshold C
-	DefaultRfProfile    *bool  `json:"defaultRfProfile,omitempty"`    // Default Rf Profile
-	EnableBrownField    *bool  `json:"enableBrownField,omitempty"`    // Enable Brown Field
+	Name                 string                                                          `json:"name,omitempty"`                 // RF Profile Name
+	DefaultRfProfile     *bool                                                           `json:"defaultRfProfile,omitempty"`     // is Default Rf Profile
+	EnableRadioTypeA     *bool                                                           `json:"enableRadioTypeA,omitempty"`     // Enable Radio Type A
+	EnableRadioTypeB     *bool                                                           `json:"enableRadioTypeB,omitempty"`     // Enable Radio Type B
+	ChannelWidth         string                                                          `json:"channelWidth,omitempty"`         // Channel Width
+	EnableCustom         *bool                                                           `json:"enableCustom,omitempty"`         // Enable Custom
+	EnableBrownField     *bool                                                           `json:"enableBrownField,omitempty"`     // Enable Brown Field
+	RadioTypeAProperties *ResponseWirelessRetrieveRfProfilesResponseRadioTypeAProperties `json:"radioTypeAProperties,omitempty"` //
+	RadioTypeBProperties *ResponseWirelessRetrieveRfProfilesResponseRadioTypeBProperties `json:"radioTypeBProperties,omitempty"` //
+	RadioTypeCProperties *ResponseWirelessRetrieveRfProfilesResponseRadioTypeCProperties `json:"radioTypeCProperties,omitempty"` //
+	EnableRadioTypeC     *bool                                                           `json:"enableRadioTypeC,omitempty"`     // Enable Radio Type C (6GHz)
+}
+type ResponseWirelessRetrieveRfProfilesResponseRadioTypeAProperties struct {
+	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
+	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
+	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
+	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
+	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
+	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
+	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Rx Sop Threshold
+	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
+}
+type ResponseWirelessRetrieveRfProfilesResponseRadioTypeBProperties struct {
+	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
+	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
+	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
+	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
+	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
+	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
+	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level
+	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
+}
+type ResponseWirelessRetrieveRfProfilesResponseRadioTypeCProperties struct {
+	ParentProfile      string   `json:"parentProfile,omitempty"`      // Parent Profile
+	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels
+	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates
+	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates
+	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold
+	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level
+	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level
+	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1
 }
 type ResponseWirelessCreateOrUpdateRfProfile struct {
 	ExecutionID  string `json:"executionId,omitempty"`  // Execution Id
@@ -1191,7 +1202,7 @@ func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPo
 
 @param APProvisionHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!a-p-provision
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!ap-provision
 */
 func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWirelessApProvision, APProvisionHeaderParams *ApProvisionHeaderParams) (*ResponseWirelessApProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/ap-provision"
@@ -1380,7 +1391,7 @@ func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWireles
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-r-f-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-rf-profile
 */
 func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateRFProfile *RequestWirelessCreateOrUpdateRfProfile) (*ResponseWirelessCreateOrUpdateRfProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
@@ -1686,7 +1697,7 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 @param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-r-f-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-rf-profiles
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {
 	//rfProfileName string
