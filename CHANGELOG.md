@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [5.0.23] - 2023-12-07
+## [5.0.24] - 2023-12-07
 - `Value` attribute change to `interface` in `ResponseNetworkSettingsGetNetworkV2Response`.
 - `RetrieveRfProfiles` change response struct due bad documentation.
 - `TagIDList` added to `ResponseDevicesGetDeviceDetailResponse` struct.
@@ -608,4 +608,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.21]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.20...v5.0.21
 [5.0.22]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.21...v5.0.22
 [5.0.23]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.22...v5.0.23
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.23...main
+[5.0.24]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.23...v5.0.24
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.24...main
