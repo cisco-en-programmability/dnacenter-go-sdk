@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -366,6 +367,9 @@ func (s *ReportsService) GetListOfScheduledReports(GetListOfScheduledReportsQuer
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetListOfScheduledReports(GetListOfScheduledReportsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetListOfScheduledReports")
 	}
 
@@ -400,6 +404,9 @@ func (s *ReportsService) GetAScheduledReport(reportID string) (*ResponseReportsG
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAScheduledReport(reportID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAScheduledReport")
 	}
 
@@ -434,6 +441,9 @@ func (s *ReportsService) GetAllExecutionDetailsForAGivenReport(reportID string) 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllExecutionDetailsForAGivenReport(reportID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllExecutionDetailsForAGivenReport")
 	}
 
@@ -470,6 +480,9 @@ func (s *ReportsService) DownloadReportContent(reportID string, executionID stri
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DownloadReportContent(reportID, executionID)
+		}
 		return fdownload, response, fmt.Errorf("error with operation ExportTrustedCertificate")
 	}
 
@@ -505,6 +518,9 @@ func (s *ReportsService) GetAllViewGroups() (*ResponseReportsGetAllViewGroups, *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllViewGroups()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllViewGroups")
 	}
 
@@ -539,6 +555,9 @@ func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*Respon
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetViewsForAGivenViewGroup(viewGroupID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetViewsForAGivenViewGroup")
 	}
 
@@ -576,6 +595,9 @@ func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetViewDetailsForAGivenViewGroupView(viewGroupID, viewID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetViewDetailsForAGivenViewGroupView")
 	}
 
@@ -608,6 +630,11 @@ func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleA
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateOrScheduleAReport(requestReportsCreateOrScheduleAReport)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateOrScheduleAReport")
 	}
 
@@ -643,6 +670,9 @@ func (s *ReportsService) DeleteAScheduledReport(reportID string) (*ResponseRepor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteAScheduledReport(reportID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteAScheduledReport")
 	}
 

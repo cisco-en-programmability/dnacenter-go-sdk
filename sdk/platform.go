@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -106,6 +107,9 @@ func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCisc
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CiscoDnaCenterPackagesSummary()
+		}
 		return nil, response, fmt.Errorf("error with operation CiscoDnaCenterPackagesSummary")
 	}
 
@@ -119,7 +123,7 @@ func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCisc
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-release-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-release-summary
 */
 func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCiscoDnaCenterReleaseSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-release"
@@ -137,6 +141,9 @@ func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCisco
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CiscoDnaCenterReleaseSummary()
+		}
 		return nil, response, fmt.Errorf("error with operation CiscoDnaCenterReleaseSummary")
 	}
 
@@ -150,7 +157,7 @@ func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCisco
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-nodes-configuration-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-nodes-configuration-summary
 */
 func (s *PlatformService) CiscoDnaCenterNodesConfigurationSummary() (*ResponsePlatformCiscoDnaCenterNodesConfigurationSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nodes-config"
@@ -168,6 +175,9 @@ func (s *PlatformService) CiscoDnaCenterNodesConfigurationSummary() (*ResponsePl
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CiscoDnaCenterNodesConfigurationSummary()
+		}
 		return nil, response, fmt.Errorf("error with operation CiscoDnaCenterNodesConfigurationSummary")
 	}
 

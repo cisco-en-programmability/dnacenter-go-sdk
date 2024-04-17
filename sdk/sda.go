@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -841,20 +842,13 @@ func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuth
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuthenticationProfileFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDefaultAuthenticationProfileFromSdaFabric")
 	}
 
 	result := response.Result().(*ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric)
-
-	// REVIEW: Custom code is needed to address different types (bool vs string)
-	// To follow the expected documentation, it converts the string responses to nil.
-	// Hopefully, actual API behavior could do this soon, so we could change it to a pointer to a bool instead to reflect the three states
-	if result != nil {
-		if result.WakeOnLan == "" {
-			result.WakeOnLan = nil
-		}
-	}
-
 	return result, response, err
 
 }
@@ -885,6 +879,9 @@ func (s *SdaService) GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFro
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetBorderDeviceDetailFromSdaFabric")
 	}
 
@@ -919,6 +916,9 @@ func (s *SdaService) GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFro
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetControlPlaneDeviceFromSdaFabric")
 	}
 
@@ -953,6 +953,9 @@ func (s *SdaService) GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceInfoFromSdaFabric")
 	}
 
@@ -987,6 +990,9 @@ func (s *SdaService) GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceRoleInSdaFabric")
 	}
 
@@ -1021,6 +1027,9 @@ func (s *SdaService) GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEdgeDeviceFromSdaFabric")
 	}
 
@@ -1055,6 +1064,9 @@ func (s *SdaService) GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams *GetSi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSiteFromSdaFabric")
 	}
 
@@ -1089,6 +1101,9 @@ func (s *SdaService) GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmen
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmentForAccessPointInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPortAssignmentForAccessPointInSdaFabric")
 	}
 
@@ -1123,6 +1138,9 @@ func (s *SdaService) GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignment
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignmentForUserDeviceInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPortAssignmentForUserDeviceInSdaFabric")
 	}
 
@@ -1157,6 +1175,9 @@ func (s *SdaService) GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDA
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetMulticastDetailsFromSdaFabric")
 	}
 
@@ -1191,6 +1212,9 @@ func (s *SdaService) GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetProvisionedWiredDevice")
 	}
 
@@ -1225,6 +1249,9 @@ func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTransitPeerNetworkInfo")
 	}
 
@@ -1239,7 +1266,7 @@ func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryPar
 
 @param GetVNFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-v-n-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-vn-from-sda-fabric
 */
 func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFromSdaFabricQueryParams) (*ResponseSdaGetVnFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
@@ -1259,6 +1286,9 @@ func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFrom
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetVnFromSdaFabric")
 	}
 
@@ -1293,6 +1323,9 @@ func (s *SdaService) GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetVirtualNetworkSummary")
 	}
 
@@ -1327,6 +1360,9 @@ func (s *SdaService) GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetwo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetworkQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetIpPoolFromSdaVirtualNetwork")
 	}
 
@@ -1361,6 +1397,9 @@ func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithSc
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithScalableGroupsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetVirtualNetworkWithScalableGroups")
 	}
 
@@ -1393,6 +1432,11 @@ func (s *SdaService) AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDe
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDefaultAuthenticationTemplateInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddDefaultAuthenticationTemplateInSdaFabric")
 	}
 
@@ -1425,6 +1469,11 @@ func (s *SdaService) AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFa
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddBorderDeviceInSdaFabric")
 	}
 
@@ -1457,6 +1506,11 @@ func (s *SdaService) AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneD
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneDeviceInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddControlPlaneDeviceInSdaFabric")
 	}
 
@@ -1489,6 +1543,11 @@ func (s *SdaService) AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddEdgeDeviceInSdaFabric")
 	}
 
@@ -1521,6 +1580,11 @@ func (s *SdaService) AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric *RequestSda
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddSiteInSdaFabric")
 	}
 
@@ -1553,6 +1617,11 @@ func (s *SdaService) AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPor
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPortAssignmentForAccessPointInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddPortAssignmentForAccessPointInSdaFabric")
 	}
 
@@ -1585,6 +1654,11 @@ func (s *SdaService) AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPort
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPortAssignmentForUserDeviceInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddPortAssignmentForUserDeviceInSdaFabric")
 	}
 
@@ -1617,6 +1691,11 @@ func (s *SdaService) AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric *
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddMulticastInSdaFabric")
 	}
 
@@ -1649,6 +1728,11 @@ func (s *SdaService) ProvisionWiredDevice(requestSdaProvisionWiredDevice *Reques
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ProvisionWiredDevice(requestSdaProvisionWiredDevice)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ProvisionWiredDevice")
 	}
 
@@ -1681,6 +1765,11 @@ func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *Requ
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddTransitPeerNetwork")
 	}
 
@@ -1694,7 +1783,7 @@ func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *Requ
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-v-n-in-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-vn-in-fabric
 */
 func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFabric) (*ResponseSdaAddVnInFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
@@ -1713,6 +1802,11 @@ func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFab
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddVnInFabric(requestSdaAddVNInFabric)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddVnInFabric")
 	}
 
@@ -1745,6 +1839,11 @@ func (s *SdaService) AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtua
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtualNetwork)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddIpPoolInSdaVirtualNetwork")
 	}
 
@@ -1777,6 +1876,11 @@ func (s *SdaService) AddVirtualNetworkWithScalableGroups(requestSdaAddVirtualNet
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddVirtualNetworkWithScalableGroups(requestSdaAddVirtualNetworkWithScalableGroups)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddVirtualNetworkWithScalableGroups")
 	}
 
@@ -1807,6 +1911,9 @@ func (s *SdaService) UpdateDefaultAuthenticationProfileInSdaFabric(requestSdaUpd
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateDefaultAuthenticationProfileInSdaFabric(requestSdaUpdateDefaultAuthenticationProfileInSDAFabric)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateDefaultAuthenticationProfileInSdaFabric")
 	}
 
@@ -1837,6 +1944,9 @@ func (s *SdaService) ReProvisionWiredDevice(requestSdaReProvisionWiredDevice *Re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReProvisionWiredDevice(requestSdaReProvisionWiredDevice)
+		}
 		return nil, response, fmt.Errorf("error with operation ReProvisionWiredDevice")
 	}
 
@@ -1867,6 +1977,9 @@ func (s *SdaService) UpdateVirtualNetworkWithScalableGroups(requestSdaUpdateVirt
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateVirtualNetworkWithScalableGroups(requestSdaUpdateVirtualNetworkWithScalableGroups)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateVirtualNetworkWithScalableGroups")
 	}
 
@@ -1902,6 +2015,9 @@ func (s *SdaService) DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefau
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDefaultAuthenticationProfileFromSdaFabric")
 	}
 
@@ -1937,6 +2053,9 @@ func (s *SdaService) DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteBorderDeviceFromSdaFabric")
 	}
 
@@ -1972,6 +2091,9 @@ func (s *SdaService) DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDevic
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDeviceInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteControlPlaneDeviceInSdaFabric")
 	}
 
@@ -2007,6 +2129,9 @@ func (s *SdaService) DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabric
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteEdgeDeviceFromSdaFabric")
 	}
 
@@ -2042,6 +2167,9 @@ func (s *SdaService) DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteSiteFromSdaFabric")
 	}
 
@@ -2077,6 +2205,9 @@ func (s *SdaService) DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAss
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAssignmentForAccessPointInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeletePortAssignmentForAccessPointInSdaFabric")
 	}
 
@@ -2112,6 +2243,9 @@ func (s *SdaService) DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssignmentForUserDeviceInSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeletePortAssignmentForUserDeviceInSdaFabric")
 	}
 
@@ -2147,6 +2281,9 @@ func (s *SdaService) DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQu
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteMulticastFromSdaFabric")
 	}
 
@@ -2182,6 +2319,9 @@ func (s *SdaService) DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQu
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteProvisionedWiredDevice")
 	}
 
@@ -2217,6 +2357,9 @@ func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteTransitPeerNetwork")
 	}
 
@@ -2231,7 +2374,7 @@ func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParam
 
 @param DeleteVNFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-v-n-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-vn-from-sda-fabric
 */
 func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams) (*ResponseSdaDeleteVnFromSdaFabric, *resty.Response, error) {
 	//DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams
@@ -2252,6 +2395,9 @@ func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *Del
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteVnFromSdaFabric")
 	}
 
@@ -2287,6 +2433,9 @@ func (s *SdaService) DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtua
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtualNetworkQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteIpPoolFromSdaVirtualNetwork")
 	}
 
@@ -2322,6 +2471,9 @@ func (s *SdaService) DeleteVirtualNetworkWithScalableGroups(DeleteVirtualNetwork
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteVirtualNetworkWithScalableGroups(DeleteVirtualNetworkWithScalableGroupsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteVirtualNetworkWithScalableGroups")
 	}
 

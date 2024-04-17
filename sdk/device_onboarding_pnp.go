@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -3914,6 +3915,9 @@ func (s *DeviceOnboardingPnpService) GetDeviceList2(GetDeviceList2QueryParams *G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceList2(GetDeviceList2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceList2")
 	}
 
@@ -3948,6 +3952,9 @@ func (s *DeviceOnboardingPnpService) GetDeviceCount(GetDeviceCountQueryParams *G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceCount(GetDeviceCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceCount")
 	}
 
@@ -3982,6 +3989,9 @@ func (s *DeviceOnboardingPnpService) GetDeviceHistory(GetDeviceHistoryQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceHistory(GetDeviceHistoryQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceHistory")
 	}
 
@@ -4019,6 +4029,9 @@ func (s *DeviceOnboardingPnpService) GetSyncResultForVirtualAccount(domain strin
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSyncResultForVirtualAccount(domain, name)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSyncResultForVirtualAccount")
 	}
 
@@ -4052,6 +4065,9 @@ func (s *DeviceOnboardingPnpService) GetDeviceByID(id string) (*ResponseDeviceOn
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceById")
 	}
 
@@ -4083,6 +4099,9 @@ func (s *DeviceOnboardingPnpService) GetPnpGlobalSettings() (*ResponseDeviceOnbo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPnpGlobalSettings()
+		}
 		return nil, response, fmt.Errorf("error with operation GetPnpGlobalSettings")
 	}
 
@@ -4114,6 +4133,9 @@ func (s *DeviceOnboardingPnpService) GetSmartAccountList() (*ResponseDeviceOnboa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSmartAccountList()
+		}
 		return nil, response, fmt.Errorf("error with operation GetSmartAccountList")
 	}
 
@@ -4148,6 +4170,9 @@ func (s *DeviceOnboardingPnpService) GetVirtualAccountList(domain string) (*Resp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetVirtualAccountList(domain)
+		}
 		return nil, response, fmt.Errorf("error with operation GetVirtualAccountList")
 	}
 
@@ -4182,6 +4207,9 @@ func (s *DeviceOnboardingPnpService) GetWorkflows(GetWorkflowsQueryParams *GetWo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWorkflows(GetWorkflowsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWorkflows")
 	}
 
@@ -4216,6 +4244,9 @@ func (s *DeviceOnboardingPnpService) GetWorkflowCount(GetWorkflowCountQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWorkflowCount(GetWorkflowCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWorkflowCount")
 	}
 
@@ -4249,6 +4280,9 @@ func (s *DeviceOnboardingPnpService) GetWorkflowByID(id string) (*ResponseDevice
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWorkflowByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWorkflowById")
 	}
 
@@ -4281,6 +4315,11 @@ func (s *DeviceOnboardingPnpService) AddDevice(requestDeviceOnboardingPnpAddDevi
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddDevice(requestDeviceOnboardingPnpAddDevice)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddDevice")
 	}
 
@@ -4313,6 +4352,11 @@ func (s *DeviceOnboardingPnpService) ClaimDevice(requestDeviceOnboardingPnpClaim
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ClaimDevice(requestDeviceOnboardingPnpClaimDevice)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ClaimDevice")
 	}
 
@@ -4345,6 +4389,11 @@ func (s *DeviceOnboardingPnpService) ImportDevicesInBulk(requestDeviceOnboarding
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportDevicesInBulk(requestDeviceOnboardingPnpImportDevicesInBulk)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportDevicesInBulk")
 	}
 
@@ -4377,6 +4426,11 @@ func (s *DeviceOnboardingPnpService) ResetDevice(requestDeviceOnboardingPnpReset
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ResetDevice(requestDeviceOnboardingPnpResetDevice)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ResetDevice")
 	}
 
@@ -4413,6 +4467,11 @@ func (s *DeviceOnboardingPnpService) ClaimADeviceToASite(requestDeviceOnboarding
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ClaimADeviceToASite(requestDeviceOnboardingPnpClaimADeviceToASite)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ClaimADeviceToASite")
 	}
 
@@ -4445,6 +4504,11 @@ func (s *DeviceOnboardingPnpService) PreviewConfig(requestDeviceOnboardingPnpPre
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.PreviewConfig(requestDeviceOnboardingPnpPreviewConfig)
+		}
+
 		return nil, response, fmt.Errorf("error with operation PreviewConfig")
 	}
 
@@ -4477,6 +4541,11 @@ func (s *DeviceOnboardingPnpService) UnClaimDevice(requestDeviceOnboardingPnpUnC
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UnClaimDevice(requestDeviceOnboardingPnpUnClaimDevice)
+		}
+
 		return nil, response, fmt.Errorf("error with operation UnClaimDevice")
 	}
 
@@ -4509,6 +4578,11 @@ func (s *DeviceOnboardingPnpService) SyncVirtualAccountDevices(requestDeviceOnbo
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SyncVirtualAccountDevices(requestDeviceOnboardingPnpSyncVirtualAccountDevices)
+		}
+
 		return nil, response, fmt.Errorf("error with operation SyncVirtualAccountDevices")
 	}
 
@@ -4541,6 +4615,11 @@ func (s *DeviceOnboardingPnpService) AddVirtualAccount(requestDeviceOnboardingPn
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddVirtualAccount(requestDeviceOnboardingPnpAddVirtualAccount)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddVirtualAccount")
 	}
 
@@ -4573,6 +4652,11 @@ func (s *DeviceOnboardingPnpService) AddAWorkflow(requestDeviceOnboardingPnpAddA
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddAWorkflow(requestDeviceOnboardingPnpAddAWorkflow)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddAWorkflow")
 	}
 
@@ -4605,6 +4689,9 @@ func (s *DeviceOnboardingPnpService) UpdateDevice(id string, requestDeviceOnboar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateDevice(id, requestDeviceOnboardingPnpUpdateDevice)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateDevice")
 	}
 
@@ -4635,6 +4722,9 @@ func (s *DeviceOnboardingPnpService) UpdatePnpGlobalSettings(requestDeviceOnboar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatePnpGlobalSettings(requestDeviceOnboardingPnpUpdatePnPGlobalSettings)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdatePnpGlobalSettings")
 	}
 
@@ -4665,6 +4755,9 @@ func (s *DeviceOnboardingPnpService) UpdatePnpServerProfile(requestDeviceOnboard
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatePnpServerProfile(requestDeviceOnboardingPnpUpdatePnPServerProfile)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdatePnpServerProfile")
 	}
 
@@ -4697,6 +4790,9 @@ func (s *DeviceOnboardingPnpService) UpdateWorkflow(id string, requestDeviceOnbo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateWorkflow(id, requestDeviceOnboardingPnpUpdateWorkflow)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateWorkflow")
 	}
 
@@ -4731,6 +4827,9 @@ func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*Respon
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDeviceByIDFromPnp(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceByIdFromPnp")
 	}
 
@@ -4766,6 +4865,9 @@ func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualA
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeregisterVirtualAccount(DeregisterVirtualAccountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeregisterVirtualAccount")
 	}
 
@@ -4800,6 +4902,9 @@ func (s *DeviceOnboardingPnpService) DeleteWorkflowByID(id string) (*ResponseDev
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteWorkflowByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteWorkflowById")
 	}
 

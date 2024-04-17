@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -952,6 +953,9 @@ func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(RetrivesAllPrevi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrivesAllPreviousPathtracesSummary(RetrivesAllPreviousPathtracesSummaryQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation RetrivesAllPreviousPathtracesSummary")
 	}
 
@@ -986,6 +990,9 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*R
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesPreviousPathtrace(flowAnalysisID)
+		}
 		return nil, response, fmt.Errorf("error with operation RetrievesPreviousPathtrace")
 	}
 
@@ -1018,6 +1025,11 @@ func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPat
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.InitiateANewPathtrace(requestPathTraceInitiateANewPathtrace)
+		}
+
 		return nil, response, fmt.Errorf("error with operation InitiateANewPathtrace")
 	}
 
@@ -1053,6 +1065,9 @@ func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*Respons
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletesPathtraceByID(flowAnalysisID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeletesPathtraceById")
 	}
 

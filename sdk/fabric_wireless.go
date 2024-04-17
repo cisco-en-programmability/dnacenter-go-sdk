@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -94,6 +95,9 @@ func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQue
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSsidToIpPoolMapping")
 	}
 
@@ -139,6 +143,11 @@ func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddS
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddSSIDToIPPoolMapping(requestFabricWirelessAddSSIDToIPPoolMapping, AddSSIDToIPPoolMappingHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddSsidToIpPoolMapping")
 	}
 
@@ -171,6 +180,11 @@ func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLC
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddWLCToFabricDomain")
 	}
 
@@ -201,6 +215,9 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessU
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSSIDToIPPoolMapping(requestFabricWirelessUpdateSSIDToIPPoolMapping)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSsidToIpPoolMapping")
 	}
 
@@ -249,6 +266,9 @@ func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDom
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation RemoveWLCFromFabricDomain")
 	}
 

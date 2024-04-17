@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -1156,6 +1157,9 @@ func (s *EventManagementService) GetAuditLogParentRecords(GetAuditLogParentRecor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAuditLogParentRecords(GetAuditLogParentRecordsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAuditLogParentRecords")
 	}
 
@@ -1190,6 +1194,9 @@ func (s *EventManagementService) GetAuditLogSummary(GetAuditLogSummaryQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAuditLogSummary(GetAuditLogSummaryQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAuditLogSummary")
 	}
 
@@ -1224,6 +1231,9 @@ func (s *EventManagementService) GetAuditLogRecords(GetAuditLogRecordsQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAuditLogRecords(GetAuditLogRecordsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAuditLogRecords")
 	}
 
@@ -1258,6 +1268,9 @@ func (s *EventManagementService) GetStatusAPIForEvents(executionID string) (*Res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetStatusAPIForEvents(executionID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetStatusApiForEvents")
 	}
 
@@ -1289,6 +1302,9 @@ func (s *EventManagementService) GetEmailDestination() (*ResponseEventManagement
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEmailDestination()
+		}
 		return nil, response, fmt.Errorf("error with operation GetEmailDestination")
 	}
 
@@ -1323,6 +1339,9 @@ func (s *EventManagementService) GetNotifications(GetNotificationsQueryParams *G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNotifications(GetNotificationsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNotifications")
 	}
 
@@ -1357,6 +1376,9 @@ func (s *EventManagementService) CountOfNotifications(CountOfNotificationsQueryP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfNotifications(CountOfNotificationsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation CountOfNotifications")
 	}
 
@@ -1371,7 +1393,7 @@ func (s *EventManagementService) CountOfNotifications(CountOfNotificationsQueryP
 
 @param GetSNMPDestinationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-s-n-m-p-destination
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-snmp-destination
 */
 func (s *EventManagementService) GetSNMPDestination(GetSNMPDestinationQueryParams *GetSNMPDestinationQueryParams) (*ResponseEventManagementGetSNMPDestination, *resty.Response, error) {
 	path := "/dna/intent/api/v1/event/snmp-config"
@@ -1391,6 +1413,9 @@ func (s *EventManagementService) GetSNMPDestination(GetSNMPDestinationQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSNMPDestination(GetSNMPDestinationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSnmpDestination")
 	}
 
@@ -1425,6 +1450,9 @@ func (s *EventManagementService) GetEventSubscriptions(GetEventSubscriptionsQuer
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEventSubscriptions(GetEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEventSubscriptions")
 	}
 
@@ -1459,6 +1487,9 @@ func (s *EventManagementService) GetEmailSubscriptionDetails(GetEmailSubscriptio
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEmailSubscriptionDetails(GetEmailSubscriptionDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEmailSubscriptionDetails")
 	}
 
@@ -1493,6 +1524,9 @@ func (s *EventManagementService) GetRestWebhookSubscriptionDetails(GetRestWebhoo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetRestWebhookSubscriptionDetails(GetRestWebhookSubscriptionDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetRestWebhookSubscriptionDetails")
 	}
 
@@ -1527,6 +1561,9 @@ func (s *EventManagementService) GetSyslogSubscriptionDetails(GetSyslogSubscript
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSyslogSubscriptionDetails(GetSyslogSubscriptionDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSyslogSubscriptionDetails")
 	}
 
@@ -1561,6 +1598,9 @@ func (s *EventManagementService) CountOfEventSubscriptions(CountOfEventSubscript
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfEventSubscriptions(CountOfEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation CountOfEventSubscriptions")
 	}
 
@@ -1595,6 +1635,9 @@ func (s *EventManagementService) GetEmailEventSubscriptions(GetEmailEventSubscri
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEmailEventSubscriptions(GetEmailEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEmailEventSubscriptions")
 	}
 
@@ -1629,6 +1672,9 @@ func (s *EventManagementService) GetRestWebhookEventSubscriptions(GetRestWebhook
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetRestWebhookEventSubscriptions(GetRestWebhookEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetRestWebhookEventSubscriptions")
 	}
 
@@ -1663,6 +1709,9 @@ func (s *EventManagementService) GetSyslogEventSubscriptions(GetSyslogEventSubsc
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSyslogEventSubscriptions(GetSyslogEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSyslogEventSubscriptions")
 	}
 
@@ -1697,6 +1746,9 @@ func (s *EventManagementService) GetSyslogDestination(GetSyslogDestinationQueryP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSyslogDestination(GetSyslogDestinationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSyslogDestination")
 	}
 
@@ -1731,6 +1783,9 @@ func (s *EventManagementService) GetWebhookDestination(GetWebhookDestinationQuer
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWebhookDestination(GetWebhookDestinationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWebhookDestination")
 	}
 
@@ -1765,6 +1820,9 @@ func (s *EventManagementService) GetEvents(GetEventsQueryParams *GetEventsQueryP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEvents(GetEventsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEvents")
 	}
 
@@ -1799,6 +1857,9 @@ func (s *EventManagementService) CountOfEvents(CountOfEventsQueryParams *CountOf
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfEvents(CountOfEventsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation CountOfEvents")
 	}
 
@@ -1833,6 +1894,9 @@ func (s *EventManagementService) GetEventArtifacts(GetEventArtifactsQueryParams 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEventArtifacts(GetEventArtifactsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEventArtifacts")
 	}
 
@@ -1864,6 +1928,9 @@ func (s *EventManagementService) EventArtifactCount() (*ResponseEventManagementE
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.EventArtifactCount()
+		}
 		return nil, response, fmt.Errorf("error with operation EventArtifactCount")
 	}
 
@@ -1895,6 +1962,9 @@ func (s *EventManagementService) GetConnectorTypes() (*ResponseEventManagementGe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetConnectorTypes()
+		}
 		return nil, response, fmt.Errorf("error with operation GetConnectorTypes")
 	}
 
@@ -1927,6 +1997,11 @@ func (s *EventManagementService) CreateEmailDestination(requestEventManagementCr
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateEmailDestination(requestEventManagementCreateEmailDestination)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateEmailDestination")
 	}
 
@@ -1959,6 +2034,11 @@ func (s *EventManagementService) CreateEventSubscriptions(requestEventManagement
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateEventSubscriptions(requestEventManagementCreateEventSubscriptions)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateEventSubscriptions")
 	}
 
@@ -1991,6 +2071,11 @@ func (s *EventManagementService) CreateEmailEventSubscription(requestEventManage
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateEmailEventSubscription(requestEventManagementCreateEmailEventSubscription)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateEmailEventSubscription")
 	}
 
@@ -2023,6 +2108,11 @@ func (s *EventManagementService) CreateRestWebhookEventSubscription(requestEvent
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateRestWebhookEventSubscription(requestEventManagementCreateRestWebhookEventSubscription)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateRestWebhookEventSubscription")
 	}
 
@@ -2055,6 +2145,11 @@ func (s *EventManagementService) CreateSyslogEventSubscription(requestEventManag
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSyslogEventSubscription(requestEventManagementCreateSyslogEventSubscription)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSyslogEventSubscription")
 	}
 
@@ -2087,6 +2182,11 @@ func (s *EventManagementService) CreateSyslogDestination(requestEventManagementC
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSyslogDestination(requestEventManagementCreateSyslogDestination)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSyslogDestination")
 	}
 
@@ -2119,6 +2219,11 @@ func (s *EventManagementService) CreateWebhookDestination(requestEventManagement
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateWebhookDestination(requestEventManagementCreateWebhookDestination)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateWebhookDestination")
 	}
 
@@ -2149,6 +2254,9 @@ func (s *EventManagementService) UpdateEmailDestination(requestEventManagementUp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateEmailDestination(requestEventManagementUpdateEmailDestination)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateEmailDestination")
 	}
 
@@ -2179,6 +2287,9 @@ func (s *EventManagementService) UpdateEventSubscriptions(requestEventManagement
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateEventSubscriptions(requestEventManagementUpdateEventSubscriptions)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateEventSubscriptions")
 	}
 
@@ -2209,6 +2320,9 @@ func (s *EventManagementService) UpdateEmailEventSubscription(requestEventManage
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateEmailEventSubscription(requestEventManagementUpdateEmailEventSubscription)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateEmailEventSubscription")
 	}
 
@@ -2239,6 +2353,9 @@ func (s *EventManagementService) UpdateRestWebhookEventSubscription(requestEvent
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateRestWebhookEventSubscription(requestEventManagementUpdateRestWebhookEventSubscription)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateRestWebhookEventSubscription")
 	}
 
@@ -2269,6 +2386,9 @@ func (s *EventManagementService) UpdateSyslogEventSubscription(requestEventManag
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSyslogEventSubscription(requestEventManagementUpdateSyslogEventSubscription)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSyslogEventSubscription")
 	}
 
@@ -2299,6 +2419,9 @@ func (s *EventManagementService) UpdateSyslogDestination(requestEventManagementU
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSyslogDestination(requestEventManagementUpdateSyslogDestination)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSyslogDestination")
 	}
 
@@ -2329,6 +2452,9 @@ func (s *EventManagementService) UpdateWebhookDestination(requestEventManagement
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateWebhookDestination(requestEventManagementUpdateWebhookDestination)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateWebhookDestination")
 	}
 
@@ -2364,6 +2490,9 @@ func (s *EventManagementService) DeleteEventSubscriptions(DeleteEventSubscriptio
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteEventSubscriptions(DeleteEventSubscriptionsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteEventSubscriptions")
 	}
 

@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -85,6 +86,9 @@ func (s *ItsmService) GetCmdbSyncStatus(GetCMDBSyncStatusQueryParams *GetCmdbSyn
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCmdbSyncStatus(GetCMDBSyncStatusQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetCmdbSyncStatus")
 	}
 
@@ -119,6 +123,9 @@ func (s *ItsmService) GetFailedItsmEvents(GetFailedITSMEventsQueryParams *GetFai
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetFailedItsmEvents(GetFailedITSMEventsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetFailedItsmEvents")
 	}
 
@@ -151,6 +158,11 @@ func (s *ItsmService) RetryIntegrationEvents(requestItsmRetryIntegrationEvents *
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetryIntegrationEvents(requestItsmRetryIntegrationEvents)
+		}
+
 		return nil, response, fmt.Errorf("error with operation RetryIntegrationEvents")
 	}
 

@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -92,6 +93,9 @@ func (s *ApplicationsService) Applications(ApplicationsQueryParams *Applications
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Applications(ApplicationsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation Applications")
 	}
 

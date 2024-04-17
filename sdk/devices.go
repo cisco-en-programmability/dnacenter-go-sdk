@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -1729,6 +1730,9 @@ func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, Ge
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPlannedAccessPointsForBuilding(buildingID, GetPlannedAccessPointsForBuildingQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPlannedAccessPointsForBuilding")
 	}
 
@@ -1763,6 +1767,9 @@ func (s *DevicesService) GetDeviceDetail(GetDeviceDetailQueryParams *GetDeviceDe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceDetail(GetDeviceDetailQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceDetail")
 	}
 
@@ -1811,6 +1818,9 @@ func (s *DevicesService) GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceEnrichmentDetails")
 	}
 
@@ -1845,6 +1855,9 @@ func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Devices(DevicesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation Devices")
 	}
 
@@ -1882,6 +1895,9 @@ func (s *DevicesService) GetPlannedAccessPointsForFloor(floorID string, GetPlann
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPlannedAccessPointsForFloor(floorID, GetPlannedAccessPointsForFloorQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPlannedAccessPointsForFloor")
 	}
 
@@ -1916,6 +1932,9 @@ func (s *DevicesService) GetAllInterfaces(GetAllInterfacesQueryParams *GetAllInt
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllInterfaces(GetAllInterfacesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllInterfaces")
 	}
 
@@ -1947,6 +1966,9 @@ func (s *DevicesService) GetDeviceInterfaceCount() (*ResponseDevicesGetDeviceInt
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInterfaceCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceCount")
 	}
 
@@ -1981,6 +2003,9 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGet
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetInterfaceByIP(ipAddress)
+		}
 		return nil, response, fmt.Errorf("error with operation GetInterfaceByIp")
 	}
 
@@ -1994,7 +2019,7 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGet
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-i-s-i-s-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-isis-interfaces
 */
 func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/isis"
@@ -2012,6 +2037,9 @@ func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces,
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetIsisInterfaces()
+		}
 		return nil, response, fmt.Errorf("error with operation GetIsisInterfaces")
 	}
 
@@ -2046,6 +2074,9 @@ func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*ResponseDevices
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetInterfaceInfoByID(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetInterfaceInfoById")
 	}
 
@@ -2080,6 +2111,9 @@ func (s *DevicesService) GetDeviceInterfaceCount2(deviceID string) (*ResponseDev
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInterfaceCount2(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceCount2")
 	}
 
@@ -2117,6 +2151,9 @@ func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID, GetInterfaceDetailsByDeviceIdAndInterfaceNameQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetInterfaceDetailsByDeviceIdAndInterfaceName")
 	}
 
@@ -2157,6 +2194,9 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInterfacesBySpecifiedRange(deviceID, startIndex, recordsToReturn)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceInterfacesBySpecifiedRange")
 	}
 
@@ -2170,7 +2210,7 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-o-s-p-f-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ospf-interfaces
 */
 func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/ospf"
@@ -2188,6 +2228,9 @@ func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces,
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetOspfInterfaces()
+		}
 		return nil, response, fmt.Errorf("error with operation GetOspfInterfaces")
 	}
 
@@ -2222,6 +2265,9 @@ func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetInterfaceByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetInterfaceById")
 	}
 
@@ -2256,6 +2302,9 @@ func (s *DevicesService) LegitOperationsForInterface(interfaceUUID string) (*Res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LegitOperationsForInterface(interfaceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation LegitOperationsForInterface")
 	}
 
@@ -2291,6 +2340,9 @@ func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQu
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceList(GetDeviceListQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceList")
 	}
 
@@ -2325,6 +2377,9 @@ func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(Get
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute")
 	}
 
@@ -2356,6 +2411,9 @@ func (s *DevicesService) GetPollingIntervalForAllDevices() (*ResponseDevicesGetP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPollingIntervalForAllDevices()
+		}
 		return nil, response, fmt.Errorf("error with operation GetPollingIntervalForAllDevices")
 	}
 
@@ -2387,6 +2445,9 @@ func (s *DevicesService) GetDeviceConfigForAllDevices() (*ResponseDevicesGetDevi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceConfigForAllDevices()
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceConfigForAllDevices")
 	}
 
@@ -2418,6 +2479,9 @@ func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfig
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceConfigCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceConfigCount")
 	}
 
@@ -2449,6 +2513,9 @@ func (s *DevicesService) GetDeviceCount2() (*ResponseDevicesGetDeviceCount2, *re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceCount2()
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceCount2")
 	}
 
@@ -2483,6 +2550,9 @@ func (s *DevicesService) GetFunctionalCapabilityForDevices(GetFunctionalCapabili
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetFunctionalCapabilityForDevices(GetFunctionalCapabilityForDevicesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetFunctionalCapabilityForDevices")
 	}
 
@@ -2517,6 +2587,9 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetFunctionalCapabilityByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetFunctionalCapabilityById")
 	}
 
@@ -2525,7 +2598,7 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 
 }
 
-//InventoryInsightDeviceLinkMismatchApI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
+//InventoryInsightDeviceLinkMismatchAPI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
 /* Find all devices with link mismatch (speed /  vlan)
 
 
@@ -2534,7 +2607,7 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!inventory-insight-device-link-mismatch-api
 */
-func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, InventoryInsightDeviceLinkMismatchAPIQueryParams *InventoryInsightDeviceLinkMismatchApIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchApI, *resty.Response, error) {
+func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, InventoryInsightDeviceLinkMismatchAPIQueryParams *InventoryInsightDeviceLinkMismatchApIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/device-link"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
@@ -2553,7 +2626,10 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, In
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation InventoryInsightDeviceLinkMismatchApI")
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.InventoryInsightDeviceLinkMismatchAPI(siteID, InventoryInsightDeviceLinkMismatchAPIQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation InventoryInsightDeviceLinkMismatchApi")
 	}
 
 	result := response.Result().(*ResponseDevicesInventoryInsightDeviceLinkMismatchApI)
@@ -2561,16 +2637,16 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, In
 
 }
 
-//ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES Returns devices added to Cisco DNA center with snmp v3 DES. - afba-7a69-4d38-8de1
+//ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des Returns devices added to Cisco DNA center with snmp v3 DES. - afba-7a69-4d38-8de1
 /* Returns devices added to Cisco DNA center with snmp v3 DES, where siteId is mandatory & accepts offset, limit, sortby, order which are optional.
 
 
 @param siteID siteId path parameter.
 @param ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-devices-added-to-cisco-d-n-a-center-with-snmp-v3-des
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-devices-added-to-cisco-dna-center-with-snmp-v3-des
 */
-func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
+func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/insecure-connection"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
@@ -2589,7 +2665,10 @@ func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation ReturnsDevicesAddedToCiscoDnaCenterWithSnmpV3DES")
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des(siteID, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation ReturnsDevicesAddedToCiscoDnaCenterWithSnmpV3Des")
 	}
 
 	result := response.Result().(*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES)
@@ -2623,6 +2702,9 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevice
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetworkDeviceByIP(ipAddress)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNetworkDeviceByIp")
 	}
 
@@ -2657,6 +2739,9 @@ func (s *DevicesService) GetModules(GetModulesQueryParams *GetModulesQueryParams
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetModules(GetModulesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetModules")
 	}
 
@@ -2691,6 +2776,9 @@ func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCoun
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetModuleCount(GetModuleCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetModuleCount")
 	}
 
@@ -2725,6 +2813,9 @@ func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModule
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetModuleInfoByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetModuleInfoById")
 	}
 
@@ -2759,6 +2850,9 @@ func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*Response
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceBySerialNumber(serialNumber)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceBySerialNumber")
 	}
 
@@ -2793,6 +2887,9 @@ func (s *DevicesService) GetDevicesRegisteredForWsaNotification(GetDevicesRegist
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDevicesRegisteredForWsaNotification(GetDevicesRegisteredForWSANotificationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDevicesRegisteredForWsaNotification")
 	}
 
@@ -2827,6 +2924,9 @@ func (s *DevicesService) GetAllUserDefinedFields(GetAllUserDefinedFieldsQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllUserDefinedFields(GetAllUserDefinedFieldsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllUserDefinedFields")
 	}
 
@@ -2861,6 +2961,9 @@ func (s *DevicesService) GetChassisDetailsForDevice(deviceID string) (*ResponseD
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetChassisDetailsForDevice(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetChassisDetailsForDevice")
 	}
 
@@ -2895,6 +2998,9 @@ func (s *DevicesService) GetStackDetailsForDevice(deviceID string) (*ResponseDev
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetStackDetailsForDevice(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetStackDetailsForDevice")
 	}
 
@@ -2931,6 +3037,9 @@ func (s *DevicesService) ReturnPowerSupplyFanDetailsForTheGivenDevice(deviceUUID
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReturnPowerSupplyFanDetailsForTheGivenDevice(deviceUUID, ReturnPowerSupplyFanDetailsForTheGivenDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ReturnPowerSupplyFanDetailsForTheGivenDevice")
 	}
 
@@ -2947,7 +3056,7 @@ func (s *DevicesService) ReturnPowerSupplyFanDetailsForTheGivenDevice(deviceUUID
 
 @param ReturnsPOEInterfaceDetailsForTheDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-p-o-e-interface-details-for-the-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-poe-interface-details-for-the-device
 */
 func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID string, ReturnsPOEInterfaceDetailsForTheDeviceQueryParams *ReturnsPoeInterfaceDetailsForTheDeviceQueryParams) (*ResponseDevicesReturnsPoeInterfaceDetailsForTheDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/poe-detail"
@@ -2968,6 +3077,9 @@ func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID strin
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID, ReturnsPOEInterfaceDetailsForTheDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ReturnsPoeInterfaceDetailsForTheDevice")
 	}
 
@@ -3005,6 +3117,9 @@ func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUU
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetConnectedDeviceDetail(deviceUUID, interfaceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetConnectedDeviceDetail")
 	}
 
@@ -3039,6 +3154,9 @@ func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevices
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetLinecardDetails(deviceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetLinecardDetails")
 	}
 
@@ -3054,7 +3172,7 @@ func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevices
 @param deviceUUID deviceUuid path parameter. uuid of the device
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-o-e-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!poe-details
 */
 func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/poe"
@@ -3073,6 +3191,9 @@ func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetai
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.PoeDetails(deviceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation PoeDetails")
 	}
 
@@ -3107,6 +3228,9 @@ func (s *DevicesService) GetSupervisorCardDetail(deviceUUID string) (*ResponseDe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSupervisorCardDetail(deviceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSupervisorCardDetail")
 	}
 
@@ -3141,6 +3265,9 @@ func (s *DevicesService) GetDeviceByID(id string) (*ResponseDevicesGetDeviceByID
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceById")
 	}
 
@@ -3175,6 +3302,9 @@ func (s *DevicesService) GetDeviceSummary(id string) (*ResponseDevicesGetDeviceS
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceSummary(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceSummary")
 	}
 
@@ -3209,6 +3339,9 @@ func (s *DevicesService) GetPollingIntervalByID(id string) (*ResponseDevicesGetP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPollingIntervalByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPollingIntervalById")
 	}
 
@@ -3242,6 +3375,9 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevic
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetOrganizationListForMeraki(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetOrganizationListForMeraki")
 	}
 
@@ -3257,7 +3393,7 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevic
 @param id id path parameter.
 @param GetDeviceInterfaceVLANsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-v-lans
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-vlans
 */
 func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVLANsQueryParams *GetDeviceInterfaceVLANsQueryParams) (*ResponseDevicesGetDeviceInterfaceVLANs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/vlan"
@@ -3278,6 +3414,9 @@ func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVL
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInterfaceVLANs(id, GetDeviceInterfaceVLANsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceVlans")
 	}
 
@@ -3312,6 +3451,9 @@ func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*Respon
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWirelessLanControllerDetailsByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWirelessLanControllerDetailsById")
 	}
 
@@ -3345,6 +3487,9 @@ func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*ResponseD
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceConfigByID(networkDeviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceConfigById")
 	}
 
@@ -3382,6 +3527,9 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetworkDeviceByPaginationRange(startIndex, recordsToReturn)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNetworkDeviceByPaginationRange")
 	}
 
@@ -3420,6 +3568,11 @@ func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevic
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ClearMacAddressTable(interfaceUUID, requestDevicesClearMacAddressTable, ClearMacAddressTableQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ClearMacAddressTable")
 	}
 
@@ -3452,6 +3605,11 @@ func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddD
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddDevice2(requestDevicesAddDevice2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddDevice2")
 	}
 
@@ -3484,6 +3642,11 @@ func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *Reques
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExportDeviceList(requestDevicesExportDeviceList)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ExportDeviceList")
 	}
 
@@ -3516,6 +3679,11 @@ func (s *DevicesService) CreateUserDefinedField(requestDevicesCreateUserDefinedF
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateUserDefinedField(requestDevicesCreateUserDefinedField)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateUserDefinedField")
 	}
 
@@ -3552,6 +3720,9 @@ func (s *DevicesService) UpdateInterfaceDetails(interfaceUUID string, requestDev
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateInterfaceDetails(interfaceUUID, requestDevicesUpdateInterfaceDetails, UpdateInterfaceDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateInterfaceDetails")
 	}
 
@@ -3582,6 +3753,9 @@ func (s *DevicesService) SyncDevices2(requestDevicesSyncDevices2 *RequestDevices
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SyncDevices2(requestDevicesSyncDevices2)
+		}
 		return nil, response, fmt.Errorf("error with operation SyncDevices2")
 	}
 
@@ -3612,6 +3786,9 @@ func (s *DevicesService) UpdateDeviceRole(requestDevicesUpdateDeviceRole *Reques
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateDeviceRole(requestDevicesUpdateDeviceRole)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateDeviceRole")
 	}
 
@@ -3645,6 +3822,9 @@ func (s *DevicesService) SyncDevices(requestDevicesSyncDevices *RequestDevicesSy
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SyncDevices(requestDevicesSyncDevices, SyncDevicesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation SyncDevices")
 	}
 
@@ -3678,6 +3858,9 @@ func (s *DevicesService) UpdateUserDefinedField(id string, requestDevicesUpdateU
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateUserDefinedField(id, requestDevicesUpdateUserDefinedField)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateUserDefinedField")
 	}
 
@@ -3711,6 +3894,9 @@ func (s *DevicesService) AddUserDefinedFieldToDevice(deviceID string, requestDev
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddUserDefinedFieldToDevice(deviceID, requestDevicesAddUserDefinedFieldToDevice)
+		}
 		return nil, response, fmt.Errorf("error with operation AddUserDefinedFieldToDevice")
 	}
 
@@ -3746,6 +3932,9 @@ func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDele
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteUserDefinedField(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteUserDefinedField")
 	}
 
@@ -3784,6 +3973,9 @@ func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, Remov
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveUserDefinedFieldFromDevice(deviceID, RemoveUserDefinedFieldFromDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation RemoveUserDefinedFieldFromDevice")
 	}
 
@@ -3822,6 +4014,9 @@ func (s *DevicesService) DeleteDeviceByID(id string, DeleteDeviceByIdQueryParams
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDeviceByID(id, DeleteDeviceByIdQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceById")
 	}
 

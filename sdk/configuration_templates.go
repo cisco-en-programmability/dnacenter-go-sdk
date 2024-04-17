@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -1798,6 +1799,9 @@ func (s *ConfigurationTemplatesService) GetsAListOfProjects(GetsAListOfProjectsQ
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetsAListOfProjects(GetsAListOfProjectsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetsAListOfProjects")
 	}
 
@@ -1832,6 +1836,9 @@ func (s *ConfigurationTemplatesService) GetsTheDetailsOfAGivenProject(projectID 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetsTheDetailsOfAGivenProject(projectID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetsTheDetailsOfAGivenProject")
 	}
 
@@ -1866,6 +1873,9 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(GetsTheTemplat
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetsTheTemplatesAvailable(GetsTheTemplatesAvailableQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetsTheTemplatesAvailable")
 	}
 
@@ -1900,6 +1910,9 @@ func (s *ConfigurationTemplatesService) StatusOfTemplateDeployment(deploymentID 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.StatusOfTemplateDeployment(deploymentID)
+		}
 		return nil, response, fmt.Errorf("error with operation StatusOfTemplateDeployment")
 	}
 
@@ -1934,6 +1947,9 @@ func (s *ConfigurationTemplatesService) GetsAllTheVersionsOfAGivenTemplate(templ
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetsAllTheVersionsOfAGivenTemplate(templateID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetsAllTheVersionsOfAGivenTemplate")
 	}
 
@@ -1971,6 +1987,9 @@ func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID s
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetsDetailsOfAGivenTemplate(templateID, GetsDetailsOfAGivenTemplateQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetsDetailsOfAGivenTemplate")
 	}
 
@@ -2005,6 +2024,9 @@ func (s *ConfigurationTemplatesService) GetProjectsDetails(GetProjectsDetailsQue
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetProjectsDetails(GetProjectsDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetProjectsDetails")
 	}
 
@@ -2039,6 +2061,9 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetails(GetTemplatesDetailsQ
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplatesDetails(GetTemplatesDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTemplatesDetails")
 	}
 
@@ -2082,6 +2107,11 @@ func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name str
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreatesACloneOfTheGivenTemplate(name, templateID, projectID, CreatesACloneOfTheGivenTemplateQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreatesACloneOfTheGivenTemplate")
 	}
 
@@ -2114,6 +2144,11 @@ func (s *ConfigurationTemplatesService) CreateProject(requestConfigurationTempla
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateProject(requestConfigurationTemplatesCreateProject)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateProject")
 	}
 
@@ -2149,6 +2184,11 @@ func (s *ConfigurationTemplatesService) ImportsTheProjectsProvided(ImportsThePro
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportsTheProjectsProvided(ImportsTheProjectsProvidedQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportsTheProjectsProvided")
 	}
 
@@ -2181,6 +2221,11 @@ func (s *ConfigurationTemplatesService) ExportsTheProjectsForAGivenCriteria(requ
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExportsTheProjectsForAGivenCriteria(requestConfigurationTemplatesExportsTheProjectsForAGivenCriteria)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ExportsTheProjectsForAGivenCriteria")
 	}
 
@@ -2219,6 +2264,11 @@ func (s *ConfigurationTemplatesService) ImportsTheTemplatesProvided(projectName 
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportsTheTemplatesProvided(projectName, requestConfigurationTemplatesImportsTheTemplatesProvided, ImportsTheTemplatesProvidedQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportsTheTemplatesProvided")
 	}
 
@@ -2254,6 +2304,11 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, request
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateTemplate(projectID, requestConfigurationTemplatesCreateTemplate)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateTemplate")
 	}
 
@@ -2286,6 +2341,11 @@ func (s *ConfigurationTemplatesService) DeployTemplate(requestConfigurationTempl
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeployTemplate(requestConfigurationTemplatesDeployTemplate)
+		}
+
 		return nil, response, fmt.Errorf("error with operation DeployTemplate")
 	}
 
@@ -2318,6 +2378,11 @@ func (s *ConfigurationTemplatesService) ExportsTheTemplatesForAGivenCriteria(req
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExportsTheTemplatesForAGivenCriteria(requestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ExportsTheTemplatesForAGivenCriteria")
 	}
 
@@ -2350,6 +2415,11 @@ func (s *ConfigurationTemplatesService) VersionTemplate(requestConfigurationTemp
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.VersionTemplate(requestConfigurationTemplatesVersionTemplate)
+		}
+
 		return nil, response, fmt.Errorf("error with operation VersionTemplate")
 	}
 
@@ -2382,6 +2452,11 @@ func (s *ConfigurationTemplatesService) DeployTemplateV2(requestConfigurationTem
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeployTemplateV2(requestConfigurationTemplatesDeployTemplateV2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation DeployTemplateV2")
 	}
 
@@ -2412,6 +2487,9 @@ func (s *ConfigurationTemplatesService) UpdateProject(requestConfigurationTempla
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateProject(requestConfigurationTemplatesUpdateProject)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateProject")
 	}
 
@@ -2442,6 +2520,9 @@ func (s *ConfigurationTemplatesService) UpdateTemplate(requestConfigurationTempl
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateTemplate(requestConfigurationTemplatesUpdateTemplate)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateTemplate")
 	}
 
@@ -2472,6 +2553,9 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(requestConfigurationTemp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.PreviewTemplate(requestConfigurationTemplatesPreviewTemplate)
+		}
 		return nil, response, fmt.Errorf("error with operation PreviewTemplate")
 	}
 
@@ -2507,6 +2591,9 @@ func (s *ConfigurationTemplatesService) DeletesTheProject(projectID string) (*Re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletesTheProject(projectID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeletesTheProject")
 	}
 
@@ -2542,6 +2629,9 @@ func (s *ConfigurationTemplatesService) DeletesTheTemplate(templateID string) (*
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletesTheTemplate(templateID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeletesTheTemplate")
 	}
 

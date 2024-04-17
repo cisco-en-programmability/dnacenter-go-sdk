@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -193,6 +194,9 @@ func (s *LanAutomationService) LanAutomationSessionCount() (*ResponseLanAutomati
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationSessionCount()
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationSessionCount")
 	}
 
@@ -227,6 +231,9 @@ func (s *LanAutomationService) LanAutomationLog(LANAutomationLogQueryParams *Lan
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationLog(LANAutomationLogQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationLog")
 	}
 
@@ -261,6 +268,9 @@ func (s *LanAutomationService) LanAutomationLogByID(id string) (*ResponseLanAuto
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationLogByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationLogById")
 	}
 
@@ -301,6 +311,9 @@ func (s *LanAutomationService) LanAutomationLogsForIndividualDevices(id string, 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationLogsForIndividualDevices(id, serialNumber, LANAutomationLogsForIndividualDevicesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationLogsForIndividualDevices")
 	}
 
@@ -332,6 +345,9 @@ func (s *LanAutomationService) LanAutomationActiveSessions() (*ResponseLanAutoma
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationActiveSessions()
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationActiveSessions")
 	}
 
@@ -366,6 +382,9 @@ func (s *LanAutomationService) LanAutomationStatus(LANAutomationStatusQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationStatus(LANAutomationStatusQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationStatus")
 	}
 
@@ -400,6 +419,9 @@ func (s *LanAutomationService) LanAutomationStatusByID(id string) (*ResponseLanA
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationStatusByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationStatusById")
 	}
 
@@ -432,6 +454,11 @@ func (s *LanAutomationService) LanAutomationStart(requestLanAutomationLANAutomat
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationStart(requestLanAutomationLANAutomationStart)
+		}
+
 		return nil, response, fmt.Errorf("error with operation LanAutomationStart")
 	}
 
@@ -467,6 +494,9 @@ func (s *LanAutomationService) LanAutomationStop(id string) (*ResponseLanAutomat
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LanAutomationStop(id)
+		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationStop")
 	}
 

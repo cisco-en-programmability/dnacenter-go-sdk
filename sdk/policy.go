@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -241,6 +242,9 @@ func (s *PolicyService) GetListOfProfilingRules(GetListOfProfilingRulesQueryPara
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetListOfProfilingRules(GetListOfProfilingRulesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetListOfProfilingRules")
 	}
 
@@ -273,6 +277,9 @@ func (s *PolicyService) GetCountOfProfilingRules(GetCountOfProfilingRulesQueryPa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCountOfProfilingRules(GetCountOfProfilingRulesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetCountOfProfilingRules")
 	}
 
@@ -305,6 +312,9 @@ func (s *PolicyService) GetDetailsOfASingleProfilingRule(ruleID string) (*Respon
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDetailsOfASingleProfilingRule(ruleID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDetailsOfASingleProfilingRule")
 	}
 
@@ -335,6 +345,9 @@ func (s *PolicyService) CreateAProfilingRule(requestPolicyCreateAProfilingRule *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateAProfilingRule(requestPolicyCreateAProfilingRule)
+		}
 		return nil, response, fmt.Errorf("error with operation CreateAProfilingRule")
 	}
 
@@ -367,6 +380,9 @@ func (s *PolicyService) ImportProfilingRulesInBulk(requestPolicyImportProfilingR
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportProfilingRulesInBulk(requestPolicyImportProfilingRulesInBulk)
+		}
 		return response, fmt.Errorf("error with operation ImportProfilingRulesInBulk")
 	}
 
@@ -398,6 +414,9 @@ func (s *PolicyService) UpdateAnExistingProfilingRule(ruleID string, requestPoli
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateAnExistingProfilingRule(ruleID, requestPolicyUpdateAnExistingProfilingRule)
+		}
 		return response, fmt.Errorf("error with operation UpdateAnExistingProfilingRule")
 	}
 
@@ -428,6 +447,9 @@ func (s *PolicyService) DeleteAnExistingProfilingRule(ruleID string) (*resty.Res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteAnExistingProfilingRule(ruleID)
+		}
 		return response, fmt.Errorf("error with operation DeleteAnExistingProfilingRule")
 	}
 

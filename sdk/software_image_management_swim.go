@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -222,6 +223,9 @@ func (s *SoftwareImageManagementSwimService) GetSoftwareImageDetails(GetSoftware
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSoftwareImageDetails(GetSoftwareImageDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetSoftwareImageDetails")
 	}
 
@@ -253,6 +257,9 @@ func (s *SoftwareImageManagementSwimService) GetDeviceFamilyIDentifiers() (*Resp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceFamilyIDentifiers()
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceFamilyIdentifiers")
 	}
 
@@ -296,6 +303,9 @@ func (s *SoftwareImageManagementSwimService) GetGoldenTagStatusOfAnImage(siteID 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetGoldenTagStatusOfAnImage(siteID, deviceFamilyIDentifier, deviceRole, imageID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetGoldenTagStatusOfAnImage")
 	}
 
@@ -348,6 +358,11 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageActivation(requ
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.TriggerSoftwareImageActivation(requestSoftwareImageManagementSwimTriggerSoftwareImageActivation, TriggerSoftwareImageActivationHeaderParams, TriggerSoftwareImageActivationQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation TriggerSoftwareImageActivation")
 	}
 
@@ -380,6 +395,11 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageDistribution(re
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.TriggerSoftwareImageDistribution(requestSoftwareImageManagementSwimTriggerSoftwareImageDistribution)
+		}
+
 		return nil, response, fmt.Errorf("error with operation TriggerSoftwareImageDistribution")
 	}
 
@@ -412,6 +432,11 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.TagAsGoldenImage(requestSoftwareImageManagementSwimTagAsGoldenImage)
+		}
+
 		return nil, response, fmt.Errorf("error with operation TagAsGoldenImage")
 	}
 
@@ -455,6 +480,11 @@ func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLoca
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportLocalSoftwareImage(ImportLocalSoftwareImageQueryParams, ImportLocalSoftwareImageMultipartFields)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportLocalSoftwareImage")
 	}
 
@@ -490,6 +520,11 @@ func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSo
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportSoftwareImageViaURL(requestSoftwareImageManagementSwimImportSoftwareImageViaURL, ImportSoftwareImageViaURLQueryParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportSoftwareImageViaUrl")
 	}
 
@@ -534,6 +569,9 @@ func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID stri
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveGoldenTagForImage(siteID, deviceFamilyIDentifier, deviceRole, imageID)
+		}
 		return nil, response, fmt.Errorf("error with operation RemoveGoldenTagForImage")
 	}
 

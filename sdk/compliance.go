@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -173,6 +174,9 @@ func (s *ComplianceService) GetComplianceStatus(GetComplianceStatusQueryParams *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetComplianceStatus(GetComplianceStatusQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetComplianceStatus")
 	}
 
@@ -207,6 +211,9 @@ func (s *ComplianceService) GetComplianceStatusCount(GetComplianceStatusCountQue
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetComplianceStatusCount(GetComplianceStatusCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetComplianceStatusCount")
 	}
 
@@ -241,6 +248,9 @@ func (s *ComplianceService) GetComplianceDetail(GetComplianceDetailQueryParams *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetComplianceDetail(GetComplianceDetailQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetComplianceDetail")
 	}
 
@@ -275,6 +285,9 @@ func (s *ComplianceService) GetComplianceDetailCount(GetComplianceDetailCountQue
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetComplianceDetailCount(GetComplianceDetailCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetComplianceDetailCount")
 	}
 
@@ -308,6 +321,9 @@ func (s *ComplianceService) DeviceComplianceStatus(deviceUUID string) (*Response
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceComplianceStatus(deviceUUID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceComplianceStatus")
 	}
 
@@ -344,6 +360,9 @@ func (s *ComplianceService) ComplianceDetailsOfDevice(deviceUUID string, Complia
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ComplianceDetailsOfDevice(deviceUUID, ComplianceDetailsOfDeviceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ComplianceDetailsOfDevice")
 	}
 
@@ -376,6 +395,11 @@ func (s *ComplianceService) RunCompliance(requestComplianceRunCompliance *Reques
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RunCompliance(requestComplianceRunCompliance)
+		}
+
 		return nil, response, fmt.Errorf("error with operation RunCompliance")
 	}
 

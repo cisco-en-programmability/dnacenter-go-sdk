@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -126,6 +127,9 @@ func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeade
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetIssueEnrichmentDetails")
 	}
 
@@ -160,6 +164,9 @@ func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseI
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Issues(IssuesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation Issues")
 	}
 
@@ -193,6 +200,11 @@ func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSugg
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExecuteSuggestedActionsCommands(requestIssuesExecuteSuggestedActionsCommands)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ExecuteSuggestedActionsCommands")
 	}
 

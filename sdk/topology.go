@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -299,6 +300,9 @@ func (s *TopologyService) GetOverallNetworkHealth(GetOverallNetworkHealthQueryPa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetOverallNetworkHealth(GetOverallNetworkHealthQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetOverallNetworkHealth")
 	}
 
@@ -333,6 +337,9 @@ func (s *TopologyService) GetTopologyDetails(vlanID string) (*ResponseTopologyGe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTopologyDetails(vlanID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTopologyDetails")
 	}
 
@@ -367,6 +374,9 @@ func (s *TopologyService) GetL3TopologyDetails(topologyType string) (*ResponseTo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetL3TopologyDetails(topologyType)
+		}
 		return nil, response, fmt.Errorf("error with operation GetL3TopologyDetails")
 	}
 
@@ -401,6 +411,9 @@ func (s *TopologyService) GetPhysicalTopology(GetPhysicalTopologyQueryParams *Ge
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPhysicalTopology(GetPhysicalTopologyQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetPhysicalTopology")
 	}
 
@@ -432,6 +445,9 @@ func (s *TopologyService) GetSiteTopology() (*ResponseTopologyGetSiteTopology, *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSiteTopology()
+		}
 		return nil, response, fmt.Errorf("error with operation GetSiteTopology")
 	}
 
@@ -445,7 +461,7 @@ func (s *TopologyService) GetSiteTopology() (*ResponseTopologyGetSiteTopology, *
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-v-lan-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-vlan-details
 */
 func (s *TopologyService) GetVLANDetails() (*ResponseTopologyGetVLANDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/topology/vlan/vlan-names"
@@ -463,6 +479,9 @@ func (s *TopologyService) GetVLANDetails() (*ResponseTopologyGetVLANDetails, *re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetVLANDetails()
+		}
 		return nil, response, fmt.Errorf("error with operation GetVlanDetails")
 	}
 

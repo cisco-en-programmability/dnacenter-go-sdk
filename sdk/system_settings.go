@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -110,6 +111,9 @@ func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticat
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAuthenticationAndPolicyServers(GetAuthenticationAndPolicyServersQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAuthenticationAndPolicyServers")
 	}
 
@@ -118,14 +122,14 @@ func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticat
 
 }
 
-//CustomPromptSupportGetAPI Custom-prompt support GET API - 2aa8-f90e-4ebb-a629
+//CustomPromptSupportGETAPI Custom-prompt support GET API - 2aa8-f90e-4ebb-a629
 /* Returns supported custom prompts by Cisco DNA Center
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-support-get-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-support-g-e-t-api
 */
-func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSettingsCustomPromptSupportGetAPI, *resty.Response, error) {
+func (s *SystemSettingsService) CustomPromptSupportGETAPI() (*ResponseSystemSettingsCustomPromptSupportGetAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
 	response, err := s.client.R().
@@ -141,7 +145,10 @@ func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSett
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CustomPromptSupportGetApi")
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CustomPromptSupportGETAPI()
+		}
+		return nil, response, fmt.Errorf("error with operation CustomPromptSupportGETApi")
 	}
 
 	result := response.Result().(*ResponseSystemSettingsCustomPromptSupportGetAPI)
@@ -149,14 +156,14 @@ func (s *SystemSettingsService) CustomPromptSupportGetAPI() (*ResponseSystemSett
 
 }
 
-//CustomPromptPostAPI Custom Prompt POST API - f4b9-1a8a-4718-aa97
+//CustomPromptPOSTAPI Custom Prompt POST API - f4b9-1a8a-4718-aa97
 /* Save custom prompt added by user in Cisco DNA Center. API will always override the existing prompts. User should provide all the custom prompt in case of any update
 
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-p-o-s-t-api
 */
-func (s *SystemSettingsService) CustomPromptPostAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPostAPI) (*ResponseSystemSettingsCustomPromptPostAPI, *resty.Response, error) {
+func (s *SystemSettingsService) CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPostAPI) (*ResponseSystemSettingsCustomPromptPostAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
 
 	response, err := s.client.R().
@@ -173,7 +180,12 @@ func (s *SystemSettingsService) CustomPromptPostAPI(requestSystemSettingsCustomP
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation CustomPromptPostApi")
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CustomPromptPOSTApi")
 	}
 
 	result := response.Result().(*ResponseSystemSettingsCustomPromptPostAPI)

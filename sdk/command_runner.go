@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -51,6 +52,9 @@ func (s *CommandRunnerService) GetAllKeywordsOfCliSAcceptedByCommandRunner() (*R
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllKeywordsOfCliSAcceptedByCommandRunner()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllKeywordsOfCliSAcceptedByCommandRunner")
 	}
 
@@ -83,6 +87,11 @@ func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeCon
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration(requestCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration)
+		}
+
 		return nil, response, fmt.Errorf("error with operation RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration")
 	}
 

@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -551,6 +552,9 @@ func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Sensors(SensorsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation Sensors")
 	}
 
@@ -583,6 +587,11 @@ func (s *SensorsService) CreateSensorTestTemplate(requestSensorsCreateSensorTest
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSensorTestTemplate(requestSensorsCreateSensorTestTemplate)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSensorTestTemplate")
 	}
 
@@ -613,6 +622,9 @@ func (s *SensorsService) EditSensorTestTemplate(requestSensorsEditSensorTestTemp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.EditSensorTestTemplate(requestSensorsEditSensorTestTemplate)
+		}
 		return nil, response, fmt.Errorf("error with operation EditSensorTestTemplate")
 	}
 
@@ -642,6 +654,9 @@ func (s *SensorsService) RunNowSensorTest(requestSensorsRunNowSensorTest *Reques
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RunNowSensorTest(requestSensorsRunNowSensorTest)
+		}
 		return response, fmt.Errorf("error with operation RunNowSensorTest")
 	}
 
@@ -671,6 +686,9 @@ func (s *SensorsService) DuplicateSensorTestTemplate(requestSensorsDuplicateSens
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DuplicateSensorTestTemplate(requestSensorsDuplicateSensorTestTemplate)
+		}
 		return nil, response, fmt.Errorf("error with operation DuplicateSensorTestTemplate")
 	}
 
@@ -706,6 +724,9 @@ func (s *SensorsService) DeleteSensorTest(DeleteSensorTestQueryParams *DeleteSen
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteSensorTest(DeleteSensorTestQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteSensorTest")
 	}
 
