@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.26] - 2024-04-18
+- Functions were modified to be called recursively in case of Status Unauthorized.
+ 
+
 ## [5.0.25] - 2024-02-13
 - `EndTime` attribute change to `*int` in `ResponseTaskGetTaskTreeResponse`.
 - `StartTime` attribute change to `*int` in `ResponseTaskGetTaskTreeResponse`.

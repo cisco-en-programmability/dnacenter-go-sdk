@@ -725,3 +725,61 @@ func (s *SitesService) DeleteSite(siteID string) (*ResponseSitesDeleteSite, *res
 	return result, response, err
 
 }
+
+func (s *SitesService) GetFloor(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetFloor, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+
+	queryString, _ := query.Values(GetSiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetFloor{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetFloor(GetSiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetSite")
+	}
+
+	result := response.Result().(*ResponseSitesGetFloor)
+	return result, response, err
+
+}
+
+func (s *SitesService) GetArea(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetArea, *resty.Response, error) {
+	path := "/dna/intent/api/v1/site"
+
+	queryString, _ := query.Values(GetSiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSitesGetArea{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetArea(GetSiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetSite")
+	}
+
+	result := response.Result().(*ResponseSitesGetArea)
+	return result, response, err
+
+}
