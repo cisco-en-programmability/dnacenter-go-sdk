@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -842,6 +843,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQuer
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationPolicy(GetApplicationPolicyQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationPolicy")
 	}
 
@@ -873,6 +877,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseAppli
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationPolicyDefault()
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationPolicyDefault")
 	}
 
@@ -907,6 +914,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplica
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationPolicyQueuingProfile(GetApplicationPolicyQueuingProfileQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationPolicyQueuingProfile")
 	}
 
@@ -938,6 +948,9 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*R
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationPolicyQueuingProfileCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationPolicyQueuingProfileCount")
 	}
 
@@ -972,6 +985,9 @@ func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationSets(GetApplicationSetsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationSets")
 	}
 
@@ -1003,6 +1019,9 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicati
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationSetsCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationSetsCount")
 	}
 
@@ -1037,6 +1056,9 @@ func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplications(GetApplicationsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplications")
 	}
 
@@ -1068,6 +1090,9 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetApplicationsCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetApplicationsCount")
 	}
 
@@ -1102,6 +1127,9 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetQosDeviceInterfaceInfo(GetQosDeviceInterfaceInfoQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetQosDeviceInterfaceInfo")
 	}
 
@@ -1133,6 +1161,9 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseAp
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetQosDeviceInterfaceInfoCount()
+		}
 		return nil, response, fmt.Errorf("error with operation GetQosDeviceInterfaceInfoCount")
 	}
 
@@ -1165,6 +1196,11 @@ func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPol
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ApplicationPolicyIntent(requestApplicationPolicyApplicationPolicyIntent)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ApplicationPolicyIntent")
 	}
 
@@ -1197,6 +1233,11 @@ func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(request
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateApplicationPolicyQueuingProfile(requestApplicationPolicyCreateApplicationPolicyQueuingProfile)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateApplicationPolicyQueuingProfile")
 	}
 
@@ -1229,6 +1270,11 @@ func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicy
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateApplicationSet(requestApplicationPolicyCreateApplicationSet)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateApplicationSet")
 	}
 
@@ -1261,6 +1307,11 @@ func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCre
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateApplication(requestApplicationPolicyCreateApplication)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateApplication")
 	}
 
@@ -1293,6 +1344,11 @@ func (s *ApplicationPolicyService) CreateQosDeviceInterfaceInfo(requestApplicati
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateQosDeviceInterfaceInfo(requestApplicationPolicyCreateQosDeviceInterfaceInfo)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateQosDeviceInterfaceInfo")
 	}
 
@@ -1323,6 +1379,9 @@ func (s *ApplicationPolicyService) UpdateApplicationPolicyQueuingProfile(request
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateApplicationPolicyQueuingProfile(requestApplicationPolicyUpdateApplicationPolicyQueuingProfile)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateApplicationPolicyQueuingProfile")
 	}
 
@@ -1353,6 +1412,9 @@ func (s *ApplicationPolicyService) EditApplication(requestApplicationPolicyEditA
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.EditApplication(requestApplicationPolicyEditApplication)
+		}
 		return nil, response, fmt.Errorf("error with operation EditApplication")
 	}
 
@@ -1383,6 +1445,9 @@ func (s *ApplicationPolicyService) UpdateQosDeviceInterfaceInfo(requestApplicati
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateQosDeviceInterfaceInfo(requestApplicationPolicyUpdateQosDeviceInterfaceInfo)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateQosDeviceInterfaceInfo")
 	}
 
@@ -1418,6 +1483,9 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteApplicationPolicyQueuingProfile(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationPolicyQueuingProfile")
 	}
 
@@ -1453,6 +1521,9 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQuer
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteApplicationSet(DeleteApplicationSetQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationSet")
 	}
 
@@ -1488,6 +1559,9 @@ func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteApplication(DeleteApplicationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplication")
 	}
 
@@ -1523,6 +1597,9 @@ func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*Res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteQosDeviceInterfaceInfo(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteQosDeviceInterfaceInfo")
 	}
 

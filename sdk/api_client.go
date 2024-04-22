@@ -228,7 +228,7 @@ func NewClientNoAuth() (*Client, error) {
 					retry = true
 				}
 			}
-			return r.StatusCode() == http.StatusTooManyRequests || r.StatusCode() == http.StatusUnauthorized || retry
+			return r.StatusCode() == http.StatusTooManyRequests || retry
 		},
 	)
 	c.common.client.

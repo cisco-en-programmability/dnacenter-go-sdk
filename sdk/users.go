@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -200,6 +201,9 @@ func (s *UsersService) GetUserEnrichmentDetails(GetUserEnrichmentDetailsHeaderPa
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetUserEnrichmentDetails(GetUserEnrichmentDetailsHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetUserEnrichmentDetails")
 	}
 

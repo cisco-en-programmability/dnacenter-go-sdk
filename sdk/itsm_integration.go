@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -150,6 +151,9 @@ func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetItsmIntegrationSettingByID(instanceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetItsmIntegrationSettingById")
 	}
 
@@ -181,6 +185,9 @@ func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmI
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllItsmIntegrationSettings()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllItsmIntegrationSettings")
 	}
 
@@ -213,6 +220,11 @@ func (s *ItsmIntegrationService) CreateItsmIntegrationSetting(requestItsmIntegra
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateItsmIntegrationSetting(requestItsmIntegrationCreateITSMIntegrationSetting)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateItsmIntegrationSetting")
 	}
 
@@ -246,6 +258,9 @@ func (s *ItsmIntegrationService) UpdateItsmIntegrationSetting(instanceID string,
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateItsmIntegrationSetting(instanceID, requestItsmIntegrationUpdateITSMIntegrationSetting)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateItsmIntegrationSetting")
 	}
 
@@ -280,6 +295,9 @@ func (s *ItsmIntegrationService) DeleteItsmIntegrationSetting(instanceID string)
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteItsmIntegrationSetting(instanceID)
+		}
 		return response, fmt.Errorf("error with operation DeleteItsmIntegrationSetting")
 	}
 

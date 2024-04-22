@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -809,6 +810,9 @@ func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *Sensor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SensorTestResults(SensorTestResultsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation SensorTestResults")
 	}
 
@@ -843,6 +847,9 @@ func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTas
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAccessPointRebootTaskResult(GetAccessPointRebootTaskResultQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAccessPointRebootTaskResult")
 	}
 
@@ -877,6 +884,9 @@ func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnt
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetEnterpriseSSID(GetEnterpriseSSIDQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetEnterpriseSsid")
 	}
 
@@ -911,6 +921,9 @@ func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID strin
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAccessPointConfigurationTaskResult(taskTypeID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAccessPointConfigurationTaskResult")
 	}
 
@@ -945,6 +958,9 @@ func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfiguratio
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAccessPointConfiguration(GetAccessPointConfigurationQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAccessPointConfiguration")
 	}
 
@@ -979,6 +995,9 @@ func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *Ge
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDynamicInterface(GetDynamicInterfaceQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDynamicInterface")
 	}
 
@@ -1013,6 +1032,9 @@ func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetW
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetWirelessProfile(GetWirelessProfileQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetWirelessProfile")
 	}
 
@@ -1047,6 +1069,9 @@ func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *Retr
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveRfProfiles(RetrieveRFProfilesQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation RetrieveRfProfiles")
 	}
 
@@ -1092,6 +1117,11 @@ func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisi
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateAndProvisionSSID(requestWirelessCreateAndProvisionSSID, CreateAndProvisionSSIDHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateAndProvisionSsid")
 	}
 
@@ -1124,6 +1154,11 @@ func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RebootAccessPoints(requestWirelessRebootAccessPoints)
+		}
+
 		return nil, response, fmt.Errorf("error with operation RebootAccessPoints")
 	}
 
@@ -1156,6 +1191,11 @@ func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSS
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateEnterpriseSSID(requestWirelessCreateEnterpriseSSID)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateEnterpriseSsid")
 	}
 
@@ -1188,6 +1228,11 @@ func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPo
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ConfigureAccessPoints(requestWirelessConfigureAccessPoints)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ConfigureAccessPoints")
 	}
 
@@ -1233,6 +1278,11 @@ func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWireles
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ApProvision(requestWirelessAPProvision, APProvisionHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ApProvision")
 	}
 
@@ -1282,6 +1332,11 @@ func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpda
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateUpdateDynamicInterface(requestWirelessCreateUpdateDynamicInterface, CreateUpdateDynamicInterfaceHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateUpdateDynamicInterface")
 	}
 
@@ -1314,6 +1369,11 @@ func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessPro
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateWirelessProfile(requestWirelessCreateWirelessProfile)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateWirelessProfile")
 	}
 
@@ -1346,6 +1406,11 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Provision(requestWirelessProvision)
+		}
+
 		return nil, response, fmt.Errorf("error with operation Provision")
 	}
 
@@ -1378,6 +1443,11 @@ func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWireles
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.PSKOverride(requestWirelessPSKOverride)
+		}
+
 		return nil, response, fmt.Errorf("error with operation PSKOverride")
 	}
 
@@ -1410,6 +1480,11 @@ func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateR
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateRFProfile)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateOrUpdateRfProfile")
 	}
 
@@ -1440,6 +1515,9 @@ func (s *WirelessService) UpdateEnterpriseSSID(requestWirelessUpdateEnterpriseSS
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateEnterpriseSSID(requestWirelessUpdateEnterpriseSSID)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateEnterpriseSsid")
 	}
 
@@ -1470,6 +1548,9 @@ func (s *WirelessService) UpdateWirelessProfile(requestWirelessUpdateWirelessPro
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateWirelessProfile(requestWirelessUpdateWirelessProfile)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateWirelessProfile")
 	}
 
@@ -1513,6 +1594,9 @@ func (s *WirelessService) ProvisionUpdate(requestWirelessProvisionUpdate *Reques
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ProvisionUpdate(requestWirelessProvisionUpdate, ProvisionUpdateHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ProvisionUpdate")
 	}
 
@@ -1562,6 +1646,9 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteSSIDAndProvisionItToDevices(ssidName, managedAPLocations, DeleteSSIDAndProvisionItToDevicesHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteSsidAndProvisionItToDevices")
 	}
 
@@ -1597,6 +1684,9 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirele
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteEnterpriseSSID(ssidName)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteEnterpriseSsid")
 	}
 
@@ -1632,6 +1722,9 @@ func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*Re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteWirelessProfile(wirelessProfileName)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteWirelessProfile")
 	}
 
@@ -1683,6 +1776,9 @@ func (s *WirelessService) DeleteDynamicInterface(interfaceName string, DeleteDyn
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDynamicInterface(interfaceName, DeleteDynamicInterfaceHeaderParams)
+		}
 		return response, fmt.Errorf("error with operation DeleteDynamicInterface")
 	}
 
@@ -1717,6 +1813,9 @@ func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirel
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteRfProfiles(rfProfileName)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteRfProfiles")
 	}
 

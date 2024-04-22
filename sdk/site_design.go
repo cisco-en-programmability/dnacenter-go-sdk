@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -448,6 +449,9 @@ func (s *SiteDesignService) GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceDetailsByIP(GetDeviceDetailsByIPQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceDetailsByIp")
 	}
 
@@ -485,6 +489,9 @@ func (s *SiteDesignService) GetNfvProfile(id string, GetNFVProfileQueryParams *G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNfvProfile(id, GetNFVProfileQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNfvProfile")
 	}
 
@@ -538,6 +545,11 @@ func (s *SiteDesignService) ProvisionNfv(requestSiteDesignProvisionNFV *RequestS
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ProvisionNfv(requestSiteDesignProvisionNFV, ProvisionNFVHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ProvisionNfv")
 	}
 
@@ -575,6 +587,11 @@ func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Associate(networkProfileID, siteID)
+		}
+
 		return nil, response, fmt.Errorf("error with operation Associate")
 	}
 
@@ -628,6 +645,11 @@ func (s *SiteDesignService) NfvProvisioningDetail(requestSiteDesignNFVProvisioni
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.NfvProvisioningDetail(requestSiteDesignNFVProvisioningDetail, NFVProvisioningDetailHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation NfvProvisioningDetail")
 	}
 
@@ -660,6 +682,11 @@ func (s *SiteDesignService) CreateNfvProfile(requestSiteDesignCreateNFVProfile *
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateNfvProfile(requestSiteDesignCreateNFVProfile)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateNfvProfile")
 	}
 
@@ -696,6 +723,9 @@ func (s *SiteDesignService) UpdateNfvProfile(id string, requestSiteDesignUpdateN
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateNfvProfile(id, requestSiteDesignUpdateNFVProfile, UpdateNFVProfileQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateNfvProfile")
 	}
 
@@ -734,6 +764,9 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.Disassociate(networkProfileID, siteID)
+		}
 		return nil, response, fmt.Errorf("error with operation Disassociate")
 	}
 
@@ -772,6 +805,9 @@ func (s *SiteDesignService) DeleteNfvProfile(id string, DeleteNFVProfileQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteNfvProfile(id, DeleteNFVProfileQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteNfvProfile")
 	}
 

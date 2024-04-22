@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -45,6 +46,9 @@ func (s *ConfigurationArchiveService) ExportDeviceConfigurations(requestConfigur
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExportDeviceConfigurations(requestConfigurationArchiveExportDeviceConfigurations)
+		}
 		return nil, response, fmt.Errorf("error with operation ExportDeviceConfigurations")
 	}
 

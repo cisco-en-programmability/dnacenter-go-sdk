@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -249,6 +250,9 @@ func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagG
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTag(GetTagQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTag")
 	}
 
@@ -283,6 +287,9 @@ func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams)
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTagCount(GetTagCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTagCount")
 	}
 
@@ -314,6 +321,9 @@ func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTagResourceTypes()
+		}
 		return nil, response, fmt.Errorf("error with operation GetTagResourceTypes")
 	}
 
@@ -348,6 +358,9 @@ func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTagByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTagById")
 	}
 
@@ -385,6 +398,9 @@ func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTagMembersByID(id, GetTagMembersByIdQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTagMembersById")
 	}
 
@@ -422,6 +438,9 @@ func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTagMemberCount(id, GetTagMemberCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTagMemberCount")
 	}
 
@@ -454,6 +473,11 @@ func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*Respo
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateTag(requestTagCreateTag)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateTag")
 	}
 
@@ -489,6 +513,11 @@ func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag 
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddMembersToTheTag(id, requestTagAddMembersToTheTag)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AddMembersToTheTag")
 	}
 
@@ -519,6 +548,9 @@ func (s *TagService) UpdateTag(requestTagUpdateTag *RequestTagUpdateTag) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateTag(requestTagUpdateTag)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateTag")
 	}
 
@@ -549,6 +581,9 @@ func (s *TagService) UpdatesTagMembership(requestTagUpdatesTagMembership *Reques
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatesTagMembership(requestTagUpdatesTagMembership)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdatesTagMembership")
 	}
 
@@ -584,6 +619,9 @@ func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Respons
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteTag(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteTag")
 	}
 
@@ -622,6 +660,9 @@ func (s *TagService) RemoveTagMember(id string, memberID string) (*ResponseTagRe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveTagMember(id, memberID)
+		}
 		return nil, response, fmt.Errorf("error with operation RemoveTagMember")
 	}
 

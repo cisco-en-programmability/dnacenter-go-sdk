@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -64,6 +65,9 @@ func (s *FileService) GetListOfAvailableNamespaces() (*ResponseFileGetListOfAvai
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetListOfAvailableNamespaces()
+		}
 		return nil, response, fmt.Errorf("error with operation GetListOfAvailableNamespaces")
 	}
 
@@ -98,6 +102,9 @@ func (s *FileService) GetListOfFiles(nameSpace string) (*ResponseFileGetListOfFi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetListOfFiles(nameSpace)
+		}
 		return nil, response, fmt.Errorf("error with operation GetListOfFiles")
 	}
 
@@ -131,6 +138,9 @@ func (s *FileService) DownloadAFileByFileID(fileID string) (FileDownload, *resty
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DownloadAFileByFileID(fileID)
+		}
 		return fdownload, response, fmt.Errorf("error with operation ExportTrustedCertificate")
 	}
 
@@ -177,6 +187,11 @@ func (s *FileService) UploadFile(nameSpace string, UploadFileMultipartFields *Up
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UploadFile(nameSpace, UploadFileMultipartFields)
+		}
+
 		return nil, response, fmt.Errorf("error with operation UploadFile")
 	}
 

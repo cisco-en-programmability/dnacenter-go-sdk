@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -117,6 +118,9 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdviso
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAdvisoriesList()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAdvisoriesList")
 	}
 
@@ -148,6 +152,9 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdv
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAdvisoriesSummary()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAdvisoriesSummary")
 	}
 
@@ -182,6 +189,9 @@ func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*R
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDevicesPerAdvisory(advisoryID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDevicesPerAdvisory")
 	}
 
@@ -216,6 +226,9 @@ func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*R
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAdvisoryIDsPerDevice(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAdvisoryIdsPerDevice")
 	}
 
@@ -250,6 +263,9 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesPerDevice(deviceID string) (*Re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAdvisoriesPerDevice(deviceID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetAdvisoriesPerDevice")
 	}
 

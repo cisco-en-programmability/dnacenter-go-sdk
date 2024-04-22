@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -184,6 +185,9 @@ func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetBusinessAPIExecutionDetails(executionID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetBusinessApiExecutionDetails")
 	}
 
@@ -218,6 +222,9 @@ func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTasks(GetTasksQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTasks")
 	}
 
@@ -252,6 +259,9 @@ func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTaskCount(GetTaskCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTaskCount")
 	}
 
@@ -291,6 +301,9 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTaskByOperationID(operationID, offset, limit)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTaskByOperationId")
 	}
 
@@ -325,6 +338,9 @@ func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTaskByID(taskID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTaskById")
 	}
 
@@ -359,6 +375,9 @@ func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *res
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTaskTree(taskID)
+		}
 		return nil, response, fmt.Errorf("error with operation GetTaskTree")
 	}
 

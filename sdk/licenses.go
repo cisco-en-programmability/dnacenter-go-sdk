@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -260,6 +261,9 @@ func (s *LicensesService) DeviceCountDetails2(DeviceCountDetails2QueryParams *De
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceCountDetails2(DeviceCountDetails2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceCountDetails2")
 	}
 
@@ -294,6 +298,9 @@ func (s *LicensesService) DeviceLicenseSummary2(DeviceLicenseSummary2QueryParams
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceLicenseSummary2(DeviceLicenseSummary2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceLicenseSummary2")
 	}
 
@@ -328,6 +335,9 @@ func (s *LicensesService) DeviceLicenseDetails2(deviceuuid string) (*ResponseLic
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceLicenseDetails2(deviceuuid)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceLicenseDetails2")
 	}
 
@@ -362,6 +372,9 @@ func (s *LicensesService) VirtualAccountDetails2(smartaccountTypeID string) (*Re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.VirtualAccountDetails2(smartaccountTypeID)
+		}
 		return nil, response, fmt.Errorf("error with operation VirtualAccountDetails2")
 	}
 
@@ -393,6 +406,9 @@ func (s *LicensesService) SmartAccountDetails() (*ResponseLicensesSmartAccountDe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SmartAccountDetails()
+		}
 		return nil, response, fmt.Errorf("error with operation SmartAccountDetails")
 	}
 
@@ -433,6 +449,9 @@ func (s *LicensesService) LicenseTermDetails2(smartaccountTypeID string, virtual
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LicenseTermDetails2(smartaccountTypeID, virtualaccountname, LicenseTermDetails2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation LicenseTermDetails2")
 	}
 
@@ -473,6 +492,9 @@ func (s *LicensesService) LicenseUsageDetails2(smartaccountTypeID string, virtua
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.LicenseUsageDetails2(smartaccountTypeID, virtualaccountname, LicenseUsageDetails2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation LicenseUsageDetails2")
 	}
 
@@ -511,6 +533,11 @@ func (s *LicensesService) ChangeVirtualAccount2(smartaccountTypeID string, virtu
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ChangeVirtualAccount2(smartaccountTypeID, virtualaccountname, requestLicensesChangeVirtualAccount2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ChangeVirtualAccount2")
 	}
 
@@ -541,6 +568,9 @@ func (s *LicensesService) DeviceDeregistration2(requestLicensesDeviceDeregistrat
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceDeregistration2(requestLicensesDeviceDeregistration2)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceDeregistration2")
 	}
 
@@ -574,6 +604,9 @@ func (s *LicensesService) DeviceRegistration2(virtualaccountname string, request
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeviceRegistration2(virtualaccountname, requestLicensesDeviceRegistration2)
+		}
 		return nil, response, fmt.Errorf("error with operation DeviceRegistration2")
 	}
 

@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -449,6 +450,9 @@ func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetClientDetail(GetClientDetailQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetClientDetail")
 	}
 
@@ -501,6 +505,9 @@ func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetClientEnrichmentDetails(GetClientEnrichmentDetailsHeaderParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetClientEnrichmentDetails")
 	}
 
@@ -535,6 +542,9 @@ func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParam
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetOverallClientHealth(GetOverallClientHealthQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetOverallClientHealth")
 	}
 
@@ -569,6 +579,9 @@ func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProxi
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ClientProximity(ClientProximityQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ClientProximity")
 	}
 

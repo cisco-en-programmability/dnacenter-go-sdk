@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -26,6 +27,9 @@ func (s *CustomCallService) GetCustomCall(ResourcePath string, QueryParms *map[s
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCustomCall(ResourcePath, QueryParms)
+		}
 		return response, fmt.Errorf("error with custom operation %s", ResourcePath)
 	}
 

@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -1037,6 +1038,9 @@ func (s *DiscoveryService) GetCountOfAllDiscoveryJobs() (*ResponseDiscoveryGetCo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCountOfAllDiscoveryJobs()
+		}
 		return nil, response, fmt.Errorf("error with operation GetCountOfAllDiscoveryJobs")
 	}
 
@@ -1071,6 +1075,9 @@ func (s *DiscoveryService) GetDiscoveryJobsByIP(GetDiscoveryJobsByIPQueryParams 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDiscoveryJobsByIP(GetDiscoveryJobsByIPQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDiscoveryJobsByIp")
 	}
 
@@ -1105,6 +1112,9 @@ func (s *DiscoveryService) GetDiscoveryByID(id string) (*ResponseDiscoveryGetDis
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDiscoveryByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDiscoveryById")
 	}
 
@@ -1142,6 +1152,9 @@ func (s *DiscoveryService) GetListOfDiscoveriesByDiscoveryID(id string, GetListO
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetListOfDiscoveriesByDiscoveryID(id, GetListOfDiscoveriesByDiscoveryIdQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetListOfDiscoveriesByDiscoveryId")
 	}
 
@@ -1179,6 +1192,9 @@ func (s *DiscoveryService) GetDiscoveredNetworkDevicesByDiscoveryID(id string, G
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDiscoveredNetworkDevicesByDiscoveryID(id, GetDiscoveredNetworkDevicesByDiscoveryIdQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDiscoveredNetworkDevicesByDiscoveryId")
 	}
 
@@ -1216,6 +1232,9 @@ func (s *DiscoveryService) GetDevicesDiscoveredByID(id string, GetDevicesDiscove
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDevicesDiscoveredByID(id, GetDevicesDiscoveredByIdQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDevicesDiscoveredById")
 	}
 
@@ -1259,6 +1278,9 @@ func (s *DiscoveryService) GetDiscoveredDevicesByRange(id string, startIndex int
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDiscoveredDevicesByRange(id, startIndex, recordsToReturn, GetDiscoveredDevicesByRangeQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDiscoveredDevicesByRange")
 	}
 
@@ -1296,6 +1318,9 @@ func (s *DiscoveryService) GetNetworkDevicesFromDiscovery(id string, GetNetworkD
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetworkDevicesFromDiscovery(id, GetNetworkDevicesFromDiscoveryQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNetworkDevicesFromDiscovery")
 	}
 
@@ -1333,6 +1358,9 @@ func (s *DiscoveryService) GetDiscoveriesByRange(startIndex int, recordsToReturn
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDiscoveriesByRange(startIndex, recordsToReturn)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDiscoveriesByRange")
 	}
 
@@ -1367,6 +1395,9 @@ func (s *DiscoveryService) GetGlobalCredentials(GetGlobalCredentialsQueryParams 
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetGlobalCredentials(GetGlobalCredentialsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetGlobalCredentials")
 	}
 
@@ -1401,6 +1432,9 @@ func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCredentialSubTypeByCredentialID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation GetCredentialSubTypeByCredentialId")
 	}
 
@@ -1414,7 +1448,7 @@ func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*Respo
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-s-n-m-p-properties
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-snmp-properties
 */
 func (s *DiscoveryService) GetSNMPProperties() (*ResponseDiscoveryGetSNMPProperties, *resty.Response, error) {
 	path := "/dna/intent/api/v1/snmp-property"
@@ -1432,6 +1466,9 @@ func (s *DiscoveryService) GetSNMPProperties() (*ResponseDiscoveryGetSNMPPropert
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetSNMPProperties()
+		}
 		return nil, response, fmt.Errorf("error with operation GetSnmpProperties")
 	}
 
@@ -1463,6 +1500,9 @@ func (s *DiscoveryService) GetAllGlobalCredentialsV2() (*ResponseDiscoveryGetAll
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllGlobalCredentialsV2()
+		}
 		return nil, response, fmt.Errorf("error with operation GetAllGlobalCredentialsV2")
 	}
 
@@ -1495,6 +1535,11 @@ func (s *DiscoveryService) StartDiscovery(requestDiscoveryStartDiscovery *Reques
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.StartDiscovery(requestDiscoveryStartDiscovery)
+		}
+
 		return nil, response, fmt.Errorf("error with operation StartDiscovery")
 	}
 
@@ -1508,7 +1553,7 @@ func (s *DiscoveryService) StartDiscovery(requestDiscoveryStartDiscovery *Reques
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-c-l-i-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-cli-credentials
 */
 func (s *DiscoveryService) CreateCliCredentials(requestDiscoveryCreateCLICredentials *RequestDiscoveryCreateCliCredentials) (*ResponseDiscoveryCreateCliCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/cli"
@@ -1527,6 +1572,11 @@ func (s *DiscoveryService) CreateCliCredentials(requestDiscoveryCreateCLICredent
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateCliCredentials(requestDiscoveryCreateCLICredentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateCliCredentials")
 	}
 
@@ -1559,6 +1609,11 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(requestDiscoveryCreateHTTPR
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateHTTPReadCredentials(requestDiscoveryCreateHTTPReadCredentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateHttpReadCredentials")
 	}
 
@@ -1591,6 +1646,11 @@ func (s *DiscoveryService) CreateHTTPWriteCredentials(requestDiscoveryCreateHTTP
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateHTTPWriteCredentials(requestDiscoveryCreateHTTPWriteCredentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateHttpWriteCredentials")
 	}
 
@@ -1623,6 +1683,11 @@ func (s *DiscoveryService) CreateNetconfCredentials(requestDiscoveryCreateNetcon
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateNetconfCredentials(requestDiscoveryCreateNetconfCredentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateNetconfCredentials")
 	}
 
@@ -1636,7 +1701,7 @@ func (s *DiscoveryService) CreateNetconfCredentials(requestDiscoveryCreateNetcon
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-n-m-p-read-community
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-read-community
 */
 func (s *DiscoveryService) CreateSNMPReadCommunity(requestDiscoveryCreateSNMPReadCommunity *RequestDiscoveryCreateSNMPReadCommunity) (*ResponseDiscoveryCreateSNMPReadCommunity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
@@ -1655,6 +1720,11 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(requestDiscoveryCreateSNMPRea
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSNMPReadCommunity(requestDiscoveryCreateSNMPReadCommunity)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSnmpReadCommunity")
 	}
 
@@ -1668,7 +1738,7 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(requestDiscoveryCreateSNMPRea
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-n-m-p-write-community
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-write-community
 */
 func (s *DiscoveryService) CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWriteCommunity *RequestDiscoveryCreateSNMPWriteCommunity) (*ResponseDiscoveryCreateSNMPWriteCommunity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
@@ -1687,6 +1757,11 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWr
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWriteCommunity)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSnmpWriteCommunity")
 	}
 
@@ -1700,7 +1775,7 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-n-m-pv3-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmpv3-credentials
 */
 func (s *DiscoveryService) CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3Credentials *RequestDiscoveryCreateSNMPv3Credentials) (*ResponseDiscoveryCreateSNMPv3Credentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
@@ -1719,6 +1794,11 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3C
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3Credentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSnmpv3Credentials")
 	}
 
@@ -1732,7 +1812,7 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3C
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-s-n-m-p-properties
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-snmp-properties
 */
 func (s *DiscoveryService) CreateUpdateSNMPProperties(requestDiscoveryCreateUpdateSNMPProperties *RequestDiscoveryCreateUpdateSNMPProperties) (*ResponseDiscoveryCreateUpdateSNMPProperties, *resty.Response, error) {
 	path := "/dna/intent/api/v1/snmp-property"
@@ -1751,6 +1831,11 @@ func (s *DiscoveryService) CreateUpdateSNMPProperties(requestDiscoveryCreateUpda
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateUpdateSNMPProperties(requestDiscoveryCreateUpdateSNMPProperties)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateUpdateSnmpProperties")
 	}
 
@@ -1783,6 +1868,11 @@ func (s *DiscoveryService) CreateGlobalCredentialsV2(requestDiscoveryCreateGloba
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateGlobalCredentialsV2(requestDiscoveryCreateGlobalCredentialsV2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateGlobalCredentialsV2")
 	}
 
@@ -1813,6 +1903,9 @@ func (s *DiscoveryService) UpdatesAnExistingDiscoveryBySpecifiedID(requestDiscov
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatesAnExistingDiscoveryBySpecifiedID(requestDiscoveryUpdatesAnExistingDiscoveryBySpecifiedId)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdatesAnExistingDiscoveryBySpecifiedId")
 	}
 
@@ -1843,6 +1936,9 @@ func (s *DiscoveryService) UpdateCliCredentials(requestDiscoveryUpdateCLICredent
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateCliCredentials(requestDiscoveryUpdateCLICredentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateCliCredentials")
 	}
 
@@ -1873,6 +1969,9 @@ func (s *DiscoveryService) UpdateHTTPReadCredential(requestDiscoveryUpdateHTTPRe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateHTTPReadCredential(requestDiscoveryUpdateHTTPReadCredential)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateHttpReadCredential")
 	}
 
@@ -1903,6 +2002,9 @@ func (s *DiscoveryService) UpdateHTTPWriteCredentials(requestDiscoveryUpdateHTTP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateHTTPWriteCredentials(requestDiscoveryUpdateHTTPWriteCredentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateHttpWriteCredentials")
 	}
 
@@ -1933,6 +2035,9 @@ func (s *DiscoveryService) UpdateNetconfCredentials(requestDiscoveryUpdateNetcon
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateNetconfCredentials(requestDiscoveryUpdateNetconfCredentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateNetconfCredentials")
 	}
 
@@ -1963,6 +2068,9 @@ func (s *DiscoveryService) UpdateSNMPReadCommunity(requestDiscoveryUpdateSNMPRea
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSNMPReadCommunity(requestDiscoveryUpdateSNMPReadCommunity)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSnmpReadCommunity")
 	}
 
@@ -1993,6 +2101,9 @@ func (s *DiscoveryService) UpdateSNMPWriteCommunity(requestDiscoveryUpdateSNMPWr
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSNMPWriteCommunity(requestDiscoveryUpdateSNMPWriteCommunity)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSnmpWriteCommunity")
 	}
 
@@ -2023,6 +2134,9 @@ func (s *DiscoveryService) UpdateSNMPv3Credentials(requestDiscoveryUpdateSNMPv3C
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSNMPv3Credentials(requestDiscoveryUpdateSNMPv3Credentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSnmpv3Credentials")
 	}
 
@@ -2056,6 +2170,9 @@ func (s *DiscoveryService) UpdateGlobalCredentials(globalCredentialID string, re
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateGlobalCredentials(globalCredentialID, requestDiscoveryUpdateGlobalCredentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateGlobalCredentials")
 	}
 
@@ -2086,6 +2203,9 @@ func (s *DiscoveryService) UpdateGlobalCredentialsV2(requestDiscoveryUpdateGloba
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateGlobalCredentialsV2(requestDiscoveryUpdateGlobalCredentialsV2)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateGlobalCredentialsV2")
 	}
 
@@ -2118,6 +2238,9 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*ResponseDiscoveryDeleteAllDisc
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteAllDiscovery()
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteAllDiscovery")
 	}
 
@@ -2153,6 +2276,9 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*ResponseDiscoveryDel
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDiscoveryByID(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDiscoveryById")
 	}
 
@@ -2191,6 +2317,9 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDiscoveryBySpecifiedRange(startIndex, recordsToDelete)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDiscoveryBySpecifiedRange")
 	}
 
@@ -2226,6 +2355,9 @@ func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteGlobalCredentialsByID(globalCredentialID)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteGlobalCredentialsById")
 	}
 
@@ -2261,6 +2393,9 @@ func (s *DiscoveryService) DeleteGlobalCredentialV2(id string) (*ResponseDiscove
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteGlobalCredentialV2(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteGlobalCredentialV2")
 	}
 

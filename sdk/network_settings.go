@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/go-resty/resty/v2"
@@ -849,6 +850,9 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialD
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceCredentialDetails(GetDeviceCredentialDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetDeviceCredentialDetails")
 	}
 
@@ -883,6 +887,9 @@ func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlob
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetGlobalPool(GetGlobalPoolQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetGlobalPool")
 	}
 
@@ -917,6 +924,9 @@ func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQue
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetwork(GetNetworkQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNetwork")
 	}
 
@@ -951,6 +961,9 @@ func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryPar
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetReserveIPSubpool(GetReserveIPSubpoolQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetReserveIpSubpool")
 	}
 
@@ -982,6 +995,9 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetServiceProviderDetails()
+		}
 		return nil, response, fmt.Errorf("error with operation GetServiceProviderDetails")
 	}
 
@@ -1016,6 +1032,9 @@ func (s *NetworkSettingsService) GetNetworkV2(GetNetworkV2QueryParams *GetNetwor
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetworkV2(GetNetworkV2QueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation GetNetworkV2")
 	}
 
@@ -1047,6 +1066,9 @@ func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetwork
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetServiceProviderDetailsV2()
+		}
 		return nil, response, fmt.Errorf("error with operation GetServiceProviderDetailsV2")
 	}
 
@@ -1095,6 +1117,11 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, req
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AssignDeviceCredentialToSite(siteID, requestNetworkSettingsAssignDeviceCredentialToSite, AssignDeviceCredentialToSiteHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AssignDeviceCredentialToSite")
 	}
 
@@ -1127,6 +1154,11 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsC
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateDeviceCredentials(requestNetworkSettingsCreateDeviceCredentials)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateDeviceCredentials")
 	}
 
@@ -1159,6 +1191,11 @@ func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGl
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateGlobalPool(requestNetworkSettingsCreateGlobalPool)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateGlobalPool")
 	}
 
@@ -1207,6 +1244,11 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSett
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateNetwork(siteID, requestNetworkSettingsCreateNetwork, CreateNetworkHeaderParams)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateNetwork")
 	}
 
@@ -1242,6 +1284,11 @@ func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkS
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReserveIPSubpool(siteID, requestNetworkSettingsReserveIPSubpool)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ReserveIpSubpool")
 	}
 
@@ -1255,7 +1302,7 @@ func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkS
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-p-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile
 */
 func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPProfile *RequestNetworkSettingsCreateSpProfile) (*ResponseNetworkSettingsCreateSpProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
@@ -1274,6 +1321,11 @@ func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPP
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSpProfile(requestNetworkSettingsCreateSPProfile)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSpProfile")
 	}
 
@@ -1309,6 +1361,11 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSiteV2(siteID string, r
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AssignDeviceCredentialToSiteV2(siteID, requestNetworkSettingsAssignDeviceCredentialToSiteV2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation AssignDeviceCredentialToSiteV2")
 	}
 
@@ -1344,6 +1401,11 @@ func (s *NetworkSettingsService) CreateNetworkV2(siteID string, requestNetworkSe
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateNetworkV2(siteID, requestNetworkSettingsCreateNetworkV2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateNetworkV2")
 	}
 
@@ -1357,7 +1419,7 @@ func (s *NetworkSettingsService) CreateNetworkV2(siteID string, requestNetworkSe
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-s-p-profile-v2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile-v2
 */
 func (s *NetworkSettingsService) CreateSpProfileV2(requestNetworkSettingsCreateSPProfileV2 *RequestNetworkSettingsCreateSpProfileV2) (*ResponseNetworkSettingsCreateSpProfileV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/service-provider"
@@ -1376,6 +1438,11 @@ func (s *NetworkSettingsService) CreateSpProfileV2(requestNetworkSettingsCreateS
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateSpProfileV2(requestNetworkSettingsCreateSPProfileV2)
+		}
+
 		return nil, response, fmt.Errorf("error with operation CreateSpProfileV2")
 	}
 
@@ -1406,6 +1473,9 @@ func (s *NetworkSettingsService) UpdateDeviceCredentials(requestNetworkSettingsU
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateDeviceCredentials(requestNetworkSettingsUpdateDeviceCredentials)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateDeviceCredentials")
 	}
 
@@ -1436,6 +1506,9 @@ func (s *NetworkSettingsService) UpdateGlobalPool(requestNetworkSettingsUpdateGl
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateGlobalPool(requestNetworkSettingsUpdateGlobalPool)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateGlobalPool")
 	}
 
@@ -1469,6 +1542,9 @@ func (s *NetworkSettingsService) UpdateNetwork(siteID string, requestNetworkSett
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateNetwork(siteID, requestNetworkSettingsUpdateNetwork)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateNetwork")
 	}
 
@@ -1505,6 +1581,9 @@ func (s *NetworkSettingsService) UpdateReserveIPSubpool(siteID string, requestNe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateReserveIPSubpool(siteID, requestNetworkSettingsUpdateReserveIPSubpool, UpdateReserveIPSubpoolQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateReserveIpSubpool")
 	}
 
@@ -1535,6 +1614,9 @@ func (s *NetworkSettingsService) UpdateSpProfile(requestNetworkSettingsUpdateSPP
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSpProfile(requestNetworkSettingsUpdateSPProfile)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSpProfile")
 	}
 
@@ -1568,6 +1650,9 @@ func (s *NetworkSettingsService) UpdateNetworkV2(siteID string, requestNetworkSe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateNetworkV2(siteID, requestNetworkSettingsUpdateNetworkV2)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateNetworkV2")
 	}
 
@@ -1598,6 +1683,9 @@ func (s *NetworkSettingsService) UpdateSpProfileV2(requestNetworkSettingsUpdateS
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateSpProfileV2(requestNetworkSettingsUpdateSPProfileV2)
+		}
 		return nil, response, fmt.Errorf("error with operation UpdateSpProfileV2")
 	}
 
@@ -1633,6 +1721,9 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteDeviceCredential(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceCredential")
 	}
 
@@ -1668,6 +1759,9 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetwork
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteGlobalIPPool(id)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteGlobalIpPool")
 	}
 
@@ -1703,6 +1797,9 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReleaseReserveIPSubpool(id)
+		}
 		return nil, response, fmt.Errorf("error with operation ReleaseReserveIpSubpool")
 	}
 
@@ -1718,7 +1815,7 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 @param spProfileName spProfileName path parameter. sp profile name
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-s-p-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile
 */
 func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfile, *resty.Response, error) {
 	//spProfileName string
@@ -1738,6 +1835,9 @@ func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*Respons
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteSpProfile(spProfileName)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteSpProfile")
 	}
 
@@ -1753,7 +1853,7 @@ func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*Respons
 @param spProfileName spProfileName path parameter. sp profile name
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-s-p-profile-v2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile-v2
 */
 func (s *NetworkSettingsService) DeleteSpProfileV2(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfileV2, *resty.Response, error) {
 	//spProfileName string
@@ -1773,6 +1873,9 @@ func (s *NetworkSettingsService) DeleteSpProfileV2(spProfileName string) (*Respo
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteSpProfileV2(spProfileName)
+		}
 		return nil, response, fmt.Errorf("error with operation DeleteSpProfileV2")
 	}
 

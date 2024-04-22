@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -139,6 +140,9 @@ func (s *DeviceReplacementService) ReturnListOfReplacementDevicesWithReplacement
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReturnListOfReplacementDevicesWithReplacementDetails(ReturnListOfReplacementDevicesWithReplacementDetailsQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ReturnListOfReplacementDevicesWithReplacementDetails")
 	}
 
@@ -173,6 +177,9 @@ func (s *DeviceReplacementService) ReturnReplacementDevicesCount(ReturnReplaceme
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ReturnReplacementDevicesCount(ReturnReplacementDevicesCountQueryParams)
+		}
 		return nil, response, fmt.Errorf("error with operation ReturnReplacementDevicesCount")
 	}
 
@@ -205,6 +212,11 @@ func (s *DeviceReplacementService) MarkDeviceForReplacement(requestDeviceReplace
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.MarkDeviceForReplacement(requestDeviceReplacementMarkDeviceForReplacement)
+		}
+
 		return nil, response, fmt.Errorf("error with operation MarkDeviceForReplacement")
 	}
 
@@ -237,6 +249,11 @@ func (s *DeviceReplacementService) DeployDeviceReplacementWorkflow(requestDevice
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeployDeviceReplacementWorkflow(requestDeviceReplacementDeployDeviceReplacementWorkflow)
+		}
+
 		return nil, response, fmt.Errorf("error with operation DeployDeviceReplacementWorkflow")
 	}
 
@@ -267,6 +284,9 @@ func (s *DeviceReplacementService) UnmarkDeviceForReplacement(requestDeviceRepla
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UnmarkDeviceForReplacement(requestDeviceReplacementUnMarkDeviceForReplacement)
+		}
 		return nil, response, fmt.Errorf("error with operation UnmarkDeviceForReplacement")
 	}
 
