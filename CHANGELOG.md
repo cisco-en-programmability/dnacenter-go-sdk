@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.27] - 2024-04-22
+- Function `GetTemplatesDetails` change response struct from an object to an array objects.
+
 ## [5.0.26] - 2024-04-22
 - Functions were modified to be called recursively in case of Status Unauthorized.
  
@@ -620,4 +623,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.24]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.23...v5.0.24
 [5.0.25]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.24...v5.0.25
 [5.0.26]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.25...v5.0.26
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.26...main
+[5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.26...v5.0.27
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...main
