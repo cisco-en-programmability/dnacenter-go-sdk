@@ -889,7 +889,11 @@ type ResponseConfigurationTemplatesGetProjectsDetailsTags struct {
 	Name string `json:"name,omitempty"` // Name of tag
 }
 type ResponseConfigurationTemplatesGetProjectsDetailsTemplates interface{}
+
 type ResponseConfigurationTemplatesGetTemplatesDetails struct {
+	Response []ResponseConfigurationTemplatesGetTemplatesDetailsResponse `json:"response,omitempty"` // Response
+}
+type ResponseConfigurationTemplatesGetTemplatesDetailsResponse struct {
 	Author                  string                                                                     `json:"author,omitempty"`                  // Author of template
 	Composite               *bool                                                                      `json:"composite,omitempty"`               // Is it composite template
 	ContainingTemplates     *[]ResponseConfigurationTemplatesGetTemplatesDetailsContainingTemplates    `json:"containingTemplates,omitempty"`     //
