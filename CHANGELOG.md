@@ -5,14 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [5.0.28] - 2024-06-04
 - `TopOfStackSerialNumber` and `CablingScheme` added to `RequestDeviceOnboardingPnpClaimADeviceToASite`
+- Fix `ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails` to support empty string
 
 ## [5.0.27] - 2024-04-22
 - Function `GetTemplatesDetails` change response struct from an object to an array objects.
 
 ## [5.0.26] - 2024-04-22
-- Functions were modified to be called recursively in case of Status Unauthorized.
- 
+- Functions were modified to be called recursively in case of Status Unauthorized. 
 
 ## [5.0.25] - 2024-02-13
 - `EndTime` attribute change to `*int` in `ResponseTaskGetTaskTreeResponse`.
@@ -625,4 +627,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.25]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.24...v5.0.25
 [5.0.26]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.25...v5.0.26
 [5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.26...v5.0.27
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...main
+[5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...v5.0.28
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.28...main

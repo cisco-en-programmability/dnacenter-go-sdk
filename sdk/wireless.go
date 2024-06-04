@@ -1,6 +1,7 @@
 package dnac
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
@@ -427,6 +428,40 @@ type ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails struct {
 	FlexConnect   *ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetailsFlexConnect `json:"flexConnect,omitempty"`   //
 	InterfaceName string                                                                      `json:"interfaceName,omitempty"` // Interface Name
 }
+
+func (r *ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails) UnmarshalJSON(data []byte) error {
+	type Alias ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails
+	aux := &struct {
+		EnableFabric interface{} `json:"enableFabric"`
+		*Alias
+	}{
+		Alias: (*Alias)(r),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+	switch v := aux.EnableFabric.(type) {
+	case bool:
+		r.EnableFabric = &v
+	case string:
+		if v == "true" {
+			r.EnableFabric = new(bool)
+			*r.EnableFabric = true
+		} else if v == "false" {
+			r.EnableFabric = new(bool)
+			*r.EnableFabric = false
+		} else {
+			r.EnableFabric = nil
+		}
+	case nil:
+		r.EnableFabric = nil
+	default:
+		r.EnableFabric = nil
+	}
+
+	return nil
+}
+
 type ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // true if flex connect is enabled else false
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local To VLAN ID
