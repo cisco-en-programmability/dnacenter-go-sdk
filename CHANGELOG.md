@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.29] - 2024-06-14
+- Added `SiteHierarchyGraphId` parameters to `ResponseDevicesGetDeviceDetailResponse`
+
 ## [5.0.28] - 2024-06-04
 - `TopOfStackSerialNumber` and `CablingScheme` added to `RequestDeviceOnboardingPnpClaimADeviceToASite`
 - Fix `ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails` to support empty string
@@ -627,5 +630,6 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.25]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.24...v5.0.25
 [5.0.26]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.25...v5.0.26
 [5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.26...v5.0.27
-[5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...v5.0.28
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.28...main
+[5.0.28]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...v5.0.28
+[5.0.29]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.28...v5.0.29
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.29...main
