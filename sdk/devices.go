@@ -279,6 +279,7 @@ type ResponseDevicesGetDeviceDetailResponse struct {
 	Location               string    `json:"location,omitempty"`               // Location
 	Timestamp              *int      `json:"timestamp,omitempty"`              // Timestamp
 	TagIDList              *[]string `json:"tagIdList,omitempty"`              // Timestamp
+	SiteHierarchyGraphId   string    `json:"SiteHierarchyGraphId,omitempty"`   //Site Hierarchy Graph Id
 }
 type ResponseDevicesGetDeviceEnrichmentDetails []ResponseItemDevicesGetDeviceEnrichmentDetails // Array of ResponseDevicesGetDeviceEnrichmentDetails
 type ResponseItemDevicesGetDeviceEnrichmentDetails struct {
