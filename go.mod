@@ -7,4 +7,4 @@ require (
 	github.com/google/go-querystring v1.1.0
 )
 
-require golang.org/x/net v0.23.0 // indirect
+require golang.org/x/net v0.26.0 // indirect

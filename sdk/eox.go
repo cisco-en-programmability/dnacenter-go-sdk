@@ -73,7 +73,7 @@ type ResponseEoXGetEoXSummaryResponse struct {
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eo-x-status-for-all-devices
 */
-func (s *EoXService) GetEoxStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
+func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/device"
 
 	response, err := s.client.R().
@@ -90,9 +90,9 @@ func (s *EoXService) GetEoxStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetEoxStatusForAllDevices()
+			return s.GetEoXStatusForAllDevices()
 		}
-		return nil, response, fmt.Errorf("error with operation GetEoxStatusForAllDevices")
+		return nil, response, fmt.Errorf("error with operation GetEoXStatusForAllDevices")
 	}
 
 	result := response.Result().(*ResponseEoXGetEoXStatusForAllDevices)
@@ -100,7 +100,7 @@ func (s *EoXService) GetEoxStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 
 }
 
-//GetEoxDetailsPerDevice Get EoX Details Per Device - dc80-099e-4d59-986d
+//GetEoXDetailsPerDevice Get EoX Details Per Device - dc80-099e-4d59-986d
 /* Retrieves EoX details for a device
 
 
@@ -109,7 +109,7 @@ func (s *EoXService) GetEoxStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-details-per-device
 */
-func (s *EoXService) GetEoxDetailsPerDevice(deviceID string) (*ResponseEoXGetEoXDetailsPerDevice, *resty.Response, error) {
+func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoXDetailsPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/device/{deviceId}"
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
@@ -127,9 +127,9 @@ func (s *EoXService) GetEoxDetailsPerDevice(deviceID string) (*ResponseEoXGetEoX
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetEoxDetailsPerDevice(deviceID)
+			return s.GetEoXDetailsPerDevice(deviceID)
 		}
-		return nil, response, fmt.Errorf("error with operation GetEoxDetailsPerDevice")
+		return nil, response, fmt.Errorf("error with operation GetEoXDetailsPerDevice")
 	}
 
 	result := response.Result().(*ResponseEoXGetEoXDetailsPerDevice)
@@ -137,14 +137,14 @@ func (s *EoXService) GetEoxDetailsPerDevice(deviceID string) (*ResponseEoXGetEoX
 
 }
 
-//GetEoxSummary Get EoX Summary - f0b2-7a23-4fea-96fc
+//GetEoXSummary Get EoX Summary - f0b2-7a23-4fea-96fc
 /* Retrieves EoX summary for all devices in the network
 
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-summary
 */
-func (s *EoXService) GetEoxSummary() (*ResponseEoXGetEoXSummary, *resty.Response, error) {
+func (s *EoXService) GetEoXSummary() (*ResponseEoXGetEoXSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/summary"
 
 	response, err := s.client.R().
@@ -161,9 +161,9 @@ func (s *EoXService) GetEoxSummary() (*ResponseEoXGetEoXSummary, *resty.Response
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetEoxSummary()
+			return s.GetEoXSummary()
 		}
-		return nil, response, fmt.Errorf("error with operation GetEoxSummary")
+		return nil, response, fmt.Errorf("error with operation GetEoXSummary")
 	}
 
 	result := response.Result().(*ResponseEoXGetEoXSummary)
