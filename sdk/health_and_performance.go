@@ -113,14 +113,14 @@ type ResponseHealthAndPerformanceSystemPerformanceHistoricalAPIKpisData map[stri
 /* This API retrieves the latest system events
 
 
-@param SystemHealthAPIQueryParams Filtering parameter
+@param SystemHealthApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-api
 */
-func (s *HealthAndPerformanceService) SystemHealthAPI(SystemHealthAPIQueryParams *SystemHealthApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthApI, *resty.Response, error) {
+func (s *HealthAndPerformanceService) SystemHealthApI(SystemHealthApIQueryParams *SystemHealthApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health"
 
-	queryString, _ := query.Values(SystemHealthAPIQueryParams)
+	queryString, _ := query.Values(SystemHealthApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -136,7 +136,7 @@ func (s *HealthAndPerformanceService) SystemHealthAPI(SystemHealthAPIQueryParams
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.SystemHealthAPI(SystemHealthAPIQueryParams)
+			return s.SystemHealthApI(SystemHealthApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation SystemHealthApi")
 	}
@@ -146,18 +146,18 @@ func (s *HealthAndPerformanceService) SystemHealthAPI(SystemHealthAPIQueryParams
 
 }
 
-//SystemHealthCountAPI System Health Count API - 5289-0891-4729-8714
+//SystemHealthCountApI System Health Count API - 5289-0891-4729-8714
 /* This API gives the count of the latest system events
 
 
-@param SystemHealthCountAPIQueryParams Filtering parameter
+@param SystemHealthCountApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-count-api
 */
-func (s *HealthAndPerformanceService) SystemHealthCountAPI(SystemHealthCountAPIQueryParams *SystemHealthCountApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthCountApI, *resty.Response, error) {
+func (s *HealthAndPerformanceService) SystemHealthCountApI(SystemHealthCountApIQueryParams *SystemHealthCountApIQueryParams) (*ResponseHealthAndPerformanceSystemHealthCountApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health/count"
 
-	queryString, _ := query.Values(SystemHealthCountAPIQueryParams)
+	queryString, _ := query.Values(SystemHealthCountApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -173,7 +173,7 @@ func (s *HealthAndPerformanceService) SystemHealthCountAPI(SystemHealthCountAPIQ
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.SystemHealthCountAPI(SystemHealthCountAPIQueryParams)
+			return s.SystemHealthCountApI(SystemHealthCountApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation SystemHealthCountApi")
 	}
@@ -183,18 +183,18 @@ func (s *HealthAndPerformanceService) SystemHealthCountAPI(SystemHealthCountAPIQ
 
 }
 
-//SystemPerformanceAPI System Performance API - f2a9-5b4d-48eb-a4f8
+//SystemPerformanceApI System Performance API - f2a9-5b4d-48eb-a4f8
 /* This API gives the aggregated performance indicators. The data can be retrieved for the last 3 months.
 
 
-@param SystemPerformanceAPIQueryParams Filtering parameter
+@param SystemPerformanceApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-api
 */
-func (s *HealthAndPerformanceService) SystemPerformanceAPI(SystemPerformanceAPIQueryParams *SystemPerformanceApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceApI, *resty.Response, error) {
+func (s *HealthAndPerformanceService) SystemPerformanceApI(SystemPerformanceApIQueryParams *SystemPerformanceApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance"
 
-	queryString, _ := query.Values(SystemPerformanceAPIQueryParams)
+	queryString, _ := query.Values(SystemPerformanceApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -210,7 +210,7 @@ func (s *HealthAndPerformanceService) SystemPerformanceAPI(SystemPerformanceAPIQ
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.SystemPerformanceAPI(SystemPerformanceAPIQueryParams)
+			return s.SystemPerformanceApI(SystemPerformanceApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation SystemPerformanceApi")
 	}
@@ -220,18 +220,18 @@ func (s *HealthAndPerformanceService) SystemPerformanceAPI(SystemPerformanceAPIQ
 
 }
 
-//SystemPerformanceHistoricalAPI System Performance Historical API - 879b-ea1e-4389-83d7
+//SystemPerformanceHistoricalApI System Performance Historical API - 879b-ea1e-4389-83d7
 /* This API retrieves the historical performance indicators . The data can be retrieved for the last 3 months.
 
 
-@param SystemPerformanceHistoricalAPIQueryParams Filtering parameter
+@param SystemPerformanceHistoricalApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-historical-api
 */
-func (s *HealthAndPerformanceService) SystemPerformanceHistoricalAPI(SystemPerformanceHistoricalAPIQueryParams *SystemPerformanceHistoricalApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceHistoricalApI, *resty.Response, error) {
+func (s *HealthAndPerformanceService) SystemPerformanceHistoricalApI(SystemPerformanceHistoricalApIQueryParams *SystemPerformanceHistoricalApIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceHistoricalApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance/history"
 
-	queryString, _ := query.Values(SystemPerformanceHistoricalAPIQueryParams)
+	queryString, _ := query.Values(SystemPerformanceHistoricalApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -247,7 +247,7 @@ func (s *HealthAndPerformanceService) SystemPerformanceHistoricalAPI(SystemPerfo
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.SystemPerformanceHistoricalAPI(SystemPerformanceHistoricalAPIQueryParams)
+			return s.SystemPerformanceHistoricalApI(SystemPerformanceHistoricalApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation SystemPerformanceHistoricalApi")
 	}

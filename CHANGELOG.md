@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.30] - 2024-06-26
+### Fixed
+- Fix functions name in `DevicesService`, `EoXService`, `HealthAndPerformanceService`, `SystemSettingsService` and `UserandRolesService`
+
 ## [5.0.29] - 2024-06-14
 - Added `SiteHierarchyGraphId` parameters to `ResponseDevicesGetDeviceDetailResponse`
 
@@ -632,4 +636,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.27]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.26...v5.0.27
 [5.0.28]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...v5.0.28
 [5.0.29]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.28...v5.0.29
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.29...main
+[5.0.30]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.29...v5.0.30
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.30...main

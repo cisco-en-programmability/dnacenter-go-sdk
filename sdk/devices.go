@@ -1043,10 +1043,10 @@ type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetails struct {
 }
 type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetailsAttributeInfo interface{}
 type ResponseDevicesInventoryInsightDeviceLinkMismatchApI struct {
-	Response *[]ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse `json:"response,omitempty"` //
+	Response *[]ResponseDevicesInventoryInsightDeviceLinkMismatchApIResponse `json:"response,omitempty"` //
 	Version  string                                                          `json:"version,omitempty"`  // Api version
 }
-type ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse struct {
+type ResponseDevicesInventoryInsightDeviceLinkMismatchApIResponse struct {
 	EndPortAllowedVLANIDs   string   `json:"endPortAllowedVlanIds,omitempty"`   // End port allowed vlan ids
 	EndPortNativeVLANID     string   `json:"endPortNativeVlanId,omitempty"`     // End port native vlan id
 	StartPortAllowedVLANIDs string   `json:"startPortAllowedVlanIds,omitempty"` // Start port allowed vlan ids
@@ -2599,20 +2599,20 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 
 }
 
-//InventoryInsightDeviceLinkMismatchAPI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
+//InventoryInsightDeviceLinkMismatchApI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
 /* Find all devices with link mismatch (speed /  vlan)
 
 
 @param siteID siteId path parameter.
-@param InventoryInsightDeviceLinkMismatchAPIQueryParams Filtering parameter
+@param InventoryInsightDeviceLinkMismatchApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!inventory-insight-device-link-mismatch-api
 */
-func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, InventoryInsightDeviceLinkMismatchAPIQueryParams *InventoryInsightDeviceLinkMismatchApIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchApI, *resty.Response, error) {
+func (s *DevicesService) InventoryInsightDeviceLinkMismatchApI(siteID string, InventoryInsightDeviceLinkMismatchApIQueryParams *InventoryInsightDeviceLinkMismatchApIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchApI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/device-link"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
-	queryString, _ := query.Values(InventoryInsightDeviceLinkMismatchAPIQueryParams)
+	queryString, _ := query.Values(InventoryInsightDeviceLinkMismatchApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -2628,7 +2628,7 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, In
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.InventoryInsightDeviceLinkMismatchAPI(siteID, InventoryInsightDeviceLinkMismatchAPIQueryParams)
+			return s.InventoryInsightDeviceLinkMismatchApI(siteID, InventoryInsightDeviceLinkMismatchApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation InventoryInsightDeviceLinkMismatchApi")
 	}
@@ -2638,7 +2638,7 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, In
 
 }
 
-//ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des Returns devices added to Cisco DNA center with snmp v3 DES. - afba-7a69-4d38-8de1
+//ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES Returns devices added to Cisco DNA center with snmp v3 DES. - afba-7a69-4d38-8de1
 /* Returns devices added to Cisco DNA center with snmp v3 DES, where siteId is mandatory & accepts offset, limit, sortby, order which are optional.
 
 
@@ -2647,7 +2647,7 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, In
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-devices-added-to-cisco-dna-center-with-snmp-v3-des
 */
-func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
+func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID string, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams *ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DESQueryParams) (*ResponseDevicesReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/insecure-connection"
 	path = strings.Replace(path, "{siteId}", fmt.Sprintf("%v", siteID), -1)
 
@@ -2667,7 +2667,7 @@ func (s *DevicesService) ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des(siteID
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3Des(siteID, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams)
+			return s.ReturnsDevicesAddedToCiscoDnaCenterWithSNMPV3DES(siteID, ReturnsDevicesAddedToCiscoDNACenterWithSnmpV3DESQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation ReturnsDevicesAddedToCiscoDnaCenterWithSnmpV3Des")
 	}

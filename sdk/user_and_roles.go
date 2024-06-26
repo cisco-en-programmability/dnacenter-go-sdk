@@ -126,7 +126,7 @@ type RequestUserandRolesUpdateUserApI struct {
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-permissions-api
 */
-func (s *UserandRolesService) GetPermissionsAPI() (*ResponseUserandRolesGetPermissionsApI, *resty.Response, error) {
+func (s *UserandRolesService) GetPermissionsApI() (*ResponseUserandRolesGetPermissionsApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/role/permissions"
 
 	response, err := s.client.R().
@@ -143,7 +143,7 @@ func (s *UserandRolesService) GetPermissionsAPI() (*ResponseUserandRolesGetPermi
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetPermissionsAPI()
+			return s.GetPermissionsApI()
 		}
 		return nil, response, fmt.Errorf("error with operation GetPermissionsApi")
 	}
@@ -153,15 +153,15 @@ func (s *UserandRolesService) GetPermissionsAPI() (*ResponseUserandRolesGetPermi
 
 }
 
-//GetRolesAPI Get roles API - 7c86-da3f-4b08-8593
+//GetRolesApI Get roles API - 7c86-da3f-4b08-8593
 /* Get all roles for the Cisco DNA Center system
 
 
-@param GetRolesAPIHeaderParams Custom header parameters
+@param GetRolesApIHeaderParams Custom header parameters
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-roles-api
 */
-func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesApIHeaderParams) (*ResponseUserandRolesGetRolesApI, *resty.Response, error) {
+func (s *UserandRolesService) GetRolesApI(GetRolesApIHeaderParams *GetRolesApIHeaderParams) (*ResponseUserandRolesGetRolesApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/roles"
 
 	var response *resty.Response
@@ -170,10 +170,10 @@ func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesApIHe
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
 
-	if GetRolesAPIHeaderParams != nil {
+	if GetRolesApIHeaderParams != nil {
 
-		if GetRolesAPIHeaderParams.InvokeSource != "" {
-			clientRequest = clientRequest.SetHeader("invokeSource", GetRolesAPIHeaderParams.InvokeSource)
+		if GetRolesApIHeaderParams.InvokeSource != "" {
+			clientRequest = clientRequest.SetHeader("invokeSource", GetRolesApIHeaderParams.InvokeSource)
 		}
 
 	}
@@ -190,7 +190,7 @@ func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesApIHe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetRolesAPI(GetRolesAPIHeaderParams)
+			return s.GetRolesApI(GetRolesApIHeaderParams)
 		}
 		return nil, response, fmt.Errorf("error with operation GetRolesApi")
 	}
@@ -200,18 +200,18 @@ func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesApIHe
 
 }
 
-//GetUsersAPI Get users API - 918c-89fa-4a98-a528
+//GetUsersApI Get users API - 918c-89fa-4a98-a528
 /* Get all users for the Cisco DNA Center system
 
 
-@param GetUsersAPIQueryParams Filtering parameter
+@param GetUsersApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-users-api
 */
-func (s *UserandRolesService) GetUsersAPI(GetUsersAPIQueryParams *GetUsersApIQueryParams) (*ResponseUserandRolesGetUsersApI, *resty.Response, error) {
+func (s *UserandRolesService) GetUsersApI(GetUsersApIQueryParams *GetUsersApIQueryParams) (*ResponseUserandRolesGetUsersApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
 
-	queryString, _ := query.Values(GetUsersAPIQueryParams)
+	queryString, _ := query.Values(GetUsersApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -227,7 +227,7 @@ func (s *UserandRolesService) GetUsersAPI(GetUsersAPIQueryParams *GetUsersApIQue
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetUsersAPI(GetUsersAPIQueryParams)
+			return s.GetUsersApI(GetUsersApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation GetUsersApi")
 	}
@@ -237,18 +237,18 @@ func (s *UserandRolesService) GetUsersAPI(GetUsersAPIQueryParams *GetUsersApIQue
 
 }
 
-//GetExternalAuthenticationServersAPI Get external authentication servers API - 9dbd-0b01-4758-bde4
+//GetExternalAuthenticationServersApI Get external authentication servers API - 9dbd-0b01-4758-bde4
 /* Get external users authentication servers
 
 
-@param GetExternalAuthenticationServersAPIQueryParams Filtering parameter
+@param GetExternalAuthenticationServersApIQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-servers-api
 */
-func (s *UserandRolesService) GetExternalAuthenticationServersAPI(GetExternalAuthenticationServersAPIQueryParams *GetExternalAuthenticationServersApIQueryParams) (*ResponseUserandRolesGetExternalAuthenticationServersApI, *resty.Response, error) {
+func (s *UserandRolesService) GetExternalAuthenticationServersApI(GetExternalAuthenticationServersApIQueryParams *GetExternalAuthenticationServersApIQueryParams) (*ResponseUserandRolesGetExternalAuthenticationServersApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-servers"
 
-	queryString, _ := query.Values(GetExternalAuthenticationServersAPIQueryParams)
+	queryString, _ := query.Values(GetExternalAuthenticationServersApIQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -264,7 +264,7 @@ func (s *UserandRolesService) GetExternalAuthenticationServersAPI(GetExternalAut
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetExternalAuthenticationServersAPI(GetExternalAuthenticationServersAPIQueryParams)
+			return s.GetExternalAuthenticationServersApI(GetExternalAuthenticationServersApIQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation GetExternalAuthenticationServersApi")
 	}
@@ -274,20 +274,20 @@ func (s *UserandRolesService) GetExternalAuthenticationServersAPI(GetExternalAut
 
 }
 
-//AddUserAPI Add user API - 6c9a-09c4-4a39-9e2b
+//AddUserApI Add user API - 6c9a-09c4-4a39-9e2b
 /* Add a new user for Cisco DNA Center system
 
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-user-api
 */
-func (s *UserandRolesService) AddUserAPI(requestUserandRolesAddUserAPI *RequestUserandRolesAddUserApI) (*ResponseUserandRolesAddUserApI, *resty.Response, error) {
+func (s *UserandRolesService) AddUserApI(requestUserandRolesAddUserApI *RequestUserandRolesAddUserApI) (*ResponseUserandRolesAddUserApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestUserandRolesAddUserAPI).
+		SetBody(requestUserandRolesAddUserApI).
 		SetResult(&ResponseUserandRolesAddUserApI{}).
 		SetError(&Error).
 		Post(path)
@@ -300,7 +300,7 @@ func (s *UserandRolesService) AddUserAPI(requestUserandRolesAddUserAPI *RequestU
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.AddUserAPI(requestUserandRolesAddUserAPI)
+			return s.AddUserApI(requestUserandRolesAddUserApI)
 		}
 
 		return nil, response, fmt.Errorf("error with operation AddUserApi")
@@ -311,18 +311,18 @@ func (s *UserandRolesService) AddUserAPI(requestUserandRolesAddUserAPI *RequestU
 
 }
 
-//UpdateUserAPI Update user API - f596-6adc-492b-a2ff
+//UpdateUserApI Update user API - f596-6adc-492b-a2ff
 /* Update a user for Cisco DNA Center system
 
 
  */
-func (s *UserandRolesService) UpdateUserAPI(requestUserandRolesUpdateUserAPI *RequestUserandRolesUpdateUserApI) (*ResponseUserandRolesUpdateUserApI, *resty.Response, error) {
+func (s *UserandRolesService) UpdateUserApI(requestUserandRolesUpdateUserApI *RequestUserandRolesUpdateUserApI) (*ResponseUserandRolesUpdateUserApI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestUserandRolesUpdateUserAPI).
+		SetBody(requestUserandRolesUpdateUserApI).
 		SetResult(&ResponseUserandRolesUpdateUserApI{}).
 		SetError(&Error).
 		Put(path)
@@ -334,7 +334,7 @@ func (s *UserandRolesService) UpdateUserAPI(requestUserandRolesUpdateUserAPI *Re
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdateUserAPI(requestUserandRolesUpdateUserAPI)
+			return s.UpdateUserApI(requestUserandRolesUpdateUserApI)
 		}
 		return nil, response, fmt.Errorf("error with operation UpdateUserApi")
 	}
