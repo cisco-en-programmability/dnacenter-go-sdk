@@ -348,16 +348,19 @@ func (s *Client) SetDNACWaitTimeToManyRequest(waitTimeToManyRequest int) error {
 	if err != nil {
 		return err
 	}
+	if waitTimeToManyRequest <= 0 {
+		waitTimeToManyRequest = 15 // 15s
+	}
 	s.common.client.
 		// Set retry count to non zero to enable retries
 		SetRetryCount(1).
 		// You can override initial retry wait time.
 		// Default is 100 milliseconds.
-		SetRetryWaitTime(time.Duration(waitTimeToManyRequest) * time.Minute).
+		SetRetryWaitTime(time.Duration(waitTimeToManyRequest) * time.Second).
 		// MaxWaitTime can be overridden as well.
-		// Default is 2 seconds.
-		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Minute)
-	return err
+		// Default is 2 secounds.
+		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Second)
+	return nil
 }
 
 func statusIsFailure(status string) bool {
