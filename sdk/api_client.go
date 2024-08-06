@@ -24,6 +24,8 @@ const DNAC_PASSWORD = "DNAC_PASSWORD"
 const DNAC_DEBUG = "DNAC_DEBUG"
 const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
 const DNAC_WAIT_TIME = "DNAC_WAIT_TIME"
+const VERSION = "2.3.5.3"
+const USER_AGENT = "go-cisco-dnacsdk/" + VERSION
 
 type FileDownload struct {
 	FileName string
@@ -167,6 +169,7 @@ func NewClientNoAuth() (*Client, error) {
 	var err error
 
 	client := resty.New()
+	client.SetHeader("User-Agent", USER_AGENT)
 	c := &Client{}
 	c.common.client = client
 	waitTimeToManyRequest := 0
@@ -198,6 +201,7 @@ func NewClientNoAuth() (*Client, error) {
 			retry := false
 			if r.StatusCode() == http.StatusUnauthorized {
 				cl := resty.New()
+				cl.SetHeader("User-Agent", USER_AGENT)
 
 				username := os.Getenv("DNAC_USERNAME")
 				password := os.Getenv("DNAC_PASSWORD")
@@ -339,6 +343,7 @@ func (s *Client) AuthClient() error {
 
 // RestyClient returns the resty.Client used by the sdk
 func (s *Client) RestyClient() *resty.Client {
+	s.common.client.SetHeader("User-Agent", USER_AGENT)
 	return s.common.client
 }
 

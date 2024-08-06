@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.32] - 2024-08-06
+### Added
+- Set User-Agent header in API client
+
 ## [5.0.31] - 2024-07-17
 ### Changed
 - Method `SetDNACWaitTimeToManyRequest` update for update wait time from minutes to seconds.
@@ -642,4 +646,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.29]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.28...v5.0.29
 [5.0.30]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.29...v5.0.30
 [5.0.31]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.30...v5.0.31
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.31...main
+[5.0.32]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.31...v5.0.32
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.32...main
