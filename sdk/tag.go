@@ -12,37 +12,43 @@ import (
 type TagService service
 
 type GetTagQueryParams struct {
-	Name                     string `url:"name,omitempty"`                      //Tag name is mandatory when filter operation is used.
-	AdditionalInfonameSpace  string `url:"additionalInfo.nameSpace,omitempty"`  //nameSpace
-	AdditionalInfoattributes string `url:"additionalInfo.attributes,omitempty"` //attributeName
-	Level                    string `url:"level,omitempty"`                     //levelArg
-	Offset                   int    `url:"offset,omitempty"`                    //offset
-	Limit                    int    `url:"limit,omitempty"`                     //limit
-	Size                     string `url:"size,omitempty"`                      //size in kilobytes(KB)
-	Field                    string `url:"field,omitempty"`                     //Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'
-	SortBy                   string `url:"sortBy,omitempty"`                    //Only supported attribute is name. SortyBy is mandatory when order is used.
-	Order                    string `url:"order,omitempty"`                     //Available values are asc and des
-	SystemTag                string `url:"systemTag,omitempty"`                 //systemTag
+	Name                     string  `url:"name,omitempty"`                      //Tag name is mandatory when filter operation is used.
+	AdditionalInfonameSpace  string  `url:"additionalInfo.nameSpace,omitempty"`  //nameSpace
+	AdditionalInfoattributes string  `url:"additionalInfo.attributes,omitempty"` //attributeName
+	Level                    string  `url:"level,omitempty"`                     //levelArg
+	Offset                   float64 `url:"offset,omitempty"`                    //offset
+	Limit                    float64 `url:"limit,omitempty"`                     //limit
+	Size                     string  `url:"size,omitempty"`                      //size in kilobytes(KB)
+	Field                    string  `url:"field,omitempty"`                     //Available field names are :'name,id,parentId,type,additionalInfo.nameSpace,additionalInfo.attributes'
+	SortBy                   string  `url:"sortBy,omitempty"`                    //Only supported attribute is name. SortyBy is mandatory when order is used.
+	Order                    string  `url:"order,omitempty"`                     //Available values are asc and des
+	SystemTag                string  `url:"systemTag,omitempty"`                 //systemTag
 }
 type GetTagCountQueryParams struct {
 	Name          string `url:"name,omitempty"`          //tagName
 	NameSpace     string `url:"nameSpace,omitempty"`     //nameSpace
 	AttributeName string `url:"attributeName,omitempty"` //attributeName
-	Level         string `url:"level,omitempty"`         //levelArg
 	Size          string `url:"size,omitempty"`          //size in kilobytes(KB)
 	SystemTag     string `url:"systemTag,omitempty"`     //systemTag
 }
 type GetTagMembersByIDQueryParams struct {
-	MemberType            string `url:"memberType,omitempty"`            //Entity type of the member. Possible values can be retrieved by using /tag/member/type API
-	Offset                string `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
-	Limit                 string `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
-	MemberAssociationType string `url:"memberAssociationType,omitempty"` //Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
-	Level                 string `url:"level,omitempty"`                 //level
+	MemberType            string  `url:"memberType,omitempty"`            //Entity type of the member. Possible values can be retrieved by using /tag/member/type API
+	Offset                float64 `url:"offset,omitempty"`                //Used for pagination. It indicates the starting row number out of available member records
+	Limit                 float64 `url:"limit,omitempty"`                 //Used to Number of maximum members to return in the result
+	MemberAssociationType string  `url:"memberAssociationType,omitempty"` //Indicates how the member is associated with the tag. Possible values and description. 1) DYNAMIC : The member is associated to the tag through rules. 2) STATIC – The member is associated to the tag manually. 3) MIXED – The member is associated manually and also satisfies the rule defined for the tag
+	Level                 string  `url:"level,omitempty"`                 //level
 }
 type GetTagMemberCountQueryParams struct {
 	MemberType            string `url:"memberType,omitempty"`            //memberType
 	MemberAssociationType string `url:"memberAssociationType,omitempty"` //memberAssociationType
-	Level                 string `url:"level,omitempty"`                 //level
+}
+type RetrieveTagsAssociatedWithTheInterfacesQueryParams struct {
+	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1. minimum: 1
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page. minimum: 1, maximum: 500
+}
+type RetrieveTagsAssociatedWithNetworkDevicesQueryParams struct {
+	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1. minimum: 1
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page. minimum: 1, maximum: 500
 }
 
 type ResponseTagUpdateTag struct {
@@ -76,13 +82,7 @@ type ResponseTagGetTagResponseDynamicRulesRules struct {
 	Name      string                                             `json:"name,omitempty"`      //
 	Value     string                                             `json:"value,omitempty"`     //
 }
-
-type ResponseTagGetTagResponseDynamicRulesRulesItems struct {
-	Operation string `json:"operation,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Value     string `json:"value,omitempty"`     //
-}
-
+type ResponseTagGetTagResponseDynamicRulesRulesItems interface{}
 type ResponseTagCreateTag struct {
 	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagCreateTagResponse `json:"response,omitempty"` //
@@ -95,11 +95,11 @@ type ResponseTagGetTagCount struct {
 	Version  string `json:"version,omitempty"`  //
 	Response *int   `json:"response,omitempty"` //
 }
-type ResponseTagUpdatesTagMembership struct {
-	Version  string                                   `json:"version,omitempty"`  //
-	Response *ResponseTagUpdatesTagMembershipResponse `json:"response,omitempty"` //
+type ResponseTagUpdateTagMembership struct {
+	Version  string                                  `json:"version,omitempty"`  //
+	Response *ResponseTagUpdateTagMembershipResponse `json:"response,omitempty"` //
 }
-type ResponseTagUpdatesTagMembershipResponse struct {
+type ResponseTagUpdateTagMembershipResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
@@ -138,12 +138,7 @@ type ResponseTagGetTagByIDResponseDynamicRulesRules struct {
 	Name      string                                                 `json:"name,omitempty"`      //
 	Value     string                                                 `json:"value,omitempty"`     //
 }
-
-type ResponseTagGetTagByIDResponseDynamicRulesRulesItems struct {
-	Operation string `json:"operation,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Value     string `json:"value,omitempty"`     //
-}
+type ResponseTagGetTagByIDResponseDynamicRulesRulesItems interface{}
 type ResponseTagGetTagMembersByID struct {
 	Version  string                                  `json:"version,omitempty"`  //
 	Response *[]ResponseTagGetTagMembersByIDResponse `json:"response,omitempty"` //
@@ -171,58 +166,122 @@ type ResponseTagRemoveTagMemberResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
+type ResponseTagRetrieveTagsAssociatedWithTheInterfaces struct {
+	Response *[]ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponse `json:"response,omitempty"` //
+	Version  string                                                        `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponse struct {
+	ID   string                                                            `json:"id,omitempty"`   // Id of the member (network device or interface)
+	Tags *[]ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponseTags `json:"tags,omitempty"` //
+}
+type ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponseTags struct {
+	ID   string `json:"id,omitempty"`   // Tag id
+	Name string `json:"name,omitempty"` // Tag name
+}
+type ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag struct {
+	Response *ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTagResponse `json:"response,omitempty"` //
+	Version  string                                                                             `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTagResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseTagQueryTheTagsAssociatedWithInterfaces struct {
+	Response *[]ResponseTagQueryTheTagsAssociatedWithInterfacesResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagQueryTheTagsAssociatedWithInterfacesResponse struct {
+	ID   string                                                         `json:"id,omitempty"`   // Id of the member (network device or interface)
+	Tags *[]ResponseTagQueryTheTagsAssociatedWithInterfacesResponseTags `json:"tags,omitempty"` //
+}
+type ResponseTagQueryTheTagsAssociatedWithInterfacesResponseTags struct {
+	ID   string `json:"id,omitempty"`   // Tag id
+	Name string `json:"name,omitempty"` // Tag name
+}
+type ResponseTagRetrieveTagsAssociatedWithNetworkDevices struct {
+	Response *[]ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponse `json:"response,omitempty"` //
+	Version  string                                                         `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponse struct {
+	ID   string                                                             `json:"id,omitempty"`   // Id of the member (network device or interface)
+	Tags *[]ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponseTags `json:"tags,omitempty"` //
+}
+type ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponseTags struct {
+	ID   string `json:"id,omitempty"`   // Tag id
+	Name string `json:"name,omitempty"` // Tag name
+}
+type ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag struct {
+	Response *ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTagResponse `json:"response,omitempty"` //
+	Version  string                                                                                 `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTagResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseTagQueryTheTagsAssociatedWithNetworkDevices struct {
+	Response *[]ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponse `json:"response,omitempty"` //
+	Version  string                                                         `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponse struct {
+	ID   string                                                             `json:"id,omitempty"`   // Id of the member (network device or interface)
+	Tags *[]ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponseTags `json:"tags,omitempty"` //
+}
+type ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponseTags struct {
+	ID   string `json:"id,omitempty"`   // Tag id
+	Name string `json:"name,omitempty"` // Tag name
+}
 type RequestTagUpdateTag struct {
-	SystemTag        *bool                              `json:"systemTag,omitempty"`        //
-	Description      string                             `json:"description,omitempty"`      //
+	SystemTag        *bool                              `json:"systemTag,omitempty"`        // true for system created tags, false for user defined tags
+	Description      string                             `json:"description,omitempty"`      // description of the tag.
 	DynamicRules     *[]RequestTagUpdateTagDynamicRules `json:"dynamicRules,omitempty"`     //
-	Name             string                             `json:"name,omitempty"`             //
-	ID               string                             `json:"id,omitempty"`               //
-	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` //
+	Name             string                             `json:"name,omitempty"`             // name of the tag.
+	ID               string                             `json:"id,omitempty"`               // mandatory instanceUuid of the tag that needs to be updated.
+	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
 }
 type RequestTagUpdateTagDynamicRules struct {
-	MemberType string                                `json:"memberType,omitempty"` //
+	MemberType string                                `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
 	Rules      *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagUpdateTagDynamicRulesRules struct {
-	Values    []string                                     `json:"values,omitempty"`    //
-	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                       `json:"operation,omitempty"` //
-	Name      string                                       `json:"name,omitempty"`      //
-	Value     string                                       `json:"value,omitempty"`     //
+	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-
-type RequestTagUpdateTagDynamicRulesRulesItems struct {
-	Operation string `json:"operation,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Value     string `json:"value,omitempty"`     //
-}
-
+type RequestTagUpdateTagDynamicRulesRulesItems interface{}
 type RequestTagCreateTag struct {
-	SystemTag        *bool                              `json:"systemTag,omitempty"`        //
-	Description      string                             `json:"description,omitempty"`      //
+	SystemTag        *bool                              `json:"systemTag,omitempty"`        // true for system created tags, false for user defined tags
+	Description      string                             `json:"description,omitempty"`      // description of the tag.
 	DynamicRules     *[]RequestTagCreateTagDynamicRules `json:"dynamicRules,omitempty"`     //
-	Name             string                             `json:"name,omitempty"`             //
-	ID               string                             `json:"id,omitempty"`               //
-	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` //
+	Name             string                             `json:"name,omitempty"`             // name of the tag.
+	ID               string                             `json:"id,omitempty"`               // instanceUuid generated for the tag.
+	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
 }
 type RequestTagCreateTagDynamicRules struct {
-	MemberType string                                `json:"memberType,omitempty"` //
+	MemberType string                                `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
 	Rules      *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagCreateTagDynamicRulesRules struct {
-	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     //
-	Operation string                                       `json:"operation,omitempty"` //
+	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-type RequestTagCreateTagDynamicRulesRulesItems struct {
-	Operation string `json:"operation,omitempty"` //
-	Name      string `json:"name,omitempty"`      //
-	Value     string `json:"value,omitempty"`     //
-}
-type RequestTagUpdatesTagMembership struct {
+type RequestTagCreateTagDynamicRulesRulesItems interface{}
+type RequestTagUpdateTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
 	MemberType   string              `json:"memberType,omitempty"`   //
 }
+type RequestTagUpdateTagMembershipMemberToTags struct {
+	Key []string `json:"key,omitempty"` //
+}
 type RequestTagAddMembersToTheTag map[string][]string
+type RequestTagQueryTheTagsAssociatedWithInterfaces struct {
+	IDs []string `json:"ids,omitempty"` // List of member ids (network device or interface), maximum 500 ids can be passed.
+}
+type RequestTagQueryTheTagsAssociatedWithNetworkDevices struct {
+	IDs []string `json:"ids,omitempty"` // List of member ids (network device or interface), maximum 500 ids can be passed.
+}
 
 //GetTag Get Tag - ee9a-ab01-487a-8896
 /* Returns the tags for given filter criteria
@@ -449,6 +508,148 @@ func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *
 
 }
 
+//RetrieveTagsAssociatedWithTheInterfaces Retrieve tags associated with the interfaces. - b786-6abb-47f8-8c83
+/* Fetches the tags associated with the interfaces. Interfaces that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When an interface is tagged, it is called a member of the tag.
+
+
+@param RetrieveTagsAssociatedWithTheInterfacesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-the-interfaces
+*/
+func (s *TagService) RetrieveTagsAssociatedWithTheInterfaces(RetrieveTagsAssociatedWithTheInterfacesQueryParams *RetrieveTagsAssociatedWithTheInterfacesQueryParams) (*ResponseTagRetrieveTagsAssociatedWithTheInterfaces, *resty.Response, error) {
+	path := "/intent/api/v1/tags/interfaces/membersAssociations"
+
+	queryString, _ := query.Values(RetrieveTagsAssociatedWithTheInterfacesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseTagRetrieveTagsAssociatedWithTheInterfaces{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTagsAssociatedWithTheInterfaces(RetrieveTagsAssociatedWithTheInterfacesQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTagsAssociatedWithTheInterfaces")
+	}
+
+	result := response.Result().(*ResponseTagRetrieveTagsAssociatedWithTheInterfaces)
+	return result, response, err
+
+}
+
+//RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag Retrieve the count of interfaces that are associated with at least one tag. - 3cb8-f8e6-4bfa-928c
+/* Fetches the count of interfaces that are associated with at least one tag. A tag is a user-defined or system-defined construct to group resources. When an interface is tagged, it is called a member of the tag.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-interfaces-that-are-associated-with-at-least-one-tag
+*/
+func (s *TagService) RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag() (*ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag, *resty.Response, error) {
+	path := "/intent/api/v1/tags/interfaces/membersAssociations/count"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag()
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag")
+	}
+
+	result := response.Result().(*ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag)
+	return result, response, err
+
+}
+
+//RetrieveTagsAssociatedWithNetworkDevices Retrieve tags associated with network devices. - 0b84-9b56-4bda-bc68
+/* Fetches the tags associated with network devices. Devices that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When a device is tagged, it is called a member of the tag.
+
+
+@param RetrieveTagsAssociatedWithNetworkDevicesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-network-devices
+*/
+func (s *TagService) RetrieveTagsAssociatedWithNetworkDevices(RetrieveTagsAssociatedWithNetworkDevicesQueryParams *RetrieveTagsAssociatedWithNetworkDevicesQueryParams) (*ResponseTagRetrieveTagsAssociatedWithNetworkDevices, *resty.Response, error) {
+	path := "/intent/api/v1/tags/networkDevices/membersAssociations"
+
+	queryString, _ := query.Values(RetrieveTagsAssociatedWithNetworkDevicesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseTagRetrieveTagsAssociatedWithNetworkDevices{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTagsAssociatedWithNetworkDevices(RetrieveTagsAssociatedWithNetworkDevicesQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTagsAssociatedWithNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseTagRetrieveTagsAssociatedWithNetworkDevices)
+	return result, response, err
+
+}
+
+//RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag Retrieve the count of network devices that are associated with at least one tag. - 63b1-69be-4919-9dc0
+/* Fetches the count of network devices that are associated with at least one tag. A tag is a user-defined or system-defined construct to group resources. When a device is tagged, it is called a member of the tag.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-network-devices-that-are-associated-with-at-least-one-tag
+*/
+func (s *TagService) RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag() (*ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag, *resty.Response, error) {
+	path := "/intent/api/v1/tags/networkDevices/membersAssociations/count"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag()
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag")
+	}
+
+	result := response.Result().(*ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag)
+	return result, response, err
+
+}
+
 //CreateTag Create Tag - 1399-891c-42a8-be64
 /* Creates tag with specified tag attributes
 
@@ -526,6 +727,80 @@ func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag 
 
 }
 
+//QueryTheTagsAssociatedWithInterfaces Query the tags associated with interfaces. - 87a2-4a4e-4109-becf
+/* Fetches the tags associated with the given interface 'ids'. Interfaces that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When an interface is tagged, it is called a member of the tag. 'ids' can be fetched via '/dna/intent/api/v1/interface' API.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-interfaces
+*/
+func (s *TagService) QueryTheTagsAssociatedWithInterfaces(requestTagQueryTheTagsAssociatedWithInterfaces *RequestTagQueryTheTagsAssociatedWithInterfaces) (*ResponseTagQueryTheTagsAssociatedWithInterfaces, *resty.Response, error) {
+	path := "/intent/api/v1/tags/interfaces/membersAssociations/query"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestTagQueryTheTagsAssociatedWithInterfaces).
+		SetResult(&ResponseTagQueryTheTagsAssociatedWithInterfaces{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.QueryTheTagsAssociatedWithInterfaces(requestTagQueryTheTagsAssociatedWithInterfaces)
+		}
+
+		return nil, response, fmt.Errorf("error with operation QueryTheTagsAssociatedWithInterfaces")
+	}
+
+	result := response.Result().(*ResponseTagQueryTheTagsAssociatedWithInterfaces)
+	return result, response, err
+
+}
+
+//QueryTheTagsAssociatedWithNetworkDevices Query the tags associated with network devices. - 6480-fa01-417b-b397
+/* Fetches the tags associated with the given network device 'ids'. Devices that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When a device is tagged, it is called a member of the tag. 'ids' can be fetched via '/dna/intent/api/v1/network-device' API.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-network-devices
+*/
+func (s *TagService) QueryTheTagsAssociatedWithNetworkDevices(requestTagQueryTheTagsAssociatedWithNetworkDevices *RequestTagQueryTheTagsAssociatedWithNetworkDevices) (*ResponseTagQueryTheTagsAssociatedWithNetworkDevices, *resty.Response, error) {
+	path := "/intent/api/v1/tags/networkDevices/membersAssociations/query"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestTagQueryTheTagsAssociatedWithNetworkDevices).
+		SetResult(&ResponseTagQueryTheTagsAssociatedWithNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.QueryTheTagsAssociatedWithNetworkDevices(requestTagQueryTheTagsAssociatedWithNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation QueryTheTagsAssociatedWithNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseTagQueryTheTagsAssociatedWithNetworkDevices)
+	return result, response, err
+
+}
+
 //UpdateTag Update Tag - 4d86-a993-469a-9da9
 /* Updates a tag specified by id
 
@@ -559,19 +834,19 @@ func (s *TagService) UpdateTag(requestTagUpdateTag *RequestTagUpdateTag) (*Respo
 
 }
 
-//UpdatesTagMembership Updates tag membership - 45bc-7a83-44a8-bc1e
-/* Updates tag membership. As part of the request payload through this API, only the specified members are added / retained to the given input tags. Possible values of memberType attribute in the request payload can be queried by using the /tag/member/type API
+//UpdateTagMembership Update tag membership - 45bc-7a83-44a8-bc1e
+/* Update tag membership. As part of the request payload through this API, only the specified members are added / retained to the given input tags. Possible values of memberType attribute in the request payload can be queried by using the /tag/member/type API
 
 
  */
-func (s *TagService) UpdatesTagMembership(requestTagUpdatesTagMembership *RequestTagUpdatesTagMembership) (*ResponseTagUpdatesTagMembership, *resty.Response, error) {
+func (s *TagService) UpdateTagMembership(requestTagUpdateTagMembership *RequestTagUpdateTagMembership) (*ResponseTagUpdateTagMembership, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/member"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestTagUpdatesTagMembership).
-		SetResult(&ResponseTagUpdatesTagMembership{}).
+		SetBody(requestTagUpdateTagMembership).
+		SetResult(&ResponseTagUpdateTagMembership{}).
 		SetError(&Error).
 		Put(path)
 
@@ -582,12 +857,12 @@ func (s *TagService) UpdatesTagMembership(requestTagUpdatesTagMembership *Reques
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesTagMembership(requestTagUpdatesTagMembership)
+			return s.UpdateTagMembership(requestTagUpdateTagMembership)
 		}
-		return nil, response, fmt.Errorf("error with operation UpdatesTagMembership")
+		return nil, response, fmt.Errorf("error with operation UpdateTagMembership")
 	}
 
-	result := response.Result().(*ResponseTagUpdatesTagMembership)
+	result := response.Result().(*ResponseTagUpdateTagMembership)
 	return result, response, err
 
 }

@@ -37,7 +37,7 @@ func (f *FileDownload) SaveDownload(path string) error {
 	return ioutil.WriteFile(fpath, f.FileData, 0664)
 }
 
-// Client manages communication with the Cisco DNA Center API
+// Client manages communication with the Cisco Catalyst Center API
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
@@ -45,8 +45,6 @@ type Client struct {
 	Authentication              *AuthenticationService
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
-	AuthenticationManagement    *AuthenticationManagementService
-	CiscoDnaCenterSystem        *CiscoDnaCenterSystemService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService
 	Compliance                  *ComplianceService
@@ -56,7 +54,7 @@ type Client struct {
 	DeviceReplacement           *DeviceReplacementService
 	Devices                     *DevicesService
 	Discovery                   *DiscoveryService
-	EoX                         *EoXService
+	Eox                         *EoxService
 	EventManagement             *EventManagementService
 	FabricWireless              *FabricWirelessService
 	File                        *FileService
@@ -84,6 +82,8 @@ type Client struct {
 	Users                       *UsersService
 	Wireless                    *WirelessService
 	CustomCall                  *CustomCallService
+	CiscoDnaCenterSystem        *CiscoDnaCenterSystemService
+	CiscoTrustedCertificates    *CiscoTrustedCertificatesService
 }
 
 type service struct {
@@ -95,7 +95,7 @@ func (s *Client) SetAuthToken(accessToken string) {
 	s.common.client.SetHeader("X-Auth-Token", accessToken)
 }
 
-// Error indicates an error from the invocation of a Cisco DNA Center API.
+// Error indicates an error from the invocation of a Cisco Catalyst Center API.
 var Error map[string]interface{}
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
@@ -251,8 +251,6 @@ func NewClientNoAuth() (*Client, error) {
 	c.Authentication = (*AuthenticationService)(&c.common)
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
-	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
-	c.CiscoDnaCenterSystem = (*CiscoDnaCenterSystemService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
 	c.Compliance = (*ComplianceService)(&c.common)
@@ -262,7 +260,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 	c.Devices = (*DevicesService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
-	c.EoX = (*EoXService)(&c.common)
+	c.Eox = (*EoxService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.FabricWireless = (*FabricWirelessService)(&c.common)
 	c.File = (*FileService)(&c.common)

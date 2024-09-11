@@ -28,7 +28,7 @@ type ResponsePlatformCiscoDnaCenterReleaseSummaryResponse struct {
 	InstalledVersion       string                                                                        `json:"installedVersion,omitempty"`       // The installed Cisco DNAC version
 	SystemVersion          string                                                                        `json:"systemVersion,omitempty"`          // The MAGLEV-SYSTEM version
 	SupportedDirectUpdates *[]ResponsePlatformCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates `json:"supportedDirectUpdates,omitempty"` // The list of earlier releases that can upgrade directly to the current release. If the supportedDirectUpdates value is empty, then no direct upgrades to the current release are allowed.
-	TenantID               string                                                                        `json:"tenantId,omitempty"`               // Tenant ID (for multi tenant Cisco DNA Center)
+	TenantID               string                                                                        `json:"tenantId,omitempty"`               // Tenant ID (for multi tenant Cisco Catalyst Center)
 }
 type ResponsePlatformCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates interface{}
 type ResponsePlatformCiscoDnaCenterNodesConfigurationSummary struct {
@@ -84,12 +84,12 @@ type ResponsePlatformCiscoDnaCenterNodesConfigurationSummaryResponseNodesPlatfor
 	Serial  string `json:"serial,omitempty"`  // Serial number of chassis
 }
 
-//CiscoDnaCenterPackagesSummary Cisco DNA Center Packages Summary - f3aa-697a-453a-bba0
-/* Provides information such as name, version of packages installed on the DNA center.
+//CiscoDnaCenterPackagesSummary Cisco Catalyst Center Packages Summary - f3aa-697a-453a-bba0
+/* Provides information such as name, version of packages installed on the Catalyst Center.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-d-n-a-center-packages-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-packages-summary
 */
 func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCiscoDnaCenterPackagesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-packages"
@@ -118,8 +118,8 @@ func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCisc
 
 }
 
-//CiscoDnaCenterReleaseSummary Cisco DNA Center Release Summary - 5b87-e929-418b-8550
-/* Provides information such as API version, mandatory core packages for installation or upgrade, optional packages, Cisco DNA Center name and version, supported direct updates, and tenant ID.
+//CiscoDnaCenterReleaseSummary Cisco Catalyst Center Release Summary - 5b87-e929-418b-8550
+/* Provides information such as API version, mandatory core packages for installation or upgrade, optional packages, Cisco Catalyst Center name and version, supported direct updates, and tenant ID.
 
 
 
@@ -152,8 +152,8 @@ func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCisco
 
 }
 
-//CiscoDnaCenterNodesConfigurationSummary Cisco DNA Center Nodes Configuration Summary - d8b0-fb13-4f08-a967
-/* Provides details about the current Cisco DNA Center node configuration, such as API version, node name, NTP server, intracluster link, LACP mode, network static routes, DNS server, subnet mask, host IP, default gateway, and interface information.
+//CiscoDnaCenterNodesConfigurationSummary Cisco Catalyst Center Nodes Configuration Summary - d8b0-fb13-4f08-a967
+/* Provides details about the current Cisco Catalyst Center node configuration, such as API version, node name, NTP server, intracluster link, LACP mode, network static routes, DNS server, subnet mask, host IP, default gateway, and interface information.
 
 
 

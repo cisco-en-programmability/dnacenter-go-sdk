@@ -2,7 +2,6 @@ package dnac
 
 import (
 	"fmt"
-	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -46,11 +45,6 @@ func (s *CiscoDnaCenterSystemService) AuthorizeDevice(requestCiscoDnaCenterSyste
 	}
 
 	if response.IsError() {
-
-		if response.StatusCode() == http.StatusUnauthorized {
-			return s.AuthorizeDevice(requestCiscoDnaCenterSystemAuthorizeDevice)
-		}
-
 		return nil, response, fmt.Errorf("error with operation AuthorizeDevice")
 	}
 

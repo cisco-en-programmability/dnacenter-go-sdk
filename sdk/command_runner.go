@@ -9,7 +9,7 @@ import (
 
 type CommandRunnerService service
 
-type ResponseCommandRunnerGetAllKeywordsOfCliSAcceptedByCommandRunner struct {
+type ResponseCommandRunnerGetAllKeywordsOfClisAcceptedByCommandRunner struct {
 	Response []string `json:"response,omitempty"` //
 	Version  string   `json:"version,omitempty"`  //
 }
@@ -22,27 +22,27 @@ type ResponseCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigur
 	URL    string `json:"url,omitempty"`    //
 }
 type RequestCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration struct {
-	Commands    []string `json:"commands,omitempty"`    //
-	Description string   `json:"description,omitempty"` //
-	DeviceUUIDs []string `json:"deviceUuids,omitempty"` //
-	Name        string   `json:"name,omitempty"`        //
-	Timeout     *int     `json:"timeout,omitempty"`     //
+	Commands    []string `json:"commands,omitempty"`    // Commands to be executed
+	Description string   `json:"description,omitempty"` // Describe the details about the command request
+	DeviceUUIDs []string `json:"deviceUuids,omitempty"` // Device Id of the device
+	Name        string   `json:"name,omitempty"`        // Name of the the request like getshowrun , deviceinterfacestatusCli.
+	Timeout     *int     `json:"timeout,omitempty"`     // The timeout value in unit of second. If no timeout provided wait till 300sec
 }
 
-//GetAllKeywordsOfCliSAcceptedByCommandRunner Get all keywords of CLIs accepted by command runner - 33bb-2b9d-4019-9e14
+//GetAllKeywordsOfClisAcceptedByCommandRunner Get all keywords of CLIs accepted by command runner - 33bb-2b9d-4019-9e14
 /* Get valid keywords
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-keywords-of-c-l-is-accepted-by-command-runner
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-keywords-of-clis-accepted-by-command-runner
 */
-func (s *CommandRunnerService) GetAllKeywordsOfCliSAcceptedByCommandRunner() (*ResponseCommandRunnerGetAllKeywordsOfCliSAcceptedByCommandRunner, *resty.Response, error) {
+func (s *CommandRunnerService) GetAllKeywordsOfClisAcceptedByCommandRunner() (*ResponseCommandRunnerGetAllKeywordsOfClisAcceptedByCommandRunner, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-poller/cli/legit-reads"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseCommandRunnerGetAllKeywordsOfCliSAcceptedByCommandRunner{}).
+		SetResult(&ResponseCommandRunnerGetAllKeywordsOfClisAcceptedByCommandRunner{}).
 		SetError(&Error).
 		Get(path)
 
@@ -53,12 +53,12 @@ func (s *CommandRunnerService) GetAllKeywordsOfCliSAcceptedByCommandRunner() (*R
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetAllKeywordsOfCliSAcceptedByCommandRunner()
+			return s.GetAllKeywordsOfClisAcceptedByCommandRunner()
 		}
-		return nil, response, fmt.Errorf("error with operation GetAllKeywordsOfCliSAcceptedByCommandRunner")
+		return nil, response, fmt.Errorf("error with operation GetAllKeywordsOfClisAcceptedByCommandRunner")
 	}
 
-	result := response.Result().(*ResponseCommandRunnerGetAllKeywordsOfCliSAcceptedByCommandRunner)
+	result := response.Result().(*ResponseCommandRunnerGetAllKeywordsOfClisAcceptedByCommandRunner)
 	return result, response, err
 
 }

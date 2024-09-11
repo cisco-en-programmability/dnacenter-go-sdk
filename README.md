@@ -1,16 +1,16 @@
 # dnacenter-go-sdk
 
-dnacenter-go-sdk is a Go client library for [DNA Center Platform](https://developer.cisco.com/dnacenter/).
+dnacenter-go-sdk is a Go client library for [Catalyst Center Platform](https://developer.cisco.com/dnacenter/).
 
 ## Usage
 
 ```go
-import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
+import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
 ```
 
 ## Introduction
 
-The dnacenter-go-sdk makes it easier to work with the Cisco DNA Center Platform RESTFul APIs from Go.
+The dnacenter-go-sdk makes it easier to work with the Cisco Catalyst Center Platform RESTFul APIs from Go.
 
 It supports version 2.3.5.3, but it is backward compatible with other versions as long as those versions use the same URLs and options as version 2.3.5.3.
 
@@ -25,7 +25,7 @@ The first think you need to do is to generate an API client. There are two optio
 
 The client could be generated with the following parameters:
 
-- `baseURL`: The base URL, FQDN or IP, of the DNA instance.
+- `baseURL`: The base URL, FQDN or IP, of the Catalyst Center instance.
 - `username`: The username for the API authentication and authorization.
 - `password`: The password for the API authentication and authorization.
 - `debug`: Boolean to enable debugging
@@ -43,7 +43,7 @@ devicesCount, _, err := Client.Devices.GetDeviceCount()
 
 The client can be configured with the following environment variables:
 
-- `DNAC_BASE_URL`: The base URL, FQDN or IP, of the DNA instance.
+- `DNAC_BASE_URL`: The base URL, FQDN or IP, of the Catalyst Center instance.
 - `DNAC_USERNAME`: The username for the API authentication and authorization.
 - `DNAC_PASSWORD`: The password for the API authentication and authorization.
 - `DNAC_DEBUG`: Boolean to enable debugging
@@ -85,6 +85,8 @@ if devices.Response != nil {
 
 ## Documentation
 ### dnacenter-go-sdk/v5
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v6)
+### dnacenter-go-sdk/v5
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v5)
 ### dnacenter-go-sdk/v4
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v4)
@@ -96,7 +98,7 @@ if devices.Response != nil {
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk)
 ## Compatibility matrix
 
-| SDK versions | Cisco DNA Center version supported |
+| SDK versions | Cisco Catalyst Center version supported |
 |--------------|------------------------------------|
 | 0.y.z        |  2.1.2                             |
 | 1.y.z        |  2.1.2                             |
@@ -104,12 +106,13 @@ if devices.Response != nil {
 | 3.y.z        |  2.2.3.3                           |
 | 4.y.z        |  2.3.3.0                           |
 | 5.y.z        |  2.3.5.3                           |
+| 6.y.z        |  2.3.7.6                           |
 
 ## Changelog
 
 All notable changes to this project will be documented in the [CHANGELOG](https://github.com/cisco-en-programmability/dnacenter-go-sdk/blob/main/CHANGELOG.md) file.
 
-The development team may make additional name changes as the library evolves with the Cisco DNA Center APIs.
+The development team may make additional name changes as the library evolves with the Cisco Catalyst Center APIs.
 
 
 ## License

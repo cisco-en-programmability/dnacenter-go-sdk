@@ -12,140 +12,186 @@ import (
 type ComplianceService service
 
 type GetComplianceStatusQueryParams struct {
-	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Compliance status can be have value among 'COMPLIANT','NON_COMPLIANT','IN_PROGRESS', 'ERROR'
-	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
+	ComplianceStatus string `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" separated by commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
+	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated 'Device Ids'
+}
+type GetComplianceStatusCountQueryParams struct {
+	ComplianceStatus string `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" separated by commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
+}
+type GetComplianceDetailQueryParams struct {
+	ComplianceType   string  `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" in commas. The Compliance type can be 'NETWORK_PROFILE', 'IMAGE', 'FABRIC', 'APPLICATION_VISIBILITY', 'FABRIC', RUNNING_CONFIG', 'NETWORK_SETTINGS', 'WORKFLOW' , 'EOX'.
+	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" in commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
+	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated "Device Id(s)"
 	Offset           float64 `url:"offset,omitempty"`           //offset/starting row
 	Limit            float64 `url:"limit,omitempty"`            //Number of records to be retrieved
 }
-type GetComplianceStatusCountQueryParams struct {
-	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
-}
-type GetComplianceDetailQueryParams struct {
-	ComplianceType   string `url:"complianceType,omitempty"`   //complianceType can have any value among 'NETWORK_PROFILE', 'IMAGE', 'APPLICATION_VISIBILITY', 'FABRIC', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'
-	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
-	DeviceUUID       string `url:"deviceUuid,omitempty"`       //Comma separated deviceUuids
-	Offset           int    `url:"offset,omitempty"`           //offset/starting row
-	Limit            int    `url:"limit,omitempty"`            //Number of records to be retrieved
-}
 type GetComplianceDetailCountQueryParams struct {
-	ComplianceType   string `url:"complianceType,omitempty"`   //complianceType can have any value among 'NETWORK_PROFILE', 'IMAGE', 'APPLICATION_VISIBILITY', 'FABRIC', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.
-	ComplianceStatus string `url:"complianceStatus,omitempty"` //Compliance status can have value among 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'
+	ComplianceType   string `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" separated by commas. The Compliance type can be 'APPLICATION_VISIBILITY', 'EOX', 'FABRIC', 'IMAGE', 'NETWORK_PROFILE', 'NETWORK_SETTINGS', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.
+	ComplianceStatus string `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" separated by commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
 }
 type ComplianceDetailsOfDeviceQueryParams struct {
-	Category       string `url:"category,omitempty"`       //complianceCategory can have any value among 'INTENT', 'RUNNING_CONFIG'
-	ComplianceType string `url:"complianceType,omitempty"` //complianceType can have any value among 'NETWORK_DESIGN', 'NETWORK_PROFILE', 'FABRIC', 'POLICY', 'RUNNING_CONFIG'
+	Category       string `url:"category,omitempty"`       //category can have any value among 'INTENT', 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'DESIGN_OOD' , 'EOX' , 'NETWORK_SETTINGS'
+	ComplianceType string `url:"complianceType,omitempty"` //Specify "Compliance type(s)" separated by commas. The Compliance type can be 'APPLICATION_VISIBILITY', 'EOX', 'FABRIC', 'IMAGE', 'NETWORK_PROFILE', 'NETWORK_SETTINGS', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.
 	DiffList       bool   `url:"diffList,omitempty"`       //diff list [ pass true to fetch the diff list ]
-	Key            string `url:"key,omitempty"`            //extended attribute key
-	Value          string `url:"value,omitempty"`          //extended attribute value
+}
+type GetConfigTaskDetailsQueryParams struct {
+	ParentTaskID string `url:"parentTaskId,omitempty"` //task Id
 }
 
 type ResponseComplianceGetComplianceStatus struct {
-	Version  string                                           `json:"version,omitempty"`  // Version
+	Version  string                                           `json:"version,omitempty"`  // Version of the API.
 	Response *[]ResponseComplianceGetComplianceStatusResponse `json:"response,omitempty"` //
 }
 type ResponseComplianceGetComplianceStatusResponse struct {
-	DeviceUUID       string   `json:"deviceUuid,omitempty"`       // Device Uuid
-	ComplianceStatus string   `json:"complianceStatus,omitempty"` // Compliance Status
-	Message          string   `json:"message,omitempty"`          // Message
-	ScheduleTime     *float64 `json:"scheduleTime,omitempty"`     // Schedule Time
-	LastUpdateTime   *float64 `json:"lastUpdateTime,omitempty"`   // Last Update Time
+	DeviceUUID       string   `json:"deviceUuid,omitempty"`       // UUID of the device.
+	ComplianceStatus string   `json:"complianceStatus,omitempty"` // Current compliance status for the compliance type that will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
+	Message          string   `json:"message,omitempty"`          // Additional message of compliance status for the compliance type.
+	ScheduleTime     *float64 `json:"scheduleTime,omitempty"`     // Timestamp when compliance is scheduled to run.
+	LastUpdateTime   *float64 `json:"lastUpdateTime,omitempty"`   // Timestamp when the latest compliance checks ran.
 }
 type ResponseComplianceRunCompliance struct {
-	Version  string                                   `json:"version,omitempty"`  // Version
+	Version  string                                   `json:"version,omitempty"`  // Version of the API.
 	Response *ResponseComplianceRunComplianceResponse `json:"response,omitempty"` //
 }
 type ResponseComplianceRunComplianceResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Task Id
-	URL    string `json:"url,omitempty"`    // Url
+	TaskID string `json:"taskId,omitempty"` // Task id.
+	URL    string `json:"url,omitempty"`    // Additional url for task id.
 }
 type ResponseComplianceGetComplianceStatusCount struct {
-	Version  string   `json:"version,omitempty"`  // Version
-	Response *float64 `json:"response,omitempty"` // Response
+	Version  string   `json:"version,omitempty"`  // Version of the API.
+	Response *float64 `json:"response,omitempty"` // Returns count of compliant status
 }
 type ResponseComplianceGetComplianceDetail struct {
-	Version  string                                           `json:"version,omitempty"`  // Version
+	Version  string                                           `json:"version,omitempty"`  // Version of the API.
 	Response *[]ResponseComplianceGetComplianceDetailResponse `json:"response,omitempty"` //
 }
 type ResponseComplianceGetComplianceDetailResponse struct {
-	ComplianceType string `json:"complianceType,omitempty"` // Compliance Type
-	LastSyncTime   *int   `json:"lastSyncTime,omitempty"`   // Last Sync Time
-	DeviceUUID     string `json:"deviceUuid,omitempty"`     // Device Uuid
-	DisplayName    string `json:"displayName,omitempty"`    // Display Name
-	Status         string `json:"status,omitempty"`         // Status
-	Category       string `json:"category,omitempty"`       // Category
-	LastUpdateTime *int   `json:"lastUpdateTime,omitempty"` // Last Update Time
-	State          string `json:"state,omitempty"`          // State
+	ComplianceType string   `json:"complianceType,omitempty"` // Compliance type corresponds to a tile on the UI. Will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EOX.
+	LastSyncTime   *float64 `json:"lastSyncTime,omitempty"`   // Timestamp when the status changed from different value to the current value.
+	DeviceUUID     string   `json:"deviceUuid,omitempty"`     // UUID of the device.
+	DisplayName    string   `json:"displayName,omitempty"`    // User friendly name for the configuration.
+	Status         string   `json:"status,omitempty"`         // Current status of compliance for the complianceType. Will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
+	Category       string   `json:"category,omitempty"`       // category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILEWORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EOX' , 'NETWORK_SETTINGS'.
+	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Timestamp when the latest compliance checks ran.
+	State          string   `json:"state,omitempty"`          // State of latest compliance check for the complianceType. Will be one of SUCCESS, FAILED, or IN_PROGRESS.
 }
 type ResponseComplianceGetComplianceDetailCount struct {
-	Version  string   `json:"version,omitempty"`  // Version
-	Response *float64 `json:"response,omitempty"` // Response
+	Version  string   `json:"version,omitempty"`  // Version of API.
+	Response *float64 `json:"response,omitempty"` // Count of all devices or devices that match the query parameters.
+}
+type ResponseComplianceComplianceRemediation struct {
+	Response *ResponseComplianceComplianceRemediationResponse `json:"response,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  // Version of API.
+}
+type ResponseComplianceComplianceRemediationResponse struct {
+	TaskID string `json:"taskId,omitempty"` // The UUID of the task.
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task.
 }
 type ResponseComplianceDeviceComplianceStatus struct {
-	Version  string                                            `json:"version,omitempty"`  // Version
 	Response *ResponseComplianceDeviceComplianceStatusResponse `json:"response,omitempty"` //
+	Version  string                                            `json:"version,omitempty"`  // Version of the API.
 }
 type ResponseComplianceDeviceComplianceStatusResponse struct {
-	DeviceUUID       string   `json:"deviceUuid,omitempty"`       // Device Uuid
-	ComplianceStatus string   `json:"complianceStatus,omitempty"` // Compliance Status
-	Message          string   `json:"message,omitempty"`          // Message
-	ScheduleTime     *float64 `json:"scheduleTime,omitempty"`     // Schedule Time
-	LastUpdateTime   *float64 `json:"lastUpdateTime,omitempty"`   // Last Update Time
+	DeviceUUID       string   `json:"deviceUuid,omitempty"`       // UUID of the device.
+	ComplianceStatus string   `json:"complianceStatus,omitempty"` // Current compliance status of the device that will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
+	LastUpdateTime   *float64 `json:"lastUpdateTime,omitempty"`   // Timestamp when the latest compliance checks ran.
+	ScheduleTime     string   `json:"scheduleTime,omitempty"`     // Timestamp when the next compliance checks will run.
 }
 type ResponseComplianceComplianceDetailsOfDevice struct {
-	DeviceUUID string                                                 `json:"deviceUuid,omitempty"` // Device Uuid
-	Version    string                                                 `json:"version,omitempty"`    // Version
 	Response   *[]ResponseComplianceComplianceDetailsOfDeviceResponse `json:"response,omitempty"`   //
+	DeviceUUID string                                                 `json:"deviceUuid,omitempty"` // UUID of the device.
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponse struct {
-	DisplayName       string                                                               `json:"displayName,omitempty"`       // Display Name
-	ComplianceType    string                                                               `json:"complianceType,omitempty"`    // Compliance Type
-	LastSyncTime      *int                                                                 `json:"lastSyncTime,omitempty"`      // Last Sync Time
-	AdditionalDataURL string                                                               `json:"additionalDataURL,omitempty"` // Additional Data U R L
-	SourceInfoList    *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList `json:"sourceInfoList,omitempty"`    //
-	DeviceUUID        string                                                               `json:"deviceUuid,omitempty"`        // Device Uuid
-	Message           string                                                               `json:"message,omitempty"`           // Message
-	State             string                                                               `json:"state,omitempty"`             // State
-	Status            string                                                               `json:"status,omitempty"`            // Status
-	Category          string                                                               `json:"category,omitempty"`          // Category
-	LastUpdateTime    *int                                                                 `json:"lastUpdateTime,omitempty"`    // Last Update Time
+	DeviceUUID     string                                                               `json:"deviceUuid,omitempty"`     // UUID of the device.
+	ComplianceType string                                                               `json:"complianceType,omitempty"` // Compliance type corresponds to a tile on the UI that will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EOX.
+	Status         string                                                               `json:"status,omitempty"`         // Status of compliance for the compliance type, will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
+	State          string                                                               `json:"state,omitempty"`          // State of the compliance check for the compliance type, will be one of SUCCESS, FAILED, or IN_PROGRESS.
+	LastSyncTime   *float64                                                             `json:"lastSyncTime,omitempty"`   // Timestamp when the status changed from a different value to the current value.
+	LastUpdateTime *float64                                                             `json:"lastUpdateTime,omitempty"` // Timestamp of the latest compliance check that was run.
+	SourceInfoList *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList `json:"sourceInfoList,omitempty"` //
+	AckStatus      string                                                               `json:"ackStatus,omitempty"`      // Acknowledgment status of the compliance type. UNACKNOWLEDGED if none of the violations under the compliance type are acknowledged. Otherwise it will be ACKNOWLEDGED.
+	Version        string                                                               `json:"version,omitempty"`        // Version of the API.
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList struct {
-	Count               *float64                                                                      `json:"count,omitempty"`               // Count
-	DisplayName         string                                                                        `json:"displayName,omitempty"`         // Display Name
-	DiffList            *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffList  `json:"diffList,omitempty"`            //
-	SourceEnum          string                                                                        `json:"sourceEnum,omitempty"`          // Source Enum
-	LicenseAppName      string                                                                        `json:"licenseAppName,omitempty"`      // License App Name
-	ProvisioningArea    string                                                                        `json:"provisioningArea,omitempty"`    // Provisioning Area
-	NetworkProfileName  string                                                                        `json:"networkProfileName,omitempty"`  // Network Profile Name
+	Name                string                                                                        `json:"name,omitempty"`                // Name of the type of top level configuration.
 	NameWithBusinessKey string                                                                        `json:"nameWithBusinessKey,omitempty"` // Name With Business Key
-	AppName             string                                                                        `json:"appName,omitempty"`             // App Name
-	Name                string                                                                        `json:"name,omitempty"`                // Name
-	Type                string                                                                        `json:"type,omitempty"`                // Type
+	SourceEnum          string                                                                        `json:"sourceEnum,omitempty"`          // Will be same as compliance type.
+	Type                string                                                                        `json:"type,omitempty"`                // Type of the top level configuration.
+	AppName             string                                                                        `json:"appName,omitempty"`             // Application name that is used to club the violations.
+	Count               *float64                                                                      `json:"count,omitempty"`               // Number of violations present.
+	AckStatus           string                                                                        `json:"ackStatus,omitempty"`           // Acknowledgment status of violations. UNACKNOWLEDGED if none of the violations are acknowledged. Otherwise it will be ACKNOWLEDGED.
 	BusinessKey         *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKey `json:"businessKey,omitempty"`         //
-}
-type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffList struct {
-	DisplayName        string `json:"displayName,omitempty"`        // Display Name
-	MoveFromPath       string `json:"moveFromPath,omitempty"`       // Move From Path
-	Op                 string `json:"op,omitempty"`                 // Op
-	ConfiguredValue    string `json:"configuredValue,omitempty"`    // Configured Value
-	IntendedValue      string `json:"intendedValue,omitempty"`      // Intended Value
-	Path               string `json:"path,omitempty"`               // Path
-	BusinessKey        string `json:"businessKey,omitempty"`        // Business Key
-	ExtendedAttributes string `json:"extendedAttributes,omitempty"` // Extended Attributes
+	DiffList            *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffList  `json:"diffList,omitempty"`            //
+	DisplayName         string                                                                        `json:"displayName,omitempty"`         // Model display name.
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKey struct {
-	OtherAttributes       *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyOtherAttributes `json:"otherAttributes,omitempty"`       //
-	ResourceName          string                                                                                       `json:"resourceName,omitempty"`          // Resource Name
-	BusinessKeyAttributes string                                                                                       `json:"businessKeyAttributes,omitempty"` // Business Key Attributes
+	ResourceName          string                                                                                             `json:"resourceName,omitempty"`          // Name of the top level resource. Same as name above.
+	BusinessKeyAttributes *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyBusinessKeyAttributes `json:"businessKeyAttributes,omitempty"` // Attributes that together uniquely identify the configuration instance.
+	OtherAttributes       *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyOtherAttributes       `json:"otherAttributes,omitempty"`       //
 }
+type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyBusinessKeyAttributes interface{}
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyOtherAttributes struct {
-	CfsAttributes string `json:"cfsAttributes,omitempty"` // Cfs Attributes
-	Name          string `json:"name,omitempty"`          // Name
+	Name          string                                                                                                    `json:"name,omitempty"`          // Name of the attributes.
+	CfsAttributes *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyOtherAttributesCfsAttributes `json:"cfsAttributes,omitempty"` //
+}
+type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListBusinessKeyOtherAttributesCfsAttributes struct {
+	DisplayName string `json:"displayName,omitempty"` // User friendly name for the configuration.
+	AppName     string `json:"appName,omitempty"`     // Same as appName above.
+	Description string `json:"description,omitempty"` // Description for the configuration, if available.
+	Source      string `json:"source,omitempty"`      // Will be same as compliance type.
+	Type        string `json:"type,omitempty"`        // The type of this attribute (for example, type can be Intent).
+}
+type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffList struct {
+	Op                 string                                                                                       `json:"op,omitempty"`                 // Type of change (Add remove, or update).
+	ConfiguredValue    string                                                                                       `json:"configuredValue,omitempty"`    // Configured value i.e. running / current value. It will be empty for the template violations due to potentially large size of the template. Use a dedicated API to get the template data.
+	IntendedValue      string                                                                                       `json:"intendedValue,omitempty"`      // Enable", Intended value. It will be empty for the template violations due to potentially large size of the template. Use a dedicated API to get the template data.
+	MoveFromPath       string                                                                                       `json:"moveFromPath,omitempty"`       // Additional URI to fetch more details, if available.
+	BusinessKey        string                                                                                       `json:"businessKey,omitempty"`        // The Unique key of the individual violation does not change after every compliance check, as long as the deployment data doesn't change.
+	Path               string                                                                                       `json:"path,omitempty"`               // Path of the configuration relative to the top-level configuration. Use it along with a name to identify certain set of violations.
+	ExtendedAttributes *ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffListExtendedAttributes `json:"extendedAttributes,omitempty"` //
+	AckStatus          string                                                                                       `json:"ackStatus,omitempty"`          // Acknowledgment status of the violation. ACKNOWLEDGED if the violation is acknowledged or at the top-level configuration. Otherwise it will be UNACKNOWLEDGED.
+	InstanceUUID       string                                                                                       `json:"instanceUUID,omitempty"`       // UUID of the individual violation. Changes after every compliance check.
+	DisplayName        string                                                                                       `json:"displayName,omitempty"`        // Display name for attribute in ui .If business key is null or of type owning entity type.
+}
+type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoListDiffListExtendedAttributes struct {
+	AttributeDisplayName string `json:"attributeDisplayName,omitempty"` // Display name for attribute in ui .if business key is null or only owning entity type.
+	Path                 string `json:"path,omitempty"`                 // Path to be displayed on the UI, instead of the above path, if available.
+	DataConverter        string `json:"dataConverter,omitempty"`        // Name of the converter used to display configurations in user-friendly format, if available.
+	Type                 string `json:"type,omitempty"`                 // Type of this attribute.(example type can be Intent)
+}
+type ResponseComplianceGetConfigTaskDetails struct {
+	Version  string                                            `json:"version,omitempty"`  // Version of the API.
+	Response *[]ResponseComplianceGetConfigTaskDetailsResponse `json:"response,omitempty"` //
+}
+type ResponseComplianceGetConfigTaskDetailsResponse struct {
+	StartTime       *int   `json:"startTime,omitempty"`       // Timestamp when the task started.
+	ErrorCode       string `json:"errorCode,omitempty"`       // Error code if the task failed.
+	DeviceID        string `json:"deviceId,omitempty"`        // UUID of the device.
+	TaskID          string `json:"taskId,omitempty"`          // UUID of the task.
+	TaskStatus      string `json:"taskStatus,omitempty"`      // Status of the task.
+	ParentTaskID    string `json:"parentTaskId,omitempty"`    // UUID of the parent task.
+	DeviceIPAddress string `json:"deviceIpAddress,omitempty"` // IP address of the device.
+	DetailMessage   string `json:"detailMessage,omitempty"`   // Details of the task, if available.
+	FailureMessage  string `json:"failureMessage,omitempty"`  // Failure message, if the task failed.
+	TaskType        string `json:"taskType,omitempty"`        // Task type can be 0,1,2 etc(ARCHIVE_RUNNING(0),ARCHIVE_STARTUP(1),ARCHIVE_VLAN(2),DEPLOY_RUNNING(3),DEPLOY_STARTUP(4),DEPLOY_VLAN(5),COPY_RUNNING_TO_STARTUP(6))
+	CompletionTime  *int   `json:"completionTime,omitempty"`  // Timestamp when the task was completed.
+	HostName        string `json:"hostName,omitempty"`        // Host name of the device.
+}
+type ResponseComplianceCommitDeviceConfiguration struct {
+	Version  string                                               `json:"version,omitempty"`  // Version of the API.
+	Response *ResponseComplianceCommitDeviceConfigurationResponse `json:"response,omitempty"` //
+}
+type ResponseComplianceCommitDeviceConfigurationResponse struct {
+	URL    string `json:"url,omitempty"`    // Task Id url.
+	TaskID string `json:"taskId,omitempty"` // Unique Id of task.
 }
 type RequestComplianceRunCompliance struct {
-	TriggerFull *bool    `json:"triggerFull,omitempty"` //
-	Categories  []string `json:"categories,omitempty"`  //
-	DeviceUUIDs []string `json:"deviceUuids,omitempty"` //
+	TriggerFull *bool    `json:"triggerFull,omitempty"` // if it is true then compliance will be triggered for all categories. If it is false then compliance will be triggered for categories mentioned in categories section .
+	Categories  []string `json:"categories,omitempty"`  // Category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILEWORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EOX' , 'NETWORK_SETTINGS'
+	DeviceUUIDs []string `json:"deviceUuids,omitempty"` // UUID of the device.
+}
+type RequestComplianceCommitDeviceConfiguration struct {
+	DeviceID []string `json:"deviceId,omitempty"` // UUID of the device.
 }
 
 //GetComplianceStatus Get Compliance Status  - dda5-cb9a-49aa-aef6
@@ -300,7 +346,8 @@ func (s *ComplianceService) GetComplianceDetailCount(GetComplianceDetailCountQue
 /* Return compliance status of a device.
 
 
-@param deviceUUID deviceUuid path parameter.
+@param deviceUUID deviceUuid path parameter. Device Id
+
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-compliance-status
 */
@@ -336,7 +383,8 @@ func (s *ComplianceService) DeviceComplianceStatus(deviceUUID string) (*Response
 /* Return compliance detailed report for a device.
 
 
-@param deviceUUID deviceUuid path parameter.
+@param deviceUUID deviceUuid path parameter. Device Id
+
 @param ComplianceDetailsOfDeviceQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!compliance-details-of-device
@@ -367,6 +415,43 @@ func (s *ComplianceService) ComplianceDetailsOfDevice(deviceUUID string, Complia
 	}
 
 	result := response.Result().(*ResponseComplianceComplianceDetailsOfDevice)
+	return result, response, err
+
+}
+
+//GetConfigTaskDetails Get config task details - 8183-1a90-4788-b8c5
+/* Returns a config task result details by specified id
+
+
+@param GetConfigTaskDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-config-task-details
+*/
+func (s *ComplianceService) GetConfigTaskDetails(GetConfigTaskDetailsQueryParams *GetConfigTaskDetailsQueryParams) (*ResponseComplianceGetConfigTaskDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device-config/task"
+
+	queryString, _ := query.Values(GetConfigTaskDetailsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseComplianceGetConfigTaskDetails{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetConfigTaskDetails(GetConfigTaskDetailsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetConfigTaskDetails")
+	}
+
+	result := response.Result().(*ResponseComplianceGetConfigTaskDetails)
 	return result, response, err
 
 }
@@ -404,6 +489,83 @@ func (s *ComplianceService) RunCompliance(requestComplianceRunCompliance *Reques
 	}
 
 	result := response.Result().(*ResponseComplianceRunCompliance)
+	return result, response, err
+
+}
+
+//ComplianceRemediation Compliance Remediation - 7d80-2867-4179-8488
+/* Remediates configuration compliance issues. Compliance issues related to 'Routing', 'HA Remediation', 'Software Image', 'Securities Advisories', 'SD-Access Unsupported Configuration', 'Workflow', etc. will not be addressed by this API.
+Warning: Fixing compliance mismatches could result in a possible network flap.
+
+
+@param id id path parameter. Network device identifier
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!compliance-remediation
+*/
+func (s *ComplianceService) ComplianceRemediation(id string) (*ResponseComplianceComplianceRemediation, *resty.Response, error) {
+	path := "/dna/intent/api/v1/compliance/networkDevices/{id}/issues/remediation/provision"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseComplianceComplianceRemediation{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ComplianceRemediation(id)
+		}
+
+		return nil, response, fmt.Errorf("error with operation ComplianceRemediation")
+	}
+
+	result := response.Result().(*ResponseComplianceComplianceRemediation)
+	return result, response, err
+
+}
+
+//CommitDeviceConfiguration Commit device configuration - 53a3-5a70-4e3b-87b5
+/* This operation would commit device running configuration to startup by issuing "write memory" to device
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!commit-device-configuration
+*/
+func (s *ComplianceService) CommitDeviceConfiguration(requestComplianceCommitDeviceConfiguration *RequestComplianceCommitDeviceConfiguration) (*ResponseComplianceCommitDeviceConfiguration, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device-config/write-memory"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestComplianceCommitDeviceConfiguration).
+		SetResult(&ResponseComplianceCommitDeviceConfiguration{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CommitDeviceConfiguration(requestComplianceCommitDeviceConfiguration)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CommitDeviceConfiguration")
+	}
+
+	result := response.Result().(*ResponseComplianceCommitDeviceConfiguration)
 	return result, response, err
 
 }

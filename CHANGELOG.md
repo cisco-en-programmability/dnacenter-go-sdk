@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2024-09-11
+
+### Added
+New services for Cisco Catalyst Center 2.3.7.6's API:
+- CiscoTrustedCertificates *CiscoTrustedCertificatesService
+
 ## [5.0.32] - 2024-08-06
 ### Added
 - Set User-Agent header in API client
@@ -24,6 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [5.0.28] - 2024-06-04
 - `TopOfStackSerialNumber` and `CablingScheme` added to `RequestDeviceOnboardingPnpClaimADeviceToASite`
 - Fix `ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails` to support empty string
+  
+### Note
+- SDK now compatible with Cisco Catalyst Center 2.3.7.6's API.
 
 ## [5.0.27] - 2024-04-22
 - Function `GetTemplatesDetails` change response struct from an object to an array objects.
@@ -161,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.0.0] - 2023-04-12
 ### Added
-- New services for Cisco DNA Center 2.3.5.3's API:
+- New services for Cisco Catalyst Center 2.3.5.3's API:
   - AuthenticationManagement *AuthenticationManagementService
   - DisasterRecovery *DisasterRecoveryService
   - EoX *EoXService
@@ -202,7 +211,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - WirelessService.RebootAccessPoints
   - WirelessService.ConfigureAccessPoints
 
-- The SDK was updated with the official DNA Center API 2.3.5.3 documentation, therefore some structures or data types may have changed.[Oficial Documentation](https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-2-3-5-api-overview).
+- The SDK was updated with the official Catalyst Center API 2.3.5.3 documentation, therefore some structures or data types may have changed.[Oficial Documentation](https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-2-3-5-api-overview).
 
 
 
@@ -269,19 +278,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [4.0.0] - 2022-06-16
 
 ### Added
-New services for Cisco DNA Center 2.3.3.0's API:
+New services for Cisco Catalyst Center 2.3.3.0's API:
 - CiscoDnaCenterSystem *CiscoDnaCenterSystemService
 - LanAutomation *LanAutomationService
 - SystemSettings *SystemSettingsService
 
 ### Removed
-Services removed on Cisco DNA Center 2.3.3.0's API:
+Services removed on Cisco Catalyst Center 2.3.3.0's API:
 - AuthenticationManagement *AuthenticationManagementService
 - DisasterRecovery *DisasterRecoveryService
 - Policy *PolicyService
   
 ### Changed
-- SDK now compatible with Cisco DNA Center 2.3.3.0's API.
+- SDK now compatible with Cisco Catalyst Center 2.3.3.0's API.
   
 ## [3.6.3] - 2022-03-17
 ### Changed
@@ -647,4 +656,5 @@ Services removed on Cisco DNA Center 2.3.3.0's API:
 [5.0.30]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.29...v5.0.30
 [5.0.31]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.30...v5.0.31
 [5.0.32]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.31...v5.0.32
-[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.32...main
+[6.0.0]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v5.0.27...v6.0.0
+[Unreleased]: https://github.com/cisco-en-programmability/dnacenter-go-sdk/compare/v6.0.0...main

@@ -869,7 +869,6 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors s
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors interface{}
-
 type ResponseConfigurationTemplatesGetProjectsDetails struct {
 	Response []ResponseConfigurationTemplatesGetProjectsDetailsResponse `json:"response,omitempty"` // Response
 }
@@ -889,7 +888,6 @@ type ResponseConfigurationTemplatesGetProjectsDetailsTags struct {
 	Name string `json:"name,omitempty"` // Name of tag
 }
 type ResponseConfigurationTemplatesGetProjectsDetailsTemplates interface{}
-
 type ResponseConfigurationTemplatesGetTemplatesDetails struct {
 	Response []ResponseConfigurationTemplatesGetTemplatesDetailsResponse `json:"response,omitempty"` // Response
 }
@@ -1730,20 +1728,20 @@ type RequestConfigurationTemplatesDeployTemplate struct {
 	ForcePushTemplate            *bool                                                    `json:"forcePushTemplate,omitempty"`            //
 	IsComposite                  *bool                                                    `json:"isComposite,omitempty"`                  // Composite template flag
 	MainTemplateID               string                                                   `json:"mainTemplateId,omitempty"`               // Main template UUID of versioned template
-	MemberTemplateDeploymentInfo string                                                   `json:"memberTemplateDeploymentInfo,omitempty"` // memberTemplateDeploymentInfo
+	MemberTemplateDeploymentInfo interface{}                                              `json:"memberTemplateDeploymentInfo,omitempty"` // memberTemplateDeploymentInfo
 	TargetInfo                   *[]RequestConfigurationTemplatesDeployTemplateTargetInfo `json:"targetInfo,omitempty"`                   //
 	TemplateID                   string                                                   `json:"templateId,omitempty"`                   // UUID of template to be provisioned
 }
+type RequestConfigurationTemplatesDeployTemplateMemberTemplateDeploymentInfo interface{}
 type RequestConfigurationTemplatesDeployTemplateTargetInfo struct {
-	HostName            string                                                               `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
-	ID                  string                                                               `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
-	Params              *RequestConfigurationTemplatesDeployTemplateTargetInfoParams         `json:"params,omitempty"`              // Template params/values to be provisioned
-	ResourceParams      *RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
-	Type                string                                                               `json:"type,omitempty"`                // Target type of device
-	VersionedTemplateID string                                                               `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
+	HostName            string                                                       `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
+	ID                  string                                                       `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
+	Params              *RequestConfigurationTemplatesDeployTemplateTargetInfoParams `json:"params,omitempty"`              // Template params/values to be provisioned
+	ResourceParams      []string                                                     `json:"resourceParams,omitempty"`      // Resource params to be provisioned. Refer to features page for usage details
+	Type                string                                                       `json:"type,omitempty"`                // Target type of device
+	VersionedTemplateID string                                                       `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
 type RequestConfigurationTemplatesDeployTemplateTargetInfoParams map[string]interface{}
-type RequestConfigurationTemplatesDeployTemplateTargetInfoResourceParams interface{}
 type RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria []RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria // Array of RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria
 type RequestItemConfigurationTemplatesExportsTheTemplatesForAGivenCriteria interface{}
 type RequestConfigurationTemplatesPreviewTemplate struct {
@@ -1759,20 +1757,21 @@ type RequestConfigurationTemplatesVersionTemplate struct {
 	TemplateID string `json:"templateId,omitempty"` // UUID of template
 }
 type RequestConfigurationTemplatesDeployTemplateV2 struct {
-	ForcePushTemplate            *bool                                                      `json:"forcePushTemplate,omitempty"`            //
-	IsComposite                  *bool                                                      `json:"isComposite,omitempty"`                  // Composite template flag
-	MainTemplateID               string                                                     `json:"mainTemplateId,omitempty"`               // Main template UUID of versioned template
-	MemberTemplateDeploymentInfo string                                                     `json:"memberTemplateDeploymentInfo,omitempty"` // memberTemplateDeploymentInfo
-	TargetInfo                   *[]RequestConfigurationTemplatesDeployTemplateV2TargetInfo `json:"targetInfo,omitempty"`                   //
-	TemplateID                   string                                                     `json:"templateId,omitempty"`                   // UUID of template to be provisioned
+	ForcePushTemplate            *bool                                                                        `json:"forcePushTemplate,omitempty"`            //
+	IsComposite                  *bool                                                                        `json:"isComposite,omitempty"`                  // Composite template flag
+	MainTemplateID               string                                                                       `json:"mainTemplateId,omitempty"`               // Main template UUID of versioned template
+	MemberTemplateDeploymentInfo *[]RequestConfigurationTemplatesDeployTemplateV2MemberTemplateDeploymentInfo `json:"memberTemplateDeploymentInfo,omitempty"` // memberTemplateDeploymentInfo
+	TargetInfo                   *[]RequestConfigurationTemplatesDeployTemplateV2TargetInfo                   `json:"targetInfo,omitempty"`                   //
+	TemplateID                   string                                                                       `json:"templateId,omitempty"`                   // UUID of template to be provisioned
 }
+type RequestConfigurationTemplatesDeployTemplateV2MemberTemplateDeploymentInfo interface{}
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfo struct {
-	HostName            string                                                                 `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
-	ID                  string                                                                 `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
-	Params              *RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams         `json:"params,omitempty"`              // Template params/values to be provisioned
-	ResourceParams      *RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned
-	Type                string                                                                 `json:"type,omitempty"`                // Target type of device
-	VersionedTemplateID string                                                                 `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
+	HostName            string                                                                   `json:"hostName,omitempty"`            // Hostname of device is required if targetType is MANAGED_DEVICE_HOSTNAME
+	ID                  string                                                                   `json:"id,omitempty"`                  // UUID of target is required if targetType is MANAGED_DEVICE_UUID
+	Params              *RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams           `json:"params,omitempty"`              // Template params/values to be provisioned
+	ResourceParams      *[]RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams `json:"resourceParams,omitempty"`      // Resource params to be provisioned. Refer to features page for usage details
+	Type                string                                                                   `json:"type,omitempty"`                // Target type of device
+	VersionedTemplateID string                                                                   `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams map[string]interface{}
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams interface{}

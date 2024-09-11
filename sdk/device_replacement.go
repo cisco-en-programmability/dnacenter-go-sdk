@@ -32,20 +32,22 @@ type ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetai
 	Version  string                                                                                   `json:"version,omitempty"`  //
 }
 type ResponseDeviceReplacementReturnListOfReplacementDevicesWithReplacementDetailsResponse struct {
-	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
-	Family                        string `json:"family,omitempty"`                        //
-	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ID                            string `json:"id,omitempty"`                            //
-	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
-	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  // Date and time of marking the device for replacement
+	Family                        string `json:"family,omitempty"`                        // Faulty device family
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                // Unique identifier of the faulty device
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              // Faulty device name
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          // Faulty device platform
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      // Faulty device serial number
+	ID                            string `json:"id,omitempty"`                            // Unique identifier of the device replacement resource
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             // Unique identifier of the neighbor device to create the DHCP server
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        // Unique identifier of network readiness task
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     // Replacement device platform
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` // Replacement device serial number
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             // Device Replacement status
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               // Date and time of device replacement
+	WorkflowID                    string `json:"workflowId,omitempty"`                    // Unique identifier of the device replacement workflow
+	WorkflowFailedStep            string `json:"workflowFailedStep,omitempty"`            // Step in which the device replacement failed
+	ReadinesscheckTaskID          string `json:"readinesscheckTaskId,omitempty"`          // Unique identifier of the readiness check task for the replacement device
 }
 type ResponseDeviceReplacementUnmarkDeviceForReplacement struct {
 	Response *ResponseDeviceReplacementUnmarkDeviceForReplacementResponse `json:"response,omitempty"` //
@@ -77,41 +79,41 @@ type ResponseDeviceReplacementDeployDeviceReplacementWorkflowResponse struct {
 }
 type RequestDeviceReplacementUnmarkDeviceForReplacement []RequestItemDeviceReplacementUnmarkDeviceForReplacement // Array of RequestDeviceReplacementUnMarkDeviceForReplacement
 type RequestItemDeviceReplacementUnmarkDeviceForReplacement struct {
-	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
-	Family                        string `json:"family,omitempty"`                        //
-	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ID                            string `json:"id,omitempty"`                            //
-	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
-	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  // Date and time of marking the device for replacement
+	Family                        string `json:"family,omitempty"`                        // Faulty device family
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                // Unique identifier of the faulty device
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              // Faulty device name
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          // Faulty device platform
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      // Faulty device serial number
+	ID                            string `json:"id,omitempty"`                            // Unique identifier of the device replacement resource
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             // Unique identifier of the neighbor device to create the DHCP server
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        // Unique identifier of network readiness task
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     // Replacement device platform
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` // Replacement device serial number
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             // Device replacement status. Use NON-FAULTY to unmark the device for replacement.
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               // Date and time of device replacement
+	WorkflowID                    string `json:"workflowId,omitempty"`                    // Unique identifier of the device replacement workflow
 }
 type RequestDeviceReplacementMarkDeviceForReplacement []RequestItemDeviceReplacementMarkDeviceForReplacement // Array of RequestDeviceReplacementMarkDeviceForReplacement
 type RequestItemDeviceReplacementMarkDeviceForReplacement struct {
-	CreationTime                  *int   `json:"creationTime,omitempty"`                  //
-	Family                        string `json:"family,omitempty"`                        //
-	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                //
-	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              //
-	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          //
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ID                            string `json:"id,omitempty"`                            //
-	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             //
-	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        //
-	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
-	ReplacementStatus             string `json:"replacementStatus,omitempty"`             //
-	ReplacementTime               *int   `json:"replacementTime,omitempty"`               //
-	WorkflowID                    string `json:"workflowId,omitempty"`                    //
+	CreationTime                  *int   `json:"creationTime,omitempty"`                  // Date and time of marking the device for replacement
+	Family                        string `json:"family,omitempty"`                        // Faulty device family
+	FaultyDeviceID                string `json:"faultyDeviceId,omitempty"`                // Unique identifier of the faulty device
+	FaultyDeviceName              string `json:"faultyDeviceName,omitempty"`              // Faulty device name
+	FaultyDevicePlatform          string `json:"faultyDevicePlatform,omitempty"`          // Faulty device platform
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      // Faulty device serial number
+	ID                            string `json:"id,omitempty"`                            // Unique identifier of the device replacement resource
+	NeighbourDeviceID             string `json:"neighbourDeviceId,omitempty"`             // Unique identifier of the neighbor device to create the DHCP server
+	NetworkReadinessTaskID        string `json:"networkReadinessTaskId,omitempty"`        // Unique identifier of network readiness task
+	ReplacementDevicePlatform     string `json:"replacementDevicePlatform,omitempty"`     // Replacement device platform
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` // Replacement device serial number
+	ReplacementStatus             string `json:"replacementStatus,omitempty"`             // Device replacement status. Use MARKED-FOR-REPLACEMENT to mark the device for replacement.
+	ReplacementTime               *int   `json:"replacementTime,omitempty"`               // Date and time of device replacement
+	WorkflowID                    string `json:"workflowId,omitempty"`                    // Unique identifier of the device replacement workflow
 }
 type RequestDeviceReplacementDeployDeviceReplacementWorkflow struct {
-	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      //
-	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` //
+	FaultyDeviceSerialNumber      string `json:"faultyDeviceSerialNumber,omitempty"`      // Faulty device serial number
+	ReplacementDeviceSerialNumber string `json:"replacementDeviceSerialNumber,omitempty"` // Replacement device serial number
 }
 
 //ReturnListOfReplacementDevicesWithReplacementDetails Return list of replacement devices with replacement details - 809c-2956-4bc9-97d0

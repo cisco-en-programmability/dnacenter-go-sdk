@@ -11,42 +11,43 @@ import (
 
 type PathTraceService service
 
-type RetrivesAllPreviousPathtracesSummaryQueryParams struct {
-	PeriodicRefresh bool   `url:"periodicRefresh,omitempty"` //Is analysis periodically refreshed?
-	SourceIP        string `url:"sourceIP,omitempty"`        //Source IP address
-	DestIP          string `url:"destIP,omitempty"`          //Destination IP adress
-	SourcePort      string `url:"sourcePort,omitempty"`      //Source port
-	DestPort        string `url:"destPort,omitempty"`        //Destination port
-	GtCreateTime    string `url:"gtCreateTime,omitempty"`    //Analyses requested after this time
-	LtCreateTime    string `url:"ltCreateTime,omitempty"`    //Analyses requested before this time
-	Protocol        string `url:"protocol,omitempty"`        //Protocol
-	Status          string `url:"status,omitempty"`          //Status
-	TaskID          string `url:"taskId,omitempty"`          //Task ID
-	LastUpdateTime  string `url:"lastUpdateTime,omitempty"`  //Last update time
-	Limit           int    `url:"limit,omitempty"`           //Number of resources returned
-	Offset          int    `url:"offset,omitempty"`          //Start index of resources returned (1-based)
-	Order           string `url:"order,omitempty"`           //Order by this field
-	SortBy          string `url:"sortBy,omitempty"`          //Sort by this field
+type RetrievesAllPreviousPathtracesSummaryQueryParams struct {
+	PeriodicRefresh bool    `url:"periodicRefresh,omitempty"` //Is analysis periodically refreshed?
+	SourceIP        string  `url:"sourceIP,omitempty"`        //Source IP address
+	DestIP          string  `url:"destIP,omitempty"`          //Destination IP address
+	SourcePort      float64 `url:"sourcePort,omitempty"`      //Source port
+	DestPort        float64 `url:"destPort,omitempty"`        //Destination port
+	GtCreateTime    float64 `url:"gtCreateTime,omitempty"`    //Analyses requested after this time
+	LtCreateTime    float64 `url:"ltCreateTime,omitempty"`    //Analyses requested before this time
+	Protocol        string  `url:"protocol,omitempty"`        //Protocol
+	Status          string  `url:"status,omitempty"`          //Status
+	TaskID          string  `url:"taskId,omitempty"`          //Task ID
+	LastUpdateTime  float64 `url:"lastUpdateTime,omitempty"`  //Last update time
+	Limit           float64 `url:"limit,omitempty"`           //Number of resources returned
+	Offset          float64 `url:"offset,omitempty"`          //Start index of resources returned (1-based)
+	Order           string  `url:"order,omitempty"`           //Order by this field
+	SortBy          string  `url:"sortBy,omitempty"`          //Sort by this field
 }
 
-type ResponsePathTraceRetrivesAllPreviousPathtracesSummary struct {
-	Response *[]ResponsePathTraceRetrivesAllPreviousPathtracesSummaryResponse `json:"response,omitempty"` //
-	Version  string                                                           `json:"version,omitempty"`  //
+type ResponsePathTraceRetrievesAllPreviousPathtracesSummary struct {
+	Response *[]ResponsePathTraceRetrievesAllPreviousPathtracesSummaryResponse `json:"response,omitempty"` //
+	Version  string                                                            `json:"version,omitempty"`  //
 }
-type ResponsePathTraceRetrivesAllPreviousPathtracesSummaryResponse struct {
-	ControlPath     *bool    `json:"controlPath,omitempty"`     //
-	CreateTime      *int     `json:"createTime,omitempty"`      //
-	DestIP          string   `json:"destIP,omitempty"`          //
-	DestPort        string   `json:"destPort,omitempty"`        //
-	FailureReason   string   `json:"failureReason,omitempty"`   //
-	ID              string   `json:"id,omitempty"`              //
-	Inclusions      []string `json:"inclusions,omitempty"`      //
-	LastUpdateTime  *int     `json:"lastUpdateTime,omitempty"`  //
-	PeriodicRefresh *bool    `json:"periodicRefresh,omitempty"` //
-	Protocol        string   `json:"protocol,omitempty"`        //
-	SourceIP        string   `json:"sourceIP,omitempty"`        //
-	SourcePort      string   `json:"sourcePort,omitempty"`      //
-	Status          string   `json:"status,omitempty"`          //
+type ResponsePathTraceRetrievesAllPreviousPathtracesSummaryResponse struct {
+	ControlPath            *bool    `json:"controlPath,omitempty"`            // Control path tracing
+	CreateTime             *int     `json:"createTime,omitempty"`             // Timestamp when the Path Trace request was first received
+	DestIP                 string   `json:"destIP,omitempty"`                 // IP Address of the destination device
+	DestPort               string   `json:"destPort,omitempty"`               // Port on the destination device
+	FailureReason          string   `json:"failureReason,omitempty"`          // Reason for failure
+	ID                     string   `json:"id,omitempty"`                     // Unique ID for the Path Trace request
+	Inclusions             []string `json:"inclusions,omitempty"`             // Subset of {INTERFACE-STATS, QOS-STATS, DEVICE-STATS, PERFORMANCE-STATS, ACL-TRACE}
+	LastUpdateTime         *int     `json:"lastUpdateTime,omitempty"`         // Last timestamp when the path trace response was updated
+	PeriodicRefresh        *bool    `json:"periodicRefresh,omitempty"`        // Re-run the Path Trace every 30 seconds
+	Protocol               string   `json:"protocol,omitempty"`               // One of TCP/UDP or either (null)
+	SourceIP               string   `json:"sourceIP,omitempty"`               // IP Address of the source device
+	SourcePort             string   `json:"sourcePort,omitempty"`             // Port on the source device
+	Status                 string   `json:"status,omitempty"`                 // One of {SUCCESS, INPROGRESS, FAILED, SCHEDULED, PENDING, COMPLETED}
+	PreviousFlowAnalysisID string   `json:"previousFlowAnalysisId,omitempty"` // When periodicRefresh is true, this field holds the original Path Trace request ID
 }
 type ResponsePathTraceInitiateANewPathtrace struct {
 	Response *ResponsePathTraceInitiateANewPathtraceResponse `json:"response,omitempty"` //
@@ -894,19 +895,20 @@ type ResponsePathTraceRetrievesPreviousPathtraceResponseNetworkElementsInfoPerfM
 	SourcePort           string   `json:"sourcePort,omitempty"`           //
 }
 type ResponsePathTraceRetrievesPreviousPathtraceResponseRequest struct {
-	ControlPath     *bool    `json:"controlPath,omitempty"`     //
-	CreateTime      *int     `json:"createTime,omitempty"`      //
-	DestIP          string   `json:"destIP,omitempty"`          //
-	DestPort        string   `json:"destPort,omitempty"`        //
-	FailureReason   string   `json:"failureReason,omitempty"`   //
-	ID              string   `json:"id,omitempty"`              //
-	Inclusions      []string `json:"inclusions,omitempty"`      //
-	LastUpdateTime  *int     `json:"lastUpdateTime,omitempty"`  //
-	PeriodicRefresh *bool    `json:"periodicRefresh,omitempty"` //
-	Protocol        string   `json:"protocol,omitempty"`        //
-	SourceIP        string   `json:"sourceIP,omitempty"`        //
-	SourcePort      string   `json:"sourcePort,omitempty"`      //
-	Status          string   `json:"status,omitempty"`          //
+	ControlPath            *bool    `json:"controlPath,omitempty"`            // Control path tracing
+	CreateTime             *int     `json:"createTime,omitempty"`             // Timestamp when the Path Trace request was first received
+	DestIP                 string   `json:"destIP,omitempty"`                 // IP Address of the destination device
+	DestPort               string   `json:"destPort,omitempty"`               // Port on the destination device
+	FailureReason          string   `json:"failureReason,omitempty"`          // Reason for failure
+	ID                     string   `json:"id,omitempty"`                     // Unique ID for the Path Trace request
+	Inclusions             []string `json:"inclusions,omitempty"`             // Subset of {INTERFACE-STATS, QOS-STATS, DEVICE-STATS, PERFORMANCE-STATS, ACL-TRACE}
+	LastUpdateTime         *int     `json:"lastUpdateTime,omitempty"`         // Last timestamp when the path trace response was updated
+	PeriodicRefresh        *bool    `json:"periodicRefresh,omitempty"`        // Re-run the Path Trace every 30 seconds
+	Protocol               string   `json:"protocol,omitempty"`               // One of TCP/UDP or either (null)
+	SourceIP               string   `json:"sourceIP,omitempty"`               // IP Address of the source device
+	SourcePort             string   `json:"sourcePort,omitempty"`             // Port on the source device
+	Status                 string   `json:"status,omitempty"`                 // One of {SUCCESS, INPROGRESS, FAILED, SCHEDULED, PENDING, COMPLETED}
+	PreviousFlowAnalysisID string   `json:"previousFlowAnalysisId,omitempty"` // When periodicRefresh is true, this field holds the original Path Trace request ID
 }
 type ResponsePathTraceDeletesPathtraceByID struct {
 	Response *ResponsePathTraceDeletesPathtraceByIDResponse `json:"response,omitempty"` //
@@ -919,31 +921,31 @@ type ResponsePathTraceDeletesPathtraceByIDResponse struct {
 type RequestPathTraceInitiateANewPathtrace struct {
 	ControlPath     *bool    `json:"controlPath,omitempty"`     // Control path tracing
 	DestIP          string   `json:"destIP,omitempty"`          // Destination IP address
-	DestPort        string   `json:"destPort,omitempty"`        // Destination Port
+	DestPort        string   `json:"destPort,omitempty"`        // Destination Port, range: 1-65535
 	Inclusions      []string `json:"inclusions,omitempty"`      // Subset of {INTERFACE-STATS, QOS-STATS, DEVICE-STATS, PERFORMANCE-STATS, ACL-TRACE}
 	PeriodicRefresh *bool    `json:"periodicRefresh,omitempty"` // Periodic refresh of path for every 30 sec
-	Protocol        string   `json:"protocol,omitempty"`        // Protocol
+	Protocol        string   `json:"protocol,omitempty"`        // Protocol - one of [TCP, UDP] - checks both when left blank
 	SourceIP        string   `json:"sourceIP,omitempty"`        // Source IP address
-	SourcePort      string   `json:"sourcePort,omitempty"`      // Source Port
+	SourcePort      string   `json:"sourcePort,omitempty"`      // Source Port, range: 1-65535
 }
 
-//RetrivesAllPreviousPathtracesSummary Retrives all previous Pathtraces summary - 55bc-3bf9-4e38-b6ff
+//RetrievesAllPreviousPathtracesSummary Retrieves all previous Pathtraces summary - 55bc-3bf9-4e38-b6ff
 /* Returns a summary of all flow analyses stored. Results can be filtered by specified parameters.
 
 
-@param RetrivesAllPreviousPathtracesSummaryQueryParams Filtering parameter
+@param RetrievesAllPreviousPathtracesSummaryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrives-all-previous-pathtraces-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-all-previous-pathtraces-summary
 */
-func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(RetrivesAllPreviousPathtracesSummaryQueryParams *RetrivesAllPreviousPathtracesSummaryQueryParams) (*ResponsePathTraceRetrivesAllPreviousPathtracesSummary, *resty.Response, error) {
+func (s *PathTraceService) RetrievesAllPreviousPathtracesSummary(RetrievesAllPreviousPathtracesSummaryQueryParams *RetrievesAllPreviousPathtracesSummaryQueryParams) (*ResponsePathTraceRetrievesAllPreviousPathtracesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis"
 
-	queryString, _ := query.Values(RetrivesAllPreviousPathtracesSummaryQueryParams)
+	queryString, _ := query.Values(RetrievesAllPreviousPathtracesSummaryQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponsePathTraceRetrivesAllPreviousPathtracesSummary{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponsePathTraceRetrievesAllPreviousPathtracesSummary{}).
 		SetError(&Error).
 		Get(path)
 
@@ -954,12 +956,12 @@ func (s *PathTraceService) RetrivesAllPreviousPathtracesSummary(RetrivesAllPrevi
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RetrivesAllPreviousPathtracesSummary(RetrivesAllPreviousPathtracesSummaryQueryParams)
+			return s.RetrievesAllPreviousPathtracesSummary(RetrievesAllPreviousPathtracesSummaryQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrivesAllPreviousPathtracesSummary")
+		return nil, response, fmt.Errorf("error with operation RetrievesAllPreviousPathtracesSummary")
 	}
 
-	result := response.Result().(*ResponsePathTraceRetrivesAllPreviousPathtracesSummary)
+	result := response.Result().(*ResponsePathTraceRetrievesAllPreviousPathtracesSummary)
 	return result, response, err
 
 }
