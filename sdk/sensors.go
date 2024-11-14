@@ -1216,7 +1216,7 @@ type RequestSensorsDuplicateSensorTestTemplate struct {
 
 @param SensorsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensors
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensors-v1
 */
 func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*ResponseSensorsSensors, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sensor"
@@ -1252,7 +1252,7 @@ func (s *SensorsService) Sensors(SensorsQueryParams *SensorsQueryParams) (*Respo
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sensor-test-template
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sensor-test-template-v1
 */
 func (s *SensorsService) CreateSensorTestTemplate(requestSensorsCreateSensorTestTemplate *RequestSensorsCreateSensorTestTemplate) (*ResponseSensorsCreateSensorTestTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sensor"
@@ -1387,7 +1387,7 @@ func (s *SensorsService) DuplicateSensorTestTemplate(requestSensorsDuplicateSens
 
 @param DeleteSensorTestQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sensor-test
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sensor-test-v1
 */
 func (s *SensorsService) DeleteSensorTest(DeleteSensorTestQueryParams *DeleteSensorTestQueryParams) (*ResponseSensorsDeleteSensorTest, *resty.Response, error) {
 	//DeleteSensorTestQueryParams *DeleteSensorTestQueryParams

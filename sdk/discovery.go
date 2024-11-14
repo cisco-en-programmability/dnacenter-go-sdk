@@ -1026,7 +1026,7 @@ type RequestDiscoveryCreateGlobalCredentialsV2HTTPSWrite struct {
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-count-of-all-discovery-jobs
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-count-of-all-discovery-jobs-v1
 */
 func (s *DiscoveryService) GetCountOfAllDiscoveryJobs() (*ResponseDiscoveryGetCountOfAllDiscoveryJobs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/count"
@@ -1061,7 +1061,7 @@ func (s *DiscoveryService) GetCountOfAllDiscoveryJobs() (*ResponseDiscoveryGetCo
 
 @param GetDiscoveryJobsByIPQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovery-jobs-by-ip
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovery-jobs-by-ip-v1
 */
 func (s *DiscoveryService) GetDiscoveryJobsByIP(GetDiscoveryJobsByIPQueryParams *GetDiscoveryJobsByIPQueryParams) (*ResponseDiscoveryGetDiscoveryJobsByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/job"
@@ -1099,7 +1099,7 @@ func (s *DiscoveryService) GetDiscoveryJobsByIP(GetDiscoveryJobsByIPQueryParams 
 @param id id path parameter. Discovery ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovery-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovery-by-id-v1
 */
 func (s *DiscoveryService) GetDiscoveryByID(id string) (*ResponseDiscoveryGetDiscoveryByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}"
@@ -1137,7 +1137,7 @@ func (s *DiscoveryService) GetDiscoveryByID(id string) (*ResponseDiscoveryGetDis
 
 @param GetListOfDiscoveriesByDiscoveryIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-discoveries-by-discovery-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-discoveries-by-discovery-id-v1
 */
 func (s *DiscoveryService) GetListOfDiscoveriesByDiscoveryID(id string, GetListOfDiscoveriesByDiscoveryIdQueryParams *GetListOfDiscoveriesByDiscoveryIDQueryParams) (*ResponseDiscoveryGetListOfDiscoveriesByDiscoveryID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}/job"
@@ -1177,7 +1177,7 @@ func (s *DiscoveryService) GetListOfDiscoveriesByDiscoveryID(id string, GetListO
 
 @param GetDiscoveredNetworkDevicesByDiscoveryIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovered-network-devices-by-discovery-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovered-network-devices-by-discovery-id-v1
 */
 func (s *DiscoveryService) GetDiscoveredNetworkDevicesByDiscoveryID(id string, GetDiscoveredNetworkDevicesByDiscoveryIdQueryParams *GetDiscoveredNetworkDevicesByDiscoveryIDQueryParams) (*ResponseDiscoveryGetDiscoveredNetworkDevicesByDiscoveryID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}/network-device"
@@ -1217,7 +1217,7 @@ func (s *DiscoveryService) GetDiscoveredNetworkDevicesByDiscoveryID(id string, G
 
 @param GetDevicesDiscoveredByIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-discovered-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-discovered-by-id-v1
 */
 func (s *DiscoveryService) GetDevicesDiscoveredByID(id string, GetDevicesDiscoveredByIdQueryParams *GetDevicesDiscoveredByIDQueryParams) (*ResponseDiscoveryGetDevicesDiscoveredByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}/network-device/count"
@@ -1261,7 +1261,7 @@ func (s *DiscoveryService) GetDevicesDiscoveredByID(id string, GetDevicesDiscove
 
 @param GetDiscoveredDevicesByRangeQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovered-devices-by-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discovered-devices-by-range-v1
 */
 func (s *DiscoveryService) GetDiscoveredDevicesByRange(id string, startIndex int, recordsToReturn int, GetDiscoveredDevicesByRangeQueryParams *GetDiscoveredDevicesByRangeQueryParams) (*ResponseDiscoveryGetDiscoveredDevicesByRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}/network-device/{startIndex}/{recordsToReturn}"
@@ -1303,7 +1303,7 @@ func (s *DiscoveryService) GetDiscoveredDevicesByRange(id string, startIndex int
 
 @param GetNetworkDevicesFromDiscoveryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices-from-discovery
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices-from-discovery-v1
 */
 func (s *DiscoveryService) GetNetworkDevicesFromDiscovery(id string, GetNetworkDevicesFromDiscoveryQueryParams *GetNetworkDevicesFromDiscoveryQueryParams) (*ResponseDiscoveryGetNetworkDevicesFromDiscovery, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{id}/summary"
@@ -1344,7 +1344,7 @@ func (s *DiscoveryService) GetNetworkDevicesFromDiscovery(id string, GetNetworkD
 @param recordsToReturn recordsToReturn path parameter. Number of records to fetch from the starting index
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discoveries-by-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-discoveries-by-range-v1
 */
 func (s *DiscoveryService) GetDiscoveriesByRange(startIndex int, recordsToReturn int) (*ResponseDiscoveryGetDiscoveriesByRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery/{startIndex}/{recordsToReturn}"
@@ -1381,7 +1381,7 @@ func (s *DiscoveryService) GetDiscoveriesByRange(startIndex int, recordsToReturn
 
 @param GetGlobalCredentialsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-credentials-v1
 */
 func (s *DiscoveryService) GetGlobalCredentials(GetGlobalCredentialsQueryParams *GetGlobalCredentialsQueryParams) (*ResponseDiscoveryGetGlobalCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential"
@@ -1419,7 +1419,7 @@ func (s *DiscoveryService) GetGlobalCredentials(GetGlobalCredentialsQueryParams 
 @param id id path parameter. Global Credential ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-credential-sub-type-by-credential-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-credential-sub-type-by-credential-id-v1
 */
 func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*ResponseDiscoveryGetCredentialSubTypeByCredentialID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/{id}"
@@ -1454,7 +1454,7 @@ func (s *DiscoveryService) GetCredentialSubTypeByCredentialID(id string) (*Respo
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-snmp-properties
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-snmp-properties-v1
 */
 func (s *DiscoveryService) GetSNMPProperties() (*ResponseDiscoveryGetSNMPProperties, *resty.Response, error) {
 	path := "/dna/intent/api/v1/snmp-property"
@@ -1522,7 +1522,7 @@ func (s *DiscoveryService) GetAllGlobalCredentialsV2() (*ResponseDiscoveryGetAll
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!start-discovery
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!start-discovery-v1
 */
 func (s *DiscoveryService) StartDiscovery(requestDiscoveryStartDiscovery *RequestDiscoveryStartDiscovery) (*ResponseDiscoveryStartDiscovery, *resty.Response, error) {
 	path := "/dna/intent/api/v1/discovery"
@@ -1559,7 +1559,7 @@ func (s *DiscoveryService) StartDiscovery(requestDiscoveryStartDiscovery *Reques
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-cli-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-cli-credentials-v1
 */
 func (s *DiscoveryService) CreateCliCredentials(requestDiscoveryCreateCLICredentials *RequestDiscoveryCreateCliCredentials) (*ResponseDiscoveryCreateCliCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/cli"
@@ -1596,7 +1596,7 @@ func (s *DiscoveryService) CreateCliCredentials(requestDiscoveryCreateCLICredent
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-http-read-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-http-read-credentials-v1
 */
 func (s *DiscoveryService) CreateHTTPReadCredentials(requestDiscoveryCreateHTTPReadCredentials *RequestDiscoveryCreateHTTPReadCredentials) (*ResponseDiscoveryCreateHTTPReadCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/http-read"
@@ -1633,7 +1633,7 @@ func (s *DiscoveryService) CreateHTTPReadCredentials(requestDiscoveryCreateHTTPR
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-http-write-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-http-write-credentials-v1
 */
 func (s *DiscoveryService) CreateHTTPWriteCredentials(requestDiscoveryCreateHTTPWriteCredentials *RequestDiscoveryCreateHTTPWriteCredentials) (*ResponseDiscoveryCreateHTTPWriteCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/http-write"
@@ -1670,7 +1670,7 @@ func (s *DiscoveryService) CreateHTTPWriteCredentials(requestDiscoveryCreateHTTP
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-netconf-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-netconf-credentials-v1
 */
 func (s *DiscoveryService) CreateNetconfCredentials(requestDiscoveryCreateNetconfCredentials *RequestDiscoveryCreateNetconfCredentials) (*ResponseDiscoveryCreateNetconfCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/netconf"
@@ -1707,7 +1707,7 @@ func (s *DiscoveryService) CreateNetconfCredentials(requestDiscoveryCreateNetcon
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-read-community
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-read-community-v1
 */
 func (s *DiscoveryService) CreateSNMPReadCommunity(requestDiscoveryCreateSNMPReadCommunity *RequestDiscoveryCreateSNMPReadCommunity) (*ResponseDiscoveryCreateSNMPReadCommunity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv2-read-community"
@@ -1744,7 +1744,7 @@ func (s *DiscoveryService) CreateSNMPReadCommunity(requestDiscoveryCreateSNMPRea
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-write-community
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmp-write-community-v1
 */
 func (s *DiscoveryService) CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWriteCommunity *RequestDiscoveryCreateSNMPWriteCommunity) (*ResponseDiscoveryCreateSNMPWriteCommunity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv2-write-community"
@@ -1781,7 +1781,7 @@ func (s *DiscoveryService) CreateSNMPWriteCommunity(requestDiscoveryCreateSNMPWr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmpv3-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-snmpv3-credentials-v1
 */
 func (s *DiscoveryService) CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3Credentials *RequestDiscoveryCreateSNMPv3Credentials) (*ResponseDiscoveryCreateSNMPv3Credentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-credential/snmpv3"
@@ -1818,7 +1818,7 @@ func (s *DiscoveryService) CreateSNMPv3Credentials(requestDiscoveryCreateSNMPv3C
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-snmp-properties
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-snmp-properties-v1
 */
 func (s *DiscoveryService) CreateUpdateSNMPProperties(requestDiscoveryCreateUpdateSNMPProperties *RequestDiscoveryCreateUpdateSNMPProperties) (*ResponseDiscoveryCreateUpdateSNMPProperties, *resty.Response, error) {
 	path := "/dna/intent/api/v1/snmp-property"
@@ -2225,7 +2225,7 @@ func (s *DiscoveryService) UpdateGlobalCredentialsV2(requestDiscoveryUpdateGloba
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-all-discovery
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-all-discovery-v1
 */
 func (s *DiscoveryService) DeleteAllDiscovery() (*ResponseDiscoveryDeleteAllDiscovery, *resty.Response, error) {
 	//
@@ -2262,7 +2262,7 @@ func (s *DiscoveryService) DeleteAllDiscovery() (*ResponseDiscoveryDeleteAllDisc
 @param id id path parameter. Discovery ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-discovery-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-discovery-by-id-v1
 */
 func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*ResponseDiscoveryDeleteDiscoveryByID, *resty.Response, error) {
 	//id string
@@ -2302,7 +2302,7 @@ func (s *DiscoveryService) DeleteDiscoveryByID(id string) (*ResponseDiscoveryDel
 @param recordsToDelete recordsToDelete path parameter. Number of records to delete from the starting index
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-discovery-by-specified-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-discovery-by-specified-range-v1
 */
 func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recordsToDelete int) (*ResponseDiscoveryDeleteDiscoveryBySpecifiedRange, *resty.Response, error) {
 	//startIndex int,recordsToDelete int
@@ -2341,7 +2341,7 @@ func (s *DiscoveryService) DeleteDiscoveryBySpecifiedRange(startIndex int, recor
 @param globalCredentialID globalCredentialId path parameter. ID of global-credential
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-credentials-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-credentials-by-id-v1
 */
 func (s *DiscoveryService) DeleteGlobalCredentialsByID(globalCredentialID string) (*ResponseDiscoveryDeleteGlobalCredentialsByID, *resty.Response, error) {
 	//globalCredentialID string

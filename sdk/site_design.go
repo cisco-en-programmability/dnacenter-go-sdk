@@ -38,7 +38,7 @@ type RetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToQueryP
 	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page.
 }
 type UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams struct {
-	SiteID string `url:"siteId,omitempty"` //The 'id' of the site, retrievable from 'GET /intent/api/v1/sites'
+	SiteID string `url:"siteId,omitempty"` //The `id` of the site, retrievable from `GET /intent/api/v1/sites`
 }
 type GetSitesQueryParams struct {
 	Name           string `url:"name,omitempty"`            //Site name.
@@ -55,7 +55,7 @@ type RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedQueryParams
 	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1.
 	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page.
 }
-type GetsAFloorQueryParams struct {
+type GetsAFloorV2QueryParams struct {
 	UnitsOfMeasure string `url:"_unitsOfMeasure,omitempty"` //Floor units of measure
 }
 
@@ -312,34 +312,34 @@ type ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssigne
 type ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssignedResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
-type ResponseSiteDesignCreatesABuilding struct {
-	Version  string                                      `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignCreatesABuildingResponse `json:"response,omitempty"` //
+type ResponseSiteDesignCreatesABuildingV2 struct {
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignCreatesABuildingV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignCreatesABuildingResponse struct {
+type ResponseSiteDesignCreatesABuildingV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignUpdatesABuilding struct {
-	Version  string                                      `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignUpdatesABuildingResponse `json:"response,omitempty"` //
+type ResponseSiteDesignUpdatesABuildingV2 struct {
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignUpdatesABuildingV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignUpdatesABuildingResponse struct {
+type ResponseSiteDesignUpdatesABuildingV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignDeletesABuilding struct {
-	Version  string                                      `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignDeletesABuildingResponse `json:"response,omitempty"` //
+type ResponseSiteDesignDeletesABuildingV2 struct {
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignDeletesABuildingV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignDeletesABuildingResponse struct {
+type ResponseSiteDesignDeletesABuildingV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignGetsABuilding struct {
-	Response *ResponseSiteDesignGetsABuildingResponse `json:"response,omitempty"` //
+type ResponseSiteDesignGetsABuildingV2 struct {
+	Response *ResponseSiteDesignGetsABuildingV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignGetsABuildingResponse struct {
+type ResponseSiteDesignGetsABuildingV2Response struct {
 	ParentID  string   `json:"parentId,omitempty"`  // Parent Id
 	Name      string   `json:"name,omitempty"`      // Building name
 	Latitude  *float64 `json:"latitude,omitempty"`  // Building Latitude. Example: 37.403712
@@ -348,41 +348,41 @@ type ResponseSiteDesignGetsABuildingResponse struct {
 	Country   string   `json:"country,omitempty"`   // Country name
 	Type      string   `json:"type,omitempty"`      // Example: building
 }
-type ResponseSiteDesignCreatesAFloor struct {
-	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignCreatesAFloorResponse `json:"response,omitempty"` //
+type ResponseSiteDesignCreatesAFloorV2 struct {
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignCreatesAFloorV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignCreatesAFloorResponse struct {
+type ResponseSiteDesignCreatesAFloorV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignUpdatesFloorSettings struct {
-	Version  string                                          `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignUpdatesFloorSettingsResponse `json:"response,omitempty"` //
+type ResponseSiteDesignUpdatesFloorSettingsV2 struct {
+	Version  string                                            `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignUpdatesFloorSettingsV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignUpdatesFloorSettingsResponse struct {
+type ResponseSiteDesignUpdatesFloorSettingsV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignGetFloorSettings struct {
-	Response *ResponseSiteDesignGetFloorSettingsResponse `json:"response,omitempty"` //
-	Version  string                                      `json:"version,omitempty"`  // Version
+type ResponseSiteDesignGetFloorSettingsV2 struct {
+	Response *ResponseSiteDesignGetFloorSettingsV2Response `json:"response,omitempty"` //
+	Version  string                                        `json:"version,omitempty"`  // Version
 }
-type ResponseSiteDesignGetFloorSettingsResponse struct {
+type ResponseSiteDesignGetFloorSettingsV2Response struct {
 	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor units of measure.
 }
-type ResponseSiteDesignUpdatesAFloor struct {
-	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignUpdatesAFloorResponse `json:"response,omitempty"` //
+type ResponseSiteDesignUpdatesAFloorV2 struct {
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignUpdatesAFloorV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignUpdatesAFloorResponse struct {
+type ResponseSiteDesignUpdatesAFloorV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
-type ResponseSiteDesignGetsAFloor struct {
-	Response *ResponseSiteDesignGetsAFloorResponse `json:"response,omitempty"` //
+type ResponseSiteDesignGetsAFloorV2 struct {
+	Response *ResponseSiteDesignGetsAFloorV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignGetsAFloorResponse struct {
+type ResponseSiteDesignGetsAFloorV2Response struct {
 	ParentID       string   `json:"parentId,omitempty"`       // Parent Id.
 	Name           string   `json:"name,omitempty"`           // Floor name
 	FloorNumber    *int     `json:"floorNumber,omitempty"`    // Floor number
@@ -395,11 +395,11 @@ type ResponseSiteDesignGetsAFloorResponse struct {
 	ID             string   `json:"id,omitempty"`             // Floor Id. Read only.
 	NameHierarchy  string   `json:"nameHierarchy,omitempty"`  // Floor hierarchical name. Read only.
 }
-type ResponseSiteDesignDeletesAFloor struct {
-	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
-	Response *ResponseSiteDesignDeletesAFloorResponse `json:"response,omitempty"` //
+type ResponseSiteDesignDeletesAFloorV2 struct {
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseSiteDesignDeletesAFloorV2Response `json:"response,omitempty"` //
 }
-type ResponseSiteDesignDeletesAFloorResponse struct {
+type ResponseSiteDesignDeletesAFloorV2Response struct {
 	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
@@ -426,8 +426,9 @@ type RequestSiteDesignAssignANetworkProfileForSitesToTheGivenSite struct {
 	ID string `json:"id,omitempty"` // Id
 }
 type RequestSiteDesignAssignANetworkProfileForSitesToAListOfSites struct {
-	Items *[][]string `json:"items,omitempty"` // Items
+	Type *RequestSiteDesignAssignANetworkProfileForSitesToAListOfSitesType `json:"type,omitempty"` //
 }
+type RequestSiteDesignAssignANetworkProfileForSitesToAListOfSitesType interface{}
 type RequestSiteDesignCreateSites []RequestItemSiteDesignCreateSites // Array of RequestSiteDesignCreateSites
 type RequestItemSiteDesignCreateSites struct {
 	ParentNameHierarchy string   `json:"parentNameHierarchy,omitempty"` // Parent hierarchical name. Example: Global/USA/San Jose/Building1
@@ -444,7 +445,7 @@ type RequestItemSiteDesignCreateSites struct {
 	UnitsOfMeasure      string   `json:"unitsOfMeasure,omitempty"`      // Floor unit of measure. Required for floor.
 	Type                string   `json:"type,omitempty"`                // Type
 }
-type RequestSiteDesignCreatesABuilding struct {
+type RequestSiteDesignCreatesABuildingV2 struct {
 	ParentID  string   `json:"parentId,omitempty"`  // Parent Id
 	Name      string   `json:"name,omitempty"`      // Building name
 	Latitude  *float64 `json:"latitude,omitempty"`  // Building Latitude. Example: 37.403712
@@ -452,7 +453,7 @@ type RequestSiteDesignCreatesABuilding struct {
 	Address   string   `json:"address,omitempty"`   // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
 	Country   string   `json:"country,omitempty"`   // Country name
 }
-type RequestSiteDesignUpdatesABuilding struct {
+type RequestSiteDesignUpdatesABuildingV2 struct {
 	ParentID  string   `json:"parentId,omitempty"`  // Parent Id
 	Name      string   `json:"name,omitempty"`      // Building name
 	Latitude  *float64 `json:"latitude,omitempty"`  // Building Latitude. Example: 37.403712
@@ -460,7 +461,7 @@ type RequestSiteDesignUpdatesABuilding struct {
 	Address   string   `json:"address,omitempty"`   // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
 	Country   string   `json:"country,omitempty"`   // Country name
 }
-type RequestSiteDesignCreatesAFloor struct {
+type RequestSiteDesignCreatesAFloorV2 struct {
 	ParentID       string   `json:"parentId,omitempty"`       // Parent Id
 	Name           string   `json:"name,omitempty"`           // Floor name
 	FloorNumber    *int     `json:"floorNumber,omitempty"`    // Floor number
@@ -470,10 +471,10 @@ type RequestSiteDesignCreatesAFloor struct {
 	Height         *float64 `json:"height,omitempty"`         // Floor height. Example : 10.1
 	UnitsOfMeasure string   `json:"unitsOfMeasure,omitempty"` // Units Of Measure
 }
-type RequestSiteDesignUpdatesFloorSettings struct {
+type RequestSiteDesignUpdatesFloorSettingsV2 struct {
 	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor units of measure
 }
-type RequestSiteDesignUpdatesAFloor struct {
+type RequestSiteDesignUpdatesAFloorV2 struct {
 	ParentID       string   `json:"parentId,omitempty"`       // Parent Id
 	Name           string   `json:"name,omitempty"`           // Floor name
 	FloorNumber    *int     `json:"floorNumber,omitempty"`    // Floor number
@@ -491,7 +492,7 @@ type RequestSiteDesignUpdatesAFloor struct {
 @param id id path parameter. Area Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-an-area
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-an-area-v1
 */
 func (s *SiteDesignService) GetsAnArea(id string) (*ResponseSiteDesignGetsAnArea, *resty.Response, error) {
 	path := "/dna/intent/api/v1/areas/{id}"
@@ -527,7 +528,7 @@ func (s *SiteDesignService) GetsAnArea(id string) (*ResponseSiteDesignGetsAnArea
 
 @param GetSiteAssignedNetworkDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-devices-v1
 */
 func (s *SiteDesignService) GetSiteAssignedNetworkDevices(GetSiteAssignedNetworkDevicesQueryParams *GetSiteAssignedNetworkDevicesQueryParams) (*ResponseSiteDesignGetSiteAssignedNetworkDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/assignedToSite"
@@ -564,7 +565,7 @@ func (s *SiteDesignService) GetSiteAssignedNetworkDevices(GetSiteAssignedNetwork
 
 @param GetSiteAssignedNetworkDevicesCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-devices-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-devices-count-v1
 */
 func (s *SiteDesignService) GetSiteAssignedNetworkDevicesCount(GetSiteAssignedNetworkDevicesCountQueryParams *GetSiteAssignedNetworkDevicesCountQueryParams) (*ResponseSiteDesignGetSiteAssignedNetworkDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/assignedToSite/count"
@@ -600,7 +601,7 @@ func (s *SiteDesignService) GetSiteAssignedNetworkDevicesCount(GetSiteAssignedNe
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-controllability-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-controllability-settings-v1
 */
 func (s *SiteDesignService) GetDeviceControllabilitySettings() (*ResponseSiteDesignGetDeviceControllabilitySettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/deviceControllability/settings"
@@ -635,7 +636,7 @@ func (s *SiteDesignService) GetDeviceControllabilitySettings() (*ResponseSiteDes
 
 @param GetSiteNotAssignedNetworkDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-not-assigned-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-not-assigned-network-devices-v1
 */
 func (s *SiteDesignService) GetSiteNotAssignedNetworkDevices(GetSiteNotAssignedNetworkDevicesQueryParams *GetSiteNotAssignedNetworkDevicesQueryParams) (*ResponseSiteDesignGetSiteNotAssignedNetworkDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/notAssignedToSite"
@@ -671,7 +672,7 @@ func (s *SiteDesignService) GetSiteNotAssignedNetworkDevices(GetSiteNotAssignedN
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-not-assigned-network-devices-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-not-assigned-network-devices-count-v1
 */
 func (s *SiteDesignService) GetSiteNotAssignedNetworkDevicesCount() (*ResponseSiteDesignGetSiteNotAssignedNetworkDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/notAssignedToSite/count"
@@ -707,7 +708,7 @@ func (s *SiteDesignService) GetSiteNotAssignedNetworkDevicesCount() (*ResponseSi
 @param id id path parameter. Network Device Id.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-assigned-network-device-v1
 */
 func (s *SiteDesignService) GetSiteAssignedNetworkDevice(id string) (*ResponseSiteDesignGetSiteAssignedNetworkDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/{id}/assignedToSite"
@@ -743,7 +744,7 @@ func (s *SiteDesignService) GetSiteAssignedNetworkDevice(id string) (*ResponseSi
 
 @param RetrievesTheListOfNetworkProfilesForSitesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-profiles-for-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-profiles-for-sites-v1
 */
 func (s *SiteDesignService) RetrievesTheListOfNetworkProfilesForSites(RetrievesTheListOfNetworkProfilesForSitesQueryParams *RetrievesTheListOfNetworkProfilesForSitesQueryParams) (*ResponseSiteDesignRetrievesTheListOfNetworkProfilesForSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites"
@@ -780,7 +781,7 @@ func (s *SiteDesignService) RetrievesTheListOfNetworkProfilesForSites(RetrievesT
 
 @param RetrievesTheCountOfNetworkProfilesForSitesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-network-profiles-for-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-network-profiles-for-sites-v1
 */
 func (s *SiteDesignService) RetrievesTheCountOfNetworkProfilesForSites(RetrievesTheCountOfNetworkProfilesForSitesQueryParams *RetrievesTheCountOfNetworkProfilesForSitesQueryParams) (*ResponseSiteDesignRetrievesTheCountOfNetworkProfilesForSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/count"
@@ -815,10 +816,10 @@ func (s *SiteDesignService) RetrievesTheCountOfNetworkProfilesForSites(Retrieves
 /* Retrieves a network profile for sites by id.
 
 
-@param id id path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param id id path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-network-profile-for-sites-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-network-profile-for-sites-by-id-v1
 */
 func (s *SiteDesignService) RetrieveANetworkProfileForSitesByID(id string) (*ResponseSiteDesignRetrieveANetworkProfileForSitesByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/{id}"
@@ -853,11 +854,11 @@ func (s *SiteDesignService) RetrieveANetworkProfileForSitesByID(id string) (*Res
 The list includes the sites the profile has been directly assigned to, as well as child sites that have inherited the profile.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 @param RetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-sites-that-the-given-network-profile-for-sites-is-assigned-to
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-sites-that-the-given-network-profile-for-sites-is-assigned-to-v1
 */
 func (s *SiteDesignService) RetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo(profileID string, RetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToQueryParams *RetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToQueryParams) (*ResponseSiteDesignRetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments"
@@ -893,10 +894,10 @@ func (s *SiteDesignService) RetrievesTheListOfSitesThatTheGivenNetworkProfileFor
 /* Retrieves the count of sites that the given network profile for sites is assigned to.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-sites-that-the-given-network-profile-for-sites-is-assigned-to
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-sites-that-the-given-network-profile-for-sites-is-assigned-to-v1
 */
 func (s *SiteDesignService) RetrievesTheCountOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo(profileID string) (*ResponseSiteDesignRetrievesTheCountOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments/count"
@@ -932,7 +933,7 @@ func (s *SiteDesignService) RetrievesTheCountOfSitesThatTheGivenNetworkProfileFo
 
 @param GetSitesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-sites-v1
 */
 func (s *SiteDesignService) GetSites(GetSitesQueryParams *GetSitesQueryParams) (*ResponseSiteDesignGetSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites"
@@ -969,7 +970,7 @@ func (s *SiteDesignService) GetSites(GetSitesQueryParams *GetSitesQueryParams) (
 
 @param GetSitesCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-sites-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-sites-count-v1
 */
 func (s *SiteDesignService) GetSitesCount(GetSitesCountQueryParams *GetSitesCountQueryParams) (*ResponseSiteDesignGetSitesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/count"
@@ -1002,14 +1003,14 @@ func (s *SiteDesignService) GetSitesCount(GetSitesCountQueryParams *GetSitesCoun
 
 //RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssigned Retrieves the list of network profiles that the given site has been assigned - b0b4-5962-49d9-8d6b
 /* Retrieves the list of profiles that the given site has been assigned.  These profiles may either be directly assigned to this site, or were assigned to a parent site and have been inherited.
-These assigments can be modified via the '/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments' resources.
+These assigments can be modified via the `/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments` resources.
 
 
-@param siteID siteId path parameter. The 'id' of the site, retrievable from '/dna/intent/api/v1/sites'
+@param siteID siteId path parameter. The `id` of the site, retrievable from `/dna/intent/api/v1/sites`
 
 @param RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-profiles-that-the-given-site-has-been-assigned
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-profiles-that-the-given-site-has-been-assigned-v1
 */
 func (s *SiteDesignService) RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssigned(siteID string, RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedQueryParams *RetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedQueryParams) (*ResponseSiteDesignRetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssigned, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/profileAssignments"
@@ -1045,10 +1046,10 @@ func (s *SiteDesignService) RetrievesTheListOfNetworkProfilesThatTheGivenSiteHas
 /* Retrieves the count of profiles that the given site has been assigned.  These profiles may either be directly assigned to this site, or were assigned to a parent site and have been inherited.
 
 
-@param siteID siteId path parameter. The 'id' of the site, retrievable from '/dna/intent/api/v1/sites'
+@param siteID siteId path parameter. The `id` of the site, retrievable from `/dna/intent/api/v1/sites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-profiles-that-the-given-site-has-been-assigned
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-profiles-that-the-given-site-has-been-assigned-v1
 */
 func (s *SiteDesignService) RetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssigned(siteID string) (*ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssigned, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/profileAssignments/count"
@@ -1078,23 +1079,23 @@ func (s *SiteDesignService) RetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAs
 
 }
 
-//GetsABuilding Gets a building - e293-295e-4a78-bf64
+//GetsABuildingV2 Gets a building - e293-295e-4a78-bf64
 /* Gets a building in the network hierarchy.
 
 
 @param id id path parameter. Building Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-building
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-building-v2
 */
-func (s *SiteDesignService) GetsABuilding(id string) (*ResponseSiteDesignGetsABuilding, *resty.Response, error) {
+func (s *SiteDesignService) GetsABuildingV2(id string) (*ResponseSiteDesignGetsABuildingV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/buildings/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSiteDesignGetsABuilding{}).
+		SetResult(&ResponseSiteDesignGetsABuildingV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1105,30 +1106,30 @@ func (s *SiteDesignService) GetsABuilding(id string) (*ResponseSiteDesignGetsABu
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetsABuilding(id)
+			return s.GetsABuildingV2(id)
 		}
-		return nil, response, fmt.Errorf("error with operation GetsABuilding")
+		return nil, response, fmt.Errorf("error with operation GetsABuildingV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignGetsABuilding)
+	result := response.Result().(*ResponseSiteDesignGetsABuildingV2)
 	return result, response, err
 
 }
 
-//GetFloorSettings Get floor settings - f697-a95f-4469-958f
+//GetFloorSettingsV2 Get floor settings - f697-a95f-4469-958f
 /* Gets UI user preference for floor unit system.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-floor-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-floor-settings-v2
 */
-func (s *SiteDesignService) GetFloorSettings() (*ResponseSiteDesignGetFloorSettings, *resty.Response, error) {
+func (s *SiteDesignService) GetFloorSettingsV2() (*ResponseSiteDesignGetFloorSettingsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/floors/settings"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSiteDesignGetFloorSettings{}).
+		SetResult(&ResponseSiteDesignGetFloorSettingsV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1139,36 +1140,36 @@ func (s *SiteDesignService) GetFloorSettings() (*ResponseSiteDesignGetFloorSetti
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetFloorSettings()
+			return s.GetFloorSettingsV2()
 		}
-		return nil, response, fmt.Errorf("error with operation GetFloorSettings")
+		return nil, response, fmt.Errorf("error with operation GetFloorSettingsV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignGetFloorSettings)
+	result := response.Result().(*ResponseSiteDesignGetFloorSettingsV2)
 	return result, response, err
 
 }
 
-//GetsAFloor Gets a floor - ff92-2958-4bba-9288
+//GetsAFloorV2 Gets a floor - ff92-2958-4bba-9288
 /* Gets a floor in the network hierarchy.
 
 
 @param id id path parameter. Floor Id
 
-@param GetsAFloorQueryParams Filtering parameter
+@param GetsAFloorV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-floor-v2
 */
-func (s *SiteDesignService) GetsAFloor(id string, GetsAFloorQueryParams *GetsAFloorQueryParams) (*ResponseSiteDesignGetsAFloor, *resty.Response, error) {
+func (s *SiteDesignService) GetsAFloorV2(id string, GetsAFloorV2QueryParams *GetsAFloorV2QueryParams) (*ResponseSiteDesignGetsAFloorV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/floors/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
-	queryString, _ := query.Values(GetsAFloorQueryParams)
+	queryString, _ := query.Values(GetsAFloorV2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseSiteDesignGetsAFloor{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSiteDesignGetsAFloorV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1179,12 +1180,12 @@ func (s *SiteDesignService) GetsAFloor(id string, GetsAFloorQueryParams *GetsAFl
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetsAFloor(id, GetsAFloorQueryParams)
+			return s.GetsAFloorV2(id, GetsAFloorV2QueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetsAFloor")
+		return nil, response, fmt.Errorf("error with operation GetsAFloorV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignGetsAFloor)
+	result := response.Result().(*ResponseSiteDesignGetsAFloorV2)
 	return result, response, err
 
 }
@@ -1194,7 +1195,7 @@ func (s *SiteDesignService) GetsAFloor(id string, GetsAFloorQueryParams *GetsAFl
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-an-area
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-an-area-v1
 */
 func (s *SiteDesignService) CreatesAnArea(requestSiteDesignCreatesAnArea *RequestSiteDesignCreatesAnArea) (*ResponseSiteDesignCreatesAnArea, *resty.Response, error) {
 	path := "/dna/intent/api/v1/areas"
@@ -1227,11 +1228,11 @@ func (s *SiteDesignService) CreatesAnArea(requestSiteDesignCreatesAnArea *Reques
 }
 
 //AssignNetworkDevicesToASite Assign network devices to a site - a1b4-8949-4a6a-a6ac
-/* Assign unprovisioned network devices to a site. Along with that it can also be used to assign unprovisioned network devices to a different site. If device controllability is enabled, it will be triggered once device assigned to site successfully. Device Controllability can be enabled/disabled using '/dna/intent/api/v1/networkDevices/deviceControllability/settings'.
+/* Assign unprovisioned network devices to a site. Along with that it can also be used to assign unprovisioned network devices to a different site. If device controllability is enabled, it will be triggered once device assigned to site successfully. Device Controllability can be enabled/disabled using `/dna/intent/api/v1/networkDevices/deviceControllability/settings`.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-network-devices-to-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-network-devices-to-a-site-v1
 */
 func (s *SiteDesignService) AssignNetworkDevicesToASite(requestSiteDesignAssignNetworkDevicesToASite *RequestSiteDesignAssignNetworkDevicesToASite) (*ResponseSiteDesignAssignNetworkDevicesToASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/assignToSite/apply"
@@ -1264,11 +1265,11 @@ func (s *SiteDesignService) AssignNetworkDevicesToASite(requestSiteDesignAssignN
 }
 
 //UnassignNetworkDevicesFromSites Unassign network devices from sites - 08a6-1a87-44eb-8606
-/* Unassign unprovisioned network devices from their site. If device controllability is enabled, it will be triggered once device unassigned from site successfully. Device Controllability can be enabled/disabled using '/dna/intent/api/v1/networkDevices/deviceControllability/settings'.
+/* Unassign unprovisioned network devices from their site. If device controllability is enabled, it will be triggered once device unassigned from site successfully. Device Controllability can be enabled/disabled using `/dna/intent/api/v1/networkDevices/deviceControllability/settings`.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassign-network-devices-from-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassign-network-devices-from-sites-v1
 */
 func (s *SiteDesignService) UnassignNetworkDevicesFromSites(requestSiteDesignUnassignNetworkDevicesFromSites *RequestSiteDesignUnassignNetworkDevicesFromSites) (*ResponseSiteDesignUnassignNetworkDevicesFromSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/unassignFromSite/apply"
@@ -1304,10 +1305,10 @@ func (s *SiteDesignService) UnassignNetworkDevicesFromSites(requestSiteDesignUna
 /* Assigns a given network profile for sites to a given site. Also assigns the profile to child sites.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-a-network-profile-for-sites-to-the-given-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-a-network-profile-for-sites-to-the-given-site-v1
 */
 func (s *SiteDesignService) AssignANetworkProfileForSitesToTheGivenSite(profileID string, requestSiteDesignAssignANetworkProfileForSitesToTheGivenSite *RequestSiteDesignAssignANetworkProfileForSitesToTheGivenSite) (*ResponseSiteDesignAssignANetworkProfileForSitesToTheGivenSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments"
@@ -1344,10 +1345,10 @@ func (s *SiteDesignService) AssignANetworkProfileForSitesToTheGivenSite(profileI
 /* Assign a network profile for sites to a list of sites. Also assigns the profile to child sites.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-a-network-profile-for-sites-to-a-list-of-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-a-network-profile-for-sites-to-a-list-of-sites-v1
 */
 func (s *SiteDesignService) AssignANetworkProfileForSitesToAListOfSites(profileID string, requestSiteDesignAssignANetworkProfileForSitesToAListOfSites *RequestSiteDesignAssignANetworkProfileForSitesToAListOfSites) (*ResponseSiteDesignAssignANetworkProfileForSitesToAListOfSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkProfilesForSites/{profileId}/siteAssignments/bulk"
@@ -1389,7 +1390,7 @@ func (s *SiteDesignService) AssignANetworkProfileForSitesToAListOfSites(profileI
 @param siteID siteId path parameter. Site Id to be associated
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!associate
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!associate-v1
 */
 func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*ResponseSiteDesignAssociate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkprofile/{networkProfileId}/site/{siteId}"
@@ -1427,7 +1428,7 @@ func (s *SiteDesignService) Associate(networkProfileID string, siteID string) (*
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sites-v1
 */
 func (s *SiteDesignService) CreateSites(requestSiteDesignCreateSites *RequestSiteDesignCreateSites) (*ResponseSiteDesignCreateSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/bulk"
@@ -1459,21 +1460,21 @@ func (s *SiteDesignService) CreateSites(requestSiteDesignCreateSites *RequestSit
 
 }
 
-//CreatesABuilding Creates a building - 73ae-3922-466b-adb1
+//CreatesABuildingV2 Creates a building - 73ae-3922-466b-adb1
 /* Creates a building in the network hierarchy under area.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-building
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-building-v2
 */
-func (s *SiteDesignService) CreatesABuilding(requestSiteDesignCreatesABuilding *RequestSiteDesignCreatesABuilding) (*ResponseSiteDesignCreatesABuilding, *resty.Response, error) {
+func (s *SiteDesignService) CreatesABuildingV2(requestSiteDesignCreatesABuildingV2 *RequestSiteDesignCreatesABuildingV2) (*ResponseSiteDesignCreatesABuildingV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/buildings"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignCreatesABuilding).
-		SetResult(&ResponseSiteDesignCreatesABuilding{}).
+		SetBody(requestSiteDesignCreatesABuildingV2).
+		SetResult(&ResponseSiteDesignCreatesABuildingV2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1485,32 +1486,32 @@ func (s *SiteDesignService) CreatesABuilding(requestSiteDesignCreatesABuilding *
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CreatesABuilding(requestSiteDesignCreatesABuilding)
+			return s.CreatesABuildingV2(requestSiteDesignCreatesABuildingV2)
 		}
 
-		return nil, response, fmt.Errorf("error with operation CreatesABuilding")
+		return nil, response, fmt.Errorf("error with operation CreatesABuildingV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignCreatesABuilding)
+	result := response.Result().(*ResponseSiteDesignCreatesABuildingV2)
 	return result, response, err
 
 }
 
-//CreatesAFloor Creates a floor - 8882-b8fb-450a-8528
+//CreatesAFloorV2 Creates a floor - 8882-b8fb-450a-8528
 /* Create a floor in the network hierarchy under building.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-floor-v2
 */
-func (s *SiteDesignService) CreatesAFloor(requestSiteDesignCreatesAFloor *RequestSiteDesignCreatesAFloor) (*ResponseSiteDesignCreatesAFloor, *resty.Response, error) {
+func (s *SiteDesignService) CreatesAFloorV2(requestSiteDesignCreatesAFloorV2 *RequestSiteDesignCreatesAFloorV2) (*ResponseSiteDesignCreatesAFloorV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/floors"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignCreatesAFloor).
-		SetResult(&ResponseSiteDesignCreatesAFloor{}).
+		SetBody(requestSiteDesignCreatesAFloorV2).
+		SetResult(&ResponseSiteDesignCreatesAFloorV2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1522,27 +1523,27 @@ func (s *SiteDesignService) CreatesAFloor(requestSiteDesignCreatesAFloor *Reques
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CreatesAFloor(requestSiteDesignCreatesAFloor)
+			return s.CreatesAFloorV2(requestSiteDesignCreatesAFloorV2)
 		}
 
-		return nil, response, fmt.Errorf("error with operation CreatesAFloor")
+		return nil, response, fmt.Errorf("error with operation CreatesAFloorV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignCreatesAFloor)
+	result := response.Result().(*ResponseSiteDesignCreatesAFloorV2)
 	return result, response, err
 
 }
 
-//UploadsFloorImage Uploads floor image - fca4-5804-4758-98d2
+//UploadsFloorImageV2 Uploads floor image - fca4-5804-4758-98d2
 /* Uploads floor image.
 
 
 @param id id path parameter. Floor Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!uploads-floor-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!uploads-floor-image-v2
 */
-func (s *SiteDesignService) UploadsFloorImage(id string) (*resty.Response, error) {
+func (s *SiteDesignService) UploadsFloorImageV2(id string) (*resty.Response, error) {
 	path := "/dna/intent/api/v2/floors/{id}/uploadImage"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -1560,10 +1561,10 @@ func (s *SiteDesignService) UploadsFloorImage(id string) (*resty.Response, error
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UploadsFloorImage(id)
+			return s.UploadsFloorImageV2(id)
 		}
 
-		return response, fmt.Errorf("error with operation UploadsFloorImage")
+		return response, fmt.Errorf("error with operation UploadsFloorImageV2")
 	}
 
 	return response, err
@@ -1669,22 +1670,22 @@ func (s *SiteDesignService) UpdateDeviceControllabilitySettings(requestSiteDesig
 
 }
 
-//UpdatesABuilding Updates a building - 0280-1b95-4d78-845d
+//UpdatesABuildingV2 Updates a building - 0280-1b95-4d78-845d
 /* Updates a building in the network hierarchy.
 
 
 @param id id path parameter. Building Id
 
 */
-func (s *SiteDesignService) UpdatesABuilding(id string, requestSiteDesignUpdatesABuilding *RequestSiteDesignUpdatesABuilding) (*ResponseSiteDesignUpdatesABuilding, *resty.Response, error) {
+func (s *SiteDesignService) UpdatesABuildingV2(id string, requestSiteDesignUpdatesABuildingV2 *RequestSiteDesignUpdatesABuildingV2) (*ResponseSiteDesignUpdatesABuildingV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/buildings/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignUpdatesABuilding).
-		SetResult(&ResponseSiteDesignUpdatesABuilding{}).
+		SetBody(requestSiteDesignUpdatesABuildingV2).
+		SetResult(&ResponseSiteDesignUpdatesABuildingV2{}).
 		SetError(&Error).
 		Put(path)
 
@@ -1695,29 +1696,29 @@ func (s *SiteDesignService) UpdatesABuilding(id string, requestSiteDesignUpdates
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesABuilding(id, requestSiteDesignUpdatesABuilding)
+			return s.UpdatesABuildingV2(id, requestSiteDesignUpdatesABuildingV2)
 		}
-		return nil, response, fmt.Errorf("error with operation UpdatesABuilding")
+		return nil, response, fmt.Errorf("error with operation UpdatesABuildingV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignUpdatesABuilding)
+	result := response.Result().(*ResponseSiteDesignUpdatesABuildingV2)
 	return result, response, err
 
 }
 
-//UpdatesFloorSettings Updates floor settings - 16b8-59a5-4b38-8cb7
+//UpdatesFloorSettingsV2 Updates floor settings - 16b8-59a5-4b38-8cb7
 /* Updates UI user preference for floor unit system. Unit sytem change will effect for all floors across all sites.
 
 
  */
-func (s *SiteDesignService) UpdatesFloorSettings(requestSiteDesignUpdatesFloorSettings *RequestSiteDesignUpdatesFloorSettings) (*ResponseSiteDesignUpdatesFloorSettings, *resty.Response, error) {
+func (s *SiteDesignService) UpdatesFloorSettingsV2(requestSiteDesignUpdatesFloorSettingsV2 *RequestSiteDesignUpdatesFloorSettingsV2) (*ResponseSiteDesignUpdatesFloorSettingsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/floors/settings"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignUpdatesFloorSettings).
-		SetResult(&ResponseSiteDesignUpdatesFloorSettings{}).
+		SetBody(requestSiteDesignUpdatesFloorSettingsV2).
+		SetResult(&ResponseSiteDesignUpdatesFloorSettingsV2{}).
 		SetError(&Error).
 		Put(path)
 
@@ -1728,32 +1729,32 @@ func (s *SiteDesignService) UpdatesFloorSettings(requestSiteDesignUpdatesFloorSe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesFloorSettings(requestSiteDesignUpdatesFloorSettings)
+			return s.UpdatesFloorSettingsV2(requestSiteDesignUpdatesFloorSettingsV2)
 		}
-		return nil, response, fmt.Errorf("error with operation UpdatesFloorSettings")
+		return nil, response, fmt.Errorf("error with operation UpdatesFloorSettingsV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignUpdatesFloorSettings)
+	result := response.Result().(*ResponseSiteDesignUpdatesFloorSettingsV2)
 	return result, response, err
 
 }
 
-//UpdatesAFloor Updates a floor - ee9f-c9f2-4a3a-b7a5
+//UpdatesAFloorV2 Updates a floor - ee9f-c9f2-4a3a-b7a5
 /* Updates a floor in the network hierarchy.
 
 
 @param id id path parameter. Floor Id
 
 */
-func (s *SiteDesignService) UpdatesAFloor(id string, requestSiteDesignUpdatesAFloor *RequestSiteDesignUpdatesAFloor) (*ResponseSiteDesignUpdatesAFloor, *resty.Response, error) {
+func (s *SiteDesignService) UpdatesAFloorV2(id string, requestSiteDesignUpdatesAFloorV2 *RequestSiteDesignUpdatesAFloorV2) (*ResponseSiteDesignUpdatesAFloorV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/floors/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestSiteDesignUpdatesAFloor).
-		SetResult(&ResponseSiteDesignUpdatesAFloor{}).
+		SetBody(requestSiteDesignUpdatesAFloorV2).
+		SetResult(&ResponseSiteDesignUpdatesAFloorV2{}).
 		SetError(&Error).
 		Put(path)
 
@@ -1764,12 +1765,12 @@ func (s *SiteDesignService) UpdatesAFloor(id string, requestSiteDesignUpdatesAFl
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesAFloor(id, requestSiteDesignUpdatesAFloor)
+			return s.UpdatesAFloorV2(id, requestSiteDesignUpdatesAFloorV2)
 		}
-		return nil, response, fmt.Errorf("error with operation UpdatesAFloor")
+		return nil, response, fmt.Errorf("error with operation UpdatesAFloorV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignUpdatesAFloor)
+	result := response.Result().(*ResponseSiteDesignUpdatesAFloorV2)
 	return result, response, err
 
 }
@@ -1781,7 +1782,7 @@ func (s *SiteDesignService) UpdatesAFloor(id string, requestSiteDesignUpdatesAFl
 @param id id path parameter. Area ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-area
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-area-v1
 */
 func (s *SiteDesignService) DeletesAnArea(id string) (*ResponseSiteDesignDeletesAnArea, *resty.Response, error) {
 	//id string
@@ -1816,10 +1817,10 @@ func (s *SiteDesignService) DeletesAnArea(id string) (*ResponseSiteDesignDeletes
 /* Deletes a network profile for sites.
 
 
-@param id id path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param id id path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-network-profile-for-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-network-profile-for-sites-v1
 */
 func (s *SiteDesignService) DeletesANetworkProfileForSites(id string) (*ResponseSiteDesignDeletesANetworkProfileForSites, *resty.Response, error) {
 	//id string
@@ -1854,11 +1855,11 @@ func (s *SiteDesignService) DeletesANetworkProfileForSites(id string) (*Response
 /* Unassigns a given network profile for sites from multiple sites. The profile must be removed from the containing building first if this site is a floor.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
 @param UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassigns-a-network-profile-for-sites-from-multiple-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassigns-a-network-profile-for-sites-from-multiple-sites-v1
 */
 func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromMultipleSites(profileID string, UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams *UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams) (*ResponseSiteDesignUnassignsANetworkProfileForSitesFromMultipleSites, *resty.Response, error) {
 	//profileID string,UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams *UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams
@@ -1895,12 +1896,12 @@ func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromMultipleSites(pr
 /* Unassigns a given network profile for sites from a site. The profile must be removed from parent sites first, otherwise this operation will not ulimately  unassign the profile.
 
 
-@param profileID profileId path parameter. The 'id' of the network profile, retrievable from 'GET /intent/api/v1/networkProfilesForSites'
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
 
-@param id id path parameter. The 'id' of the site, retrievable from 'GET /intent/api/v1/networkProfilesForSites/{id}/siteAssignments'
+@param id id path parameter. The `id` of the site, retrievable from `GET /intent/api/v1/networkProfilesForSites/{id}/siteAssignments`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassigns-a-network-profile-for-sites-from-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassigns-a-network-profile-for-sites-from-a-site-v1
 */
 func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromASite(profileID string, id string) (*ResponseSiteDesignUnassignsANetworkProfileForSitesFromASite, *resty.Response, error) {
 	//profileID string,id string
@@ -1941,7 +1942,7 @@ func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromASite(profileID 
 @param siteID siteId path parameter. Site Id to be associated
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!disassociate
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disassociate-v1
 */
 func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string) (*ResponseSiteDesignDisassociate, *resty.Response, error) {
 	//networkProfileID string,siteID string
@@ -1973,16 +1974,16 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 
 }
 
-//DeletesABuilding Deletes a building - 45ae-a9e4-4008-b0b6
+//DeletesABuildingV2 Deletes a building - 45ae-a9e4-4008-b0b6
 /* Deletes building in the network hierarchy. This operations fails if there are any floors for this building, or if there are any devices assigned to this building.
 
 
 @param id id path parameter. Building ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-building
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-building-v2
 */
-func (s *SiteDesignService) DeletesABuilding(id string) (*ResponseSiteDesignDeletesABuilding, *resty.Response, error) {
+func (s *SiteDesignService) DeletesABuildingV2(id string) (*ResponseSiteDesignDeletesABuildingV2, *resty.Response, error) {
 	//id string
 	path := "/dna/intent/api/v2/buildings/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
@@ -1990,7 +1991,7 @@ func (s *SiteDesignService) DeletesABuilding(id string) (*ResponseSiteDesignDele
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSiteDesignDeletesABuilding{}).
+		SetResult(&ResponseSiteDesignDeletesABuildingV2{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2001,26 +2002,26 @@ func (s *SiteDesignService) DeletesABuilding(id string) (*ResponseSiteDesignDele
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesABuilding(id)
+			return s.DeletesABuildingV2(id)
 		}
-		return nil, response, fmt.Errorf("error with operation DeletesABuilding")
+		return nil, response, fmt.Errorf("error with operation DeletesABuildingV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignDeletesABuilding)
+	result := response.Result().(*ResponseSiteDesignDeletesABuildingV2)
 	return result, response, err
 
 }
 
-//DeletesAFloor Deletes a floor - 6cb4-884b-47db-a808
+//DeletesAFloorV2 Deletes a floor - 6cb4-884b-47db-a808
 /* Deletes a floor from the network hierarchy. This operations fails if there are any devices assigned to this floor.
 
 
 @param id id path parameter. Floor ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-floor-v2
 */
-func (s *SiteDesignService) DeletesAFloor(id string) (*ResponseSiteDesignDeletesAFloor, *resty.Response, error) {
+func (s *SiteDesignService) DeletesAFloorV2(id string) (*ResponseSiteDesignDeletesAFloorV2, *resty.Response, error) {
 	//id string
 	path := "/dna/intent/api/v2/floors/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
@@ -2028,7 +2029,7 @@ func (s *SiteDesignService) DeletesAFloor(id string) (*ResponseSiteDesignDeletes
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSiteDesignDeletesAFloor{}).
+		SetResult(&ResponseSiteDesignDeletesAFloorV2{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2039,12 +2040,12 @@ func (s *SiteDesignService) DeletesAFloor(id string) (*ResponseSiteDesignDeletes
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAFloor(id)
+			return s.DeletesAFloorV2(id)
 		}
-		return nil, response, fmt.Errorf("error with operation DeletesAFloor")
+		return nil, response, fmt.Errorf("error with operation DeletesAFloorV2")
 	}
 
-	result := response.Result().(*ResponseSiteDesignDeletesAFloor)
+	result := response.Result().(*ResponseSiteDesignDeletesAFloorV2)
 	return result, response, err
 
 }

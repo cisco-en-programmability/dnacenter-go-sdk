@@ -89,7 +89,43 @@ type ResponseSystemSettingsEditAuthenticationAndPolicyServerAccessConfigurationR
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
-
+type ResponseSystemSettingsAcceptCiscoIseServerCertificateForCiscoIseServerIntegration interface{}
+type ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer struct {
+	Response *ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
+	Version  string                                                                            `json:"version,omitempty"`  // Version
+}
+type ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer struct {
+	Response *ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
+	Version  string                                                                              `json:"version,omitempty"`  // Version
+}
+type ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
+	Provider   string `json:"provider,omitempty"`   // Type of external IPAM. Can be either INFOBLOX, BLUECAT or GENERIC.
+	ServerName string `json:"serverName,omitempty"` // A descriptive name of this external server, used for identification purposes
+	ServerURL  string `json:"serverUrl,omitempty"`  // The URL of this external server
+	State      string `json:"state,omitempty"`      // State of the the external IPAM.* OK indicates success of most recent periodic communication check with external IPAM.* CRITICAL indicates failure of most recent attempt to communicate with the external IPAM.* SYNCHRONIZING indicates that the process of synchronizing the external IPAM database with the local IPAM database is running and all other IPAM processes will be blocked until the completes.* DISCONNECTED indicates the external IPAM is no longer being used.
+	UserName   string `json:"userName,omitempty"`   // The external IPAM server login username
+	View       string `json:"view,omitempty"`       // The view under which pools are created in the external IPAM server.
+}
+type ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServer struct {
+	Response *ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
+	Version  string                                                                            `json:"version,omitempty"`  // Version
+}
+type ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
+type ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer struct {
+	Response *ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
+	Version  string                                                                            `json:"version,omitempty"`  // Version
+}
+type ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+	URL    string `json:"url,omitempty"`    // Url
+}
 type ResponseSystemSettingsCiscoIseServerIntegrationStatus struct {
 	AAAServerSettingID  string                                                        `json:"aaaServerSettingId,omitempty"`  // Cisco ISE Server setting identifier (E.g. 867e46c9-f8f5-40b1-8de2-62f7744f75f6)
 	OverallStatus       string                                                        `json:"overallStatus,omitempty"`       // Cisco ISE Server integration status
@@ -138,42 +174,6 @@ type ResponseSystemSettingsGetProvisioningSettings struct {
 type ResponseSystemSettingsGetProvisioningSettingsResponse struct {
 	RequireItsmApproval *bool `json:"requireItsmApproval,omitempty"` // If require ITSM approval is enabled, the planned configurations must be submitted for ITSM approval. Also if enabled, requirePreview will default to enabled.
 	RequirePreview      *bool `json:"requirePreview,omitempty"`      // If require preview is enabled, the device configurations must be reviewed before deploying them
-}
-type ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer struct {
-	Response *ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
-	Version  string                                                                            `json:"version,omitempty"`  // Version
-}
-type ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Task Id
-	URL    string `json:"url,omitempty"`    // Url
-}
-type ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer struct {
-	Response *ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
-	Version  string                                                                              `json:"version,omitempty"`  // Version
-}
-type ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
-	Provider   string `json:"provider,omitempty"`   // Type of external IPAM. Can be either INFOBLOX, BLUECAT or GENERIC.
-	ServerName string `json:"serverName,omitempty"` // A descriptive name of this external server, used for identification purposes
-	ServerURL  string `json:"serverUrl,omitempty"`  // The URL of this external server
-	State      string `json:"state,omitempty"`      // State of the the external IPAM.* OK indicates success of most recent periodic communication check with external IPAM.* CRITICAL indicates failure of most recent attempt to communicate with the external IPAM.* SYNCHRONIZING indicates that the process of synchronizing the external IPAM database with the local IPAM database is running and all other IPAM processes will be blocked until the completes.* DISCONNECTED indicates the external IPAM is no longer being used.
-	UserName   string `json:"userName,omitempty"`   // The external IPAM server login username
-	View       string `json:"view,omitempty"`       // The view under which pools are created in the external IPAM server.
-}
-type ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServer struct {
-	Response *ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
-	Version  string                                                                            `json:"version,omitempty"`  // Version
-}
-type ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Task Id
-	URL    string `json:"url,omitempty"`    // Url
-}
-type ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer struct {
-	Response *ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServerResponse `json:"response,omitempty"` //
-	Version  string                                                                            `json:"version,omitempty"`  // Version
-}
-type ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServerResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Task Id
-	URL    string `json:"url,omitempty"`    // Url
 }
 type RequestSystemSettingsAddAuthenticationAndPolicyServerAccessConfiguration struct {
 	AuthenticationPort         *int                                                                                                  `json:"authenticationPort,omitempty"`         // Authentication port of RADIUS server (readonly). The range is from 1 to 65535. E.g. 1812
@@ -248,14 +248,6 @@ type RequestSystemSettingsEditAuthenticationAndPolicyServerAccessConfigurationEx
 type RequestSystemSettingsAcceptCiscoIseServerCertificateForCiscoIseServerIntegration struct {
 	IsCertAcceptedByUser *bool `json:"isCertAcceptedByUser,omitempty"` // Value true for accept, false for deny. Remove this field and send empty request payload ( {} ) to retry the failed integration
 }
-type RequestSystemSettingsCustomPromptPOSTAPI struct {
-	UsernamePrompt string `json:"usernamePrompt,omitempty"` // Username for Custom Prompt
-	PasswordPrompt string `json:"passwordPrompt,omitempty"` // Password for Custom Prompt
-}
-type RequestSystemSettingsSetProvisioningSettings struct {
-	RequireItsmApproval *bool `json:"requireItsmApproval,omitempty"` // If require ITSM approval is enabled, the planned configurations must be submitted for ITSM approval. Also if enabled, requirePreview will default to enabled.
-	RequirePreview      *bool `json:"requirePreview,omitempty"`      // If require preview is enabled, the device configurations must be reviewed before deploying them
-}
 type RequestSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer struct {
 	ServerName string `json:"serverName,omitempty"` // A descriptive name of this external server, used for identification purposes
 	ServerURL  string `json:"serverUrl,omitempty"`  // The URL of this external server
@@ -273,6 +265,14 @@ type RequestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer str
 	View       string `json:"view,omitempty"`       // The view under which pools are created in the external IPAM server.
 	SyncView   *bool  `json:"syncView,omitempty"`   // Synchronize the IP pools from the local IPAM to this external server
 }
+type RequestSystemSettingsCustomPromptPOSTAPI struct {
+	UsernamePrompt string `json:"usernamePrompt,omitempty"` // Username for Custom Prompt
+	PasswordPrompt string `json:"passwordPrompt,omitempty"` // Password for Custom Prompt
+}
+type RequestSystemSettingsSetProvisioningSettings struct {
+	RequireItsmApproval *bool `json:"requireItsmApproval,omitempty"` // If require ITSM approval is enabled, the planned configurations must be submitted for ITSM approval. Also if enabled, requirePreview will default to enabled.
+	RequirePreview      *bool `json:"requirePreview,omitempty"`      // If require preview is enabled, the device configurations must be reviewed before deploying them
+}
 
 //GetAuthenticationAndPolicyServers Get Authentication and Policy Servers - a4b4-c849-4be8-b362
 /* API to get Authentication and Policy Servers
@@ -280,7 +280,7 @@ type RequestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer str
 
 @param GetAuthenticationAndPolicyServersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-authentication-and-policy-servers
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-authentication-and-policy-servers-v1
 */
 func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticationAndPolicyServersQueryParams *GetAuthenticationAndPolicyServersQueryParams) (*ResponseSystemSettingsGetAuthenticationAndPolicyServers, *resty.Response, error) {
 	path := "/dna/intent/api/v1/authentication-policy-servers"
@@ -311,12 +311,46 @@ func (s *SystemSettingsService) GetAuthenticationAndPolicyServers(GetAuthenticat
 
 }
 
+//RetrievesConfigurationDetailsOfTheExternalIPAMServer Retrieves configuration details of the external IPAM server. - 3ebf-1bc3-4c8a-95e4
+/* Retrieves configuration details of the external IPAM server.  If an external IPAM server has not been created, this resource will return a `404` response.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-configuration-details-of-the-external-ip-a-m-server-v1
+*/
+func (s *SystemSettingsService) RetrievesConfigurationDetailsOfTheExternalIPAMServer() (*ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
+	path := "/dna/intent/api/v1/ipam/serverSetting"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesConfigurationDetailsOfTheExternalIPAMServer()
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesConfigurationDetailsOfTheExternalIpAMServer")
+	}
+
+	result := response.Result().(*ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer)
+	return result, response, err
+
+}
+
 //CiscoIseServerIntegrationStatus Cisco ISE Server Integration Status - c1a4-f8fb-448a-8135
 /* API to check Cisco ISE server integration status.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-ise-server-integration-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-ise-server-integration-status-v1
 */
 func (s *SystemSettingsService) CiscoIseServerIntegrationStatus() (*ResponseSystemSettingsCiscoIseServerIntegrationStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/ise-integration-status"
@@ -350,7 +384,7 @@ func (s *SystemSettingsService) CiscoIseServerIntegrationStatus() (*ResponseSyst
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-support-g-e-t-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-support-g-e-t-api-v1
 */
 func (s *SystemSettingsService) CustomPromptSupportGETAPI() (*ResponseSystemSettingsCustomPromptSupportGETAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/custom-prompt"
@@ -384,7 +418,7 @@ func (s *SystemSettingsService) CustomPromptSupportGETAPI() (*ResponseSystemSett
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioning-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioning-settings-v1
 */
 func (s *SystemSettingsService) GetProvisioningSettings() (*ResponseSystemSettingsGetProvisioningSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/provisioningSettings"
@@ -413,46 +447,12 @@ func (s *SystemSettingsService) GetProvisioningSettings() (*ResponseSystemSettin
 
 }
 
-//RetrievesConfigurationDetailsOfTheExternalIPAMServer Retrieves configuration details of the external IPAM server. - 3ebf-1bc3-4c8a-95e4
-/* Retrieves configuration details of the external IPAM server.  If an external IPAM server has not been created, this resource will return a '404' response.
-
-
-
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-configuration-details-of-the-external-ip-a-m-server
-*/
-func (s *SystemSettingsService) RetrievesConfigurationDetailsOfTheExternalIPAMServer() (*ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
-	path := "/intent/api/v1/ipam/serverSetting"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RetrievesConfigurationDetailsOfTheExternalIPAMServer()
-		}
-		return nil, response, fmt.Errorf("error with operation RetrievesConfigurationDetailsOfTheExternalIpAMServer")
-	}
-
-	result := response.Result().(*ResponseSystemSettingsRetrievesConfigurationDetailsOfTheExternalIPAMServer)
-	return result, response, err
-
-}
-
 //AddAuthenticationAndPolicyServerAccessConfiguration Add Authentication and Policy Server Access Configuration - 5282-78a3-4fbb-a82c
 /* API to add AAA/ISE server access configuration. Protocol can be configured as either RADIUS OR TACACS OR RADIUS_TACACS. If configuring Cisco ISE server, after configuration, use ‘Cisco ISE Server Integration Status’ Intent API to check the integration status. Based on integration status, if require use 'Accept Cisco ISE Server Certificate for Cisco ISE Server Integration' Intent API to accept the Cisco ISE certificate for Cisco ISE server integration, then use again ‘Cisco ISE Server Integration Status’ Intent API to check the integration status.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-authentication-and-policy-server-access-configuration
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-authentication-and-policy-server-access-configuration-v1
 */
 func (s *SystemSettingsService) AddAuthenticationAndPolicyServerAccessConfiguration(requestSystemSettingsAddAuthenticationAndPolicyServerAccessConfiguration *RequestSystemSettingsAddAuthenticationAndPolicyServerAccessConfiguration) (*ResponseSystemSettingsAddAuthenticationAndPolicyServerAccessConfiguration, *resty.Response, error) {
 	path := "/dna/intent/api/v1/authentication-policy-servers"
@@ -484,52 +484,15 @@ func (s *SystemSettingsService) AddAuthenticationAndPolicyServerAccessConfigurat
 
 }
 
-//CustomPromptPOSTAPI Custom Prompt POST API - f4b9-1a8a-4718-aa97
-/* Save custom prompt added by user in Catalyst Center. API will always override the existing prompts. User should provide all the custom prompt in case of any update
-
-
-
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-p-o-s-t-api
-*/
-func (s *SystemSettingsService) CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPOSTAPI) (*ResponseSystemSettingsCustomPromptPOSTAPI, *resty.Response, error) {
-	path := "/dna/intent/api/v1/network-device/custom-prompt"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSystemSettingsCustomPromptPOSTAPI).
-		SetResult(&ResponseSystemSettingsCustomPromptPOSTAPI{}).
-		SetError(&Error).
-		Post(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-
-		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI)
-		}
-
-		return nil, response, fmt.Errorf("error with operation CustomPromptPostAPI")
-	}
-
-	result := response.Result().(*ResponseSystemSettingsCustomPromptPOSTAPI)
-	return result, response, err
-
-}
-
 //CreatesConfigurationDetailsOfTheExternalIPAMServer Creates configuration details of the external IPAM server. - 36a4-38d6-4589-8f87
 /* Creates configuration details of the external IPAM server. You should only create one external IPAM server; delete any existing external server before creating a new one.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-configuration-details-of-the-external-ip-a-m-server
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-configuration-details-of-the-external-ip-a-m-server-v1
 */
 func (s *SystemSettingsService) CreatesConfigurationDetailsOfTheExternalIPAMServer(requestSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer *RequestSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer) (*ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
-	path := "/intent/api/v1/ipam/serverSetting"
+	path := "/dna/intent/api/v1/ipam/serverSetting"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -554,6 +517,43 @@ func (s *SystemSettingsService) CreatesConfigurationDetailsOfTheExternalIPAMServ
 	}
 
 	result := response.Result().(*ResponseSystemSettingsCreatesConfigurationDetailsOfTheExternalIPAMServer)
+	return result, response, err
+
+}
+
+//CustomPromptPOSTAPI Custom Prompt POST API - f4b9-1a8a-4718-aa97
+/* Save custom prompt added by user in Catalyst Center. API will always override the existing prompts. User should provide all the custom prompt in case of any update
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!custom-prompt-p-o-s-t-api-v1
+*/
+func (s *SystemSettingsService) CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI *RequestSystemSettingsCustomPromptPOSTAPI) (*ResponseSystemSettingsCustomPromptPOSTAPI, *resty.Response, error) {
+	path := "/dna/intent/api/v1/network-device/custom-prompt"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSystemSettingsCustomPromptPOSTAPI).
+		SetResult(&ResponseSystemSettingsCustomPromptPOSTAPI{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CustomPromptPOSTAPI(requestSystemSettingsCustomPromptPOSTAPI)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CustomPromptPOSTApi")
+	}
+
+	result := response.Result().(*ResponseSystemSettingsCustomPromptPOSTAPI)
 	return result, response, err
 
 }
@@ -628,6 +628,39 @@ func (s *SystemSettingsService) AcceptCiscoIseServerCertificateForCiscoIseServer
 
 }
 
+//UpdatesConfigurationDetailsOfTheExternalIPAMServer Updates configuration details of the external IPAM server. - 5a99-0bfe-4c99-a0a4
+/* Updates configuration details of the external IPAM server.
+
+
+ */
+func (s *SystemSettingsService) UpdatesConfigurationDetailsOfTheExternalIPAMServer(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer *RequestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer) (*ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
+	path := "/dna/intent/api/v1/ipam/serverSetting"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer).
+		SetResult(&ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatesConfigurationDetailsOfTheExternalIPAMServer(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer)
+		}
+		return nil, response, fmt.Errorf("error with operation UpdatesConfigurationDetailsOfTheExternalIpAMServer")
+	}
+
+	result := response.Result().(*ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer)
+	return result, response, err
+
+}
+
 //SetProvisioningSettings Set provisioning settings - e5ab-1811-450a-bb01
 /* Sets provisioning settings
 
@@ -661,39 +694,6 @@ func (s *SystemSettingsService) SetProvisioningSettings(requestSystemSettingsSet
 
 }
 
-//UpdatesConfigurationDetailsOfTheExternalIPAMServer Updates configuration details of the external IPAM server. - 5a99-0bfe-4c99-a0a4
-/* Updates configuration details of the external IPAM server.
-
-
- */
-func (s *SystemSettingsService) UpdatesConfigurationDetailsOfTheExternalIPAMServer(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer *RequestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer) (*ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
-	path := "/intent/api/v1/ipam/serverSetting"
-
-	response, err := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json").
-		SetBody(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer).
-		SetResult(&ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer{}).
-		SetError(&Error).
-		Put(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesConfigurationDetailsOfTheExternalIPAMServer(requestSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer)
-		}
-		return nil, response, fmt.Errorf("error with operation UpdatesConfigurationDetailsOfTheExternalIpAMServer")
-	}
-
-	result := response.Result().(*ResponseSystemSettingsUpdatesConfigurationDetailsOfTheExternalIPAMServer)
-	return result, response, err
-
-}
-
 //DeleteAuthenticationAndPolicyServerAccessConfiguration Delete Authentication and Policy Server Access Configuration - 0b92-bb8a-477a-a942
 /* API to delete AAA/ISE server access configuration.
 
@@ -701,7 +701,7 @@ func (s *SystemSettingsService) UpdatesConfigurationDetailsOfTheExternalIPAMServ
 @param id id path parameter. Authentication and Policy Server Identifier. Use 'Get Authentication and Policy Servers' intent API to find the identifier.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-authentication-and-policy-server-access-configuration
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-authentication-and-policy-server-access-configuration-v1
 */
 func (s *SystemSettingsService) DeleteAuthenticationAndPolicyServerAccessConfiguration(id string) (*ResponseSystemSettingsDeleteAuthenticationAndPolicyServerAccessConfiguration, *resty.Response, error) {
 	//id string
@@ -737,11 +737,11 @@ func (s *SystemSettingsService) DeleteAuthenticationAndPolicyServerAccessConfigu
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-configuration-details-of-the-external-ip-a-m-server
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-configuration-details-of-the-external-ip-a-m-server-v1
 */
 func (s *SystemSettingsService) DeletesConfigurationDetailsOfTheExternalIPAMServer() (*ResponseSystemSettingsDeletesConfigurationDetailsOfTheExternalIPAMServer, *resty.Response, error) {
 	//
-	path := "/intent/api/v1/ipam/serverSetting"
+	path := "/dna/intent/api/v1/ipam/serverSetting"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").

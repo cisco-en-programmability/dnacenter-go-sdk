@@ -1726,7 +1726,7 @@ type RequestSdaAddEdgeDeviceInSdaFabric struct {
 	SiteNameHierarchy         string `json:"siteNameHierarchy,omitempty"`         // siteNameHierarchy of the Provisioned Device(site should be part of Fabric Site)
 }
 type RequestSdaAddSiteInSdaFabric struct {
-	FabricName        string `json:"fabricName,omitempty"`        // Warning - Starting Catalyst Center 2.2.3.5 release, this field has been deprecated. SD-Access Fabric does not need it anymore.  It will be removed in future Catalyst Center releases.
+	FabricName        string `json:"fabricName,omitempty"`        // Warning - Starting DNA Center 2.2.3.5 release, this field has been deprecated. SD-Access Fabric does not need it anymore.  It will be removed in future DNA Center releases.
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Existing site name hierarchy available at global level. For Example "Global/Chicago/Building21/Floor1"
 	FabricType        string `json:"fabricType,omitempty"`        // Type of SD-Access Fabric. Allowed values are "FABRIC_SITE" or "FABRIC_ZONE".  Default value is "FABRIC_SITE".
 }
@@ -2181,7 +2181,7 @@ type RequestSdaUpdateVirtualNetworkWithScalableGroups struct {
 
 @param GetDefaultAuthenticationProfileFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-default-authentication-profile-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-default-authentication-profile-from-sda-fabric-v1
 */
 func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuthenticationProfileFromSDAFabricQueryParams *GetDefaultAuthenticationProfileFromSdaFabricQueryParams) (*ResponseSdaGetDefaultAuthenticationProfileFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
@@ -2218,7 +2218,7 @@ func (s *SdaService) GetDefaultAuthenticationProfileFromSdaFabric(GetDefaultAuth
 
 @param GetBorderDeviceDetailFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-border-device-detail-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-border-device-detail-from-sda-fabric-v1
 */
 func (s *SdaService) GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFromSDAFabricQueryParams *GetBorderDeviceDetailFromSdaFabricQueryParams) (*ResponseSdaGetBorderDeviceDetailFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/border-device"
@@ -2255,7 +2255,7 @@ func (s *SdaService) GetBorderDeviceDetailFromSdaFabric(GetBorderDeviceDetailFro
 
 @param GetControlPlaneDeviceFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-control-plane-device-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-control-plane-device-from-sda-fabric-v1
 */
 func (s *SdaService) GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFromSDAFabricQueryParams *GetControlPlaneDeviceFromSdaFabricQueryParams) (*ResponseSdaGetControlPlaneDeviceFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
@@ -2292,7 +2292,7 @@ func (s *SdaService) GetControlPlaneDeviceFromSdaFabric(GetControlPlaneDeviceFro
 
 @param GetDeviceInfoFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-info-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-info-from-sda-fabric-v1
 */
 func (s *SdaService) GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryParams *GetDeviceInfoFromSdaFabricQueryParams) (*ResponseSdaGetDeviceInfoFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/device"
@@ -2329,7 +2329,7 @@ func (s *SdaService) GetDeviceInfoFromSdaFabric(GetDeviceInfoFromSDAFabricQueryP
 
 @param GetDeviceRoleInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-role-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-role-in-sda-fabric-v1
 */
 func (s *SdaService) GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParams *GetDeviceRoleInSdaFabricQueryParams) (*ResponseSdaGetDeviceRoleInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/device/role"
@@ -2366,7 +2366,7 @@ func (s *SdaService) GetDeviceRoleInSdaFabric(GetDeviceRoleInSDAFabricQueryParam
 
 @param GetEdgeDeviceFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-edge-device-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-edge-device-from-sda-fabric-v1
 */
 func (s *SdaService) GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryParams *GetEdgeDeviceFromSdaFabricQueryParams) (*ResponseSdaGetEdgeDeviceFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/edge-device"
@@ -2403,7 +2403,7 @@ func (s *SdaService) GetEdgeDeviceFromSdaFabric(GetEdgeDeviceFromSDAFabricQueryP
 
 @param GetSiteFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-from-sda-fabric-v1
 */
 func (s *SdaService) GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams *GetSiteFromSdaFabricQueryParams) (*ResponseSdaGetSiteFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
@@ -2440,7 +2440,7 @@ func (s *SdaService) GetSiteFromSdaFabric(GetSiteFromSDAFabricQueryParams *GetSi
 
 @param GetPortAssignmentForAccessPointInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-access-point-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-access-point-in-sda-fabric-v1
 */
 func (s *SdaService) GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmentForAccessPointInSDAFabricQueryParams *GetPortAssignmentForAccessPointInSdaFabricQueryParams) (*ResponseSdaGetPortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
@@ -2477,7 +2477,7 @@ func (s *SdaService) GetPortAssignmentForAccessPointInSdaFabric(GetPortAssignmen
 
 @param GetPortAssignmentForUserDeviceInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-user-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-for-user-device-in-sda-fabric-v1
 */
 func (s *SdaService) GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignmentForUserDeviceInSDAFabricQueryParams *GetPortAssignmentForUserDeviceInSdaFabricQueryParams) (*ResponseSdaGetPortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
@@ -2514,7 +2514,7 @@ func (s *SdaService) GetPortAssignmentForUserDeviceInSdaFabric(GetPortAssignment
 
 @param GetMulticastDetailsFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-details-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-details-from-sda-fabric-v1
 */
 func (s *SdaService) GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDAFabricQueryParams *GetMulticastDetailsFromSdaFabricQueryParams) (*ResponseSdaGetMulticastDetailsFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/multicast"
@@ -2551,7 +2551,7 @@ func (s *SdaService) GetMulticastDetailsFromSdaFabric(GetMulticastDetailsFromSDA
 
 @param GetProvisionedWiredDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-wired-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-wired-device-v1
 */
 func (s *SdaService) GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryParams *GetProvisionedWiredDeviceQueryParams) (*ResponseSdaGetProvisionedWiredDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/provision-device"
@@ -2588,7 +2588,7 @@ func (s *SdaService) GetProvisionedWiredDevice(GetProvisionedWiredDeviceQueryPar
 
 @param GetTransitPeerNetworkInfoQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-peer-network-info
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-peer-network-info-v1
 */
 func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryParams *GetTransitPeerNetworkInfoQueryParams) (*ResponseSdaGetTransitPeerNetworkInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/transit-peer-network"
@@ -2625,7 +2625,7 @@ func (s *SdaService) GetTransitPeerNetworkInfo(GetTransitPeerNetworkInfoQueryPar
 
 @param GetVNFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-vn-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-vn-from-sda-fabric-v1
 */
 func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFromSdaFabricQueryParams) (*ResponseSdaGetVnFromSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
@@ -2662,7 +2662,7 @@ func (s *SdaService) GetVnFromSdaFabric(GetVNFromSDAFabricQueryParams *GetVnFrom
 
 @param GetVirtualNetworkSummaryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-summary-v1
 */
 func (s *SdaService) GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParams *GetVirtualNetworkSummaryQueryParams) (*ResponseSdaGetVirtualNetworkSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network/summary"
@@ -2699,7 +2699,7 @@ func (s *SdaService) GetVirtualNetworkSummary(GetVirtualNetworkSummaryQueryParam
 
 @param GetIPPoolFromSDAVirtualNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ip-pool-from-sda-virtual-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ip-pool-from-sda-virtual-network-v1
 */
 func (s *SdaService) GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetworkQueryParams *GetIPPoolFromSdaVirtualNetworkQueryParams) (*ResponseSdaGetIPPoolFromSdaVirtualNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
@@ -2736,7 +2736,7 @@ func (s *SdaService) GetIPPoolFromSdaVirtualNetwork(GetIPPoolFromSDAVirtualNetwo
 
 @param GetAnycastGatewaysQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anycast-gateways
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anycast-gateways-v1
 */
 func (s *SdaService) GetAnycastGateways(GetAnycastGatewaysQueryParams *GetAnycastGatewaysQueryParams) (*ResponseSdaGetAnycastGateways, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/anycastGateways"
@@ -2773,7 +2773,7 @@ func (s *SdaService) GetAnycastGateways(GetAnycastGatewaysQueryParams *GetAnycas
 
 @param GetAnycastGatewayCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anycast-gateway-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anycast-gateway-count-v1
 */
 func (s *SdaService) GetAnycastGatewayCount(GetAnycastGatewayCountQueryParams *GetAnycastGatewayCountQueryParams) (*ResponseSdaGetAnycastGatewayCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/anycastGateways/count"
@@ -2810,7 +2810,7 @@ func (s *SdaService) GetAnycastGatewayCount(GetAnycastGatewayCountQueryParams *G
 
 @param GetAuthenticationProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-authentication-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-authentication-profiles-v1
 */
 func (s *SdaService) GetAuthenticationProfiles(GetAuthenticationProfilesQueryParams *GetAuthenticationProfilesQueryParams) (*ResponseSdaGetAuthenticationProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/authenticationProfiles"
@@ -2847,7 +2847,7 @@ func (s *SdaService) GetAuthenticationProfiles(GetAuthenticationProfilesQueryPar
 
 @param GetExtranetPoliciesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-extranet-policies
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-extranet-policies-v1
 */
 func (s *SdaService) GetExtranetPolicies(GetExtranetPoliciesQueryParams *GetExtranetPoliciesQueryParams) (*ResponseSdaGetExtranetPolicies, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/extranetPolicies"
@@ -2883,7 +2883,7 @@ func (s *SdaService) GetExtranetPolicies(GetExtranetPoliciesQueryParams *GetExtr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-extranet-policy-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-extranet-policy-count-v1
 */
 func (s *SdaService) GetExtranetPolicyCount() (*ResponseSdaGetExtranetPolicyCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/extranetPolicies/count"
@@ -2918,7 +2918,7 @@ func (s *SdaService) GetExtranetPolicyCount() (*ResponseSdaGetExtranetPolicyCoun
 
 @param GetFabricDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-v1
 */
 func (s *SdaService) GetFabricDevices(GetFabricDevicesQueryParams *GetFabricDevicesQueryParams) (*ResponseSdaGetFabricDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices"
@@ -2955,7 +2955,7 @@ func (s *SdaService) GetFabricDevices(GetFabricDevicesQueryParams *GetFabricDevi
 
 @param GetFabricDevicesCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-count-v1
 */
 func (s *SdaService) GetFabricDevicesCount(GetFabricDevicesCountQueryParams *GetFabricDevicesCountQueryParams) (*ResponseSdaGetFabricDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/count"
@@ -2992,7 +2992,7 @@ func (s *SdaService) GetFabricDevicesCount(GetFabricDevicesCountQueryParams *Get
 
 @param GetFabricDevicesLayer2HandoffsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer2-handoffs
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer2-handoffs-v1
 */
 func (s *SdaService) GetFabricDevicesLayer2Handoffs(GetFabricDevicesLayer2HandoffsQueryParams *GetFabricDevicesLayer2HandoffsQueryParams) (*ResponseSdaGetFabricDevicesLayer2Handoffs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer2Handoffs"
@@ -3029,7 +3029,7 @@ func (s *SdaService) GetFabricDevicesLayer2Handoffs(GetFabricDevicesLayer2Handof
 
 @param GetFabricDevicesLayer2HandoffsCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer2-handoffs-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer2-handoffs-count-v1
 */
 func (s *SdaService) GetFabricDevicesLayer2HandoffsCount(GetFabricDevicesLayer2HandoffsCountQueryParams *GetFabricDevicesLayer2HandoffsCountQueryParams) (*ResponseSdaGetFabricDevicesLayer2HandoffsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer2Handoffs/count"
@@ -3066,7 +3066,7 @@ func (s *SdaService) GetFabricDevicesLayer2HandoffsCount(GetFabricDevicesLayer2H
 
 @param GetFabricDevicesLayer3HandoffsWithIpTransitQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-ip-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-ip-transit-v1
 */
 func (s *SdaService) GetFabricDevicesLayer3HandoffsWithIPTransit(GetFabricDevicesLayer3HandoffsWithIpTransitQueryParams *GetFabricDevicesLayer3HandoffsWithIPTransitQueryParams) (*ResponseSdaGetFabricDevicesLayer3HandoffsWithIPTransit, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/ipTransits"
@@ -3103,7 +3103,7 @@ func (s *SdaService) GetFabricDevicesLayer3HandoffsWithIPTransit(GetFabricDevice
 
 @param GetFabricDevicesLayer3HandoffsWithIpTransitCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-ip-transit-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-ip-transit-count-v1
 */
 func (s *SdaService) GetFabricDevicesLayer3HandoffsWithIPTransitCount(GetFabricDevicesLayer3HandoffsWithIpTransitCountQueryParams *GetFabricDevicesLayer3HandoffsWithIPTransitCountQueryParams) (*ResponseSdaGetFabricDevicesLayer3HandoffsWithIPTransitCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/ipTransits/count"
@@ -3140,7 +3140,7 @@ func (s *SdaService) GetFabricDevicesLayer3HandoffsWithIPTransitCount(GetFabricD
 
 @param GetFabricDevicesLayer3HandoffsWithSdaTransitQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-sda-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-sda-transit-v1
 */
 func (s *SdaService) GetFabricDevicesLayer3HandoffsWithSdaTransit(GetFabricDevicesLayer3HandoffsWithSdaTransitQueryParams *GetFabricDevicesLayer3HandoffsWithSdaTransitQueryParams) (*ResponseSdaGetFabricDevicesLayer3HandoffsWithSdaTransit, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/sdaTransits"
@@ -3177,7 +3177,7 @@ func (s *SdaService) GetFabricDevicesLayer3HandoffsWithSdaTransit(GetFabricDevic
 
 @param GetFabricDevicesLayer3HandoffsWithSdaTransitCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-sda-transit-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-devices-layer3-handoffs-with-sda-transit-count-v1
 */
 func (s *SdaService) GetFabricDevicesLayer3HandoffsWithSdaTransitCount(GetFabricDevicesLayer3HandoffsWithSdaTransitCountQueryParams *GetFabricDevicesLayer3HandoffsWithSdaTransitCountQueryParams) (*ResponseSdaGetFabricDevicesLayer3HandoffsWithSdaTransitCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/sdaTransits/count"
@@ -3214,7 +3214,7 @@ func (s *SdaService) GetFabricDevicesLayer3HandoffsWithSdaTransitCount(GetFabric
 
 @param GetFabricSitesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-sites
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-sites-v1
 */
 func (s *SdaService) GetFabricSites(GetFabricSitesQueryParams *GetFabricSitesQueryParams) (*ResponseSdaGetFabricSites, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricSites"
@@ -3250,7 +3250,7 @@ func (s *SdaService) GetFabricSites(GetFabricSitesQueryParams *GetFabricSitesQue
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-site-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-site-count-v1
 */
 func (s *SdaService) GetFabricSiteCount() (*ResponseSdaGetFabricSiteCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricSites/count"
@@ -3285,7 +3285,7 @@ func (s *SdaService) GetFabricSiteCount() (*ResponseSdaGetFabricSiteCount, *rest
 
 @param GetFabricZonesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-zones
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-zones-v1
 */
 func (s *SdaService) GetFabricZones(GetFabricZonesQueryParams *GetFabricZonesQueryParams) (*ResponseSdaGetFabricZones, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricZones"
@@ -3321,7 +3321,7 @@ func (s *SdaService) GetFabricZones(GetFabricZonesQueryParams *GetFabricZonesQue
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-zone-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-fabric-zone-count-v1
 */
 func (s *SdaService) GetFabricZoneCount() (*ResponseSdaGetFabricZoneCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricZones/count"
@@ -3356,7 +3356,7 @@ func (s *SdaService) GetFabricZoneCount() (*ResponseSdaGetFabricZoneCount, *rest
 
 @param GetLayer2VirtualNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer2-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer2-virtual-networks-v1
 */
 func (s *SdaService) GetLayer2VirtualNetworks(GetLayer2VirtualNetworksQueryParams *GetLayer2VirtualNetworksQueryParams) (*ResponseSdaGetLayer2VirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer2VirtualNetworks"
@@ -3393,7 +3393,7 @@ func (s *SdaService) GetLayer2VirtualNetworks(GetLayer2VirtualNetworksQueryParam
 
 @param GetLayer2VirtualNetworkCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer2-virtual-network-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer2-virtual-network-count-v1
 */
 func (s *SdaService) GetLayer2VirtualNetworkCount(GetLayer2VirtualNetworkCountQueryParams *GetLayer2VirtualNetworkCountQueryParams) (*ResponseSdaGetLayer2VirtualNetworkCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer2VirtualNetworks/count"
@@ -3430,7 +3430,7 @@ func (s *SdaService) GetLayer2VirtualNetworkCount(GetLayer2VirtualNetworkCountQu
 
 @param GetLayer3VirtualNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer3-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer3-virtual-networks-v1
 */
 func (s *SdaService) GetLayer3VirtualNetworks(GetLayer3VirtualNetworksQueryParams *GetLayer3VirtualNetworksQueryParams) (*ResponseSdaGetLayer3VirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer3VirtualNetworks"
@@ -3467,7 +3467,7 @@ func (s *SdaService) GetLayer3VirtualNetworks(GetLayer3VirtualNetworksQueryParam
 
 @param GetLayer3VirtualNetworksCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer3-virtual-networks-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-layer3-virtual-networks-count-v1
 */
 func (s *SdaService) GetLayer3VirtualNetworksCount(GetLayer3VirtualNetworksCountQueryParams *GetLayer3VirtualNetworksCountQueryParams) (*ResponseSdaGetLayer3VirtualNetworksCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer3VirtualNetworks/count"
@@ -3504,7 +3504,7 @@ func (s *SdaService) GetLayer3VirtualNetworksCount(GetLayer3VirtualNetworksCount
 
 @param GetMulticastQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-v1
 */
 func (s *SdaService) GetMulticast(GetMulticastQueryParams *GetMulticastQueryParams) (*ResponseSdaGetMulticast, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/multicast"
@@ -3541,7 +3541,7 @@ func (s *SdaService) GetMulticast(GetMulticastQueryParams *GetMulticastQueryPara
 
 @param GetMulticastVirtualNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-virtual-networks-v1
 */
 func (s *SdaService) GetMulticastVirtualNetworks(GetMulticastVirtualNetworksQueryParams *GetMulticastVirtualNetworksQueryParams) (*ResponseSdaGetMulticastVirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/multicast/virtualNetworks"
@@ -3578,7 +3578,7 @@ func (s *SdaService) GetMulticastVirtualNetworks(GetMulticastVirtualNetworksQuer
 
 @param GetMulticastVirtualNetworkCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-virtual-network-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-multicast-virtual-network-count-v1
 */
 func (s *SdaService) GetMulticastVirtualNetworkCount(GetMulticastVirtualNetworkCountQueryParams *GetMulticastVirtualNetworkCountQueryParams) (*ResponseSdaGetMulticastVirtualNetworkCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/multicast/virtualNetworks/count"
@@ -3615,7 +3615,7 @@ func (s *SdaService) GetMulticastVirtualNetworkCount(GetMulticastVirtualNetworkC
 
 @param GetPortAssignmentsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignments
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignments-v1
 */
 func (s *SdaService) GetPortAssignments(GetPortAssignmentsQueryParams *GetPortAssignmentsQueryParams) (*ResponseSdaGetPortAssignments, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portAssignments"
@@ -3652,7 +3652,7 @@ func (s *SdaService) GetPortAssignments(GetPortAssignmentsQueryParams *GetPortAs
 
 @param GetPortAssignmentCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-assignment-count-v1
 */
 func (s *SdaService) GetPortAssignmentCount(GetPortAssignmentCountQueryParams *GetPortAssignmentCountQueryParams) (*ResponseSdaGetPortAssignmentCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portAssignments/count"
@@ -3689,7 +3689,7 @@ func (s *SdaService) GetPortAssignmentCount(GetPortAssignmentCountQueryParams *G
 
 @param GetPortChannelsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channels
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channels-v1
 */
 func (s *SdaService) GetPortChannels(GetPortChannelsQueryParams *GetPortChannelsQueryParams) (*ResponseSdaGetPortChannels, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portChannels"
@@ -3726,7 +3726,7 @@ func (s *SdaService) GetPortChannels(GetPortChannelsQueryParams *GetPortChannels
 
 @param GetPortChannelCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channel-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channel-count-v1
 */
 func (s *SdaService) GetPortChannelCount(GetPortChannelCountQueryParams *GetPortChannelCountQueryParams) (*ResponseSdaGetPortChannelCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portChannels/count"
@@ -3763,7 +3763,7 @@ func (s *SdaService) GetPortChannelCount(GetPortChannelCountQueryParams *GetPort
 
 @param GetProvisionedDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-devices-v1
 */
 func (s *SdaService) GetProvisionedDevices(GetProvisionedDevicesQueryParams *GetProvisionedDevicesQueryParams) (*ResponseSdaGetProvisionedDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/provisionDevices"
@@ -3800,7 +3800,7 @@ func (s *SdaService) GetProvisionedDevices(GetProvisionedDevicesQueryParams *Get
 
 @param GetProvisionedDevicesCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-devices-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-provisioned-devices-count-v1
 */
 func (s *SdaService) GetProvisionedDevicesCount(GetProvisionedDevicesCountQueryParams *GetProvisionedDevicesCountQueryParams) (*ResponseSdaGetProvisionedDevicesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/provisionDevices/count"
@@ -3837,7 +3837,7 @@ func (s *SdaService) GetProvisionedDevicesCount(GetProvisionedDevicesCountQueryP
 
 @param GetTransitNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-networks-v1
 */
 func (s *SdaService) GetTransitNetworks(GetTransitNetworksQueryParams *GetTransitNetworksQueryParams) (*ResponseSdaGetTransitNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/transitNetworks"
@@ -3874,7 +3874,7 @@ func (s *SdaService) GetTransitNetworks(GetTransitNetworksQueryParams *GetTransi
 
 @param GetTransitNetworksCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-networks-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-transit-networks-count-v1
 */
 func (s *SdaService) GetTransitNetworksCount(GetTransitNetworksCountQueryParams *GetTransitNetworksCountQueryParams) (*ResponseSdaGetTransitNetworksCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/transitNetworks/count"
@@ -3911,7 +3911,7 @@ func (s *SdaService) GetTransitNetworksCount(GetTransitNetworksCountQueryParams 
 
 @param GetVirtualNetworkWithScalableGroupsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-with-scalable-groups
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-virtual-network-with-scalable-groups-v1
 */
 func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithScalableGroupsQueryParams *GetVirtualNetworkWithScalableGroupsQueryParams) (*ResponseSdaGetVirtualNetworkWithScalableGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/virtual-network"
@@ -3947,7 +3947,7 @@ func (s *SdaService) GetVirtualNetworkWithScalableGroups(GetVirtualNetworkWithSc
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-default-authentication-template-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-default-authentication-template-in-sda-fabric-v1
 */
 func (s *SdaService) AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDefaultAuthenticationTemplateInSDAFabric *RequestSdaAddDefaultAuthenticationTemplateInSdaFabric) (*ResponseSdaAddDefaultAuthenticationTemplateInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/authentication-profile"
@@ -3984,7 +3984,7 @@ func (s *SdaService) AddDefaultAuthenticationTemplateInSdaFabric(requestSdaAddDe
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-border-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-border-device-in-sda-fabric-v1
 */
 func (s *SdaService) AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFabric *RequestSdaAddBorderDeviceInSdaFabric) (*ResponseSdaAddBorderDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/border-device"
@@ -4021,7 +4021,7 @@ func (s *SdaService) AddBorderDeviceInSdaFabric(requestSdaAddBorderDeviceInSDAFa
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-control-plane-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-control-plane-device-in-sda-fabric-v1
 */
 func (s *SdaService) AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneDeviceInSDAFabric *RequestSdaAddControlPlaneDeviceInSdaFabric) (*ResponseSdaAddControlPlaneDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/control-plane-device"
@@ -4058,7 +4058,7 @@ func (s *SdaService) AddControlPlaneDeviceInSdaFabric(requestSdaAddControlPlaneD
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-edge-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-edge-device-in-sda-fabric-v1
 */
 func (s *SdaService) AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric *RequestSdaAddEdgeDeviceInSdaFabric) (*ResponseSdaAddEdgeDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/edge-device"
@@ -4095,7 +4095,7 @@ func (s *SdaService) AddEdgeDeviceInSdaFabric(requestSdaAddEdgeDeviceInSDAFabric
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-site-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-site-in-sda-fabric-v1
 */
 func (s *SdaService) AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric *RequestSdaAddSiteInSdaFabric) (*ResponseSdaAddSiteInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/fabric-site"
@@ -4132,7 +4132,7 @@ func (s *SdaService) AddSiteInSdaFabric(requestSdaAddSiteInSDAFabric *RequestSda
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-access-point-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-access-point-in-sda-fabric-v1
 */
 func (s *SdaService) AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPortAssignmentForAccessPointInSDAFabric *RequestSdaAddPortAssignmentForAccessPointInSdaFabric) (*ResponseSdaAddPortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/access-point"
@@ -4169,7 +4169,7 @@ func (s *SdaService) AddPortAssignmentForAccessPointInSdaFabric(requestSdaAddPor
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-user-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignment-for-user-device-in-sda-fabric-v1
 */
 func (s *SdaService) AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPortAssignmentForUserDeviceInSDAFabric *RequestSdaAddPortAssignmentForUserDeviceInSdaFabric) (*ResponseSdaAddPortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/user-device"
@@ -4206,7 +4206,7 @@ func (s *SdaService) AddPortAssignmentForUserDeviceInSdaFabric(requestSdaAddPort
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-multicast-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-multicast-in-sda-fabric-v1
 */
 func (s *SdaService) AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric *RequestSdaAddMulticastInSdaFabric) (*ResponseSdaAddMulticastInSdaFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/multicast"
@@ -4243,7 +4243,7 @@ func (s *SdaService) AddMulticastInSdaFabric(requestSdaAddMulticastInSDAFabric *
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-wired-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-wired-device-v1
 */
 func (s *SdaService) ProvisionWiredDevice(requestSdaProvisionWiredDevice *RequestSdaProvisionWiredDevice) (*ResponseSdaProvisionWiredDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/provision-device"
@@ -4280,7 +4280,7 @@ func (s *SdaService) ProvisionWiredDevice(requestSdaProvisionWiredDevice *Reques
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-transit-peer-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-transit-peer-network-v1
 */
 func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *RequestSdaAddTransitPeerNetwork) (*ResponseSdaAddTransitPeerNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/transit-peer-network"
@@ -4317,7 +4317,7 @@ func (s *SdaService) AddTransitPeerNetwork(requestSdaAddTransitPeerNetwork *Requ
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-vn-in-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-vn-in-fabric-v1
 */
 func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFabric) (*ResponseSdaAddVnInFabric, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtual-network"
@@ -4354,7 +4354,7 @@ func (s *SdaService) AddVnInFabric(requestSdaAddVNInFabric *RequestSdaAddVnInFab
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ip-pool-in-sda-virtual-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ip-pool-in-sda-virtual-network-v1
 */
 func (s *SdaService) AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtualNetwork *RequestSdaAddIPPoolInSdaVirtualNetwork) (*ResponseSdaAddIPPoolInSdaVirtualNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/virtualnetwork/ippool"
@@ -4391,7 +4391,7 @@ func (s *SdaService) AddIPPoolInSdaVirtualNetwork(requestSdaAddIPPoolInSDAVirtua
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-anycast-gateways
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-anycast-gateways-v1
 */
 func (s *SdaService) AddAnycastGateways(requestSdaAddAnycastGateways *RequestSdaAddAnycastGateways) (*ResponseSdaAddAnycastGateways, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/anycastGateways"
@@ -4428,7 +4428,7 @@ func (s *SdaService) AddAnycastGateways(requestSdaAddAnycastGateways *RequestSda
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-extranet-policy
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-extranet-policy-v1
 */
 func (s *SdaService) AddExtranetPolicy(requestSdaAddExtranetPolicy *RequestSdaAddExtranetPolicy) (*ResponseSdaAddExtranetPolicy, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/extranetPolicies"
@@ -4465,7 +4465,7 @@ func (s *SdaService) AddExtranetPolicy(requestSdaAddExtranetPolicy *RequestSdaAd
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-v1
 */
 func (s *SdaService) AddFabricDevices(requestSdaAddFabricDevices *RequestSdaAddFabricDevices) (*ResponseSdaAddFabricDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices"
@@ -4502,7 +4502,7 @@ func (s *SdaService) AddFabricDevices(requestSdaAddFabricDevices *RequestSdaAddF
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer2-handoffs
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer2-handoffs-v1
 */
 func (s *SdaService) AddFabricDevicesLayer2Handoffs(requestSdaAddFabricDevicesLayer2Handoffs *RequestSdaAddFabricDevicesLayer2Handoffs) (*ResponseSdaAddFabricDevicesLayer2Handoffs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer2Handoffs"
@@ -4539,7 +4539,7 @@ func (s *SdaService) AddFabricDevicesLayer2Handoffs(requestSdaAddFabricDevicesLa
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer3-handoffs-with-ip-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer3-handoffs-with-ip-transit-v1
 */
 func (s *SdaService) AddFabricDevicesLayer3HandoffsWithIPTransit(requestSdaAddFabricDevicesLayer3HandoffsWithIpTransit *RequestSdaAddFabricDevicesLayer3HandoffsWithIPTransit) (*ResponseSdaAddFabricDevicesLayer3HandoffsWithIPTransit, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/ipTransits"
@@ -4576,7 +4576,7 @@ func (s *SdaService) AddFabricDevicesLayer3HandoffsWithIPTransit(requestSdaAddFa
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer3-handoffs-with-sda-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-devices-layer3-handoffs-with-sda-transit-v1
 */
 func (s *SdaService) AddFabricDevicesLayer3HandoffsWithSdaTransit(requestSdaAddFabricDevicesLayer3HandoffsWithSdaTransit *RequestSdaAddFabricDevicesLayer3HandoffsWithSdaTransit) (*ResponseSdaAddFabricDevicesLayer3HandoffsWithSdaTransit, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricDevices/layer3Handoffs/sdaTransits"
@@ -4613,7 +4613,7 @@ func (s *SdaService) AddFabricDevicesLayer3HandoffsWithSdaTransit(requestSdaAddF
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-site-v1
 */
 func (s *SdaService) AddFabricSite(requestSdaAddFabricSite *RequestSdaAddFabricSite) (*ResponseSdaAddFabricSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricSites"
@@ -4650,7 +4650,7 @@ func (s *SdaService) AddFabricSite(requestSdaAddFabricSite *RequestSdaAddFabricS
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-zone
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-fabric-zone-v1
 */
 func (s *SdaService) AddFabricZone(requestSdaAddFabricZone *RequestSdaAddFabricZone) (*ResponseSdaAddFabricZone, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabricZones"
@@ -4687,7 +4687,7 @@ func (s *SdaService) AddFabricZone(requestSdaAddFabricZone *RequestSdaAddFabricZ
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-layer2-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-layer2-virtual-networks-v1
 */
 func (s *SdaService) AddLayer2VirtualNetworks(requestSdaAddLayer2VirtualNetworks *RequestSdaAddLayer2VirtualNetworks) (*ResponseSdaAddLayer2VirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer2VirtualNetworks"
@@ -4724,7 +4724,7 @@ func (s *SdaService) AddLayer2VirtualNetworks(requestSdaAddLayer2VirtualNetworks
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-layer3-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-layer3-virtual-networks-v1
 */
 func (s *SdaService) AddLayer3VirtualNetworks(requestSdaAddLayer3VirtualNetworks *RequestSdaAddLayer3VirtualNetworks) (*ResponseSdaAddLayer3VirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/layer3VirtualNetworks"
@@ -4761,7 +4761,7 @@ func (s *SdaService) AddLayer3VirtualNetworks(requestSdaAddLayer3VirtualNetworks
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-multicast-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-multicast-virtual-networks-v1
 */
 func (s *SdaService) AddMulticastVirtualNetworks(requestSdaAddMulticastVirtualNetworks *RequestSdaAddMulticastVirtualNetworks) (*ResponseSdaAddMulticastVirtualNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/multicast/virtualNetworks"
@@ -4798,7 +4798,7 @@ func (s *SdaService) AddMulticastVirtualNetworks(requestSdaAddMulticastVirtualNe
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignments
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-assignments-v1
 */
 func (s *SdaService) AddPortAssignments(requestSdaAddPortAssignments *RequestSdaAddPortAssignments) (*ResponseSdaAddPortAssignments, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portAssignments"
@@ -4835,7 +4835,7 @@ func (s *SdaService) AddPortAssignments(requestSdaAddPortAssignments *RequestSda
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-channels
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-port-channels-v1
 */
 func (s *SdaService) AddPortChannels(requestSdaAddPortChannels *RequestSdaAddPortChannels) (*ResponseSdaAddPortChannels, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/portChannels"
@@ -4872,7 +4872,7 @@ func (s *SdaService) AddPortChannels(requestSdaAddPortChannels *RequestSdaAddPor
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-devices-v1
 */
 func (s *SdaService) ProvisionDevices(requestSdaProvisionDevices *RequestSdaProvisionDevices) (*ResponseSdaProvisionDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/provisionDevices"
@@ -4909,7 +4909,7 @@ func (s *SdaService) ProvisionDevices(requestSdaProvisionDevices *RequestSdaProv
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-transit-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-transit-networks-v1
 */
 func (s *SdaService) AddTransitNetworks(requestSdaAddTransitNetworks *RequestSdaAddTransitNetworks) (*ResponseSdaAddTransitNetworks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/transitNetworks"
@@ -4946,7 +4946,7 @@ func (s *SdaService) AddTransitNetworks(requestSdaAddTransitNetworks *RequestSda
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-virtual-network-with-scalable-groups
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-virtual-network-with-scalable-groups-v1
 */
 func (s *SdaService) AddVirtualNetworkWithScalableGroups(requestSdaAddVirtualNetworkWithScalableGroups *RequestSdaAddVirtualNetworkWithScalableGroups) (*ResponseSdaAddVirtualNetworkWithScalableGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/virtual-network"
@@ -5611,7 +5611,7 @@ func (s *SdaService) UpdateVirtualNetworkWithScalableGroups(requestSdaUpdateVirt
 
 @param DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-default-authentication-profile-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-default-authentication-profile-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSdaFabricQueryParams) (*ResponseSdaDeleteDefaultAuthenticationProfileFromSdaFabric, *resty.Response, error) {
 	//DeleteDefaultAuthenticationProfileFromSDAFabricQueryParams *DeleteDefaultAuthenticationProfileFromSdaFabricQueryParams
@@ -5649,7 +5649,7 @@ func (s *SdaService) DeleteDefaultAuthenticationProfileFromSdaFabric(DeleteDefau
 
 @param DeleteBorderDeviceFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-border-device-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-border-device-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFabricQueryParams *DeleteBorderDeviceFromSdaFabricQueryParams) (*ResponseSdaDeleteBorderDeviceFromSdaFabric, *resty.Response, error) {
 	//DeleteBorderDeviceFromSDAFabricQueryParams *DeleteBorderDeviceFromSdaFabricQueryParams
@@ -5687,7 +5687,7 @@ func (s *SdaService) DeleteBorderDeviceFromSdaFabric(DeleteBorderDeviceFromSDAFa
 
 @param DeleteControlPlaneDeviceInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-control-plane-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-control-plane-device-in-sda-fabric-v1
 */
 func (s *SdaService) DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSdaFabricQueryParams) (*ResponseSdaDeleteControlPlaneDeviceInSdaFabric, *resty.Response, error) {
 	//DeleteControlPlaneDeviceInSDAFabricQueryParams *DeleteControlPlaneDeviceInSdaFabricQueryParams
@@ -5725,7 +5725,7 @@ func (s *SdaService) DeleteControlPlaneDeviceInSdaFabric(DeleteControlPlaneDevic
 
 @param DeleteEdgeDeviceFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-edge-device-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-edge-device-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSdaFabricQueryParams) (*ResponseSdaDeleteEdgeDeviceFromSdaFabric, *resty.Response, error) {
 	//DeleteEdgeDeviceFromSDAFabricQueryParams *DeleteEdgeDeviceFromSdaFabricQueryParams
@@ -5763,7 +5763,7 @@ func (s *SdaService) DeleteEdgeDeviceFromSdaFabric(DeleteEdgeDeviceFromSDAFabric
 
 @param DeleteSiteFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams *DeleteSiteFromSdaFabricQueryParams) (*ResponseSdaDeleteSiteFromSdaFabric, *resty.Response, error) {
 	//DeleteSiteFromSDAFabricQueryParams *DeleteSiteFromSdaFabricQueryParams
@@ -5801,7 +5801,7 @@ func (s *SdaService) DeleteSiteFromSdaFabric(DeleteSiteFromSDAFabricQueryParams 
 
 @param DeletePortAssignmentForAccessPointInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-access-point-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-access-point-in-sda-fabric-v1
 */
 func (s *SdaService) DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSdaFabricQueryParams) (*ResponseSdaDeletePortAssignmentForAccessPointInSdaFabric, *resty.Response, error) {
 	//DeletePortAssignmentForAccessPointInSDAFabricQueryParams *DeletePortAssignmentForAccessPointInSdaFabricQueryParams
@@ -5839,7 +5839,7 @@ func (s *SdaService) DeletePortAssignmentForAccessPointInSdaFabric(DeletePortAss
 
 @param DeletePortAssignmentForUserDeviceInSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-user-device-in-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-for-user-device-in-sda-fabric-v1
 */
 func (s *SdaService) DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSdaFabricQueryParams) (*ResponseSdaDeletePortAssignmentForUserDeviceInSdaFabric, *resty.Response, error) {
 	//DeletePortAssignmentForUserDeviceInSDAFabricQueryParams *DeletePortAssignmentForUserDeviceInSdaFabricQueryParams
@@ -5877,7 +5877,7 @@ func (s *SdaService) DeletePortAssignmentForUserDeviceInSdaFabric(DeletePortAssi
 
 @param DeleteMulticastFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-multicast-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-multicast-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQueryParams *DeleteMulticastFromSdaFabricQueryParams) (*ResponseSdaDeleteMulticastFromSdaFabric, *resty.Response, error) {
 	//DeleteMulticastFromSDAFabricQueryParams *DeleteMulticastFromSdaFabricQueryParams
@@ -5915,7 +5915,7 @@ func (s *SdaService) DeleteMulticastFromSdaFabric(DeleteMulticastFromSDAFabricQu
 
 @param DeleteProvisionedWiredDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-wired-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-wired-device-v1
 */
 func (s *SdaService) DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQueryParams *DeleteProvisionedWiredDeviceQueryParams) (*ResponseSdaDeleteProvisionedWiredDevice, *resty.Response, error) {
 	//DeleteProvisionedWiredDeviceQueryParams *DeleteProvisionedWiredDeviceQueryParams
@@ -5953,7 +5953,7 @@ func (s *SdaService) DeleteProvisionedWiredDevice(DeleteProvisionedWiredDeviceQu
 
 @param DeleteTransitPeerNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-transit-peer-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-transit-peer-network-v1
 */
 func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParams *DeleteTransitPeerNetworkQueryParams) (*ResponseSdaDeleteTransitPeerNetwork, *resty.Response, error) {
 	//DeleteTransitPeerNetworkQueryParams *DeleteTransitPeerNetworkQueryParams
@@ -5991,7 +5991,7 @@ func (s *SdaService) DeleteTransitPeerNetwork(DeleteTransitPeerNetworkQueryParam
 
 @param DeleteVNFromSDAFabricQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-vn-from-sda-fabric
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-vn-from-sda-fabric-v1
 */
 func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams) (*ResponseSdaDeleteVnFromSdaFabric, *resty.Response, error) {
 	//DeleteVNFromSDAFabricQueryParams *DeleteVnFromSdaFabricQueryParams
@@ -6029,7 +6029,7 @@ func (s *SdaService) DeleteVnFromSdaFabric(DeleteVNFromSDAFabricQueryParams *Del
 
 @param DeleteIPPoolFromSDAVirtualNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ip-pool-from-sda-virtual-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ip-pool-from-sda-virtual-network-v1
 */
 func (s *SdaService) DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSdaVirtualNetworkQueryParams) (*ResponseSdaDeleteIPPoolFromSdaVirtualNetwork, *resty.Response, error) {
 	//DeleteIPPoolFromSDAVirtualNetworkQueryParams *DeleteIPPoolFromSdaVirtualNetworkQueryParams
@@ -6068,7 +6068,7 @@ func (s *SdaService) DeleteIPPoolFromSdaVirtualNetwork(DeleteIPPoolFromSDAVirtua
 @param id id path parameter. ID of the anycast gateway.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-anycast-gateway-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-anycast-gateway-by-id-v1
 */
 func (s *SdaService) DeleteAnycastGatewayByID(id string) (*ResponseSdaDeleteAnycastGatewayByID, *resty.Response, error) {
 	//id string
@@ -6105,7 +6105,7 @@ func (s *SdaService) DeleteAnycastGatewayByID(id string) (*ResponseSdaDeleteAnyc
 
 @param DeleteExtranetPoliciesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-extranet-policies
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-extranet-policies-v1
 */
 func (s *SdaService) DeleteExtranetPolicies(DeleteExtranetPoliciesQueryParams *DeleteExtranetPoliciesQueryParams) (*ResponseSdaDeleteExtranetPolicies, *resty.Response, error) {
 	//DeleteExtranetPoliciesQueryParams *DeleteExtranetPoliciesQueryParams
@@ -6144,7 +6144,7 @@ func (s *SdaService) DeleteExtranetPolicies(DeleteExtranetPoliciesQueryParams *D
 @param id id path parameter. ID of the extranet policy.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-extranet-policy-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-extranet-policy-by-id-v1
 */
 func (s *SdaService) DeleteExtranetPolicyByID(id string) (*ResponseSdaDeleteExtranetPolicyByID, *resty.Response, error) {
 	//id string
@@ -6181,7 +6181,7 @@ func (s *SdaService) DeleteExtranetPolicyByID(id string) (*ResponseSdaDeleteExtr
 
 @param DeleteFabricDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-devices-v1
 */
 func (s *SdaService) DeleteFabricDevices(DeleteFabricDevicesQueryParams *DeleteFabricDevicesQueryParams) (*ResponseSdaDeleteFabricDevices, *resty.Response, error) {
 	//DeleteFabricDevicesQueryParams *DeleteFabricDevicesQueryParams
@@ -6219,7 +6219,7 @@ func (s *SdaService) DeleteFabricDevices(DeleteFabricDevicesQueryParams *DeleteF
 
 @param DeleteFabricDeviceLayer2HandoffsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer2-handoffs
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer2-handoffs-v1
 */
 func (s *SdaService) DeleteFabricDeviceLayer2Handoffs(DeleteFabricDeviceLayer2HandoffsQueryParams *DeleteFabricDeviceLayer2HandoffsQueryParams) (*ResponseSdaDeleteFabricDeviceLayer2Handoffs, *resty.Response, error) {
 	//DeleteFabricDeviceLayer2HandoffsQueryParams *DeleteFabricDeviceLayer2HandoffsQueryParams
@@ -6258,7 +6258,7 @@ func (s *SdaService) DeleteFabricDeviceLayer2Handoffs(DeleteFabricDeviceLayer2Ha
 @param id id path parameter. ID of the layer 2 handoff of a fabric device.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer2-handoff-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer2-handoff-by-id-v1
 */
 func (s *SdaService) DeleteFabricDeviceLayer2HandoffByID(id string) (*ResponseSdaDeleteFabricDeviceLayer2HandoffByID, *resty.Response, error) {
 	//id string
@@ -6295,7 +6295,7 @@ func (s *SdaService) DeleteFabricDeviceLayer2HandoffByID(id string) (*ResponseSd
 
 @param DeleteFabricDeviceLayer3HandoffsWithIpTransitQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoffs-with-ip-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoffs-with-ip-transit-v1
 */
 func (s *SdaService) DeleteFabricDeviceLayer3HandoffsWithIPTransit(DeleteFabricDeviceLayer3HandoffsWithIpTransitQueryParams *DeleteFabricDeviceLayer3HandoffsWithIPTransitQueryParams) (*ResponseSdaDeleteFabricDeviceLayer3HandoffsWithIPTransit, *resty.Response, error) {
 	//DeleteFabricDeviceLayer3HandoffsWithIpTransitQueryParams *DeleteFabricDeviceLayer3HandoffsWithIPTransitQueryParams
@@ -6334,7 +6334,7 @@ func (s *SdaService) DeleteFabricDeviceLayer3HandoffsWithIPTransit(DeleteFabricD
 @param id id path parameter. ID of the layer 3 handoff with ip transit of a fabric device.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoff-with-ip-transit-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoff-with-ip-transit-by-id-v1
 */
 func (s *SdaService) DeleteFabricDeviceLayer3HandoffWithIPTransitByID(id string) (*ResponseSdaDeleteFabricDeviceLayer3HandoffWithIPTransitByID, *resty.Response, error) {
 	//id string
@@ -6371,7 +6371,7 @@ func (s *SdaService) DeleteFabricDeviceLayer3HandoffWithIPTransitByID(id string)
 
 @param DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoffs-with-sda-transit
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-layer3-handoffs-with-sda-transit-v1
 */
 func (s *SdaService) DeleteFabricDeviceLayer3HandoffsWithSdaTransit(DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams *DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams) (*ResponseSdaDeleteFabricDeviceLayer3HandoffsWithSdaTransit, *resty.Response, error) {
 	//DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams *DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams
@@ -6393,7 +6393,8 @@ func (s *SdaService) DeleteFabricDeviceLayer3HandoffsWithSdaTransit(DeleteFabric
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteFabricDeviceLayer3HandoffsWithSdaTransit(DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams)
+			return s.DeleteFabricDeviceLayer3HandoffsWithSdaTransit(
+				DeleteFabricDeviceLayer3HandoffsWithSdaTransitQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteFabricDeviceLayer3HandoffsWithSdaTransit")
 	}
@@ -6410,7 +6411,7 @@ func (s *SdaService) DeleteFabricDeviceLayer3HandoffsWithSdaTransit(DeleteFabric
 @param id id path parameter. ID of the fabric device.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-device-by-id-v1
 */
 func (s *SdaService) DeleteFabricDeviceByID(id string) (*ResponseSdaDeleteFabricDeviceByID, *resty.Response, error) {
 	//id string
@@ -6448,7 +6449,7 @@ func (s *SdaService) DeleteFabricDeviceByID(id string) (*ResponseSdaDeleteFabric
 @param id id path parameter. ID of the fabric site.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-site-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-site-by-id-v1
 */
 func (s *SdaService) DeleteFabricSiteByID(id string) (*ResponseSdaDeleteFabricSiteByID, *resty.Response, error) {
 	//id string
@@ -6486,7 +6487,7 @@ func (s *SdaService) DeleteFabricSiteByID(id string) (*ResponseSdaDeleteFabricSi
 @param id id path parameter. ID of the fabric zone.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-zone-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-fabric-zone-by-id-v1
 */
 func (s *SdaService) DeleteFabricZoneByID(id string) (*ResponseSdaDeleteFabricZoneByID, *resty.Response, error) {
 	//id string
@@ -6523,7 +6524,7 @@ func (s *SdaService) DeleteFabricZoneByID(id string) (*ResponseSdaDeleteFabricZo
 
 @param DeleteLayer2VirtualNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer2-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer2-virtual-networks-v1
 */
 func (s *SdaService) DeleteLayer2VirtualNetworks(DeleteLayer2VirtualNetworksQueryParams *DeleteLayer2VirtualNetworksQueryParams) (*ResponseSdaDeleteLayer2VirtualNetworks, *resty.Response, error) {
 	//DeleteLayer2VirtualNetworksQueryParams *DeleteLayer2VirtualNetworksQueryParams
@@ -6562,7 +6563,7 @@ func (s *SdaService) DeleteLayer2VirtualNetworks(DeleteLayer2VirtualNetworksQuer
 @param id id path parameter. ID of the layer 2 virtual network.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer2-virtual-network-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer2-virtual-network-by-id-v1
 */
 func (s *SdaService) DeleteLayer2VirtualNetworkByID(id string) (*ResponseSdaDeleteLayer2VirtualNetworkByID, *resty.Response, error) {
 	//id string
@@ -6599,7 +6600,7 @@ func (s *SdaService) DeleteLayer2VirtualNetworkByID(id string) (*ResponseSdaDele
 
 @param DeleteLayer3VirtualNetworksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer3-virtual-networks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer3-virtual-networks-v1
 */
 func (s *SdaService) DeleteLayer3VirtualNetworks(DeleteLayer3VirtualNetworksQueryParams *DeleteLayer3VirtualNetworksQueryParams) (*ResponseSdaDeleteLayer3VirtualNetworks, *resty.Response, error) {
 	//DeleteLayer3VirtualNetworksQueryParams *DeleteLayer3VirtualNetworksQueryParams
@@ -6638,7 +6639,7 @@ func (s *SdaService) DeleteLayer3VirtualNetworks(DeleteLayer3VirtualNetworksQuer
 @param id id path parameter. ID of the layer 3 virtual network.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer3-virtual-network-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-layer3-virtual-network-by-id-v1
 */
 func (s *SdaService) DeleteLayer3VirtualNetworkByID(id string) (*ResponseSdaDeleteLayer3VirtualNetworkByID, *resty.Response, error) {
 	//id string
@@ -6676,7 +6677,7 @@ func (s *SdaService) DeleteLayer3VirtualNetworkByID(id string) (*ResponseSdaDele
 @param id id path parameter. ID of the multicast configuration.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-multicast-virtual-network-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-multicast-virtual-network-by-id-v1
 */
 func (s *SdaService) DeleteMulticastVirtualNetworkByID(id string) (*ResponseSdaDeleteMulticastVirtualNetworkByID, *resty.Response, error) {
 	//id string
@@ -6713,7 +6714,7 @@ func (s *SdaService) DeleteMulticastVirtualNetworkByID(id string) (*ResponseSdaD
 
 @param DeletePortAssignmentsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignments
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignments-v1
 */
 func (s *SdaService) DeletePortAssignments(DeletePortAssignmentsQueryParams *DeletePortAssignmentsQueryParams) (*ResponseSdaDeletePortAssignments, *resty.Response, error) {
 	//DeletePortAssignmentsQueryParams *DeletePortAssignmentsQueryParams
@@ -6752,7 +6753,7 @@ func (s *SdaService) DeletePortAssignments(DeletePortAssignmentsQueryParams *Del
 @param id id path parameter. ID of the port assignment.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-assignment-by-id-v1
 */
 func (s *SdaService) DeletePortAssignmentByID(id string) (*ResponseSdaDeletePortAssignmentByID, *resty.Response, error) {
 	//id string
@@ -6789,7 +6790,7 @@ func (s *SdaService) DeletePortAssignmentByID(id string) (*ResponseSdaDeletePort
 
 @param DeletePortChannelsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-channels
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-channels-v1
 */
 func (s *SdaService) DeletePortChannels(DeletePortChannelsQueryParams *DeletePortChannelsQueryParams) (*ResponseSdaDeletePortChannels, *resty.Response, error) {
 	//DeletePortChannelsQueryParams *DeletePortChannelsQueryParams
@@ -6828,7 +6829,7 @@ func (s *SdaService) DeletePortChannels(DeletePortChannelsQueryParams *DeletePor
 @param id id path parameter. ID of the port channel.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-channel-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-channel-by-id-v1
 */
 func (s *SdaService) DeletePortChannelByID(id string) (*ResponseSdaDeletePortChannelByID, *resty.Response, error) {
 	//id string
@@ -6865,7 +6866,7 @@ func (s *SdaService) DeletePortChannelByID(id string) (*ResponseSdaDeletePortCha
 
 @param DeleteProvisionedDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-devices-v1
 */
 func (s *SdaService) DeleteProvisionedDevices(DeleteProvisionedDevicesQueryParams *DeleteProvisionedDevicesQueryParams) (*ResponseSdaDeleteProvisionedDevices, *resty.Response, error) {
 	//DeleteProvisionedDevicesQueryParams *DeleteProvisionedDevicesQueryParams
@@ -6904,7 +6905,7 @@ func (s *SdaService) DeleteProvisionedDevices(DeleteProvisionedDevicesQueryParam
 @param id id path parameter. ID of the provisioned device.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-device-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-provisioned-device-by-id-v1
 */
 func (s *SdaService) DeleteProvisionedDeviceByID(id string) (*ResponseSdaDeleteProvisionedDeviceByID, *resty.Response, error) {
 	//id string
@@ -6942,7 +6943,7 @@ func (s *SdaService) DeleteProvisionedDeviceByID(id string) (*ResponseSdaDeleteP
 @param id id path parameter. ID of the transit network.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-transit-network-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-transit-network-by-id-v1
 */
 func (s *SdaService) DeleteTransitNetworkByID(id string) (*ResponseSdaDeleteTransitNetworkByID, *resty.Response, error) {
 	//id string
@@ -6979,7 +6980,7 @@ func (s *SdaService) DeleteTransitNetworkByID(id string) (*ResponseSdaDeleteTran
 
 @param DeleteVirtualNetworkWithScalableGroupsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-virtual-network-with-scalable-groups
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-virtual-network-with-scalable-groups-v1
 */
 func (s *SdaService) DeleteVirtualNetworkWithScalableGroups(DeleteVirtualNetworkWithScalableGroupsQueryParams *DeleteVirtualNetworkWithScalableGroupsQueryParams) (*ResponseSdaDeleteVirtualNetworkWithScalableGroups, *resty.Response, error) {
 	//DeleteVirtualNetworkWithScalableGroupsQueryParams *DeleteVirtualNetworkWithScalableGroupsQueryParams

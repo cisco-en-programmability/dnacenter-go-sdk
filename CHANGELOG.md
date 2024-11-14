@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 New services for Cisco Catalyst Center 2.3.7.6's API:
 - CiscoTrustedCertificates *CiscoTrustedCertificatesService
+- AIEndpointAnalytics      *AIEndpointAnalyticsService
 
 ## [5.0.32] - 2024-08-06
 ### Added

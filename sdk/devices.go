@@ -12,19 +12,19 @@ import (
 type DevicesService service
 
 type QueryAssuranceEventsQueryParams struct {
-	DeviceFamily      string  `url:"deviceFamily,omitempty"`      //Device family. Please note that multiple families across network device type and client type is not allowed. For example, choosing 'Routers' along with 'Wireless Client' or 'Unified AP' is not supported. Examples: 'deviceFamily=Switches and Hubs' (single deviceFamily requested) 'deviceFamily=Switches and Hubs&deviceFamily=Routers' (multiple deviceFamily requested)
-	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time minus 24 hours.
-	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'endTime' is not provided, API will default to current time.
-	MessageType       string  `url:"messageType,omitempty"`       //Message type for the event. Examples: 'messageType=Syslog' (single messageType requested) 'messageType=Trap&messageType=Syslog' (multiple messageType requested)
-	Severity          float64 `url:"severity,omitempty"`          //Severity of the event between 0 and 6. This is applicable only for events related to network devices (other than AP) and 'Wired Client' events. | Value | Severity    | | ----- | ----------- | | 0     | Emergency   | | 1     | Alert       | | 2     | Critical    | | 3     | Error       | | 4     | Warning     | | 5     | Notice      | | 6     | Info        | Examples: 'severity=0' (single severity requested) 'severity=0&severity=1' (multiple severity requested)
-	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. 'flooruuid') Examples: '?siteId=id1' (single siteId requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple siteId requested)
-	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyId requested)
-	NetworkDeviceName string  `url:"networkDeviceName,omitempty"` //Network device name. This parameter is applicable for network device related families. This field supports wildcard ('*') character-based search. Ex: '*Branch*' or 'Branch*' or '*Branch' Examples: 'networkDeviceName=Branch-3-Gateway' (single networkDeviceName requested) 'networkDeviceName=Branch-3-Gateway&networkDeviceName=Branch-3-Switch' (multiple networkDeviceName requested)
-	NetworkDeviceID   string  `url:"networkDeviceId,omitempty"`   //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceId with & separator)
-	ApMac             string  `url:"apMac,omitempty"`             //MAC address of the access point. This parameter is applicable for 'Unified AP' and 'Wireless Client' events. This field supports wildcard ('*') character-based search. Ex: '*50:0F*' or '50:0F*' or '*50:0F' Examples: 'apMac=50:0F:80:0F:F7:E0' (single apMac requested) 'apMac=50:0F:80:0F:F7:E0&apMac=18:80:90:AB:7E:A0' (multiple apMac requested)
-	ClientMac         string  `url:"clientMac,omitempty"`         //MAC address of the client. This parameter is applicable for 'Wired Client' and 'Wireless Client' events. This field supports wildcard ('*') character-based search. Ex: '*66:2B*' or '66:2B*' or '*66:2B' Examples: 'clientMac=66:2B:B8:D2:01:56' (single clientMac requested) 'clientMac=66:2B:B8:D2:01:56&clientMac=DC:A6:32:F5:5A:89' (multiple clientMac requested)
-	Attribute         string  `url:"attribute,omitempty"`         //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes ('id', 'name', 'timestamp', 'details', 'messageType', 'siteHierarchyId', 'siteHierarchy', 'deviceFamily', 'networkDeviceId', 'networkDeviceName', 'managementIpAddress') would be part of the response.  Examples:  'attribute=name' (single attribute requested) 'attribute=name&attribute=networkDeviceName' (multiple attribute requested)
-	View              string  `url:"view,omitempty"`              //The list of events views. Please refer to 'EventViews' for the supported list  Examples:  'view=network' (single view requested) 'view=network&view=ap' (multiple view requested)
+	DeviceFamily      string  `url:"deviceFamily,omitempty"`      //Device family. Please note that multiple families across network device type and client type is not allowed. For example, choosing `Routers` along with `Wireless Client` or `Unified AP` is not supported. Examples: `deviceFamily=Switches and Hubs` (single deviceFamily requested) `deviceFamily=Switches and Hubs&deviceFamily=Routers` (multiple deviceFamily requested)
+	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time minus 24 hours.
+	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to current time.
+	MessageType       string  `url:"messageType,omitempty"`       //Message type for the event. Examples: `messageType=Syslog` (single messageType requested) `messageType=Trap&messageType=Syslog` (multiple messageType requested)
+	Severity          float64 `url:"severity,omitempty"`          //Severity of the event between 0 and 6. This is applicable only for events related to network devices (other than AP) and `Wired Client` events. | Value | Severity    | | ----- | ----------- | | 0     | Emergency   | | 1     | Alert       | | 2     | Critical    | | 3     | Error       | | 4     | Warning     | | 5     | Notice      | | 6     | Info        | Examples: `severity=0` (single severity requested) `severity=0&severity=1` (multiple severity requested)
+	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single siteId requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple siteId requested)
+	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyId requested)
+	NetworkDeviceName string  `url:"networkDeviceName,omitempty"` //Network device name. This parameter is applicable for network device related families. This field supports wildcard (`*`) character-based search. Ex: `*Branch*` or `Branch*` or `*Branch` Examples: `networkDeviceName=Branch-3-Gateway` (single networkDeviceName requested) `networkDeviceName=Branch-3-Gateway&networkDeviceName=Branch-3-Switch` (multiple networkDeviceName requested)
+	NetworkDeviceID   string  `url:"networkDeviceId,omitempty"`   //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceId with & separator)
+	ApMac             string  `url:"apMac,omitempty"`             //MAC address of the access point. This parameter is applicable for `Unified AP` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*50:0F*` or `50:0F*` or `*50:0F` Examples: `apMac=50:0F:80:0F:F7:E0` (single apMac requested) `apMac=50:0F:80:0F:F7:E0&apMac=18:80:90:AB:7E:A0` (multiple apMac requested)
+	ClientMac         string  `url:"clientMac,omitempty"`         //MAC address of the client. This parameter is applicable for `Wired Client` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*66:2B*` or `66:2B*` or `*66:2B` Examples: `clientMac=66:2B:B8:D2:01:56` (single clientMac requested) `clientMac=66:2B:B8:D2:01:56&clientMac=DC:A6:32:F5:5A:89` (multiple clientMac requested)
+	Attribute         string  `url:"attribute,omitempty"`         //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.  Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
+	View              string  `url:"view,omitempty"`              //The list of events views. Please refer to `EventViews` for the supported list  Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
 	Offset            float64 `url:"offset,omitempty"`            //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	Limit             float64 `url:"limit,omitempty"`             //Maximum number of records to return
 	SortBy            string  `url:"sortBy,omitempty"`            //A field within the response to sort by.
@@ -34,17 +34,17 @@ type QueryAssuranceEventsHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type CountTheNumberOfEventsQueryParams struct {
-	DeviceFamily      string `url:"deviceFamily,omitempty"`      //Device family. Please note that multiple families across network device type and client type is not allowed. For example, choosing 'Routers' along with 'Wireless Client' or 'Unified AP' is not supported. Examples: 'deviceFamily=Switches and Hubs' (single deviceFamily requested) 'deviceFamily=Switches and Hubs&deviceFamily=Routers' (multiple deviceFamily requested)
-	StartTime         string `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time minus 24 hours.
-	EndTime           string `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'endTime' is not provided, API will default to current time.
-	MessageType       string `url:"messageType,omitempty"`       //Message type for the event. Examples: 'messageType=Syslog' (single messageType requested) 'messageType=Trap&messageType=Syslog' (multiple messageType requested)
-	Severity          string `url:"severity,omitempty"`          //Severity of the event between 0 and 6. This is applicable only for events related to network devices (other than AP) and 'Wired Client' events. | Value | Severity    | | ----- | ----------- | | 0     | Emergency   | | 1     | Alert       | | 2     | Critical    | | 3     | Error       | | 4     | Warning     | | 5     | Notice      | | 6     | Info        | Examples: 'severity=0' (single severity requested) 'severity=0&severity=1' (multiple severity requested)
-	SiteID            string `url:"siteId,omitempty"`            //The UUID of the site. (Ex. 'flooruuid') Examples: '?siteId=id1' (single siteId requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple siteId requested)
-	SiteHierarchyID   string `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyId requested)
-	NetworkDeviceName string `url:"networkDeviceName,omitempty"` //Network device name. This parameter is applicable for network device related families. This field supports wildcard ('*') character-based search. Ex: '*Branch*' or 'Branch*' or '*Branch' Examples: 'networkDeviceName=Branch-3-Gateway' (single networkDeviceName requested) 'networkDeviceName=Branch-3-Gateway&networkDeviceName=Branch-3-Switch' (multiple networkDeviceName requested)
-	NetworkDeviceID   string `url:"networkDeviceId,omitempty"`   //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceId requested)
-	ApMac             string `url:"apMac,omitempty"`             //MAC address of the access point. This parameter is applicable for 'Unified AP' and 'Wireless Client' events. This field supports wildcard ('*') character-based search. Ex: '*50:0F*' or '50:0F*' or '*50:0F' Examples: 'apMac=50:0F:80:0F:F7:E0' (single apMac requested) 'apMac=50:0F:80:0F:F7:E0&apMac=18:80:90:AB:7E:A0' (multiple apMac requested)
-	ClientMac         string `url:"clientMac,omitempty"`         //MAC address of the client. This parameter is applicable for 'Wired Client' and 'Wireless Client' events. This field supports wildcard ('*') character-based search. Ex: '*66:2B*' or '66:2B*' or '*66:2B' Examples: 'clientMac=66:2B:B8:D2:01:56' (single clientMac requested) 'clientMac=66:2B:B8:D2:01:56&clientMac=DC:A6:32:F5:5A:89' (multiple clientMac requested)
+	DeviceFamily      string `url:"deviceFamily,omitempty"`      //Device family. Please note that multiple families across network device type and client type is not allowed. For example, choosing `Routers` along with `Wireless Client` or `Unified AP` is not supported. Examples: `deviceFamily=Switches and Hubs` (single deviceFamily requested) `deviceFamily=Switches and Hubs&deviceFamily=Routers` (multiple deviceFamily requested)
+	StartTime         string `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time minus 24 hours.
+	EndTime           string `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to current time.
+	MessageType       string `url:"messageType,omitempty"`       //Message type for the event. Examples: `messageType=Syslog` (single messageType requested) `messageType=Trap&messageType=Syslog` (multiple messageType requested)
+	Severity          string `url:"severity,omitempty"`          //Severity of the event between 0 and 6. This is applicable only for events related to network devices (other than AP) and `Wired Client` events. | Value | Severity    | | ----- | ----------- | | 0     | Emergency   | | 1     | Alert       | | 2     | Critical    | | 3     | Error       | | 4     | Warning     | | 5     | Notice      | | 6     | Info        | Examples: `severity=0` (single severity requested) `severity=0&severity=1` (multiple severity requested)
+	SiteID            string `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single siteId requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple siteId requested)
+	SiteHierarchyID   string `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyId requested)
+	NetworkDeviceName string `url:"networkDeviceName,omitempty"` //Network device name. This parameter is applicable for network device related families. This field supports wildcard (`*`) character-based search. Ex: `*Branch*` or `Branch*` or `*Branch` Examples: `networkDeviceName=Branch-3-Gateway` (single networkDeviceName requested) `networkDeviceName=Branch-3-Gateway&networkDeviceName=Branch-3-Switch` (multiple networkDeviceName requested)
+	NetworkDeviceID   string `url:"networkDeviceId,omitempty"`   //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceId requested)
+	ApMac             string `url:"apMac,omitempty"`             //MAC address of the access point. This parameter is applicable for `Unified AP` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*50:0F*` or `50:0F*` or `*50:0F` Examples: `apMac=50:0F:80:0F:F7:E0` (single apMac requested) `apMac=50:0F:80:0F:F7:E0&apMac=18:80:90:AB:7E:A0` (multiple apMac requested)
+	ClientMac         string `url:"clientMac,omitempty"`         //MAC address of the client. This parameter is applicable for `Wired Client` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*66:2B*` or `66:2B*` or `*66:2B` Examples: `clientMac=66:2B:B8:D2:01:56` (single clientMac requested) `clientMac=66:2B:B8:D2:01:56&clientMac=DC:A6:32:F5:5A:89` (multiple clientMac requested)
 }
 type CountTheNumberOfEventsHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
@@ -58,8 +58,8 @@ type CountTheNumberOfEventsWithFiltersHeaderParams struct {
 	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type GetDetailsOfASingleAssuranceEventQueryParams struct {
-	Attribute string `url:"attribute,omitempty"` //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes ('id', 'name', 'timestamp', 'details', 'messageType', 'siteHierarchyId', 'siteHierarchy', 'deviceFamily', 'networkDeviceId', 'networkDeviceName', 'managementIpAddress') would be part of the response.  Examples:  'attribute=name' (single attribute requested) 'attribute=name&attribute=networkDeviceName' (multiple attribute requested)
-	View      string `url:"view,omitempty"`      //The list of events views. Please refer to 'EventViews' for the supported list  Examples:  'view=network' (single view requested) 'view=network&view=ap' (multiple view requested)
+	Attribute string `url:"attribute,omitempty"` //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.  Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
+	View      string `url:"view,omitempty"`      //The list of events views. Please refer to `EventViews` for the supported list  Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
 }
 type GetDetailsOfASingleAssuranceEventHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
@@ -68,87 +68,87 @@ type GetListOfChildEventsForTheGivenWirelessClientEventHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevicesQueryParams struct {
-	StartTime               float64 `url:"startTime,omitempty"`               //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime               float64 `url:"startTime,omitempty"`               //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                 float64 `url:"endTime,omitempty"`                 //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Limit                   float64 `url:"limit,omitempty"`                   //Maximum number of records to return
 	Offset                  float64 `url:"offset,omitempty"`                  //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	SortBy                  string  `url:"sortBy,omitempty"`                  //A field within the response to sort by.
 	Order                   string  `url:"order,omitempty"`                   //The sort order of the field ascending or descending.
-	SiteHierarchy           string  `url:"siteHierarchy,omitempty"`           //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID         string  `url:"siteHierarchyId,omitempty"`         //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteID                  string  `url:"siteId,omitempty"`                  //The UUID of the site. (Ex. 'flooruuid') Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
-	View                    string  `url:"view,omitempty"`                    //The specific summary view being requested. This is an optional parameter which can be passed to get one or more of the specific view associated fields. The default view is ''configuration''. ### Response data proviced by each view:   1. **configuration** [id,adminStatus,description,duplexConfig,duplexOper,interfaceIfIndex,interfaceType,ipv4Address,ipv6AddressList,isL3Interface,isWan,macAddress,mediaType,name,operStatus, portChannelId,portMode, portType,speed,timestamp,vlanId,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   2. **statistics** [id,name,rxDiscards,rxError,rxRate,rxUtilization,txDiscards,txError,txRate,txUtilization,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   3. **stackPort** [id,name,peerStackMember,peerStackPort,stackPortType,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   The default view is configuration, If need to access an additional view, simply include the view name in the query parameter. Examples: view=configuration (single view requested) view=configuration&view=statistic&stackPort (multiple views requested)
+	SiteHierarchy           string  `url:"siteHierarchy,omitempty"`           //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID         string  `url:"siteHierarchyId,omitempty"`         //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteID                  string  `url:"siteId,omitempty"`                  //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	View                    string  `url:"view,omitempty"`                    //The specific summary view being requested. This is an optional parameter which can be passed to get one or more of the specific view associated fields. The default view is ``configuration``. ### Response data proviced by each view:   1. **configuration** [id,adminStatus,description,duplexConfig,duplexOper,interfaceIfIndex,interfaceType,ipv4Address,ipv6AddressList,isL3Interface,isWan,macAddress,mediaType,name,operStatus, portChannelId,portMode, portType,speed,timestamp,vlanId,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   2. **statistics** [id,name,rxDiscards,rxError,rxRate,rxUtilization,txDiscards,txError,txRate,txUtilization,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   3. **stackPort** [id,name,peerStackMember,peerStackPort,stackPortType,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId]   The default view is configuration, If need to access an additional view, simply include the view name in the query parameter. Examples: view=configuration (single view requested) view=configuration&view=statistic&stackPort (multiple views requested)
 	Attribute               string  `url:"attribute,omitempty"`               //The following list of attributes can be provided in the attribute field [id,adminStatus, description,duplexConfig,duplexOper,interfaceIfIndex,interfaceType,ipv4Address,ipv6AddressList,isL3Interface,isWan,macAddress,mediaType,name,operStatus,peerStackMember,peerStackPort, portChannelId,portMode, portType,rxDiscards,rxError,rxRate,rxUtilization,speed,stackPortType,timestamp,txDiscards,txError,txRate,txUtilization,vlanId,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId] If length of attribute list is too long, please use 'views' param instead. Examples: attributes=name (single attribute requested) attributes=name,description,duplexOper (multiple attributes with comma separator)
-	NetworkDeviceID         string  `url:"networkDeviceId,omitempty"`         //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress  string  `url:"networkDeviceIpAddress,omitempty"`  //The list of Network Device management IP Address. (Ex. '121.1.1.10') This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'networkDeviceIpAddress=121.1.1.10' 'networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10' (multiple networkDevice IP Address with & separator)
-	NetworkDeviceMacAddress string  `url:"networkDeviceMacAddress,omitempty"` //The list of Network Device MAC Address. (Ex. '64:f6:9d:07:9a:00') This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'networkDeviceMacAddress=64:f6:9d:07:9a:00' 'networkDeviceMacAddress=64:f6:9d:07:9a:00&networkDeviceMacAddress=70:56:9d:07:ac:77' (multiple networkDevice MAC addresses with & separator)
-	InterfaceID             string  `url:"interfaceId,omitempty"`             //The list of Interface Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'interfaceId=6bef213c-19ca-4170-8375-b694e251101c' (single interface uuid ) 'interfaceId=6bef213c-19ca-4170-8375-b694e251101c&32219612-819e-4b5e-a96b-cf22aca13dd9&2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple Interface uuid with & separator)
-	InterfaceName           string  `url:"interfaceName,omitempty"`           //The list of Interface name (Ex. 'GigabitEthernet1/0/1') This field supports wildcard ('*') character-based search.  Ex: '*1/0/1*' or '1/0/1*' or '*1/0/1' Examples: 'interfaceNames=GigabitEthernet1/0/1' (single interface name) 'interfaceNames=GigabitEthernet1/0/1&GigabitEthernet2/0/1&GigabitEthernet3/0/1' (multiple interface names with & separator)
+	NetworkDeviceID         string  `url:"networkDeviceId,omitempty"`         //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
+	NetworkDeviceIPAddress  string  `url:"networkDeviceIpAddress,omitempty"`  //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	NetworkDeviceMacAddress string  `url:"networkDeviceMacAddress,omitempty"` //The list of Network Device MAC Address. (Ex. `64:f6:9d:07:9a:00`) This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `networkDeviceMacAddress=64:f6:9d:07:9a:00` `networkDeviceMacAddress=64:f6:9d:07:9a:00&networkDeviceMacAddress=70:56:9d:07:ac:77` (multiple networkDevice MAC addresses with & separator)
+	InterfaceID             string  `url:"interfaceId,omitempty"`             //The list of Interface Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `interfaceId=6bef213c-19ca-4170-8375-b694e251101c` (single interface uuid ) `interfaceId=6bef213c-19ca-4170-8375-b694e251101c&32219612-819e-4b5e-a96b-cf22aca13dd9&2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple Interface uuid with & separator)
+	InterfaceName           string  `url:"interfaceName,omitempty"`           //The list of Interface name (Ex. `GigabitEthernet1/0/1`) This field supports wildcard (`*`) character-based search.  Ex: `*1/0/1*` or `1/0/1*` or `*1/0/1` Examples: `interfaceNames=GigabitEthernet1/0/1` (single interface name) `interfaceNames=GigabitEthernet1/0/1&GigabitEthernet2/0/1&GigabitEthernet3/0/1` (multiple interface names with & separator)
 }
 type GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCountQueryParams struct {
-	StartTime               float64 `url:"startTime,omitempty"`               //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime               float64 `url:"startTime,omitempty"`               //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                 float64 `url:"endTime,omitempty"`                 //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
-	SiteHierarchy           string  `url:"siteHierarchy,omitempty"`           //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID         string  `url:"siteHierarchyId,omitempty"`         //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteID                  string  `url:"siteId,omitempty"`                  //The UUID of the site. (Ex. 'flooruuid') Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
-	NetworkDeviceID         string  `url:"networkDeviceId,omitempty"`         //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress  string  `url:"networkDeviceIpAddress,omitempty"`  //The list of Network Device management IP Address. (Ex. '121.1.1.10') This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'networkDeviceIpAddress=121.1.1.10' 'networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10' (multiple networkDevice IP Address with & separator)
-	NetworkDeviceMacAddress string  `url:"networkDeviceMacAddress,omitempty"` //The list of Network Device MAC Address. (Ex. '64:f6:9d:07:9a:00') This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'networkDeviceMacAddress=64:f6:9d:07:9a:00' 'networkDeviceMacAddress=64:f6:9d:07:9a:00&networkDeviceMacAddress=70:56:9d:07:ac:77' (multiple networkDevice MAC addresses with & separator)
-	InterfaceID             string  `url:"interfaceId,omitempty"`             //The list of Interface Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'interfaceId=6bef213c-19ca-4170-8375-b694e251101c' (single interface uuid ) 'interfaceId=6bef213c-19ca-4170-8375-b694e251101c&32219612-819e-4b5e-a96b-cf22aca13dd9&2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple Interface uuid with & separator)
-	InterfaceName           string  `url:"interfaceName,omitempty"`           //The list of Interface name (Ex. 'GigabitEthernet1/0/1') This field supports wildcard ('*') character-based search.  Ex: '*1/0/1*' or '1/0/1*' or '*1/0/1' Examples: 'interfaceNames=GigabitEthernet1/0/1' (single interface name) 'interfaceNames=GigabitEthernet1/0/1&GigabitEthernet2/0/1&GigabitEthernet3/0/1' (multiple interface names with & separator)
+	SiteHierarchy           string  `url:"siteHierarchy,omitempty"`           //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID         string  `url:"siteHierarchyId,omitempty"`         //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteID                  string  `url:"siteId,omitempty"`                  //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	NetworkDeviceID         string  `url:"networkDeviceId,omitempty"`         //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
+	NetworkDeviceIPAddress  string  `url:"networkDeviceIpAddress,omitempty"`  //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	NetworkDeviceMacAddress string  `url:"networkDeviceMacAddress,omitempty"` //The list of Network Device MAC Address. (Ex. `64:f6:9d:07:9a:00`) This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `networkDeviceMacAddress=64:f6:9d:07:9a:00` `networkDeviceMacAddress=64:f6:9d:07:9a:00&networkDeviceMacAddress=70:56:9d:07:ac:77` (multiple networkDevice MAC addresses with & separator)
+	InterfaceID             string  `url:"interfaceId,omitempty"`             //The list of Interface Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `interfaceId=6bef213c-19ca-4170-8375-b694e251101c` (single interface uuid ) `interfaceId=6bef213c-19ca-4170-8375-b694e251101c&32219612-819e-4b5e-a96b-cf22aca13dd9&2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple Interface uuid with & separator)
+	InterfaceName           string  `url:"interfaceName,omitempty"`           //The list of Interface name (Ex. `GigabitEthernet1/0/1`) This field supports wildcard (`*`) character-based search.  Ex: `*1/0/1*` or `1/0/1*` or `*1/0/1` Examples: `interfaceNames=GigabitEthernet1/0/1` (single interface name) `interfaceNames=GigabitEthernet1/0/1&GigabitEthernet2/0/1&GigabitEthernet3/0/1` (multiple interface names with & separator)
 }
 type GetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAlongWithTheStatisticsDataQueryParams struct {
-	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	View      string  `url:"view,omitempty"`      //Interface data model views
 	Attribute string  `url:"attribute,omitempty"` //The following list of attributes can be provided in the attribute field [id,adminStatus, description,duplexConfig,duplexOper,interfaceIfIndex,interfaceType,ipv4Address,ipv6AddressList,isL3Interface,isWan,macAddress,mediaType,name,operStatus,peerStackMember,peerStackPort, portChannelId,portMode, portType,rxDiscards,rxError,rxRate,rxUtilization,speed,stackPortType,timestamp,txDiscards,txError,txRate,txUtilization,vlanId,networkDeviceId,networkDeviceIpAddress,networkDeviceMacAddress,siteName,siteHierarchy,siteHierarchyId] If length of attribute list is too long, please use 'views' param instead. Examples: attributes=name (single attribute requested) attributes=name,description,duplexOper (multiple attributes with comma separator)
 }
 type GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParametersQueryParams struct {
-	StartTime           float64 `url:"startTime,omitempty"`           //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime           float64 `url:"startTime,omitempty"`           //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime             float64 `url:"endTime,omitempty"`             //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Limit               float64 `url:"limit,omitempty"`               //Maximum number of records to return
 	Offset              float64 `url:"offset,omitempty"`              //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	SortBy              string  `url:"sortBy,omitempty"`              //A field within the response to sort by.
 	Order               string  `url:"order,omitempty"`               //The sort order of the field ascending or descending.
-	SiteHierarchy       string  `url:"siteHierarchy,omitempty"`       //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID     string  `url:"siteHierarchyId,omitempty"`     //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk (*) character search support. E.g. '*uuid*, *uuid, uuid* Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteID              string  `url:"siteId,omitempty"`              //The UUID of the site. (Ex. 'flooruuid') This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
+	SiteHierarchy       string  `url:"siteHierarchy,omitempty"`       //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID     string  `url:"siteHierarchyId,omitempty"`     //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteID              string  `url:"siteId,omitempty"`              //The UUID of the site. (Ex. `flooruuid`) This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
 	ID                  string  `url:"id,omitempty"`                  //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
-	ManagementIPAddress string  `url:"managementIpAddress,omitempty"` //The list of entity management IP Address. It can be either Ipv4 or Ipv6 address or combination of both(Ex. "121.1.1.10") This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: managementIpAddresses=121.1.1.10 managementIpAddresses=121.1.1.10&managementIpAddresses=172.20.1.10&managementIpAddresses=200:10&=managementIpAddresses172.20.3.4 (multiple entity IP Address with & separator)
-	MacAddress          string  `url:"macAddress,omitempty"`          //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
+	ManagementIPAddress string  `url:"managementIpAddress,omitempty"` //The list of entity management IP Address. It can be either Ipv4 or Ipv6 address or combination of both(Ex. "121.1.1.10") This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: managementIpAddresses=121.1.1.10 managementIpAddresses=121.1.1.10&managementIpAddresses=172.20.1.10&managementIpAddresses=200:10&=managementIpAddresses172.20.3.4 (multiple entity IP Address with & separator)
+	MacAddress          string  `url:"macAddress,omitempty"`          //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	Family              string  `url:"family,omitempty"`              //The list of network device family names Examples:family=Switches and Hubs (single network device family name )family=Switches and Hubs&family=Router&family=Wireless Controller (multiple Network device family names with & separator). This field is not case sensitive.
-	Type                string  `url:"type,omitempty"`                //The list of network device type This field supports wildcard ('*') character-based search. Ex: '*9407R*' or '*9407R' or '9407R*' Examples: type=SwitchesCisco Catalyst 9407R Switch (single network device types ) type=Cisco Catalyst 38xx stack-able ethernet switch&type=Cisco 3945 Integrated Services Router G2 (multiple Network device types with & separator)
+	Type                string  `url:"type,omitempty"`                //The list of network device type This field supports wildcard (`*`) character-based search. Ex: `*9407R*` or `*9407R` or `9407R*` Examples: type=SwitchesCisco Catalyst 9407R Switch (single network device types ) type=Cisco Catalyst 38xx stack-able ethernet switch&type=Cisco 3945 Integrated Services Router G2 (multiple Network device types with & separator)
 	Role                string  `url:"role,omitempty"`                //The list of network device role. Examples:role=CORE, role=CORE&role=ACCESS&role=ROUTER (multiple Network device roles with & separator). This field is not case sensitive.
-	SerialNumber        string  `url:"serialNumber,omitempty"`        //The list of network device serial numbers. This field supports wildcard ('*') character-based search.  Ex: '*MS1SV*' or 'MS1SV*' or '*MS1SV' Examples: serialNumber=9FUFMS1SVAX serialNumber=9FUFMS1SVAX&FCW2333Q0BY&FJC240617JX(multiple Network device serial number with & separator)
+	SerialNumber        string  `url:"serialNumber,omitempty"`        //The list of network device serial numbers. This field supports wildcard (`*`) character-based search.  Ex: `*MS1SV*` or `MS1SV*` or `*MS1SV` Examples: serialNumber=9FUFMS1SVAX serialNumber=9FUFMS1SVAX&FCW2333Q0BY&FJC240617JX(multiple Network device serial number with & separator)
 	MaintenanceMode     bool    `url:"maintenanceMode,omitempty"`     //The device maintenanceMode status true or false
-	SoftwareVersion     string  `url:"softwareVersion,omitempty"`     //The list of network device software version This field supports wildcard ('*') character-based search. Ex: '*17.8*' or '*17.8' or '17.8*' Examples: softwareVersion=2.3.4.0 (single network device software version ) softwareVersion=17.9.3.23&softwareVersion=17.7.1.2&softwareVersion=*.17.7 (multiple Network device software versions with & separator)
+	SoftwareVersion     string  `url:"softwareVersion,omitempty"`     //The list of network device software version This field supports wildcard (`*`) character-based search. Ex: `*17.8*` or `*17.8` or `17.8*` Examples: softwareVersion=2.3.4.0 (single network device software version ) softwareVersion=17.9.3.23&softwareVersion=17.7.1.2&softwareVersion=*.17.7 (multiple Network device software versions with & separator)
 	HealthScore         string  `url:"healthScore,omitempty"`         //The list of entity health score categories Examples: healthScore=good, healthScore=good&healthScore=fair (multiple entity healthscore values with & separator). This field is not case sensitive.
-	View                string  `url:"view,omitempty"`                //The List of Network Device model views. Please refer to '''NetworkDeviceView''' for the supported list
+	View                string  `url:"view,omitempty"`                //The List of Network Device model views. Please refer to ```NetworkDeviceView``` for the supported list
 	Attribute           string  `url:"attribute,omitempty"`           //The List of Network Device model attributes. This is helps to specify the interested fields in the request.
 }
 type GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParametersQueryParams struct {
-	StartTime           float64 `url:"startTime,omitempty"`           //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime           float64 `url:"startTime,omitempty"`           //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime             float64 `url:"endTime,omitempty"`             //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	ID                  string  `url:"id,omitempty"`                  //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
-	SiteHierarchy       string  `url:"siteHierarchy,omitempty"`       //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID     string  `url:"siteHierarchyId,omitempty"`     //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk (*) character search support. E.g. '*uuid*, *uuid, uuid* Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteID              string  `url:"siteId,omitempty"`              //The UUID of the site. (Ex. 'flooruuid') This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
-	ManagementIPAddress string  `url:"managementIpAddress,omitempty"` //The list of entity management IP Address. It can be either Ipv4 or Ipv6 address or combination of both(Ex. "121.1.1.10") This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: managementIpAddresses=121.1.1.10 managementIpAddresses=121.1.1.10&managementIpAddresses=172.20.1.10&managementIpAddresses=200:10&=managementIpAddresses172.20.3.4 (multiple entity IP Address with & separator)
-	MacAddress          string  `url:"macAddress,omitempty"`          //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
+	SiteHierarchy       string  `url:"siteHierarchy,omitempty"`       //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID     string  `url:"siteHierarchyId,omitempty"`     //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteID              string  `url:"siteId,omitempty"`              //The UUID of the site. (Ex. `flooruuid`) This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	ManagementIPAddress string  `url:"managementIpAddress,omitempty"` //The list of entity management IP Address. It can be either Ipv4 or Ipv6 address or combination of both(Ex. "121.1.1.10") This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: managementIpAddresses=121.1.1.10 managementIpAddresses=121.1.1.10&managementIpAddresses=172.20.1.10&managementIpAddresses=200:10&=managementIpAddresses172.20.3.4 (multiple entity IP Address with & separator)
+	MacAddress          string  `url:"macAddress,omitempty"`          //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	Family              string  `url:"family,omitempty"`              //The list of network device family names Examples:family=Switches and Hubs (single network device family name )family=Switches and Hubs&family=Router&family=Wireless Controller (multiple Network device family names with & separator). This field is not case sensitive.
-	Type                string  `url:"type,omitempty"`                //The list of network device type This field supports wildcard ('*') character-based search. Ex: '*9407R*' or '*9407R' or '9407R*'Examples:type=SwitchesCisco Catalyst 9407R Switch (single network device types )type=Cisco Catalyst 38xx stack-able ethernet switch&type=Cisco 3945 Integrated Services Router G2 (multiple Network device types with & separator)
+	Type                string  `url:"type,omitempty"`                //The list of network device type This field supports wildcard (`*`) character-based search. Ex: `*9407R*` or `*9407R` or `9407R*`Examples:type=SwitchesCisco Catalyst 9407R Switch (single network device types )type=Cisco Catalyst 38xx stack-able ethernet switch&type=Cisco 3945 Integrated Services Router G2 (multiple Network device types with & separator)
 	Role                string  `url:"role,omitempty"`                //The list of network device role. Examples:role=CORE, role=CORE&role=ACCESS&role=ROUTER (multiple Network device roles with & separator). This field is not case sensitive.
-	SerialNumber        string  `url:"serialNumber,omitempty"`        //The list of network device serial numbers. This field supports wildcard ('*') character-based search.  Ex: '*MS1SV*' or 'MS1SV*' or '*MS1SV' Examples: serialNumber=9FUFMS1SVAX serialNumber=9FUFMS1SVAX&FCW2333Q0BY&FJC240617JX(multiple Network device serial number with & separator)
+	SerialNumber        string  `url:"serialNumber,omitempty"`        //The list of network device serial numbers. This field supports wildcard (`*`) character-based search.  Ex: `*MS1SV*` or `MS1SV*` or `*MS1SV` Examples: serialNumber=9FUFMS1SVAX serialNumber=9FUFMS1SVAX&FCW2333Q0BY&FJC240617JX(multiple Network device serial number with & separator)
 	MaintenanceMode     bool    `url:"maintenanceMode,omitempty"`     //The device maintenanceMode status true or false
-	SoftwareVersion     string  `url:"softwareVersion,omitempty"`     //The list of network device software version This field supports wildcard ('*') character-based search. Ex: '*17.8*' or '*17.8' or '17.8*' Examples: softwareVersion=2.3.4.0 (single network device software version ) softwareVersion=17.9.3.23&softwareVersion=17.7.1.2&softwareVersion=*.17.7 (multiple Network device software versions with & separator)
+	SoftwareVersion     string  `url:"softwareVersion,omitempty"`     //The list of network device software version This field supports wildcard (`*`) character-based search. Ex: `*17.8*` or `*17.8` or `17.8*` Examples: softwareVersion=2.3.4.0 (single network device software version ) softwareVersion=17.9.3.23&softwareVersion=17.7.1.2&softwareVersion=*.17.7 (multiple Network device software versions with & separator)
 	HealthScore         string  `url:"healthScore,omitempty"`         //The list of entity health score categories Examples:healthScore=good,healthScore=good&healthScore=fair (multiple entity healthscore values with & separator). This field is not case sensitive.
-	View                string  `url:"view,omitempty"`                //The List of Network Device model views. Please refer to '''NetworkDeviceView''' for the supported list
+	View                string  `url:"view,omitempty"`                //The List of Network Device model views. Please refer to ```NetworkDeviceView``` for the supported list
 	Attribute           string  `url:"attribute,omitempty"`           //The List of Network Device model attributes. This is helps to specify the interested fields in the request.
 }
 type GetTheDeviceDataForTheGivenDeviceIDUUIDQueryParams struct {
-	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
-	View      string  `url:"view,omitempty"`      //The List of Network Device model views. Please refer to '''NetworkDeviceView''' for the supported list
+	View      string  `url:"view,omitempty"`      //The List of Network Device model views. Please refer to ```NetworkDeviceView``` for the supported list
 	Attribute string  `url:"attribute,omitempty"` //The List of Network Device model attributes. This is helps to specify the interested fields in the request.
 }
 type GetPlannedAccessPointsForBuildingQueryParams struct {
@@ -273,7 +273,7 @@ type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
 	Offset                    int    `url:"offset,omitempty"`                    //offset
 	Limit                     int    `url:"limit,omitempty"`                     //limit
 }
-type GetDeviceCount2QueryParams struct {
+type GetDeviceCountKnowYourNetworkQueryParams struct {
 	Hostname            []string `url:"hostname,omitempty"`            //hostname
 	ManagementIPAddress []string `url:"managementIpAddress,omitempty"` //managementIpAddress
 	MacAddress          []string `url:"macAddress,omitempty"`          //macAddress
@@ -331,6 +331,10 @@ type DeleteDeviceByIDQueryParams struct {
 }
 type GetDeviceInterfaceVLANsQueryParams struct {
 	InterfaceType string `url:"interfaceType,omitempty"` //Vlan associated with sub-interface. If no interfaceType mentioned it will return all types of Vlan interfaces. If interfaceType is selected but not specified then it will take default value.
+}
+type GetAllowedMacAddressQueryParams struct {
+	Offset float64 `url:"offset,omitempty"` //The offset of the first item in the collection to return.
+	Limit  float64 `url:"limit,omitempty"`  //The maximum number of entries to return. If the value exceeds the total count, then the maximum entries will be returned.
 }
 type GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersQueryParams struct {
 	DeviceType              string `url:"deviceType,omitempty"`              //These are the device families supported for health score definitions. If no input is made on device family, all device families are considered.
@@ -2475,11 +2479,11 @@ type ResponseDevicesGetDeviceListResponse struct {
 	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
 	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
 }
-type ResponseDevicesAddDevice2 struct {
-	Response *ResponseDevicesAddDevice2Response `json:"response,omitempty"` //
-	Version  string                             `json:"version,omitempty"`  //
+type ResponseDevicesAddDeviceKnowYourNetwork struct {
+	Response *ResponseDevicesAddDeviceKnowYourNetworkResponse `json:"response,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  //
 }
-type ResponseDevicesAddDevice2Response struct {
+type ResponseDevicesAddDeviceKnowYourNetworkResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
@@ -2526,7 +2530,7 @@ type ResponseDevicesGetDeviceConfigCount struct {
 	Response *int   `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
-type ResponseDevicesGetDeviceCount2 struct {
+type ResponseDevicesGetDeviceCountKnowYourNetwork struct {
 	Response *int   `json:"response,omitempty"` //
 	Version  string `json:"version,omitempty"`  //
 }
@@ -2584,10 +2588,10 @@ type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetails struct {
 }
 type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetailsAttributeInfo interface{}
 type ResponseDevicesInventoryInsightDeviceLinkMismatchAPI struct {
-	Response *[]ResponseDevicesInventoryInsightDeviceLinkMismatchApIResponse `json:"response,omitempty"` //
+	Response *[]ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse `json:"response,omitempty"` //
 	Version  string                                                          `json:"version,omitempty"`  // Api version
 }
-type ResponseDevicesInventoryInsightDeviceLinkMismatchApIResponse struct {
+type ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse struct {
 	EndPortAllowedVLANIDs   string   `json:"endPortAllowedVlanIds,omitempty"`   // End port allowed vlan ids
 	EndPortNativeVLANID     string   `json:"endPortNativeVlanId,omitempty"`     // End port native vlan id
 	StartPortAllowedVLANIDs string   `json:"startPortAllowedVlanIds,omitempty"` // Start port allowed vlan ids
@@ -3208,17 +3212,176 @@ type ResponseDevicesGetResyncIntervalForTheNetworkDevice struct {
 type ResponseDevicesGetResyncIntervalForTheNetworkDeviceResponse struct {
 	Interval *int `json:"interval,omitempty"` // Resync interval of the device
 }
-type ResponseDevicesGetDeviceInterfaceStatsInfo struct {
-	Version    string                                                `json:"version,omitempty"`    // Version
-	TotalCount *float64                                              `json:"totalCount,omitempty"` // The total count
-	Response   *[]ResponseDevicesGetDeviceInterfaceStatsInfoResponse `json:"response,omitempty"`   //
-	Page       *ResponseDevicesGetDeviceInterfaceStatsInfoPage       `json:"page,omitempty"`       //
+type ResponseDevicesRogueAdditionalDetails struct {
+	Response   *[]ResponseDevicesRogueAdditionalDetailsResponse `json:"response,omitempty"`   //
+	TotalCount *int                                             `json:"totalCount,omitempty"` // Total Count
+	Version    string                                           `json:"version,omitempty"`    // Version
 }
-type ResponseDevicesGetDeviceInterfaceStatsInfoResponse struct {
-	ID     string                                                    `json:"id,omitempty"`     // Interface Instance Id
-	Values *ResponseDevicesGetDeviceInterfaceStatsInfoResponseValues `json:"values,omitempty"` //
+type ResponseDevicesRogueAdditionalDetailsResponse struct {
+	MacAddress        string `json:"macAddress,omitempty"`        // MAC Address of the Rogue BSSID
+	MldMacAddress     string `json:"mldMacAddress,omitempty"`     // MLD MAC Address of the Rogue BSSID, this is applicable only for Wi-Fi 7 Rogues
+	UpdatedTime       *int   `json:"updatedTime,omitempty"`       // Last time when the Rogue is seen in the network
+	CreatedTime       *int   `json:"createdTime,omitempty"`       // First time when the Rogue is seen in the network
+	ThreatType        string `json:"threatType,omitempty"`        // Type of the Rogue Threat
+	ThreatLevel       string `json:"threatLevel,omitempty"`       // Level of the Rogue Threat
+	ApName            string `json:"apName,omitempty"`            // Detecting AP Name
+	DetectingApMac    string `json:"detectingAPMac,omitempty"`    // MAC Address of the Detecting AP
+	SSID              string `json:"ssid,omitempty"`              // Rogue SSID
+	Containment       string `json:"containment,omitempty"`       // Containment Status of the Rogue
+	RadioType         string `json:"radioType,omitempty"`         // Radio Type on which Rogue is detected
+	ControllerIP      string `json:"controllerIp,omitempty"`      // IP Address of the Controller detecting this Rogue
+	ControllerName    string `json:"controllerName,omitempty"`    // Name of the Controller detecting this Rogue
+	ChannelNumber     string `json:"channelNumber,omitempty"`     // Channel Number on which the Rogue is detected
+	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Hierarchy of the Rogue
+	Encryption        string `json:"encryption,omitempty"`        // Security status of the Rogue SSID
+	SwitchIP          string `json:"switchIp,omitempty"`          // IP Address of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
+	SwitchName        string `json:"switchName,omitempty"`        // Name of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
+	PortDescription   string `json:"portDescription,omitempty"`   // Port information of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
 }
-type ResponseDevicesGetDeviceInterfaceStatsInfoResponseValues struct {
+type ResponseDevicesRogueAdditionalDetailCount struct {
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesStartWirelessRogueApContainment struct {
+	Response *ResponseDevicesStartWirelessRogueApContainmentResponse `json:"response,omitempty"` //
+	Version  string                                                  `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesStartWirelessRogueApContainmentResponse struct {
+	MacAddress       string   `json:"macAddress,omitempty"`       // Mac Address
+	Type             *int     `json:"type,omitempty"`             // Type
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
+	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
+}
+type ResponseDevicesWirelessRogueApContainmentStatus struct {
+	Response *[]ResponseDevicesWirelessRogueApContainmentStatusResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesWirelessRogueApContainmentStatusResponse struct {
+	MacAddress              string                                                                           `json:"macAddress,omitempty"`              // Mac Address
+	Type                    *int                                                                             `json:"type,omitempty"`                    // Type
+	Classification          string                                                                           `json:"classification,omitempty"`          // Classification
+	ContainmentStatus       string                                                                           `json:"containmentStatus,omitempty"`       // Containment Status
+	ContainedByWlcIP        []string                                                                         `json:"containedByWlcIp,omitempty"`        // Contained By Wlc Ip
+	LastSeen                *int                                                                             `json:"lastSeen,omitempty"`                // Last Seen
+	StrongestDetectingWlcIP string                                                                           `json:"strongestDetectingWlcIp,omitempty"` // Strongest Detecting Wlc Ip
+	LastTaskDetail          *ResponseDevicesWirelessRogueApContainmentStatusResponseLastTaskDetail           `json:"lastTaskDetail,omitempty"`          //
+	BssidContainmentStatus  *[]ResponseDevicesWirelessRogueApContainmentStatusResponseBssidContainmentStatus `json:"bssidContainmentStatus,omitempty"`  //
+}
+type ResponseDevicesWirelessRogueApContainmentStatusResponseLastTaskDetail struct {
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
+	TaskState        string   `json:"taskState,omitempty"`        // Task State
+	TaskStartTime    *int     `json:"taskStartTime,omitempty"`    // Task Start Time
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
+	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
+}
+type ResponseDevicesWirelessRogueApContainmentStatusResponseBssidContainmentStatus struct {
+	Bssid             string `json:"bssid,omitempty"`             // Bssid
+	SSID              string `json:"ssid,omitempty"`              // Ssid
+	RadioType         string `json:"radioType,omitempty"`         // Radio Type
+	ContainmentStatus string `json:"containmentStatus,omitempty"` // Containment Status
+	ContainedByWlcIP  string `json:"containedByWlcIp,omitempty"`  // Contained By Wlc Ip
+	IsAdhoc           *bool  `json:"isAdhoc,omitempty"`           // Is Adhoc
+}
+type ResponseDevicesStopWirelessRogueApContainment struct {
+	Response *ResponseDevicesStopWirelessRogueApContainmentResponse `json:"response,omitempty"` //
+	Version  string                                                 `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesStopWirelessRogueApContainmentResponse struct {
+	MacAddress       string   `json:"macAddress,omitempty"`       // Mac Address
+	Type             *int     `json:"type,omitempty"`             // Type
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
+	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
+}
+type ResponseDevicesThreatDetails struct {
+	Response   *[]ResponseDevicesThreatDetailsResponse `json:"response,omitempty"`   //
+	TotalCount *int                                    `json:"totalCount,omitempty"` // Total Count
+	Version    string                                  `json:"version,omitempty"`    // Version
+}
+type ResponseDevicesThreatDetailsResponse struct {
+	MacAddress        string `json:"macAddress,omitempty"`        // Mac Address
+	UpdatedTime       *int   `json:"updatedTime,omitempty"`       // Updated Time
+	Vendor            string `json:"vendor,omitempty"`            // Vendor
+	ThreatType        string `json:"threatType,omitempty"`        // Threat Type
+	ThreatLevel       string `json:"threatLevel,omitempty"`       // Threat Level
+	ApName            string `json:"apName,omitempty"`            // Ap Name
+	DetectingApMac    string `json:"detectingAPMac,omitempty"`    // Detecting A P Mac
+	SiteID            string `json:"siteId,omitempty"`            // Site Id
+	Rssi              string `json:"rssi,omitempty"`              // Rssi
+	SSID              string `json:"ssid,omitempty"`              // Ssid
+	Containment       string `json:"containment,omitempty"`       // Containment
+	State             string `json:"state,omitempty"`             // State
+	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
+}
+type ResponseDevicesThreatDetailCount struct {
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesGetThreatLevels struct {
+	Response *[]ResponseDevicesGetThreatLevelsResponse `json:"response,omitempty"` //
+}
+type ResponseDevicesGetThreatLevelsResponse struct {
+	Name  string `json:"name,omitempty"`  // Name
+	Value *int   `json:"value,omitempty"` // Value
+}
+type ResponseDevicesAddAllowedMacAddress struct {
+	Response string                                    `json:"response,omitempty"` // Response
+	Error    *ResponseDevicesAddAllowedMacAddressError `json:"error,omitempty"`    // Error
+}
+type ResponseDevicesAddAllowedMacAddressError interface{}
+type ResponseDevicesGetAllowedMacAddress []ResponseItemDevicesGetAllowedMacAddress // Array of ResponseDevicesGetAllowedMacAddress
+type ResponseItemDevicesGetAllowedMacAddress struct {
+	MacAddress   string `json:"macAddress,omitempty"`   // Mac Address
+	Category     *int   `json:"category,omitempty"`     // Category
+	LastModified *int   `json:"lastModified,omitempty"` // Last Modified
+}
+type ResponseDevicesGetAllowedMacAddressCount struct {
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesRemoveAllowedMacAddress struct {
+	Response string                                       `json:"response,omitempty"` // Response
+	Error    *ResponseDevicesRemoveAllowedMacAddressError `json:"error,omitempty"`    // Error
+}
+type ResponseDevicesRemoveAllowedMacAddressError interface{}
+type ResponseDevicesThreatSummary struct {
+	Response *[]ResponseDevicesThreatSummaryResponse `json:"response,omitempty"` //
+	Version  string                                  `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesThreatSummaryResponse struct {
+	Timestamp  *int                                              `json:"timestamp,omitempty"`  // Timestamp
+	ThreatData *[]ResponseDevicesThreatSummaryResponseThreatData `json:"threatData,omitempty"` //
+}
+type ResponseDevicesThreatSummaryResponseThreatData struct {
+	ThreatType  string `json:"threatType,omitempty"`  // Threat Type
+	ThreatLevel string `json:"threatLevel,omitempty"` // Threat Level
+	ThreatCount *int   `json:"threatCount,omitempty"` // Threat Count
+}
+type ResponseDevicesGetThreatTypes struct {
+	Response *[]ResponseDevicesGetThreatTypesResponse `json:"response,omitempty"` //
+}
+type ResponseDevicesGetThreatTypesResponse struct {
+	Value     *int   `json:"value,omitempty"`     // Value
+	Name      string `json:"name,omitempty"`      // Name
+	Label     string `json:"label,omitempty"`     // Label
+	IsCustom  *bool  `json:"isCustom,omitempty"`  // Is Custom
+	IsDeleted *bool  `json:"isDeleted,omitempty"` // Is Deleted
+}
+type ResponseDevicesGetDeviceInterfaceStatsInfoV2 struct {
+	Version    string                                                  `json:"version,omitempty"`    // Version
+	TotalCount *float64                                                `json:"totalCount,omitempty"` // The total count
+	Response   *[]ResponseDevicesGetDeviceInterfaceStatsInfoV2Response `json:"response,omitempty"`   //
+	Page       *ResponseDevicesGetDeviceInterfaceStatsInfoV2Page       `json:"page,omitempty"`       //
+}
+type ResponseDevicesGetDeviceInterfaceStatsInfoV2Response struct {
+	ID     string                                                      `json:"id,omitempty"`     // Interface Instance Id
+	Values *ResponseDevicesGetDeviceInterfaceStatsInfoV2ResponseValues `json:"values,omitempty"` //
+}
+type ResponseDevicesGetDeviceInterfaceStatsInfoV2ResponseValues struct {
 	AdminStatus     string   `json:"adminStatus,omitempty"`     // The desired state of the interface
 	DeviceID        string   `json:"deviceId,omitempty"`        // Device Id
 	DuplexConfig    string   `json:"duplexConfig,omitempty"`    // Interface duplex config status
@@ -3253,7 +3416,7 @@ type ResponseDevicesGetDeviceInterfaceStatsInfoResponseValues struct {
 	TxUtilization   string   `json:"txUtilization,omitempty"`   // Tx  Utilization in %
 	VLANID          string   `json:"vlanId,omitempty"`          // Interface VLAN Id
 }
-type ResponseDevicesGetDeviceInterfaceStatsInfoPage struct {
+type ResponseDevicesGetDeviceInterfaceStatsInfoV2Page struct {
 	Limit  *int     `json:"limit,omitempty"`  // Limit
 	Offset *float64 `json:"offset,omitempty"` // Offset
 	Count  *int     `json:"count,omitempty"`  // Count
@@ -3623,34 +3786,34 @@ type RequestDevicesClearMacAddressTable struct {
 	Payload   *RequestDevicesClearMacAddressTablePayload `json:"payload,omitempty"`   // Payload is not applicable
 }
 type RequestDevicesClearMacAddressTablePayload interface{}
-type RequestDevicesAddDevice2 struct {
-	CliTransport            string                                             `json:"cliTransport,omitempty"`            // CLI transport. Supported values: telnet, ssh. Required if type is NETWORK_DEVICE.
-	ComputeDevice           *bool                                              `json:"computeDevice,omitempty"`           // Compute Device or not. Options are true / false.
-	EnablePassword          string                                             `json:"enablePassword,omitempty"`          // CLI enable password of the device. Required if device is configured to use enable password.
-	ExtendedDiscoveryInfo   string                                             `json:"extendedDiscoveryInfo,omitempty"`   // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
-	HTTPPassword            string                                             `json:"httpPassword,omitempty"`            // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE.
-	HTTPPort                string                                             `json:"httpPort,omitempty"`                // HTTP port of the device. Required if type is COMPUTE_DEVICE.
-	HTTPSecure              *bool                                              `json:"httpSecure,omitempty"`              // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP. Default is true.
-	HTTPUserName            string                                             `json:"httpUserName,omitempty"`            // HTTP Username of the device. Required if type is COMPUTE_DEVICE.
-	IPAddress               []string                                           `json:"ipAddress,omitempty"`               // IP Address of the device. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
-	MerakiOrgID             []string                                           `json:"merakiOrgId,omitempty"`             // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
-	NetconfPort             string                                             `json:"netconfPort,omitempty"`             // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided.
-	Password                string                                             `json:"password,omitempty"`                // CLI Password of the device. Required if type is NETWORK_DEVICE.
-	SerialNumber            string                                             `json:"serialNumber,omitempty"`            // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
-	SNMPAuthPassphrase      string                                             `json:"snmpAuthPassphrase,omitempty"`      // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv.
-	SNMPAuthProtocol        string                                             `json:"snmpAuthProtocol,omitempty"`        // SNMPv3 auth protocol. Supported values: sha, md5. Required if snmpMode is authNoPriv or authPriv.
-	SNMPMode                string                                             `json:"snmpMode,omitempty"`                // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3.
-	SNMPPrivPassphrase      string                                             `json:"snmpPrivPassphrase,omitempty"`      // SNMPv3 priv passphrase. Required if snmpMode is authPriv.
-	SNMPPrivProtocol        string                                             `json:"snmpPrivProtocol,omitempty"`        // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv.
-	SNMPROCommunity         string                                             `json:"snmpROCommunity,omitempty"`         // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
-	SNMPRWCommunity         string                                             `json:"snmpRWCommunity,omitempty"`         // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
-	SNMPRetry               *int                                               `json:"snmpRetry,omitempty"`               // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
-	SNMPTimeout             *int                                               `json:"snmpTimeout,omitempty"`             // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
-	SNMPUserName            string                                             `json:"snmpUserName,omitempty"`            // SNMPV3 user name of the device. Required if snmpVersion is v3.
-	SNMPVersion             string                                             `json:"snmpVersion,omitempty"`             // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
-	Type                    string                                             `json:"type,omitempty"`                    // Type of device being added. Default is NETWORK_DEVICE.
-	UpdateMgmtIPaddressList *[]RequestDevicesAddDevice2UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
-	UserName                string                                             `json:"userName,omitempty"`                // CLI user name of the device. Required if type is NETWORK_DEVICE.
+type RequestDevicesAddDeviceKnowYourNetwork struct {
+	CliTransport            string                                             `json:"cliTransport,omitempty"`          // CLI transport. Supported values: telnet, ssh. Required if type is NETWORK_DEVICE.
+	ComputeDevice           *bool                                              `json:"computeDevice,omitempty"`         // Compute Device or not. Options are true / false.
+	EnablePassword          string                                             `json:"enablePassword,omitempty"`        // CLI enable password of the device. Required if device is configured to use enable password.
+	ExtendedDiscoveryInfo   string                                             `json:"extendedDiscoveryInfo,omitempty"` // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
+	HTTPPassword            string                                             `json:"httpPassword,omitempty"`          // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE.
+	HTTPPort                string                                             `json:"httpPort,omitempty"`              // HTTP port of the device. Required if type is COMPUTE_DEVICE.
+	HTTPSecure              *bool                                              `json:"httpSecure,omitempty"`            // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP. Default is true.
+	HTTPUserName            string                                             `json:"httpUserName,omitempty"`          // HTTP Username of the device. Required if type is COMPUTE_DEVICE.
+	IPAddress               []string                                           `json:"ipAddress,omitempty"`             // IP Address of the device. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
+	MerakiOrgID             []string                                           `json:"merakiOrgId,omitempty"`           // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
+	NetconfPort             string                                             `json:"netconfPort,omitempty"`           // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided.
+	Password                string                                             `json:"password,omitempty"`              // CLI Password of the device. Required if type is NETWORK_DEVICE.
+	SerialNumber            string                                             `json:"serialNumber,omitempty"`          // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
+	SNMPAuthPassphrase      string                                             `json:"snmpAuthPassphrase,omitempty"`    // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv.
+	SNMPAuthProtocol        string                                             `json:"snmpAuthProtocol,omitempty"`      // SNMPv3 auth protocol. Supported values: sha, md5. Required if snmpMode is authNoPriv or authPriv.
+	SNMPMode                string                                             `json:"snmpMode,omitempty"`              // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3.
+	SNMPPrivPassphrase      string                                             `json:"snmpPrivPassphrase,omitempty"`    // SNMPv3 priv passphrase. Required if snmpMode is authPriv.
+	SNMPPrivProtocol        string                                             `json:"snmpPrivProtocol,omitempty"`      // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv.
+	SNMPROCommunity         string                                             `json:"snmpROCommunity,omitempty"`       // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
+	SNMPRWCommunity         string                                             `json:"snmpRWCommunity,omitempty"`       // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
+	SNMPRetry               *int                                               `json:"snmpRetry,omitempty"`             // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
+	SNMPTimeout             *int                                               `json:"snmpTimeout,omitempty"`           // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
+	SNMPUserName            string                                             `json:"snmpUserName,omitempty"`          // SNMPV3 user name of the device. Required if snmpVersion is v3.
+	SNMPVersion             string                                             `json:"snmpVersion,omitempty"`           // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
+	Type                    string                                             `json:"type,omitempty"`                  // Type of device being added. Default is NETWORK_DEVICE.
+	UserName                string                                             `json:"userName,omitempty"`              // CLI user name of the device. Required if type is NETWORK_DEVICE.
+	UpdateMgmtIPaddressList *[]RequestDevicesAddDevice2UpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"`
 }
 type RequestDevicesAddDevice2UpdateMgmtIPaddressList struct {
 	ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` //
@@ -3721,30 +3884,87 @@ type RequestDevicesUpdateGlobalResyncInterval struct {
 	Interval *int `json:"interval,omitempty"` // Resync Interval should be between 25 to 1440 minutes
 }
 type RequestDevicesUpdateResyncIntervalForTheNetworkDevice struct {
-	Interval *int `json:"interval,omitempty"` // Resync interval in minutes. To disable periodic resync, set interval as '0'. To use global settings, set interval as 'null'.
+	Interval *int `json:"interval,omitempty"` // Resync interval in minutes. To disable periodic resync, set interval as `0`. To use global settings, set interval as `null`.
 }
-type RequestDevicesGetDeviceInterfaceStatsInfo struct {
-	StartTime *int                                            `json:"startTime,omitempty"` // UTC epoch timestamp in milliseconds
-	EndTime   *int                                            `json:"endTime,omitempty"`   // UTC epoch timestamp in milliseconds
-	Query     *RequestDevicesGetDeviceInterfaceStatsInfoQuery `json:"query,omitempty"`     //
+type RequestDevicesRogueAdditionalDetails struct {
+	Offset      *float64 `json:"offset,omitempty"`      // The offset of the first item in the collection to return. Default value is 1
+	Limit       *float64 `json:"limit,omitempty"`       // The maximum number of entries to return. Default value is 1000
+	StartTime   *float64 `json:"startTime,omitempty"`   // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
+	EndTime     *float64 `json:"endTime,omitempty"`     // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
+	SiteID      []string `json:"siteId,omitempty"`      // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
+	ThreatLevel []string `json:"threatLevel,omitempty"` // Filter Rogues by Threat Level. Threat Level information can be fetched from "Get Threat Levels" API
+	ThreatType  []string `json:"threatType,omitempty"`  // Filter Rogues by Threat Type. Threat Type information can be fetched from "Get Threat Types" API
 }
-type RequestDevicesGetDeviceInterfaceStatsInfoQuery struct {
-	Fields  *[]RequestDevicesGetDeviceInterfaceStatsInfoQueryFields  `json:"fields,omitempty"`  // Required field names, default ALL
-	Filters *[]RequestDevicesGetDeviceInterfaceStatsInfoQueryFilters `json:"filters,omitempty"` //
-	Page    *RequestDevicesGetDeviceInterfaceStatsInfoQueryPage      `json:"page,omitempty"`    //
+type RequestDevicesRogueAdditionalDetailCount struct {
+	StartTime   *float64 `json:"startTime,omitempty"`   // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
+	EndTime     *float64 `json:"endTime,omitempty"`     // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
+	SiteID      []string `json:"siteId,omitempty"`      // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
+	ThreatLevel []string `json:"threatLevel,omitempty"` // This information can be fetched from "Get Threat Levels" API
+	ThreatType  []string `json:"threatType,omitempty"`  // This information can be fetched from "Get Threat Types" API
 }
-type RequestDevicesGetDeviceInterfaceStatsInfoQueryFields interface{}
-type RequestDevicesGetDeviceInterfaceStatsInfoQueryFilters struct {
+type RequestDevicesStartWirelessRogueApContainment struct {
+	MacAddress string `json:"macAddress,omitempty"` // Mac Address
+	Type       *int   `json:"type,omitempty"`       // Type
+}
+type RequestDevicesStopWirelessRogueApContainment struct {
+	MacAddress string `json:"macAddress,omitempty"` // Mac Address
+	Type       *int   `json:"type,omitempty"`       // Type
+	WlcIP      string `json:"wlcIp,omitempty"`      // Wlc Ip
+}
+type RequestDevicesThreatDetails struct {
+	Offset      *int     `json:"offset,omitempty"`      // Offset
+	Limit       *int     `json:"limit,omitempty"`       // Limit
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
+	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
+}
+type RequestDevicesThreatDetailCount struct {
+	Offset      *int     `json:"offset,omitempty"`      // Offset
+	Limit       *int     `json:"limit,omitempty"`       // Limit
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
+	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
+}
+type RequestDevicesAddAllowedMacAddress []RequestItemDevicesAddAllowedMacAddress // Array of RequestDevicesAddAllowedMacAddress
+type RequestItemDevicesAddAllowedMacAddress struct {
+	MacAddress string `json:"macAddress,omitempty"` // Mac Address
+	Category   *int   `json:"category,omitempty"`   // Category
+}
+type RequestDevicesThreatSummary struct {
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
+	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+}
+type RequestDevicesGetDeviceInterfaceStatsInfoV2 struct {
+	StartTime *int                                              `json:"startTime,omitempty"` // UTC epoch timestamp in milliseconds
+	EndTime   *int                                              `json:"endTime,omitempty"`   // UTC epoch timestamp in milliseconds
+	Query     *RequestDevicesGetDeviceInterfaceStatsInfoV2Query `json:"query,omitempty"`     //
+}
+type RequestDevicesGetDeviceInterfaceStatsInfoV2Query struct {
+	Fields  *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFields  `json:"fields,omitempty"`  // Required field names, default ALL
+	Filters *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFilters `json:"filters,omitempty"` //
+	Page    *RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPage      `json:"page,omitempty"`    //
+}
+type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFields interface{}
+type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFilters struct {
 	Key      string `json:"key,omitempty"`      // Name of the field that the filter should be applied to
 	Operator string `json:"operator,omitempty"` // Supported operators are eq,in,like
 	Value    string `json:"value,omitempty"`    // Value of the field
 }
-type RequestDevicesGetDeviceInterfaceStatsInfoQueryPage struct {
-	Limit   *int                                                         `json:"limit,omitempty"`   // Number of records, Max is 1000
-	Offset  *float64                                                     `json:"offset,omitempty"`  // Record offset value, default 0
-	OrderBy *[]RequestDevicesGetDeviceInterfaceStatsInfoQueryPageOrderBy `json:"orderBy,omitempty"` //
+type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPage struct {
+	Limit   *int                                                           `json:"limit,omitempty"`   // Number of records, Max is 1000
+	Offset  *float64                                                       `json:"offset,omitempty"`  // Record offset value, default 0
+	OrderBy *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPageOrderBy `json:"orderBy,omitempty"` //
 }
-type RequestDevicesGetDeviceInterfaceStatsInfoQueryPageOrderBy struct {
+type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPageOrderBy struct {
 	Name  string `json:"name,omitempty"`  // Name of the field used to sort
 	Order string `json:"order,omitempty"` // Possible values asc, des
 }
@@ -3756,7 +3976,7 @@ type RequestDevicesGetDeviceInterfaceStatsInfoQueryPageOrderBy struct {
 @param QueryAssuranceEventsHeaderParams Custom header parameters
 @param QueryAssuranceEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-assurance-events
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-assurance-events-v1
 */
 func (s *DevicesService) QueryAssuranceEvents(QueryAssuranceEventsHeaderParams *QueryAssuranceEventsHeaderParams, QueryAssuranceEventsQueryParams *QueryAssuranceEventsQueryParams) (*ResponseDevicesQueryAssuranceEvents, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents"
@@ -3806,7 +4026,7 @@ func (s *DevicesService) QueryAssuranceEvents(QueryAssuranceEventsHeaderParams *
 @param CountTheNumberOfEventsHeaderParams Custom header parameters
 @param CountTheNumberOfEventsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-the-number-of-events
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-the-number-of-events-v1
 */
 func (s *DevicesService) CountTheNumberOfEvents(CountTheNumberOfEventsHeaderParams *CountTheNumberOfEventsHeaderParams, CountTheNumberOfEventsQueryParams *CountTheNumberOfEventsQueryParams) (*ResponseDevicesCountTheNumberOfEvents, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents/count"
@@ -3850,7 +4070,7 @@ func (s *DevicesService) CountTheNumberOfEvents(CountTheNumberOfEventsHeaderPara
 }
 
 //GetDetailsOfASingleAssuranceEvent Get details of a single assurance event - 039e-2909-449a-8f51
-/* API to fetch the details of an assurance event using event 'id'. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceEvents-1.0.0-resolved.yaml
+/* API to fetch the details of an assurance event using event `id`. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceEvents-1.0.0-resolved.yaml
 
 
 @param id id path parameter. Unique identifier for the event
@@ -3858,7 +4078,7 @@ func (s *DevicesService) CountTheNumberOfEvents(CountTheNumberOfEventsHeaderPara
 @param GetDetailsOfASingleAssuranceEventHeaderParams Custom header parameters
 @param GetDetailsOfASingleAssuranceEventQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-details-of-a-single-assurance-event
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-details-of-a-single-assurance-event-v1
 */
 func (s *DevicesService) GetDetailsOfASingleAssuranceEvent(id string, GetDetailsOfASingleAssuranceEventHeaderParams *GetDetailsOfASingleAssuranceEventHeaderParams, GetDetailsOfASingleAssuranceEventQueryParams *GetDetailsOfASingleAssuranceEventQueryParams) (*ResponseDevicesGetDetailsOfASingleAssuranceEvent, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents/{id}"
@@ -3903,14 +4123,14 @@ func (s *DevicesService) GetDetailsOfASingleAssuranceEvent(id string, GetDetails
 }
 
 //GetListOfChildEventsForTheGivenWirelessClientEvent Get list of child events for the given wireless client event - d78f-7acc-4a88-b616
-/* Wireless client event could have child events and this API can be used to fetch the same using parent event 'id' as the input. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceEvents-1.0.0-resolved.yaml
+/* Wireless client event could have child events and this API can be used to fetch the same using parent event `id` as the input. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceEvents-1.0.0-resolved.yaml
 
 
 @param id id path parameter. Unique identifier for the event
 
 @param GetListOfChildEventsForTheGivenWirelessClientEventHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-child-events-for-the-given-wireless-client-event
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-child-events-for-the-given-wireless-client-event-v1
 */
 func (s *DevicesService) GetListOfChildEventsForTheGivenWirelessClientEvent(id string, GetListOfChildEventsForTheGivenWirelessClientEventHeaderParams *GetListOfChildEventsForTheGivenWirelessClientEventHeaderParams) (*ResponseDevicesGetListOfChildEventsForTheGivenWirelessClientEvent, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents/{id}/childEvents"
@@ -3961,7 +4181,7 @@ The elements are grouped and sorted by deviceUuid first, and are then sorted by 
 
 @param GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-interfaces-along-with-statistics-data-from-all-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-interfaces-along-with-statistics-data-from-all-network-devices-v1
 */
 func (s *DevicesService) GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevices(GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevicesQueryParams *GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevicesQueryParams) (*ResponseDevicesGetsInterfacesAlongWithStatisticsDataFromAllNetworkDevices, *resty.Response, error) {
 	path := "/dna/data/api/v1/interfaces"
@@ -3998,7 +4218,7 @@ func (s *DevicesService) GetsInterfacesAlongWithStatisticsDataFromAllNetworkDevi
 
 @param GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-network-device-interface-counts-in-the-specified-time-range-when-there-is-no-start-and-end-time-specified-returns-the-latest-interfaces-total-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-network-device-interface-counts-in-the-specified-time-range-when-there-is-no-start-and-end-time-specified-returns-the-latest-interfaces-total-count-v1
 */
 func (s *DevicesService) GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCount(GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCountQueryParams *GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCountQueryParams) (*ResponseDevicesGetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedTimeRangeWhenThereIsNoStartAndEndTimeSpecifiedReturnsTheLatestInterfacesTotalCount, *resty.Response, error) {
 	path := "/dna/data/api/v1/interfaces/count"
@@ -4037,7 +4257,7 @@ func (s *DevicesService) GetsTheTotalNetworkDeviceInterfaceCountsInTheSpecifiedT
 
 @param GetTheInterfaceDataForTheGivenInterfaceIdinstanceUuidAlongWithTheStatisticsDataQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-interface-data-for-the-given-interface-idinstance-uuid-along-with-the-statistics-data
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-interface-data-for-the-given-interface-idinstance-uuid-along-with-the-statistics-data-v1
 */
 func (s *DevicesService) GetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAlongWithTheStatisticsData(id string, GetTheInterfaceDataForTheGivenInterfaceIdinstanceUuidAlongWithTheStatisticsDataQueryParams *GetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAlongWithTheStatisticsDataQueryParams) (*ResponseDevicesGetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAlongWithTheStatisticsData, *resty.Response, error) {
 	path := "/dna/data/api/v1/interfaces/{id}"
@@ -4075,7 +4295,7 @@ func (s *DevicesService) GetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAl
 
 @param GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParametersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-network-device-details-based-on-the-provided-query-parameters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-network-device-details-based-on-the-provided-query-parameters-v1
 */
 func (s *DevicesService) GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParameters(GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParametersQueryParams *GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParametersQueryParams) (*ResponseDevicesGetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParameters, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices"
@@ -4112,7 +4332,7 @@ func (s *DevicesService) GetsTheNetworkDeviceDetailsBasedOnTheProvidedQueryParam
 
 @param GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParametersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-network-device-counts-based-on-the-provided-query-parameters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-network-device-counts-based-on-the-provided-query-parameters-v1
 */
 func (s *DevicesService) GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParameters(GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParametersQueryParams *GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParametersQueryParams) (*ResponseDevicesGetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryParameters, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/count"
@@ -4151,7 +4371,7 @@ func (s *DevicesService) GetsTheTotalNetworkDeviceCountsBasedOnTheProvidedQueryP
 
 @param GetTheDeviceDataForTheGivenDeviceIdUuidQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-device-data-for-the-given-device-id-uuid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-device-data-for-the-given-device-id-uuid-v1
 */
 func (s *DevicesService) GetTheDeviceDataForTheGivenDeviceIDUUID(id string, GetTheDeviceDataForTheGivenDeviceIdUuidQueryParams *GetTheDeviceDataForTheGivenDeviceIDUUIDQueryParams) (*ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUID, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/{id}"
@@ -4191,7 +4411,7 @@ func (s *DevicesService) GetTheDeviceDataForTheGivenDeviceIDUUID(id string, GetT
 
 @param GetPlannedAccessPointsForBuildingQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-building
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-building-v1
 */
 func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, GetPlannedAccessPointsForBuildingQueryParams *GetPlannedAccessPointsForBuildingQueryParams) (*ResponseDevicesGetPlannedAccessPointsForBuilding, *resty.Response, error) {
 	path := "/dna/intent/api/v1/buildings/{buildingId}/planned-access-points"
@@ -4229,7 +4449,7 @@ func (s *DevicesService) GetPlannedAccessPointsForBuilding(buildingID string, Ge
 
 @param GetDeviceDetailQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-detail
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-detail-v1
 */
 func (s *DevicesService) GetDeviceDetail(GetDeviceDetailQueryParams *GetDeviceDetailQueryParams) (*ResponseDevicesGetDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-detail"
@@ -4266,7 +4486,7 @@ func (s *DevicesService) GetDeviceDetail(GetDeviceDetailQueryParams *GetDeviceDe
 
 @param GetDeviceEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-enrichment-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-enrichment-details-v1
 */
 func (s *DevicesService) GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHeaderParams *GetDeviceEnrichmentDetailsHeaderParams) (*ResponseDevicesGetDeviceEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-enrichment-details"
@@ -4316,12 +4536,12 @@ func (s *DevicesService) GetDeviceEnrichmentDetails(GetDeviceEnrichmentDetailsHe
 }
 
 //Devices Devices - 3ab2-bb64-4cca-81ee
-/* Intent API for accessing Catalyst Center Assurance Device object for generating reports, creating dashboards or creating additional value added services.
+/* Intent API for accessing DNA Assurance Device object for generating reports, creating dashboards or creating additional value added services.
 
 
 @param DevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!devices-v1
 */
 func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*ResponseDevicesDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-health"
@@ -4360,7 +4580,7 @@ func (s *DevicesService) Devices(DevicesQueryParams *DevicesQueryParams) (*Respo
 
 @param GetPlannedAccessPointsForFloorQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-planned-access-points-for-floor-v1
 */
 func (s *DevicesService) GetPlannedAccessPointsForFloor(floorID string, GetPlannedAccessPointsForFloorQueryParams *GetPlannedAccessPointsForFloorQueryParams) (*ResponseDevicesGetPlannedAccessPointsForFloor, *resty.Response, error) {
 	path := "/dna/intent/api/v1/floors/{floorId}/planned-access-points"
@@ -4401,7 +4621,7 @@ By default all supported attributes are listed in response. For detailed informa
 @param GetAllHealthScoreDefinitionsForGivenFiltersHeaderParams Custom header parameters
 @param GetAllHealthScoreDefinitionsForGivenFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-health-score-definitions-for-given-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-health-score-definitions-for-given-filters-v1
 */
 func (s *DevicesService) GetAllHealthScoreDefinitionsForGivenFilters(GetAllHealthScoreDefinitionsForGivenFiltersHeaderParams *GetAllHealthScoreDefinitionsForGivenFiltersHeaderParams, GetAllHealthScoreDefinitionsForGivenFiltersQueryParams *GetAllHealthScoreDefinitionsForGivenFiltersQueryParams) (*ResponseDevicesGetAllHealthScoreDefinitionsForGivenFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/healthScoreDefinitions"
@@ -4452,7 +4672,7 @@ func (s *DevicesService) GetAllHealthScoreDefinitionsForGivenFilters(GetAllHealt
 
 @param GetHealthScoreDefinitionForTheGivenIdHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-health-score-definition-for-the-given-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-health-score-definition-for-the-given-id-v1
 */
 func (s *DevicesService) GetHealthScoreDefinitionForTheGivenID(id string, GetHealthScoreDefinitionForTheGivenIdHeaderParams *GetHealthScoreDefinitionForTheGivenIDHeaderParams) (*ResponseDevicesGetHealthScoreDefinitionForTheGivenID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/healthScoreDefinitions/{id}"
@@ -4500,7 +4720,7 @@ func (s *DevicesService) GetHealthScoreDefinitionForTheGivenID(id string, GetHea
 
 @param GetAllInterfacesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-interfaces-v1
 */
 func (s *DevicesService) GetAllInterfaces(GetAllInterfacesQueryParams *GetAllInterfacesQueryParams) (*ResponseDevicesGetAllInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface"
@@ -4536,7 +4756,7 @@ func (s *DevicesService) GetAllInterfaces(GetAllInterfacesQueryParams *GetAllInt
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count-for-multiple-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count-for-multiple-devices-v1
 */
 func (s *DevicesService) GetDeviceInterfaceCountForMultipleDevices() (*ResponseDevicesGetDeviceInterfaceCountForMultipleDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/count"
@@ -4572,7 +4792,7 @@ func (s *DevicesService) GetDeviceInterfaceCountForMultipleDevices() (*ResponseD
 @param ipAddress ipAddress path parameter. IP address of the interface
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-ip
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-ip-v1
 */
 func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGetInterfaceByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/ip-address/{ipAddress}"
@@ -4607,7 +4827,7 @@ func (s *DevicesService) GetInterfaceByIP(ipAddress string) (*ResponseDevicesGet
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-isis-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-isis-interfaces-v1
 */
 func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/isis"
@@ -4643,7 +4863,7 @@ func (s *DevicesService) GetIsisInterfaces() (*ResponseDevicesGetIsisInterfaces,
 @param deviceID deviceId path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-info-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-info-by-id-v1
 */
 func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*ResponseDevicesGetInterfaceInfoByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}"
@@ -4680,7 +4900,7 @@ func (s *DevicesService) GetInterfaceInfoByID(deviceID string) (*ResponseDevices
 @param deviceID deviceId path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-count-v1
 */
 func (s *DevicesService) GetDeviceInterfaceCount(deviceID string) (*ResponseDevicesGetDeviceInterfaceCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/count"
@@ -4718,7 +4938,7 @@ func (s *DevicesService) GetDeviceInterfaceCount(deviceID string) (*ResponseDevi
 
 @param GetInterfaceDetailsByDeviceIdAndInterfaceNameQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-details-by-device-id-and-interface-name
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-details-by-device-id-and-interface-name-v1
 */
 func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID string, GetInterfaceDetailsByDeviceIdAndInterfaceNameQueryParams *GetInterfaceDetailsByDeviceIDAndInterfaceNameQueryParams) (*ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceName, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/interface-name"
@@ -4761,7 +4981,7 @@ func (s *DevicesService) GetInterfaceDetailsByDeviceIDAndInterfaceName(deviceID 
 @param recordsToReturn recordsToReturn path parameter. Number of records to return
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interfaces-by-specified-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interfaces-by-specified-range-v1
 */
 func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, startIndex int, recordsToReturn int) (*ResponseDevicesGetDeviceInterfacesBySpecifiedRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/network-device/{deviceId}/{startIndex}/{recordsToReturn}"
@@ -4798,7 +5018,7 @@ func (s *DevicesService) GetDeviceInterfacesBySpecifiedRange(deviceID string, st
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ospf-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ospf-interfaces-v1
 */
 func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/ospf"
@@ -4834,7 +5054,7 @@ func (s *DevicesService) GetOspfInterfaces() (*ResponseDevicesGetOspfInterfaces,
 @param id id path parameter. Interface ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-id-v1
 */
 func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfaceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{id}"
@@ -4871,7 +5091,7 @@ func (s *DevicesService) GetInterfaceByID(id string) (*ResponseDevicesGetInterfa
 @param interfaceUUID interfaceUuid path parameter. Interface ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!legit-operations-for-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!legit-operations-for-interface-v1
 */
 func (s *DevicesService) LegitOperationsForInterface(interfaceUUID string) (*ResponseDevicesLegitOperationsForInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{interfaceUuid}/legit-operation"
@@ -4908,7 +5128,7 @@ If id parameter is provided with comma separated ids, it will return the list of
 
 @param GetDeviceListQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-list
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-list-v1
 */
 func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQueryParams) (*ResponseDevicesGetDeviceList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device"
@@ -4945,7 +5165,7 @@ func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQu
 
 @param GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-values-that-match-fully-or-partially-an-attribute
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-values-that-match-fully-or-partially-an-attribute-v1
 */
 func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams *GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/autocomplete"
@@ -4980,7 +5200,7 @@ func (s *DevicesService) GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute(Get
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-for-all-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-for-all-devices-v1
 */
 func (s *DevicesService) GetPollingIntervalForAllDevices() (*ResponseDevicesGetPollingIntervalForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/collection-schedule/global"
@@ -5014,7 +5234,7 @@ func (s *DevicesService) GetPollingIntervalForAllDevices() (*ResponseDevicesGetP
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-for-all-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-for-all-devices-v1
 */
 func (s *DevicesService) GetDeviceConfigForAllDevices() (*ResponseDevicesGetDeviceConfigForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/config"
@@ -5048,7 +5268,7 @@ func (s *DevicesService) GetDeviceConfigForAllDevices() (*ResponseDevicesGetDevi
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-count-v1
 */
 func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfigCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/config/count"
@@ -5077,23 +5297,23 @@ func (s *DevicesService) GetDeviceConfigCount() (*ResponseDevicesGetDeviceConfig
 
 }
 
-//GetDeviceCount2 Get Device Count - 5db2-1b8e-43fa-b7d8
+//GetDeviceCountKnowYourNetwork Get Device Count - 5db2-1b8e-43fa-b7d8
 /* Returns the count of network devices based on the filter criteria by management IP address, mac address, hostname and location name
 
 
-@param GetDeviceCount2QueryParams Filtering parameter
+@param GetDeviceCountKnowYourNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-count2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-count-know-your-network-v1
 */
-func (s *DevicesService) GetDeviceCount2(GetDeviceCount2QueryParams *GetDeviceCount2QueryParams) (*ResponseDevicesGetDeviceCount2, *resty.Response, error) {
+func (s *DevicesService) GetDeviceCountKnowYourNetwork(GetDeviceCountKnowYourNetworkQueryParams *GetDeviceCountKnowYourNetworkQueryParams) (*ResponseDevicesGetDeviceCountKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/count"
 
-	queryString, _ := query.Values(GetDeviceCount2QueryParams)
+	queryString, _ := query.Values(GetDeviceCountKnowYourNetworkQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceCount2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceCountKnowYourNetwork{}).
 		SetError(&Error).
 		Get(path)
 
@@ -5104,12 +5324,12 @@ func (s *DevicesService) GetDeviceCount2(GetDeviceCount2QueryParams *GetDeviceCo
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetDeviceCount2(GetDeviceCount2QueryParams)
+			return s.GetDeviceCountKnowYourNetwork(GetDeviceCountKnowYourNetworkQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetDeviceCount2")
+		return nil, response, fmt.Errorf("error with operation GetDeviceCountKnowYourNetwork")
 	}
 
-	result := response.Result().(*ResponseDevicesGetDeviceCount2)
+	result := response.Result().(*ResponseDevicesGetDeviceCountKnowYourNetwork)
 	return result, response, err
 
 }
@@ -5120,7 +5340,7 @@ func (s *DevicesService) GetDeviceCount2(GetDeviceCount2QueryParams *GetDeviceCo
 
 @param GetFunctionalCapabilityForDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-for-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-for-devices-v1
 */
 func (s *DevicesService) GetFunctionalCapabilityForDevices(GetFunctionalCapabilityForDevicesQueryParams *GetFunctionalCapabilityForDevicesQueryParams) (*ResponseDevicesGetFunctionalCapabilityForDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/functional-capability"
@@ -5158,7 +5378,7 @@ func (s *DevicesService) GetFunctionalCapabilityForDevices(GetFunctionalCapabili
 @param id id path parameter. Functional Capability UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-functional-capability-by-id-v1
 */
 func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevicesGetFunctionalCapabilityByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/functional-capability/{id}"
@@ -5188,14 +5408,14 @@ func (s *DevicesService) GetFunctionalCapabilityByID(id string) (*ResponseDevice
 
 }
 
-//InventoryInsightDeviceLinkMismatchApI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
+//InventoryInsightDeviceLinkMismatchAPI Inventory Insight Device Link Mismatch API - 5792-59d8-4208-8190
 /* Find all devices with link mismatch (speed /  vlan)
 
 
 @param siteID siteId path parameter.
-@param InventoryInsightDeviceLinkMismatchApIQueryParams Filtering parameter
+@param InventoryInsightDeviceLinkMismatchAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!inventory-insight-device-link-mismatch-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!inventory-insight-device-link-mismatch-api-v1
 */
 func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, InventoryInsightDeviceLinkMismatchAPIQueryParams *InventoryInsightDeviceLinkMismatchAPIQueryParams) (*ResponseDevicesInventoryInsightDeviceLinkMismatchAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/insight/{siteId}/device-link"
@@ -5234,7 +5454,7 @@ func (s *DevicesService) InventoryInsightDeviceLinkMismatchAPI(siteID string, In
 @param ipAddress ipAddress path parameter. Device IP address
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-ip
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-ip-v1
 */
 func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevicesGetNetworkDeviceByIP, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/ip-address/{ipAddress}"
@@ -5270,7 +5490,7 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevice
 
 @param GetModulesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-modules
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-modules-v1
 */
 func (s *DevicesService) GetModules(GetModulesQueryParams *GetModulesQueryParams) (*ResponseDevicesGetModules, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module"
@@ -5307,7 +5527,7 @@ func (s *DevicesService) GetModules(GetModulesQueryParams *GetModulesQueryParams
 
 @param GetModuleCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-count-v1
 */
 func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCountQueryParams) (*ResponseDevicesGetModuleCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module/count"
@@ -5345,7 +5565,7 @@ func (s *DevicesService) GetModuleCount(GetModuleCountQueryParams *GetModuleCoun
 @param id id path parameter. Module id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-info-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-module-info-by-id-v1
 */
 func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModuleInfoByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/module/{id}"
@@ -5382,7 +5602,7 @@ func (s *DevicesService) GetModuleInfoByID(id string) (*ResponseDevicesGetModule
 @param serialNumber serialNumber path parameter. Device serial number
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-serial-number
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-serial-number-v1
 */
 func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*ResponseDevicesGetDeviceBySerialNumber, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/serial-number/{serialNumber}"
@@ -5418,7 +5638,7 @@ func (s *DevicesService) GetDeviceBySerialNumber(serialNumber string) (*Response
 
 @param GetDevicesRegisteredForWSANotificationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-registered-for-wsa-notification
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-registered-for-wsa-notification-v1
 */
 func (s *DevicesService) GetDevicesRegisteredForWsaNotification(GetDevicesRegisteredForWSANotificationQueryParams *GetDevicesRegisteredForWsaNotificationQueryParams) (*ResponseDevicesGetDevicesRegisteredForWsaNotification, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/tenantinfo/macaddress"
@@ -5455,7 +5675,7 @@ func (s *DevicesService) GetDevicesRegisteredForWsaNotification(GetDevicesRegist
 
 @param GetAllUserDefinedFieldsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-user-defined-fields
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-user-defined-fields-v1
 */
 func (s *DevicesService) GetAllUserDefinedFields(GetAllUserDefinedFieldsQueryParams *GetAllUserDefinedFieldsQueryParams) (*ResponseDevicesGetAllUserDefinedFields, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/user-defined-field"
@@ -5493,7 +5713,7 @@ func (s *DevicesService) GetAllUserDefinedFields(GetAllUserDefinedFieldsQueryPar
 @param deviceID deviceId path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-chassis-details-for-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-chassis-details-for-device-v1
 */
 func (s *DevicesService) GetChassisDetailsForDevice(deviceID string) (*ResponseDevicesGetChassisDetailsForDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceId}/chassis"
@@ -5530,7 +5750,7 @@ func (s *DevicesService) GetChassisDetailsForDevice(deviceID string) (*ResponseD
 @param deviceID deviceId path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-stack-details-for-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-stack-details-for-device-v1
 */
 func (s *DevicesService) GetStackDetailsForDevice(deviceID string) (*ResponseDevicesGetStackDetailsForDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceId}/stack"
@@ -5567,7 +5787,7 @@ func (s *DevicesService) GetStackDetailsForDevice(deviceID string) (*ResponseDev
 @param deviceUUID deviceUuid path parameter.
 @param GetTheDetailsOfPhysicalComponentsOfTheGivenDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-physical-components-of-the-given-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-physical-components-of-the-given-device-v1
 */
 func (s *DevicesService) GetTheDetailsOfPhysicalComponentsOfTheGivenDevice(deviceUUID string, GetTheDetailsOfPhysicalComponentsOfTheGivenDeviceQueryParams *GetTheDetailsOfPhysicalComponentsOfTheGivenDeviceQueryParams) (*ResponseDevicesGetTheDetailsOfPhysicalComponentsOfTheGivenDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/equipment"
@@ -5607,7 +5827,7 @@ func (s *DevicesService) GetTheDetailsOfPhysicalComponentsOfTheGivenDevice(devic
 
 @param ReturnsPOEInterfaceDetailsForTheDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-poe-interface-details-for-the-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-poe-interface-details-for-the-device-v1
 */
 func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID string, ReturnsPOEInterfaceDetailsForTheDeviceQueryParams *ReturnsPoeInterfaceDetailsForTheDeviceQueryParams) (*ResponseDevicesReturnsPoeInterfaceDetailsForTheDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/poe-detail"
@@ -5648,7 +5868,7 @@ func (s *DevicesService) ReturnsPoeInterfaceDetailsForTheDevice(deviceUUID strin
 @param interfaceUUID interfaceUuid path parameter. instanceuuid of interface
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-connected-device-detail
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-connected-device-detail-v1
 */
 func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUUID string) (*ResponseDevicesGetConnectedDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/interface/{interfaceUuid}/neighbor"
@@ -5686,7 +5906,7 @@ func (s *DevicesService) GetConnectedDeviceDetail(deviceUUID string, interfaceUU
 @param deviceUUID deviceUuid path parameter. instanceuuid of device
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-linecard-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-linecard-details-v1
 */
 func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevicesGetLinecardDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/line-card"
@@ -5723,7 +5943,7 @@ func (s *DevicesService) GetLinecardDetails(deviceUUID string) (*ResponseDevices
 @param deviceUUID deviceUuid path parameter. UUID of the device
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!poe-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!poe-details-v1
 */
 func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/poe"
@@ -5760,7 +5980,7 @@ func (s *DevicesService) PoeDetails(deviceUUID string) (*ResponseDevicesPoeDetai
 @param deviceUUID deviceUuid path parameter. instanceuuid of device
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-supervisor-card-detail
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-supervisor-card-detail-v1
 */
 func (s *DevicesService) GetSupervisorCardDetail(deviceUUID string) (*ResponseDevicesGetSupervisorCardDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{deviceUuid}/supervisor-card"
@@ -5797,7 +6017,7 @@ func (s *DevicesService) GetSupervisorCardDetail(deviceUUID string) (*ResponseDe
 @param id id path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-by-id-v1
 */
 func (s *DevicesService) GetDeviceByID(id string) (*ResponseDevicesGetDeviceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}"
@@ -5834,7 +6054,7 @@ func (s *DevicesService) GetDeviceByID(id string) (*ResponseDevicesGetDeviceByID
 @param id id path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-summary-v1
 */
 func (s *DevicesService) GetDeviceSummary(id string) (*ResponseDevicesGetDeviceSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/brief"
@@ -5871,7 +6091,7 @@ func (s *DevicesService) GetDeviceSummary(id string) (*ResponseDevicesGetDeviceS
 @param id id path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-polling-interval-by-id-v1
 */
 func (s *DevicesService) GetPollingIntervalByID(id string) (*ResponseDevicesGetPollingIntervalByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/collection-schedule"
@@ -5908,7 +6128,7 @@ func (s *DevicesService) GetPollingIntervalByID(id string) (*ResponseDevicesGetP
 @param id id path parameter. Device Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-list-for-meraki
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-organization-list-for-meraki-v1
 */
 func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevicesGetOrganizationListForMeraki, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/meraki-organization"
@@ -5945,7 +6165,7 @@ func (s *DevicesService) GetOrganizationListForMeraki(id string) (*ResponseDevic
 @param id id path parameter.
 @param GetDeviceInterfaceVLANsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-vlans
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-vlans-v1
 */
 func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVLANsQueryParams *GetDeviceInterfaceVLANsQueryParams) (*ResponseDevicesGetDeviceInterfaceVLANs, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/vlan"
@@ -5984,7 +6204,7 @@ func (s *DevicesService) GetDeviceInterfaceVLANs(id string, GetDeviceInterfaceVL
 @param id id path parameter. Device ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-lan-controller-details-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-lan-controller-details-by-id-v1
 */
 func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*ResponseDevicesGetWirelessLanControllerDetailsByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{id}/wireless-info"
@@ -6020,7 +6240,7 @@ func (s *DevicesService) GetWirelessLanControllerDetailsByID(id string) (*Respon
 
 @param networkDeviceID networkDeviceId path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-config-by-id-v1
 */
 func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*ResponseDevicesGetDeviceConfigByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{networkDeviceId}/config"
@@ -6059,7 +6279,7 @@ func (s *DevicesService) GetDeviceConfigByID(networkDeviceID string) (*ResponseD
 @param recordsToReturn recordsToReturn path parameter. Number of records to return [1<= recordsToReturn <= 500]
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-pagination-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-by-pagination-range-v1
 */
 func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recordsToReturn int) (*ResponseDevicesGetNetworkDeviceByPaginationRange, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/{startIndex}/{recordsToReturn}"
@@ -6097,7 +6317,7 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 @param id id path parameter. The id of the network device.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-resync-interval-for-the-network-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-resync-interval-for-the-network-device-v1
 */
 func (s *DevicesService) GetResyncIntervalForTheNetworkDevice(id string) (*ResponseDevicesGetResyncIntervalForTheNetworkDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/{id}/resyncIntervalSettings"
@@ -6127,6 +6347,182 @@ func (s *DevicesService) GetResyncIntervalForTheNetworkDevice(id string) (*Respo
 
 }
 
+//WirelessRogueApContainmentStatus Wireless Rogue AP Containment Status - a1ab-f9ae-4c38-9286
+/* Intent API to check the wireless rogue access point containment status. The response includes all the details like containment status, contained by WLC, containment status of each BSSID etc. This API also includes the information of strongest detecting WLC for this rogue access point.
+
+
+@param macAddress macAddress path parameter. MAC Address of the Wireless Rogue AP
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!wireless-rogue-ap-containment-status-v1
+*/
+func (s *DevicesService) WirelessRogueApContainmentStatus(macAddress string) (*ResponseDevicesWirelessRogueApContainmentStatus, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/rogue/wireless-containment/status/{macAddress}"
+	path = strings.Replace(path, "{macAddress}", fmt.Sprintf("%v", macAddress), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesWirelessRogueApContainmentStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.WirelessRogueApContainmentStatus(macAddress)
+		}
+		return nil, response, fmt.Errorf("error with operation WirelessRogueApContainmentStatus")
+	}
+
+	result := response.Result().(*ResponseDevicesWirelessRogueApContainmentStatus)
+	return result, response, err
+
+}
+
+//GetThreatLevels Get Threat Levels - 64ba-bad4-4aa9-b493
+/* Intent API to fetch all threat levels defined.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-threat-levels-v1
+*/
+func (s *DevicesService) GetThreatLevels() (*ResponseDevicesGetThreatLevels, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/level"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesGetThreatLevels{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetThreatLevels()
+		}
+		return nil, response, fmt.Errorf("error with operation GetThreatLevels")
+	}
+
+	result := response.Result().(*ResponseDevicesGetThreatLevels)
+	return result, response, err
+
+}
+
+//GetAllowedMacAddress Get Allowed Mac Address - 18ae-3ab0-447a-872f
+/* Intent API to fetch all the allowed mac addresses in the system.
+
+
+@param GetAllowedMacAddressQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-allowed-mac-address-v1
+*/
+func (s *DevicesService) GetAllowedMacAddress(GetAllowedMacAddressQueryParams *GetAllowedMacAddressQueryParams) (*ResponseDevicesGetAllowedMacAddress, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/rogue/allowed-list"
+
+	queryString, _ := query.Values(GetAllowedMacAddressQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetAllowedMacAddress{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllowedMacAddress(GetAllowedMacAddressQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetAllowedMacAddress")
+	}
+
+	result := response.Result().(*ResponseDevicesGetAllowedMacAddress)
+	return result, response, err
+
+}
+
+//GetAllowedMacAddressCount Get Allowed Mac Address Count - d4a1-e8c8-410a-b009
+/* Intent API to fetch the count of allowed mac addresses in the system.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-allowed-mac-address-count-v1
+*/
+func (s *DevicesService) GetAllowedMacAddressCount() (*ResponseDevicesGetAllowedMacAddressCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/rogue/allowed-list/count"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesGetAllowedMacAddressCount{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllowedMacAddressCount()
+		}
+		return nil, response, fmt.Errorf("error with operation GetAllowedMacAddressCount")
+	}
+
+	result := response.Result().(*ResponseDevicesGetAllowedMacAddressCount)
+	return result, response, err
+
+}
+
+//GetThreatTypes Get Threat Types - 519a-9b70-45c8-8b82
+/* Intent API to fetch all threat types defined.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-threat-types-v1
+*/
+func (s *DevicesService) GetThreatTypes() (*ResponseDevicesGetThreatTypes, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/type"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesGetThreatTypes{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetThreatTypes()
+		}
+		return nil, response, fmt.Errorf("error with operation GetThreatTypes")
+	}
+
+	result := response.Result().(*ResponseDevicesGetThreatTypes)
+	return result, response, err
+
+}
+
 //GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFilters Get the count of health score definitions based on provided filters. - 49aa-bb2c-46ca-b58a
 /* Get the count of health score definitions based on provided filters. Supported filters are id, name and overall health include status. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-issueAndHealthDefinitions-1.0.0-resolved.yaml
 
@@ -6134,7 +6530,7 @@ func (s *DevicesService) GetResyncIntervalForTheNetworkDevice(id string) (*Respo
 @param GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersHeaderParams Custom header parameters
 @param GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-health-score-definitions-based-on-provided-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-health-score-definitions-based-on-provided-filters-v1
 */
 func (s *DevicesService) GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFilters(GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersHeaderParams *GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersHeaderParams, GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersQueryParams *GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersQueryParams) (*ResponseDevicesGetTheCountOfHealthScoreDefinitionsBasedOnProvidedFilters, *resty.Response, error) {
 	path := "/intent/api/v1/healthScoreDefinitions/count"
@@ -6182,7 +6578,7 @@ func (s *DevicesService) GetTheCountOfHealthScoreDefinitionsBasedOnProvidedFilte
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-number-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-total-number-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions-v1
 */
 func (s *DevicesService) GetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions(requestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions *RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions) (*ResponseDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions, *resty.Response, error) {
 	path := "/data/api/v1/networkDevices/query/count"
@@ -6220,7 +6616,7 @@ func (s *DevicesService) GetsTheTotalNumberNetworkDevicesBasedOnTheProvidedCompl
 
 @param QueryAssuranceEventsWithFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-assurance-events-with-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-assurance-events-with-filters-v1
 */
 func (s *DevicesService) QueryAssuranceEventsWithFilters(requestDevicesQueryAssuranceEventsWithFilters *RequestDevicesQueryAssuranceEventsWithFilters, QueryAssuranceEventsWithFiltersHeaderParams *QueryAssuranceEventsWithFiltersHeaderParams) (*ResponseDevicesQueryAssuranceEventsWithFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents/query"
@@ -6270,7 +6666,7 @@ func (s *DevicesService) QueryAssuranceEventsWithFilters(requestDevicesQueryAssu
 
 @param CountTheNumberOfEventsWithFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-the-number-of-events-with-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-the-number-of-events-with-filters-v1
 */
 func (s *DevicesService) CountTheNumberOfEventsWithFilters(requestDevicesCountTheNumberOfEventsWithFilters *RequestDevicesCountTheNumberOfEventsWithFilters, CountTheNumberOfEventsWithFiltersHeaderParams *CountTheNumberOfEventsWithFiltersHeaderParams) (*ResponseDevicesCountTheNumberOfEventsWithFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceEvents/query/count"
@@ -6321,7 +6717,7 @@ The supported sorting options are: name, adminStatus, description, duplexConfig,
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-list-of-interfaces-across-the-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-list-of-interfaces-across-the-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions-v1
 */
 func (s *DevicesService) GetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions(requestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions) (*ResponseDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions, *resty.Response, error) {
 	path := "/dna/data/api/v1/interfaces/query"
@@ -6358,7 +6754,7 @@ func (s *DevicesService) GetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTh
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!the-total-interfaces-count-across-the-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!the-total-interfaces-count-across-the-network-devices-v1
 */
 func (s *DevicesService) TheTotalInterfacesCountAcrossTheNetworkDevices(requestDevicesTheTotalInterfacesCountAcrossTheNetworkDevices *RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevices) (*ResponseDevicesTheTotalInterfacesCountAcrossTheNetworkDevices, *resty.Response, error) {
 	path := "/dna/data/api/v1/interfaces/query/count"
@@ -6395,7 +6791,7 @@ func (s *DevicesService) TheTotalInterfacesCountAcrossTheNetworkDevices(requestD
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-list-of-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-list-of-network-devices-based-on-the-provided-complex-filters-and-aggregation-functions-v1
 */
 func (s *DevicesService) GetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions(requestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions *RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions) (*ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/query"
@@ -6432,7 +6828,7 @@ func (s *DevicesService) GetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFil
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-summary-analytics-data-related-to-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-summary-analytics-data-related-to-network-devices-v1
 */
 func (s *DevicesService) GetsTheSummaryAnalyticsDataRelatedToNetworkDevices(requestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevices *RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevices) (*ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevices, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/summaryAnalytics"
@@ -6465,11 +6861,11 @@ func (s *DevicesService) GetsTheSummaryAnalyticsDataRelatedToNetworkDevices(requ
 }
 
 //GetsTheTrendAnalyticsData Gets the Trend analytics data. - 0c93-595e-451b-910e
-/* Gets the Trend analytics Network device data for the given time range. The data will be grouped based on the given trend time Interval. The required property for this API is 'trendInterval'. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceNetworkDevices-1.0.2-resolved.yaml
+/* Gets the Trend analytics Network device data for the given time range. The data will be grouped based on the given trend time Interval. The required property for this API is `trendInterval`. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceNetworkDevices-1.0.2-resolved.yaml
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-trend-analytics-data
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-trend-analytics-data-v1
 */
 func (s *DevicesService) GetsTheTrendAnalyticsData(requestDevicesGetsTheTrendAnalyticsData *RequestDevicesGetsTheTrendAnalyticsData) (*ResponseDevicesGetsTheTrendAnalyticsData, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/trendAnalytics"
@@ -6508,7 +6904,7 @@ func (s *DevicesService) GetsTheTrendAnalyticsData(requestDevicesGetsTheTrendAna
 @param id id path parameter. The device Uuid
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!the-trend-analytics-data-for-the-network-device-in-the-specified-time-range
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!the-trend-analytics-data-for-the-network-device-in-the-specified-time-range-v1
 */
 func (s *DevicesService) TheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange(id string, requestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange *RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange) (*ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange, *resty.Response, error) {
 	path := "/dna/data/api/v1/networkDevices/{id}/trendAnalytics"
@@ -6548,7 +6944,7 @@ func (s *DevicesService) TheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedT
 @param floorID floorId path parameter. The instance UUID of the floor hierarchy element
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-planned-access-point-for-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-planned-access-point-for-floor-v1
 */
 func (s *DevicesService) CreatePlannedAccessPointForFloor(floorID string, requestDevicesCreatePlannedAccessPointForFloor *RequestDevicesCreatePlannedAccessPointForFloor) (*ResponseDevicesCreatePlannedAccessPointForFloor, *resty.Response, error) {
 	path := "/dna/intent/api/v1/floors/{floorId}/planned-access-points"
@@ -6588,7 +6984,7 @@ And also to synchronize with global profile issue thresholds of the definition f
 
 @param UpdateHealthScoreDefinitionsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-health-score-definitions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-health-score-definitions-v1
 */
 func (s *DevicesService) UpdateHealthScoreDefinitions(requestDevicesUpdateHealthScoreDefinitions *RequestDevicesUpdateHealthScoreDefinitions, UpdateHealthScoreDefinitionsHeaderParams *UpdateHealthScoreDefinitionsHeaderParams) (*ResponseDevicesUpdateHealthScoreDefinitions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/healthScoreDefinitions/bulkUpdate"
@@ -6640,7 +7036,7 @@ func (s *DevicesService) UpdateHealthScoreDefinitions(requestDevicesUpdateHealth
 
 @param ClearMacAddressTableQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!clear-mac-address-table
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!clear-mac-address-table-v1
 */
 func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevicesClearMacAddressTable *RequestDevicesClearMacAddressTable, ClearMacAddressTableQueryParams *ClearMacAddressTableQueryParams) (*ResponseDevicesClearMacAddressTable, *resty.Response, error) {
 	path := "/dna/intent/api/v1/interface/{interfaceUuid}/operation"
@@ -6675,21 +7071,21 @@ func (s *DevicesService) ClearMacAddressTable(interfaceUUID string, requestDevic
 
 }
 
-//AddDevice2 Add Device - 4bb2-2af0-46fa-8f08
+//AddDeviceKnowYourNetwork Add Device - 4bb2-2af0-46fa-8f08
 /* Adds the device with given credential
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-device2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-device-know-your-network-v1
 */
-func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddDevice2) (*ResponseDevicesAddDevice2, *resty.Response, error) {
+func (s *DevicesService) AddDeviceKnowYourNetwork(requestDevicesAddDeviceKnowYourNetwork *RequestDevicesAddDeviceKnowYourNetwork) (*ResponseDevicesAddDeviceKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesAddDevice2).
-		SetResult(&ResponseDevicesAddDevice2{}).
+		SetBody(requestDevicesAddDeviceKnowYourNetwork).
+		SetResult(&ResponseDevicesAddDeviceKnowYourNetwork{}).
 		SetError(&Error).
 		Post(path)
 
@@ -6701,13 +7097,13 @@ func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddD
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.AddDevice2(requestDevicesAddDevice2)
+			return s.AddDeviceKnowYourNetwork(requestDevicesAddDeviceKnowYourNetwork)
 		}
 
-		return nil, response, fmt.Errorf("error with operation AddDevice2")
+		return nil, response, fmt.Errorf("error with operation AddDeviceKnowYourNetwork")
 	}
 
-	result := response.Result().(*ResponseDevicesAddDevice2)
+	result := response.Result().(*ResponseDevicesAddDeviceKnowYourNetwork)
 	return result, response, err
 
 }
@@ -6717,7 +7113,7 @@ func (s *DevicesService) AddDevice2(requestDevicesAddDevice2 *RequestDevicesAddD
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-list
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-list-v1
 */
 func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *RequestDevicesExportDeviceList) (*ResponseDevicesExportDeviceList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/file"
@@ -6754,7 +7150,7 @@ func (s *DevicesService) ExportDeviceList(requestDevicesExportDeviceList *Reques
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-user-defined-field
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-user-defined-field-v1
 */
 func (s *DevicesService) CreateUserDefinedField(requestDevicesCreateUserDefinedField *RequestDevicesCreateUserDefinedField) (*ResponseDevicesCreateUserDefinedField, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device/user-defined-field"
@@ -6791,7 +7187,7 @@ func (s *DevicesService) CreateUserDefinedField(requestDevicesCreateUserDefinedF
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!override-resync-interval
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!override-resync-interval-v1
 */
 func (s *DevicesService) OverrideResyncInterval() (*ResponseDevicesOverrideResyncInterval, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDevices/resyncIntervalSettings/override"
@@ -6822,24 +7218,21 @@ func (s *DevicesService) OverrideResyncInterval() (*ResponseDevicesOverrideResyn
 
 }
 
-//GetDeviceInterfaceStatsInfo Get Device Interface Stats Info - 76bb-5957-49ab-8a3b
-/* This API returns the Interface Stats for the given Device Id. Please refer to the Feature tab for the Request Body usage and the API filtering support.
+//RogueAdditionalDetails Rogue Additional Details - 659c-e9bd-403a-8de6
+/* This API provides additional information of the rogue threats with details at BSSID level. The additional information includes Switch Port details in case of Rogue on Wire, first time when the rogue is seen in the network etc.
 
 
-@param deviceID deviceId path parameter. Network Device Id
 
-
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-stats-info
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!rogue-additional-details-v1
 */
-func (s *DevicesService) GetDeviceInterfaceStatsInfo(deviceID string, requestDevicesGetDeviceInterfaceStatsInfo *RequestDevicesGetDeviceInterfaceStatsInfo) (*ResponseDevicesGetDeviceInterfaceStatsInfo, *resty.Response, error) {
-	path := "/dna/intent/api/v2/networkDevices/{deviceId}/interfaces/query"
-	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+func (s *DevicesService) RogueAdditionalDetails(requestDevicesRogueAdditionalDetails *RequestDevicesRogueAdditionalDetails) (*ResponseDevicesRogueAdditionalDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/rogue/additional/details"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestDevicesGetDeviceInterfaceStatsInfo).
-		SetResult(&ResponseDevicesGetDeviceInterfaceStatsInfo{}).
+		SetBody(requestDevicesRogueAdditionalDetails).
+		SetResult(&ResponseDevicesRogueAdditionalDetails{}).
 		SetError(&Error).
 		Post(path)
 
@@ -6851,13 +7244,312 @@ func (s *DevicesService) GetDeviceInterfaceStatsInfo(deviceID string, requestDev
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetDeviceInterfaceStatsInfo(deviceID, requestDevicesGetDeviceInterfaceStatsInfo)
+			return s.RogueAdditionalDetails(requestDevicesRogueAdditionalDetails)
 		}
 
-		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceStatsInfo")
+		return nil, response, fmt.Errorf("error with operation RogueAdditionalDetails")
 	}
 
-	result := response.Result().(*ResponseDevicesGetDeviceInterfaceStatsInfo)
+	result := response.Result().(*ResponseDevicesRogueAdditionalDetails)
+	return result, response, err
+
+}
+
+//RogueAdditionalDetailCount Rogue Additional Detail Count - 4ca7-59be-4b99-9041
+/* This API returns the count for the Rogue Additional Details.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!rogue-additional-detail-count-v1
+*/
+func (s *DevicesService) RogueAdditionalDetailCount(requestDevicesRogueAdditionalDetailCount *RequestDevicesRogueAdditionalDetailCount) (*ResponseDevicesRogueAdditionalDetailCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/rogue/additional/details/count"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesRogueAdditionalDetailCount).
+		SetResult(&ResponseDevicesRogueAdditionalDetailCount{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RogueAdditionalDetailCount(requestDevicesRogueAdditionalDetailCount)
+		}
+
+		return nil, response, fmt.Errorf("error with operation RogueAdditionalDetailCount")
+	}
+
+	result := response.Result().(*ResponseDevicesRogueAdditionalDetailCount)
+	return result, response, err
+
+}
+
+//StartWirelessRogueApContainment Start Wireless Rogue AP Containment - 6998-5b93-4218-aea5
+/* Intent API to start the wireless rogue access point containment. This API will initiate the containment operation on the strongest detecting WLC for the given Rogue AP. This is a resource intensive operation which has legal implications since the rogue access point on whom it is triggered, might be a valid neighbor access point.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!start-wireless-rogue-ap-containment-v1
+*/
+func (s *DevicesService) StartWirelessRogueApContainment(requestDevicesStartWirelessRogueAPContainment *RequestDevicesStartWirelessRogueApContainment) (*ResponseDevicesStartWirelessRogueApContainment, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/rogue/wireless-containment/start"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesStartWirelessRogueAPContainment).
+		SetResult(&ResponseDevicesStartWirelessRogueApContainment{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.StartWirelessRogueApContainment(requestDevicesStartWirelessRogueAPContainment)
+		}
+
+		return nil, response, fmt.Errorf("error with operation StartWirelessRogueApContainment")
+	}
+
+	result := response.Result().(*ResponseDevicesStartWirelessRogueApContainment)
+	return result, response, err
+
+}
+
+//StopWirelessRogueApContainment Stop Wireless Rogue AP Containment - b692-6b1c-4d0a-b3fb
+/* Intent API to stop the wireless rogue access point containment. This API will stop the containment through single WLC. The response includes the details like WLC and BSSID on which the stop containment has been initiated.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!stop-wireless-rogue-ap-containment-v1
+*/
+func (s *DevicesService) StopWirelessRogueApContainment(requestDevicesStopWirelessRogueAPContainment *RequestDevicesStopWirelessRogueApContainment) (*ResponseDevicesStopWirelessRogueApContainment, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/rogue/wireless-containment/stop"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesStopWirelessRogueAPContainment).
+		SetResult(&ResponseDevicesStopWirelessRogueApContainment{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.StopWirelessRogueApContainment(requestDevicesStopWirelessRogueAPContainment)
+		}
+
+		return nil, response, fmt.Errorf("error with operation StopWirelessRogueApContainment")
+	}
+
+	result := response.Result().(*ResponseDevicesStopWirelessRogueApContainment)
+	return result, response, err
+
+}
+
+//ThreatDetails Threat Details - f6bf-c880-435a-ae2a
+/* The details for the Rogue and aWIPS threats
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!threat-details-v1
+*/
+func (s *DevicesService) ThreatDetails(requestDevicesThreatDetails *RequestDevicesThreatDetails) (*ResponseDevicesThreatDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/details"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesThreatDetails).
+		SetResult(&ResponseDevicesThreatDetails{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ThreatDetails(requestDevicesThreatDetails)
+		}
+
+		return nil, response, fmt.Errorf("error with operation ThreatDetails")
+	}
+
+	result := response.Result().(*ResponseDevicesThreatDetails)
+	return result, response, err
+
+}
+
+//ThreatDetailCount Threat Detail Count - eb8c-2a83-45aa-871f
+/* The details count for the Rogue and aWIPS threats
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!threat-detail-count-v1
+*/
+func (s *DevicesService) ThreatDetailCount(requestDevicesThreatDetailCount *RequestDevicesThreatDetailCount) (*ResponseDevicesThreatDetailCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/details/count"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesThreatDetailCount).
+		SetResult(&ResponseDevicesThreatDetailCount{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ThreatDetailCount(requestDevicesThreatDetailCount)
+		}
+
+		return nil, response, fmt.Errorf("error with operation ThreatDetailCount")
+	}
+
+	result := response.Result().(*ResponseDevicesThreatDetailCount)
+	return result, response, err
+
+}
+
+//AddAllowedMacAddress Add Allowed Mac Address - b6a0-887d-4fe9-9d5f
+/* Intent API to add the threat mac address to allowed list.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-allowed-mac-address-v1
+*/
+func (s *DevicesService) AddAllowedMacAddress(requestDevicesAddAllowedMacAddress *RequestDevicesAddAllowedMacAddress) (*ResponseDevicesAddAllowedMacAddress, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/rogue/allowed-list"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesAddAllowedMacAddress).
+		SetResult(&ResponseDevicesAddAllowedMacAddress{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddAllowedMacAddress(requestDevicesAddAllowedMacAddress)
+		}
+
+		return nil, response, fmt.Errorf("error with operation AddAllowedMacAddress")
+	}
+
+	result := response.Result().(*ResponseDevicesAddAllowedMacAddress)
+	return result, response, err
+
+}
+
+//ThreatSummary Threat Summary - 3b98-98f0-4cfb-b74b
+/* The Threat Summary for the Rogues and aWIPS
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!threat-summary-v1
+*/
+func (s *DevicesService) ThreatSummary(requestDevicesThreatSummary *RequestDevicesThreatSummary) (*ResponseDevicesThreatSummary, *resty.Response, error) {
+	path := "/dna/intent/api/v1/security/threats/summary"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesThreatSummary).
+		SetResult(&ResponseDevicesThreatSummary{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ThreatSummary(requestDevicesThreatSummary)
+		}
+
+		return nil, response, fmt.Errorf("error with operation ThreatSummary")
+	}
+
+	result := response.Result().(*ResponseDevicesThreatSummary)
+	return result, response, err
+
+}
+
+//GetDeviceInterfaceStatsInfoV2 Get Device Interface Stats Info - 76bb-5957-49ab-8a3b
+/* This API returns the Interface Stats for the given Device Id. Please refer to the Feature tab for the Request Body usage and the API filtering support.
+
+
+@param deviceID deviceId path parameter. Network Device Id
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-interface-stats-info-v2
+*/
+func (s *DevicesService) GetDeviceInterfaceStatsInfoV2(deviceID string, requestDevicesGetDeviceInterfaceStatsInfoV2 *RequestDevicesGetDeviceInterfaceStatsInfoV2) (*ResponseDevicesGetDeviceInterfaceStatsInfoV2, *resty.Response, error) {
+	path := "/dna/intent/api/v2/networkDevices/{deviceId}/interfaces/query"
+	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestDevicesGetDeviceInterfaceStatsInfoV2).
+		SetResult(&ResponseDevicesGetDeviceInterfaceStatsInfoV2{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceInterfaceStatsInfoV2(deviceID, requestDevicesGetDeviceInterfaceStatsInfoV2)
+		}
+
+		return nil, response, fmt.Errorf("error with operation GetDeviceInterfaceStatsInfoV2")
+	}
+
+	result := response.Result().(*ResponseDevicesGetDeviceInterfaceStatsInfoV2)
 	return result, response, err
 
 }
@@ -7219,8 +7911,8 @@ func (s *DevicesService) UpdateGlobalResyncInterval(requestDevicesUpdateGlobalRe
 
 //UpdateResyncIntervalForTheNetworkDevice Update resync interval for the network device - 92a0-db6c-428a-92d9
 /* Update the resync interval (in minutes) for the given network device id.
-To disable periodic resync, set interval as '0'.
-To use global settings, set interval as 'null'.
+To disable periodic resync, set interval as `0`.
+To use global settings, set interval as `null`.
 
 
 @param id id path parameter. The id of the network device.
@@ -7264,7 +7956,7 @@ func (s *DevicesService) UpdateResyncIntervalForTheNetworkDevice(id string, requ
 @param plannedAccessPointUUID plannedAccessPointUuid path parameter. The instance UUID of the planned access point to delete
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-planned-access-point-for-floor
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-planned-access-point-for-floor-v1
 */
 func (s *DevicesService) DeletePlannedAccessPointForFloor(floorID string, plannedAccessPointUUID string) (*ResponseDevicesDeletePlannedAccessPointForFloor, *resty.Response, error) {
 	//floorID string,plannedAccessPointUUID string
@@ -7286,7 +7978,8 @@ func (s *DevicesService) DeletePlannedAccessPointForFloor(floorID string, planne
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletePlannedAccessPointForFloor(floorID, plannedAccessPointUUID)
+			return s.DeletePlannedAccessPointForFloor(
+				floorID, plannedAccessPointUUID)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletePlannedAccessPointForFloor")
 	}
@@ -7303,7 +7996,7 @@ func (s *DevicesService) DeletePlannedAccessPointForFloor(floorID string, planne
 @param id id path parameter. UDF id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-user-defined-field
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-user-defined-field-v1
 */
 func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDeleteUserDefinedField, *resty.Response, error) {
 	//id string
@@ -7324,7 +8017,8 @@ func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDele
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteUserDefinedField(id)
+			return s.DeleteUserDefinedField(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteUserDefinedField")
 	}
@@ -7342,7 +8036,7 @@ func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDele
 
 @param RemoveUserDefinedFieldFromDeviceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-user-defined-field-from-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-user-defined-field-from-device-v1
 */
 func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, RemoveUserDefinedFieldFromDeviceQueryParams *RemoveUserDefinedFieldFromDeviceQueryParams) (*ResponseDevicesRemoveUserDefinedFieldFromDevice, *resty.Response, error) {
 	//deviceID string,RemoveUserDefinedFieldFromDeviceQueryParams *RemoveUserDefinedFieldFromDeviceQueryParams
@@ -7365,7 +8059,8 @@ func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, Remov
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveUserDefinedFieldFromDevice(deviceID, RemoveUserDefinedFieldFromDeviceQueryParams)
+			return s.RemoveUserDefinedFieldFromDevice(
+				deviceID, RemoveUserDefinedFieldFromDeviceQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveUserDefinedFieldFromDevice")
 	}
@@ -7383,7 +8078,7 @@ func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, Remov
 
 @param DeleteDeviceByIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-by-id-v1
 */
 func (s *DevicesService) DeleteDeviceByID(id string, DeleteDeviceByIdQueryParams *DeleteDeviceByIDQueryParams) (*ResponseDevicesDeleteDeviceByID, *resty.Response, error) {
 	//id string,DeleteDeviceByIdQueryParams *DeleteDeviceByIDQueryParams
@@ -7406,12 +8101,52 @@ func (s *DevicesService) DeleteDeviceByID(id string, DeleteDeviceByIdQueryParams
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceByID(id, DeleteDeviceByIdQueryParams)
+			return s.DeleteDeviceByID(
+				id, DeleteDeviceByIdQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceById")
 	}
 
 	result := response.Result().(*ResponseDevicesDeleteDeviceByID)
+	return result, response, err
+
+}
+
+//RemoveAllowedMacAddress Remove Allowed Mac Address - c8ac-a91b-4c5a-9b5c
+/* Intent API to remove the threat mac address from allowed list.
+
+
+@param macAddress macAddress path parameter. Threat mac address which needs to be removed from the allowed list. Multiple mac addresses will be removed if provided as comma separated values (example: 00:2A:10:51:22:43,00:2A:10:51:22:44). Note: In one request, maximum 100 mac addresses can be removed.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-allowed-mac-address-v1
+*/
+func (s *DevicesService) RemoveAllowedMacAddress(macAddress string) (*ResponseDevicesRemoveAllowedMacAddress, *resty.Response, error) {
+	//macAddress string
+	path := "/dna/intent/api/v1/security/threats/rogue/allowed-list/{macAddress}"
+	path = strings.Replace(path, "{macAddress}", fmt.Sprintf("%v", macAddress), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesRemoveAllowedMacAddress{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveAllowedMacAddress(
+				macAddress)
+		}
+		return nil, response, fmt.Errorf("error with operation RemoveAllowedMacAddress")
+	}
+
+	result := response.Result().(*ResponseDevicesRemoveAllowedMacAddress)
 	return result, response, err
 
 }

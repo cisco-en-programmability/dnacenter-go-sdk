@@ -12,15 +12,15 @@ import (
 type SitesService service
 
 type ReadListOfSiteHealthSummariesQueryParams struct {
-	StartTime       float64 `url:"startTime,omitempty"`       //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime       float64 `url:"startTime,omitempty"`       //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime         float64 `url:"endTime,omitempty"`         //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Limit           float64 `url:"limit,omitempty"`           //Maximum number of records to return
 	Offset          float64 `url:"offset,omitempty"`          //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	SortBy          string  `url:"sortBy,omitempty"`          //A field within the response to sort by.
 	Order           string  `url:"order,omitempty"`           //The sort order of the field ascending or descending.
-	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be '[floor,building,area]' Examples: '?siteType=area' (single siteType requested) '?siteType=area&siteType=building&siteType=floor' (multiple siteTypes requested)
+	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be `[floor,building,area]` Examples: `?siteType=area` (single siteType requested) `?siteType=area&siteType=building&siteType=floor` (multiple siteTypes requested)
 	ID              string  `url:"id,omitempty"`              //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
 	View            string  `url:"view,omitempty"`            //The specific summary view being requested. This is an optional parameter which can be passed to get one or more of the specific health data summaries associated with sites. ### Response data proviced by each view:   1. **site** [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude]   2. **network** [id, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage]   3. **client** [id, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage]   4. **issue** [id, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount]   When this query parameter is not added the default summaries are:   **[site,client,network,issue]** Examples: view=client (single view requested) view=client&view=network&view=issue (multiple views requested)
 	Attribute       string  `url:"attribute,omitempty"`       //Supported Attributes: [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount] If length of attribute list is too long, please use 'view' param instead. Examples: attribute=siteHierarchy (single attribute requested) attribute=siteHierarchy&attribute=clientCount (multiple attributes requested)
@@ -30,20 +30,20 @@ type ReadListOfSiteHealthSummariesHeaderParams struct {
 }
 type ReadSiteCountQueryParams struct {
 	EndTime         float64 `url:"endTime,omitempty"`         //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
-	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be '[floor,building,area]' Examples: '?siteType=area' (single siteType requested) '?siteType=area&siteType=building&siteType=floor' (multiple siteTypes requested)
+	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be `[floor,building,area]` Examples: `?siteType=area` (single siteType requested) `?siteType=area&siteType=building&siteType=floor` (multiple siteTypes requested)
 	ID              string  `url:"id,omitempty"`              //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
 }
 type ReadSiteCountHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type ReadAnAggregatedSummaryOfSiteHealthDataQueryParams struct {
-	StartTime       float64 `url:"startTime,omitempty"`       //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime       float64 `url:"startTime,omitempty"`       //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime         float64 `url:"endTime,omitempty"`         //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
-	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be '[floor,building,area]' Examples: '?siteType=area' (single siteType requested) '?siteType=area&siteType=building&siteType=floor' (multiple siteTypes requested)
+	SiteHierarchy   string  `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID string  `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteType        string  `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be `[floor,building,area]` Examples: `?siteType=area` (single siteType requested) `?siteType=area&siteType=building&siteType=floor` (multiple siteTypes requested)
 	ID              string  `url:"id,omitempty"`              //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
 	View            string  `url:"view,omitempty"`            //The specific summary view being requested. This is an optional parameter which can be passed to get one or more of the specific health data summaries associated with sites. ### Response data proviced by each view:   1. **site** [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude]   2. **network** [id, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage]   3. **client** [id, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage]   4. **issue** [id, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount]   When this query parameter is not added the default summaries are:   **[site,client,network,issue]** Examples: view=client (single view requested) view=client&view=network&view=issue (multiple views requested)
 	Attribute       string  `url:"attribute,omitempty"`       //Supported Attributes: [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount] If length of attribute list is too long, please use 'view' param instead. Examples: attribute=siteHierarchy (single attribute requested) attribute=siteHierarchy&attribute=clientCount (multiple attributes requested)
@@ -52,13 +52,13 @@ type ReadAnAggregatedSummaryOfSiteHealthDataHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type QueryAnAggregatedSummaryOfSiteHealthDataQueryParams struct {
-	SiteHierarchy   string `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk ('*') character search support. E.g. '*/San*, */San, /San*' Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID string `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk ('*') character search support. E.g. '*uuid*, *uuid, uuid*' Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteType        string `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be '[floor,building,area]' Examples: '?siteType=area' (single siteType requested) '?siteType=area&siteType=building&siteType=floor' (multiple siteTypes requested)
+	SiteHierarchy   string `url:"siteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID string `url:"siteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteType        string `url:"siteType,omitempty"`        //The type of the site. A site can be an area, building, or floor. Default when not provided will be `[floor,building,area]` Examples: `?siteType=area` (single siteType requested) `?siteType=area&siteType=building&siteType=floor` (multiple siteTypes requested)
 	ID              string `url:"id,omitempty"`              //The list of entity Uuids. (Ex."6bef213c-19ca-4170-8375-b694e251101c") Examples: id=6bef213c-19ca-4170-8375-b694e251101c (single entity uuid requested) id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9&id=2541e9a7-b80d-4955-8aa2-79b233318ba0 (multiple entity uuid with '&' separator)
 }
 type ReadSiteHealthSummaryDataBySiteIDQueryParams struct {
-	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	View      string  `url:"view,omitempty"`      //The specific summary view being requested. This is an optional parameter which can be passed to get one or more of the specific health data summaries associated with sites. ### Response data proviced by each view:   1. **site** [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude]   2. **network** [id, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage]   3. **client** [id, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage]   4. **issue** [id, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount]   When this query parameter is not added the default summaries are:   **[site,client,network,issue]** Examples: view=client (single view requested) view=client&view=network&view=issue (multiple views requested)
 	Attribute string  `url:"attribute,omitempty"` //Supported Attributes: [id, siteHierarchy, siteHierarchyId, siteType, latitude, longitude, networkDeviceCount, networkDeviceGoodHealthCount,wirelessDeviceCount, wirelessDeviceGoodHealthCount, accessDeviceCount, accessDeviceGoodHealthCount, coreDeviceCount, coreDeviceGoodHealthCount, distributionDeviceCount, distributionDeviceGoodHealthCount, routerDeviceCount, routerDeviceGoodHealthCount, apDeviceCount, apDeviceGoodHealthCount, wlcDeviceCount, wlcDeviceGoodHealthCount, switchDeviceCount, switchDeviceGoodHealthCount, networkDeviceGoodHealthPercentage, accessDeviceGoodHealthPercentage, coreDeviceGoodHealthPercentage, distributionDeviceGoodHealthPercentage, routerDeviceGoodHealthPercentage, apDeviceGoodHealthPercentage, wlcDeviceGoodHealthPercentage, switchDeviceGoodHealthPercentage, wirelessDeviceGoodHealthPercentage, clientCount, clientGoodHealthCount, wiredClientCount, wirelessClientCount, wiredClientGoodHealthCount, wirelessClientGoodHealthCount, clientGoodHealthPercentage, wiredClientGoodHealthPercentage, wirelessClientGoodHealthPercentage, clientDataUsage, p1IssueCount, p2IssueCount, p3IssueCount, p4IssueCount, issueCount] If length of attribute list is too long, please use 'view' param instead. Examples: attribute=siteHierarchy (single attribute requested) attribute=siteHierarchy&attribute=clientCount (multiple attributes requested)
@@ -806,13 +806,13 @@ type RequestSitesUpdateSiteSiteFloor struct {
 }
 
 //ReadListOfSiteHealthSummaries Read list of site health summaries. - e4b7-1b5e-4099-b15b
-/* Get a paginated list of site health summaries. Use the available query parameters to identify a subset of sites you want health summaries for. This API provides the latest health data from a given 'endTime' If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When 'endTime' is not provided, the API returns the latest data. This API also provides issue data. The 'startTime' query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default 'startTime' will be 24 hours before endTime. Valid values for 'sortBy' param in this API are limited to the attributes provided in the 'site' view. Default sortBy is 'siteHierarchy' in order 'asc' (ascending). For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
+/* Get a paginated list of site health summaries. Use the available query parameters to identify a subset of sites you want health summaries for. This API provides the latest health data from a given `endTime` If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When `endTime` is not provided, the API returns the latest data. This API also provides issue data. The `startTime` query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default `startTime` will be 24 hours before endTime. Valid values for `sortBy` param in this API are limited to the attributes provided in the `site` view. Default sortBy is 'siteHierarchy' in order 'asc' (ascending). For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
 
 
 @param ReadListOfSiteHealthSummariesHeaderParams Custom header parameters
 @param ReadListOfSiteHealthSummariesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-list-of-site-health-summaries
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-list-of-site-health-summaries-v1
 */
 func (s *SitesService) ReadListOfSiteHealthSummaries(ReadListOfSiteHealthSummariesHeaderParams *ReadListOfSiteHealthSummariesHeaderParams, ReadListOfSiteHealthSummariesQueryParams *ReadListOfSiteHealthSummariesQueryParams) (*ResponseSitesReadListOfSiteHealthSummaries, *resty.Response, error) {
 	path := "/dna/data/api/v1/siteHealthSummaries"
@@ -856,13 +856,13 @@ func (s *SitesService) ReadListOfSiteHealthSummaries(ReadListOfSiteHealthSummari
 }
 
 //ReadSiteCount Read site count. - b6ac-283b-4f39-b488
-/* Get a count of sites. Use the available query parameters to get the count of a subset of sites. This API provides the latest data from a given 'endTime' If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When 'endTime' is not provided, the API returns the latest data. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
+/* Get a count of sites. Use the available query parameters to get the count of a subset of sites. This API provides the latest data from a given `endTime` If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When `endTime` is not provided, the API returns the latest data. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
 
 
 @param ReadSiteCountHeaderParams Custom header parameters
 @param ReadSiteCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-site-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-site-count-v1
 */
 func (s *SitesService) ReadSiteCount(ReadSiteCountHeaderParams *ReadSiteCountHeaderParams, ReadSiteCountQueryParams *ReadSiteCountQueryParams) (*ResponseSitesReadSiteCount, *resty.Response, error) {
 	path := "/dna/data/api/v1/siteHealthSummaries/count"
@@ -906,13 +906,13 @@ func (s *SitesService) ReadSiteCount(ReadSiteCountHeaderParams *ReadSiteCountHea
 }
 
 //ReadAnAggregatedSummaryOfSiteHealthData Read an aggregated summary of site health data. - e2b7-8b97-4c78-a4f7
-/* Get an aggregated summary of all site health or use the query params to get an aggregated summary of health for a subset of sites. This API provides the latest health data from a given 'endTime' If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When 'endTime' is not provided, the API returns the latest data. This API also provides issue data. The 'startTime' query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default 'startTime' will be 24 hours before endTime. Aggregated response data will NOT have unique identifier data populated. List of unique identifier data: ['id', 'siteHierarchy', 'siteHierarchyId', 'siteType', 'latitude', 'longitude']. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
+/* Get an aggregated summary of all site health or use the query params to get an aggregated summary of health for a subset of sites. This API provides the latest health data from a given `endTime` If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When `endTime` is not provided, the API returns the latest data. This API also provides issue data. The `startTime` query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default `startTime` will be 24 hours before endTime. Aggregated response data will NOT have unique identifier data populated. List of unique identifier data: [`id`, `siteHierarchy`, `siteHierarchyId`, `siteType`, `latitude`, `longitude`]. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
 
 
 @param ReadAnAggregatedSummaryOfSiteHealthDataHeaderParams Custom header parameters
 @param ReadAnAggregatedSummaryOfSiteHealthDataQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-an-aggregated-summary-of-site-health-data
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-an-aggregated-summary-of-site-health-data-v1
 */
 func (s *SitesService) ReadAnAggregatedSummaryOfSiteHealthData(ReadAnAggregatedSummaryOfSiteHealthDataHeaderParams *ReadAnAggregatedSummaryOfSiteHealthDataHeaderParams, ReadAnAggregatedSummaryOfSiteHealthDataQueryParams *ReadAnAggregatedSummaryOfSiteHealthDataQueryParams) (*ResponseSitesReadAnAggregatedSummaryOfSiteHealthData, *resty.Response, error) {
 	path := "/dna/data/api/v1/siteHealthSummaries/summaryAnalytics"
@@ -956,7 +956,7 @@ func (s *SitesService) ReadAnAggregatedSummaryOfSiteHealthData(ReadAnAggregatedS
 }
 
 //ReadSiteHealthSummaryDataBySiteID Read site health summary data by site id. - 48aa-094f-423b-bd33
-/* Get a health summary for a specific site by providing the unique site id in the url path. This API provides the latest health data from a given 'endTime' If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When 'endTime' is not provided, the API returns the latest data. This API also provides issue data. The 'startTime' query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default 'startTime' will be 24 hours before endTime. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
+/* Get a health summary for a specific site by providing the unique site id in the url path. This API provides the latest health data from a given `endTime` If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When `endTime` is not provided, the API returns the latest data. This API also provides issue data. The `startTime` query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default `startTime` will be 24 hours before endTime. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
 
 
 @param id id path parameter. unique site uuid
@@ -964,7 +964,7 @@ func (s *SitesService) ReadAnAggregatedSummaryOfSiteHealthData(ReadAnAggregatedS
 @param ReadSiteHealthSummaryDataBySiteIdHeaderParams Custom header parameters
 @param ReadSiteHealthSummaryDataBySiteIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-site-health-summary-data-by-site-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!read-site-health-summary-data-by-site-id-v1
 */
 func (s *SitesService) ReadSiteHealthSummaryDataBySiteID(id string, ReadSiteHealthSummaryDataBySiteIdHeaderParams *ReadSiteHealthSummaryDataBySiteIDHeaderParams, ReadSiteHealthSummaryDataBySiteIdQueryParams *ReadSiteHealthSummaryDataBySiteIDQueryParams) (*ResponseSitesReadSiteHealthSummaryDataBySiteID, *resty.Response, error) {
 	path := "/dna/data/api/v1/siteHealthSummaries/{id}"
@@ -1015,7 +1015,7 @@ func (s *SitesService) ReadSiteHealthSummaryDataBySiteID(id string, ReadSiteHeal
 @param importContextUUID importContextUuid path parameter. The unique import context UUID given by a previous and recent call to maps/import/start API
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-import-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-import-status-v1
 */
 func (s *SitesService) ImportMapArchiveImportStatus(importContextUUID string) (*ResponseSitesImportMapArchiveImportStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/maps/import/{importContextUuid}/status"
@@ -1050,7 +1050,7 @@ func (s *SitesService) ImportMapArchiveImportStatus(importContextUUID string) (*
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!maps-supported-access-points
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!maps-supported-access-points-v1
 */
 func (s *SitesService) MapsSupportedAccessPoints() (*ResponseSitesMapsSupportedAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/maps/supported-access-points"
@@ -1087,7 +1087,7 @@ func (s *SitesService) MapsSupportedAccessPoints() (*ResponseSitesMapsSupportedA
 
 @param GetMembershipQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-membership
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-membership-v1
 */
 func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *GetMembershipQueryParams) (*ResponseSitesGetMembership, *resty.Response, error) {
 	path := "/dna/intent/api/v1/membership/{siteId}"
@@ -1125,7 +1125,7 @@ func (s *SitesService) GetMembership(siteID string, GetMembershipQueryParams *Ge
 
 @param GetSiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-v1
 */
 func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*ResponseSitesGetSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -1162,7 +1162,7 @@ func (s *SitesService) GetSite(GetSiteQueryParams *GetSiteQueryParams) (*Respons
 
 @param GetSiteHealthQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-health
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-health-v1
 */
 func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQueryParams) (*ResponseSitesGetSiteHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site-health"
@@ -1201,7 +1201,7 @@ func (s *SitesService) GetSiteHealth(GetSiteHealthQueryParams *GetSiteHealthQuer
 
 @param GetDevicesThatAreAssignedToASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-that-are-assigned-to-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-that-are-assigned-to-a-site-v1
 */
 func (s *SitesService) GetDevicesThatAreAssignedToASite(id string, GetDevicesThatAreAssignedToASiteQueryParams *GetDevicesThatAreAssignedToASiteQueryParams) (*ResponseSitesGetDevicesThatAreAssignedToASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site-member/{id}/member"
@@ -1239,7 +1239,7 @@ func (s *SitesService) GetDevicesThatAreAssignedToASite(id string, GetDevicesTha
 
 @param GetSiteCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-site-count-v1
 */
 func (s *SitesService) GetSiteCount(GetSiteCountQueryParams *GetSiteCountQueryParams) (*ResponseSitesGetSiteCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site/count"
@@ -1345,17 +1345,17 @@ func (s *SitesService) GetSiteCountV2(GetSiteCountV2QueryParams *GetSiteCountV2Q
 }
 
 //QueryAnAggregatedSummaryOfSiteHealthData Query an aggregated summary of site health data. - 2782-ca59-4cc8-ad34
-/* Query an aggregated summary of all site health This API provides the latest health data from a given 'endTime' If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When 'endTime' is not provided, the API returns the latest data. This API also provides issue data. The 'startTime' query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default 'startTime' will be 24 hours before endTime.
+/* Query an aggregated summary of all site health This API provides the latest health data from a given `endTime` If data is not ready for the provided endTime, the request will fail, and the error message will indicate the recommended endTime to use to retrieve a complete data set. This behavior may occur if the provided endTime=currentTime, since we are not a real time system. When `endTime` is not provided, the API returns the latest data. This API also provides issue data. The `startTime` query param can be used to specify the beginning point of time range to retrieve the active issue counts in. When this param is not provided, the default `startTime` will be 24 hours before endTime.
 
  Aggregated response data will NOT have unique identifier data populated.
 
- List of unique identifier data: ['id', 'siteHierarchy',
-'siteHierarchyId', 'siteType', 'latitude', 'longitude'] Please refer to the 'API Support Documentation' section to understand which fields are supported. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
+ List of unique identifier data: [`id`, `siteHierarchy`,
+`siteHierarchyId`, `siteType`, `latitude`, `longitude`] Please refer to the 'API Support Documentation' section to understand which fields are supported. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-siteHealthSummaries-1.0.3-resolved.yaml
 
 
 @param QueryAnAggregatedSummaryOfSiteHealthDataQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-an-aggregated-summary-of-site-health-data
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-an-aggregated-summary-of-site-health-data-v1
 */
 func (s *SitesService) QueryAnAggregatedSummaryOfSiteHealthData(requestSitesQueryAnAggregatedSummaryOfSiteHealthData *RequestSitesQueryAnAggregatedSummaryOfSiteHealthData, QueryAnAggregatedSummaryOfSiteHealthDataQueryParams *QueryAnAggregatedSummaryOfSiteHealthDataQueryParams) (*ResponseSitesQueryAnAggregatedSummaryOfSiteHealthData, *resty.Response, error) {
 	path := "/dna/data/api/v1/siteHealthSummaries/summaryAnalytics"
@@ -1397,7 +1397,7 @@ func (s *SitesService) QueryAnAggregatedSummaryOfSiteHealthData(requestSitesQuer
 
 @param AssignDevicesToSiteHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-devices-to-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-devices-to-site-v1
 */
 func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevicesToSite *RequestSitesAssignDevicesToSite, AssignDevicesToSiteHeaderParams *AssignDevicesToSiteHeaderParams) (*ResponseSitesAssignDevicesToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assign-device-to-site/{siteId}/device"
@@ -1457,7 +1457,7 @@ func (s *SitesService) AssignDevicesToSite(siteID string, requestSitesAssignDevi
 @param siteHierarchyUUID siteHierarchyUuid path parameter. The site hierarchy element UUID to export, all child elements starting at this hierarchy element will be included. Limited to a hierarchy that contains 500 or fewer maps.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-map-archive
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-map-archive-v1
 */
 func (s *SitesService) ExportMapArchive(siteHierarchyUUID string) (*ResponseSitesExportMapArchive, *resty.Response, error) {
 	path := "/dna/intent/api/v1/maps/export/{siteHierarchyUuid}"
@@ -1494,7 +1494,7 @@ func (s *SitesService) ExportMapArchive(siteHierarchyUUID string) (*ResponseSite
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-start-import
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-start-import-v1
 */
 func (s *SitesService) ImportMapArchiveStartImport() (*resty.Response, error) {
 	path := "/dna/intent/api/v1/maps/import/start"
@@ -1530,7 +1530,7 @@ func (s *SitesService) ImportMapArchiveStartImport() (*resty.Response, error) {
 @param importContextUUID importContextUuid path parameter. The unique import context UUID given by a previous call of Start Import API
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-perform-import
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-perform-import-v1
 */
 func (s *SitesService) ImportMapArchivePerformImport(importContextUUID string) (*ResponseSitesImportMapArchivePerformImport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/maps/import/{importContextUuid}/perform"
@@ -1570,7 +1570,7 @@ func (s *SitesService) ImportMapArchivePerformImport(importContextUUID string) (
 
 @param CreateSiteHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-site-v1
 */
 func (s *SitesService) CreateSite(requestSitesCreateSite *RequestSitesCreateSite, CreateSiteHeaderParams *CreateSiteHeaderParams) (*ResponseSitesCreateSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/site"
@@ -1686,7 +1686,7 @@ func (s *SitesService) UpdateSite(siteID string, requestSitesUpdateSite *Request
 @param importContextUUID importContextUuid path parameter. The unique import context UUID given by a previous call to Start Import API
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-cancel-an-import
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-map-archive-cancel-an-import-v1
 */
 func (s *SitesService) ImportMapArchiveCancelAnImport(importContextUUID string) (*ResponseSitesImportMapArchiveCancelAnImport, *resty.Response, error) {
 	//importContextUUID string
@@ -1707,7 +1707,8 @@ func (s *SitesService) ImportMapArchiveCancelAnImport(importContextUUID string) 
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ImportMapArchiveCancelAnImport(importContextUUID)
+			return s.ImportMapArchiveCancelAnImport(
+				importContextUUID)
 		}
 		return nil, response, fmt.Errorf("error with operation ImportMapArchiveCancelAnImport")
 	}
@@ -1725,7 +1726,7 @@ func (s *SitesService) ImportMapArchiveCancelAnImport(importContextUUID string) 
 @param siteID siteId path parameter. Site id to which site details to be deleted.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-site-v1
 */
 func (s *SitesService) DeleteSite(siteID string) (*ResponseSitesDeleteSite, *resty.Response, error) {
 	//siteID string

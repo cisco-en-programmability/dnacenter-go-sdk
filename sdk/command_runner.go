@@ -34,7 +34,7 @@ type RequestCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfigura
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-keywords-of-clis-accepted-by-command-runner
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-keywords-of-clis-accepted-by-command-runner-v1
 */
 func (s *CommandRunnerService) GetAllKeywordsOfClisAcceptedByCommandRunner() (*ResponseCommandRunnerGetAllKeywordsOfClisAcceptedByCommandRunner, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-poller/cli/legit-reads"
@@ -68,7 +68,7 @@ func (s *CommandRunnerService) GetAllKeywordsOfClisAcceptedByCommandRunner() (*R
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!run-read-only-commands-on-devices-to-get-their-real-time-configuration
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!run-read-only-commands-on-devices-to-get-their-real-time-configuration-v1
 */
 func (s *CommandRunnerService) RunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration(requestCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration *RequestCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration) (*ResponseCommandRunnerRunReadOnlyCommandsOnDevicesToGetTheirRealTimeConfiguration, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-poller/cli/read-request"

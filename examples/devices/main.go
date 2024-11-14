@@ -21,7 +21,7 @@ func main() {
 	}
 
 	fmt.Println("Getting device count")
-	devicesCount, _, err := Client.Devices.GetDeviceCount2(nil)
+	devicesCount, _, err := Client.Devices.GetDeviceConfigCount()
 	if err != nil {
 		fmt.Println(err)
 	}

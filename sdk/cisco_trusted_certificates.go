@@ -14,7 +14,7 @@ type CiscoTrustedCertificatesService service
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-trusted-certificate
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-trusted-certificate-v1
 */
 func (s *CiscoTrustedCertificatesService) ImportTrustedCertificate() (*resty.Response, error) {
 	path := "/dna/intent/api/v1/trustedCertificates/import"

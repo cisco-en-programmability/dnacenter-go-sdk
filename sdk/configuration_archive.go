@@ -71,7 +71,7 @@ type RequestConfigurationArchiveExportDeviceConfigurations struct {
 
 @param GetConfigurationArchiveDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-configuration-archive-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-configuration-archive-details-v1
 */
 func (s *ConfigurationArchiveService) GetConfigurationArchiveDetails(GetConfigurationArchiveDetailsQueryParams *GetConfigurationArchiveDetailsQueryParams) (*ResponseConfigurationArchiveGetConfigurationArchiveDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-config"
@@ -107,7 +107,7 @@ func (s *ConfigurationArchiveService) GetConfigurationArchiveDetails(GetConfigur
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-configurations
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!export-device-configurations-v1
 */
 func (s *ConfigurationArchiveService) ExportDeviceConfigurations(requestConfigurationArchiveExportDeviceConfigurations *RequestConfigurationArchiveExportDeviceConfigurations) (*ResponseConfigurationArchiveExportDeviceConfigurations, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network-device-archive/cleartext"

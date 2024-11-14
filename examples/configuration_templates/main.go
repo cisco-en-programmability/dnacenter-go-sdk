@@ -93,7 +93,7 @@ func main() {
 	// 	return
 	// }
 
-	resp, _, err := client.ConfigurationTemplates.GetProjectsDetails(&dnac.GetProjectsDetailsQueryParams{
+	resp, _, err := client.ConfigurationTemplates.GetProjectsDetailsV2(&dnac.GetProjectsDetailsV2QueryParams{
 		Name: "Onboarding Configuration",
 	})
 

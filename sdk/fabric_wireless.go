@@ -140,7 +140,7 @@ type RequestItemFabricWirelessAddUpdateOrRemoveSSIDMappingToAVLANSSIDDetails str
 
 @param GetSSIDToIPPoolMappingQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-to-ip-pool-mapping
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-to-ip-pool-mapping-v1
 */
 func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQueryParams *GetSSIDToIPPoolMappingQueryParams) (*ResponseFabricWirelessGetSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
@@ -177,7 +177,7 @@ func (s *FabricWirelessService) GetSSIDToIPPoolMapping(GetSSIDToIPPoolMappingQue
 
 @param ReturnsAllTheFabricSitesThatHaveVLANToSSIDMappingQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-the-fabric-sites-that-have-vlan-to-ssid-mapping
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-the-fabric-sites-that-have-vlan-to-ssid-mapping-v1
 */
 func (s *FabricWirelessService) ReturnsAllTheFabricSitesThatHaveVLANToSSIDMapping(ReturnsAllTheFabricSitesThatHaveVLANToSSIDMappingQueryParams *ReturnsAllTheFabricSitesThatHaveVLANToSSIDMappingQueryParams) (*ResponseFabricWirelessReturnsAllTheFabricSitesThatHaveVLANToSSIDMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabrics/vlanToSsids"
@@ -213,7 +213,7 @@ func (s *FabricWirelessService) ReturnsAllTheFabricSitesThatHaveVLANToSSIDMappin
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!return-the-count-of-all-the-fabric-site-which-has-ssid-to-ip-pool-mapping
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!return-the-count-of-all-the-fabric-site-which-has-ssid-to-ip-pool-mapping-v1
 */
 func (s *FabricWirelessService) ReturnTheCountOfAllTheFabricSiteWhichHasSSIDToIPPoolMapping() (*ResponseFabricWirelessReturnTheCountOfAllTheFabricSiteWhichHasSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabrics/vlanToSsids/count"
@@ -250,7 +250,7 @@ func (s *FabricWirelessService) ReturnTheCountOfAllTheFabricSiteWhichHasSSIDToIP
 
 @param RetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFabricSiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-vlans-and-ssids-mapped-to-the-vlan-within-a-fabric-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-vlans-and-ssids-mapped-to-the-vlan-within-a-fabric-site-v1
 */
 func (s *FabricWirelessService) RetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFabricSite(fabricID string, RetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFabricSiteQueryParams *RetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFabricSiteQueryParams) (*ResponseFabricWirelessRetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFabricSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabrics/{fabricId}/vlanToSsids"
@@ -289,7 +289,7 @@ func (s *FabricWirelessService) RetrieveTheVLANsAndSSIDsMappedToTheVLANWithinAFa
 @param fabricID fabricId path parameter. The 'fabricId' represents the Fabric ID of a particular Fabric Site
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-the-count-of-vlans-mapped-to-ssids-in-a-fabric-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-the-count-of-vlans-mapped-to-ssids-in-a-fabric-site-v1
 */
 func (s *FabricWirelessService) ReturnsTheCountOfVLANsMappedToSSIDsInAFabricSite(fabricID string) (*ResponseFabricWirelessReturnsTheCountOfVLANsMappedToSSIDsInAFabricSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sda/fabrics/{fabricId}/vlanToSsids/count"
@@ -324,7 +324,7 @@ func (s *FabricWirelessService) ReturnsTheCountOfVLANsMappedToSSIDsInAFabricSite
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ssid-to-ip-pool-mapping
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-ssid-to-ip-pool-mapping-v1
 */
 func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddSSIDToIPPoolMapping *RequestFabricWirelessAddSSIDToIPPoolMapping) (*ResponseFabricWirelessAddSSIDToIPPoolMapping, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/hostonboarding/ssid-ippool"
@@ -361,7 +361,7 @@ func (s *FabricWirelessService) AddSSIDToIPPoolMapping(requestFabricWirelessAddS
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-w-l-c-to-fabric-domain
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-w-l-c-to-fabric-domain-v1
 */
 func (s *FabricWirelessService) AddWLCToFabricDomain(requestFabricWirelessAddWLCToFabricDomain *RequestFabricWirelessAddWLCToFabricDomain) (*ResponseFabricWirelessAddWLCToFabricDomain, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/sda/wireless-controller"
@@ -426,8 +426,8 @@ func (s *FabricWirelessService) UpdateSSIDToIPPoolMapping(requestFabricWirelessU
 
 }
 
-//AddUpdateOrRemoveSSIDMappingToAVLAN Add Update or Remove SSID mapping to a VLAN - 07af-b879-4c2a-983b
-/* Add update, or remove SSID mappings to a VLAN. If the payload doesn't contain a 'vlanName' which has SSIDs mapping done earlier then all the mapped SSIDs of the 'vlanName' is cleared. The request must include all SSIDs currently mapped to a VLAN, as determined by the response from the GET operation for the same fabricId used in the request. If an already-mapped SSID is not included in the payload, its mapping will be removed by this API. Conversely, if a new SSID is provided, it will be added to the Mapping. Ensure that any new SSID added is a Fabric SSID. This API can also be used to add a VLAN and associate the relevant SSIDs with it. The 'vlanName' must be 'Fabric Wireless Enabled' and should be part of the Fabric Site representing 'Fabric ID' specified in the API request.
+//AddUpdateOrRemoveSSIDMappingToAVLAN Add, Update or Remove SSID mapping to a VLAN - 07af-b879-4c2a-983b
+/* Add, update, or remove SSID mappings to a VLAN. If the payload doesn't contain a 'vlanName' which has SSIDs mapping done earlier then all the mapped SSIDs of the 'vlanName' is cleared. The request must include all SSIDs currently mapped to a VLAN, as determined by the response from the GET operation for the same fabricId used in the request. If an already-mapped SSID is not included in the payload, its mapping will be removed by this API. Conversely, if a new SSID is provided, it will be added to the Mapping. Ensure that any new SSID added is a Fabric SSID. This API can also be used to add a VLAN and associate the relevant SSIDs with it. The 'vlanName' must be 'Fabric Wireless Enabled' and should be part of the Fabric Site representing 'Fabric ID' specified in the API request.
 
 
 @param fabricID fabricId path parameter. The 'fabricId' represents the Fabric ID of a particular Fabric Site
@@ -469,7 +469,7 @@ func (s *FabricWirelessService) AddUpdateOrRemoveSSIDMappingToAVLAN(fabricID str
 @param RemoveWLCFromFabricDomainHeaderParams Custom header parameters
 @param RemoveWLCFromFabricDomainQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-w-l-c-from-fabric-domain
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-w-l-c-from-fabric-domain-v1
 */
 func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams) (*ResponseFabricWirelessRemoveWLCFromFabricDomain, *resty.Response, error) {
 	//RemoveWLCFromFabricDomainHeaderParams *RemoveWLCFromFabricDomainHeaderParams,RemoveWLCFromFabricDomainQueryParams *RemoveWLCFromFabricDomainQueryParams

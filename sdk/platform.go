@@ -28,7 +28,7 @@ type ResponsePlatformCiscoDnaCenterReleaseSummaryResponse struct {
 	InstalledVersion       string                                                                        `json:"installedVersion,omitempty"`       // The installed Cisco DNAC version
 	SystemVersion          string                                                                        `json:"systemVersion,omitempty"`          // The MAGLEV-SYSTEM version
 	SupportedDirectUpdates *[]ResponsePlatformCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates `json:"supportedDirectUpdates,omitempty"` // The list of earlier releases that can upgrade directly to the current release. If the supportedDirectUpdates value is empty, then no direct upgrades to the current release are allowed.
-	TenantID               string                                                                        `json:"tenantId,omitempty"`               // Tenant ID (for multi tenant Cisco Catalyst Center)
+	TenantID               string                                                                        `json:"tenantId,omitempty"`               // Tenant ID (for multi tenant Cisco DNA Center)
 }
 type ResponsePlatformCiscoDnaCenterReleaseSummaryResponseSupportedDirectUpdates interface{}
 type ResponsePlatformCiscoDnaCenterNodesConfigurationSummary struct {
@@ -89,7 +89,7 @@ type ResponsePlatformCiscoDnaCenterNodesConfigurationSummaryResponseNodesPlatfor
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-packages-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-packages-summary-v1
 */
 func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCiscoDnaCenterPackagesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-packages"
@@ -123,7 +123,7 @@ func (s *PlatformService) CiscoDnaCenterPackagesSummary() (*ResponsePlatformCisc
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-release-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-release-summary-v1
 */
 func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCiscoDnaCenterReleaseSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnac-release"
@@ -157,7 +157,7 @@ func (s *PlatformService) CiscoDnaCenterReleaseSummary() (*ResponsePlatformCisco
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-nodes-configuration-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!cisco-dna-center-nodes-configuration-summary-v1
 */
 func (s *PlatformService) CiscoDnaCenterNodesConfigurationSummary() (*ResponsePlatformCiscoDnaCenterNodesConfigurationSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/nodes-config"

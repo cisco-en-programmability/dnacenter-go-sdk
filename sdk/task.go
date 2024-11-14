@@ -2,15 +2,16 @@ package dnac
 
 import (
 	"fmt"
-	"github.com/go-resty/resty/v2"
-	"github.com/google/go-querystring/query"
 	"net/http"
 	"strings"
+
+	"github.com/go-resty/resty/v2"
+	"github.com/google/go-querystring/query"
 )
 
 type TaskService service
 
-type GetTasks2QueryParams struct {
+type GetTasksOperationalTasksQueryParams struct {
 	StartTime     string `url:"startTime,omitempty"`     //This is the epoch start time from which tasks need to be fetched
 	EndTime       string `url:"endTime,omitempty"`       //This is the epoch end time upto which audit records need to be fetched
 	Data          string `url:"data,omitempty"`          //Fetch tasks that contains this data
@@ -70,11 +71,11 @@ type ResponseTaskGetBusinessAPIExecutionDetails struct {
 	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
 	BapiError         string `json:"bapiError,omitempty"`         // Business API error message
 }
-type ResponseTaskGetTasks2 struct {
-	Response *[]ResponseTaskGetTasks2Response `json:"response,omitempty"` //
-	Version  string                           `json:"version,omitempty"`  //
+type ResponseTaskGetTasksOperationalTasks struct {
+	Response *[]ResponseTaskGetTasksOperationalTasksResponse `json:"response,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  //
 }
-type ResponseTaskGetTasks2Response struct {
+type ResponseTaskGetTasksOperationalTasksResponse struct {
 	AdditionalStatusURL string   `json:"additionalStatusURL,omitempty"` //
 	Data                string   `json:"data,omitempty"`                //
 	EndTime             *int     `json:"endTime,omitempty"`             //
@@ -223,7 +224,7 @@ type ResponseTaskGetTaskDetailsByIDResponse struct {
 @param executionID executionId path parameter. Execution Id of API
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-business-api-execution-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-business-api-execution-details-v1
 */
 func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*ResponseTaskGetBusinessAPIExecutionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnacaap/management/execution-status/{executionId}"
@@ -253,23 +254,23 @@ func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*Respo
 
 }
 
-//GetTasks2 Get tasks - e78b-b8a2-449b-9eed
+//GetTasksOperationalTasks Get tasks - e78b-b8a2-449b-9eed
 /* Returns task(s) based on filter criteria
 
 
-@param GetTasks2QueryParams Filtering parameter
+@param GetTasksOperationalTasksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-operational-tasks-v1
 */
-func (s *TaskService) GetTasks2(GetTasks2QueryParams *GetTasks2QueryParams) (*ResponseTaskGetTasks2, *resty.Response, error) {
+func (s *TaskService) GetTasksOperationalTasks(GetTasksOperationalTasksQueryParams *GetTasksOperationalTasksQueryParams) (*ResponseTaskGetTasksOperationalTasks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task"
 
-	queryString, _ := query.Values(GetTasks2QueryParams)
+	queryString, _ := query.Values(GetTasksOperationalTasksQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseTaskGetTasks2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseTaskGetTasksOperationalTasks{}).
 		SetError(&Error).
 		Get(path)
 
@@ -280,12 +281,12 @@ func (s *TaskService) GetTasks2(GetTasks2QueryParams *GetTasks2QueryParams) (*Re
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetTasks2(GetTasks2QueryParams)
+			return s.GetTasksOperationalTasks(GetTasksOperationalTasksQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetTasks2")
+		return nil, response, fmt.Errorf("error with operation GetTasksOperationalTasks")
 	}
 
-	result := response.Result().(*ResponseTaskGetTasks2)
+	result := response.Result().(*ResponseTaskGetTasksOperationalTasks)
 	return result, response, err
 
 }
@@ -296,7 +297,7 @@ func (s *TaskService) GetTasks2(GetTasks2QueryParams *GetTasks2QueryParams) (*Re
 
 @param GetTaskCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-count-v1
 */
 func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryParams) (*ResponseTaskGetTaskCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/count"
@@ -337,7 +338,7 @@ func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryPar
 @param limit limit path parameter. The maximum value of {limit} supported is 500. <br/> Base 1 indexing for {limit}, minimum value is 1
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-operation-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-operation-id-v1
 */
 func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit int) (*ResponseTaskGetTaskByOperationID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/operation/{operationId}/{offset}/{limit}"
@@ -376,7 +377,7 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 @param taskID taskId path parameter. UUID of the Task
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-id-v1
 */
 func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}"
@@ -413,7 +414,7 @@ func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *res
 @param taskID taskId path parameter. UUID of the Task
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-tree
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-tree-v1
 */
 func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}/tree"
@@ -449,7 +450,7 @@ func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *res
 
 @param GetTasksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-v1
 */
 func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*ResponseTaskGetTasks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks"
@@ -486,7 +487,7 @@ func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*Respo
 
 @param GetTasksCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-count-v1
 */
 func (s *TaskService) GetTasksCount(GetTasksCountQueryParams *GetTasksCountQueryParams) (*ResponseTaskGetTasksCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/count"
@@ -521,10 +522,10 @@ func (s *TaskService) GetTasksCount(GetTasksCountQueryParams *GetTasksCountQuery
 /* Returns the task with the given ID
 
 
-@param id id path parameter. the 'id' of the task to retrieve
+@param id id path parameter. the `id` of the task to retrieve
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-by-id-v1
 */
 func (s *TaskService) GetTasksByID(id string) (*ResponseTaskGetTasksByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/{id}"
@@ -558,10 +559,10 @@ func (s *TaskService) GetTasksByID(id string) (*ResponseTaskGetTasksByID, *resty
 /* Returns the task details for the given task ID
 
 
-@param id id path parameter. the 'id' of the task to retrieve details for
+@param id id path parameter. the `id` of the task to retrieve details for
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-details-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-details-by-id-v1
 */
 func (s *TaskService) GetTaskDetailsByID(id string) (*ResponseTaskGetTaskDetailsByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/{id}/detail"

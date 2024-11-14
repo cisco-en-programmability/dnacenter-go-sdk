@@ -37,7 +37,7 @@ type GetSSIDBySiteQueryParams struct {
 type GetAccessPointConfigurationQueryParams struct {
 	Key string `url:"key,omitempty"` //The ethernet MAC address of Access point
 }
-type ApProvision2HeaderParams struct {
+type ApProvisionConnectivityHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type string.
 }
 type DeleteDynamicInterfaceQueryParams struct {
@@ -485,11 +485,11 @@ type ResponseWirelessDeleteWirelessProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
-type ResponseWirelessConfigureAccessPointsV1 struct {
-	Response *ResponseWirelessConfigureAccessPointsV1Response `json:"response,omitempty"` //
-	Version  string                                           `json:"version,omitempty"`  //
+type ResponseWirelessConfigureAccessPoints struct {
+	Response *ResponseWirelessConfigureAccessPointsResponse `json:"response,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  //
 }
-type ResponseWirelessConfigureAccessPointsV1Response struct {
+type ResponseWirelessConfigureAccessPointsResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
@@ -643,7 +643,7 @@ type ResponseWirelessGetAccessPointConfigurationInternalKey struct {
 	LongType string   `json:"longType,omitempty"` //
 	URL      string   `json:"url,omitempty"`      //
 }
-type ResponseWirelessApProvision2 struct {
+type ResponseWirelessApProvisionConnectivity struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status URL
 	Message            string `json:"message,omitempty"`            // Message
@@ -760,7 +760,7 @@ type ResponseWirelessRetrieveRfProfilesRadioTypeAProperties struct {
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels (Default : "36,40,44,48,52,56,60,64,149,153,157,161")
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates (Default : "6,9,12,18,24,36,48,54")
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates (Default: "6,12,24")
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1 ( (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold  ( (Default: -70)
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold  (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Rx Sop Threshold  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
@@ -770,7 +770,7 @@ type ResponseWirelessRetrieveRfProfilesRadioTypeBProperties struct {
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels (Default : "9,11,12,18,24,36,48,54")
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates  (Default: "9,11,12,18,24,36,48,54")
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates  (Default: "12")
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1  (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold   (Default: -70)
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
@@ -783,7 +783,7 @@ type ResponseWirelessRetrieveRfProfilesRadioTypeCProperties struct {
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold  (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1  (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold   (Default: -70)
 }
 type ResponseWirelessCreateOrUpdateRfProfile struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
@@ -975,11 +975,11 @@ type ResponseWirelessGetWirelessProfilesResponseSSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // True if flex connect is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local to VLAN ID
 }
-type ResponseWirelessCreateWirelessProfile2 struct {
-	Response *ResponseWirelessCreateWirelessProfile2Response `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  // Version
+type ResponseWirelessCreateWirelessProfileConnectivity struct {
+	Response *ResponseWirelessCreateWirelessProfileConnectivityResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version
 }
-type ResponseWirelessCreateWirelessProfile2Response struct {
+type ResponseWirelessCreateWirelessProfileConnectivityResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
 	URL    string `json:"url,omitempty"`    // Task URL
 }
@@ -990,11 +990,11 @@ type ResponseWirelessGetWirelessProfilesCount struct {
 type ResponseWirelessGetWirelessProfilesCountResponse struct {
 	Count *int `json:"count,omitempty"` // Count of the requested resource
 }
-type ResponseWirelessUpdateWirelessProfile2 struct {
-	Response *ResponseWirelessUpdateWirelessProfile2Response `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  // Version
+type ResponseWirelessUpdateWirelessProfileConnectivity struct {
+	Response *ResponseWirelessUpdateWirelessProfileConnectivityResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version
 }
-type ResponseWirelessUpdateWirelessProfile2Response struct {
+type ResponseWirelessUpdateWirelessProfileConnectivityResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
 	URL    string `json:"url,omitempty"`    // Task URL
 }
@@ -1020,11 +1020,11 @@ type ResponseWirelessGetWirelessProfileByIDResponseSSIDDetailsFlexConnect struct
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // True if flex connect is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local to VLAN ID
 }
-type ResponseWirelessDeleteWirelessProfile2 struct {
-	Response *ResponseWirelessDeleteWirelessProfile2Response `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  // Version
+type ResponseWirelessDeleteWirelessProfileConnectivity struct {
+	Response *ResponseWirelessDeleteWirelessProfileConnectivityResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version
 }
-type ResponseWirelessDeleteWirelessProfile2Response struct {
+type ResponseWirelessDeleteWirelessProfileConnectivityResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
 	URL    string `json:"url,omitempty"`    // Task URL
 }
@@ -1165,7 +1165,7 @@ type ResponseWirelessGetRfProfilesResponseRadioTypeAProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165, 169, 173
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 5 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 5 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 5 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 5 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 5 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 5 GHz radio band
@@ -1177,7 +1177,7 @@ type ResponseWirelessGetRfProfilesResponseRadioTypeBProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 2.4 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 2.4 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 2.4 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 2.4 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 2.4 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 2.4 GHz radio band
@@ -1187,7 +1187,7 @@ type ResponseWirelessGetRfProfilesResponseRadioType6GHzProperties struct {
 	RadioChannels              string                                                                            `json:"radioChannels,omitempty"`              // DCA channels of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233
 	DataRates                  string                                                                            `json:"dataRates,omitempty"`                  // Data rates of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates         string                                                                            `json:"mandatoryDataRates,omitempty"`         // Mandatory data rates of 6 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1           *int                                                                              `json:"powerThresholdV1,omitempty"`           // Power threshold of 6 GHz radio band
+	PowerThreshold             *int                                                                              `json:"powerThreshold,omitempty"`             // Power threshold of 6 GHz radio band
 	RxSopThreshold             string                                                                            `json:"rxSopThreshold,omitempty"`             // RX-SOP threshold of 6 GHz radio band
 	MinPowerLevel              *int                                                                              `json:"minPowerLevel,omitempty"`              // Minimum power level of 6 GHz radio band
 	MaxPowerLevel              *int                                                                              `json:"maxPowerLevel,omitempty"`              // Maximum power level of 6 GHz radio band
@@ -1252,7 +1252,7 @@ type ResponseWirelessGetRfProfileByIDResponseRadioTypeAProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165, 169, 173
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 5 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 5 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 5 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 5 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 5 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 5 GHz radio band
@@ -1264,7 +1264,7 @@ type ResponseWirelessGetRfProfileByIDResponseRadioTypeBProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 2.4 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 2.4 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 2.4 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 2.4 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 2.4 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 2.4 GHz radio band
@@ -1274,7 +1274,7 @@ type ResponseWirelessGetRfProfileByIDResponseRadioType6GHzProperties struct {
 	RadioChannels              string                                                                               `json:"radioChannels,omitempty"`              // DCA channels of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233
 	DataRates                  string                                                                               `json:"dataRates,omitempty"`                  // Data rates of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates         string                                                                               `json:"mandatoryDataRates,omitempty"`         // Mandatory data rates of 6 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1           *int                                                                                 `json:"powerThresholdV1,omitempty"`           // Power threshold of 6 GHz radio band
+	PowerThreshold             *int                                                                                 `json:"powerThreshold,omitempty"`             // Power threshold of 6 GHz radio band
 	RxSopThreshold             string                                                                               `json:"rxSopThreshold,omitempty"`             // RX-SOP threshold of 6 GHz radio band
 	MinPowerLevel              *int                                                                                 `json:"minPowerLevel,omitempty"`              // Minimum power level of 6 GHz radio band
 	MaxPowerLevel              *int                                                                                 `json:"maxPowerLevel,omitempty"`              // Maximum power level of 6 GHz radio band
@@ -1575,45 +1575,45 @@ type RequestWirelessUpdateSSIDMultipSKSettings struct {
 	PassphraseType string `json:"passphraseType,omitempty"` // Passphrase Type
 	Passphrase     string `json:"passphrase,omitempty"`     // Passphrase needs to be between 8 and 63 characters for ASCII type. HEX passphrase needs to be 64 characters
 }
-type RequestWirelessConfigureAccessPointsV1 struct {
-	ApList                      *[]RequestWirelessConfigureAccessPointsV1ApList              `json:"apList,omitempty"`                      //
-	ConfigureAdminStatus        *bool                                                        `json:"configureAdminStatus,omitempty"`        // To change the access point's admin status, set this parameter's value to "true".
-	AdminStatus                 *bool                                                        `json:"adminStatus,omitempty"`                 // Configure the access point's admin status. Set this parameter's value to "true" to enable it and "false" to disable it.
-	ConfigureApMode             *bool                                                        `json:"configureApMode,omitempty"`             // To change the access point's mode, set this parameter's value to "true".
-	ApMode                      *int                                                         `json:"apMode,omitempty"`                      // Configure the access point's mode: for local/flexconnect mode, set "0"; for monitor mode, set "1"; for sniffer mode, set "4"; and for bridge/flex+bridge mode, set "5".
-	ConfigureFailoverPriority   *bool                                                        `json:"configureFailoverPriority,omitempty"`   // To change the access point's failover priority, set this parameter's value to "true".
-	FailoverPriority            *int                                                         `json:"failoverPriority,omitempty"`            // Configure the acess point's failover priority: for low, set "1"; for medium, set "2"; for high, set "3"; and for critical, set "4".
-	ConfigureLedStatus          *bool                                                        `json:"configureLedStatus,omitempty"`          // To change the access point's LED status, set this parameter's value to "true".
-	LedStatus                   *bool                                                        `json:"ledStatus,omitempty"`                   // Configure the access point's LED status. Set "true" to enable its status and "false" to disable it.
-	ConfigureLedBrightnessLevel *bool                                                        `json:"configureLedBrightnessLevel,omitempty"` // To change the access point's LED brightness level, set this parameter's value to "true".
-	LedBrightnessLevel          *int                                                         `json:"ledBrightnessLevel,omitempty"`          // Configure the access point's LED brightness level by setting a value between 1 and 8.
-	ConfigureLocation           *bool                                                        `json:"configureLocation,omitempty"`           // To change the access point's location, set this parameter's value to "true".
-	Location                    string                                                       `json:"location,omitempty"`                    // Configure the access point's location.
-	ConfigureHAController       *bool                                                        `json:"configureHAController,omitempty"`       // To change the access point's HA controller, set this parameter's value to "true".
-	PrimaryControllerName       string                                                       `json:"primaryControllerName,omitempty"`       // Configure the hostname for an access point's primary controller.
-	PrimaryIPAddress            *RequestWirelessConfigureAccessPointsV1PrimaryIPAddress      `json:"primaryIpAddress,omitempty"`            //
-	SecondaryControllerName     string                                                       `json:"secondaryControllerName,omitempty"`     // Configure the hostname for an access point's secondary controller.
-	SecondaryIPAddress          *RequestWirelessConfigureAccessPointsV1SecondaryIPAddress    `json:"secondaryIpAddress,omitempty"`          //
-	TertiaryControllerName      string                                                       `json:"tertiaryControllerName,omitempty"`      // Configure the hostname for an access point's tertiary controller.
-	TertiaryIPAddress           *RequestWirelessConfigureAccessPointsV1TertiaryIPAddress     `json:"tertiaryIpAddress,omitempty"`           //
-	RadioConfigurations         *[]RequestWirelessConfigureAccessPointsV1RadioConfigurations `json:"radioConfigurations,omitempty"`         //
-	IsAssignedSiteAsLocation    *bool                                                        `json:"isAssignedSiteAsLocation,omitempty"`    // If AP is assigned to a site, then to assign AP location as the site name, set this parameter's value to "true".
+type RequestWirelessConfigureAccessPoints struct {
+	ApList                      *[]RequestWirelessConfigureAccessPointsApList              `json:"apList,omitempty"`                      //
+	ConfigureAdminStatus        *bool                                                      `json:"configureAdminStatus,omitempty"`        // To change the access point's admin status, set this parameter's value to "true".
+	AdminStatus                 *bool                                                      `json:"adminStatus,omitempty"`                 // Configure the access point's admin status. Set this parameter's value to "true" to enable it and "false" to disable it.
+	ConfigureApMode             *bool                                                      `json:"configureApMode,omitempty"`             // To change the access point's mode, set this parameter's value to "true".
+	ApMode                      *int                                                       `json:"apMode,omitempty"`                      // Configure the access point's mode: for local/flexconnect mode, set "0"; for monitor mode, set "1"; for sniffer mode, set "4"; and for bridge/flex+bridge mode, set "5".
+	ConfigureFailoverPriority   *bool                                                      `json:"configureFailoverPriority,omitempty"`   // To change the access point's failover priority, set this parameter's value to "true".
+	FailoverPriority            *int                                                       `json:"failoverPriority,omitempty"`            // Configure the acess point's failover priority: for low, set "1"; for medium, set "2"; for high, set "3"; and for critical, set "4".
+	ConfigureLedStatus          *bool                                                      `json:"configureLedStatus,omitempty"`          // To change the access point's LED status, set this parameter's value to "true".
+	LedStatus                   *bool                                                      `json:"ledStatus,omitempty"`                   // Configure the access point's LED status. Set "true" to enable its status and "false" to disable it.
+	ConfigureLedBrightnessLevel *bool                                                      `json:"configureLedBrightnessLevel,omitempty"` // To change the access point's LED brightness level, set this parameter's value to "true".
+	LedBrightnessLevel          *int                                                       `json:"ledBrightnessLevel,omitempty"`          // Configure the access point's LED brightness level by setting a value between 1 and 8.
+	ConfigureLocation           *bool                                                      `json:"configureLocation,omitempty"`           // To change the access point's location, set this parameter's value to "true".
+	Location                    string                                                     `json:"location,omitempty"`                    // Configure the access point's location.
+	ConfigureHAController       *bool                                                      `json:"configureHAController,omitempty"`       // To change the access point's HA controller, set this parameter's value to "true".
+	PrimaryControllerName       string                                                     `json:"primaryControllerName,omitempty"`       // Configure the hostname for an access point's primary controller.
+	PrimaryIPAddress            *RequestWirelessConfigureAccessPointsPrimaryIPAddress      `json:"primaryIpAddress,omitempty"`            //
+	SecondaryControllerName     string                                                     `json:"secondaryControllerName,omitempty"`     // Configure the hostname for an access point's secondary controller.
+	SecondaryIPAddress          *RequestWirelessConfigureAccessPointsSecondaryIPAddress    `json:"secondaryIpAddress,omitempty"`          //
+	TertiaryControllerName      string                                                     `json:"tertiaryControllerName,omitempty"`      // Configure the hostname for an access point's tertiary controller.
+	TertiaryIPAddress           *RequestWirelessConfigureAccessPointsTertiaryIPAddress     `json:"tertiaryIpAddress,omitempty"`           //
+	RadioConfigurations         *[]RequestWirelessConfigureAccessPointsRadioConfigurations `json:"radioConfigurations,omitempty"`         //
+	IsAssignedSiteAsLocation    *bool                                                      `json:"isAssignedSiteAsLocation,omitempty"`    // If AP is assigned to a site, then to assign AP location as the site name, set this parameter's value to "true".
 }
-type RequestWirelessConfigureAccessPointsV1ApList struct {
+type RequestWirelessConfigureAccessPointsApList struct {
 	ApName     string `json:"apName,omitempty"`     // The current host name of the access point.
 	MacAddress string `json:"macAddress,omitempty"` // The ethernet MAC address of the access point.
 	ApNameNew  string `json:"apNameNew,omitempty"`  // The modified hostname of the access point.
 }
-type RequestWirelessConfigureAccessPointsV1PrimaryIPAddress struct {
+type RequestWirelessConfigureAccessPointsPrimaryIPAddress struct {
 	Address string `json:"address,omitempty"` // Configure the IP address for an access point's primary controller.
 }
-type RequestWirelessConfigureAccessPointsV1SecondaryIPAddress struct {
+type RequestWirelessConfigureAccessPointsSecondaryIPAddress struct {
 	Address string `json:"address,omitempty"` // Configure the IP address for an access point's secondary controller.
 }
-type RequestWirelessConfigureAccessPointsV1TertiaryIPAddress struct {
+type RequestWirelessConfigureAccessPointsTertiaryIPAddress struct {
 	Address string `json:"address,omitempty"` // Configure the IP address for an access point's tertiary controller.
 }
-type RequestWirelessConfigureAccessPointsV1RadioConfigurations struct {
+type RequestWirelessConfigureAccessPointsRadioConfigurations struct {
 	ConfigureRadioRoleAssignment *bool    `json:"configureRadioRoleAssignment,omitempty"` // To change the radio role on the specified radio for an access point, set this parameter's value to "true".
 	RadioRoleAssignment          string   `json:"radioRoleAssignment,omitempty"`          // Configure only one of the following roles on the specified radio for an access point as "AUTO", "SERVING", or "MONITOR". Any other string is invalid, including empty string
 	RadioBand                    string   `json:"radioBand,omitempty"`                    // Configure the band on the specified radio for an access point: for 2.4 GHz, set "RADIO24"; for 5 GHz, set "RADIO5". Any other string is invalid, including empty string
@@ -1637,8 +1637,8 @@ type RequestWirelessConfigureAccessPointsV1RadioConfigurations struct {
 	CleanAirSI                   *int     `json:"cleanAirSI,omitempty"`                   // Configure CleanAir or Spectrum Intelligence on the specified radio for an access point. Set this parameter's value to "0" to disable the feature or "1" to enable it.
 	RadioType                    *int     `json:"radioType,omitempty"`                    // Configure an access point's radio band: for 2.4 GHz, set "1"; for 5 GHz, set "2"; for XOR, set "3"; and for 6 GHz, set "6".
 }
-type RequestWirelessApProvision2 []RequestItemWirelessApProvision2 // Array of RequestWirelessAPProvision2
-type RequestItemWirelessApProvision2 struct {
+type RequestWirelessApProvisionConnectivity []RequestItemWirelessApProvisionConnectivity // Array of RequestWirelessAPProvisionConnectivity
+type RequestItemWirelessApProvisionConnectivity struct {
 	RfProfile           string   `json:"rfProfile,omitempty"`           // Radio frequency profile name
 	DeviceName          string   `json:"deviceName,omitempty"`          // Device name
 	CustomApGroupName   string   `json:"customApGroupName,omitempty"`   // Custom AP group name
@@ -1744,7 +1744,7 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeAProperties struct {
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels (Default : "36,40,44,48,52,56,60,64,149,153,157,161")
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates (Default : "6,9,12,18,24,36,48,54")
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates (Default: "6,12,24")
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1 ( (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold  ( (Default: -70)
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold  (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Rx Sop Threshold  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
@@ -1754,7 +1754,7 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeBProperties struct {
 	RadioChannels      string   `json:"radioChannels,omitempty"`      // Radio Channels (Default : "9,11,12,18,24,36,48,54")
 	DataRates          string   `json:"dataRates,omitempty"`          // Data Rates  (Default: "9,11,12,18,24,36,48,54")
 	MandatoryDataRates string   `json:"mandatoryDataRates,omitempty"` // Mandatory Data Rates  (Default: "12")
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1  (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold   (Default: -70)
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
@@ -1767,7 +1767,7 @@ type RequestWirelessCreateOrUpdateRfProfileRadioTypeCProperties struct {
 	RxSopThreshold     string   `json:"rxSopThreshold,omitempty"`     // Rx Sop Threshold  (Default: "AUTO")
 	MinPowerLevel      *float64 `json:"minPowerLevel,omitempty"`      // Min Power Level  (Default: -10)
 	MaxPowerLevel      *float64 `json:"maxPowerLevel,omitempty"`      // Max Power Level  (Default: 30)
-	PowerThresholdV1   *float64 `json:"powerThresholdV1,omitempty"`   // Power Threshold V1  (Default: -70)
+	PowerThreshold     *float64 `json:"powerThreshold,omitempty"`     // Power Threshold   (Default: -70)
 }
 type RequestWirelessFactoryResetAccessPoints struct {
 	KeepStaticIPConfig *bool    `json:"keepStaticIPConfig,omitempty"` // Set the value of keepStaticIPConfig to false, to clear all configurations from Access Points and set the value of keepStaticIPConfig to true, to clear all configurations from Access Points without clearing static IP configuration.
@@ -1826,35 +1826,35 @@ type RequestWirelessWirelessControllerProvisionRollingApUpgrade struct {
 	EnableRollingApUpgrade *bool `json:"enableRollingApUpgrade,omitempty"` // True if Rolling AP Upgrade is enabled, else False
 	ApRebootPercentage     *int  `json:"apRebootPercentage,omitempty"`     // AP Reboot Percentage. Permissible values - 5, 15, 25
 }
-type RequestWirelessCreateWirelessProfile2 struct {
-	WirelessProfileName string                                              `json:"wirelessProfileName,omitempty"` // Wireless Network Profile Name
-	SSIDDetails         *[]RequestWirelessCreateWirelessProfile2SSIDDetails `json:"ssidDetails,omitempty"`         //
+type RequestWirelessCreateWirelessProfileConnectivity struct {
+	WirelessProfileName string                                                         `json:"wirelessProfileName,omitempty"` // Wireless Network Profile Name
+	SSIDDetails         *[]RequestWirelessCreateWirelessProfileConnectivitySSIDDetails `json:"ssidDetails,omitempty"`         //
 }
-type RequestWirelessCreateWirelessProfile2SSIDDetails struct {
-	SSIDName         string                                                       `json:"ssidName,omitempty"`         // SSID Name
-	FlexConnect      *RequestWirelessCreateWirelessProfile2SSIDDetailsFlexConnect `json:"flexConnect,omitempty"`      //
-	EnableFabric     *bool                                                        `json:"enableFabric,omitempty"`     // True if fabric is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
-	WLANProfileName  string                                                       `json:"wlanProfileName,omitempty"`  // WLAN Profile Name
-	InterfaceName    string                                                       `json:"interfaceName,omitempty"`    // Interface Name. Default Value: management
-	Dot11BeProfileID string                                                       `json:"dot11beProfileId,omitempty"` // 802.11be Profile Id. Applicable to IOS controllers with version 17.15 and higher. 802.11be Profiles if passed, should be same across all SSIDs in network profile being configured
+type RequestWirelessCreateWirelessProfileConnectivitySSIDDetails struct {
+	SSIDName         string                                                                  `json:"ssidName,omitempty"`         // SSID Name
+	FlexConnect      *RequestWirelessCreateWirelessProfileConnectivitySSIDDetailsFlexConnect `json:"flexConnect,omitempty"`      //
+	EnableFabric     *bool                                                                   `json:"enableFabric,omitempty"`     // True if fabric is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
+	WLANProfileName  string                                                                  `json:"wlanProfileName,omitempty"`  // WLAN Profile Name
+	InterfaceName    string                                                                  `json:"interfaceName,omitempty"`    // Interface Name. Default Value: management
+	Dot11BeProfileID string                                                                  `json:"dot11beProfileId,omitempty"` // 802.11be Profile Id. Applicable to IOS controllers with version 17.15 and higher. 802.11be Profiles if passed, should be same across all SSIDs in network profile being configured
 }
-type RequestWirelessCreateWirelessProfile2SSIDDetailsFlexConnect struct {
+type RequestWirelessCreateWirelessProfileConnectivitySSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // True if flex connect is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local to VLAN ID
 }
-type RequestWirelessUpdateWirelessProfile2 struct {
-	WirelessProfileName string                                              `json:"wirelessProfileName,omitempty"` // Wireless Network Profile Name
-	SSIDDetails         *[]RequestWirelessUpdateWirelessProfile2SSIDDetails `json:"ssidDetails,omitempty"`         //
+type RequestWirelessUpdateWirelessProfileConnectivity struct {
+	WirelessProfileName string                                                         `json:"wirelessProfileName,omitempty"` // Wireless Network Profile Name
+	SSIDDetails         *[]RequestWirelessUpdateWirelessProfileConnectivitySSIDDetails `json:"ssidDetails,omitempty"`         //
 }
-type RequestWirelessUpdateWirelessProfile2SSIDDetails struct {
-	SSIDName         string                                                       `json:"ssidName,omitempty"`         // SSID Name
-	FlexConnect      *RequestWirelessUpdateWirelessProfile2SSIDDetailsFlexConnect `json:"flexConnect,omitempty"`      //
-	EnableFabric     *bool                                                        `json:"enableFabric,omitempty"`     // True if fabric is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
-	WLANProfileName  string                                                       `json:"wlanProfileName,omitempty"`  // WLAN Profile Name
-	InterfaceName    string                                                       `json:"interfaceName,omitempty"`    // Interface Name. Default Value: management
-	Dot11BeProfileID string                                                       `json:"dot11beProfileId,omitempty"` // 802.11be Profile Id. Applicable to IOS controllers with version 17.15 and higher. 802.11be Profiles if passed, should be same across all SSIDs in network profile being configured
+type RequestWirelessUpdateWirelessProfileConnectivitySSIDDetails struct {
+	SSIDName         string                                                                  `json:"ssidName,omitempty"`         // SSID Name
+	FlexConnect      *RequestWirelessUpdateWirelessProfileConnectivitySSIDDetailsFlexConnect `json:"flexConnect,omitempty"`      //
+	EnableFabric     *bool                                                                   `json:"enableFabric,omitempty"`     // True if fabric is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
+	WLANProfileName  string                                                                  `json:"wlanProfileName,omitempty"`  // WLAN Profile Name
+	InterfaceName    string                                                                  `json:"interfaceName,omitempty"`    // Interface Name. Default Value: management
+	Dot11BeProfileID string                                                                  `json:"dot11beProfileId,omitempty"` // 802.11be Profile Id. Applicable to IOS controllers with version 17.15 and higher. 802.11be Profiles if passed, should be same across all SSIDs in network profile being configured
 }
-type RequestWirelessUpdateWirelessProfile2SSIDDetailsFlexConnect struct {
+type RequestWirelessUpdateWirelessProfileConnectivitySSIDDetailsFlexConnect struct {
 	EnableFlexConnect *bool `json:"enableFlexConnect,omitempty"` // True if flex connect is enabled, else False. Flex and fabric cannot be enabled simultaneously and a profile can only contain either flex SSIDs or fabric SSIDs and not both at the same time
 	LocalToVLAN       *int  `json:"localToVlan,omitempty"`       // Local to VLAN ID
 }
@@ -1897,7 +1897,7 @@ type RequestWirelessCreateRfProfileRadioTypeAProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165, 169, 173
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 5 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 5 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 5 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 5 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 5 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 5 GHz radio band
@@ -1909,7 +1909,7 @@ type RequestWirelessCreateRfProfileRadioTypeBProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 2.4 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 2.4 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 2.4 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 2.4 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 2.4 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 2.4 GHz radio band
@@ -1919,7 +1919,7 @@ type RequestWirelessCreateRfProfileRadioType6GHzProperties struct {
 	RadioChannels              string                                                                     `json:"radioChannels,omitempty"`              // DCA channels of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233
 	DataRates                  string                                                                     `json:"dataRates,omitempty"`                  // Data rates of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates         string                                                                     `json:"mandatoryDataRates,omitempty"`         // Mandatory data rates of 6 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1           *int                                                                       `json:"powerThresholdV1,omitempty"`           // Power threshold of 6 GHz radio band
+	PowerThreshold             *int                                                                       `json:"powerThreshold,omitempty"`             // Power threshold of 6 GHz radio band
 	RxSopThreshold             string                                                                     `json:"rxSopThreshold,omitempty"`             // RX-SOP threshold of 6 GHz radio band
 	MinPowerLevel              *int                                                                       `json:"minPowerLevel,omitempty"`              // Minimum power level of 6 GHz radio band
 	MaxPowerLevel              *int                                                                       `json:"maxPowerLevel,omitempty"`              // Maximum power level of 6 GHz radio band
@@ -1963,7 +1963,7 @@ type RequestWirelessUpdateRfProfileRadioTypeAProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 36, 40, 44, 48, 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 124, 128, 132, 136, 140, 144, 149, 153, 157, 161, 165, 169, 173
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 5 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 5 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 5 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 5 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 5 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 5 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 5 GHz radio band
@@ -1975,7 +1975,7 @@ type RequestWirelessUpdateRfProfileRadioTypeBProperties struct {
 	RadioChannels      string `json:"radioChannels,omitempty"`      // DCA channels of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
 	DataRates          string `json:"dataRates,omitempty"`          // Data rates of 2.4 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates string `json:"mandatoryDataRates,omitempty"` // Mandatory data rates of 2.4 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1   *int   `json:"powerThresholdV1,omitempty"`   // Power threshold of 2.4 GHz radio band
+	PowerThreshold     *int   `json:"powerThreshold,omitempty"`     // Power threshold of 2.4 GHz radio band
 	RxSopThreshold     string `json:"rxSopThreshold,omitempty"`     // RX-SOP threshold of 2.4 GHz radio band
 	MinPowerLevel      *int   `json:"minPowerLevel,omitempty"`      // Minimum power level of 2.4 GHz radio band
 	MaxPowerLevel      *int   `json:"maxPowerLevel,omitempty"`      // Maximum power level of 2.4 GHz radio band
@@ -1985,7 +1985,7 @@ type RequestWirelessUpdateRfProfileRadioType6GHzProperties struct {
 	RadioChannels              string                                                                     `json:"radioChannels,omitempty"`              // DCA channels of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173, 177, 181, 185, 189, 193, 197, 201, 205, 209, 213, 217, 221, 225, 229, 233
 	DataRates                  string                                                                     `json:"dataRates,omitempty"`                  // Data rates of 6 GHz radio band passed in comma separated format without any spaces. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
 	MandatoryDataRates         string                                                                     `json:"mandatoryDataRates,omitempty"`         // Mandatory data rates of 6 GHz radio band passed in comma separated format without any spaces and must be a subset of selected dataRates with maximum of 2 values. Permissible values: 6, 9, 12, 18, 24, 36, 48, 54
-	PowerThresholdV1           *int                                                                       `json:"powerThresholdV1,omitempty"`           // Power threshold of 6 GHz radio band
+	PowerThreshold             *int                                                                       `json:"powerThreshold,omitempty"`             // Power threshold of 6 GHz radio band
 	RxSopThreshold             string                                                                     `json:"rxSopThreshold,omitempty"`             // RX-SOP threshold of 6 GHz radio band
 	MinPowerLevel              *int                                                                       `json:"minPowerLevel,omitempty"`              // Minimum power level of 6 GHz radio band
 	MaxPowerLevel              *int                                                                       `json:"maxPowerLevel,omitempty"`              // Maximum power level of 6 GHz radio band
@@ -2087,7 +2087,7 @@ type RequestWirelessConfigureAccessPointsV2RadioConfigurations struct {
 
 @param SensorTestResultsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensor-test-results
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sensor-test-results-v1
 */
 func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *SensorTestResultsQueryParams) (*ResponseWirelessSensorTestResults, *resty.Response, error) {
 	path := "/dna/intent/api/v1/AssuranceGetSensorTestResults"
@@ -2124,7 +2124,7 @@ func (s *WirelessService) SensorTestResults(SensorTestResultsQueryParams *Sensor
 
 @param GetAccessPointRebootTaskResultQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-reboot-task-result
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-reboot-task-result-v1
 */
 func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTaskResultQueryParams *GetAccessPointRebootTaskResultQueryParams) (*ResponseWirelessGetAccessPointRebootTaskResult, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-reboot/apreboot/status"
@@ -2161,7 +2161,7 @@ func (s *WirelessService) GetAccessPointRebootTaskResult(GetAccessPointRebootTas
 
 @param GetEnterpriseSSIDQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-enterprise-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-enterprise-ssid-v1
 */
 func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnterpriseSSIDQueryParams) (*ResponseWirelessGetEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
@@ -2200,7 +2200,7 @@ func (s *WirelessService) GetEnterpriseSSID(GetEnterpriseSSIDQueryParams *GetEnt
 
 @param GetSSIDBySiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-by-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-by-site-v1
 */
 func (s *WirelessService) GetSSIDBySite(siteID string, GetSSIDBySiteQueryParams *GetSSIDBySiteQueryParams) (*ResponseWirelessGetSSIDBySite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/wirelessSettings/ssids"
@@ -2239,7 +2239,7 @@ func (s *WirelessService) GetSSIDBySite(siteID string, GetSSIDBySiteQueryParams 
 @param siteID siteId path parameter. Site UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-count-by-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-count-by-site-v1
 */
 func (s *WirelessService) GetSSIDCountBySite(siteID string) (*ResponseWirelessGetSSIDCountBySite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/wirelessSettings/ssids/count"
@@ -2278,7 +2278,7 @@ func (s *WirelessService) GetSSIDCountBySite(siteID string) (*ResponseWirelessGe
 @param id id path parameter. SSID ID.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-by-id-v1
 */
 func (s *WirelessService) GetSSIDByID(siteID string, id string) (*ResponseWirelessGetSSIDByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/wirelessSettings/ssids/{id}"
@@ -2316,7 +2316,7 @@ func (s *WirelessService) GetSSIDByID(siteID string, id string) (*ResponseWirele
 @param taskTypeID task_id path parameter. task id information of ap config
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration-task-result
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration-task-result-v1
 */
 func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID string) (*ResponseWirelessGetAccessPointConfigurationTaskResult, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/details/{task_id}"
@@ -2352,7 +2352,7 @@ func (s *WirelessService) GetAccessPointConfigurationTaskResult(taskTypeID strin
 
 @param GetAccessPointConfigurationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-point-configuration-v1
 */
 func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfigurationQueryParams *GetAccessPointConfigurationQueryParams) (*ResponseWirelessGetAccessPointConfiguration, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration/summary"
@@ -2389,7 +2389,7 @@ func (s *WirelessService) GetAccessPointConfiguration(GetAccessPointConfiguratio
 
 @param GetDynamicInterfaceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-dynamic-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-dynamic-interface-v1
 */
 func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *GetDynamicInterfaceQueryParams) (*ResponseWirelessGetDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -2426,7 +2426,7 @@ func (s *WirelessService) GetDynamicInterface(GetDynamicInterfaceQueryParams *Ge
 
 @param GetWirelessProfileQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile-v1
 */
 func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetWirelessProfileQueryParams) (*ResponseWirelessGetWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
@@ -2463,7 +2463,7 @@ func (s *WirelessService) GetWirelessProfile(GetWirelessProfileQueryParams *GetW
 
 @param RetrieveRFProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-rf-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-rf-profiles-v1
 */
 func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *RetrieveRfProfilesQueryParams) (*ResponseWirelessRetrieveRfProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
@@ -2500,7 +2500,7 @@ func (s *WirelessService) RetrieveRfProfiles(RetrieveRFProfilesQueryParams *Retr
 
 @param GetAccessPointsFactoryResetStatusQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-points-factory-reset-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-access-points-factory-reset-status-v1
 */
 func (s *WirelessService) GetAccessPointsFactoryResetStatus(GetAccessPointsFactoryResetStatusQueryParams *GetAccessPointsFactoryResetStatusQueryParams) (*ResponseWirelessGetAccessPointsFactoryResetStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessAccessPoints/factoryResetRequestStatus"
@@ -2537,7 +2537,7 @@ func (s *WirelessService) GetAccessPointsFactoryResetStatus(GetAccessPointsFacto
 
 @param GetAllMobilityGroupsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-mobility-groups
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-mobility-groups-v1
 */
 func (s *WirelessService) GetAllMobilityGroups(GetAllMobilityGroupsQueryParams *GetAllMobilityGroupsQueryParams) (*ResponseWirelessGetAllMobilityGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/wirelessMobilityGroups"
@@ -2573,7 +2573,7 @@ func (s *WirelessService) GetAllMobilityGroups(GetAllMobilityGroupsQueryParams *
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-mobility-groups-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-mobility-groups-count-v1
 */
 func (s *WirelessService) GetMobilityGroupsCount() (*ResponseWirelessGetMobilityGroupsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/wirelessMobilityGroups/count"
@@ -2610,7 +2610,7 @@ func (s *WirelessService) GetMobilityGroupsCount() (*ResponseWirelessGetMobility
 
 @param GetAnchorManagedAPLocationsForSpecificWirelessControllerQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anchor-managed-ap-locations-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-anchor-managed-ap-locations-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetAnchorManagedApLocationsForSpecificWirelessController(networkDeviceID string, GetAnchorManagedAPLocationsForSpecificWirelessControllerQueryParams *GetAnchorManagedApLocationsForSpecificWirelessControllerQueryParams) (*ResponseWirelessGetAnchorManagedApLocationsForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/anchorManagedApLocations"
@@ -2649,7 +2649,7 @@ func (s *WirelessService) GetAnchorManagedApLocationsForSpecificWirelessControll
 @param networkDeviceID networkDeviceId path parameter. Obtain the network device ID value by using the API call GET: /dna/intent/api/v1/network-device/ip-address/${ipAddress}.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-managed-ap-locations-count-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-managed-ap-locations-count-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetManagedApLocationsCountForSpecificWirelessController(networkDeviceID string) (*ResponseWirelessGetManagedApLocationsCountForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/managedApLocations/count"
@@ -2687,7 +2687,7 @@ func (s *WirelessService) GetManagedApLocationsCountForSpecificWirelessControlle
 
 @param GetPrimaryManagedAPLocationsForSpecificWirelessControllerQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-primary-managed-ap-locations-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-primary-managed-ap-locations-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetPrimaryManagedApLocationsForSpecificWirelessController(networkDeviceID string, GetPrimaryManagedAPLocationsForSpecificWirelessControllerQueryParams *GetPrimaryManagedApLocationsForSpecificWirelessControllerQueryParams) (*ResponseWirelessGetPrimaryManagedApLocationsForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/primaryManagedApLocations"
@@ -2727,7 +2727,7 @@ func (s *WirelessService) GetPrimaryManagedApLocationsForSpecificWirelessControl
 
 @param GetSecondaryManagedAPLocationsForSpecificWirelessControllerQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-secondary-managed-ap-locations-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-secondary-managed-ap-locations-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetSecondaryManagedApLocationsForSpecificWirelessController(networkDeviceID string, GetSecondaryManagedAPLocationsForSpecificWirelessControllerQueryParams *GetSecondaryManagedApLocationsForSpecificWirelessControllerQueryParams) (*ResponseWirelessGetSecondaryManagedApLocationsForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/secondaryManagedApLocations"
@@ -2767,7 +2767,7 @@ func (s *WirelessService) GetSecondaryManagedApLocationsForSpecificWirelessContr
 
 @param GetSSIDDetailsForSpecificWirelessControllerQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-details-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-details-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetSSIDDetailsForSpecificWirelessController(networkDeviceID string, GetSSIDDetailsForSpecificWirelessControllerQueryParams *GetSSIDDetailsForSpecificWirelessControllerQueryParams) (*ResponseWirelessGetSSIDDetailsForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/ssidDetails"
@@ -2807,7 +2807,7 @@ func (s *WirelessService) GetSSIDDetailsForSpecificWirelessController(networkDev
 
 @param GetSSIDCountForSpecificWirelessControllerQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-count-for-specific-wireless-controller
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-ssid-count-for-specific-wireless-controller-v1
 */
 func (s *WirelessService) GetSSIDCountForSpecificWirelessController(networkDeviceID string, GetSSIDCountForSpecificWirelessControllerQueryParams *GetSSIDCountForSpecificWirelessControllerQueryParams) (*ResponseWirelessGetSSIDCountForSpecificWirelessController, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{networkDeviceId}/ssidDetails/count"
@@ -2845,7 +2845,7 @@ func (s *WirelessService) GetSSIDCountForSpecificWirelessController(networkDevic
 
 @param GetWirelessProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profiles-v1
 */
 func (s *WirelessService) GetWirelessProfiles(GetWirelessProfilesQueryParams *GetWirelessProfilesQueryParams) (*ResponseWirelessGetWirelessProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessProfiles"
@@ -2881,7 +2881,7 @@ func (s *WirelessService) GetWirelessProfiles(GetWirelessProfilesQueryParams *Ge
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profiles-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profiles-count-v1
 */
 func (s *WirelessService) GetWirelessProfilesCount() (*ResponseWirelessGetWirelessProfilesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessProfiles/count"
@@ -2917,7 +2917,7 @@ func (s *WirelessService) GetWirelessProfilesCount() (*ResponseWirelessGetWirele
 @param id id path parameter. Wireless Profile Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-wireless-profile-by-id-v1
 */
 func (s *WirelessService) GetWirelessProfileByID(id string) (*ResponseWirelessGetWirelessProfileByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessProfiles/{id}"
@@ -2953,7 +2953,7 @@ func (s *WirelessService) GetWirelessProfileByID(id string) (*ResponseWirelessGe
 
 @param GetAll80211beProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all80211be-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all80211be-profiles-v1
 */
 func (s *WirelessService) GetAll80211BeProfiles(GetAll80211beProfilesQueryParams *GetAll80211BeProfilesQueryParams) (*ResponseWirelessGetAll80211BeProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/dot11beProfiles"
@@ -2989,7 +2989,7 @@ func (s *WirelessService) GetAll80211BeProfiles(GetAll80211beProfilesQueryParams
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get80211be-profiles-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get80211be-profiles-count-v1
 */
 func (s *WirelessService) Get80211BeProfilesCount() (*ResponseWirelessGet80211BeProfilesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/dot11beProfiles/count"
@@ -3025,7 +3025,7 @@ func (s *WirelessService) Get80211BeProfilesCount() (*ResponseWirelessGet80211Be
 @param id id path parameter. 802.11be Profile ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get80211be-profile-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get80211be-profile-by-id-v1
 */
 func (s *WirelessService) Get80211BeProfileByID(id string) (*ResponseWirelessGet80211BeProfileByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/dot11beProfiles/{id}"
@@ -3061,7 +3061,7 @@ func (s *WirelessService) Get80211BeProfileByID(id string) (*ResponseWirelessGet
 
 @param GetInterfacesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interfaces-v1
 */
 func (s *WirelessService) GetInterfaces(GetInterfacesQueryParams *GetInterfacesQueryParams) (*ResponseWirelessGetInterfaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/interfaces"
@@ -3097,7 +3097,7 @@ func (s *WirelessService) GetInterfaces(GetInterfacesQueryParams *GetInterfacesQ
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interfaces-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interfaces-count-v1
 */
 func (s *WirelessService) GetInterfacesCount() (*ResponseWirelessGetInterfacesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/interfaces/count"
@@ -3133,7 +3133,7 @@ func (s *WirelessService) GetInterfacesCount() (*ResponseWirelessGetInterfacesCo
 @param id id path parameter. Interface ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-interface-by-id-v1
 */
 func (s *WirelessService) GetInterfaceByID(id string) (*ResponseWirelessGetInterfaceByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/interfaces/{id}"
@@ -3169,7 +3169,7 @@ func (s *WirelessService) GetInterfaceByID(id string) (*ResponseWirelessGetInter
 
 @param GetRFProfilesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profiles-v1
 */
 func (s *WirelessService) GetRfProfiles(GetRFProfilesQueryParams *GetRfProfilesQueryParams) (*ResponseWirelessGetRfProfiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/rfProfiles"
@@ -3205,7 +3205,7 @@ func (s *WirelessService) GetRfProfiles(GetRFProfilesQueryParams *GetRfProfilesQ
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profiles-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profiles-count-v1
 */
 func (s *WirelessService) GetRfProfilesCount() (*ResponseWirelessGetRfProfilesCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/rfProfiles/count"
@@ -3241,7 +3241,7 @@ func (s *WirelessService) GetRfProfilesCount() (*ResponseWirelessGetRfProfilesCo
 @param id id path parameter. RF Profile ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profile-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-rf-profile-by-id-v1
 */
 func (s *WirelessService) GetRfProfileByID(id string) (*ResponseWirelessGetRfProfileByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/rfProfiles/{id}"
@@ -3277,7 +3277,7 @@ func (s *WirelessService) GetRfProfileByID(id string) (*ResponseWirelessGetRfPro
 
 @param CreateAndProvisionSSIDHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-and-provision-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-and-provision-ssid-v1
 */
 func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisionSSID *RequestWirelessCreateAndProvisionSSID, CreateAndProvisionSSIDHeaderParams *CreateAndProvisionSSIDHeaderParams) (*ResponseWirelessCreateAndProvisionSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/business/ssid"
@@ -3326,7 +3326,7 @@ func (s *WirelessService) CreateAndProvisionSSID(requestWirelessCreateAndProvisi
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-access-points
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reboot-access-points-v1
 */
 func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *RequestWirelessRebootAccessPoints) (*ResponseWirelessRebootAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-reboot/apreboot"
@@ -3363,7 +3363,7 @@ func (s *WirelessService) RebootAccessPoints(requestWirelessRebootAccessPoints *
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-enterprise-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-enterprise-ssid-v1
 */
 func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSSID *RequestWirelessCreateEnterpriseSSID) (*ResponseWirelessCreateEnterpriseSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/enterprise-ssid"
@@ -3402,7 +3402,7 @@ func (s *WirelessService) CreateEnterpriseSSID(requestWirelessCreateEnterpriseSS
 @param siteID siteId path parameter. Site UUID of Global site
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-ssid-v1
 */
 func (s *WirelessService) CreateSSID(siteID string, requestWirelessCreateSSID *RequestWirelessCreateSSID) (*ResponseWirelessCreateSSID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{siteId}/wirelessSettings/ssids"
@@ -3435,21 +3435,21 @@ func (s *WirelessService) CreateSSID(siteID string, requestWirelessCreateSSID *R
 
 }
 
-//ConfigureAccessPointsV1 Configure Access Points V1 - 0081-cb89-4708-888f
+//ConfigureAccessPoints Configure Access Points  - 0081-cb89-4708-888f
 /* User can configure multiple access points with required options using this intent API. This API does not support configuration of CleanAir or SI for IOS-XE devices with version greater than or equal to 17.9
 
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!configure-access-points-v1
 */
-func (s *WirelessService) ConfigureAccessPointsV1(requestWirelessConfigureAccessPointsV1 *RequestWirelessConfigureAccessPointsV1) (*ResponseWirelessConfigureAccessPointsV1, *resty.Response, error) {
+func (s *WirelessService) ConfigureAccessPoints(requestWirelessConfigureAccessPoints *RequestWirelessConfigureAccessPoints) (*ResponseWirelessConfigureAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/accesspoint-configuration"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessConfigureAccessPointsV1).
-		SetResult(&ResponseWirelessConfigureAccessPointsV1{}).
+		SetBody(requestWirelessConfigureAccessPoints).
+		SetResult(&ResponseWirelessConfigureAccessPoints{}).
 		SetError(&Error).
 		Post(path)
 
@@ -3461,26 +3461,26 @@ func (s *WirelessService) ConfigureAccessPointsV1(requestWirelessConfigureAccess
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ConfigureAccessPointsV1(requestWirelessConfigureAccessPointsV1)
+			return s.ConfigureAccessPoints(requestWirelessConfigureAccessPoints)
 		}
 
-		return nil, response, fmt.Errorf("error with operation ConfigureAccessPointsV1")
+		return nil, response, fmt.Errorf("error with operation ConfigureAccessPoints")
 	}
 
-	result := response.Result().(*ResponseWirelessConfigureAccessPointsV1)
+	result := response.Result().(*ResponseWirelessConfigureAccessPoints)
 	return result, response, err
 
 }
 
-//ApProvision2 AP Provision - d897-19b8-47aa-a9c4
+//ApProvisionConnectivity AP Provision - d897-19b8-47aa-a9c4
 /* Access Point Provision and ReProvision
 
 
-@param APProvision2HeaderParams Custom header parameters
+@param APProvisionConnectivityHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!ap-provision2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!ap-provision-connectivity-v1
 */
-func (s *WirelessService) ApProvision2(requestWirelessAPProvision2 *RequestWirelessApProvision2, APProvision2HeaderParams *ApProvision2HeaderParams) (*ResponseWirelessApProvision2, *resty.Response, error) {
+func (s *WirelessService) ApProvisionConnectivity(requestWirelessAPProvisionConnectivity *RequestWirelessApProvisionConnectivity, APProvisionConnectivityHeaderParams *ApProvisionConnectivityHeaderParams) (*ResponseWirelessApProvisionConnectivity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/ap-provision"
 
 	var response *resty.Response
@@ -3489,17 +3489,17 @@ func (s *WirelessService) ApProvision2(requestWirelessAPProvision2 *RequestWirel
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
 
-	if APProvision2HeaderParams != nil {
+	if APProvisionConnectivityHeaderParams != nil {
 
-		if APProvision2HeaderParams.Persistbapioutput != "" {
-			clientRequest = clientRequest.SetHeader("__persistbapioutput", APProvision2HeaderParams.Persistbapioutput)
+		if APProvisionConnectivityHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", APProvisionConnectivityHeaderParams.Persistbapioutput)
 		}
 
 	}
 
 	response, err = clientRequest.
-		SetBody(requestWirelessAPProvision2).
-		SetResult(&ResponseWirelessApProvision2{}).
+		SetBody(requestWirelessAPProvisionConnectivity).
+		SetResult(&ResponseWirelessApProvisionConnectivity{}).
 		SetError(&Error).
 		Post(path)
 
@@ -3511,13 +3511,13 @@ func (s *WirelessService) ApProvision2(requestWirelessAPProvision2 *RequestWirel
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ApProvision2(requestWirelessAPProvision2, APProvision2HeaderParams)
+			return s.ApProvisionConnectivity(requestWirelessAPProvisionConnectivity, APProvisionConnectivityHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation ApProvision2")
+		return nil, response, fmt.Errorf("error with operation ApProvisionConnectivity")
 	}
 
-	result := response.Result().(*ResponseWirelessApProvision2)
+	result := response.Result().(*ResponseWirelessApProvisionConnectivity)
 	return result, response, err
 
 }
@@ -3527,7 +3527,7 @@ func (s *WirelessService) ApProvision2(requestWirelessAPProvision2 *RequestWirel
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-dynamic-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-update-dynamic-interface-v1
 */
 func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpdateDynamicInterface *RequestWirelessCreateUpdateDynamicInterface) (*ResponseWirelessCreateUpdateDynamicInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/dynamic-interface"
@@ -3560,11 +3560,11 @@ func (s *WirelessService) CreateUpdateDynamicInterface(requestWirelessCreateUpda
 }
 
 //CreateWirelessProfile Create Wireless Profile - 7097-6962-4bf9-88d5
-/* Creates Wireless Network Profile on Cisco Catalyst Center and associates sites and SSIDs to it.
+/* Creates Wireless Network Profile on Cisco DNA Center and associates sites and SSIDs to it.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile-v1
 */
 func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessProfile *RequestWirelessCreateWirelessProfile) (*ResponseWirelessCreateWirelessProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/profile"
@@ -3601,7 +3601,7 @@ func (s *WirelessService) CreateWirelessProfile(requestWirelessCreateWirelessPro
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!provision-v1
 */
 func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessProvision) (*ResponseWirelessProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/provision"
@@ -3638,7 +3638,7 @@ func (s *WirelessService) Provision(requestWirelessProvision *RequestWirelessPro
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-s-k-override
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!p-s-k-override-v1
 */
 func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWirelessPSKOverride) (*ResponseWirelessPSKOverride, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/psk-override"
@@ -3675,7 +3675,7 @@ func (s *WirelessService) PSKOverride(requestWirelessPSKOverride *RequestWireles
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-rf-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-update-rf-profile-v1
 */
 func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateRFProfile *RequestWirelessCreateOrUpdateRfProfile) (*ResponseWirelessCreateOrUpdateRfProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wireless/rf-profile"
@@ -3712,7 +3712,7 @@ func (s *WirelessService) CreateOrUpdateRfProfile(requestWirelessCreateOrUpdateR
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!factory-reset-access-points
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!factory-reset-access-points-v1
 */
 func (s *WirelessService) FactoryResetAccessPoints(requestWirelessFactoryResetAccessPoints *RequestWirelessFactoryResetAccessPoints) (*ResponseWirelessFactoryResetAccessPoints, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessAccessPoints/factoryResetRequest/provision"
@@ -3749,7 +3749,7 @@ func (s *WirelessService) FactoryResetAccessPoints(requestWirelessFactoryResetAc
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!ap-provision
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!ap-provision-v1
 */
 func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWirelessApProvision) (*ResponseWirelessApProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessAccessPoints/provision"
@@ -3786,7 +3786,7 @@ func (s *WirelessService) ApProvision(requestWirelessAPProvision *RequestWireles
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!mobility-provision
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!mobility-provision-v1
 */
 func (s *WirelessService) MobilityProvision(requestWirelessMobilityProvision *RequestWirelessMobilityProvision) (*ResponseWirelessMobilityProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/wirelessMobilityGroups/mobilityProvision"
@@ -3823,7 +3823,7 @@ func (s *WirelessService) MobilityProvision(requestWirelessMobilityProvision *Re
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!mobility-reset
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!mobility-reset-v1
 */
 func (s *WirelessService) MobilityReset(requestWirelessMobilityReset *RequestWirelessMobilityReset) (*ResponseWirelessMobilityReset, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/wirelessMobilityGroups/mobilityReset"
@@ -3862,7 +3862,7 @@ func (s *WirelessService) MobilityReset(requestWirelessMobilityReset *RequestWir
 @param deviceID deviceId path parameter. Network Device ID. This value can be obtained by using the API call GET: /dna/intent/api/v1/network-device/ip-address/${ipAddress}
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-managed-ap-locations-for-w-l-c
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-managed-ap-locations-for-w-l-c-v1
 */
 func (s *WirelessService) AssignManagedApLocationsForWLC(deviceID string, requestWirelessAssignManagedAPLocationsForWLC *RequestWirelessAssignManagedApLocationsForWLC) (*ResponseWirelessAssignManagedApLocationsForWLC, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{deviceId}/assignManagedApLocations"
@@ -3902,7 +3902,7 @@ func (s *WirelessService) AssignManagedApLocationsForWLC(deviceID string, reques
 @param deviceID deviceId path parameter. Network Device ID. This value can be obtained by using the API call GET: /dna/intent/api/v1/network-device/ip-address/${ipAddress}
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!wireless-controller-provision
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!wireless-controller-provision-v1
 */
 func (s *WirelessService) WirelessControllerProvision(deviceID string, requestWirelessWirelessControllerProvision *RequestWirelessWirelessControllerProvision) (*ResponseWirelessWirelessControllerProvision, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessControllers/{deviceId}/provision"
@@ -3935,21 +3935,21 @@ func (s *WirelessService) WirelessControllerProvision(deviceID string, requestWi
 
 }
 
-//CreateWirelessProfile2 Create Wireless Profile - dd88-bb37-492a-888b
+//CreateWirelessProfileConnectivity Create Wireless Profile - dd88-bb37-492a-888b
 /* This API allows the user to create a Wireless Network Profile
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-wireless-profile-connectivity-v1
 */
-func (s *WirelessService) CreateWirelessProfile2(requestWirelessCreateWirelessProfile2 *RequestWirelessCreateWirelessProfile2) (*ResponseWirelessCreateWirelessProfile2, *resty.Response, error) {
+func (s *WirelessService) CreateWirelessProfileConnectivity(requestWirelessCreateWirelessProfileConnectivity *RequestWirelessCreateWirelessProfileConnectivity) (*ResponseWirelessCreateWirelessProfileConnectivity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessProfiles"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessCreateWirelessProfile2).
-		SetResult(&ResponseWirelessCreateWirelessProfile2{}).
+		SetBody(requestWirelessCreateWirelessProfileConnectivity).
+		SetResult(&ResponseWirelessCreateWirelessProfileConnectivity{}).
 		SetError(&Error).
 		Post(path)
 
@@ -3961,13 +3961,13 @@ func (s *WirelessService) CreateWirelessProfile2(requestWirelessCreateWirelessPr
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CreateWirelessProfile2(requestWirelessCreateWirelessProfile2)
+			return s.CreateWirelessProfileConnectivity(requestWirelessCreateWirelessProfileConnectivity)
 		}
 
-		return nil, response, fmt.Errorf("error with operation CreateWirelessProfile2")
+		return nil, response, fmt.Errorf("error with operation CreateWirelessProfileConnectivity")
 	}
 
-	result := response.Result().(*ResponseWirelessCreateWirelessProfile2)
+	result := response.Result().(*ResponseWirelessCreateWirelessProfileConnectivity)
 	return result, response, err
 
 }
@@ -3977,7 +3977,7 @@ func (s *WirelessService) CreateWirelessProfile2(requestWirelessCreateWirelessPr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-a80211be-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-a80211be-profile-v1
 */
 func (s *WirelessService) CreateA80211BeProfile(requestWirelessCreateA80211beProfile *RequestWirelessCreateA80211BeProfile) (*ResponseWirelessCreateA80211BeProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/dot11beProfiles"
@@ -4014,7 +4014,7 @@ func (s *WirelessService) CreateA80211BeProfile(requestWirelessCreateA80211bePro
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-interface-v1
 */
 func (s *WirelessService) CreateInterface(requestWirelessCreateInterface *RequestWirelessCreateInterface) (*ResponseWirelessCreateInterface, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/interfaces"
@@ -4051,7 +4051,7 @@ func (s *WirelessService) CreateInterface(requestWirelessCreateInterface *Reques
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-rf-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-rf-profile-v1
 */
 func (s *WirelessService) CreateRfProfile(requestWirelessCreateRFProfile *RequestWirelessCreateRfProfile) (*ResponseWirelessCreateRfProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessSettings/rfProfiles"
@@ -4271,22 +4271,22 @@ func (s *WirelessService) ProvisionUpdate(requestWirelessProvisionUpdate *Reques
 
 }
 
-//UpdateWirelessProfile2 Update Wireless Profile - 4f88-d9a3-4ef8-8e2e
+//UpdateWirelessProfileConnectivity Update Wireless Profile - 4f88-d9a3-4ef8-8e2e
 /* This API allows the user to update a Wireless Network Profile by ID
 
 
 @param id id path parameter. Wireless Profile Id
 
 */
-func (s *WirelessService) UpdateWirelessProfile2(id string, requestWirelessUpdateWirelessProfile2 *RequestWirelessUpdateWirelessProfile2) (*ResponseWirelessUpdateWirelessProfile2, *resty.Response, error) {
+func (s *WirelessService) UpdateWirelessProfileConnectivity(id string, requestWirelessUpdateWirelessProfileConnectivity *RequestWirelessUpdateWirelessProfileConnectivity) (*ResponseWirelessUpdateWirelessProfileConnectivity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/wirelessProfiles/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestWirelessUpdateWirelessProfile2).
-		SetResult(&ResponseWirelessUpdateWirelessProfile2{}).
+		SetBody(requestWirelessUpdateWirelessProfileConnectivity).
+		SetResult(&ResponseWirelessUpdateWirelessProfileConnectivity{}).
 		SetError(&Error).
 		Put(path)
 
@@ -4297,12 +4297,12 @@ func (s *WirelessService) UpdateWirelessProfile2(id string, requestWirelessUpdat
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdateWirelessProfile2(id, requestWirelessUpdateWirelessProfile2)
+			return s.UpdateWirelessProfileConnectivity(id, requestWirelessUpdateWirelessProfileConnectivity)
 		}
-		return nil, response, fmt.Errorf("error with operation UpdateWirelessProfile2")
+		return nil, response, fmt.Errorf("error with operation UpdateWirelessProfileConnectivity")
 	}
 
-	result := response.Result().(*ResponseWirelessUpdateWirelessProfile2)
+	result := response.Result().(*ResponseWirelessUpdateWirelessProfileConnectivity)
 	return result, response, err
 
 }
@@ -4416,7 +4416,7 @@ func (s *WirelessService) UpdateRfProfile(id string, requestWirelessUpdateRFProf
 }
 
 //DeleteSSIDAndProvisionItToDevices Delete SSID and provision it to devices - fc95-38fe-43d9-884d
-/* Removes SSID or WLAN from the network profile, reprovision the device(s) and deletes the SSID or WLAN from Catalyst Center
+/* Removes SSID or WLAN from the network profile, reprovision the device(s) and deletes the SSID or WLAN from DNA Center
 
 
 @param ssidName ssidName path parameter. SSID Name. This parameter needs to be encoded as per UTF-8 encoding.
@@ -4425,7 +4425,7 @@ func (s *WirelessService) UpdateRfProfile(id string, requestWirelessUpdateRFProf
 
 @param DeleteSSIDAndProvisionItToDevicesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid-and-provision-it-to-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid-and-provision-it-to-devices-v1
 */
 func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, managedAPLocations string, DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams) (*ResponseWirelessDeleteSSIDAndProvisionItToDevices, *resty.Response, error) {
 	//ssidName string,managedAPLocations string,DeleteSSIDAndProvisionItToDevicesHeaderParams *DeleteSSIDAndProvisionItToDevicesHeaderParams
@@ -4476,7 +4476,7 @@ func (s *WirelessService) DeleteSSIDAndProvisionItToDevices(ssidName string, man
 @param ssidName ssidName path parameter. Enter the SSID name to be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-enterprise-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-enterprise-ssid-v1
 */
 func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirelessDeleteEnterpriseSSID, *resty.Response, error) {
 	//ssidName string
@@ -4516,7 +4516,7 @@ func (s *WirelessService) DeleteEnterpriseSSID(ssidName string) (*ResponseWirele
 @param id id path parameter. SSID ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-ssid-v1
 */
 func (s *WirelessService) DeleteSSID(siteID string, id string) (*ResponseWirelessDeleteSSID, *resty.Response, error) {
 	//siteID string,id string
@@ -4555,7 +4555,7 @@ func (s *WirelessService) DeleteSSID(siteID string, id string) (*ResponseWireles
 @param wirelessProfileName wirelessProfileName path parameter. Wireless Profile Name
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile-v1
 */
 func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*ResponseWirelessDeleteWirelessProfile, *resty.Response, error) {
 	//wirelessProfileName string
@@ -4593,7 +4593,7 @@ func (s *WirelessService) DeleteWirelessProfile(wirelessProfileName string) (*Re
 @param DeleteDynamicInterfaceHeaderParams Custom header parameters
 @param DeleteDynamicInterfaceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-dynamic-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-dynamic-interface-v1
 */
 func (s *WirelessService) DeleteDynamicInterface(DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams, DeleteDynamicInterfaceQueryParams *DeleteDynamicInterfaceQueryParams) (*ResponseWirelessDeleteDynamicInterface, *resty.Response, error) {
 	//DeleteDynamicInterfaceHeaderParams *DeleteDynamicInterfaceHeaderParams,DeleteDynamicInterfaceQueryParams *DeleteDynamicInterfaceQueryParams
@@ -4648,7 +4648,7 @@ func (s *WirelessService) DeleteDynamicInterface(DeleteDynamicInterfaceHeaderPar
 @param rfProfileName rfProfileName path parameter. RF profile name to be deleted(required) *non-custom RF profile cannot be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-rf-profiles
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-rf-profiles-v1
 */
 func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirelessDeleteRfProfiles, *resty.Response, error) {
 	//rfProfileName string
@@ -4679,16 +4679,16 @@ func (s *WirelessService) DeleteRfProfiles(rfProfileName string) (*ResponseWirel
 
 }
 
-//DeleteWirelessProfile2 Delete Wireless Profile - 289c-f9f5-4f78-b84c
+//DeleteWirelessProfileConnectivity Delete Wireless Profile - 289c-f9f5-4f78-b84c
 /* This API allows the user to delete Wireless Network Profile by ID
 
 
 @param id id path parameter. Wireless Profile Id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-wireless-profile-connectivity-v1
 */
-func (s *WirelessService) DeleteWirelessProfile2(id string) (*ResponseWirelessDeleteWirelessProfile2, *resty.Response, error) {
+func (s *WirelessService) DeleteWirelessProfileConnectivity(id string) (*ResponseWirelessDeleteWirelessProfileConnectivity, *resty.Response, error) {
 	//id string
 	path := "/dna/intent/api/v1/wirelessProfiles/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
@@ -4696,7 +4696,7 @@ func (s *WirelessService) DeleteWirelessProfile2(id string) (*ResponseWirelessDe
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseWirelessDeleteWirelessProfile2{}).
+		SetResult(&ResponseWirelessDeleteWirelessProfileConnectivity{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -4707,12 +4707,12 @@ func (s *WirelessService) DeleteWirelessProfile2(id string) (*ResponseWirelessDe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteWirelessProfile2(id)
+			return s.DeleteWirelessProfileConnectivity(id)
 		}
-		return nil, response, fmt.Errorf("error with operation DeleteWirelessProfile2")
+		return nil, response, fmt.Errorf("error with operation DeleteWirelessProfileConnectivity")
 	}
 
-	result := response.Result().(*ResponseWirelessDeleteWirelessProfile2)
+	result := response.Result().(*ResponseWirelessDeleteWirelessProfileConnectivity)
 	return result, response, err
 
 }
@@ -4724,7 +4724,7 @@ func (s *WirelessService) DeleteWirelessProfile2(id string) (*ResponseWirelessDe
 @param id id path parameter. 802.11be Profile ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a80211be-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a80211be-profile-v1
 */
 func (s *WirelessService) DeleteA80211BeProfile(id string) (*ResponseWirelessDeleteA80211BeProfile, *resty.Response, error) {
 	//id string
@@ -4762,7 +4762,7 @@ func (s *WirelessService) DeleteA80211BeProfile(id string) (*ResponseWirelessDel
 @param id id path parameter. Interface ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-interface
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-interface-v1
 */
 func (s *WirelessService) DeleteInterface(id string) (*ResponseWirelessDeleteInterface, *resty.Response, error) {
 	//id string
@@ -4800,7 +4800,7 @@ func (s *WirelessService) DeleteInterface(id string) (*ResponseWirelessDeleteInt
 @param id id path parameter. RF Profile ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-rf-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-rf-profile-v1
 */
 func (s *WirelessService) DeleteRfProfile(id string) (*ResponseWirelessDeleteRfProfile, *resty.Response, error) {
 	//id string

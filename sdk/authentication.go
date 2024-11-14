@@ -13,7 +13,7 @@ type AuthenticationAPIResponse struct {
 }
 
 // AuthenticationAPI authenticationAPI
-/* API to obtain an access token. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco Catalyst Center.
+/* API to obtain an access token. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco DNA Center.
 @param Content-Type Request body content type
 @param Authorization String composed of “Basic”, followed by a space, followed by the Base64 encoding of “username:password”, NOT including the quotes. For example “Basic YWRtaW46TWFnbGV2MTIz”, where YWRtaW46TWFnbGV2MTIz is the Base 64 encoding.
 */

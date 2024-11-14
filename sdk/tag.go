@@ -241,13 +241,13 @@ type RequestTagUpdateTagDynamicRules struct {
 	Rules      *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagUpdateTagDynamicRulesRules struct {
-	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
-	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
-	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
-	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
-	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
+	Values    []string    `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     interface{} `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string      `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string      `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string      `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-type RequestTagUpdateTagDynamicRulesRulesItems interface{}
+
 type RequestTagCreateTag struct {
 	SystemTag        *bool                              `json:"systemTag,omitempty"`        // true for system created tags, false for user defined tags
 	Description      string                             `json:"description,omitempty"`      // description of the tag.
@@ -261,13 +261,13 @@ type RequestTagCreateTagDynamicRules struct {
 	Rules      *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagCreateTagDynamicRulesRules struct {
-	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
-	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
-	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
-	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
-	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
+	Values    []string    `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     interface{} `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string      `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string      `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string      `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-type RequestTagCreateTagDynamicRulesRulesItems interface{}
+
 type RequestTagUpdateTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
 	MemberType   string              `json:"memberType,omitempty"`   //
@@ -289,7 +289,7 @@ type RequestTagQueryTheTagsAssociatedWithNetworkDevices struct {
 
 @param GetTagQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-v1
 */
 func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagGetTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
@@ -326,7 +326,7 @@ func (s *TagService) GetTag(GetTagQueryParams *GetTagQueryParams) (*ResponseTagG
 
 @param GetTagCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-count-v1
 */
 func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams) (*ResponseTagGetTagCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/count"
@@ -362,7 +362,7 @@ func (s *TagService) GetTagCount(GetTagCountQueryParams *GetTagCountQueryParams)
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-resource-types
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-resource-types-v1
 */
 func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/member/type"
@@ -398,7 +398,7 @@ func (s *TagService) GetTagResourceTypes() (*ResponseTagGetTagResourceTypes, *re
 @param id id path parameter. Tag ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-by-id-v1
 */
 func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}"
@@ -436,7 +436,7 @@ func (s *TagService) GetTagByID(id string) (*ResponseTagGetTagByID, *resty.Respo
 
 @param GetTagMembersByIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-members-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-members-by-id-v1
 */
 func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *GetTagMembersByIDQueryParams) (*ResponseTagGetTagMembersByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -476,7 +476,7 @@ func (s *TagService) GetTagMembersByID(id string, GetTagMembersByIdQueryParams *
 
 @param GetTagMemberCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-member-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tag-member-count-v1
 */
 func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *GetTagMemberCountQueryParams) (*ResponseTagGetTagMemberCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member/count"
@@ -514,10 +514,10 @@ func (s *TagService) GetTagMemberCount(id string, GetTagMemberCountQueryParams *
 
 @param RetrieveTagsAssociatedWithTheInterfacesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-the-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-the-interfaces-v1
 */
 func (s *TagService) RetrieveTagsAssociatedWithTheInterfaces(RetrieveTagsAssociatedWithTheInterfacesQueryParams *RetrieveTagsAssociatedWithTheInterfacesQueryParams) (*ResponseTagRetrieveTagsAssociatedWithTheInterfaces, *resty.Response, error) {
-	path := "/intent/api/v1/tags/interfaces/membersAssociations"
+	path := "/dna/intent/api/v1/tags/interfaces/membersAssociations"
 
 	queryString, _ := query.Values(RetrieveTagsAssociatedWithTheInterfacesQueryParams)
 
@@ -550,10 +550,10 @@ func (s *TagService) RetrieveTagsAssociatedWithTheInterfaces(RetrieveTagsAssocia
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-interfaces-that-are-associated-with-at-least-one-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-interfaces-that-are-associated-with-at-least-one-tag-v1
 */
 func (s *TagService) RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag() (*ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag, *resty.Response, error) {
-	path := "/intent/api/v1/tags/interfaces/membersAssociations/count"
+	path := "/dna/intent/api/v1/tags/interfaces/membersAssociations/count"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -585,10 +585,10 @@ func (s *TagService) RetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOne
 
 @param RetrieveTagsAssociatedWithNetworkDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-tags-associated-with-network-devices-v1
 */
 func (s *TagService) RetrieveTagsAssociatedWithNetworkDevices(RetrieveTagsAssociatedWithNetworkDevicesQueryParams *RetrieveTagsAssociatedWithNetworkDevicesQueryParams) (*ResponseTagRetrieveTagsAssociatedWithNetworkDevices, *resty.Response, error) {
-	path := "/intent/api/v1/tags/networkDevices/membersAssociations"
+	path := "/dna/intent/api/v1/tags/networkDevices/membersAssociations"
 
 	queryString, _ := query.Values(RetrieveTagsAssociatedWithNetworkDevicesQueryParams)
 
@@ -621,10 +621,10 @@ func (s *TagService) RetrieveTagsAssociatedWithNetworkDevices(RetrieveTagsAssoci
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-network-devices-that-are-associated-with-at-least-one-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-network-devices-that-are-associated-with-at-least-one-tag-v1
 */
 func (s *TagService) RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag() (*ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag, *resty.Response, error) {
-	path := "/intent/api/v1/tags/networkDevices/membersAssociations/count"
+	path := "/dna/intent/api/v1/tags/networkDevices/membersAssociations/count"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -655,7 +655,7 @@ func (s *TagService) RetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeas
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-tag-v1
 */
 func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*ResponseTagCreateTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag"
@@ -694,7 +694,7 @@ func (s *TagService) CreateTag(requestTagCreateTag *RequestTagCreateTag) (*Respo
 @param id id path parameter. Tag ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-members-to-the-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-members-to-the-tag-v1
 */
 func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag *RequestTagAddMembersToTheTag) (*ResponseTagAddMembersToTheTag, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tag/{id}/member"
@@ -728,14 +728,14 @@ func (s *TagService) AddMembersToTheTag(id string, requestTagAddMembersToTheTag 
 }
 
 //QueryTheTagsAssociatedWithInterfaces Query the tags associated with interfaces. - 87a2-4a4e-4109-becf
-/* Fetches the tags associated with the given interface 'ids'. Interfaces that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When an interface is tagged, it is called a member of the tag. 'ids' can be fetched via '/dna/intent/api/v1/interface' API.
+/* Fetches the tags associated with the given interface `ids`. Interfaces that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When an interface is tagged, it is called a member of the tag. `ids` can be fetched via `/dna/intent/api/v1/interface` API.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-interfaces
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-interfaces-v1
 */
 func (s *TagService) QueryTheTagsAssociatedWithInterfaces(requestTagQueryTheTagsAssociatedWithInterfaces *RequestTagQueryTheTagsAssociatedWithInterfaces) (*ResponseTagQueryTheTagsAssociatedWithInterfaces, *resty.Response, error) {
-	path := "/intent/api/v1/tags/interfaces/membersAssociations/query"
+	path := "/dna/intent/api/v1/tags/interfaces/membersAssociations/query"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -765,14 +765,14 @@ func (s *TagService) QueryTheTagsAssociatedWithInterfaces(requestTagQueryTheTags
 }
 
 //QueryTheTagsAssociatedWithNetworkDevices Query the tags associated with network devices. - 6480-fa01-417b-b397
-/* Fetches the tags associated with the given network device 'ids'. Devices that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When a device is tagged, it is called a member of the tag. 'ids' can be fetched via '/dna/intent/api/v1/network-device' API.
+/* Fetches the tags associated with the given network device `ids`. Devices that don't have any tags associated will not be included in the response. A tag is a user-defined or system-defined construct to group resources. When a device is tagged, it is called a member of the tag. `ids` can be fetched via `/dna/intent/api/v1/network-device` API.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-network-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-the-tags-associated-with-network-devices-v1
 */
 func (s *TagService) QueryTheTagsAssociatedWithNetworkDevices(requestTagQueryTheTagsAssociatedWithNetworkDevices *RequestTagQueryTheTagsAssociatedWithNetworkDevices) (*ResponseTagQueryTheTagsAssociatedWithNetworkDevices, *resty.Response, error) {
-	path := "/intent/api/v1/tags/networkDevices/membersAssociations/query"
+	path := "/dna/intent/api/v1/tags/networkDevices/membersAssociations/query"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -874,7 +874,7 @@ func (s *TagService) UpdateTagMembership(requestTagUpdateTagMembership *RequestT
 @param id id path parameter. Tag ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-tag
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-tag-v1
 */
 func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Response, error) {
 	//id string
@@ -914,7 +914,7 @@ func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Respons
 @param memberID memberId path parameter. TagMember id to be removed from tag
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-tag-member
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-tag-member-v1
 */
 func (s *TagService) RemoveTagMember(id string, memberID string) (*ResponseTagRemoveTagMember, *resty.Response, error) {
 	//id string,memberID string

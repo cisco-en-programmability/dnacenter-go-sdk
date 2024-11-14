@@ -22,13 +22,13 @@ type GetApplicationSetsQueryParams struct {
 	Limit  float64 `url:"limit,omitempty"`  //
 	Name   string  `url:"name,omitempty"`   //
 }
-type DeleteApplicationSet2QueryParams struct {
+type DeleteApplicationSetQueryParams struct {
 	ID string `url:"id,omitempty"` //
 }
-type DeleteApplication2QueryParams struct {
+type DeleteApplicationQueryParams struct {
 	ID string `url:"id,omitempty"` //Application's Id
 }
-type GetApplications2QueryParams struct {
+type GetApplicationsQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //The offset of the first application to be returned
 	Limit  float64 `url:"limit,omitempty"`  //The maximum number of applications to be returned
 	Name   string  `url:"name,omitempty"`   //Application's name
@@ -36,22 +36,22 @@ type GetApplications2QueryParams struct {
 type GetQosDeviceInterfaceInfoQueryParams struct {
 	NetworkDeviceID string `url:"networkDeviceId,omitempty"` //network device id
 }
-type GetApplicationSets2QueryParams struct {
+type GetApplicationSetsV2QueryParams struct {
 	Attributes string  `url:"attributes,omitempty"` //Attributes to retrieve, valid value applicationSet
 	Name       string  `url:"name,omitempty"`       //Application set name
 	Offset     float64 `url:"offset,omitempty"`     //The starting point or index from where the paginated results should begin.
 	Limit      float64 `url:"limit,omitempty"`      //The limit which is the maximum number of items to include in a single page of results, max value 500
 }
-type GetApplicationSetCountQueryParams struct {
+type GetApplicationSetCountV2QueryParams struct {
 	ScalableGroupType string `url:"scalableGroupType,omitempty"` //Scalable group type to retrieve, valid value APPLICATION_GROUP
 }
-type GetApplicationsQueryParams struct {
+type GetApplicationsV2QueryParams struct {
 	Attributes string  `url:"attributes,omitempty"` //Attributes to retrieve, valid value application
 	Name       string  `url:"name,omitempty"`       //The application name
 	Offset     float64 `url:"offset,omitempty"`     //The starting point or index from where the paginated results should begin.
 	Limit      float64 `url:"limit,omitempty"`      //The limit which is the maximum number of items to include in a single page of results, max value 500
 }
-type GetApplicationCountQueryParams struct {
+type GetApplicationCountV2QueryParams struct {
 	ScalableGroupType string `url:"scalableGroupType,omitempty"` //scalable group type to retrieve, valid value APPLICATION
 }
 
@@ -392,11 +392,11 @@ type ResponseApplicationPolicyGetApplicationSetsResponseIDentitySource struct {
 	ID   string `json:"id,omitempty"`   // Id
 	Type string `json:"type,omitempty"` // Type
 }
-type ResponseApplicationPolicyDeleteApplicationSet2 struct {
-	Response *ResponseApplicationPolicyDeleteApplicationSet2Response `json:"response,omitempty"` //
-	Version  string                                                  `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyDeleteApplicationSet struct {
+	Response *ResponseApplicationPolicyDeleteApplicationSetResponse `json:"response,omitempty"` //
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplicationSet2Response struct {
+type ResponseApplicationPolicyDeleteApplicationSetResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
@@ -428,23 +428,23 @@ type ResponseApplicationPolicyEditApplicationResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
-type ResponseApplicationPolicyDeleteApplication2 struct {
-	Response *ResponseApplicationPolicyDeleteApplication2Response `json:"response,omitempty"` //
-	Version  string                                               `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyDeleteApplication struct {
+	Response *ResponseApplicationPolicyDeleteApplicationResponse `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplication2Response struct {
+type ResponseApplicationPolicyDeleteApplicationResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
 	URL    string `json:"url,omitempty"`    // Url
 }
-type ResponseApplicationPolicyGetApplications2 []ResponseItemApplicationPolicyGetApplications2 // Array of ResponseApplicationPolicyGetApplications2
-type ResponseItemApplicationPolicyGetApplications2 struct {
-	ID                  string                                                              `json:"id,omitempty"`                  // Id
-	Name                string                                                              `json:"name,omitempty"`                // Name
-	NetworkApplications *[]ResponseItemApplicationPolicyGetApplications2NetworkApplications `json:"networkApplications,omitempty"` //
-	NetworkIDentity     *[]ResponseItemApplicationPolicyGetApplications2NetworkIDentity     `json:"networkIdentity,omitempty"`     //
-	ApplicationSet      *ResponseItemApplicationPolicyGetApplications2ApplicationSet        `json:"applicationSet,omitempty"`      //
+type ResponseApplicationPolicyGetApplications []ResponseItemApplicationPolicyGetApplications // Array of ResponseApplicationPolicyGetApplications
+type ResponseItemApplicationPolicyGetApplications struct {
+	ID                  string                                                             `json:"id,omitempty"`                  // Id
+	Name                string                                                             `json:"name,omitempty"`                // Name
+	NetworkApplications *[]ResponseItemApplicationPolicyGetApplicationsNetworkApplications `json:"networkApplications,omitempty"` //
+	NetworkIDentity     *[]ResponseItemApplicationPolicyGetApplicationsNetworkIDentity     `json:"networkIdentity,omitempty"`     //
+	ApplicationSet      *ResponseItemApplicationPolicyGetApplicationsApplicationSet        `json:"applicationSet,omitempty"`      //
 }
-type ResponseItemApplicationPolicyGetApplications2NetworkApplications struct {
+type ResponseItemApplicationPolicyGetApplicationsNetworkApplications struct {
 	ID                 string `json:"id,omitempty"`                 // Id
 	AppProtocol        string `json:"appProtocol,omitempty"`        // App Protocol
 	ApplicationSubType string `json:"applicationSubType,omitempty"` // Application Sub Type
@@ -463,7 +463,7 @@ type ResponseItemApplicationPolicyGetApplications2NetworkApplications struct {
 	Dscp               string `json:"dscp,omitempty"`               // Dscp
 	IgnoreConflict     string `json:"ignoreConflict,omitempty"`     // Ignore Conflict
 }
-type ResponseItemApplicationPolicyGetApplications2NetworkIDentity struct {
+type ResponseItemApplicationPolicyGetApplicationsNetworkIDentity struct {
 	ID          string `json:"id,omitempty"`          // Id
 	DisplayName string `json:"displayName,omitempty"` // Display Name
 	LowerPort   string `json:"lowerPort,omitempty"`   // Lower Port
@@ -471,7 +471,7 @@ type ResponseItemApplicationPolicyGetApplications2NetworkIDentity struct {
 	Protocol    string `json:"protocol,omitempty"`    // Protocol
 	UpperPort   string `json:"upperPort,omitempty"`   // Upper Port
 }
-type ResponseItemApplicationPolicyGetApplications2ApplicationSet struct {
+type ResponseItemApplicationPolicyGetApplicationsApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
 type ResponseApplicationPolicyGetApplicationsCount struct {
@@ -554,89 +554,89 @@ type ResponseApplicationPolicyDeleteQosDeviceInterfaceInfoResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
 }
-type ResponseApplicationPolicyCreateApplicationSets struct {
-	Response *ResponseApplicationPolicyCreateApplicationSetsResponse `json:"response,omitempty"` //
-	Version  string                                                  `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyCreateApplicationSetsV2 struct {
+	Response *ResponseApplicationPolicyCreateApplicationSetsV2Response `json:"response,omitempty"` //
+	Version  string                                                    `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyCreateApplicationSetsResponse struct {
+type ResponseApplicationPolicyCreateApplicationSetsV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
 }
-type ResponseApplicationPolicyGetApplicationSets2 struct {
-	Response *[]ResponseApplicationPolicyGetApplicationSets2Response `json:"response,omitempty"` //
-	Version  string                                                  `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyGetApplicationSetsV2 struct {
+	Response *[]ResponseApplicationPolicyGetApplicationSetsV2Response `json:"response,omitempty"` //
+	Version  string                                                   `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyGetApplicationSets2Response struct {
-	ID                          string                                                              `json:"id,omitempty"`                          // Id of Application Set
-	InstanceID                  *int                                                                `json:"instanceId,omitempty"`                  // Instance id
-	DisplayName                 string                                                              `json:"displayName,omitempty"`                 // Display name
-	InstanceVersion             *float64                                                            `json:"instanceVersion,omitempty"`             // Instance version
-	DefaultBusinessRelevance    string                                                              `json:"defaultBusinessRelevance,omitempty"`    // Default business relevance
-	IDentitySource              *ResponseApplicationPolicyGetApplicationSets2ResponseIDentitySource `json:"identitySource,omitempty"`              //
-	Name                        string                                                              `json:"name,omitempty"`                        // Application Set name
-	Namespace                   string                                                              `json:"namespace,omitempty"`                   // Namespace, valid value scalablegroup:application
-	ScalableGroupExternalHandle string                                                              `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application Set name
-	ScalableGroupType           string                                                              `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION_GROUP
-	Type                        string                                                              `json:"type,omitempty"`                        // Type, valid value scalablegroup
+type ResponseApplicationPolicyGetApplicationSetsV2Response struct {
+	ID                          string                                                               `json:"id,omitempty"`                          // Id of Application Set
+	InstanceID                  *int                                                                 `json:"instanceId,omitempty"`                  // Instance id
+	DisplayName                 string                                                               `json:"displayName,omitempty"`                 // Display name
+	InstanceVersion             *float64                                                             `json:"instanceVersion,omitempty"`             // Instance version
+	DefaultBusinessRelevance    string                                                               `json:"defaultBusinessRelevance,omitempty"`    // Default business relevance
+	IDentitySource              *ResponseApplicationPolicyGetApplicationSetsV2ResponseIDentitySource `json:"identitySource,omitempty"`              //
+	Name                        string                                                               `json:"name,omitempty"`                        // Application Set name
+	Namespace                   string                                                               `json:"namespace,omitempty"`                   // Namespace, valid value scalablegroup:application
+	ScalableGroupExternalHandle string                                                               `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application Set name
+	ScalableGroupType           string                                                               `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION_GROUP
+	Type                        string                                                               `json:"type,omitempty"`                        // Type, valid value scalablegroup
 }
-type ResponseApplicationPolicyGetApplicationSets2ResponseIDentitySource struct {
+type ResponseApplicationPolicyGetApplicationSetsV2ResponseIDentitySource struct {
 	ID   string `json:"id,omitempty"`   // Id
 	Type string `json:"type,omitempty"` // Type of identify source. NBAR: build in Application Set, APIC_EM: custom Application Set
 }
-type ResponseApplicationPolicyGetApplicationSetCount struct {
+type ResponseApplicationPolicyGetApplicationSetCountV2 struct {
 	Response *int   `json:"response,omitempty"` // Total number of Application Set
 	Version  string `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplicationSet struct {
-	Response *ResponseApplicationPolicyDeleteApplicationSetResponse `json:"response,omitempty"` //
-	Version  string                                                 `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyDeleteApplicationSetV2 struct {
+	Response *ResponseApplicationPolicyDeleteApplicationSetV2Response `json:"response,omitempty"` //
+	Version  string                                                   `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplicationSetResponse struct {
+type ResponseApplicationPolicyDeleteApplicationSetV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
 }
-type ResponseApplicationPolicyEditApplications struct {
-	Response *ResponseApplicationPolicyEditApplicationsResponse `json:"response,omitempty"` //
-	Version  string                                             `json:"version,omitempty"`  // Version
-}
-type ResponseApplicationPolicyEditApplicationsResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Task id
-	URL    string `json:"url,omitempty"`    // Task url
-}
-type ResponseApplicationPolicyCreateApplications struct {
-	Response *ResponseApplicationPolicyCreateApplicationsResponse `json:"response,omitempty"` //
+type ResponseApplicationPolicyEditApplicationsV2 struct {
+	Response *ResponseApplicationPolicyEditApplicationsV2Response `json:"response,omitempty"` //
 	Version  string                                               `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyCreateApplicationsResponse struct {
+type ResponseApplicationPolicyEditApplicationsV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
 }
-type ResponseApplicationPolicyGetApplications struct {
-	Response *[]ResponseApplicationPolicyGetApplicationsResponse `json:"response,omitempty"` //
-	Version  string                                              `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyCreateApplicationsV2 struct {
+	Response *ResponseApplicationPolicyCreateApplicationsV2Response `json:"response,omitempty"` //
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyGetApplicationsResponse struct {
-	ID                          string                                                                       `json:"id,omitempty"`                          // Id of Application
-	InstanceID                  *int                                                                         `json:"instanceId,omitempty"`                  // Instance id
-	DisplayName                 string                                                                       `json:"displayName,omitempty"`                 // Display name
-	InstanceVersion             *float64                                                                     `json:"instanceVersion,omitempty"`             // Instance version
-	IDentitySource              *ResponseApplicationPolicyGetApplicationsResponseIDentitySource              `json:"identitySource,omitempty"`              //
-	IndicativeNetworkIDentity   *[]ResponseApplicationPolicyGetApplicationsResponseIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"`   //
-	Name                        string                                                                       `json:"name,omitempty"`                        // Application name
-	Namespace                   string                                                                       `json:"namespace,omitempty"`                   // Namespace, valid value scalablegroup:application
-	NetworkApplications         *[]ResponseApplicationPolicyGetApplicationsResponseNetworkApplications       `json:"networkApplications,omitempty"`         //
-	NetworkIDentity             *[]ResponseApplicationPolicyGetApplicationsResponseNetworkIDentity           `json:"networkIdentity,omitempty"`             //
-	ParentScalableGroup         *ResponseApplicationPolicyGetApplicationsResponseParentScalableGroup         `json:"parentScalableGroup,omitempty"`         //
-	Qualifier                   string                                                                       `json:"qualifier,omitempty"`                   // Qualifier, valid value application
-	ScalableGroupExternalHandle string                                                                       `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application name
-	ScalableGroupType           string                                                                       `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION
-	Type                        string                                                                       `json:"type,omitempty"`                        // Type, valid value scalablegroup
+type ResponseApplicationPolicyCreateApplicationsV2Response struct {
+	TaskID string `json:"taskId,omitempty"` // Task id
+	URL    string `json:"url,omitempty"`    // Task url
 }
-type ResponseApplicationPolicyGetApplicationsResponseIDentitySource struct {
+type ResponseApplicationPolicyGetApplicationsV2 struct {
+	Response *[]ResponseApplicationPolicyGetApplicationsV2Response `json:"response,omitempty"` //
+	Version  string                                                `json:"version,omitempty"`  // Version
+}
+type ResponseApplicationPolicyGetApplicationsV2Response struct {
+	ID                          string                                                                         `json:"id,omitempty"`                          // Id of Application
+	InstanceID                  *int                                                                           `json:"instanceId,omitempty"`                  // Instance id
+	DisplayName                 string                                                                         `json:"displayName,omitempty"`                 // Display name
+	InstanceVersion             *float64                                                                       `json:"instanceVersion,omitempty"`             // Instance version
+	IDentitySource              *ResponseApplicationPolicyGetApplicationsV2ResponseIDentitySource              `json:"identitySource,omitempty"`              //
+	IndicativeNetworkIDentity   *[]ResponseApplicationPolicyGetApplicationsV2ResponseIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"`   //
+	Name                        string                                                                         `json:"name,omitempty"`                        // Application name
+	Namespace                   string                                                                         `json:"namespace,omitempty"`                   // Namespace, valid value scalablegroup:application
+	NetworkApplications         *[]ResponseApplicationPolicyGetApplicationsV2ResponseNetworkApplications       `json:"networkApplications,omitempty"`         //
+	NetworkIDentity             *[]ResponseApplicationPolicyGetApplicationsV2ResponseNetworkIDentity           `json:"networkIdentity,omitempty"`             //
+	ParentScalableGroup         *ResponseApplicationPolicyGetApplicationsV2ResponseParentScalableGroup         `json:"parentScalableGroup,omitempty"`         //
+	Qualifier                   string                                                                         `json:"qualifier,omitempty"`                   // Qualifier, valid value application
+	ScalableGroupExternalHandle string                                                                         `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application name
+	ScalableGroupType           string                                                                         `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION
+	Type                        string                                                                         `json:"type,omitempty"`                        // Type, valid value scalablegroup
+}
+type ResponseApplicationPolicyGetApplicationsV2ResponseIDentitySource struct {
 	ID   string `json:"id,omitempty"`   // Id
 	Type string `json:"type,omitempty"` // Type of identify source. NBAR: build in Application, APIC_EM: custom Application
 }
-type ResponseApplicationPolicyGetApplicationsResponseIndicativeNetworkIDentity struct {
+type ResponseApplicationPolicyGetApplicationsV2ResponseIndicativeNetworkIDentity struct {
 	ID          string   `json:"id,omitempty"`          // Id
 	DisplayName string   `json:"displayName,omitempty"` // Display name
 	LowerPort   *float64 `json:"lowerPort,omitempty"`   // Lower port
@@ -644,7 +644,7 @@ type ResponseApplicationPolicyGetApplicationsResponseIndicativeNetworkIDentity s
 	Protocol    string   `json:"protocol,omitempty"`    // Protocol
 	UpperPort   *float64 `json:"upperPort,omitempty"`   // Upper port
 }
-type ResponseApplicationPolicyGetApplicationsResponseNetworkApplications struct {
+type ResponseApplicationPolicyGetApplicationsV2ResponseNetworkApplications struct {
 	ID                 string   `json:"id,omitempty"`                 // Id
 	AppProtocol        string   `json:"appProtocol,omitempty"`        // App protocol
 	ApplicationSubType string   `json:"applicationSubType,omitempty"` // Application sub type, LEARNED: discovered application, NONE: nbar and custom application
@@ -663,30 +663,30 @@ type ResponseApplicationPolicyGetApplicationsResponseNetworkApplications struct 
 	URL                string   `json:"url,omitempty"`                // Url
 	TrafficClass       string   `json:"trafficClass,omitempty"`       // Traffic class
 }
-type ResponseApplicationPolicyGetApplicationsResponseNetworkIDentity struct {
-	ID          string                                                                       `json:"id,omitempty"`          // Id
-	DisplayName string                                                                       `json:"displayName,omitempty"` // Display name
-	IPv4Subnet  []string                                                                     `json:"ipv4Subnet,omitempty"`  // Ipv4 subnet
-	IPv6Subnet  *[]ResponseApplicationPolicyGetApplicationsResponseNetworkIDentityIPv6Subnet `json:"ipv6Subnet,omitempty"`  // Ipv6 subnet
-	LowerPort   *float64                                                                     `json:"lowerPort,omitempty"`   // Lower port
-	Ports       string                                                                       `json:"ports,omitempty"`       // Ports
-	Protocol    string                                                                       `json:"protocol,omitempty"`    // Protocol
-	UpperPort   *float64                                                                     `json:"upperPort,omitempty"`   // Upper port
+type ResponseApplicationPolicyGetApplicationsV2ResponseNetworkIDentity struct {
+	ID          string                                                                         `json:"id,omitempty"`          // Id
+	DisplayName string                                                                         `json:"displayName,omitempty"` // Display name
+	IPv4Subnet  []string                                                                       `json:"ipv4Subnet,omitempty"`  // Ipv4 subnet
+	IPv6Subnet  *[]ResponseApplicationPolicyGetApplicationsV2ResponseNetworkIDentityIPv6Subnet `json:"ipv6Subnet,omitempty"`  // Ipv6 subnet
+	LowerPort   *float64                                                                       `json:"lowerPort,omitempty"`   // Lower port
+	Ports       string                                                                         `json:"ports,omitempty"`       // Ports
+	Protocol    string                                                                         `json:"protocol,omitempty"`    // Protocol
+	UpperPort   *float64                                                                       `json:"upperPort,omitempty"`   // Upper port
 }
-type ResponseApplicationPolicyGetApplicationsResponseNetworkIDentityIPv6Subnet interface{}
-type ResponseApplicationPolicyGetApplicationsResponseParentScalableGroup struct {
+type ResponseApplicationPolicyGetApplicationsV2ResponseNetworkIDentityIPv6Subnet interface{}
+type ResponseApplicationPolicyGetApplicationsV2ResponseParentScalableGroup struct {
 	ID    string `json:"id,omitempty"`    // Id
 	IDRef string `json:"idRef,omitempty"` // Id reference to parent application set
 }
-type ResponseApplicationPolicyGetApplicationCount struct {
+type ResponseApplicationPolicyGetApplicationCountV2 struct {
 	Response *int   `json:"response,omitempty"` // Total number of Application
 	Version  string `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplication struct {
-	Response *ResponseApplicationPolicyDeleteApplicationResponse `json:"response,omitempty"` //
-	Version  string                                              `json:"version,omitempty"`  // Version
+type ResponseApplicationPolicyDeleteApplicationV2 struct {
+	Response *ResponseApplicationPolicyDeleteApplicationV2Response `json:"response,omitempty"` //
+	Version  string                                                `json:"version,omitempty"`  // Version
 }
-type ResponseApplicationPolicyDeleteApplicationResponse struct {
+type ResponseApplicationPolicyDeleteApplicationV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
 }
@@ -853,6 +853,14 @@ type RequestItemApplicationPolicyCreateApplication struct {
 	ApplicationSet            *RequestItemApplicationPolicyCreateApplicationApplicationSet              `json:"applicationSet,omitempty"`            //
 	IndicativeNetworkIDentity *[]RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
 }
+type RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity struct {
+	ID          string `json:"id,omitempty"`          // id
+	DisplayName string `json:"displayName,omitempty"` // displayName
+	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
+	Ports       string `json:"ports,omitempty"`       // ports
+	Protocol    string `json:"protocol,omitempty"`    // protocol
+	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
+}
 type RequestItemApplicationPolicyCreateApplicationNetworkApplications struct {
 	AppProtocol        string `json:"appProtocol,omitempty"`        // App Protocol
 	ApplicationSubType string `json:"applicationSubType,omitempty"` // Application Sub Type
@@ -880,14 +888,6 @@ type RequestItemApplicationPolicyCreateApplicationNetworkIDentity struct {
 }
 type RequestItemApplicationPolicyCreateApplicationApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
-}
-type RequestItemApplicationPolicyCreateApplicationIndicativeNetworkIDentity struct {
-	ID          string `json:"id,omitempty"`          // id
-	DisplayName string `json:"displayName,omitempty"` // displayName
-	LowerPort   *int   `json:"lowerPort,omitempty"`   // lowerPort
-	Ports       string `json:"ports,omitempty"`       // ports
-	Protocol    string `json:"protocol,omitempty"`    // protocol
-	UpperPort   *int   `json:"upperPort,omitempty"`   // upperPort
 }
 type RequestApplicationPolicyEditApplication []RequestItemApplicationPolicyEditApplication // Array of RequestApplicationPolicyEditApplication
 type RequestItemApplicationPolicyEditApplication struct {
@@ -959,8 +959,8 @@ type RequestItemApplicationPolicyCreateQosDeviceInterfaceInfoQosDeviceInterfaceI
 	Role               string `json:"role,omitempty"`               // Interface role
 	UploadBW           *int   `json:"uploadBW,omitempty"`           // Upload bandwidth
 }
-type RequestApplicationPolicyCreateApplicationSets []RequestItemApplicationPolicyCreateApplicationSets // Array of RequestApplicationPolicyCreateApplicationSets
-type RequestItemApplicationPolicyCreateApplicationSets struct {
+type RequestApplicationPolicyCreateApplicationSetsV2 []RequestItemApplicationPolicyCreateApplicationSetsV2 // Array of RequestApplicationPolicyCreateApplicationSetsV2
+type RequestItemApplicationPolicyCreateApplicationSetsV2 struct {
 	Name                        string `json:"name,omitempty"`                        // Application Set name
 	ScalableGroupType           string `json:"scalableGroupType,omitempty"`           // Scalable group type, should be set to APPLICATION_GROUP
 	DefaultBusinessRelevance    string `json:"defaultBusinessRelevance,omitempty"`    // Default business relevance
@@ -969,24 +969,24 @@ type RequestItemApplicationPolicyCreateApplicationSets struct {
 	Type                        string `json:"type,omitempty"`                        // Type, should be set to scalablegroup
 	ScalableGroupExternalHandle string `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be set to application set name
 }
-type RequestApplicationPolicyEditApplications []RequestItemApplicationPolicyEditApplications // Array of RequestApplicationPolicyEditApplications
-type RequestItemApplicationPolicyEditApplications struct {
-	ID                          string                                                                   `json:"id,omitempty"`                          // Application id
-	InstanceID                  *int                                                                     `json:"instanceId,omitempty"`                  // Instance id
-	DisplayName                 string                                                                   `json:"displayName,omitempty"`                 // Display name
-	InstanceVersion             *float64                                                                 `json:"instanceVersion,omitempty"`             // Instance version
-	IndicativeNetworkIDentity   *[]RequestItemApplicationPolicyEditApplicationsIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"`   //
-	Name                        string                                                                   `json:"name,omitempty"`                        // Application name
-	Namespace                   string                                                                   `json:"namespace,omitempty"`                   // Namespace
-	NetworkApplications         *[]RequestItemApplicationPolicyEditApplicationsNetworkApplications       `json:"networkApplications,omitempty"`         //
-	NetworkIDentity             *[]RequestItemApplicationPolicyEditApplicationsNetworkIDentity           `json:"networkIdentity,omitempty"`             //
-	ParentScalableGroup         *RequestItemApplicationPolicyEditApplicationsParentScalableGroup         `json:"parentScalableGroup,omitempty"`         //
-	Qualifier                   string                                                                   `json:"qualifier,omitempty"`                   // Qualifier, valid value application
-	ScalableGroupExternalHandle string                                                                   `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application name
-	ScalableGroupType           string                                                                   `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION
-	Type                        string                                                                   `json:"type,omitempty"`                        // Type, valid value scalablegroup
+type RequestApplicationPolicyEditApplicationsV2 []RequestItemApplicationPolicyEditApplicationsV2 // Array of RequestApplicationPolicyEditApplicationsV2
+type RequestItemApplicationPolicyEditApplicationsV2 struct {
+	ID                          string                                                                     `json:"id,omitempty"`                          // Application id
+	InstanceID                  *int                                                                       `json:"instanceId,omitempty"`                  // Instance id
+	DisplayName                 string                                                                     `json:"displayName,omitempty"`                 // Display name
+	InstanceVersion             *float64                                                                   `json:"instanceVersion,omitempty"`             // Instance version
+	IndicativeNetworkIDentity   *[]RequestItemApplicationPolicyEditApplicationsV2IndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"`   //
+	Name                        string                                                                     `json:"name,omitempty"`                        // Application name
+	Namespace                   string                                                                     `json:"namespace,omitempty"`                   // Namespace
+	NetworkApplications         *[]RequestItemApplicationPolicyEditApplicationsV2NetworkApplications       `json:"networkApplications,omitempty"`         //
+	NetworkIDentity             *[]RequestItemApplicationPolicyEditApplicationsV2NetworkIDentity           `json:"networkIdentity,omitempty"`             //
+	ParentScalableGroup         *RequestItemApplicationPolicyEditApplicationsV2ParentScalableGroup         `json:"parentScalableGroup,omitempty"`         //
+	Qualifier                   string                                                                     `json:"qualifier,omitempty"`                   // Qualifier, valid value application
+	ScalableGroupExternalHandle string                                                                     `json:"scalableGroupExternalHandle,omitempty"` // Scalable group external handle, should be equal to Application name
+	ScalableGroupType           string                                                                     `json:"scalableGroupType,omitempty"`           // Scalable group type, valid value APPLICATION
+	Type                        string                                                                     `json:"type,omitempty"`                        // Type, valid value scalablegroup
 }
-type RequestItemApplicationPolicyEditApplicationsIndicativeNetworkIDentity struct {
+type RequestItemApplicationPolicyEditApplicationsV2IndicativeNetworkIDentity struct {
 	ID          string   `json:"id,omitempty"`          // Id
 	DisplayName string   `json:"displayName,omitempty"` // Display name
 	LowerPort   *float64 `json:"lowerPort,omitempty"`   // Lower port
@@ -994,7 +994,7 @@ type RequestItemApplicationPolicyEditApplicationsIndicativeNetworkIDentity struc
 	Protocol    string   `json:"protocol,omitempty"`    // Protocol
 	UpperPort   *float64 `json:"upperPort,omitempty"`   // Upper port
 }
-type RequestItemApplicationPolicyEditApplicationsNetworkApplications struct {
+type RequestItemApplicationPolicyEditApplicationsV2NetworkApplications struct {
 	ID                 string   `json:"id,omitempty"`                 // Id
 	ApplicationSubType string   `json:"applicationSubType,omitempty"` // Application sub type, LEARNED: discovered application, NONE: nbar and custom application
 	ApplicationType    string   `json:"applicationType,omitempty"`    // Application type, DEFAULT: nbar application, DEFAULT_MODIFIED: nbar modified application, CUSTOM: custom application
@@ -1014,31 +1014,31 @@ type RequestItemApplicationPolicyEditApplicationsNetworkApplications struct {
 	TrafficClass       string   `json:"trafficClass,omitempty"`       // Traffic class
 	IgnoreConflict     *bool    `json:"ignoreConflict,omitempty"`     // Ignore conflict, true or false
 }
-type RequestItemApplicationPolicyEditApplicationsNetworkIDentity struct {
-	ID          string                                                                   `json:"id,omitempty"`          // Id
-	DisplayName string                                                                   `json:"displayName,omitempty"` // Display name
-	IPv4Subnet  []string                                                                 `json:"ipv4Subnet,omitempty"`  // Ipv4 subnet
-	IPv6Subnet  *[]RequestItemApplicationPolicyEditApplicationsNetworkIDentityIPv6Subnet `json:"ipv6Subnet,omitempty"`  // Ipv6 subnet
-	LowerPort   *float64                                                                 `json:"lowerPort,omitempty"`   // Lower port
-	Ports       string                                                                   `json:"ports,omitempty"`       // Ports
-	Protocol    string                                                                   `json:"protocol,omitempty"`    // Protocol
-	UpperPort   *float64                                                                 `json:"upperPort,omitempty"`   // Upper port
+type RequestItemApplicationPolicyEditApplicationsV2NetworkIDentity struct {
+	ID          string                                                                     `json:"id,omitempty"`          // Id
+	DisplayName string                                                                     `json:"displayName,omitempty"` // Display name
+	IPv4Subnet  []string                                                                   `json:"ipv4Subnet,omitempty"`  // Ipv4 subnet
+	IPv6Subnet  *[]RequestItemApplicationPolicyEditApplicationsV2NetworkIDentityIPv6Subnet `json:"ipv6Subnet,omitempty"`  // Ipv6 subnet
+	LowerPort   *float64                                                                   `json:"lowerPort,omitempty"`   // Lower port
+	Ports       string                                                                     `json:"ports,omitempty"`       // Ports
+	Protocol    string                                                                     `json:"protocol,omitempty"`    // Protocol
+	UpperPort   *float64                                                                   `json:"upperPort,omitempty"`   // Upper port
 }
-type RequestItemApplicationPolicyEditApplicationsNetworkIDentityIPv6Subnet interface{}
-type RequestItemApplicationPolicyEditApplicationsParentScalableGroup struct {
+type RequestItemApplicationPolicyEditApplicationsV2NetworkIDentityIPv6Subnet interface{}
+type RequestItemApplicationPolicyEditApplicationsV2ParentScalableGroup struct {
 	IDRef string `json:"idRef,omitempty"` // Id reference to parent application set
 }
-type RequestApplicationPolicyCreateApplications []RequestItemApplicationPolicyCreateApplications // Array of RequestApplicationPolicyCreateApplications
-type RequestItemApplicationPolicyCreateApplications struct {
-	Name                      string                                                                     `json:"name,omitempty"`                      // Application name
-	NetworkApplications       *[]RequestItemApplicationPolicyCreateApplicationsNetworkApplications       `json:"networkApplications,omitempty"`       //
-	ParentScalableGroup       *RequestItemApplicationPolicyCreateApplicationsParentScalableGroup         `json:"parentScalableGroup,omitempty"`       //
-	NetworkIDentity           *[]RequestItemApplicationPolicyCreateApplicationsNetworkIDentity           `json:"networkIdentity,omitempty"`           //
-	IndicativeNetworkIDentity *[]RequestItemApplicationPolicyCreateApplicationsIndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
-	ScalableGroupType         string                                                                     `json:"scalableGroupType,omitempty"`         // Scalable group type, valid value APPLICATION
-	Type                      string                                                                     `json:"type,omitempty"`                      // Type, valid value scalablegroup
+type RequestApplicationPolicyCreateApplicationsV2 []RequestItemApplicationPolicyCreateApplicationsV2 // Array of RequestApplicationPolicyCreateApplicationsV2
+type RequestItemApplicationPolicyCreateApplicationsV2 struct {
+	Name                      string                                                                       `json:"name,omitempty"`                      // Application name
+	NetworkApplications       *[]RequestItemApplicationPolicyCreateApplicationsV2NetworkApplications       `json:"networkApplications,omitempty"`       //
+	ParentScalableGroup       *RequestItemApplicationPolicyCreateApplicationsV2ParentScalableGroup         `json:"parentScalableGroup,omitempty"`       //
+	NetworkIDentity           *[]RequestItemApplicationPolicyCreateApplicationsV2NetworkIDentity           `json:"networkIdentity,omitempty"`           //
+	IndicativeNetworkIDentity *[]RequestItemApplicationPolicyCreateApplicationsV2IndicativeNetworkIDentity `json:"indicativeNetworkIdentity,omitempty"` //
+	ScalableGroupType         string                                                                       `json:"scalableGroupType,omitempty"`         // Scalable group type, valid value APPLICATION
+	Type                      string                                                                       `json:"type,omitempty"`                      // Type, valid value scalablegroup
 }
-type RequestItemApplicationPolicyCreateApplicationsNetworkApplications struct {
+type RequestItemApplicationPolicyCreateApplicationsV2NetworkApplications struct {
 	HelpString      string `json:"helpString,omitempty"`      // Help string
 	ApplicationType string `json:"applicationType,omitempty"` // Application type
 	Type            string `json:"type,omitempty"`            // Custom application type
@@ -1052,17 +1052,17 @@ type RequestItemApplicationPolicyCreateApplicationsNetworkApplications struct {
 	Rank            *int   `json:"rank,omitempty"`            // Rank, should be set to 1
 	EngineID        *int   `json:"engineId,omitempty"`        // Engine id, should be set to 6
 }
-type RequestItemApplicationPolicyCreateApplicationsParentScalableGroup struct {
+type RequestItemApplicationPolicyCreateApplicationsV2ParentScalableGroup struct {
 	IDRef string `json:"idRef,omitempty"` // Id reference to parent application set
 }
-type RequestItemApplicationPolicyCreateApplicationsNetworkIDentity struct {
+type RequestItemApplicationPolicyCreateApplicationsV2NetworkIDentity struct {
 	Protocol   string   `json:"protocol,omitempty"`   // Protocol
 	Ports      string   `json:"ports,omitempty"`      // Ports
 	IPv4Subnet []string `json:"ipv4Subnet,omitempty"` // Ipv4 subnet
 	LowerPort  *float64 `json:"lowerPort,omitempty"`  // Lower port
 	UpperPort  *float64 `json:"upperPort,omitempty"`  // Upper port
 }
-type RequestItemApplicationPolicyCreateApplicationsIndicativeNetworkIDentity struct {
+type RequestItemApplicationPolicyCreateApplicationsV2IndicativeNetworkIDentity struct {
 	Protocol   string   `json:"protocol,omitempty"`   // Protocol
 	Ports      string   `json:"ports,omitempty"`      // Ports
 	IPv4Subnet []string `json:"ipv4Subnet,omitempty"` // Ipv4 subnet
@@ -1077,7 +1077,7 @@ type RequestItemApplicationPolicyCreateApplicationsIndicativeNetworkIDentity str
 
 @param GetApplicationPolicyQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-v1
 */
 func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQueryParams *GetApplicationPolicyQueryParams) (*ResponseApplicationPolicyGetApplicationPolicy, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy"
@@ -1113,7 +1113,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQuer
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-default
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-default-v1
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseApplicationPolicyGetApplicationPolicyDefault, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-default"
@@ -1148,7 +1148,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseAppli
 
 @param GetApplicationPolicyQueuingProfileQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-v1
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplicationPolicyQueuingProfileQueryParams *GetApplicationPolicyQueuingProfileQueryParams) (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
@@ -1184,7 +1184,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplica
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-count-v1
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfileCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile-count"
@@ -1219,7 +1219,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*R
 
 @param GetApplicationSetsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-v1
 */
 func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryParams *GetApplicationSetsQueryParams) (*ResponseApplicationPolicyGetApplicationSets, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
@@ -1255,7 +1255,7 @@ func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryPar
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-count-v1
 */
 func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicationPolicyGetApplicationSetsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set-count"
@@ -1284,23 +1284,23 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicati
 
 }
 
-//GetApplications2 Get Applications - 8893-b834-445b-b29c
+//GetApplications Get Applications - 8893-b834-445b-b29c
 /* Get applications by offset/limit or by name
 
 
-@param GetApplications2QueryParams Filtering parameter
+@param GetApplicationsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-v1
 */
-func (s *ApplicationPolicyService) GetApplications2(GetApplications2QueryParams *GetApplications2QueryParams) (*ResponseApplicationPolicyGetApplications2, *resty.Response, error) {
+func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *GetApplicationsQueryParams) (*ResponseApplicationPolicyGetApplications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
 
-	queryString, _ := query.Values(GetApplications2QueryParams)
+	queryString, _ := query.Values(GetApplicationsQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplications2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplications{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1311,12 +1311,12 @@ func (s *ApplicationPolicyService) GetApplications2(GetApplications2QueryParams 
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetApplications2(GetApplications2QueryParams)
+			return s.GetApplications(GetApplicationsQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetApplications2")
+		return nil, response, fmt.Errorf("error with operation GetApplications")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyGetApplications2)
+	result := response.Result().(*ResponseApplicationPolicyGetApplications)
 	return result, response, err
 
 }
@@ -1326,7 +1326,7 @@ func (s *ApplicationPolicyService) GetApplications2(GetApplications2QueryParams 
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-count-v1
 */
 func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationPolicyGetApplicationsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications-count"
@@ -1361,7 +1361,7 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 
 @param GetQosDeviceInterfaceInfoQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-v1
 */
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfaceInfoQueryParams *GetQosDeviceInterfaceInfoQueryParams) (*ResponseApplicationPolicyGetQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
@@ -1397,7 +1397,7 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfa
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-count-v1
 */
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseApplicationPolicyGetQosDeviceInterfaceInfoCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info-count"
@@ -1426,23 +1426,23 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseAp
 
 }
 
-//GetApplicationSets2 Get Application Set/s - 00ac-d849-43aa-bc75
+//GetApplicationSetsV2 Get Application Set/s - 00ac-d849-43aa-bc75
 /* Get application set/s by offset/limit or by name
 
 
-@param GetApplicationSets2QueryParams Filtering parameter
+@param GetApplicationSetsV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-v2
 */
-func (s *ApplicationPolicyService) GetApplicationSets2(GetApplicationSets2QueryParams *GetApplicationSets2QueryParams) (*ResponseApplicationPolicyGetApplicationSets2, *resty.Response, error) {
+func (s *ApplicationPolicyService) GetApplicationSetsV2(GetApplicationSetsV2QueryParams *GetApplicationSetsV2QueryParams) (*ResponseApplicationPolicyGetApplicationSetsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/application-policy-application-set"
 
-	queryString, _ := query.Values(GetApplicationSets2QueryParams)
+	queryString, _ := query.Values(GetApplicationSetsV2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationSets2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationSetsV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1453,33 +1453,33 @@ func (s *ApplicationPolicyService) GetApplicationSets2(GetApplicationSets2QueryP
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetApplicationSets2(GetApplicationSets2QueryParams)
+			return s.GetApplicationSetsV2(GetApplicationSetsV2QueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetApplicationSets2")
+		return nil, response, fmt.Errorf("error with operation GetApplicationSetsV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyGetApplicationSets2)
+	result := response.Result().(*ResponseApplicationPolicyGetApplicationSetsV2)
 	return result, response, err
 
 }
 
-//GetApplicationSetCount Get Application Set Count - 798c-fa61-432b-a67e
+//GetApplicationSetCountV2 Get Application Set Count - 798c-fa61-432b-a67e
 /* Get the number of all existing application sets
 
 
-@param GetApplicationSetCountQueryParams Filtering parameter
+@param GetApplicationSetCountV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-set-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-set-count-v2
 */
-func (s *ApplicationPolicyService) GetApplicationSetCount(GetApplicationSetCountQueryParams *GetApplicationSetCountQueryParams) (*ResponseApplicationPolicyGetApplicationSetCount, *resty.Response, error) {
+func (s *ApplicationPolicyService) GetApplicationSetCountV2(GetApplicationSetCountV2QueryParams *GetApplicationSetCountV2QueryParams) (*ResponseApplicationPolicyGetApplicationSetCountV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/application-policy-application-set-count"
 
-	queryString, _ := query.Values(GetApplicationSetCountQueryParams)
+	queryString, _ := query.Values(GetApplicationSetCountV2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationSetCount{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationSetCountV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1490,33 +1490,33 @@ func (s *ApplicationPolicyService) GetApplicationSetCount(GetApplicationSetCount
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetApplicationSetCount(GetApplicationSetCountQueryParams)
+			return s.GetApplicationSetCountV2(GetApplicationSetCountV2QueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetApplicationSetCount")
+		return nil, response, fmt.Errorf("error with operation GetApplicationSetCountV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyGetApplicationSetCount)
+	result := response.Result().(*ResponseApplicationPolicyGetApplicationSetCountV2)
 	return result, response, err
 
 }
 
-//GetApplications Get Application/s - a395-8970-43bb-bedd
+//GetApplicationsV2 Get Application/s - a395-8970-43bb-bedd
 /* Get application/s by offset/limit or by name
 
 
-@param GetApplicationsQueryParams Filtering parameter
+@param GetApplicationsV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-v2
 */
-func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *GetApplicationsQueryParams) (*ResponseApplicationPolicyGetApplications, *resty.Response, error) {
+func (s *ApplicationPolicyService) GetApplicationsV2(GetApplicationsV2QueryParams *GetApplicationsV2QueryParams) (*ResponseApplicationPolicyGetApplicationsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/applications"
 
-	queryString, _ := query.Values(GetApplicationsQueryParams)
+	queryString, _ := query.Values(GetApplicationsV2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplications{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationsV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1527,33 +1527,33 @@ func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *G
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetApplications(GetApplicationsQueryParams)
+			return s.GetApplicationsV2(GetApplicationsV2QueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetApplications")
+		return nil, response, fmt.Errorf("error with operation GetApplicationsV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyGetApplications)
+	result := response.Result().(*ResponseApplicationPolicyGetApplicationsV2)
 	return result, response, err
 
 }
 
-//GetApplicationCount Get Application Count - cfa3-7a5c-4c08-b24e
+//GetApplicationCountV2 Get Application Count - cfa3-7a5c-4c08-b24e
 /* Get the number of all existing applications
 
 
-@param GetApplicationCountQueryParams Filtering parameter
+@param GetApplicationCountV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-count-v2
 */
-func (s *ApplicationPolicyService) GetApplicationCount(GetApplicationCountQueryParams *GetApplicationCountQueryParams) (*ResponseApplicationPolicyGetApplicationCount, *resty.Response, error) {
+func (s *ApplicationPolicyService) GetApplicationCountV2(GetApplicationCountV2QueryParams *GetApplicationCountV2QueryParams) (*ResponseApplicationPolicyGetApplicationCountV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/applications-count"
 
-	queryString, _ := query.Values(GetApplicationCountQueryParams)
+	queryString, _ := query.Values(GetApplicationCountV2QueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationCount{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyGetApplicationCountV2{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1564,12 +1564,12 @@ func (s *ApplicationPolicyService) GetApplicationCount(GetApplicationCountQueryP
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetApplicationCount(GetApplicationCountQueryParams)
+			return s.GetApplicationCountV2(GetApplicationCountV2QueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetApplicationCount")
+		return nil, response, fmt.Errorf("error with operation GetApplicationCountV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyGetApplicationCount)
+	result := response.Result().(*ResponseApplicationPolicyGetApplicationCountV2)
 	return result, response, err
 
 }
@@ -1579,7 +1579,7 @@ func (s *ApplicationPolicyService) GetApplicationCount(GetApplicationCountQueryP
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!application-policy-intent
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!application-policy-intent-v1
 */
 func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPolicyApplicationPolicyIntent *RequestApplicationPolicyApplicationPolicyIntent) (*ResponseApplicationPolicyApplicationPolicyIntent, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-intent"
@@ -1616,7 +1616,7 @@ func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPol
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-policy-queuing-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-policy-queuing-profile-v1
 */
 func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(requestApplicationPolicyCreateApplicationPolicyQueuingProfile *RequestApplicationPolicyCreateApplicationPolicyQueuingProfile) (*ResponseApplicationPolicyCreateApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
@@ -1653,7 +1653,7 @@ func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(request
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-set
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-set-v1
 */
 func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicyCreateApplicationSet *RequestApplicationPolicyCreateApplicationSet) (*ResponseApplicationPolicyCreateApplicationSet, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
@@ -1690,7 +1690,7 @@ func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicy
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-v1
 */
 func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCreateApplication *RequestApplicationPolicyCreateApplication) (*ResponseApplicationPolicyCreateApplication, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
@@ -1727,7 +1727,7 @@ func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCre
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-qos-device-interface-info
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-qos-device-interface-info-v1
 */
 func (s *ApplicationPolicyService) CreateQosDeviceInterfaceInfo(requestApplicationPolicyCreateQosDeviceInterfaceInfo *RequestApplicationPolicyCreateQosDeviceInterfaceInfo) (*ResponseApplicationPolicyCreateQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
@@ -1759,21 +1759,21 @@ func (s *ApplicationPolicyService) CreateQosDeviceInterfaceInfo(requestApplicati
 
 }
 
-//CreateApplicationSets Create Application Set/s - e4bf-ca74-45f9-a374
+//CreateApplicationSetsV2 Create Application Set/s - e4bf-ca74-45f9-a374
 /* Create new custom application set/s
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-sets
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-sets-v2
 */
-func (s *ApplicationPolicyService) CreateApplicationSets(requestApplicationPolicyCreateApplicationSets *RequestApplicationPolicyCreateApplicationSets) (*ResponseApplicationPolicyCreateApplicationSets, *resty.Response, error) {
+func (s *ApplicationPolicyService) CreateApplicationSetsV2(requestApplicationPolicyCreateApplicationSetsV2 *RequestApplicationPolicyCreateApplicationSetsV2) (*ResponseApplicationPolicyCreateApplicationSetsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/application-policy-application-set"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestApplicationPolicyCreateApplicationSets).
-		SetResult(&ResponseApplicationPolicyCreateApplicationSets{}).
+		SetBody(requestApplicationPolicyCreateApplicationSetsV2).
+		SetResult(&ResponseApplicationPolicyCreateApplicationSetsV2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1785,32 +1785,32 @@ func (s *ApplicationPolicyService) CreateApplicationSets(requestApplicationPolic
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CreateApplicationSets(requestApplicationPolicyCreateApplicationSets)
+			return s.CreateApplicationSetsV2(requestApplicationPolicyCreateApplicationSetsV2)
 		}
 
-		return nil, response, fmt.Errorf("error with operation CreateApplicationSets")
+		return nil, response, fmt.Errorf("error with operation CreateApplicationSetsV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyCreateApplicationSets)
+	result := response.Result().(*ResponseApplicationPolicyCreateApplicationSetsV2)
 	return result, response, err
 
 }
 
-//CreateApplications Create Application/s - b4a6-dae7-4b29-992c
+//CreateApplicationsV2 Create Application/s - b4a6-dae7-4b29-992c
 /* Create new custom application/s
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-applications
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-applications-v2
 */
-func (s *ApplicationPolicyService) CreateApplications(requestApplicationPolicyCreateApplications *RequestApplicationPolicyCreateApplications) (*ResponseApplicationPolicyCreateApplications, *resty.Response, error) {
+func (s *ApplicationPolicyService) CreateApplicationsV2(requestApplicationPolicyCreateApplicationsV2 *RequestApplicationPolicyCreateApplicationsV2) (*ResponseApplicationPolicyCreateApplicationsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/applications"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestApplicationPolicyCreateApplications).
-		SetResult(&ResponseApplicationPolicyCreateApplications{}).
+		SetBody(requestApplicationPolicyCreateApplicationsV2).
+		SetResult(&ResponseApplicationPolicyCreateApplicationsV2{}).
 		SetError(&Error).
 		Post(path)
 
@@ -1822,13 +1822,13 @@ func (s *ApplicationPolicyService) CreateApplications(requestApplicationPolicyCr
 	if response.IsError() {
 
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.CreateApplications(requestApplicationPolicyCreateApplications)
+			return s.CreateApplicationsV2(requestApplicationPolicyCreateApplicationsV2)
 		}
 
-		return nil, response, fmt.Errorf("error with operation CreateApplications")
+		return nil, response, fmt.Errorf("error with operation CreateApplicationsV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyCreateApplications)
+	result := response.Result().(*ResponseApplicationPolicyCreateApplicationsV2)
 	return result, response, err
 
 }
@@ -1932,19 +1932,19 @@ func (s *ApplicationPolicyService) UpdateQosDeviceInterfaceInfo(requestApplicati
 
 }
 
-//EditApplications Edit Application/s - 6995-2aea-4f2b-a053
+//EditApplicationsV2 Edit Application/s - 6995-2aea-4f2b-a053
 /* Edit the attributes of an existing application
 
 
  */
-func (s *ApplicationPolicyService) EditApplications(requestApplicationPolicyEditApplications *RequestApplicationPolicyEditApplications) (*ResponseApplicationPolicyEditApplications, *resty.Response, error) {
+func (s *ApplicationPolicyService) EditApplicationsV2(requestApplicationPolicyEditApplicationsV2 *RequestApplicationPolicyEditApplicationsV2) (*ResponseApplicationPolicyEditApplicationsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/applications"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetBody(requestApplicationPolicyEditApplications).
-		SetResult(&ResponseApplicationPolicyEditApplications{}).
+		SetBody(requestApplicationPolicyEditApplicationsV2).
+		SetResult(&ResponseApplicationPolicyEditApplicationsV2{}).
 		SetError(&Error).
 		Put(path)
 
@@ -1955,12 +1955,12 @@ func (s *ApplicationPolicyService) EditApplications(requestApplicationPolicyEdit
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.EditApplications(requestApplicationPolicyEditApplications)
+			return s.EditApplicationsV2(requestApplicationPolicyEditApplicationsV2)
 		}
-		return nil, response, fmt.Errorf("error with operation EditApplications")
+		return nil, response, fmt.Errorf("error with operation EditApplicationsV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyEditApplications)
+	result := response.Result().(*ResponseApplicationPolicyEditApplicationsV2)
 	return result, response, err
 
 }
@@ -1972,7 +1972,7 @@ func (s *ApplicationPolicyService) EditApplications(requestApplicationPolicyEdit
 @param id id path parameter. Id of custom queuing profile to delete
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-policy-queuing-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-policy-queuing-profile-v1
 */
 func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id string) (*ResponseApplicationPolicyDeleteApplicationPolicyQueuingProfile, *resty.Response, error) {
 	//id string
@@ -2003,24 +2003,24 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 
 }
 
-//DeleteApplicationSet2 Delete Application Set - 70b6-f8e1-40b8-b784
+//DeleteApplicationSet Delete Application Set - 70b6-f8e1-40b8-b784
 /* Delete existing application-set by it's id
 
 
-@param DeleteApplicationSet2QueryParams Filtering parameter
+@param DeleteApplicationSetQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set-v1
 */
-func (s *ApplicationPolicyService) DeleteApplicationSet2(DeleteApplicationSet2QueryParams *DeleteApplicationSet2QueryParams) (*ResponseApplicationPolicyDeleteApplicationSet2, *resty.Response, error) {
-	//DeleteApplicationSet2QueryParams *DeleteApplicationSet2QueryParams
+func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*ResponseApplicationPolicyDeleteApplicationSet, *resty.Response, error) {
+	//DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams
 	path := "/dna/intent/api/v1/application-policy-application-set"
 
-	queryString, _ := query.Values(DeleteApplicationSet2QueryParams)
+	queryString, _ := query.Values(DeleteApplicationSetQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyDeleteApplicationSet2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyDeleteApplicationSet{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2031,34 +2031,34 @@ func (s *ApplicationPolicyService) DeleteApplicationSet2(DeleteApplicationSet2Qu
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationSet2(DeleteApplicationSet2QueryParams)
+			return s.DeleteApplicationSet(DeleteApplicationSetQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation DeleteApplicationSet2")
+		return nil, response, fmt.Errorf("error with operation DeleteApplicationSet")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyDeleteApplicationSet2)
+	result := response.Result().(*ResponseApplicationPolicyDeleteApplicationSet)
 	return result, response, err
 
 }
 
-//DeleteApplication2 Delete Application - d49a-f9b8-4c6a-a8ea
+//DeleteApplication Delete Application - d49a-f9b8-4c6a-a8ea
 /* Delete existing application by its id
 
 
-@param DeleteApplication2QueryParams Filtering parameter
+@param DeleteApplicationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-v1
 */
-func (s *ApplicationPolicyService) DeleteApplication2(DeleteApplication2QueryParams *DeleteApplication2QueryParams) (*ResponseApplicationPolicyDeleteApplication2, *resty.Response, error) {
-	//DeleteApplication2QueryParams *DeleteApplication2QueryParams
+func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParams *DeleteApplicationQueryParams) (*ResponseApplicationPolicyDeleteApplication, *resty.Response, error) {
+	//DeleteApplicationQueryParams *DeleteApplicationQueryParams
 	path := "/dna/intent/api/v1/applications"
 
-	queryString, _ := query.Values(DeleteApplication2QueryParams)
+	queryString, _ := query.Values(DeleteApplicationQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyDeleteApplication2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyDeleteApplication{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2069,12 +2069,12 @@ func (s *ApplicationPolicyService) DeleteApplication2(DeleteApplication2QueryPar
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplication2(DeleteApplication2QueryParams)
+			return s.DeleteApplication(DeleteApplicationQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation DeleteApplication2")
+		return nil, response, fmt.Errorf("error with operation DeleteApplication")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyDeleteApplication2)
+	result := response.Result().(*ResponseApplicationPolicyDeleteApplication)
 	return result, response, err
 
 }
@@ -2086,7 +2086,7 @@ func (s *ApplicationPolicyService) DeleteApplication2(DeleteApplication2QueryPar
 @param id id path parameter. Id of the qos device info, this object holds all qos device interface infos associate with network device id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-qos-device-interface-info
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-qos-device-interface-info-v1
 */
 func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*ResponseApplicationPolicyDeleteQosDeviceInterfaceInfo, *resty.Response, error) {
 	//id string
@@ -2117,16 +2117,16 @@ func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*Res
 
 }
 
-//DeleteApplicationSet Delete Application Set - b2a9-08f1-4879-9f70
+//DeleteApplicationSetV2 Delete Application Set - b2a9-08f1-4879-9f70
 /* Delete existing custom application set by id
 
 
 @param id id path parameter. Id of custom application set to delete
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set-v2
 */
-func (s *ApplicationPolicyService) DeleteApplicationSet(id string) (*ResponseApplicationPolicyDeleteApplicationSet, *resty.Response, error) {
+func (s *ApplicationPolicyService) DeleteApplicationSetV2(id string) (*ResponseApplicationPolicyDeleteApplicationSetV2, *resty.Response, error) {
 	//id string
 	path := "/dna/intent/api/v2/application-policy-application-set/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
@@ -2134,7 +2134,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(id string) (*ResponseApp
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplicationPolicyDeleteApplicationSet{}).
+		SetResult(&ResponseApplicationPolicyDeleteApplicationSetV2{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2145,26 +2145,26 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(id string) (*ResponseApp
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationSet(id)
+			return s.DeleteApplicationSetV2(id)
 		}
-		return nil, response, fmt.Errorf("error with operation DeleteApplicationSet")
+		return nil, response, fmt.Errorf("error with operation DeleteApplicationSetV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyDeleteApplicationSet)
+	result := response.Result().(*ResponseApplicationPolicyDeleteApplicationSetV2)
 	return result, response, err
 
 }
 
-//DeleteApplication Delete Application - 9098-8ada-4abb-bedc
+//DeleteApplicationV2 Delete Application - 9098-8ada-4abb-bedc
 /* Delete existing custom application by id
 
 
 @param id id path parameter. Id of custom application to delete
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-v2
 */
-func (s *ApplicationPolicyService) DeleteApplication(id string) (*ResponseApplicationPolicyDeleteApplication, *resty.Response, error) {
+func (s *ApplicationPolicyService) DeleteApplicationV2(id string) (*ResponseApplicationPolicyDeleteApplicationV2, *resty.Response, error) {
 	//id string
 	path := "/dna/intent/api/v2/applications/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
@@ -2172,7 +2172,7 @@ func (s *ApplicationPolicyService) DeleteApplication(id string) (*ResponseApplic
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseApplicationPolicyDeleteApplication{}).
+		SetResult(&ResponseApplicationPolicyDeleteApplicationV2{}).
 		SetError(&Error).
 		Delete(path)
 
@@ -2183,12 +2183,12 @@ func (s *ApplicationPolicyService) DeleteApplication(id string) (*ResponseApplic
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplication(id)
+			return s.DeleteApplicationV2(id)
 		}
-		return nil, response, fmt.Errorf("error with operation DeleteApplication")
+		return nil, response, fmt.Errorf("error with operation DeleteApplicationV2")
 	}
 
-	result := response.Result().(*ResponseApplicationPolicyDeleteApplication)
+	result := response.Result().(*ResponseApplicationPolicyDeleteApplicationV2)
 	return result, response, err
 
 }

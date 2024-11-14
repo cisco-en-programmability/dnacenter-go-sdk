@@ -146,7 +146,7 @@ type RequestItsmIntegrationUpdateItsmIntegrationSettingDataConnectionSettings st
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id-v1
 */
 func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string) (*ResponseItsmIntegrationGetItsmIntegrationSettingByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm/{instanceId}"
@@ -181,7 +181,7 @@ func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings-v1
 */
 func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmIntegrationGetAllItsmIntegrationSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/itsm/instances"
@@ -215,7 +215,7 @@ func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmI
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-status-v1
 */
 func (s *ItsmIntegrationService) GetItsmIntegrationStatus() (*ResponseItsmIntegrationGetItsmIntegrationStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/status"
@@ -249,7 +249,7 @@ func (s *ItsmIntegrationService) GetItsmIntegrationStatus() (*ResponseItsmIntegr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting-v1
 */
 func (s *ItsmIntegrationService) CreateItsmIntegrationSetting(requestItsmIntegrationCreateITSMIntegrationSetting *RequestItsmIntegrationCreateItsmIntegrationSetting) (*ResponseItsmIntegrationCreateItsmIntegrationSetting, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm"
@@ -324,7 +324,7 @@ func (s *ItsmIntegrationService) UpdateItsmIntegrationSetting(instanceID string,
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting-v1
 */
 func (s *ItsmIntegrationService) DeleteItsmIntegrationSetting(instanceID string) (*resty.Response, error) {
 	//instanceID string

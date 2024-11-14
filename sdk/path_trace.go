@@ -935,7 +935,7 @@ type RequestPathTraceInitiateANewPathtrace struct {
 
 @param RetrievesAllPreviousPathtracesSummaryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-all-previous-pathtraces-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-all-previous-pathtraces-summary-v1
 */
 func (s *PathTraceService) RetrievesAllPreviousPathtracesSummary(RetrievesAllPreviousPathtracesSummaryQueryParams *RetrievesAllPreviousPathtracesSummaryQueryParams) (*ResponsePathTraceRetrievesAllPreviousPathtracesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis"
@@ -973,7 +973,7 @@ func (s *PathTraceService) RetrievesAllPreviousPathtracesSummary(RetrievesAllPre
 @param flowAnalysisID flowAnalysisId path parameter. Flow analysis request id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-previous-pathtrace
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-previous-pathtrace-v1
 */
 func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*ResponsePathTraceRetrievesPreviousPathtrace, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis/{flowAnalysisId}"
@@ -1008,7 +1008,7 @@ func (s *PathTraceService) RetrievesPreviousPathtrace(flowAnalysisID string) (*R
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!initiate-a-new-pathtrace
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!initiate-a-new-pathtrace-v1
 */
 func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPathtrace *RequestPathTraceInitiateANewPathtrace) (*ResponsePathTraceInitiateANewPathtrace, *resty.Response, error) {
 	path := "/dna/intent/api/v1/flow-analysis"
@@ -1047,7 +1047,7 @@ func (s *PathTraceService) InitiateANewPathtrace(requestPathTraceInitiateANewPat
 @param flowAnalysisID flowAnalysisId path parameter. Flow analysis request id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-pathtrace-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-pathtrace-by-id-v1
 */
 func (s *PathTraceService) DeletesPathtraceByID(flowAnalysisID string) (*ResponsePathTraceDeletesPathtraceByID, *resty.Response, error) {
 	//flowAnalysisID string

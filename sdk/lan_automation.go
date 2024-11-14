@@ -23,7 +23,7 @@ type LanAutomationStatusQueryParams struct {
 	Limit  float64 `url:"limit,omitempty"`  //Number of LAN Automation sessions to be retrieved. Limit value can range between 1 to 10.
 }
 type LanAutomationDeviceUpdateQueryParams struct {
-	Feature string `url:"feature,omitempty"` //Feature ID for the update. Supported feature IDs include: LOOPBACK0_IPADDRESS_UPDATE, HOSTNAME_UPDATE, LINK_Add and LINK_DELETE.
+	Feature string `url:"feature,omitempty"` //Feature ID for the update. Supported feature IDs include: LOOPBACK0_IPADDRESS_UPDATE, HOSTNAME_UPDATE, LINK_ADD, and LINK_DELETE.
 }
 
 type ResponseLanAutomationLanAutomationStart struct {
@@ -276,7 +276,7 @@ type RequestItemLanAutomationLanAutomationStopAndUpdateDevicesV2 struct {
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-session-count
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-session-count-v1
 */
 func (s *LanAutomationService) LanAutomationSessionCount() (*ResponseLanAutomationLanAutomationSessionCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/count"
@@ -311,7 +311,7 @@ func (s *LanAutomationService) LanAutomationSessionCount() (*ResponseLanAutomati
 
 @param LANAutomationLogQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-log
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-log-v1
 */
 func (s *LanAutomationService) LanAutomationLog(LANAutomationLogQueryParams *LanAutomationLogQueryParams) (*ResponseLanAutomationLanAutomationLog, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/log"
@@ -349,7 +349,7 @@ func (s *LanAutomationService) LanAutomationLog(LANAutomationLogQueryParams *Lan
 @param id id path parameter. LAN Automation session identifier.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-log-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-log-by-id-v1
 */
 func (s *LanAutomationService) LanAutomationLogByID(id string) (*ResponseLanAutomationLanAutomationLogByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/log/{id}"
@@ -389,7 +389,7 @@ func (s *LanAutomationService) LanAutomationLogByID(id string) (*ResponseLanAuto
 
 @param LANAutomationLogsForIndividualDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-logs-for-individual-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-logs-for-individual-devices-v1
 */
 func (s *LanAutomationService) LanAutomationLogsForIndividualDevices(id string, serialNumber string, LANAutomationLogsForIndividualDevicesQueryParams *LanAutomationLogsForIndividualDevicesQueryParams) (*ResponseLanAutomationLanAutomationLogsForIndividualDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/log/{id}/{serialNumber}"
@@ -427,7 +427,7 @@ func (s *LanAutomationService) LanAutomationLogsForIndividualDevices(id string, 
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-active-sessions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-active-sessions-v1
 */
 func (s *LanAutomationService) LanAutomationActiveSessions() (*ResponseLanAutomationLanAutomationActiveSessions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/sessions"
@@ -462,7 +462,7 @@ func (s *LanAutomationService) LanAutomationActiveSessions() (*ResponseLanAutoma
 
 @param LANAutomationStatusQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-status-v1
 */
 func (s *LanAutomationService) LanAutomationStatus(LANAutomationStatusQueryParams *LanAutomationStatusQueryParams) (*ResponseLanAutomationLanAutomationStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/status"
@@ -500,7 +500,7 @@ func (s *LanAutomationService) LanAutomationStatus(LANAutomationStatusQueryParam
 @param id id path parameter. LAN Automation session identifier.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-status-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-status-by-id-v1
 */
 func (s *LanAutomationService) LanAutomationStatusByID(id string) (*ResponseLanAutomationLanAutomationStatusByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation/status/{id}"
@@ -535,7 +535,7 @@ func (s *LanAutomationService) LanAutomationStatusByID(id string) (*ResponseLanA
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-start
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-start-v1
 */
 func (s *LanAutomationService) LanAutomationStart(requestLanAutomationLANAutomationStart *RequestLanAutomationLanAutomationStart) (*ResponseLanAutomationLanAutomationStart, *resty.Response, error) {
 	path := "/dna/intent/api/v1/lan-automation"
@@ -568,7 +568,7 @@ func (s *LanAutomationService) LanAutomationStart(requestLanAutomationLANAutomat
 }
 
 //LanAutomationStartV2 LAN Automation Start V2 - 51ba-8921-46da-9bec
-/* Invoke V2 LAN Automation Start API, which supports optional auto-stop processing feature based on the provided timeout or a specific device list, or both. The stop processing will be executed automatically when either of the cases is satisfied, without specifically calling the stop API. The V2 API behaves similarly to V1 if no timeout or device list is provided, and the user needs to call the stop API for LAN Automation stop processing. With the V2 API, the user can also specify the level up to which the devices can be LAN automated.
+/* Invoke V2 LAN Automation Start API, which supports optional auto-stop processing feature based on the provided timeout or a specific device list, or both. The stop processing will be executed automatically when either of the cases is satisfied, without specifically calling the stop API. The V2 API behaves similarly to  if no timeout or device list is provided, and the user needs to call the stop API for LAN Automation stop processing. With the V2 API, the user can also specify the level up to which the devices can be LAN automated.
 
 
 
@@ -719,7 +719,7 @@ func (s *LanAutomationService) LanAutomationStopAndUpdateDevicesV2(id string, re
 @param id id path parameter. LAN Automation id can be obtained from /dna/intent/api/v1/lan-automation/status.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-stop
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!lan-automation-stop-v1
 */
 func (s *LanAutomationService) LanAutomationStop(id string) (*ResponseLanAutomationLanAutomationStop, *resty.Response, error) {
 	//id string
@@ -740,7 +740,8 @@ func (s *LanAutomationService) LanAutomationStop(id string) (*ResponseLanAutomat
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.LanAutomationStop(id)
+			return s.LanAutomationStop(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationStop")
 	}

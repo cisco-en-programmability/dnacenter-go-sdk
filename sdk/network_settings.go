@@ -39,31 +39,31 @@ type UpdateReserveIPSubpoolQueryParams struct {
 	ID string `url:"id,omitempty"` //Id of subpool group
 }
 type RetrieveAAASettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveBannerSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type GetDeviceCredentialSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveDHCPSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveDNSSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveImageDistributionSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveNTPSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveTelemetrySettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type RetrieveTimeZoneSettingsForASiteQueryParams struct {
-	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when 'false', 'null' values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type GetNetworkV2QueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site Id to get the network settings associated with the site.
@@ -413,32 +413,32 @@ type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponse struct {
 	HTTPWriteCredentialsID    *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CWriteCredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID struct {
-	CredentialsID     string `json:"credentialsId,omitempty"`     // The 'id' of the credentials.
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
 	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
@@ -1061,22 +1061,22 @@ type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASite struct {
 	HTTPWriteCredentialsID    *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CReadCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CWriteCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv3CredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPReadCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The 'id' of the credentials.
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
 }
 type RequestNetworkSettingsSetDhcpSettingsForASite struct {
 	Dhcp *RequestNetworkSettingsSetDhcpSettingsForASiteDhcp `json:"dhcp,omitempty"` //
@@ -1275,12 +1275,12 @@ type RequestNetworkSettingsUpdateSpProfileV2SettingsQos struct {
 }
 
 //GetDeviceCredentialDetails Get Device Credential Details - 899f-08e7-401b-82dd
-/* API to get device credential details. This API has been deprecated and will not be available in a Cisco Catalyst Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Get All Global Credentials V2
+/* API to get device credential details. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Get All Global Credentials V2
 
 
 @param GetDeviceCredentialDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-details-v1
 */
 func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialDetailsQueryParams *GetDeviceCredentialDetailsQueryParams) (*ResponseNetworkSettingsGetDeviceCredentialDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
@@ -1317,7 +1317,7 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialD
 
 @param GetGlobalPoolQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-pool-v1
 */
 func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlobalPoolQueryParams) (*ResponseNetworkSettingsGetGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
@@ -1354,7 +1354,7 @@ func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlob
 
 @param GetNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-v1
 */
 func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQueryParams) (*ResponseNetworkSettingsGetNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network"
@@ -1391,7 +1391,7 @@ func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQue
 
 @param GetReserveIPSubpoolQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryParams *GetReserveIPSubpoolQueryParams) (*ResponseNetworkSettingsGetReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool"
@@ -1427,7 +1427,7 @@ func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryPar
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details-v1
 */
 func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSettingsGetServiceProviderDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
@@ -1457,14 +1457,14 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSe
 }
 
 //RetrieveAAASettingsForASite Retrieve AAA settings for a site - 3c99-79ea-4ab9-bd33
-/* Retrieve AAA settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve AAA settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveAAASettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-a-a-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-a-a-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveAAASettingsForASite(id string, RetrieveAAASettingsForASiteQueryParams *RetrieveAAASettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveAAASettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/aaaSettings"
@@ -1497,14 +1497,14 @@ func (s *NetworkSettingsService) RetrieveAAASettingsForASite(id string, Retrieve
 }
 
 //RetrieveBannerSettingsForASite Retrieve banner settings for a site - 2a9f-3b2f-4cda-8390
-/* Retrieve banner settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve banner settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveBannerSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-banner-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-banner-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveBannerSettingsForASite(id string, RetrieveBannerSettingsForASiteQueryParams *RetrieveBannerSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveBannerSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/bannerSettings"
@@ -1537,14 +1537,14 @@ func (s *NetworkSettingsService) RetrieveBannerSettingsForASite(id string, Retri
 }
 
 //GetDeviceCredentialSettingsForASite Get device credential settings for a site - bebf-c9fc-4d3a-be03
-/* Gets device credential settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the credential is unset, and that no credential of that type will be used for the site.
+/* Gets device credential settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the credential is unset, and that no credential of that type will be used for the site.
 
 
-@param id id path parameter. Site Id, retrievable from the 'id' attribute in '/dna/intent/api/v1/sites'
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
 
 @param GetDeviceCredentialSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) GetDeviceCredentialSettingsForASite(id string, GetDeviceCredentialSettingsForASiteQueryParams *GetDeviceCredentialSettingsForASiteQueryParams) (*ResponseNetworkSettingsGetDeviceCredentialSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/deviceCredentials"
@@ -1583,7 +1583,7 @@ func (s *NetworkSettingsService) GetDeviceCredentialSettingsForASite(id string, 
 @param id id path parameter. Site Id.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices-credentials-sync-status
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices-credentials-sync-status-v1
 */
 func (s *NetworkSettingsService) GetNetworkDevicesCredentialsSyncStatus(id string) (*ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/deviceCredentials/status"
@@ -1614,14 +1614,14 @@ func (s *NetworkSettingsService) GetNetworkDevicesCredentialsSyncStatus(id strin
 }
 
 //RetrieveDHCPSettingsForASite Retrieve DHCP settings for a site - cfbb-ca8d-4529-a94b
-/* Retrieve DHCP settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve DHCP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveDHCPSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-h-c-p-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-h-c-p-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveDHCPSettingsForASite(id string, RetrieveDHCPSettingsForASiteQueryParams *RetrieveDHCPSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveDHCPSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/dhcpSettings"
@@ -1654,14 +1654,14 @@ func (s *NetworkSettingsService) RetrieveDHCPSettingsForASite(id string, Retriev
 }
 
 //RetrieveDNSSettingsForASite Retrieve DNS settings for a site - d7a4-0932-41d9-bcf8
-/* Retrieve DNS settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve DNS settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveDNSSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-n-s-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-n-s-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveDNSSettingsForASite(id string, RetrieveDNSSettingsForASiteQueryParams *RetrieveDNSSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveDNSSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/dnsSettings"
@@ -1694,14 +1694,14 @@ func (s *NetworkSettingsService) RetrieveDNSSettingsForASite(id string, Retrieve
 }
 
 //RetrieveImageDistributionSettingsForASite Retrieve image distribution settings for a site - d2ad-d9bc-4bcb-9fed
-/* Retrieve image distribution settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve image distribution settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveImageDistributionSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-image-distribution-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-image-distribution-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveImageDistributionSettingsForASite(id string, RetrieveImageDistributionSettingsForASiteQueryParams *RetrieveImageDistributionSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/imageDistributionSettings"
@@ -1734,14 +1734,14 @@ func (s *NetworkSettingsService) RetrieveImageDistributionSettingsForASite(id st
 }
 
 //RetrieveNTPSettingsForASite Retrieve NTP settings for a site - beae-2bf1-4cdb-8f60
-/* Retrieve NTP settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve NTP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveNTPSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-n-t-p-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-n-t-p-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveNTPSettingsForASite(id string, RetrieveNTPSettingsForASiteQueryParams *RetrieveNTPSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveNTPSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/ntpSettings"
@@ -1774,14 +1774,14 @@ func (s *NetworkSettingsService) RetrieveNTPSettingsForASite(id string, Retrieve
 }
 
 //RetrieveTelemetrySettingsForASite Retrieve Telemetry settings for a site - 11a7-cbc7-4a9a-bac3
-/* Retrieves telemetry settings for the given site. 'null' values indicate that the setting will be inherited from the parent site.
+/* Retrieves telemetry settings for the given site. `null` values indicate that the setting will be inherited from the parent site.
 
 
-@param id id path parameter. Site Id, retrievable from the 'id' attribute in '/dna/intent/api/v1/sites'
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
 
 @param RetrieveTelemetrySettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-telemetry-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-telemetry-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveTelemetrySettingsForASite(id string, RetrieveTelemetrySettingsForASiteQueryParams *RetrieveTelemetrySettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveTelemetrySettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/telemetrySettings"
@@ -1814,14 +1814,14 @@ func (s *NetworkSettingsService) RetrieveTelemetrySettingsForASite(id string, Re
 }
 
 //RetrieveTimeZoneSettingsForASite Retrieve time zone settings for a site - 5ba6-0966-4768-9ae7
-/* Retrieve time zone settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the setting is unset at a site.
+/* Retrieve time zone settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
 
 
 @param id id path parameter. Site Id
 
 @param RetrieveTimeZoneSettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-time-zone-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-time-zone-settings-for-a-site-v1
 */
 func (s *NetworkSettingsService) RetrieveTimeZoneSettingsForASite(id string, RetrieveTimeZoneSettingsForASiteQueryParams *RetrieveTimeZoneSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/timeZoneSettings"
@@ -1932,7 +1932,7 @@ func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetwork
 
 @param AssignDeviceCredentialToSiteHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site-v1
 */
 func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, requestNetworkSettingsAssignDeviceCredentialToSite *RequestNetworkSettingsAssignDeviceCredentialToSite, AssignDeviceCredentialToSiteHeaderParams *AssignDeviceCredentialToSiteHeaderParams) (*ResponseNetworkSettingsAssignDeviceCredentialToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/credential-to-site/{siteId}"
@@ -1978,11 +1978,11 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, req
 }
 
 //CreateDeviceCredentials Create Device Credentials - fbb9-5b37-484a-9fce
-/* API to create device credentials. This API has been deprecated and will not be available in a Cisco Catalyst Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Create Global Credentials V2
+/* API to create device credentials. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Create Global Credentials V2
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-credentials-v1
 */
 func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsCreateDeviceCredentials *RequestNetworkSettingsCreateDeviceCredentials) (*ResponseNetworkSettingsCreateDeviceCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
@@ -2019,7 +2019,7 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsC
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-global-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-global-pool-v1
 */
 func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGlobalPool *RequestNetworkSettingsCreateGlobalPool) (*ResponseNetworkSettingsCreateGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
@@ -2059,7 +2059,7 @@ func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGl
 
 @param CreateNetworkHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-v1
 */
 func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSettingsCreateNetwork *RequestNetworkSettingsCreateNetwork, CreateNetworkHeaderParams *CreateNetworkHeaderParams) (*ResponseNetworkSettingsCreateNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network/{siteId}"
@@ -2111,7 +2111,7 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSett
 @param siteID siteId path parameter. Site id to reserve the ip sub pool.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkSettingsReserveIPSubpool *RequestNetworkSettingsReserveIPSubpool) (*ResponseNetworkSettingsReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool/{siteId}"
@@ -2149,7 +2149,7 @@ func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkS
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile-v1
 */
 func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPProfile *RequestNetworkSettingsCreateSpProfile) (*ResponseNetworkSettingsCreateSpProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
@@ -2186,7 +2186,7 @@ func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPP
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!sync-network-devices-credential
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sync-network-devices-credential-v1
 */
 func (s *NetworkSettingsService) SyncNetworkDevicesCredential(requestNetworkSettingsSyncNetworkDevicesCredential *RequestNetworkSettingsSyncNetworkDevicesCredential) (*ResponseNetworkSettingsSyncNetworkDevicesCredential, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/deviceCredentials/apply"
@@ -2223,7 +2223,7 @@ func (s *NetworkSettingsService) SyncNetworkDevicesCredential(requestNetworkSett
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-a-devices-telemetry-settings-to-conform-to-the-telemetry-settings-for-its-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-a-devices-telemetry-settings-to-conform-to-the-telemetry-settings-for-its-site-v1
 */
 func (s *NetworkSettingsService) UpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite(requestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite *RequestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite) (*ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/telemetrySettings/apply"
@@ -2373,7 +2373,7 @@ func (s *NetworkSettingsService) CreateSpProfileV2(requestNetworkSettingsCreateS
 }
 
 //UpdateDeviceCredentials Update Device Credentials - 4f94-7a1c-4fc8-84f6
-/* API to update device credentials. This API has been deprecated and will not be available in a Cisco Catalyst Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Update Global Credentials V2
+/* API to update device credentials. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Update Global Credentials V2
 
 
  */
@@ -2547,7 +2547,7 @@ func (s *NetworkSettingsService) UpdateSpProfile(requestNetworkSettingsUpdateSPP
 }
 
 //SetAAASettingsForASite Set AAA settings for a site - 3582-ca30-4718-a064
-/* Set AAA settings for a site; 'null' values indicate that the settings will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set AAA settings for a site; `null` values indicate that the settings will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2583,7 +2583,7 @@ func (s *NetworkSettingsService) SetAAASettingsForASite(id string, requestNetwor
 }
 
 //SetBannerSettingsForASite Set banner settings for a site - 0aae-aa56-44f9-95a7
-/* Set banner settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set banner settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2619,10 +2619,10 @@ func (s *NetworkSettingsService) SetBannerSettingsForASite(id string, requestNet
 }
 
 //UpdateDeviceCredentialSettingsForASite Update device credential settings for a site. - 5aa0-6949-4dfa-bec5
-/* Updates device credential settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the credential is unset, and that no credential of that type will be used for the site.
+/* Updates device credential settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the credential is unset, and that no credential of that type will be used for the site.
 
 
-@param id id path parameter. Site Id, retrievable from the 'id' attribute in '/dna/intent/api/v1/sites'
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
 
 */
 func (s *NetworkSettingsService) UpdateDeviceCredentialSettingsForASite(id string, requestNetworkSettingsUpdateDeviceCredentialSettingsForASite *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASite) (*ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite, *resty.Response, error) {
@@ -2655,7 +2655,7 @@ func (s *NetworkSettingsService) UpdateDeviceCredentialSettingsForASite(id strin
 }
 
 //SetDhcpSettingsForASite Set dhcp settings for a site - c1ac-194d-40d9-8ae4
-/* Set DHCP settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set DHCP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2691,7 +2691,7 @@ func (s *NetworkSettingsService) SetDhcpSettingsForASite(id string, requestNetwo
 }
 
 //SetDNSSettingsForASite Set DNS settings for a site - 9892-798e-4ed8-a40b
-/* Set DNS settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set DNS settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2727,7 +2727,7 @@ func (s *NetworkSettingsService) SetDNSSettingsForASite(id string, requestNetwor
 }
 
 //SetImageDistributionSettingsForASite Set image distribution settings for a site - 8ab7-3889-45f8-9e5d
-/* Set image distribution settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set image distribution settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2763,7 +2763,7 @@ func (s *NetworkSettingsService) SetImageDistributionSettingsForASite(id string,
 }
 
 //SetNTPSettingsForASite Set NTP settings for a site - 9d80-8815-42a9-b006
-/* Set NTP settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set NTP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2799,10 +2799,10 @@ func (s *NetworkSettingsService) SetNTPSettingsForASite(id string, requestNetwor
 }
 
 //SetTelemetrySettingsForASite Set Telemetry settings for a site - a5a1-6835-40ab-8d2f
-/* Sets telemetry settings for the given site; 'null' values indicate that the setting will be inherited from the parent site.
+/* Sets telemetry settings for the given site; `null` values indicate that the setting will be inherited from the parent site.
 
 
-@param id id path parameter. Site Id, retrievable from the 'id' attribute in '/dna/intent/api/v1/sites'
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
 
 */
 func (s *NetworkSettingsService) SetTelemetrySettingsForASite(id string, requestNetworkSettingsSetTelemetrySettingsForASite *RequestNetworkSettingsSetTelemetrySettingsForASite) (*ResponseNetworkSettingsSetTelemetrySettingsForASite, *resty.Response, error) {
@@ -2835,7 +2835,7 @@ func (s *NetworkSettingsService) SetTelemetrySettingsForASite(id string, request
 }
 
 //SetTimeZoneForASite Set time zone for a site - 16a7-b874-4b19-88d0
-/* Set time zone settings for a site; 'null' values indicate that the setting will be inherited from the parent site; empty objects ('{}') indicate that the settings is unset.
+/* Set time zone settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
 
 
 @param id id path parameter. Site Id
@@ -2940,13 +2940,13 @@ func (s *NetworkSettingsService) UpdateSpProfileV2(requestNetworkSettingsUpdateS
 }
 
 //DeleteDeviceCredential Delete Device Credential - 259e-ab30-4598-8958
-/* Delete device credential. This API has been deprecated and will not be available in a Cisco Catalyst Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Delete Global Credentials V2
+/* Delete device credential. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Delete Global Credentials V2
 
 
 @param id id path parameter. global credential id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-credential
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-credential-v1
 */
 func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNetworkSettingsDeleteDeviceCredential, *resty.Response, error) {
 	//id string
@@ -2967,7 +2967,8 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceCredential(id)
+			return s.DeleteDeviceCredential(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceCredential")
 	}
@@ -2984,7 +2985,7 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 @param id id path parameter. global pool id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-ip-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-ip-pool-v1
 */
 func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetworkSettingsDeleteGlobalIPPool, *resty.Response, error) {
 	//id string
@@ -3022,7 +3023,7 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetwork
 @param id id path parameter. Id of reserve ip subpool to be deleted.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNetworkSettingsReleaseReserveIPSubpool, *resty.Response, error) {
 	//id string
@@ -3060,7 +3061,7 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 @param spProfileName spProfileName path parameter. sp profile name
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile-v1
 */
 func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfile, *resty.Response, error) {
 	//spProfileName string

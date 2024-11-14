@@ -14,7 +14,7 @@ type LicensesService service
 type DeviceCountDetailsQueryParams struct {
 	DeviceType         string `url:"device_type,omitempty"`          //Type of device
 	RegistrationStatus string `url:"registration_status,omitempty"`  //Smart license registration status of device
-	DnaLevel           string `url:"dna_level,omitempty"`            //Device Cisco Catalyst Center License Level
+	DnaLevel           string `url:"dna_level,omitempty"`            //Device Cisco DNA License Level
 	VirtualAccountName string `url:"virtual_account_name,omitempty"` //Virtual account name
 	SmartAccountID     string `url:"smart_account_id,omitempty"`     //Smart account id
 }
@@ -22,7 +22,7 @@ type DeviceLicenseSummaryQueryParams struct {
 	PageNumber         float64 `url:"page_number,omitempty"`          //Page number of response
 	Order              string  `url:"order,omitempty"`                //Sorting order
 	SortBy             string  `url:"sort_by,omitempty"`              //Sort result by field
-	DnaLevel           string  `url:"dna_level,omitempty"`            //Device Cisco Catalyst Center license level. The valid values are Advantage, Essentials
+	DnaLevel           string  `url:"dna_level,omitempty"`            //Device Cisco DNA license level. The valid values are Advantage, Essentials
 	DeviceType         string  `url:"device_type,omitempty"`          //Type of device. The valid values are Routers, Switches and Hubs, Wireless Controller
 	Limit              float64 `url:"limit,omitempty"`                //Limit
 	RegistrationStatus string  `url:"registration_status,omitempty"`  //Smart license registration status of device. The valid values are Unknown, NA, Unregistered, Registered, Registration_expired, Reservation_in_progress, Registered_slr, Registered_plr, Registered_satellite
@@ -86,11 +86,11 @@ type ResponseLicensesDeviceLicenseSummaryResponse struct {
 	WirelessCapableNetworkLicense    string `json:"wireless_capable_network_license,omitempty"`      // Wireless Cisco Network license value
 	DeviceName                       string `json:"device_name,omitempty"`                           // Name of device
 	DeviceType                       string `json:"device_type,omitempty"`                           // Type of device
-	DnaLevel                         string `json:"dna_level,omitempty"`                             // Device Cisco Catalyst Center license level
+	DnaLevel                         string `json:"dna_level,omitempty"`                             // Device Cisco DNA license level
 	VirtualAccountName               string `json:"virtual_account_name,omitempty"`                  // Name of virtual account
 	LastSuccessfulRumUsageUploadTime string `json:"last_successful_rum_usage_upload_time,omitempty"` // Last successful rum usage upload time
 	IPAddress                        string `json:"ip_address,omitempty"`                            // IP address of device
-	WirelessCapableDnaLicense        string `json:"wireless_capable_dna_license,omitempty"`          // Wireless Cisco Catalyst Center license value
+	WirelessCapableDnaLicense        string `json:"wireless_capable_dna_license,omitempty"`          // Wireless Cisco DNA license value
 	MacAddress                       string `json:"mac_address,omitempty"`                           // MAC address of device
 	CustomerTag1                     string `json:"customer_tag1,omitempty"`                         // Customer Tag1 set on device
 	CustomerTag2                     string `json:"customer_tag2,omitempty"`                         // Customer Tag2 set on device
@@ -109,7 +109,7 @@ type ResponseLicensesDeviceLicenseDetails struct {
 	EvaluationLicenseExpiry string                                                `json:"evaluation_license_expiry,omitempty"` // Evaluation period expiry date
 	DeviceName              string                                                `json:"device_name,omitempty"`               // Name of device
 	DeviceType              string                                                `json:"device_type,omitempty"`               // Type of device
-	DnaLevel                string                                                `json:"dna_level,omitempty"`                 // Device Cisco Catalyst Center license level
+	DnaLevel                string                                                `json:"dna_level,omitempty"`                 // Device Cisco DNA license level
 	VirtualAccountName      string                                                `json:"virtual_account_name,omitempty"`      // Name of virtual account
 	IPAddress               string                                                `json:"ip_address,omitempty"`                // IP address of device
 	MacAddress              string                                                `json:"mac_address,omitempty"`               // MAC address of device
@@ -197,8 +197,8 @@ type ResponseLicensesLicenseTermDetailsLicenseDetails struct {
 	VirtualAccountName       string `json:"virtual_account_name,omitempty"`        // Name of virtual account
 	LicenseTermStartDate     string `json:"license_term_start_date,omitempty"`     // Start date of license term
 	LicenseTermEndDate       string `json:"license_term_end_date,omitempty"`       // End date of license term
-	DnaLevel                 string `json:"dna_level,omitempty"`                   // Cisco Catalyst Center license level
-	PurchasedDnaLicenseCount string `json:"purchased_dna_license_count,omitempty"` // Number of purchased Catalyst Center licenses
+	DnaLevel                 string `json:"dna_level,omitempty"`                   // Cisco DNA license level
+	PurchasedDnaLicenseCount string `json:"purchased_dna_license_count,omitempty"` // Number of purchased DNA licenses
 	IsLicenseExpired         string `json:"is_license_expired,omitempty"`          // Is license expired
 }
 type ResponseLicensesLicenseUsageDetails struct {
@@ -276,7 +276,7 @@ type RequestLicensesChangeVirtualAccount struct {
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-license-setting
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-license-setting-v1
 */
 func (s *LicensesService) RetrieveLicenseSetting() (*ResponseLicensesRetrieveLicenseSetting, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenseSetting"
@@ -311,7 +311,7 @@ func (s *LicensesService) RetrieveLicenseSetting() (*ResponseLicensesRetrieveLic
 
 @param DeviceCountDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-count-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-count-details-v1
 */
 func (s *LicensesService) DeviceCountDetails(DeviceCountDetailsQueryParams *DeviceCountDetailsQueryParams) (*ResponseLicensesDeviceCountDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/count"
@@ -348,7 +348,7 @@ func (s *LicensesService) DeviceCountDetails(DeviceCountDetailsQueryParams *Devi
 
 @param DeviceLicenseSummaryQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-summary-v1
 */
 func (s *LicensesService) DeviceLicenseSummary(DeviceLicenseSummaryQueryParams *DeviceLicenseSummaryQueryParams) (*ResponseLicensesDeviceLicenseSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/summary"
@@ -386,7 +386,7 @@ func (s *LicensesService) DeviceLicenseSummary(DeviceLicenseSummaryQueryParams *
 @param deviceuuid device_uuid path parameter. Id of device
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-details-v1
 */
 func (s *LicensesService) DeviceLicenseDetails(deviceuuid string) (*ResponseLicensesDeviceLicenseDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/{device_uuid}/details"
@@ -423,7 +423,7 @@ func (s *LicensesService) DeviceLicenseDetails(deviceuuid string) (*ResponseLice
 @param smartaccountTypeID smart_account_id path parameter. Id of smart account
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!virtual-account-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!virtual-account-details-v1
 */
 func (s *LicensesService) VirtualAccountDetails(smartaccountTypeID string) (*ResponseLicensesVirtualAccountDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccount/{smart_account_id}/virtualAccounts"
@@ -458,7 +458,7 @@ func (s *LicensesService) VirtualAccountDetails(smartaccountTypeID string) (*Res
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!smart-account-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!smart-account-details-v1
 */
 func (s *LicensesService) SmartAccountDetails() (*ResponseLicensesSmartAccountDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccounts"
@@ -497,7 +497,7 @@ func (s *LicensesService) SmartAccountDetails() (*ResponseLicensesSmartAccountDe
 
 @param LicenseTermDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-term-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-term-details-v1
 */
 func (s *LicensesService) LicenseTermDetails(smartaccountTypeID string, virtualaccountname string, LicenseTermDetailsQueryParams *LicenseTermDetailsQueryParams) (*ResponseLicensesLicenseTermDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/term/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}"
@@ -531,7 +531,7 @@ func (s *LicensesService) LicenseTermDetails(smartaccountTypeID string, virtuala
 }
 
 //LicenseUsageDetails License Usage Details - 418a-6b43-4e29-bfe5
-/* Get count of purchased and in use Cisco Catalyst Center and Network licenses.
+/* Get count of purchased and in use Cisco DNA and Network licenses.
 
 
 @param smartaccountTypeID smart_account_id path parameter. Id of smart account
@@ -540,7 +540,7 @@ func (s *LicensesService) LicenseTermDetails(smartaccountTypeID string, virtuala
 
 @param LicenseUsageDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-usage-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!license-usage-details-v1
 */
 func (s *LicensesService) LicenseUsageDetails(smartaccountTypeID string, virtualaccountname string, LicenseUsageDetailsQueryParams *LicenseUsageDetailsQueryParams) (*ResponseLicensesLicenseUsageDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/usage/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}"
@@ -582,7 +582,7 @@ func (s *LicensesService) LicenseUsageDetails(smartaccountTypeID string, virtual
 @param virtualaccountname virtual_account_name path parameter. Name of target virtual account
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!change-virtual-account
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!change-virtual-account-v1
 */
 func (s *LicensesService) ChangeVirtualAccount(smartaccountTypeID string, virtualaccountname string, requestLicensesChangeVirtualAccount *RequestLicensesChangeVirtualAccount) (*ResponseLicensesChangeVirtualAccount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/smartAccount/{smart_account_id}/virtualAccount/{virtual_account_name}/device/transfer"

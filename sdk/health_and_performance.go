@@ -12,19 +12,19 @@ import (
 type HealthAndPerformanceService service
 
 type RetrievesAllTheValidationSetsQueryParams struct {
-	View string `url:"view,omitempty"` //When the query parameter 'view=DETAIL' is passed, all validation sets and associated validations will be returned. When the query parameter 'view=DEFAULT' is passed, only validation sets metadata will be returned.
+	View string `url:"view,omitempty"` //When the query parameter `view=DETAIL` is passed, all validation sets and associated validations will be returned. When the query parameter `view=DEFAULT` is passed, only validation sets metadata will be returned.
 }
 type RetrievesTheListOfValidationWorkflowsQueryParams struct {
 	StartTime float64 `url:"startTime,omitempty"` //Workflows started after the given time (as milliseconds since UNIX epoch).
 	EndTime   float64 `url:"endTime,omitempty"`   //Workflows started before the given time (as milliseconds since UNIX epoch).
-	RunStatus string  `url:"runStatus,omitempty"` //Execution status of the workflow. If the workflow is successfully submitted, runStatus is 'PENDING'. If the workflow execution has started, runStatus is 'IN_PROGRESS'. If the workflow executed is completed with all validations executed, runStatus is 'COMPLETED'. If the workflow execution fails while running validations, runStatus is 'FAILED'.
+	RunStatus string  `url:"runStatus,omitempty"` //Execution status of the workflow. If the workflow is successfully submitted, runStatus is `PENDING`. If the workflow execution has started, runStatus is `IN_PROGRESS`. If the workflow executed is completed with all validations executed, runStatus is `COMPLETED`. If the workflow execution fails while running validations, runStatus is `FAILED`.
 	Offset    float64 `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 1.
 	Limit     float64 `url:"limit,omitempty"`     //The number of records to show for this page.
 }
 type RetrievesTheCountOfValidationWorkflowsQueryParams struct {
 	StartTime float64 `url:"startTime,omitempty"` //Workflows started after the given time (as milliseconds since UNIX epoch).
 	EndTime   float64 `url:"endTime,omitempty"`   //Workflows started before the given time (as milliseconds since UNIX epoch).
-	RunStatus string  `url:"runStatus,omitempty"` //Execution status of the workflow. If the workflow is successfully submitted, runStatus is 'PENDING'. If the workflow execution has started, runStatus is 'IN_PROGRESS'. If the workflow executed is completed with all validations executed, runStatus is 'COMPLETED'. If the workflow execution fails while running validations, runStatus is 'FAILED'.
+	RunStatus string  `url:"runStatus,omitempty"` //Execution status of the workflow. If the workflow is successfully submitted, runStatus is `PENDING`. If the workflow execution has started, runStatus is `IN_PROGRESS`. If the workflow executed is completed with all validations executed, runStatus is `COMPLETED`. If the workflow execution fails while running validations, runStatus is `FAILED`.
 }
 type SystemHealthAPIQueryParams struct {
 	Summary   bool    `url:"summary,omitempty"`   //Fetch the latest high severity event
@@ -99,7 +99,7 @@ type ResponseHealthAndPerformanceRetrievesTheListOfValidationWorkflowsResponse s
 	ID               string   `json:"id,omitempty"`               // Workflow id
 	Name             string   `json:"name,omitempty"`             // Workflow name
 	Description      string   `json:"description,omitempty"`      // Workflow description
-	RunStatus        string   `json:"runStatus,omitempty"`        // Execution status of the workflow. If the workflow is successfully submitted, runStatus will return 'PENDING'. If the workflow execution has started, runStatus will return 'IN_PROGRESS'. If the workflow executed is completed with all validations executed, runStatus will return 'COMPLETED'. If the workflow execution fails while running validations, runStatus will return 'FAILED'.
+	RunStatus        string   `json:"runStatus,omitempty"`        // Execution status of the workflow. If the workflow is successfully submitted, runStatus will return `PENDING`. If the workflow execution has started, runStatus will return `IN_PROGRESS`. If the workflow executed is completed with all validations executed, runStatus will return `COMPLETED`. If the workflow execution fails while running validations, runStatus will return `FAILED`.
 	SubmitTime       *int     `json:"submitTime,omitempty"`       // Workflow submit time (as milliseconds since UNIX epoch).
 	StartTime        *int     `json:"startTime,omitempty"`        // Workflow start time (as milliseconds since UNIX epoch).
 	EndTime          *int     `json:"endTime,omitempty"`          // Workflow finish time (as milliseconds since UNIX epoch).
@@ -128,18 +128,18 @@ type ResponseHealthAndPerformanceRetrievesValidationWorkflowDetailsResponse stru
 	ID                       string                                                                                            `json:"id,omitempty"`                       // Workflow id
 	Name                     string                                                                                            `json:"name,omitempty"`                     // Workflow name
 	Description              string                                                                                            `json:"description,omitempty"`              // Workflow description
-	RunStatus                string                                                                                            `json:"runStatus,omitempty"`                // Execution status of the workflow. If the workflow is successfully submitted, runStatus will return 'PENDING'. If the workflow execution has started, runStatus will return 'IN_PROGRESS'. If the workflow executed is completed with all validations executed, runStatus will return 'COMPLETED'. If the workflow execution fails while running validations, runStatus will return 'FAILED'.
+	RunStatus                string                                                                                            `json:"runStatus,omitempty"`                // Execution status of the workflow. If the workflow is successfully submitted, runStatus will return `PENDING`. If the workflow execution has started, runStatus will return `IN_PROGRESS`. If the workflow executed is completed with all validations executed, runStatus will return `COMPLETED`. If the workflow execution fails while running validations, runStatus will return `FAILED`.
 	SubmitTime               *int                                                                                              `json:"submitTime,omitempty"`               // Workflow submit time (as milliseconds since UNIX epoch).
 	ValidationSetIDs         []string                                                                                          `json:"validationSetIds,omitempty"`         // List of validation set ids
 	ReleaseVersion           string                                                                                            `json:"releaseVersion,omitempty"`           // Product version
 	ValidationSetsRunDetails *[]ResponseHealthAndPerformanceRetrievesValidationWorkflowDetailsResponseValidationSetsRunDetails `json:"validationSetsRunDetails,omitempty"` //
-	ValidationStatus         string                                                                                            `json:"validationStatus,omitempty"`         // Overall result of the execution of all the validations. If any of the contained validation execution status is 'CRITICAL', this is marked as 'CRITICAL'. Else, if any of the contained validation execution status is 'WARNING', this is marked as 'WARNING'. Else, this is marked as 'INFORMATION'.
+	ValidationStatus         string                                                                                            `json:"validationStatus,omitempty"`         // Overall result of the execution of all the validations. If any of the contained validation execution status is `CRITICAL`, this is marked as `CRITICAL`. Else, if any of the contained validation execution status is `WARNING`, this is marked as `WARNING`. Else, this is marked as `INFORMATION`.
 }
 type ResponseHealthAndPerformanceRetrievesValidationWorkflowDetailsResponseValidationSetsRunDetails struct {
 	ValidationSetID      string                                                                                                                `json:"validationSetId,omitempty"`      // Validation set id
 	StartTime            *int                                                                                                                  `json:"startTime,omitempty"`            // Validation set run start time (as milliseconds since UNIX epoch).
 	EndTime              *int                                                                                                                  `json:"endTime,omitempty"`              // Validation set run finish time (as milliseconds since UNIX epoch).
-	ValidationStatus     string                                                                                                                `json:"validationStatus,omitempty"`     // Overall result of the validation set execution. If any of the contained validation execution status is 'CRITICAL', this is marked as 'CRITICAL'. Else, if any of the contained validation execution status is 'WARNING', this is marked as 'WARNING'. Else, this is marked as 'INFORMATION'. This is empty when the workflow is in progress.
+	ValidationStatus     string                                                                                                                `json:"validationStatus,omitempty"`     // Overall result of the validation set execution. If any of the contained validation execution status is `CRITICAL`, this is marked as `CRITICAL`. Else, if any of the contained validation execution status is `WARNING`, this is marked as `WARNING`. Else, this is marked as `INFORMATION`. This is empty when the workflow is in progress.
 	Version              string                                                                                                                `json:"version,omitempty"`              // Validation set version
 	ValidationRunDetails *[]ResponseHealthAndPerformanceRetrievesValidationWorkflowDetailsResponseValidationSetsRunDetailsValidationRunDetails `json:"validationRunDetails,omitempty"` //
 }
@@ -238,7 +238,7 @@ type RequestHealthAndPerformanceSubmitsTheWorkflowForExecutingValidations struct
 
 @param RetrievesAllTheValidationSetsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-all-the-validation-sets
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-all-the-validation-sets-v1
 */
 func (s *HealthAndPerformanceService) RetrievesAllTheValidationSets(RetrievesAllTheValidationSetsQueryParams *RetrievesAllTheValidationSetsQueryParams) (*ResponseHealthAndPerformanceRetrievesAllTheValidationSets, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationSets"
@@ -276,7 +276,7 @@ func (s *HealthAndPerformanceService) RetrievesAllTheValidationSets(RetrievesAll
 @param id id path parameter. Validation set id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-validation-details-for-a-validation-set
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-validation-details-for-a-validation-set-v1
 */
 func (s *HealthAndPerformanceService) RetrievesValidationDetailsForAValidationSet(id string) (*ResponseHealthAndPerformanceRetrievesValidationDetailsForAValidationSet, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationSets/{id}"
@@ -307,12 +307,12 @@ func (s *HealthAndPerformanceService) RetrievesValidationDetailsForAValidationSe
 }
 
 //RetrievesTheListOfValidationWorkflows Retrieves the list of validation workflows - 0fab-cafd-440b-98f8
-/* Retrieves the workflows that have been successfully submitted and are currently available. This is sorted by 'submitTime'
+/* Retrieves the workflows that have been successfully submitted and are currently available. This is sorted by `submitTime`
 
 
 @param RetrievesTheListOfValidationWorkflowsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-validation-workflows
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-validation-workflows-v1
 */
 func (s *HealthAndPerformanceService) RetrievesTheListOfValidationWorkflows(RetrievesTheListOfValidationWorkflowsQueryParams *RetrievesTheListOfValidationWorkflowsQueryParams) (*ResponseHealthAndPerformanceRetrievesTheListOfValidationWorkflows, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationWorkflows"
@@ -349,7 +349,7 @@ func (s *HealthAndPerformanceService) RetrievesTheListOfValidationWorkflows(Retr
 
 @param RetrievesTheCountOfValidationWorkflowsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-validation-workflows
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-validation-workflows-v1
 */
 func (s *HealthAndPerformanceService) RetrievesTheCountOfValidationWorkflows(RetrievesTheCountOfValidationWorkflowsQueryParams *RetrievesTheCountOfValidationWorkflowsQueryParams) (*ResponseHealthAndPerformanceRetrievesTheCountOfValidationWorkflows, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationWorkflows/count"
@@ -387,7 +387,7 @@ func (s *HealthAndPerformanceService) RetrievesTheCountOfValidationWorkflows(Ret
 @param id id path parameter. Workflow id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-validation-workflow-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-validation-workflow-details-v1
 */
 func (s *HealthAndPerformanceService) RetrievesValidationWorkflowDetails(id string) (*ResponseHealthAndPerformanceRetrievesValidationWorkflowDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationWorkflows/{id}"
@@ -421,9 +421,9 @@ func (s *HealthAndPerformanceService) RetrievesValidationWorkflowDetails(id stri
 /* This API retrieves the latest system events
 
 
-@param SystemHealthApIQueryParams Filtering parameter
+@param SystemHealthAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-api-v1
 */
 func (s *HealthAndPerformanceService) SystemHealthAPI(SystemHealthAPIQueryParams *SystemHealthAPIQueryParams) (*ResponseHealthAndPerformanceSystemHealthAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health"
@@ -454,13 +454,13 @@ func (s *HealthAndPerformanceService) SystemHealthAPI(SystemHealthAPIQueryParams
 
 }
 
-//SystemHealthCountApI System Health Count API - 5289-0891-4729-8714
+//SystemHealthCountAPI System Health Count API - 5289-0891-4729-8714
 /* This API gives the count of the latest system events
 
 
-@param SystemHealthCountApIQueryParams Filtering parameter
+@param SystemHealthCountAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-count-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-health-count-api-v1
 */
 func (s *HealthAndPerformanceService) SystemHealthCountAPI(SystemHealthCountAPIQueryParams *SystemHealthCountAPIQueryParams) (*ResponseHealthAndPerformanceSystemHealthCountAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/health/count"
@@ -495,9 +495,9 @@ func (s *HealthAndPerformanceService) SystemHealthCountAPI(SystemHealthCountAPIQ
 /* Retrieves the aggregated metrics (total, average or maximum) of cluster key performance indicators (KPIs), such as CPU utilization, memory utilization or network rates recorded within a specified time period. The data will be available from the past 24 hours.
 
 
-@param SystemPerformanceApIQueryParams Filtering parameter
+@param SystemPerformanceAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-api-v1
 */
 func (s *HealthAndPerformanceService) SystemPerformanceAPI(SystemPerformanceAPIQueryParams *SystemPerformanceAPIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance"
@@ -532,9 +532,9 @@ func (s *HealthAndPerformanceService) SystemPerformanceAPI(SystemPerformanceAPIQ
 /* Retrieves the average values of cluster key performance indicators (KPIs), like CPU utilization, memory utilization or network rates grouped by time intervals within a specified time range. The data will be available from the past 24 hours.
 
 
-@param SystemPerformanceHistoricalApIQueryParams Filtering parameter
+@param SystemPerformanceHistoricalAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-historical-api
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!system-performance-historical-api-v1
 */
 func (s *HealthAndPerformanceService) SystemPerformanceHistoricalAPI(SystemPerformanceHistoricalAPIQueryParams *SystemPerformanceHistoricalAPIQueryParams) (*ResponseHealthAndPerformanceSystemPerformanceHistoricalAPI, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnostics/system/performance/history"
@@ -570,7 +570,7 @@ func (s *HealthAndPerformanceService) SystemPerformanceHistoricalAPI(SystemPerfo
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!submits-the-workflow-for-executing-validations
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!submits-the-workflow-for-executing-validations-v1
 */
 func (s *HealthAndPerformanceService) SubmitsTheWorkflowForExecutingValidations(requestHealthAndPerformanceSubmitsTheWorkflowForExecutingValidations *RequestHealthAndPerformanceSubmitsTheWorkflowForExecutingValidations) (*ResponseHealthAndPerformanceSubmitsTheWorkflowForExecutingValidations, *resty.Response, error) {
 	path := "/dna/intent/api/v1/diagnosticValidationWorkflows"
@@ -609,7 +609,7 @@ func (s *HealthAndPerformanceService) SubmitsTheWorkflowForExecutingValidations(
 @param id id path parameter. Workflow id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-validation-workflow
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-a-validation-workflow-v1
 */
 func (s *HealthAndPerformanceService) DeletesAValidationWorkflow(id string) (*resty.Response, error) {
 	//id string
@@ -629,7 +629,8 @@ func (s *HealthAndPerformanceService) DeletesAValidationWorkflow(id string) (*re
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAValidationWorkflow(id)
+			return s.DeletesAValidationWorkflow(
+				id)
 		}
 		return response, fmt.Errorf("error with operation DeletesAValidationWorkflow")
 	}

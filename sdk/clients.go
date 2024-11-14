@@ -12,47 +12,47 @@ import (
 type ClientsService service
 
 type RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams struct {
-	StartTime                  float64 `url:"startTime,omitempty"`                  //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime                  float64 `url:"startTime,omitempty"`                  //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                    float64 `url:"endTime,omitempty"`                    //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Limit                      float64 `url:"limit,omitempty"`                      //Maximum number of records to return
 	Offset                     float64 `url:"offset,omitempty"`                     //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	SortBy                     string  `url:"sortBy,omitempty"`                     //A field within the response to sort by.
 	Order                      string  `url:"order,omitempty"`                      //The sort order of the field ascending or descending.
 	Type                       string  `url:"type,omitempty"`                       //The client device type whether client is connected to network through Wired or Wireless medium.
-	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*iOS*' or 'iOS*' or '*iOS' Examples: 'osType=iOS' (single osType requested) 'osType=iOS&osType=Android' (multiple osType requested)
-	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*14.3*' or '14.3*' or '*14.3' Examples: 'osVersion=14.3' (single osVersion requested) 'osVersion=14.3&osVersion=10.1' (multiple osVersion requested)
-	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*BuildingName*' or 'BuildingName*' or '*BuildingName' Examples: 'siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) 'siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2' (multiple siteHierarchy requested)
-	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard ('*') character-based search.  Ex: '*buildingUuid*' or 'buildingUuid*' or '*buildingUuid' Examples: 'siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid' (single siteHierarchyId requested) 'siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2' (multiple siteHierarchyId requested)
-	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: 'siteId=floorUuid' (single siteId requested) 'siteId=floorUuid1&siteId=floorUuid2' (multiple siteId requested)
-	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'ipv4Address=1.1.1.1' (single ipv4Address requested) 'ipv4Address=1.1.1.1&ipv4Address=2.2.2.2' (multiple ipv4Address requested)
-	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard ('*') character-based search. Ex: '*2001:db8*' or '2001:db8*' or '*2001:db8' Examples: 'ipv6Address=2001:db8:0:0:0:0:2:1' (single ipv6Address requested) 'ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348' (multiple ipv6Address requested)
-	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
-	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search. Ex: '*wlc-25*' or 'wlc-25*' or '*wlc-25' Examples: 'wlcName=wlc-25' (single wlcName requested) 'wlcName=wlc-25&wlc-34' (multiple wlcName requested)
-	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search. Ex: '*ap-25*' or 'ap-25*' or '*ap-25' Examples: 'connectedNetworkDeviceName=ap-25' (single connectedNetworkDeviceName requested) 'connectedNetworkDeviceName=ap-25&ap-34' (multiple connectedNetworkDeviceName requested)
-	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*Alpha*' or 'Alpha*' or '*Alpha' Examples: 'ssid=Alpha' (single ssid requested) 'ssid=Alpha&ssid=Guest' (multiple ssid requested)
-	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: 'band=5GHZ' (single band requested) 'band=2.4GHZ&band=6GHZ' (multiple band requested)
-	View                       string  `url:"view,omitempty"`                       //Client related Views Refer to ClientView schema for list of views supported Examples: 'view=Wireless' (single view requested) 'view=WirelessHealth&view=WirelessTraffic' (multiple view requested)
-	Attribute                  string  `url:"attribute,omitempty"`                  //List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples: 'attribute=band' (single attribute requested) 'attribute=band&attribute=ssid&attribute=overallScore' (multiple attribute requested)
+	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
+	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
+	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*BuildingName*` or `BuildingName*` or `*BuildingName` Examples: `siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2` (multiple siteHierarchy requested)
+	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard (`*`) character-based search.  Ex: `*buildingUuid*` or `buildingUuid*` or `*buildingUuid` Examples: `siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid` (single siteHierarchyId requested) `siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2` (multiple siteHierarchyId requested)
+	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: `siteId=floorUuid` (single siteId requested) `siteId=floorUuid1&siteId=floorUuid2` (multiple siteId requested)
+	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
+	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*2001:db8*` or `2001:db8*` or `*2001:db8` Examples: `ipv6Address=2001:db8:0:0:0:0:2:1` (single ipv6Address requested) `ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348` (multiple ipv6Address requested)
+	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*wlc-25*` or `wlc-25*` or `*wlc-25` Examples: `wlcName=wlc-25` (single wlcName requested) `wlcName=wlc-25&wlc-34` (multiple wlcName requested)
+	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*ap-25*` or `ap-25*` or `*ap-25` Examples: `connectedNetworkDeviceName=ap-25` (single connectedNetworkDeviceName requested) `connectedNetworkDeviceName=ap-25&ap-34` (multiple connectedNetworkDeviceName requested)
+	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
+	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: `band=5GHZ` (single band requested) `band=2.4GHZ&band=6GHZ` (multiple band requested)
+	View                       string  `url:"view,omitempty"`                       //Client related Views Refer to ClientView schema for list of views supported Examples: `view=Wireless` (single view requested) `view=WirelessHealth&view=WirelessTraffic` (multiple view requested)
+	Attribute                  string  `url:"attribute,omitempty"`                  //List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples: `attribute=band` (single attribute requested) `attribute=band&attribute=ssid&attribute=overallScore` (multiple attribute requested)
 }
 type RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams struct {
-	StartTime                  float64 `url:"startTime,omitempty"`                  //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime                  float64 `url:"startTime,omitempty"`                  //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                    float64 `url:"endTime,omitempty"`                    //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Type                       string  `url:"type,omitempty"`                       //The client device type whether client is connected to network through Wired or Wireless medium.
-	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*iOS*' or 'iOS*' or '*iOS' Examples: 'osType=iOS' (single osType requested) 'osType=iOS&osType=Android' (multiple osType requested)
-	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*14.3*' or '14.3*' or '*14.3' Examples: 'osVersion=14.3' (single osVersion requested) 'osVersion=14.3&osVersion=10.1' (multiple osVersion requested)
-	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*BuildingName*' or 'BuildingName*' or '*BuildingName' Examples: 'siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) 'siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2' (multiple siteHierarchy requested)
-	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard ('*') character-based search.  Ex: '*buildingUuid*' or 'buildingUuid*' or '*buildingUuid' Examples: 'siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid' (single siteHierarchyId requested) 'siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2' (multiple siteHierarchyId requested)
-	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: 'siteId=floorUuid' (single siteId requested) 'siteId=floorUuid1&siteId=floorUuid2' (multiple siteId requested)
-	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'ipv4Address=1.1.1.1' (single ipv4Address requested) 'ipv4Address=1.1.1.1&ipv4Address=2.2.2.2' (multiple ipv4Address requested)
-	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard ('*') character-based search. Ex: '*2001:db8*' or '2001:db8*' or '*2001:db8' Examples: 'ipv6Address=2001:db8:0:0:0:0:2:1' (single ipv6Address requested) 'ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348' (multiple ipv6Address requested)
-	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
-	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search. Ex: '*wlc-25*' or 'wlc-25*' or '*wlc-25' Examples: 'wlcName=wlc-25' (single wlcName requested) 'wlcName=wlc-25&wlc-34' (multiple wlcName requested)
-	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search. Ex: '*ap-25*' or 'ap-25*' or '*ap-25' Examples: 'connectedNetworkDeviceName=ap-25' (single connectedNetworkDeviceName requested) 'connectedNetworkDeviceName=ap-25&ap-34' (multiple connectedNetworkDeviceName requested)
-	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard ('*') character-based search. If the value contains the ('*') character, please use the /query API for regex search.  Ex: '*Alpha*' or 'Alpha*' or '*Alpha' Examples: 'ssid=Alpha' (single ssid requested) 'ssid=Alpha&ssid=Guest' (multiple ssid requested)
-	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: 'band=5GHZ' (single band requested) 'band=2.4GHZ&band=6GHZ' (multiple band requested)
+	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
+	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
+	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*BuildingName*` or `BuildingName*` or `*BuildingName` Examples: `siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2` (multiple siteHierarchy requested)
+	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard (`*`) character-based search.  Ex: `*buildingUuid*` or `buildingUuid*` or `*buildingUuid` Examples: `siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid` (single siteHierarchyId requested) `siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2` (multiple siteHierarchyId requested)
+	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: `siteId=floorUuid` (single siteId requested) `siteId=floorUuid1&siteId=floorUuid2` (multiple siteId requested)
+	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
+	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*2001:db8*` or `2001:db8*` or `*2001:db8` Examples: `ipv6Address=2001:db8:0:0:0:0:2:1` (single ipv6Address requested) `ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348` (multiple ipv6Address requested)
+	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*wlc-25*` or `wlc-25*` or `*wlc-25` Examples: `wlcName=wlc-25` (single wlcName requested) `wlcName=wlc-25&wlc-34` (multiple wlcName requested)
+	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*ap-25*` or `ap-25*` or `*ap-25` Examples: `connectedNetworkDeviceName=ap-25` (single connectedNetworkDeviceName requested) `connectedNetworkDeviceName=ap-25&ap-34` (multiple connectedNetworkDeviceName requested)
+	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
+	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: `band=5GHZ` (single band requested) `band=2.4GHZ&band=6GHZ` (multiple band requested)
 }
 type RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
@@ -78,10 +78,10 @@ type RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams struct {
 	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type RetrievesSpecificClientInformationMatchingTheMacaddressQueryParams struct {
-	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
-	View      string  `url:"view,omitempty"`      //Client related Views Refer to ClientView schema for list of views supported Examples: 'view=Wireless' (single view requested) 'view=WirelessHealth&view=WirelessTraffic' (multiple view requested)
-	Attribute string  `url:"attribute,omitempty"` //List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples: 'attribute=band' (single attribute requested) 'attribute=band&attribute=ssid&attribute=overallScore' (multiple attribute requested)
+	View      string  `url:"view,omitempty"`      //Client related Views Refer to ClientView schema for list of views supported Examples: `view=Wireless` (single view requested) `view=WirelessHealth&view=WirelessTraffic` (multiple view requested)
+	Attribute string  `url:"attribute,omitempty"` //List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples: `attribute=band` (single attribute requested) `attribute=band&attribute=ssid&attribute=overallScore` (multiple attribute requested)
 }
 type RetrievesSpecificClientInformationMatchingTheMacaddressHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
@@ -97,7 +97,7 @@ type GetClientDetailQueryParams struct {
 type GetClientEnrichmentDetailsHeaderParams struct {
 	EntityType        string `url:"entity_type,omitempty"`         //Expects type string. Client enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
 	EntityValue       string `url:"entity_value,omitempty"`        //Expects type string. Contains the actual value for the entity type that has been defined
-	IssueCategory     string `url:"issueCategory,omitempty"`       //Expects type string. The category of the Catalyst Center event based on which the underlying issues need to be fetched
+	IssueCategory     string `url:"issueCategory,omitempty"`       //Expects type string. The category of the DNA event based on which the underlying issues need to be fetched
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool.
 }
 type GetOverallClientHealthQueryParams struct {
@@ -1271,7 +1271,7 @@ type RequestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeP
 @param RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams Custom header parameters
 @param RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-while-also-offering-basic-filtering-and-sorting-capabilities
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-while-also-offering-basic-filtering-and-sorting-capabilities-v1
 */
 func (s *ClientsService) RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilities(RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams *RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams, RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams *RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams) (*ResponseClientsRetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilities, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients"
@@ -1321,7 +1321,7 @@ func (s *ClientsService) RetrievesTheListOfClientsWhileAlsoOfferingBasicFilterin
 @param RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams Custom header parameters
 @param RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-count-of-clients-by-applying-basic-filtering
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-count-of-clients-by-applying-basic-filtering-v1
 */
 func (s *ClientsService) RetrievesTheTotalCountOfClientsByApplyingBasicFiltering(RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams *RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams, RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams *RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams) (*ResponseClientsRetrievesTheTotalCountOfClientsByApplyingBasicFiltering, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/count"
@@ -1373,7 +1373,7 @@ func (s *ClientsService) RetrievesTheTotalCountOfClientsByApplyingBasicFiltering
 @param RetrievesSpecificClientInformationMatchingTheMACAddressHeaderParams Custom header parameters
 @param RetrievesSpecificClientInformationMatchingTheMACAddressQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-matching-the-macaddress
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-matching-the-macaddress-v1
 */
 func (s *ClientsService) RetrievesSpecificClientInformationMatchingTheMacaddress(id string, RetrievesSpecificClientInformationMatchingTheMACAddressHeaderParams *RetrievesSpecificClientInformationMatchingTheMacaddressHeaderParams, RetrievesSpecificClientInformationMatchingTheMACAddressQueryParams *RetrievesSpecificClientInformationMatchingTheMacaddressQueryParams) (*ResponseClientsRetrievesSpecificClientInformationMatchingTheMacaddress, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/{id}"
@@ -1423,7 +1423,7 @@ func (s *ClientsService) RetrievesSpecificClientInformationMatchingTheMacaddress
 
 @param GetClientDetailQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-detail
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-detail-v1
 */
 func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDetailQueryParams) (*ResponseClientsGetClientDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-detail"
@@ -1460,7 +1460,7 @@ func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDe
 
 @param GetClientEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-enrichment-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-enrichment-details-v1
 */
 func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHeaderParams *GetClientEnrichmentDetailsHeaderParams) (*ResponseClientsGetClientEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-enrichment-details"
@@ -1519,7 +1519,7 @@ func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHe
 
 @param GetOverallClientHealthQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-client-health
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-client-health-v1
 */
 func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParams *GetOverallClientHealthQueryParams) (*ResponseClientsGetOverallClientHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-health"
@@ -1556,7 +1556,7 @@ func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParam
 
 @param ClientProximityQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!client-proximity
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!client-proximity-v1
 */
 func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProximityQueryParams) (*ResponseClientsClientProximity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-proximity"
@@ -1593,7 +1593,7 @@ func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProxi
 
 @param RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-by-applying-complex-filters-while-also-supporting-aggregate-attributes
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-by-applying-complex-filters-while-also-supporting-aggregate-attributes-v1
 */
 func (s *ClientsService) RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes(requestClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes *RequestClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes, RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams *RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams) (*ResponseClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/query"
@@ -1643,7 +1643,7 @@ func (s *ClientsService) RetrievesTheListOfClientsByApplyingComplexFiltersWhileA
 
 @param RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-number-of-clients-by-applying-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-number-of-clients-by-applying-complex-filters-v1
 */
 func (s *ClientsService) RetrievesTheNumberOfClientsByApplyingComplexFilters(requestClientsRetrievesTheNumberOfClientsByApplyingComplexFilters *RequestClientsRetrievesTheNumberOfClientsByApplyingComplexFilters, RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams *RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams) (*ResponseClientsRetrievesTheNumberOfClientsByApplyingComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/query/count"
@@ -1693,7 +1693,7 @@ func (s *ClientsService) RetrievesTheNumberOfClientsByApplyingComplexFilters(req
 
 @param RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-summary-analytics-data-related-to-clients
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-summary-analytics-data-related-to-clients-v1
 */
 func (s *ClientsService) RetrievesSummaryAnalyticsDataRelatedToClients(requestClientsRetrievesSummaryAnalyticsDataRelatedToClients *RequestClientsRetrievesSummaryAnalyticsDataRelatedToClients, RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams *RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesSummaryAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/summaryAnalytics"
@@ -1743,7 +1743,7 @@ func (s *ClientsService) RetrievesSummaryAnalyticsDataRelatedToClients(requestCl
 
 @param RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-top-n-analytics-data-related-to-clients
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-top-n-analytics-data-related-to-clients-v1
 */
 func (s *ClientsService) RetrievesTheTopNAnalyticsDataRelatedToClients(requestClientsRetrievesTheTopNAnalyticsDataRelatedToClients *RequestClientsRetrievesTheTopNAnalyticsDataRelatedToClients, RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams *RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesTheTopNAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/topNAnalytics"
@@ -1793,7 +1793,7 @@ func (s *ClientsService) RetrievesTheTopNAnalyticsDataRelatedToClients(requestCl
 
 @param RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-trend-analytics-data-related-to-clients
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-trend-analytics-data-related-to-clients-v1
 */
 func (s *ClientsService) RetrievesTheTrendAnalyticsDataRelatedToClients(requestClientsRetrievesTheTrendAnalyticsDataRelatedToClients *RequestClientsRetrievesTheTrendAnalyticsDataRelatedToClients, RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams *RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesTheTrendAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/trendAnalytics"
@@ -1845,7 +1845,7 @@ func (s *ClientsService) RetrievesTheTrendAnalyticsDataRelatedToClients(requestC
 
 @param RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-over-a-specified-period-of-time
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-over-a-specified-period-of-time-v1
 */
 func (s *ClientsService) RetrievesSpecificClientInformationOverASpecifiedPeriodOfTime(id string, requestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime *RequestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime, RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams *RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams) (*ResponseClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/{id}/trendAnalytics"

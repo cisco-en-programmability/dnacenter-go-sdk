@@ -58,44 +58,44 @@ type ImportSoftwareImageViaURLQueryParams struct {
 	ScheduleOrigin string `url:"scheduleOrigin,omitempty"` //Originator of this call (Optional)
 }
 type ReturnsListOfSoftwareImagesQueryParams struct {
-	SiteID                       string  `url:"siteId,omitempty"`                       //Site identifier to get the list of all available products under the site. The default value is the global site.  See https://developer.cisco.com/docs/dna-center/get-site for 'siteId'
-	ProductNameOrdinal           float64 `url:"productNameOrdinal,omitempty"`           //The product name ordinal is a unique value for each network device product. The productNameOrdinal can be obtained from the response of API '/dna/intent/api/v1/siteWiseProductNames'
-	SupervisorProductNameOrdinal float64 `url:"supervisorProductNameOrdinal,omitempty"` //The supervisor engine module ordinal is a unique value for each supervisor module. The 'supervisorProductNameOrdinal' can be obtained from the response of API '/dna/intent/api/v1/siteWiseProductNames'
-	Imported                     bool    `url:"imported,omitempty"`                     //When the value is set to 'true', it will include physically imported images. Conversely, when the value is set to 'false', it will include image records from the cloud. The identifier for cloud images can be utilized to download images from Cisco.com to the disk.
+	SiteID                       string  `url:"siteId,omitempty"`                       //Site identifier to get the list of all available products under the site. The default value is the global site.  See https://developer.cisco.com/docs/dna-center/get-site for `siteId`
+	ProductNameOrdinal           float64 `url:"productNameOrdinal,omitempty"`           //The product name ordinal is a unique value for each network device product. The productNameOrdinal can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames`
+	SupervisorProductNameOrdinal float64 `url:"supervisorProductNameOrdinal,omitempty"` //The supervisor engine module ordinal is a unique value for each supervisor module. The `supervisorProductNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames`
+	Imported                     bool    `url:"imported,omitempty"`                     //When the value is set to `true`, it will include physically imported images. Conversely, when the value is set to `false`, it will include image records from the cloud. The identifier for cloud images can be utilized to download images from Cisco.com to the disk.
 	Name                         string  `url:"name,omitempty"`                         //Filter with software image or add-on name. Supports partial case-insensitive search. A minimum of 3 characters is required for the search.
 	Version                      string  `url:"version,omitempty"`                      //Filter with image version. Supports partial case-insensitive search. A minimum of 3 characters is required for the search.
-	Golden                       bool    `url:"golden,omitempty"`                       //When set to 'true', it will retrieve the images marked as tagged golden. When set to 'false', it will retrieve the images marked as not tagged golden.
+	Golden                       bool    `url:"golden,omitempty"`                       //When set to `true`, it will retrieve the images marked as tagged golden. When set to `false`, it will retrieve the images marked as not tagged golden.
 	Integrity                    string  `url:"integrity,omitempty"`                    //Filter with verified images using Integrity Verification Available values: UNKNOWN, VERIFIED
-	HasAddonImages               bool    `url:"hasAddonImages,omitempty"`               //When set to 'true', it will retrieve the images which have add-on images. When set to 'false', it will retrieve the images which do not have add-on images.
-	IsAddonImages                bool    `url:"isAddonImages,omitempty"`                //When set to 'true', it will retrieve the images that an add-on image.  When set to 'false', it will retrieve the images that are not add-on images
+	HasAddonImages               bool    `url:"hasAddonImages,omitempty"`               //When set to `true`, it will retrieve the images which have add-on images. When set to `false`, it will retrieve the images which do not have add-on images.
+	IsAddonImages                bool    `url:"isAddonImages,omitempty"`                //When set to `true`, it will retrieve the images that an add-on image.  When set to `false`, it will retrieve the images that are not add-on images
 	Offset                       float64 `url:"offset,omitempty"`                       //The first record to show for this page; the first record is numbered 1. The minimum value is 1.
 	Limit                        float64 `url:"limit,omitempty"`                        //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively.
 }
 type ReturnsCountOfSoftwareImagesQueryParams struct {
 	SiteID                       string  `url:"siteId,omitempty"`                       //Site identifier to get the list of all available products under the site. The default value is the global site.  See https://developer.cisco.com/docs/dna-center/get-site for siteId
-	ProductNameOrdinal           float64 `url:"productNameOrdinal,omitempty"`           //The product name ordinal is a unique value for each network device product. The productNameOrdinal can be obtained from the response of the API '/dna/intent/api/v1/siteWiseProductNames'.
-	SupervisorProductNameOrdinal float64 `url:"supervisorProductNameOrdinal,omitempty"` //The supervisor engine module ordinal is a unique value for each supervisor module. The 'supervisorProductNameOrdinal' can be obtained from the response of API '/dna/intent/api/v1/siteWiseProductNames'
-	Imported                     bool    `url:"imported,omitempty"`                     //When the value is set to 'true', it will include physically imported images. Conversely, when the value is set to 'false', it will include image records from the cloud. The identifier for cloud images can be utilised to download images from Cisco.com to the disk.
+	ProductNameOrdinal           float64 `url:"productNameOrdinal,omitempty"`           //The product name ordinal is a unique value for each network device product. The productNameOrdinal can be obtained from the response of the API `/dna/intent/api/v1/siteWiseProductNames`.
+	SupervisorProductNameOrdinal float64 `url:"supervisorProductNameOrdinal,omitempty"` //The supervisor engine module ordinal is a unique value for each supervisor module. The `supervisorProductNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames`
+	Imported                     bool    `url:"imported,omitempty"`                     //When the value is set to `true`, it will include physically imported images. Conversely, when the value is set to `false`, it will include image records from the cloud. The identifier for cloud images can be utilised to download images from Cisco.com to the disk.
 	Name                         string  `url:"name,omitempty"`                         //Filter with software image or add-on name. Supports partial case-insensitive search. A minimum of 3 characters is required for the search
 	Version                      string  `url:"version,omitempty"`                      //Filter with image version. Supports partial case-insensitive search. A minimum of 3 characters is required for the search
-	Golden                       string  `url:"golden,omitempty"`                       //When set to 'true', it will retrieve the images marked tagged golden. When set to 'false', it will retrieve the images marked not tagged golden.
+	Golden                       string  `url:"golden,omitempty"`                       //When set to `true`, it will retrieve the images marked tagged golden. When set to `false`, it will retrieve the images marked not tagged golden.
 	Integrity                    string  `url:"integrity,omitempty"`                    //Filter with verified images using Integrity Verification Available values: UNKNOWN, VERIFIED
-	HasAddonImages               bool    `url:"hasAddonImages,omitempty"`               //When set to 'true', it will retrieve the images which have add-on images. When set to 'false', it will retrieve the images which do not have add-on images.
-	IsAddonImages                bool    `url:"isAddonImages,omitempty"`                //When set to 'true', it will retrieve the images that an add-on image.  When set to 'false', it will retrieve the images that are not add-on images
+	HasAddonImages               bool    `url:"hasAddonImages,omitempty"`               //When set to `true`, it will retrieve the images which have add-on images. When set to `false`, it will retrieve the images which do not have add-on images.
+	IsAddonImages                bool    `url:"isAddonImages,omitempty"`                //When set to `true`, it will retrieve the images that an add-on image.  When set to `false`, it will retrieve the images that are not add-on images
 }
 type RetrievesNetworkDeviceProductNamesAssignedToASoftwareImageQueryParams struct {
 	ProductName string  `url:"productName,omitempty"` //Filter with network device product name. Supports partial case-insensitive search. A minimum of 3 characters is required for the search.
 	ProductID   string  `url:"productId,omitempty"`   //Filter with product ID (PID)
-	Recommended string  `url:"recommended,omitempty"` //Filter with recommended source. If 'CISCO' then the network device product assigned was recommended by Cisco and 'USER' then the user has manually assigned. Available values: CISCO, USER
-	Assigned    string  `url:"assigned,omitempty"`    //Filter with the assigned/unassigned, 'ASSIGNED' option will filter network device products that are associated with the given image. The 'NOT_ASSIGNED' option will filter network device products that have not yet been associated with the given image but apply to it. Available values: ASSIGNED, NOT_ASSIGNED
+	Recommended string  `url:"recommended,omitempty"` //Filter with recommended source. If `CISCO` then the network device product assigned was recommended by Cisco and `USER` then the user has manually assigned. Available values: CISCO, USER
+	Assigned    string  `url:"assigned,omitempty"`    //Filter with the assigned/unassigned, `ASSIGNED` option will filter network device products that are associated with the given image. The `NOT_ASSIGNED` option will filter network device products that have not yet been associated with the given image but apply to it. Available values: ASSIGNED, NOT_ASSIGNED
 	Offset      float64 `url:"offset,omitempty"`      //The first record to show for this page; the first record is numbered 1. The minimum value is 1
 	Limit       float64 `url:"limit,omitempty"`       //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively
 }
 type RetrievesTheCountOfAssignedNetworkDeviceProductsQueryParams struct {
 	ProductName string `url:"productName,omitempty"` //Filter with network device product name. Supports partial case-insensitive search. A minimum of 3 characters are required for search.
 	ProductID   string `url:"productId,omitempty"`   //Filter with product ID (PID)
-	Recommended string `url:"recommended,omitempty"` //Filter with recommended source. If 'CISCO' then the network device product assigned was recommended by Cisco and 'USER' then the user has manually assigned. Available values : CISCO, USER
-	Assigned    string `url:"assigned,omitempty"`    //Filter with the assigned/unassigned, 'ASSIGNED' option will filter network device products that are associated with the given image. The 'NOT_ASSIGNED' option will filter network device products that have not yet been associated with the given image but apply to it. Available values: ASSIGNED, NOT_ASSIGNED
+	Recommended string `url:"recommended,omitempty"` //Filter with recommended source. If `CISCO` then the network device product assigned was recommended by Cisco and `USER` then the user has manually assigned. Available values : CISCO, USER
+	Assigned    string `url:"assigned,omitempty"`    //Filter with the assigned/unassigned, `ASSIGNED` option will filter network device products that are associated with the given image. The `NOT_ASSIGNED` option will filter network device products that have not yet been associated with the given image but apply to it. Available values: ASSIGNED, NOT_ASSIGNED
 }
 type GetNetworkDeviceImageUpdatesQueryParams struct {
 	ID                string  `url:"id,omitempty"`                //Update id which is unique for each network device under the parentId
@@ -265,13 +265,13 @@ type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponse stru
 	Version              string                                                                                        `json:"version,omitempty"`              // Software image  version
 	ImageType            string                                                                                        `json:"imageType,omitempty"`            // Software image type
 	Recommended          string                                                                                        `json:"recommended,omitempty"`          // CISCO if the image is recommended from Cisco.com
-	CiscoLatest          *bool                                                                                         `json:"ciscoLatest,omitempty"`          // 'true' if the image is latest/suggested from Cisco.com
+	CiscoLatest          *bool                                                                                         `json:"ciscoLatest,omitempty"`          // `true` if the image is latest/suggested from Cisco.com
 	IntegrityStatus      string                                                                                        `json:"integrityStatus,omitempty"`      // Image Integrity verification status with Known Good Verification
-	IsAddonImage         *bool                                                                                         `json:"isAddonImage,omitempty"`         // The value of 'true' will indicate the image as an add-on image, while the value of 'false' will indicate software image
-	HasAddonImages       *bool                                                                                         `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of 'true' will return software images with add-on images, while the value of 'false' will return software images without add-on images
+	IsAddonImage         *bool                                                                                         `json:"isAddonImage,omitempty"`         // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
+	HasAddonImages       *bool                                                                                         `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
 	GoldenTaggingDetails *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
 	ProductNames         *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseProductNames         `json:"productNames,omitempty"`         //
-	IsGoldenTagged       *bool                                                                                         `json:"isGoldenTagged,omitempty"`       // The value of 'true' will indicate the image marked as golden, while the value of 'false' will indicate the image not marked as golden
+	IsGoldenTagged       *bool                                                                                         `json:"isGoldenTagged,omitempty"`       // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
 }
 type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseGoldenTaggingDetails struct {
 	DeviceRoles       []string `json:"deviceRoles,omitempty"`       // Golden tagging based on the device roles
@@ -283,8 +283,8 @@ type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseProdu
 	ID                           string   `json:"id,omitempty"`                           // Product name ordinal is unique value for each network device product
 	ProductName                  string   `json:"productName,omitempty"`                  // Network device product name
 	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal is unique value for each network device product
-	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the 'productName'.                  Example: The 'Cisco Catalyst 9404R Switch' chassis is capable of supporting  different supervisor engine modules: the 'Cisco Catalyst 9400 Supervisor Engine-1', the 'Cisco Catalyst 9400 Supervisor Engine-1XL', the 'Cisco Catalyst 9400 Supervisor Engine-1XL-Y', etc.
-	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the 'productNameOrdinal'. Example: The '286315691' chassis ordinal is capable of supporting different supervisor engine module ordinals: '286316172', '286316710', '286320394' etc.
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImages struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImagesResponse `json:"response,omitempty"` //
@@ -350,13 +350,13 @@ type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGiven
 	Version              string                                                                                                                  `json:"version,omitempty"`              // Software image  version
 	ImageType            string                                                                                                                  `json:"imageType,omitempty"`            // Software image type
 	Recommended          string                                                                                                                  `json:"recommended,omitempty"`          // CISCO if the image is recommended from Cisco.com
-	CiscoLatest          *bool                                                                                                                   `json:"ciscoLatest,omitempty"`          // 'true' if the image is latest/suggested from Cisco.com
+	CiscoLatest          *bool                                                                                                                   `json:"ciscoLatest,omitempty"`          // `true` if the image is latest/suggested from Cisco.com
 	IntegrityStatus      string                                                                                                                  `json:"integrityStatus,omitempty"`      // Image Integrity verification status with Known Good Verification
-	IsAddonImage         *bool                                                                                                                   `json:"isAddonImage,omitempty"`         // The value of 'true' will indicate the image as an add-on image, while the value of 'false' will indicate software image
-	HasAddonImages       *bool                                                                                                                   `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of 'true' will return software images with add-on images, while the value of 'false' will return software images without add-on images
+	IsAddonImage         *bool                                                                                                                   `json:"isAddonImage,omitempty"`         // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
+	HasAddonImages       *bool                                                                                                                   `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
 	GoldenTaggingDetails *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
 	ProductNames         *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseProductNames         `json:"productNames,omitempty"`         //
-	IsGoldenTagged       *bool                                                                                                                   `json:"isGoldenTagged,omitempty"`       // The value of 'true' will indicate the image marked as golden, while the value of 'false' will indicate the image not marked as golden
+	IsGoldenTagged       *bool                                                                                                                   `json:"isGoldenTagged,omitempty"`       // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
 }
 type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseGoldenTaggingDetails struct {
 	DeviceRoles       []string `json:"deviceRoles,omitempty"`       // Golden tagging based on the device roles
@@ -368,8 +368,8 @@ type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGiven
 	ID                           string   `json:"id,omitempty"`                           // Product name ordinal is unique value for each network device product
 	ProductName                  string   `json:"productName,omitempty"`                  // Network device product name
 	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal is unique value for each network device product
-	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the 'productName'.                  Example: The 'Cisco Catalyst 9404R Switch' chassis is capable of supporting  different supervisor engine modules: the 'Cisco Catalyst 9400 Supervisor Engine-1', the 'Cisco Catalyst 9400 Supervisor Engine-1XL', the 'Cisco Catalyst 9400 Supervisor Engine-1XL-Y', etc.
-	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the 'productNameOrdinal'. Example: The '286315691' chassis ordinal is capable of supporting different supervisor engine module ordinals: '286316172', '286316710', '286320394' etc.
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImages struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImagesResponse `json:"response,omitempty"` //
@@ -484,11 +484,11 @@ type ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASite
 	Version  string                                                                               `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponse struct {
-	ID                           string                                                                                           `json:"id,omitempty"`                           // The unique identifier for the record is the 'id'. If there is no supervisor engine involved, the 'id' will be the same as the 'productNameOrdinal'. However, if the supervisor engine is applicable, the 'id' will be in the form of '<productNameOrdinal>-<supervisorProductNameOrdinal>'.
+	ID                           string                                                                                           `json:"id,omitempty"`                           // The unique identifier for the record is the `id`. If there is no supervisor engine involved, the `id` will be the same as the `productNameOrdinal`. However, if the supervisor engine is applicable, the `id` will be in the form of `<productNameOrdinal>-<supervisorProductNameOrdinal>`.
 	ProductNameOrdinal           *float64                                                                                         `json:"productNameOrdinal,omitempty"`           // Product name ordinal
 	ProductName                  string                                                                                           `json:"productName,omitempty"`                  // Name of product
-	SupervisorProductName        string                                                                                           `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the 'productName'.                  Example: The 'Cisco Catalyst 9404R Switch' chassis is capable of supporting  different supervisor engine modules: the 'Cisco Catalyst 9400 Supervisor Engine-1', the 'Cisco Catalyst 9400 Supervisor Engine-1XL', the 'Cisco Catalyst 9400 Supervisor Engine-1XL-Y', etc.
-	SupervisorProductNameOrdinal *float64                                                                                         `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the 'productNameOrdinal'. Example: The '286315691' chassis ordinal is capable of supporting  different supervisor engine module ordinals: '286316172', '286316710', '286320394' etc.
+	SupervisorProductName        string                                                                                           `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64                                                                                         `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting  different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
 	NetworkDeviceCount           *int                                                                                             `json:"networkDeviceCount,omitempty"`           // Count of network devices
 	ImageSummary                 *ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponseImageSummary `json:"imageSummary,omitempty"`                 //
 }
@@ -558,7 +558,7 @@ type RequestSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDevicePr
 
 @param GetSoftwareImageDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-software-image-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-software-image-details-v1
 */
 func (s *SoftwareImageManagementSwimService) GetSoftwareImageDetails(GetSoftwareImageDetailsQueryParams *GetSoftwareImageDetailsQueryParams) (*ResponseSoftwareImageManagementSwimGetSoftwareImageDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation"
@@ -594,7 +594,7 @@ func (s *SoftwareImageManagementSwimService) GetSoftwareImageDetails(GetSoftware
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-family-identifiers
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-family-identifiers-v1
 */
 func (s *SoftwareImageManagementSwimService) GetDeviceFamilyIDentifiers() (*ResponseSoftwareImageManagementSwimGetDeviceFamilyIDentifiers, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/device-family-identifiers"
@@ -636,7 +636,7 @@ func (s *SoftwareImageManagementSwimService) GetDeviceFamilyIDentifiers() (*Resp
 @param imageID imageId path parameter. Image Id in uuid format.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-golden-tag-status-of-an-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-golden-tag-status-of-an-image-v1
 */
 func (s *SoftwareImageManagementSwimService) GetGoldenTagStatusOfAnImage(siteID string, deviceFamilyIDentifier string, deviceRole string, imageID string) (*ResponseSoftwareImageManagementSwimGetGoldenTagStatusOfAnImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/golden/site/{siteId}/family/{deviceFamilyIdentifier}/role/{deviceRole}/image/{imageId}"
@@ -675,7 +675,7 @@ func (s *SoftwareImageManagementSwimService) GetGoldenTagStatusOfAnImage(siteID 
 
 @param ReturnsListOfSoftwareImagesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-list-of-software-images
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-list-of-software-images-v1
 */
 func (s *SoftwareImageManagementSwimService) ReturnsListOfSoftwareImages(ReturnsListOfSoftwareImagesQueryParams *ReturnsListOfSoftwareImagesQueryParams) (*ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImages, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images"
@@ -707,12 +707,12 @@ func (s *SoftwareImageManagementSwimService) ReturnsListOfSoftwareImages(Returns
 }
 
 //ReturnsCountOfSoftwareImages Returns count of software images - 1391-aa45-4098-8eac
-/* Returns the count of software images for given 'siteId'. The default value of siteId is global
+/* Returns the count of software images for given `siteId`. The default value of siteId is global
 
 
 @param ReturnsCountOfSoftwareImagesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-count-of-software-images
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-count-of-software-images-v1
 */
 func (s *SoftwareImageManagementSwimService) ReturnsCountOfSoftwareImages(ReturnsCountOfSoftwareImagesQueryParams *ReturnsCountOfSoftwareImagesQueryParams) (*ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImages, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/count"
@@ -748,7 +748,7 @@ func (s *SoftwareImageManagementSwimService) ReturnsCountOfSoftwareImages(Return
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-image-distribution-servers
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-image-distribution-servers-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrieveImageDistributionServers() (*ResponseSoftwareImageManagementSwimRetrieveImageDistributionServers, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/distributionServerSettings"
@@ -784,7 +784,7 @@ func (s *SoftwareImageManagementSwimService) RetrieveImageDistributionServers() 
 @param id id path parameter. Server identifier
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-specific-image-distribution-server
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-specific-image-distribution-server-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrieveSpecificImageDistributionServer(id string) (*ResponseSoftwareImageManagementSwimRetrieveSpecificImageDistributionServer, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/distributionServerSettings/{id}"
@@ -815,13 +815,13 @@ func (s *SoftwareImageManagementSwimService) RetrieveSpecificImageDistributionSe
 }
 
 //RetrieveApplicableAddOnImagesForTheGivenSoftwareImage Retrieve applicable add-on images for the given software image - f0ae-9b76-4ee8-ac84
-/* Retrieves the list of applicable add-on images if available for the given software image. 'id' can be obtained from the response of API [ /dna/intent/api/v1/images?hasAddonImages=true ].
+/* Retrieves the list of applicable add-on images if available for the given software image. `id` can be obtained from the response of API [ /dna/intent/api/v1/images?hasAddonImages=true ].
 
 
-@param id id path parameter. Software image identifier. Check '/dna/intent/api/v1/images?hasAddonImages=true' API to get the same.
+@param id id path parameter. Software image identifier. Check `/dna/intent/api/v1/images?hasAddonImages=true` API to get the same.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-applicable-add-on-images-for-the-given-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-applicable-add-on-images-for-the-given-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrieveApplicableAddOnImagesForTheGivenSoftwareImage(id string) (*ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{id}/addonImages"
@@ -852,13 +852,13 @@ func (s *SoftwareImageManagementSwimService) RetrieveApplicableAddOnImagesForThe
 }
 
 //ReturnsCountOfAddOnImages Returns count of add-on images - f0ba-68e0-4acb-8234
-/* Count of add-on images available for the given software image identifier, 'id' can be obtained from the response of API [ /dna/intent/api/v1/images?hasAddonImages=true ].
+/* Count of add-on images available for the given software image identifier, `id` can be obtained from the response of API [ /dna/intent/api/v1/images?hasAddonImages=true ].
 
 
-@param id id path parameter. Software image identifier. Check API '/dna/intent/api/v1/images' for id from response.
+@param id id path parameter. Software image identifier. Check API `/dna/intent/api/v1/images` for id from response.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-count-of-add-on-images
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-count-of-add-on-images-v1
 */
 func (s *SoftwareImageManagementSwimService) ReturnsCountOfAddOnImages(id string) (*ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImages, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{id}/addonImages/count"
@@ -889,14 +889,14 @@ func (s *SoftwareImageManagementSwimService) ReturnsCountOfAddOnImages(id string
 }
 
 //RetrievesNetworkDeviceProductNamesAssignedToASoftwareImage Retrieves network device product names assigned to a software image. - 14a1-f9d8-49b9-80be
-/* Returns a list of network device product names and associated sites for a given image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'.
+/* Returns a list of network device product names and associated sites for a given image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`.
 
 
-@param imageID imageId path parameter. Software image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'
+@param imageID imageId path parameter. Software image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`
 
 @param RetrievesNetworkDeviceProductNamesAssignedToASoftwareImageQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-network-device-product-names-assigned-to-a-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-network-device-product-names-assigned-to-a-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrievesNetworkDeviceProductNamesAssignedToASoftwareImage(imageID string, RetrievesNetworkDeviceProductNamesAssignedToASoftwareImageQueryParams *RetrievesNetworkDeviceProductNamesAssignedToASoftwareImageQueryParams) (*ResponseSoftwareImageManagementSwimRetrievesNetworkDeviceProductNamesAssignedToASoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{imageId}/siteWiseProductNames"
@@ -929,14 +929,14 @@ func (s *SoftwareImageManagementSwimService) RetrievesNetworkDeviceProductNamesA
 }
 
 //RetrievesTheCountOfAssignedNetworkDeviceProducts Retrieves the count of assigned network device products - e994-0a33-409b-b8be
-/* Returns count of assigned network device product for a given image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'
+/* Returns count of assigned network device product for a given image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`
 
 
-@param imageID imageId path parameter. Software image identifier. Refer '/dna/intent/api/v/images' API for obtaining 'imageId'
+@param imageID imageId path parameter. Software image identifier. Refer `/dna/intent/api/v/images` API for obtaining `imageId`
 
 @param RetrievesTheCountOfAssignedNetworkDeviceProductsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-assigned-network-device-products
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-count-of-assigned-network-device-products-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrievesTheCountOfAssignedNetworkDeviceProducts(imageID string, RetrievesTheCountOfAssignedNetworkDeviceProductsQueryParams *RetrievesTheCountOfAssignedNetworkDeviceProductsQueryParams) (*ResponseSoftwareImageManagementSwimRetrievesTheCountOfAssignedNetworkDeviceProducts, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{imageId}/siteWiseProductNames/count"
@@ -974,7 +974,7 @@ func (s *SoftwareImageManagementSwimService) RetrievesTheCountOfAssignedNetworkD
 
 @param GetNetworkDeviceImageUpdatesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-image-updates
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-device-image-updates-v1
 */
 func (s *SoftwareImageManagementSwimService) GetNetworkDeviceImageUpdates(GetNetworkDeviceImageUpdatesQueryParams *GetNetworkDeviceImageUpdatesQueryParams) (*ResponseSoftwareImageManagementSwimGetNetworkDeviceImageUpdates, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDeviceImageUpdates"
@@ -1011,7 +1011,7 @@ func (s *SoftwareImageManagementSwimService) GetNetworkDeviceImageUpdates(GetNet
 
 @param CountOfNetworkDeviceImageUpdatesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-device-image-updates
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-device-image-updates-v1
 */
 func (s *SoftwareImageManagementSwimService) CountOfNetworkDeviceImageUpdates(CountOfNetworkDeviceImageUpdatesQueryParams *CountOfNetworkDeviceImageUpdatesQueryParams) (*ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdates, *resty.Response, error) {
 	path := "/dna/intent/api/v1/networkDeviceImageUpdates/count"
@@ -1048,7 +1048,7 @@ func (s *SoftwareImageManagementSwimService) CountOfNetworkDeviceImageUpdates(Co
 
 @param RetrievesTheListOfNetworkDeviceProductNamesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-device-product-names
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-device-product-names-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrievesTheListOfNetworkDeviceProductNames(RetrievesTheListOfNetworkDeviceProductNamesQueryParams *RetrievesTheListOfNetworkDeviceProductNamesQueryParams) (*ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductNames, *resty.Response, error) {
 	path := "/dna/intent/api/v1/productNames"
@@ -1085,7 +1085,7 @@ func (s *SoftwareImageManagementSwimService) RetrievesTheListOfNetworkDeviceProd
 
 @param CountOfNetworkProductNamesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-product-names
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-product-names-v1
 */
 func (s *SoftwareImageManagementSwimService) CountOfNetworkProductNames(CountOfNetworkProductNamesQueryParams *CountOfNetworkProductNamesQueryParams) (*ResponseSoftwareImageManagementSwimCountOfNetworkProductNames, *resty.Response, error) {
 	path := "/dna/intent/api/v1/productNames/count"
@@ -1123,7 +1123,7 @@ func (s *SoftwareImageManagementSwimService) CountOfNetworkProductNames(CountOfN
 @param productNameOrdinal productNameOrdinal path parameter. Product name ordinal is unique value for each network device product.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-network-device-product-name
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-network-device-product-name-v1
 */
 func (s *SoftwareImageManagementSwimService) RetrieveNetworkDeviceProductName(productNameOrdinal float64) (*ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductName, *resty.Response, error) {
 	path := "/dna/intent/api/v1/productNames/{productNameOrdinal}"
@@ -1154,12 +1154,12 @@ func (s *SoftwareImageManagementSwimService) RetrieveNetworkDeviceProductName(pr
 }
 
 //ReturnsNetworkDeviceProductNamesForASite Returns network device product names for a site - 20b5-5b0c-4518-9a03
-/* Provides network device product names for a site. The default value of 'siteId' is global. The response will include the network device count and image summary.
+/* Provides network device product names for a site. The default value of `siteId` is global. The response will include the network device count and image summary.
 
 
 @param ReturnsNetworkDeviceProductNamesForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-network-device-product-names-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-network-device-product-names-for-a-site-v1
 */
 func (s *SoftwareImageManagementSwimService) ReturnsNetworkDeviceProductNamesForASite(ReturnsNetworkDeviceProductNamesForASiteQueryParams *ReturnsNetworkDeviceProductNamesForASiteQueryParams) (*ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/siteWiseProductNames"
@@ -1191,12 +1191,12 @@ func (s *SoftwareImageManagementSwimService) ReturnsNetworkDeviceProductNamesFor
 }
 
 //ReturnsTheCountOfNetworkDeviceProductNamesForASite Returns the count of network device product names for a site - 018d-a93c-4e4b-8436
-/* Returns the count of network device product names for given filters. The default value of 'siteId' is global.
+/* Returns the count of network device product names for given filters. The default value of `siteId` is global.
 
 
 @param ReturnsTheCountOfNetworkDeviceProductNamesForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-the-count-of-network-device-product-names-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-the-count-of-network-device-product-names-for-a-site-v1
 */
 func (s *SoftwareImageManagementSwimService) ReturnsTheCountOfNetworkDeviceProductNamesForASite(ReturnsTheCountOfNetworkDeviceProductNamesForASiteQueryParams *ReturnsTheCountOfNetworkDeviceProductNamesForASiteQueryParams) (*ResponseSoftwareImageManagementSwimReturnsTheCountOfNetworkDeviceProductNamesForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/siteWiseProductNames/count"
@@ -1234,7 +1234,7 @@ func (s *SoftwareImageManagementSwimService) ReturnsTheCountOfNetworkDeviceProdu
 @param TriggerSoftwareImageActivationHeaderParams Custom header parameters
 @param TriggerSoftwareImageActivationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-activation
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-activation-v1
 */
 func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageActivation(requestSoftwareImageManagementSwimTriggerSoftwareImageActivation *RequestSoftwareImageManagementSwimTriggerSoftwareImageActivation, TriggerSoftwareImageActivationHeaderParams *TriggerSoftwareImageActivationHeaderParams, TriggerSoftwareImageActivationQueryParams *TriggerSoftwareImageActivationQueryParams) (*ResponseSoftwareImageManagementSwimTriggerSoftwareImageActivation, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/activation/device"
@@ -1285,11 +1285,11 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageActivation(requ
 }
 
 //TriggerSoftwareImageDistribution Trigger software image distribution - 8cb6-783b-4fab-a1f4
-/* Distributes a software image on a given device. Software image must be imported successfully into Catalyst Center before it can be distributed
+/* Distributes a software image on a given device. Software image must be imported successfully into DNA Center before it can be distributed
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-distribution
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-software-image-distribution-v1
 */
 func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageDistribution(requestSoftwareImageManagementSwimTriggerSoftwareImageDistribution *RequestSoftwareImageManagementSwimTriggerSoftwareImageDistribution) (*ResponseSoftwareImageManagementSwimTriggerSoftwareImageDistribution, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/distribution"
@@ -1326,7 +1326,7 @@ func (s *SoftwareImageManagementSwimService) TriggerSoftwareImageDistribution(re
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!tag-as-golden-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!tag-as-golden-image-v1
 */
 func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareImageManagementSwimTagAsGoldenImage *RequestSoftwareImageManagementSwimTagAsGoldenImage) (*ResponseSoftwareImageManagementSwimTagAsGoldenImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/golden"
@@ -1359,12 +1359,12 @@ func (s *SoftwareImageManagementSwimService) TagAsGoldenImage(requestSoftwareIma
 }
 
 //ImportLocalSoftwareImage Import local software image - 1491-f90f-48da-aabe
-/* Fetches a software image from local file system and uploads to Catalyst Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
+/* Fetches a software image from local file system and uploads to DNA Center. Supported software image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
 
 
 @param ImportLocalSoftwareImageQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-local-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-local-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLocalSoftwareImageQueryParams *ImportLocalSoftwareImageQueryParams, ImportLocalSoftwareImageMultipartFields *ImportLocalSoftwareImageMultipartFields) (*ResponseSoftwareImageManagementSwimImportLocalSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/source/file"
@@ -1407,12 +1407,12 @@ func (s *SoftwareImageManagementSwimService) ImportLocalSoftwareImage(ImportLoca
 }
 
 //ImportSoftwareImageViaURL Import software image via URL - bc8a-ab47-46ca-883d
-/* Fetches a software image from remote file system (using URL for HTTP/FTP) and uploads to Catalyst Center. Supported image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
+/* Fetches a software image from remote file system (using URL for HTTP/FTP) and uploads to DNA Center. Supported image files extensions are bin, img, tar, smu, pie, aes, iso, ova, tar_gz and qcow2
 
 
 @param ImportSoftwareImageViaURLQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-software-image-via-url
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!import-software-image-via-url-v1
 */
 func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSoftwareImageManagementSwimImportSoftwareImageViaURL *RequestSoftwareImageManagementSwimImportSoftwareImageViaURL, ImportSoftwareImageViaURLQueryParams *ImportSoftwareImageViaURLQueryParams) (*ResponseSoftwareImageManagementSwimImportSoftwareImageViaURL, *resty.Response, error) {
 	path := "/dna/intent/api/v1/image/importation/source/url"
@@ -1451,7 +1451,7 @@ func (s *SoftwareImageManagementSwimService) ImportSoftwareImageViaURL(requestSo
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-image-distribution-server
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-image-distribution-server-v1
 */
 func (s *SoftwareImageManagementSwimService) AddImageDistributionServer(requestSoftwareImageManagementSwimAddImageDistributionServer *RequestSoftwareImageManagementSwimAddImageDistributionServer) (*ResponseSoftwareImageManagementSwimAddImageDistributionServer, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/distributionServerSettings"
@@ -1484,13 +1484,13 @@ func (s *SoftwareImageManagementSwimService) AddImageDistributionServer(requestS
 }
 
 //DownloadTheSoftwareImage Download the software image - c382-2b30-447a-a189
-/* Initiates download of the software image from Cisco.com on the disk for the given 'id'. Refer to '/dna/intent/api/v1/images' for obtaining 'id'.
+/* Initiates download of the software image from Cisco.com on the disk for the given `id`. Refer to `/dna/intent/api/v1/images` for obtaining `id`.
 
 
-@param id id path parameter. Software image identifier. Check API '/dna/intent/api/v1/images' for 'id' from response.
+@param id id path parameter. Software image identifier. Check API `/dna/intent/api/v1/images` for `id` from response.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-the-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-the-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) DownloadTheSoftwareImage(id string) (*ResponseSoftwareImageManagementSwimDownloadTheSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{id}/download"
@@ -1523,13 +1523,13 @@ func (s *SoftwareImageManagementSwimService) DownloadTheSoftwareImage(id string)
 }
 
 //AssignNetworkDeviceProductNameToTheGivenSoftwareImage Assign network device product name to the given software image - 0089-283d-4609-98a5
-/* Assign network device product name and sites for the given image identifier. Refer '/dna/intent/api/v1/images' API for obtaining imageId
+/* Assign network device product name and sites for the given image identifier. Refer `/dna/intent/api/v1/images` API for obtaining imageId
 
 
-@param imageID imageId path parameter. Software image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'
+@param imageID imageId path parameter. Software image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-network-device-product-name-to-the-given-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-network-device-product-name-to-the-given-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) AssignNetworkDeviceProductNameToTheGivenSoftwareImage(imageID string, requestSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImage *RequestSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImage) (*ResponseSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImage, *resty.Response, error) {
 	path := "/dna/intent/api/v1/images/{imageId}/siteWiseProductNames"
@@ -1599,12 +1599,12 @@ func (s *SoftwareImageManagementSwimService) UpdateRemoteImageDistributionServer
 }
 
 //UpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage Update the list of sites for the network device product name assigned to the software image - 1da6-d80b-40fa-8bdc
-/* Update the list of sites for the network device product name assigned to the software image. Refer to '/dna/intent/api/v1/images' and '/dna/intent/api/v1/images/{imageId}/siteWiseProductNames' GET APIs for obtaining  'imageId' and 'productNameOrdinal' respectively.
+/* Update the list of sites for the network device product name assigned to the software image. Refer to `/dna/intent/api/v1/images` and `/dna/intent/api/v1/images/{imageId}/siteWiseProductNames` GET APIs for obtaining  `imageId` and `productNameOrdinal` respectively.
 
 
-@param imageID imageId path parameter. Software image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'
+@param imageID imageId path parameter. Software image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`
 
-@param productNameOrdinal productNameOrdinal path parameter. Product name ordinal is unique value for each network device product. Refer '/dna/intent/api/v1/images/{imageId}/siteWiseProductNames' GET API for obtaining 'productNameOrdinal'.
+@param productNameOrdinal productNameOrdinal path parameter. Product name ordinal is unique value for each network device product. Refer `/dna/intent/api/v1/images/{imageId}/siteWiseProductNames` GET API for obtaining `productNameOrdinal`.
 
 */
 func (s *SoftwareImageManagementSwimService) UpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage(imageID string, productNameOrdinal float64, requestSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage *RequestSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage) (*ResponseSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage, *resty.Response, error) {
@@ -1650,7 +1650,7 @@ func (s *SoftwareImageManagementSwimService) UpdateTheListOfSitesForTheNetworkDe
 @param imageID imageId path parameter. Image Id in uuid format.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-golden-tag-for-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-golden-tag-for-image-v1
 */
 func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID string, deviceFamilyIDentifier string, deviceRole string, imageID string) (*ResponseSoftwareImageManagementSwimRemoveGoldenTagForImage, *resty.Response, error) {
 	//siteID string,deviceFamilyIDentifier string,deviceRole string,imageID string
@@ -1691,7 +1691,7 @@ func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID stri
 @param id id path parameter. Remote server identifier.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-image-distribution-server
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-image-distribution-server-v1
 */
 func (s *SoftwareImageManagementSwimService) RemoveImageDistributionServer(id string) (*ResponseSoftwareImageManagementSwimRemoveImageDistributionServer, *resty.Response, error) {
 	//id string
@@ -1724,15 +1724,15 @@ func (s *SoftwareImageManagementSwimService) RemoveImageDistributionServer(id st
 
 //UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage Unassign network device product name from the given software image - 3fa4-39e3-4a4b-8eaf
 /* This API unassigns the network device product name from all the sites for the given software image.
-        Refer to '/dna/intent/api/v1/images' and '/dna/intent/api/v1/images/{imageId}/siteWiseProductNames' GET APIs for obtaining  'imageId' and 'productNameOrdinal' respectively.
+        Refer to `/dna/intent/api/v1/images` and `/dna/intent/api/v1/images/{imageId}/siteWiseProductNames` GET APIs for obtaining  `imageId` and `productNameOrdinal` respectively.
 
 
-@param imageID imageId path parameter. Software image identifier. Refer '/dna/intent/api/v1/images' API for obtaining 'imageId'
+@param imageID imageId path parameter. Software image identifier. Refer `/dna/intent/api/v1/images` API for obtaining `imageId`
 
-@param productNameOrdinal productNameOrdinal path parameter. The product name ordinal is a unique value for each network device product. Refer '/dna/intent/api/v1/images/{imageId}/siteWiseProductNames' GET API for obtaining 'productNameOrdinal'
+@param productNameOrdinal productNameOrdinal path parameter. The product name ordinal is a unique value for each network device product. Refer `/dna/intent/api/v1/images/{imageId}/siteWiseProductNames` GET API for obtaining `productNameOrdinal`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassign-network-device-product-name-from-the-given-software-image
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!unassign-network-device-product-name-from-the-given-software-image-v1
 */
 func (s *SoftwareImageManagementSwimService) UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage(imageID string, productNameOrdinal float64) (*ResponseSoftwareImageManagementSwimUnassignNetworkDeviceProductNameFromTheGivenSoftwareImage, *resty.Response, error) {
 	//imageID string,productNameOrdinal float64

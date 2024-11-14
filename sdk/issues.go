@@ -11,8 +11,8 @@ import (
 
 type IssuesService service
 
-type GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams struct {
-	StartTime              float64 `url:"startTime,omitempty"`              //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+type GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams struct {
+	StartTime              float64 `url:"startTime,omitempty"`              //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                float64 `url:"endTime,omitempty"`                //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Limit                  float64 `url:"limit,omitempty"`                  //Maximum number of issues to return
 	Offset                 float64 `url:"offset,omitempty"`                 //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
@@ -29,30 +29,30 @@ type GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams struct {
 	IssueID                string  `url:"issueId,omitempty"`                //UUID of the issue Examples: issueId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single issue id requested) issueId=e52aecfe-b142-4287-a587-11a16ba6dd26&issueId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple issue ids requested)
 	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it     could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
 	UpdatedBy              string  `url:"updatedBy,omitempty"`              //The user who last updated this issue. Examples: updatedBy=admin (single updatedBy requested) updatedBy=admin&updatedBy=john (multiple updatedBy requested)
-	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk (*) character search support. E.g. '*uuid*, *uuid, uuid* Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteName               string  `url:"siteName,omitempty"`               //The name of the site. (Ex. 'FloorName') This field supports wildcard asterisk (*) character search support. E.g. *San*, *San, San* Examples: '?siteName=building1' (single siteName requested) '?siteName=building1&siteName=building2&siteName=building3' (multiple siteNames requested)
-	SiteID                 string  `url:"siteId,omitempty"`                 //The UUID of the site. (Ex. 'flooruuid') This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
+	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteName               string  `url:"siteName,omitempty"`               //The name of the site. (Ex. `FloorName`) This field supports wildcard asterisk (*) character search support. E.g. *San*, *San, San* Examples: `?siteName=building1` (single siteName requested) `?siteName=building1&siteName=building2&siteName=building3` (multiple siteNames requested)
+	SiteID                 string  `url:"siteId,omitempty"`                 //The UUID of the site. (Ex. `flooruuid`) This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
 	FabricSiteID           string  `url:"fabricSiteId,omitempty"`           //The UUID of the fabric site. (Ex. "flooruuid") Examples: fabricSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26,864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
 	FabricVnName           string  `url:"fabricVnName,omitempty"`           //The name of the fabric virtual network Examples: fabricVnName=name1 (single fabric virtual network name requested) fabricVnName=name1&fabricVnName=name2&fabricVnName=name3 (multiple fabric virtual network names requested)
 	FabricTransitSiteID    string  `url:"fabricTransitSiteId,omitempty"`    //The UUID of the fabric transit site. (Ex. "flooruuid") Examples: fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26&fabricTransitSiteId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
-	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. '121.1.1.10') This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'networkDeviceIpAddress=121.1.1.10' 'networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10' (multiple networkDevice IP Address with & separator)
-	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
-	View                   string  `url:"view,omitempty"`                   //The name of the View. Each view represents a specific data set. Please refer to the 'IssuesView' Model for supported views. View is predefined set of attributes supported by the API. Only the attributes related to the given view will be part of the API response along with default attributes. If multiple views are provided, then response will contain attributes from all those views. If no views are specified, all attributes will be returned. | View Name | Included Attributes | | --- | --- | | 'update' | updatedTime, updatedBy | | 'site' | siteName, siteHierarchy, siteId, siteHierarchyId | Examples: 'view=update' (single view requested) 'view=update&view=site' (multiple views requested)
-	Attribute              string  `url:"attribute,omitempty"`              //List of attributes related to the issue. If these are provided, then only those attributes will be part of response along with the default attributes. Please refer to the 'IssuesResponseAttribute' Model for supported attributes. Examples: 'attribute=deviceType' (single attribute requested) 'attribute=deviceType&attribute=updatedBy' (multiple attributes requested)
+	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
+	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	View                   string  `url:"view,omitempty"`                   //The name of the View. Each view represents a specific data set. Please refer to the `IssuesView` Model for supported views. View is predefined set of attributes supported by the API. Only the attributes related to the given view will be part of the API response along with default attributes. If multiple views are provided, then response will contain attributes from all those views. If no views are specified, all attributes will be returned. | View Name | Included Attributes | | --- | --- | | `update` | updatedTime, updatedBy | | `site` | siteName, siteHierarchy, siteId, siteHierarchyId | Examples: `view=update` (single view requested) `view=update&view=site` (multiple views requested)
+	Attribute              string  `url:"attribute,omitempty"`              //List of attributes related to the issue. If these are provided, then only those attributes will be part of response along with the default attributes. Please refer to the `IssuesResponseAttribute` Model for supported attributes. Examples: `attribute=deviceType` (single attribute requested) `attribute=deviceType&attribute=updatedBy` (multiple attributes requested)
 	AiDriven               bool    `url:"aiDriven,omitempty"`               //Flag whether the issue is AI driven issue
 	FabricDriven           bool    `url:"fabricDriven,omitempty"`           //Flag whether the issue is related to a Fabric site, a virtual network or a transit.
 	FabricSiteDriven       bool    `url:"fabricSiteDriven,omitempty"`       //Flag whether the issue is Fabric site driven issue
 	FabricVnDriven         bool    `url:"fabricVnDriven,omitempty"`         //Flag whether the issue is Fabric Virtual Network driven issue
 	FabricTransitDriven    bool    `url:"fabricTransitDriven,omitempty"`    //Flag whether the issue is Fabric Transit driven issue
 }
-type GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams struct {
+type GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams struct {
 	AcceptLanguage string `url:"Accept-Language,omitempty"` //Expects type string. This header parameter can be used to specify the language in which issue description and suggested actions need to be returned. Available options are - 'en' (English), 'ja' (Japanese), 'ko' (Korean), 'zh' (Chinese). If this parameter is not present the issue details are returned in English language.
 	XCaLLERID      string `url:"X-CALLER-ID,omitempty"`     //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
-type GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams struct {
-	StartTime              float64 `url:"startTime,omitempty"`              //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If 'startTime' is not provided, API will default to current time.
+type GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams struct {
+	StartTime              float64 `url:"startTime,omitempty"`              //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                float64 `url:"endTime,omitempty"`                //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	IsGlobal               bool    `url:"isGlobal,omitempty"`               //Global issues are those issues which impacts across many devices, sites. They are also displayed on Issue Dashboard in Catalyst Center UI. Non-Global issues are displayed only on Client 360 or Device 360 pages. If this flag is 'true', only global issues are returned. If it if 'false', all issues are returned.
 	Priority               string  `url:"priority,omitempty"`               //Priority of the issue. Supports single priority and multiple priorities Examples: priority=P1 (single priority requested) priority=P1&priority=P2&priority=P3 (multiple priorities requested)
@@ -65,23 +65,23 @@ type GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams struct {
 	IssueID                string  `url:"issueId,omitempty"`                //UUID of the issue Examples: issueId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single issue id requested) issueId=e52aecfe-b142-4287-a587-11a16ba6dd26&issueId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple issue ids requested)
 	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it     could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
 	UpdatedBy              string  `url:"updatedBy,omitempty"`              //The user who last updated this issue. Examples: updatedBy=admin (single updatedBy requested) updatedBy=admin&updatedBy=john (multiple updatedBy requested)
-	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. 'Global/AreaName/BuildingName/FloorName') This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: '?siteHierarchy=Global/AreaName/BuildingName/FloorName' (single siteHierarchy requested) '?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2' (multiple siteHierarchies requested)
-	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. 'globalUuid/areaUuid/buildingUuid/floorUuid') This field supports wildcard asterisk (*) character search support. E.g. '*uuid*, *uuid, uuid* Examples: '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid '(single siteHierarchyId requested) '?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2' (multiple siteHierarchyIds requested)
-	SiteName               string  `url:"siteName,omitempty"`               //The name of the site. (Ex. 'FloorName') This field supports wildcard asterisk (*) character search support. E.g. *San*, *San, San* Examples: '?siteName=building1' (single siteName requested) '?siteName=building1&siteName=building2&siteName=building3' (multiple siteNames requested)
-	SiteID                 string  `url:"siteId,omitempty"`                 //The UUID of the site. (Ex. 'flooruuid') This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: '?siteId=id1' (single id requested) '?siteId=id1&siteId=id2&siteId=id3' (multiple ids requested)
+	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	SiteName               string  `url:"siteName,omitempty"`               //The name of the site. (Ex. `FloorName`) This field supports wildcard asterisk (*) character search support. E.g. *San*, *San, San* Examples: `?siteName=building1` (single siteName requested) `?siteName=building1&siteName=building2&siteName=building3` (multiple siteNames requested)
+	SiteID                 string  `url:"siteId,omitempty"`                 //The UUID of the site. (Ex. `flooruuid`) This field supports wildcard asterisk (*) character search support. E.g.*flooruuid*, *flooruuid, flooruuid* Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
 	FabricSiteID           string  `url:"fabricSiteId,omitempty"`           //The UUID of the fabric site. (Ex. "flooruuid") Examples: fabricSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26,864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
 	FabricVnName           string  `url:"fabricVnName,omitempty"`           //The name of the fabric virtual network Examples: fabricVnName=name1 (single fabric virtual network name requested) fabricVnName=name1&fabricVnName=name2&fabricVnName=name3 (multiple fabric virtual network names requested)
 	FabricTransitSiteID    string  `url:"fabricTransitSiteId,omitempty"`    //The UUID of the fabric transit site. (Ex. "flooruuid") Examples: fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26&fabricTransitSiteId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
-	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. '6bef213c-19ca-4170-8375-b694e251101c') Examples: 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c' (single networkDeviceId requested) 'networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0' (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. '121.1.1.10') This field supports wildcard ('*') character-based search.  Ex: '*1.1*' or '1.1*' or '*1.1' Examples: 'networkDeviceIpAddress=121.1.1.10' 'networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10' (multiple networkDevice IP Address with & separator)
-	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard ('*') character-based search.  Ex: '*AB:AB:AB*' or 'AB:AB:AB*' or '*AB:AB:AB' Examples: 'macAddress=AB:AB:AB:CD:CD:CD' (single macAddress requested) 'macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE' (multiple macAddress requested)
+	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
+	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	AiDriven               bool    `url:"aiDriven,omitempty"`               //Flag whether the issue is AI driven issue
 	FabricDriven           bool    `url:"fabricDriven,omitempty"`           //Flag whether the issue is related to a Fabric site, a virtual network or a transit.
 	FabricSiteDriven       bool    `url:"fabricSiteDriven,omitempty"`       //Flag whether the issue is Fabric site driven issue
 	FabricVnDriven         bool    `url:"fabricVnDriven,omitempty"`         //Flag whether the issue is Fabric Virtual Network driven issue
 	FabricTransitDriven    bool    `url:"fabricTransitDriven,omitempty"`    //Flag whether the issue is Fabric Transit driven issue
 }
-type GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams struct {
+type GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
 type GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams struct {
@@ -109,8 +109,8 @@ type GetTrendAnalyticsDataOfIssuesHeaderParams struct {
 	XCaLLERID      string `url:"X-CALLER-ID,omitempty"`     //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
 type GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDQueryParams struct {
-	View      string `url:"view,omitempty"`      //The name of the View. Each view represents a specific data set. Please refer to the 'IssuesView' Model for supported views. View is predefined set of attributes supported by the API. Only the attributes related to the given view will be part of the API response along with default attributes. If multiple views are provided, then response will contain attributes from all those views. If no views are specified, all attributes will be returned. | View Name | Included Attributes | | --- | --- | | 'update' | updatedTime, updatedBy | | 'site' | siteName, siteHierarchy, siteId, siteHierarchyId | Examples: 'view=update' (single view requested) 'view=update&view=site' (multiple views requested)
-	Attribute string `url:"attribute,omitempty"` //List of attributes related to the issue. If these are provided, then only those attributes will be part of response along with the default attributes. Please refer to the 'IssuesResponseAttribute' Model for supported attributes. Examples: 'attribute=deviceType' (single attribute requested) 'attribute=deviceType&attribute=updatedBy' (multiple attributes requested)
+	View      string `url:"view,omitempty"`      //The name of the View. Each view represents a specific data set. Please refer to the `IssuesView` Model for supported views. View is predefined set of attributes supported by the API. Only the attributes related to the given view will be part of the API response along with default attributes. If multiple views are provided, then response will contain attributes from all those views. If no views are specified, all attributes will be returned. | View Name | Included Attributes | | --- | --- | | `update` | updatedTime, updatedBy | | `site` | siteName, siteHierarchy, siteId, siteHierarchyId | Examples: `view=update` (single view requested) `view=update&view=site` (multiple views requested)
+	Attribute string `url:"attribute,omitempty"` //List of attributes related to the issue. If these are provided, then only those attributes will be part of response along with the default attributes. Please refer to the `IssuesResponseAttribute` Model for supported attributes. Examples: `attribute=deviceType` (single attribute requested) `attribute=deviceType&attribute=updatedBy` (multiple attributes requested)
 }
 type GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDHeaderParams struct {
 	AcceptLanguage string `url:"Accept-Language,omitempty"` //Expects type string. This header parameter can be used to specify the language in which issue description and suggested actions need to be returned. Available options are - 'en' (English), 'ja' (Japanese), 'ko' (Korean), 'zh' (Chinese). If this parameter is not present the issue details are returned in English language.
@@ -181,10 +181,10 @@ type IssuesQueryParams struct {
 }
 type ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams struct {
 	DeviceType   string  `url:"deviceType,omitempty"`   //These are the device families/types supported for system issue definitions. If no input is made on device type, all device types are considered.
-	ProfileID    string  `url:"profileId,omitempty"`    //The profile identier to fetch the profile associated issue defintions. The default is 'global'. Please refer Network design profiles documentation for more details.
+	ProfileID    string  `url:"profileId,omitempty"`    //The profile identier to fetch the profile associated issue defintions. The default is `global`. Please refer Network design profiles documentation for more details.
 	ID           string  `url:"id,omitempty"`           //The definition identifier. Examples: id=015d9cba-4f53-4087-8317-7e49e5ffef46 (single entity id request) id=015d9cba-4f53-4087-8317-7e49e5ffef46&id=015d9cba-4f53-4087-8317-7e49e5ffef47 (multiple ids in the query param)
 	Name         string  `url:"name,omitempty"`         //The list of system defined issue names. (Ex."BGP_Down") Examples: name=BGP_Down (single entity uuid requested) name=BGP_Down&name=BGP_Flap (multiple issue names separated by & operator)
-	Priority     string  `url:"priority,omitempty"`     //Issue priority, possible values are P1, P2, P3, P4. 'P1': A critical issue that needs immediate attention and can have a wide impact on network operations. 'P2': A major issue that can potentially impact multiple devices or clients. 'P3': A minor issue that has a localized or minimal impact. 'P4': A warning issue that may not be an immediate problem but addressing it can optimize the network performance.
+	Priority     string  `url:"priority,omitempty"`     //Issue priority, possible values are P1, P2, P3, P4. `P1`: A critical issue that needs immediate attention and can have a wide impact on network operations. `P2`: A major issue that can potentially impact multiple devices or clients. `P3`: A minor issue that has a localized or minimal impact. `P4`: A warning issue that may not be an immediate problem but addressing it can optimize the network performance.
 	IssueEnabled bool    `url:"issueEnabled,omitempty"` //The enablement status of the issue definition, either true or false.
 	Attribute    string  `url:"attribute,omitempty"`    //These are the attributes supported in system issue definitions response. By default, all properties are sent in response.
 	Offset       float64 `url:"offset,omitempty"`       //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
@@ -197,10 +197,10 @@ type ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams struct {
 }
 type GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams struct {
 	DeviceType   string `url:"deviceType,omitempty"`   //These are the device families/types supported for system issue definitions. If no input is made on device type, all device types are considered.
-	ProfileID    string `url:"profileId,omitempty"`    //The profile identier to fetch the profile associated issue defintions. The default is 'global'. Please refer Network design profiles documentation for more details.
+	ProfileID    string `url:"profileId,omitempty"`    //The profile identier to fetch the profile associated issue defintions. The default is `global`. Please refer Network design profiles documentation for more details.
 	ID           string `url:"id,omitempty"`           //The definition identifier. Examples: id=015d9cba-4f53-4087-8317-7e49e5ffef46 (single entity id request) id=015d9cba-4f53-4087-8317-7e49e5ffef46&id=015d9cba-4f53-4087-8317-7e49e5ffef47 (multiple ids in the query param)
 	Name         string `url:"name,omitempty"`         //The list of system defined issue names. (Ex."BGP_Down") Examples: name=BGP_Down (single entity uuid requested) name=BGP_Down&name=BGP_Flap (multiple issue names separated by & operator)
-	Priority     string `url:"priority,omitempty"`     //Issue priority, possible values are P1, P2, P3, P4. 'P1': A critical issue that needs immediate attention and can have a wide impact on network operations. 'P2': A major issue that can potentially impact multiple devices or clients. 'P3': A minor issue that has a localized or minimal impact. 'P4': A warning issue that may not be an immediate problem but addressing it can optimize the network performance.
+	Priority     string `url:"priority,omitempty"`     //Issue priority, possible values are P1, P2, P3, P4. `P1`: A critical issue that needs immediate attention and can have a wide impact on network operations. `P2`: A major issue that can potentially impact multiple devices or clients. `P3`: A minor issue that has a localized or minimal impact. `P4`: A warning issue that may not be an immediate problem but addressing it can optimize the network performance.
 	IssueEnabled bool   `url:"issueEnabled,omitempty"` //The enablement status of the issue definition, either true or false.
 }
 type GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams struct {
@@ -213,67 +213,67 @@ type GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams s
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
 
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2 struct {
-	Response *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2Response `json:"response,omitempty"` //
-	Page     *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2Page       `json:"page,omitempty"`     //
-	Version  string                                                              `json:"version,omitempty"`  // Version
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork struct {
+	Response *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponse `json:"response,omitempty"` //
+	Page     *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkPage       `json:"page,omitempty"`     //
+	Version  string                                                                            `json:"version,omitempty"`  // Version
 }
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2Response struct {
-	IssueID                string                                                                                  `json:"issueId,omitempty"`                // Issue Id
-	Name                   string                                                                                  `json:"name,omitempty"`                   // Name
-	Description            string                                                                                  `json:"description,omitempty"`            // Description
-	Summary                string                                                                                  `json:"summary,omitempty"`                // Summary
-	Priority               string                                                                                  `json:"priority,omitempty"`               // Priority
-	Severity               string                                                                                  `json:"severity,omitempty"`               // Severity
-	DeviceType             string                                                                                  `json:"deviceType,omitempty"`             // Device Type
-	Category               string                                                                                  `json:"category,omitempty"`               // Category
-	EntityType             string                                                                                  `json:"entityType,omitempty"`             // Entity Type
-	EntityID               string                                                                                  `json:"entityId,omitempty"`               // Entity Id
-	FirstOccurredTime      *int                                                                                    `json:"firstOccurredTime,omitempty"`      // First Occurred Time
-	MostRecentOccurredTime *int                                                                                    `json:"mostRecentOccurredTime,omitempty"` // Most Recent Occurred Time
-	Status                 string                                                                                  `json:"status,omitempty"`                 // Status
-	IsGlobal               *bool                                                                                   `json:"isGlobal,omitempty"`               // Is Global
-	UpdatedBy              *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseUpdatedBy              `json:"updatedBy,omitempty"`              // Updated By
-	UpdatedTime            *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseUpdatedTime            `json:"updatedTime,omitempty"`            // Updated Time
-	Notes                  *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseNotes                  `json:"notes,omitempty"`                  // Notes
-	SiteID                 *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteID                 `json:"siteId,omitempty"`                 // Site Id
-	SiteHierarchyID        *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteHierarchyID        `json:"siteHierarchyId,omitempty"`        // Site Hierarchy Id
-	SiteName               *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteName               `json:"siteName,omitempty"`               // Site Name
-	SiteHierarchy          *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteHierarchy          `json:"siteHierarchy,omitempty"`          // Site Hierarchy
-	SuggestedActions       *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSuggestedActions     `json:"suggestedActions,omitempty"`       //
-	AdditionalAttributes   *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseAdditionalAttributes `json:"additionalAttributes,omitempty"`   //
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponse struct {
+	IssueID                string                                                                                                `json:"issueId,omitempty"`                // Issue Id
+	Name                   string                                                                                                `json:"name,omitempty"`                   // Name
+	Description            string                                                                                                `json:"description,omitempty"`            // Description
+	Summary                string                                                                                                `json:"summary,omitempty"`                // Summary
+	Priority               string                                                                                                `json:"priority,omitempty"`               // Priority
+	Severity               string                                                                                                `json:"severity,omitempty"`               // Severity
+	DeviceType             string                                                                                                `json:"deviceType,omitempty"`             // Device Type
+	Category               string                                                                                                `json:"category,omitempty"`               // Category
+	EntityType             string                                                                                                `json:"entityType,omitempty"`             // Entity Type
+	EntityID               string                                                                                                `json:"entityId,omitempty"`               // Entity Id
+	FirstOccurredTime      *int                                                                                                  `json:"firstOccurredTime,omitempty"`      // First Occurred Time
+	MostRecentOccurredTime *int                                                                                                  `json:"mostRecentOccurredTime,omitempty"` // Most Recent Occurred Time
+	Status                 string                                                                                                `json:"status,omitempty"`                 // Status
+	IsGlobal               *bool                                                                                                 `json:"isGlobal,omitempty"`               // Is Global
+	UpdatedBy              *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseUpdatedBy              `json:"updatedBy,omitempty"`              // Updated By
+	UpdatedTime            *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseUpdatedTime            `json:"updatedTime,omitempty"`            // Updated Time
+	Notes                  *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseNotes                  `json:"notes,omitempty"`                  // Notes
+	SiteID                 *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteID                 `json:"siteId,omitempty"`                 // Site Id
+	SiteHierarchyID        *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteHierarchyID        `json:"siteHierarchyId,omitempty"`        // Site Hierarchy Id
+	SiteName               *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteName               `json:"siteName,omitempty"`               // Site Name
+	SiteHierarchy          *ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteHierarchy          `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	SuggestedActions       *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSuggestedActions     `json:"suggestedActions,omitempty"`       //
+	AdditionalAttributes   *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseAdditionalAttributes `json:"additionalAttributes,omitempty"`   //
 }
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseUpdatedBy interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseUpdatedTime interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseNotes interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteID interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteHierarchyID interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteName interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSiteHierarchy interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSuggestedActions struct {
-	Message string                                                                                   `json:"message,omitempty"` // Message
-	Steps   *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSuggestedActionsSteps `json:"steps,omitempty"`   // Steps
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseUpdatedBy interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseUpdatedTime interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseNotes interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteID interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteHierarchyID interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteName interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSiteHierarchy interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSuggestedActions struct {
+	Message string                                                                                                 `json:"message,omitempty"` // Message
+	Steps   *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSuggestedActionsSteps `json:"steps,omitempty"`   // Steps
 }
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseSuggestedActionsSteps interface{}
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2ResponseAdditionalAttributes struct {
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseSuggestedActionsSteps interface{}
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkResponseAdditionalAttributes struct {
 	Key   string `json:"key,omitempty"`   // Key
 	Value string `json:"value,omitempty"` // Value
 }
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2Page struct {
-	Limit  *int                                                                  `json:"limit,omitempty"`  // Limit
-	Offset *int                                                                  `json:"offset,omitempty"` // Offset
-	Count  *int                                                                  `json:"count,omitempty"`  // Count
-	SortBy *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2PageSortBy `json:"sortBy,omitempty"` //
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkPage struct {
+	Limit  *int                                                                                `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                `json:"offset,omitempty"` // Offset
+	Count  *int                                                                                `json:"count,omitempty"`  // Count
+	SortBy *[]ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkPageSortBy `json:"sortBy,omitempty"` //
 }
-type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2PageSortBy struct {
+type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkPageSortBy struct {
 	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
-type ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2 struct {
-	Response *ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2Response `json:"response,omitempty"` //
-	Version  string                                                                `json:"version,omitempty"`  // Version
+type ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork struct {
+	Response *ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkResponse `json:"response,omitempty"` //
+	Version  string                                                                              `json:"version,omitempty"`  // Version
 }
-type ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2Response struct {
+type ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters struct {
@@ -976,19 +976,19 @@ type RequestIssuesIssueTriggerDefinitionUpdate struct {
 	ThresholdValue               *float64 `json:"thresholdValue,omitempty"`               // Threshold Value
 }
 
-//GetTheDetailsOfIssuesForGivenSetOfFilters2 Get the details of issues for given set of filters - a991-6985-476b-b271
+//GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork Get the details of issues for given set of filters - a991-6985-476b-b271
 /* Returns all details of each issue along with suggested actions for given set of filters specified in query parameters. If there is no start and/or end time, then end time will be defaulted to current time and start time will be defaulted to 24-hours ago from end time. All string type query parameters support wildcard search (using *). For example: siteHierarchy=Global/San Jose/* returns issues under all sites whole siteHierarchy starts with "Global/San Jose/". https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
 
 
-@param GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams Custom header parameters
-@param GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams Filtering parameter
+@param GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams Custom header parameters
+@param GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters-know-your-network-v1
 */
-func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters2(GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams *GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams, GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams *GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams) (*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2, *resty.Response, error) {
+func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams *GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams *GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams) (*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues"
 
-	queryString, _ := query.Values(GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams)
+	queryString, _ := query.Values(GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams)
 
 	var response *resty.Response
 	var err error
@@ -996,20 +996,20 @@ func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters2(GetTheDetails
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
 
-	if GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams != nil {
+	if GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams != nil {
 
-		if GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams.AcceptLanguage != "" {
-			clientRequest = clientRequest.SetHeader("Accept-Language", GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams.AcceptLanguage)
+		if GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.AcceptLanguage != "" {
+			clientRequest = clientRequest.SetHeader("Accept-Language", GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.AcceptLanguage)
 		}
 
-		if GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams.XCaLLERID != "" {
-			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams.XCaLLERID)
+		if GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.XCaLLERID)
 		}
 
 	}
 
 	response, err = clientRequest.
-		SetQueryString(queryString.Encode()).SetResult(&ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1020,29 +1020,29 @@ func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters2(GetTheDetails
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetTheDetailsOfIssuesForGivenSetOfFilters2(GetTheDetailsOfIssuesForGivenSetOfFilters2HeaderParams, GetTheDetailsOfIssuesForGivenSetOfFilters2QueryParams)
+			return s.GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetTheDetailsOfIssuesForGivenSetOfFilters2")
+		return nil, response, fmt.Errorf("error with operation GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork")
 	}
 
-	result := response.Result().(*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters2)
+	result := response.Result().(*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork)
 	return result, response, err
 
 }
 
-//GetTheTotalNumberOfIssuesForGivenSetOfFilters2 Get the total number of issues for given set of filters - 049b-c87d-456a-a69b
+//GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork Get the total number of issues for given set of filters - 049b-c87d-456a-a69b
 /* Returns the total number issues for given set of filters. If there is no start and/or end time, then end time will be defaulted to current time and start time will be defaulted to 24-hours ago from end time. https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
 
 
-@param GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams Custom header parameters
-@param GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams Filtering parameter
+@param GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams Custom header parameters
+@param GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters-know-your-network-v1
 */
-func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters2(GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams *GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams, GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams *GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams) (*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2, *resty.Response, error) {
+func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams) (*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/count"
 
-	queryString, _ := query.Values(GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams)
+	queryString, _ := query.Values(GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams)
 
 	var response *resty.Response
 	var err error
@@ -1050,16 +1050,16 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters2(GetTheTot
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
 
-	if GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams != nil {
+	if GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams != nil {
 
-		if GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams.XCaLLERID != "" {
-			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams.XCaLLERID)
+		if GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams.XCaLLERID)
 		}
 
 	}
 
 	response, err = clientRequest.
-		SetQueryString(queryString.Encode()).SetResult(&ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork{}).
 		SetError(&Error).
 		Get(path)
 
@@ -1070,12 +1070,12 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters2(GetTheTot
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetTheTotalNumberOfIssuesForGivenSetOfFilters2(GetTheTotalNumberOfIssuesForGivenSetOfFilters2HeaderParams, GetTheTotalNumberOfIssuesForGivenSetOfFilters2QueryParams)
+			return s.GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation GetTheTotalNumberOfIssuesForGivenSetOfFilters2")
+		return nil, response, fmt.Errorf("error with operation GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork")
 	}
 
-	result := response.Result().(*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters2)
+	result := response.Result().(*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork)
 	return result, response, err
 
 }
@@ -1089,7 +1089,7 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters2(GetTheTot
 @param GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdHeaderParams Custom header parameters
 @param GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-details-and-suggested-actions-of-an-issue-for-the-given-issue-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-details-and-suggested-actions-of-an-issue-for-the-given-issue-id-v1
 */
 func (s *IssuesService) GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueID(id string, GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdHeaderParams *GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDHeaderParams, GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdQueryParams *GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDQueryParams) (*ResponseIssuesGetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueID, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/{id}"
@@ -1145,7 +1145,7 @@ func (s *IssuesService) GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenI
 
 @param GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-custom-issue-definitions-based-on-the-given-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-custom-issue-definitions-based-on-the-given-filters-v1
 */
 func (s *IssuesService) GetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters(GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams *GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams) (*ResponseIssuesGetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions"
@@ -1183,7 +1183,7 @@ func (s *IssuesService) GetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters(Ge
 @param GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams Custom header parameters
 @param GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-custom-issue-definitions-count-based-on-the-provided-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-custom-issue-definitions-count-based-on-the-provided-filters-v1
 */
 func (s *IssuesService) GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFilters(GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams *GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams, GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams *GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams) (*ResponseIssuesGetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions/count"
@@ -1232,7 +1232,7 @@ func (s *IssuesService) GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvided
 
 @param GetIssueEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-enrichment-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-enrichment-details-v1
 */
 func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeaderParams *GetIssueEnrichmentDetailsHeaderParams) (*ResponseIssuesGetIssueEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issue-enrichment-details"
@@ -1287,7 +1287,7 @@ func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeade
 
 @param IssuesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!issues-v1
 */
 func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseIssuesIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issues"
@@ -1319,13 +1319,13 @@ func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseI
 }
 
 //ReturnsAllIssueTriggerDefinitionsForGivenFilters Returns all issue trigger definitions for given filters. - 199e-880b-4dc9-95c3
-/* Get all system issue defintions. The supported filters are id, name, profileId and definition enable status. An issue trigger definition can be different across the profile and device type. So, 'profileId' and 'deviceType' in the query param is important and default is global profile and all device type. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-issueAndHealthDefinitions-1.0.0-resolved.yaml
+/* Get all system issue defintions. The supported filters are id, name, profileId and definition enable status. An issue trigger definition can be different across the profile and device type. So, `profileId` and `deviceType` in the query param is important and default is global profile and all device type. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-issueAndHealthDefinitions-1.0.0-resolved.yaml
 
 
 @param ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams Custom header parameters
 @param ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-issue-trigger-definitions-for-given-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-issue-trigger-definitions-for-given-filters-v1
 */
 func (s *IssuesService) ReturnsAllIssueTriggerDefinitionsForGivenFilters(ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams *ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams, ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams *ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams) (*ResponseIssuesReturnsAllIssueTriggerDefinitionsForGivenFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions"
@@ -1375,7 +1375,7 @@ func (s *IssuesService) ReturnsAllIssueTriggerDefinitionsForGivenFilters(Returns
 @param GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams Custom header parameters
 @param GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-system-defined-issue-definitions-based-on-provided-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-system-defined-issue-definitions-based-on-provided-filters-v1
 */
 func (s *IssuesService) GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFilters(GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams *GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams, GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams *GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams) (*ResponseIssuesGetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions/count"
@@ -1426,7 +1426,7 @@ func (s *IssuesService) GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvide
 
 @param GetIssueTriggerDefinitionForGivenIdHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-trigger-definition-for-given-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-trigger-definition-for-given-id-v1
 */
 func (s *IssuesService) GetIssueTriggerDefinitionForGivenID(id string, GetIssueTriggerDefinitionForGivenIdHeaderParams *GetIssueTriggerDefinitionForGivenIDHeaderParams) (*ResponseIssuesGetIssueTriggerDefinitionForGivenID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions/{id}"
@@ -1476,7 +1476,7 @@ func (s *IssuesService) GetIssueTriggerDefinitionForGivenID(id string, GetIssueT
 
 @param GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-custom-issue-definition-for-the-given-custom-issue-definition-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-custom-issue-definition-for-the-given-custom-issue-definition-id-v1
 */
 func (s *IssuesService) GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID(id string, GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams *GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams) (*ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID, *resty.Response, error) {
 	path := "/intent/api/v1/customIssueDefinitions/{id}"
@@ -1524,7 +1524,7 @@ func (s *IssuesService) GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinit
 
 @param GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters-v1
 */
 func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters(requestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters *RequestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters, GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams *GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams) (*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/query"
@@ -1578,7 +1578,7 @@ func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters(requestIssuesG
 
 @param GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters-v1
 */
 func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters(requestIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters *RequestIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters, GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams) (*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/query/count"
@@ -1628,7 +1628,7 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters(requestIss
 
 @param GetSummaryAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-issues-v1
 */
 func (s *IssuesService) GetSummaryAnalyticsDataOfIssues(requestIssuesGetSummaryAnalyticsDataOfIssues *RequestIssuesGetSummaryAnalyticsDataOfIssues, GetSummaryAnalyticsDataOfIssuesHeaderParams *GetSummaryAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetSummaryAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/summaryAnalytics"
@@ -1682,7 +1682,7 @@ func (s *IssuesService) GetSummaryAnalyticsDataOfIssues(requestIssuesGetSummaryA
 
 @param GetTopNAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-issues-v1
 */
 func (s *IssuesService) GetTopNAnalyticsDataOfIssues(requestIssuesGetTopNAnalyticsDataOfIssues *RequestIssuesGetTopNAnalyticsDataOfIssues, GetTopNAnalyticsDataOfIssuesHeaderParams *GetTopNAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetTopNAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/topNAnalytics"
@@ -1736,7 +1736,7 @@ func (s *IssuesService) GetTopNAnalyticsDataOfIssues(requestIssuesGetTopNAnalyti
 
 @param GetTrendAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-issues-v1
 */
 func (s *IssuesService) GetTrendAnalyticsDataOfIssues(requestIssuesGetTrendAnalyticsDataOfIssues *RequestIssuesGetTrendAnalyticsDataOfIssues, GetTrendAnalyticsDataOfIssuesHeaderParams *GetTrendAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetTrendAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/trendAnalytics"
@@ -1790,7 +1790,7 @@ func (s *IssuesService) GetTrendAnalyticsDataOfIssues(requestIssuesGetTrendAnaly
 
 @param IgnoreTheGivenListOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!ignore-the-given-list-of-issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!ignore-the-given-list-of-issues-v1
 */
 func (s *IssuesService) IgnoreTheGivenListOfIssues(requestIssuesIgnoreTheGivenListOfIssues *RequestIssuesIgnoreTheGivenListOfIssues, IgnoreTheGivenListOfIssuesHeaderParams *IgnoreTheGivenListOfIssuesHeaderParams) (*ResponseIssuesIgnoreTheGivenListOfIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/ignore"
@@ -1840,7 +1840,7 @@ func (s *IssuesService) IgnoreTheGivenListOfIssues(requestIssuesIgnoreTheGivenLi
 
 @param ResolveTheGivenListsOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!resolve-the-given-lists-of-issues
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!resolve-the-given-lists-of-issues-v1
 */
 func (s *IssuesService) ResolveTheGivenListsOfIssues(requestIssuesResolveTheGivenListsOfIssues *RequestIssuesResolveTheGivenListsOfIssues, ResolveTheGivenListsOfIssuesHeaderParams *ResolveTheGivenListsOfIssuesHeaderParams) (*ResponseIssuesResolveTheGivenListsOfIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/resolve"
@@ -1892,7 +1892,7 @@ func (s *IssuesService) ResolveTheGivenListsOfIssues(requestIssuesResolveTheGive
 
 @param UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-the-given-issue-by-updating-selected-fields
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-the-given-issue-by-updating-selected-fields-v1
 */
 func (s *IssuesService) UpdateTheGivenIssueByUpdatingSelectedFields(id string, requestIssuesUpdateTheGivenIssueByUpdatingSelectedFields *RequestIssuesUpdateTheGivenIssueByUpdatingSelectedFields, UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams *UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams) (*ResponseIssuesUpdateTheGivenIssueByUpdatingSelectedFields, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/{id}/update"
@@ -1947,7 +1947,7 @@ func (s *IssuesService) UpdateTheGivenIssueByUpdatingSelectedFields(id string, r
 
 @param CreatesANewUserDefinedIssueDefinitionsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-new-user-defined-issue-definitions
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-new-user-defined-issue-definitions-v1
 */
 func (s *IssuesService) CreatesANewUserDefinedIssueDefinitions(requestIssuesCreatesANewUserDefinedIssueDefinitions *RequestIssuesCreatesANewUserDefinedIssueDefinitions, CreatesANewUserDefinedIssueDefinitionsHeaderParams *CreatesANewUserDefinedIssueDefinitionsHeaderParams) (*ResponseIssuesCreatesANewUserDefinedIssueDefinitions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions"
@@ -1997,7 +1997,7 @@ Invoking this API would provide the execution id. Execute the 'Get Business API 
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!execute-suggested-actions-commands
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!execute-suggested-actions-commands-v1
 */
 func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSuggestedActionsCommands *RequestIssuesExecuteSuggestedActionsCommands) (*ResponseIssuesExecuteSuggestedActionsCommands, *resty.Response, error) {
 	path := "/dna/intent/api/v1/execute-suggested-actions-commands"
@@ -2122,7 +2122,7 @@ func (s *IssuesService) IssueTriggerDefinitionUpdate(id string, requestIssuesIss
 @param id id path parameter. The custom issue definition unique identifier
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-existing-custom-issue-definition
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-existing-custom-issue-definition-v1
 */
 func (s *IssuesService) DeletesAnExistingCustomIssueDefinition(id string) (*resty.Response, error) {
 	//id string
@@ -2142,7 +2142,8 @@ func (s *IssuesService) DeletesAnExistingCustomIssueDefinition(id string) (*rest
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAnExistingCustomIssueDefinition(id)
+			return s.DeletesAnExistingCustomIssueDefinition(
+				id)
 		}
 		return response, fmt.Errorf("error with operation DeletesAnExistingCustomIssueDefinition")
 	}
