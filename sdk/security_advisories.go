@@ -11,96 +11,111 @@ import (
 type SecurityAdvisoriesService service
 
 type ResponseSecurityAdvisoriesGetAdvisoriesList struct {
-	Response *[]ResponseSecurityAdvisoriesGetAdvisoriesListResponse `json:"response,omitempty"` //
-	Version  string                                                 `json:"version,omitempty"`  // Version
+	Response *ResponseSecurityAdvisoriesGetAdvisoriesListResponse `json:"response,omitempty"` //
+	Version  string                                               `json:"version,omitempty"`  // Version of the response
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesListResponse struct {
-	AdvisoryID                string   `json:"advisoryId,omitempty"`                // Advisory Id
-	DeviceCount               *int     `json:"deviceCount,omitempty"`               // Device Count
-	HiddenDeviceCount         *float64 `json:"hiddenDeviceCount,omitempty"`         // Hidden Device Count
-	Cves                      []string `json:"cves,omitempty"`                      // Cves
-	PublicationURL            string   `json:"publicationUrl,omitempty"`            // Publication Url
-	Sir                       string   `json:"sir,omitempty"`                       // Sir
-	DetectionType             string   `json:"detectionType,omitempty"`             // Detection Type
-	DefaultDetectionType      string   `json:"defaultDetectionType,omitempty"`      // Default Detection Type
-	DefaultConfigMatchPattern string   `json:"defaultConfigMatchPattern,omitempty"` // Default Config Match Pattern
+	AdvisoryID                string                                                            `json:"advisoryId,omitempty"`                // Id of the advisory
+	DeviceCount               *int                                                              `json:"deviceCount,omitempty"`               // Number of devices vulnerable to the advisory
+	HiddenDeviceCount         *int                                                              `json:"hiddenDeviceCount,omitempty"`         // Number of devices vulnerable to the advisory but were suppressed by the user
+	Cves                      []string                                                          `json:"cves,omitempty"`                      // CVE (Common Vulnerabilities and Exposures) IDs of the advisory
+	PublicationURL            string                                                            `json:"publicationUrl,omitempty"`            // CISCO publication URL for the advisory
+	Sir                       string                                                            `json:"sir,omitempty"`                       // Security Impact Rating of the advisory
+	DetectionType             string                                                            `json:"detectionType,omitempty"`             // Criteria for advisory detection
+	DefaultDetectionType      string                                                            `json:"defaultDetectionType,omitempty"`      // Original criteria for advisory detection
+	DefaultConfigMatchPattern string                                                            `json:"defaultConfigMatchPattern,omitempty"` // Regular expression used by the system to detect the advisory
+	FixedVersions             *ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions `json:"fixedVersions,omitempty"`             // Map where each key is a vulnerable version and the value is a list of versions in which the advisory has been fixed
 }
+type ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions interface{}
 type ResponseSecurityAdvisoriesGetAdvisoriesSummary struct {
 	Response *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponse `json:"response,omitempty"` //
-	Version  string                                                  `json:"version,omitempty"`  // Version
+	Version  string                                                  `json:"version,omitempty"`  // Version of the response
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponse struct {
-	NA            *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseNA            `json:"NA,omitempty"`            //
 	INFORMATIONAL *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseINFORMATIONAL `json:"INFORMATIONAL,omitempty"` //
 	LOW           *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseLOW           `json:"LOW,omitempty"`           //
 	MEDIUM        *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseMEDIUM        `json:"MEDIUM,omitempty"`        //
 	HIGH          *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseHIGH          `json:"HIGH,omitempty"`          //
 	CRITICaL      *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseCRITICaL      `json:"CRITICAL,omitempty"`      //
-}
-type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseNA struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *float64 `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *float64 `json:"TOTAL,omitempty"`   // T O T A L
+	NA            *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseNA            `json:"NA,omitempty"`            //
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseINFORMATIONAL struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *float64 `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *float64 `json:"TOTAL,omitempty"`   // T O T A L
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseLOW struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *float64 `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *float64 `json:"TOTAL,omitempty"`   // T O T A L
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseMEDIUM struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *int     `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *int     `json:"TOTAL,omitempty"`   // T O T A L
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseHIGH struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *int     `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *int     `json:"TOTAL,omitempty"`   // T O T A L
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseCRITICaL struct {
-	CONFIG  *float64 `json:"CONFIG,omitempty"`  // C O N F I G
-	VERSION *int     `json:"VERSION,omitempty"` // V E R S I O N
-	TOTAL   *int     `json:"TOTAL,omitempty"`   // T O T A L
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
+}
+type ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponseNA struct {
+	CONFIG       *int `json:"CONFIG,omitempty"`        // Number of advisories matched using default config
+	CUSTOMCONFIG *int `json:"CUSTOM_CONFIG,omitempty"` // Number of advisories matched using user provided config
+	VERSION      *int `json:"VERSION,omitempty"`       // Number of advisories matched using software version
+	TOTAL        *int `json:"TOTAL,omitempty"`         // Sum of Config, Custom Config and Version
 }
 type ResponseSecurityAdvisoriesGetDevicesPerAdvisory struct {
-	Response []string `json:"response,omitempty"` // Response
-	Version  string   `json:"version,omitempty"`  // Version
+	Response []string `json:"response,omitempty"` // List of device IDs vulnerable to the advisory
+	Version  string   `json:"version,omitempty"`  // Version of the response
 }
-type ResponseSecurityAdvisoriesGetAdvisoryIDsPerDevice struct {
-	Response *[]ResponseSecurityAdvisoriesGetAdvisoryIDsPerDeviceResponse `json:"response,omitempty"` //
-	Version  string                                                       `json:"version,omitempty"`  // Version
+type ResponseSecurityAdvisoriesGetAdvisoryDeviceDetail struct {
+	Response *ResponseSecurityAdvisoriesGetAdvisoryDeviceDetailResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version of the response
 }
-type ResponseSecurityAdvisoriesGetAdvisoryIDsPerDeviceResponse struct {
-	DeviceID    string   `json:"deviceId,omitempty"`    // Device Id
-	AdvisoryIDs []string `json:"advisoryIds,omitempty"` // Advisory Ids
+type ResponseSecurityAdvisoriesGetAdvisoryDeviceDetailResponse struct {
+	DeviceID            string   `json:"deviceId,omitempty"`            // Network device ID
+	AdvisoryIDs         []string `json:"advisoryIds,omitempty"`         // Advisories detected on the network device
+	HiddenAdvisoryCount *int     `json:"hiddenAdvisoryCount,omitempty"` // Number of advisories detected on the network device that were suppressed by the user
+	ScanMode            string   `json:"scanMode,omitempty"`            // Criteria on which the network device was scanned
+	ScanStatus          string   `json:"scanStatus,omitempty"`          // Status of the scan performed on the network device
+	Comments            string   `json:"comments,omitempty"`            // More details about the scan status. Ie:- if the scan status is failed, comments will give the reason for failure
+	LastScanTime        *int     `json:"lastScanTime,omitempty"`        // Time at which the network device was scanned. The representation is unix time.
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesPerDevice struct {
-	Response *[]ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponse `json:"response,omitempty"` //
-	Version  string                                                      `json:"version,omitempty"`  // Version
+	Response *ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                    `json:"version,omitempty"`  // Version of the response
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponse struct {
-	AdvisoryID                string   `json:"advisoryId,omitempty"`                // Advisory Id
-	DeviceCount               *int     `json:"deviceCount,omitempty"`               // Device Count
-	HiddenDeviceCount         *float64 `json:"hiddenDeviceCount,omitempty"`         // Hidden Device Count
-	Cves                      []string `json:"cves,omitempty"`                      // Cves
-	PublicationURL            string   `json:"publicationUrl,omitempty"`            // Publication Url
-	Sir                       string   `json:"sir,omitempty"`                       // Sir
-	DetectionType             string   `json:"detectionType,omitempty"`             // Detection Type
-	DefaultDetectionType      string   `json:"defaultDetectionType,omitempty"`      // Default Detection Type
-	DefaultConfigMatchPattern string   `json:"defaultConfigMatchPattern,omitempty"` // Default Config Match Pattern
+	AdvisoryID                string                                                                 `json:"advisoryId,omitempty"`                // Id of the advisory
+	DeviceCount               *int                                                                   `json:"deviceCount,omitempty"`               // Number of devices vulnerable to the advisory
+	HiddenDeviceCount         *int                                                                   `json:"hiddenDeviceCount,omitempty"`         // Number of devices vulnerable to the advisory but were suppressed by the user
+	Cves                      []string                                                               `json:"cves,omitempty"`                      // CVE (Common Vulnerabilities and Exposures) IDs of the advisory
+	PublicationURL            string                                                                 `json:"publicationUrl,omitempty"`            // CISCO publication URL for the advisory
+	Sir                       string                                                                 `json:"sir,omitempty"`                       // Security Impact Rating of the advisory
+	DetectionType             string                                                                 `json:"detectionType,omitempty"`             // Criteria for advisory detection
+	DefaultDetectionType      string                                                                 `json:"defaultDetectionType,omitempty"`      // Original criteria for advisory detection
+	DefaultConfigMatchPattern string                                                                 `json:"defaultConfigMatchPattern,omitempty"` // Regular expression used by the system to detect the advisory
+	FixedVersions             *ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponseFixedVersions `json:"fixedVersions,omitempty"`             // Map where each key is a vulnerable version and the value is a list of versions in which the advisory has been fixed
 }
+type ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponseFixedVersions interface{}
 
 //GetAdvisoriesList Get Advisories List - 4295-0bf8-4939-ac35
 /* Retrieves list of advisories on the network
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-list
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-list-v1
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdvisoriesGetAdvisoriesList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory"
@@ -134,7 +149,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdviso
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-summary-v1
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdvisoriesGetAdvisoriesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/aggregate"
@@ -170,7 +185,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdv
 @param advisoryID advisoryId path parameter. Advisory ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-per-advisory
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-per-advisory-v1
 */
 func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*ResponseSecurityAdvisoriesGetDevicesPerAdvisory, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/{advisoryId}/device"
@@ -200,23 +215,23 @@ func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*R
 
 }
 
-//GetAdvisoryIDsPerDevice Get Advisory IDs Per Device - e295-09d0-420b-8cc4
-/* Retrieves list of advisory IDs for a device
+//GetAdvisoryDeviceDetail Get Advisory Device Detail - e295-09d0-420b-8cc4
+/* Retrieves advisory device details for a device
 
 
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisory-ids-per-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisory-device-detail-v1
 */
-func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoryIDsPerDevice, *resty.Response, error) {
+func (s *SecurityAdvisoriesService) GetAdvisoryDeviceDetail(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoryDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}"
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseSecurityAdvisoriesGetAdvisoryIDsPerDevice{}).
+		SetResult(&ResponseSecurityAdvisoriesGetAdvisoryDeviceDetail{}).
 		SetError(&Error).
 		Get(path)
 
@@ -227,12 +242,12 @@ func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*R
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetAdvisoryIDsPerDevice(deviceID)
+			return s.GetAdvisoryDeviceDetail(deviceID)
 		}
-		return nil, response, fmt.Errorf("error with operation GetAdvisoryIdsPerDevice")
+		return nil, response, fmt.Errorf("error with operation GetAdvisoryDeviceDetail")
 	}
 
-	result := response.Result().(*ResponseSecurityAdvisoriesGetAdvisoryIDsPerDevice)
+	result := response.Result().(*ResponseSecurityAdvisoriesGetAdvisoryDeviceDetail)
 	return result, response, err
 
 }
@@ -244,7 +259,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoryIDsPerDevice(deviceID string) (*R
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-per-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-per-device-v1
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesPerDevice(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoriesPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}/advisory"

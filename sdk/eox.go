@@ -12,58 +12,61 @@ type EoXService service
 
 type ResponseEoXGetEoXStatusForAllDevices struct {
 	Response *[]ResponseEoXGetEoXStatusForAllDevicesResponse `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  // Version
+	Version  string                                          `json:"version,omitempty"`  // Version of the response
 }
 type ResponseEoXGetEoXStatusForAllDevicesResponse struct {
-	DeviceID     string                                                 `json:"deviceId,omitempty"`     // Device Id
-	AlertCount   *int                                                   `json:"alertCount,omitempty"`   // Alert Count
+	DeviceID     string                                                 `json:"deviceId,omitempty"`     // Device instance UUID
+	AlertCount   *int                                                   `json:"alertCount,omitempty"`   // Number of EoX alerts on the network device
 	Summary      *[]ResponseEoXGetEoXStatusForAllDevicesResponseSummary `json:"summary,omitempty"`      //
-	ScanStatus   string                                                 `json:"scanStatus,omitempty"`   // Scan Status
-	LastScanTime *int                                                   `json:"lastScanTime,omitempty"` // Last Scan Time
+	ScanStatus   string                                                 `json:"scanStatus,omitempty"`   // Status of the scan performed on the network device
+	Comments     []string                                               `json:"comments,omitempty"`     // More details about the scan status. ie:- if the scan status is failed, comments will give the reason for failure.
+	LastScanTime *int                                                   `json:"lastScanTime,omitempty"` // Time at which the network device was scanned. The representation is unix time.
 }
 type ResponseEoXGetEoXStatusForAllDevicesResponseSummary struct {
-	EoxType string `json:"eoxType,omitempty"` // Eox Type
+	EoXType string `json:"EoXType,omitempty"` // Type of EoX Alert
 }
 type ResponseEoXGetEoXDetailsPerDevice struct {
 	Response *ResponseEoXGetEoXDetailsPerDeviceResponse `json:"response,omitempty"` //
-	Version  string                                     `json:"version,omitempty"`  // Version
+	Version  string                                     `json:"version,omitempty"`  // Version of the response
 }
 type ResponseEoXGetEoXDetailsPerDeviceResponse struct {
-	DeviceID     string                                                 `json:"deviceId,omitempty"`     // Device Id
-	AlertCount   *int                                                   `json:"alertCount,omitempty"`   // Alert Count
-	EoxDetails   *[]ResponseEoXGetEoXDetailsPerDeviceResponseEoxDetails `json:"eoxDetails,omitempty"`   //
-	ScanStatus   string                                                 `json:"scanStatus,omitempty"`   // Scan Status
-	Comments     *[]ResponseEoXGetEoXDetailsPerDeviceResponseComments   `json:"comments,omitempty"`     // Comments
-	LastScanTime *int                                                   `json:"lastScanTime,omitempty"` // Last Scan Time
+	DeviceID     string                                                 `json:"deviceId,omitempty"`     // Device instance UUID
+	AlertCount   *int                                                   `json:"alertCount,omitempty"`   // Number of EoX alerts on the network device
+	EoXDetails   *[]ResponseEoXGetEoXDetailsPerDeviceResponseEoXDetails `json:"EoXDetails,omitempty"`   //
+	ScanStatus   string                                                 `json:"scanStatus,omitempty"`   // Status of the scan performed on the network device
+	Comments     []string                                               `json:"comments,omitempty"`     // More details about the scan status. ie:- if the scan status is failed, comments will give the reason for failure.
+	LastScanTime *int                                                   `json:"lastScanTime,omitempty"` // Time at which the network device was scanned. The representation is unix time.
 }
-type ResponseEoXGetEoXDetailsPerDeviceResponseEoxDetails struct {
-	BulletinHeadline                                  string `json:"bulletinHeadline,omitempty"`                                  // Bulletin Headline
-	BulletinNumber                                    string `json:"bulletinNumber,omitempty"`                                    // Bulletin Number
-	BulletinURL                                       string `json:"bulletinURL,omitempty"`                                       // Bulletin U R L
-	EndOfHardwareNewServiceAttachmentDate             *int   `json:"endOfHardwareNewServiceAttachmentDate,omitempty"`             // End Of Hardware New Service Attachment Date
-	EndOfHardwareServiceContractRenewalDate           *int   `json:"endOfHardwareServiceContractRenewalDate,omitempty"`           // End Of Hardware Service Contract Renewal Date
-	EndOfLastHardwareShipDate                         *int   `json:"endOfLastHardwareShipDate,omitempty"`                         // End Of Last Hardware Ship Date
-	EndOfLifeDate                                     *int   `json:"endOfLifeDate,omitempty"`                                     // End Of Life Date
-	EndOfLifeExternalAnnouncementDate                 *int   `json:"endOfLifeExternalAnnouncementDate,omitempty"`                 // End Of Life External Announcement Date
-	EndOfSaleDate                                     *int   `json:"endOfSaleDate,omitempty"`                                     // End Of Sale Date
-	EndOfSignatureReleasesDate                        *int   `json:"endOfSignatureReleasesDate,omitempty"`                        // End Of Signature Releases Date
-	EndOfSoftwareVulnerabilityOrSecuritySupportDate   *int   `json:"endOfSoftwareVulnerabilityOrSecuritySupportDate,omitempty"`   // End Of Software Vulnerability Or Security Support Date
-	EndOfSoftwareVulnerabilityOrSecuritySupportDateHw *int   `json:"endOfSoftwareVulnerabilityOrSecuritySupportDateHw,omitempty"` // End Of Software Vulnerability Or Security Support Date Hw
-	EndOfSoftwareMaintenanceReleasesDate              *int   `json:"endOfSoftwareMaintenanceReleasesDate,omitempty"`              // End Of Software Maintenance Releases Date
-	EoxAlertType                                      string `json:"eoxAlertType,omitempty"`                                      // Eox Alert Type
-	LastDateOfSupport                                 *int   `json:"lastDateOfSupport,omitempty"`                                 // Last Date Of Support
-	Name                                              string `json:"name,omitempty"`                                              // Name
+type ResponseEoXGetEoXDetailsPerDeviceResponseEoXDetails struct {
+	Name                                              string `json:"name,omitempty"`                                              // Name of the EoX alert. Every EoX announcement has a unique name. ie:- EOL13873
+	BulletinHeadline                                  string `json:"bulletinHeadline,omitempty"`                                  // Title of the EoX bulletin
+	BulletinName                                      string `json:"bulletinName,omitempty"`                                      // Name of the EoX bulletin
+	BulletinNumber                                    string `json:"bulletinNumber,omitempty"`                                    // Identifier of the EoX bulletin. Usually the same as name.
+	BulletinURL                                       string `json:"bulletinURL,omitempty"`                                       // URL where the EoX bulletin is posted
+	EndOfHardwareNewServiceAttachmentDate             string `json:"endOfHardwareNewServiceAttachmentDate,omitempty"`             // For equipment and software that is not covered by a service-and-support contract, this is the last date to order a new service-and-support contract or add the equipment and/or software to an existing service-and-support contract
+	EndOfHardwareServiceContractRenewalDate           string `json:"endOfHardwareServiceContractRenewalDate,omitempty"`           // The last date to extend or renew a service contract for the product
+	EndOfLastHardwareShipDate                         string `json:"endOfLastHardwareShipDate,omitempty"`                         // The last-possible ship date that can be requested of Cisco and/or its contract manufacturers
+	EndOfLifeExternalAnnouncementDate                 string `json:"endOfLifeExternalAnnouncementDate,omitempty"`                 // The date the document that announces the end-of-sale and end-of-life of a product is distributed to the general public
+	EndOfSignatureReleasesDate                        string `json:"endOfSignatureReleasesDate,omitempty"`                        // The date after which there will be no more signature update release for the product
+	EndOfSoftwareVulnerabilityOrSecuritySupportDate   string `json:"endOfSoftwareVulnerabilityOrSecuritySupportDate,omitempty"`   // The last date that Cisco Engineering may release bug fixes for Vulnerability or Security issues for the product. This will be populated for software alerts only.
+	EndOfSoftwareVulnerabilityOrSecuritySupportDateHw string `json:"endOfSoftwareVulnerabilityOrSecuritySupportDateHw,omitempty"` // The last date that Cisco Engineering may release bug fixes for Vulnerability or Security issues for the product. This will be populated for hardware or module alerts only.
+	EndOfSaleDate                                     string `json:"endOfSaleDate,omitempty"`                                     // The last date to order the product through Cisco point-of-sale mechanisms
+	EndOfLifeDate                                     string `json:"endOfLifeDate,omitempty"`                                     // The last date to receive applicable service and support for the product as entitled by active service contracts or by warranty terms and conditions. This will be populated for software alerts only.
+	LastDateOfSupport                                 string `json:"lastDateOfSupport,omitempty"`                                 // The last date to receive applicable service and support for the product as entitled by active service contracts or by warranty terms and conditions. This will be populated for hardware and module alerts only.
+	EndOfSoftwareMaintenanceReleasesDate              string `json:"endOfSoftwareMaintenanceReleasesDate,omitempty"`              // The last date that Cisco Engineering may release any final software maintenance releases or bug fixes for the product
+	EoXAlertType                                      string `json:"EoXAlertType,omitempty"`                                      // Type of EoX alert
+	EoXPhysicalType                                   string `json:"EoXPhysicalType,omitempty"`                                   // The type of part for EoX alert. eg:- Power Supply, Chassis, Fan etc.
+	BulletinPID                                       string `json:"bulletinPID,omitempty"`                                       // The part number for the EoX alert. eg:- PWR-C1-1100WAC
 }
-type ResponseEoXGetEoXDetailsPerDeviceResponseComments interface{}
 type ResponseEoXGetEoXSummary struct {
 	Response *ResponseEoXGetEoXSummaryResponse `json:"response,omitempty"` //
-	Version  string                            `json:"version,omitempty"`  // Version
+	Version  string                            `json:"version,omitempty"`  // Version of the response
 }
 type ResponseEoXGetEoXSummaryResponse struct {
-	HardwareCount *int `json:"hardwareCount,omitempty"` // Hardware Count
-	SoftwareCount *int `json:"softwareCount,omitempty"` // Software Count
-	ModuleCount   *int `json:"moduleCount,omitempty"`   // Module Count
-	TotalCount    *int `json:"totalCount,omitempty"`    // Total Count
+	HardwareCount *int `json:"hardwareCount,omitempty"` // Number of hardware EoX alerts detected on the network
+	SoftwareCount *int `json:"softwareCount,omitempty"` // Number of software EoX alerts detected on the network
+	ModuleCount   *int `json:"moduleCount,omitempty"`   // Number of module EoX alerts detected on the network
+	TotalCount    *int `json:"totalCount,omitempty"`    // Total number of EoX alerts detected on the network. This is the sum of hardwareCount, softwareCount and moduleCount.
 }
 
 //GetEoXStatusForAllDevices Get EoX Status For All Devices - 3281-fa04-49ba-87d9
@@ -71,10 +74,10 @@ type ResponseEoXGetEoXSummaryResponse struct {
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eo-x-status-for-all-devices
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-status-for-all-devices-v1
 */
 func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
-	path := "/dna/intent/api/v1/eox-status/device"
+	path := "/dna/intent/api/v1/EoX-status/device"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -107,10 +110,10 @@ func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-details-per-device
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-details-per-device-v1
 */
 func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoXDetailsPerDevice, *resty.Response, error) {
-	path := "/dna/intent/api/v1/eox-status/device/{deviceId}"
+	path := "/dna/intent/api/v1/EoX-status/device/{deviceId}"
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
 	response, err := s.client.R().
@@ -142,10 +145,10 @@ func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoX
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-summary
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-summary-v1
 */
 func (s *EoXService) GetEoXSummary() (*ResponseEoXGetEoXSummary, *resty.Response, error) {
-	path := "/dna/intent/api/v1/eox-status/summary"
+	path := "/dna/intent/api/v1/EoX-status/summary"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").

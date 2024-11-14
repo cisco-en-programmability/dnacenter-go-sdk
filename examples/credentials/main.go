@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
 )
 
-// client is DNA Center API client
+// client is Catalyst Center API client
 var client *dnac.Client
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 	secure := true
 	httpWriteCredentials := &dnac.RequestDiscoveryCreateHTTPWriteCredentials{
 		dnac.RequestItemDiscoveryCreateHTTPWriteCredentials{
-			Comments:    "DNA Center HTTP Credentials",
+			Comments:    "Catalyst Center HTTP Credentials",
 			Description: "HTTP Creds",
 			Password:    "HTTP-cr3d$",
 			Port:        &port,

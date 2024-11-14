@@ -5,10 +5,10 @@ import (
 	"io"
 	"os"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
 )
 
-// Client is DNA Center API client
+// Client is Catalyst Center API client
 var client *dnac.Client
 
 func main() {

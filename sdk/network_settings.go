@@ -18,8 +18,8 @@ type GetDeviceCredentialDetailsQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to retrieve the credential details associated with the site.
 }
 type GetGlobalPoolQueryParams struct {
-	Offset int `url:"offset,omitempty"` //offset/starting row
-	Limit  int `url:"limit,omitempty"`  //No of Global Pools to be retrieved
+	Offset float64 `url:"offset,omitempty"` //Offset/starting row. Indexed from 1. Default value of 1.
+	Limit  float64 `url:"limit,omitempty"`  //Number of Global Pools to be retrieved. Default is 25 if not specified.
 }
 type GetNetworkQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site id to get the network settings associated with the site.
@@ -28,12 +28,42 @@ type CreateNetworkHeaderParams struct {
 	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. Persist bapi sync response
 }
 type GetReserveIPSubpoolQueryParams struct {
-	SiteID string `url:"siteId,omitempty"` //site id to get the reserve ip associated with the site
-	Offset int    `url:"offset,omitempty"` //offset/starting row
-	Limit  int    `url:"limit,omitempty"`  //No of Global Pools to be retrieved
+	SiteID                string  `url:"siteId,omitempty"`                //site id of site from which to retrieve associated reserve pools. Either siteId (per site queries) or ignoreInheritedGroups must be used. They can also be used together.
+	Offset                float64 `url:"offset,omitempty"`                //offset/starting row. Indexed from 1.
+	Limit                 float64 `url:"limit,omitempty"`                 //Number of reserve pools to be retrieved. Default is 25 if not specified. Maximum allowed limit is 500.
+	IgnoreInheritedGroups string  `url:"ignoreInheritedGroups,omitempty"` //Ignores pools inherited from parent site. Either siteId or ignoreInheritedGroups must be passed. They can also be used together.
+	PoolUsage             string  `url:"poolUsage,omitempty"`             //Can take values empty, partially-full or empty-partially-full
+	GroupName             string  `url:"groupName,omitempty"`             //Name of the group
 }
 type UpdateReserveIPSubpoolQueryParams struct {
-	ID string `url:"id,omitempty"` //Id of subpool to be associated with the site
+	ID string `url:"id,omitempty"` //Id of subpool group
+}
+type RetrieveAAASettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveBannerSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type GetDeviceCredentialSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveDHCPSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveDNSSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveImageDistributionSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveNTPSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveTelemetrySettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
+}
+type RetrieveTimeZoneSettingsForASiteQueryParams struct {
+	Inherited bool `url:"_inherited,omitempty"` //Include settings explicitly set for this site and settings inherited from sites higher in the site hierarchy; when `false`, `null` values indicate that the site inherits that setting from the parent site or a site higher in the site hierarchy.
 }
 type GetNetworkV2QueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site Id to get the network settings associated with the site.
@@ -142,10 +172,10 @@ type ResponseNetworkSettingsGetGlobalPoolResponse struct {
 	IPPoolName                    string                                                     `json:"ipPoolName,omitempty"`                    // Ip Pool Name
 	DhcpServerIPs                 []string                                                   `json:"dhcpServerIps,omitempty"`                 // Dhcp Server Ips
 	Gateways                      []string                                                   `json:"gateways,omitempty"`                      // Gateways
-	CreateTime                    int                                                        `json:"createTime,omitempty"`                    // Create Time
-	LastUpdateTime                int                                                        `json:"lastUpdateTime,omitempty"`                // Last Update Time
-	TotalIPAddressCount           int                                                        `json:"totalIpAddressCount,omitempty"`           // Total Ip Address Count
-	UsedIPAddressCount            int                                                        `json:"usedIpAddressCount,omitempty"`            // Used Ip Address Count
+	CreateTime                    *int                                                       `json:"createTime,omitempty"`                    // Create Time
+	LastUpdateTime                *int                                                       `json:"lastUpdateTime,omitempty"`                // Last Update Time
+	TotalIPAddressCount           *int                                                       `json:"totalIpAddressCount,omitempty"`           // Total Ip Address Count
+	UsedIPAddressCount            *int                                                       `json:"usedIpAddressCount,omitempty"`            // Used Ip Address Count
 	ParentUUID                    string                                                     `json:"parentUuid,omitempty"`                    // Parent Uuid
 	Owner                         string                                                     `json:"owner,omitempty"`                         // Owner
 	Shared                        *bool                                                      `json:"shared,omitempty"`                        // Shared
@@ -153,17 +183,17 @@ type ResponseNetworkSettingsGetGlobalPoolResponse struct {
 	ConfigureExternalDhcp         *bool                                                      `json:"configureExternalDhcp,omitempty"`         // Configure External Dhcp
 	UsedPercentage                string                                                     `json:"usedPercentage,omitempty"`                // Used Percentage
 	ClientOptions                 *ResponseNetworkSettingsGetGlobalPoolResponseClientOptions `json:"clientOptions,omitempty"`                 // Client Options
+	IPPoolType                    string                                                     `json:"ipPoolType,omitempty"`                    // Ip Pool Type
+	UnavailableIPAddressCount     *float64                                                   `json:"unavailableIpAddressCount,omitempty"`     // Unavailable Ip Address Count
+	AvailableIPAddressCount       *float64                                                   `json:"availableIpAddressCount,omitempty"`       // Available Ip Address Count
+	TotalAssignableIPAddressCount *int                                                       `json:"totalAssignableIpAddressCount,omitempty"` // Total Assignable Ip Address Count
 	DNSServerIPs                  []string                                                   `json:"dnsServerIps,omitempty"`                  // Dns Server Ips
+	HasSubpools                   *bool                                                      `json:"hasSubpools,omitempty"`                   // Has Subpools
+	DefaultAssignedIPAddressCount *int                                                       `json:"defaultAssignedIpAddressCount,omitempty"` // Default Assigned Ip Address Count
 	Context                       *[]ResponseNetworkSettingsGetGlobalPoolResponseContext     `json:"context,omitempty"`                       //
 	IPv6                          *bool                                                      `json:"ipv6,omitempty"`                          // Ipv6
 	ID                            string                                                     `json:"id,omitempty"`                            // Id
 	IPPoolCidr                    string                                                     `json:"ipPoolCidr,omitempty"`                    // Ip Pool Cidr
-	IPPoolType                    string                                                     `json:"ipPoolType,omitempty"`                    // ipPoolType
-	UnavailableIpAddressCount     int                                                        `json:"unavailableIpAddressCount,omitempty"`     // unavailableIpAddressCount
-	AvailableIpAddressCount       int                                                        `json:"availableIpAddressCount,omitempty"`       // availableIpAddressCount
-	TotalAssignableIpAddressCount int                                                        `json:"totalAssignableIpAddressCount,omitempty"` // totalAssignableIpAddressCount
-	HasSubpools                   *bool                                                      `json:"hasSubpools,omitempty"`                   // hasSubpools
-	DefaultAssignedIpAddressCount int                                                        `json:"defaultAssignedIpAddressCount,omitempty"` // defaultAssignedIpAddressCount
 }
 type ResponseNetworkSettingsGetGlobalPoolResponseClientOptions interface{}
 type ResponseNetworkSettingsGetGlobalPoolResponseContext struct {
@@ -230,33 +260,30 @@ type ResponseNetworkSettingsGetReserveIPSubpoolResponse struct {
 	GroupOwner    string                                                       `json:"groupOwner,omitempty"`    // Group Owner
 }
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools struct {
-	IPPoolName            string                                                                  `json:"ipPoolName,omitempty"`            // Ip Pool Name
-	DhcpServerIPs         []string                                                                `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
-	Gateways              []string                                                                `json:"gateways,omitempty"`              // Gateways
-	CreateTime            *int                                                                    `json:"createTime,omitempty"`            // Create Time
-	LastUpdateTime        *int                                                                    `json:"lastUpdateTime,omitempty"`        // Last Update Time
-	TotalIPAddressCount   *int                                                                    `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
-	UsedIPAddressCount    *int                                                                    `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
-	ParentUUID            string                                                                  `json:"parentUuid,omitempty"`            // Parent Uuid
-	Owner                 string                                                                  `json:"owner,omitempty"`                 // Owner
-	Shared                *bool                                                                   `json:"shared,omitempty"`                // Shared
-	Overlapping           *bool                                                                   `json:"overlapping,omitempty"`           // Overlapping
-	ConfigureExternalDhcp *bool                                                                   `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
-	UsedPercentage        string                                                                  `json:"usedPercentage,omitempty"`        // Used Percentage
-	ClientOptions         *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions `json:"clientOptions,omitempty"`         // Client Options
-	GroupUUID             string                                                                  `json:"groupUuid,omitempty"`             // Group Uuid
-	DNSServerIPs          []string                                                                `json:"dnsServerIps,omitempty"`          // Dns Server Ips
-	Context               *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext     `json:"context,omitempty"`               //
-	IPv6                  *bool                                                                   `json:"ipv6,omitempty"`                  // Ipv6
-	ID                    string                                                                  `json:"id,omitempty"`                    // Id
-	IPPoolCidr            string                                                                  `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
+	IPPoolName            string                                                                    `json:"ipPoolName,omitempty"`            // Ip Pool Name
+	DhcpServerIPs         *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
+	Gateways              []string                                                                  `json:"gateways,omitempty"`              // Gateways
+	CreateTime            *int                                                                      `json:"createTime,omitempty"`            // Create Time
+	LastUpdateTime        *int                                                                      `json:"lastUpdateTime,omitempty"`        // Last Update Time
+	TotalIPAddressCount   *int                                                                      `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
+	UsedIPAddressCount    *int                                                                      `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
+	ParentUUID            string                                                                    `json:"parentUuid,omitempty"`            // Parent Uuid
+	Owner                 string                                                                    `json:"owner,omitempty"`                 // Owner
+	Shared                *bool                                                                     `json:"shared,omitempty"`                // Shared
+	Overlapping           *bool                                                                     `json:"overlapping,omitempty"`           // Overlapping
+	ConfigureExternalDhcp *bool                                                                     `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
+	UsedPercentage        string                                                                    `json:"usedPercentage,omitempty"`        // Used Percentage
+	ClientOptions         *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions   `json:"clientOptions,omitempty"`         // Client Options
+	GroupUUID             string                                                                    `json:"groupUuid,omitempty"`             // Group Uuid
+	DNSServerIPs          *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs  `json:"dnsServerIps,omitempty"`          // Dns Server Ips
+	Context               *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext       `json:"context,omitempty"`               //
+	IPv6                  *bool                                                                     `json:"ipv6,omitempty"`                  // Ipv6
+	ID                    string                                                                    `json:"id,omitempty"`                    // Id
+	IPPoolCidr            string                                                                    `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
 }
-
-// type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs interface{}
-
+type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions interface{}
-
-// type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs interface{}
+type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext struct {
 	Owner        string `json:"owner,omitempty"`        // Owner
 	ContextKey   string `json:"contextKey,omitempty"`   // Context Key
@@ -279,7 +306,7 @@ type ResponseNetworkSettingsUpdateReserveIPSubpool struct {
 }
 type ResponseNetworkSettingsGetServiceProviderDetails struct {
 	Response *[]ResponseNetworkSettingsGetServiceProviderDetailsResponse `json:"response,omitempty"` //
-	Version  *int                                                        `json:"version,omitempty"`  // Version
+	Version  string                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsResponse struct {
 	InstanceType       string                                                           `json:"instanceType,omitempty"`       // Instance Type
@@ -287,7 +314,7 @@ type ResponseNetworkSettingsGetServiceProviderDetailsResponse struct {
 	Namespace          string                                                           `json:"namespace,omitempty"`          // Namespace
 	Type               string                                                           `json:"type,omitempty"`               // Type
 	Key                string                                                           `json:"key,omitempty"`                // Key
-	Version            string                                                           `json:"version,omitempty"`            // Version
+	Version            *int                                                             `json:"version,omitempty"`            // Version
 	Value              *[]ResponseNetworkSettingsGetServiceProviderDetailsResponseValue `json:"value,omitempty"`              //
 	GroupUUID          string                                                           `json:"groupUuid,omitempty"`          // Group Uuid
 	InheritedGroupUUID string                                                           `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
@@ -308,10 +335,312 @@ type ResponseNetworkSettingsUpdateSpProfile struct {
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
 }
+type ResponseNetworkSettingsSyncNetworkDevicesCredential struct {
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSyncNetworkDevicesCredentialResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSyncNetworkDevicesCredentialResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsSetAAASettingsForASite struct {
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetAAASettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetAAASettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsRetrieveAAASettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponse struct {
+	AAANetwork *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAANetwork `json:"aaaNetwork,omitempty"` //
+	AAAClient  *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAAClient  `json:"aaaClient,omitempty"`  //
+}
+type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAANetwork struct {
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
+	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAAClient struct {
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
+	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsRetrieveBannerSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                         `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponse struct {
+	Banner *ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponseBanner `json:"banner,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponseBanner struct {
+	Type              string `json:"type,omitempty"`              // Type
+	Message           string `json:"message,omitempty"`           // Custom message that appears when logging into routers, switches, and hubs. Required for custom type.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsSetBannerSettingsForASite struct {
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetBannerSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetBannerSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASite struct {
+	Response *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                              `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponse struct {
+	CliCredentialsID          *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID          `json:"cliCredentialsId,omitempty"`          //
+	SNMPv2CReadCredentialsID  *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID  `json:"snmpv2cReadCredentialsId,omitempty"`  //
+	SNMPv2CWriteCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CWriteCredentialsID `json:"snmpv2cWriteCredentialsId,omitempty"` //
+	SNMPv3CredentialsID       *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID       `json:"snmpv3CredentialsId,omitempty"`       //
+	HTTPReadCredentialsID     *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID     `json:"httpReadCredentialsId,omitempty"`     //
+	HTTPWriteCredentialsID    *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CWriteCredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID struct {
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
+}
+type ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite struct {
+	Version  string                                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus struct {
+	Response *ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponse `json:"response,omitempty"` //
+	Version  string                                                                 `json:"version,omitempty"`  //
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponse struct {
+	Cli         *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseCli         `json:"cli,omitempty"`         //
+	SNMPV2Read  *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Read  `json:"snmpV2Read,omitempty"`  //
+	SNMPV2Write *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Write `json:"snmpV2Write,omitempty"` //
+	SNMPV3      *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV3      `json:"snmpV3,omitempty"`      //
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseCli struct {
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Read struct {
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Write struct {
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
+}
+type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV3 struct {
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
+}
+type ResponseNetworkSettingsSetDhcpSettingsForASite struct {
+	Version  string                                                  `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetDhcpSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetDhcpSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsRetrieveDHCPSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                       `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponse struct {
+	Dhcp *ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponseDhcp `json:"dhcp,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponseDhcp struct {
+	Servers           []string `json:"servers,omitempty"`           // DHCP servers for managing client device networking configuration.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsRetrieveDNSSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponse struct {
+	DNS *ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponseDNS `json:"dns,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponseDNS struct {
+	DomainName        string   `json:"domainName,omitempty"`        // Network's domain name.
+	DNSServers        []string `json:"dnsServers,omitempty"`        // DNS servers for hostname resolution.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsSetDNSSettingsForASite struct {
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetDNSSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetDNSSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsSetImageDistributionSettingsForASite struct {
+	Version  string                                                               `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetImageDistributionSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetImageDistributionSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                                    `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponse struct {
+	ImageDistribution *ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponseImageDistribution `json:"imageDistribution,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponseImageDistribution struct {
+	Servers           []string `json:"servers,omitempty"`           // This field holds an array of unique identifiers representing image distribution servers. SFTP servers to act as image distribution servers. A distributed SWIM architecture, using suitably located SFTP servers, can help support large-scale device software image upgrades and conserve WAN bandwidth.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsSetNTPSettingsForASite struct {
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetNTPSettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetNTPSettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsRetrieveNTPSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponse struct {
+	Ntp *ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponseNtp `json:"ntp,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponseNtp struct {
+	Servers           []string `json:"servers,omitempty"`           // NTP servers to facilitate system clock synchronization for your network.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                            `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponse struct {
+	WiredDataCollection   *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWiredDataCollection   `json:"wiredDataCollection,omitempty"`   //
+	WirelessTelemetry     *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWirelessTelemetry     `json:"wirelessTelemetry,omitempty"`     //
+	SNMPTraps             *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseSNMPTraps             `json:"snmpTraps,omitempty"`             //
+	Syslogs               *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseSyslogs               `json:"syslogs,omitempty"`               //
+	ApplicationVisibility *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplicationVisibility `json:"applicationVisibility,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWiredDataCollection struct {
+	EnableWiredDataCollectio *bool  `json:"enableWiredDataCollectio,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
+	InheritedSiteID          string `json:"inheritedSiteId,omitempty"`          // Inherited Site Id
+	InheritedSiteName        string `json:"inheritedSiteName,omitempty"`        // Inherited Site Name
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWirelessTelemetry struct {
+	EnableWirelessTelemetry *bool  `json:"enableWirelessTelemetry,omitempty"` // Enables Streaming Telemetry on your wireless controllers in order to determine the health of your wireless controller, access points and wireless clients.
+	InheritedSiteID         string `json:"inheritedSiteId,omitempty"`         // Inherited Site Id
+	InheritedSiteName       string `json:"inheritedSiteName,omitempty"`       // Inherited Site Name
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseSNMPTraps struct {
+	UseBuiltinTrapServer *bool    `json:"useBuiltinTrapServer,omitempty"` // Enable this server as a destination server for SNMP traps and messages from your network
+	ExternalTrapServers  []string `json:"externalTrapServers,omitempty"`  // External SNMP trap servers. Example: ["250.162.252.170","2001:db8:3c4d:15::1a2f:1a2b"]
+	InheritedSiteID      string   `json:"inheritedSiteId,omitempty"`      // Inherited Site Id
+	InheritedSiteName    string   `json:"inheritedSiteName,omitempty"`    // Inherited Site Name
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseSyslogs struct {
+	UseBuiltinSyslogServer *bool    `json:"useBuiltinSyslogServer,omitempty"` // Enable this server as a destination server for syslog messages.
+	ExternalSyslogServers  []string `json:"externalSyslogServers,omitempty"`  // External syslog servers. Example: ["250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"]
+	InheritedSiteID        string   `json:"inheritedSiteId,omitempty"`        // Inherited Site Id
+	InheritedSiteName      string   `json:"inheritedSiteName,omitempty"`      // Inherited Site Name
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplicationVisibility struct {
+	Collector                  *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplicationVisibilityCollector `json:"collector,omitempty"`                  //
+	EnableOnWiredAccessDevices *bool                                                                                           `json:"enableOnWiredAccessDevices,omitempty"` // Enable Netflow Application Telemetry and Controller Based Application Recognition (CBAR) by default upon network device site assignment for wired access devices.
+	InheritedSiteID            string                                                                                          `json:"inheritedSiteId,omitempty"`            // Inherited Site Id
+	InheritedSiteName          string                                                                                          `json:"inheritedSiteName,omitempty"`          // Inherited Site Name
+}
+type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplicationVisibilityCollector struct {
+	CollectorType string `json:"collectorType,omitempty"` // Collector Type
+	Address       string `json:"address,omitempty"`       // IP Address. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional. Examples: "250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"
+	Port          *int   `json:"port,omitempty"`          // Min:1; Max: 65535. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional.
+}
+type ResponseNetworkSettingsSetTelemetrySettingsForASite struct {
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetTelemetrySettingsForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetTelemetrySettingsForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsSetTimeZoneForASite struct {
+	Version  string                                              `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsSetTimeZoneForASiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsSetTimeZoneForASiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite struct {
+	Response *ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponse `json:"response,omitempty"` //
+	Version  string                                                           `json:"version,omitempty"`  // Version
+}
+type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponse struct {
+	TimeZone *ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponseTimeZone `json:"timeZone,omitempty"` //
+}
+type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponseTimeZone struct {
+	IDentifier        string `json:"identifier,omitempty"`        // Time zone that corresponds to the site's physical location. The site time zone is used when scheduling device provisioning and updates. Example : GMT
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+}
 type ResponseNetworkSettingsDeleteSpProfile struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
 	Message            string `json:"message,omitempty"`            // Message
+}
+type ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite struct {
+	Version  string                                                                                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSiteResponse `json:"response,omitempty"` //
+}
+type ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSiteResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsAssignDeviceCredentialToSiteV2 struct {
 	Response *ResponseNetworkSettingsAssignDeviceCredentialToSiteV2Response `json:"response,omitempty"` //
@@ -325,16 +654,16 @@ type ResponseNetworkSettingsGetNetworkV2 struct {
 	Response *[]ResponseNetworkSettingsGetNetworkV2Response `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsGetNetworkV2Response struct {
-	InstanceType       string      `json:"instanceType,omitempty"`       // Instance Type
-	InstanceUUID       string      `json:"instanceUuid,omitempty"`       // Instance Uuid
-	Namespace          string      `json:"namespace,omitempty"`          // Namespace
-	Type               string      `json:"type,omitempty"`               // Type
-	Key                string      `json:"key,omitempty"`                // Key
-	Version            *int        `json:"version,omitempty"`            // Version
-	Value              interface{} `json:"value,omitempty"`              // Value
-	GroupUUID          string      `json:"groupUuid,omitempty"`          // Group Uuid
-	InheritedGroupUUID string      `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-	InheritedGroupName string      `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string   `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string   `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string   `json:"namespace,omitempty"`          // Namespace
+	Type               string   `json:"type,omitempty"`               // Type
+	Key                string   `json:"key,omitempty"`                // Key
+	Version            *int     `json:"version,omitempty"`            // Version
+	Value              []string `json:"value,omitempty"`              // Value
+	GroupUUID          string   `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string   `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string   `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsCreateNetworkV2 struct {
 	Response *ResponseNetworkSettingsCreateNetworkV2Response `json:"response,omitempty"` //
@@ -634,40 +963,40 @@ type RequestNetworkSettingsUpdateNetworkSettingsClientAndEndpointAAA struct {
 type RequestNetworkSettingsReserveIPSubpool struct {
 	Name             string   `json:"name,omitempty"`             // Name of the reserve ip sub pool
 	Type             string   `json:"type,omitempty"`             // Type of the reserve ip sub pool
-	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is false only ipv4 input are required, otherwise both ipv6 and ipv4 are required
+	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is omitted or false only ipv4 input are required, otherwise both ipv6 and ipv4 are required
 	IPv4GlobalPool   string   `json:"ipv4GlobalPool,omitempty"`   // IP v4 Global pool address with cidr, example: 175.175.0.0/16
 	IPv4Prefix       *bool    `json:"ipv4Prefix,omitempty"`       // IPv4 prefix value is true, the ip4 prefix length input field is enabled , if it is false ipv4 total Host input is enable
 	IPv4PrefixLength *int     `json:"ipv4PrefixLength,omitempty"` // The ipv4 prefix length is required when ipv4prefix value is true.
-	IPv4Subnet       string   `json:"ipv4Subnet,omitempty"`       // IPv4 Subnet address, example: 175.175.0.0
+	IPv4Subnet       string   `json:"ipv4Subnet,omitempty"`       // IPv4 Subnet address, example: 175.175.0.0. Either ipv4Subnet or ipv4TotalHost needs to be passed if creating IPv4 subpool.
 	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Gateway ip address details, example: 175.175.0.1
-	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: 1.1.1.1
-	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip example: 4.4.4.4
+	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: ["1.1.1.1"]
+	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip example: ["4.4.4.4"]
 	IPv6GlobalPool   string   `json:"ipv6GlobalPool,omitempty"`   // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
 	IPv6Prefix       *bool    `json:"ipv6Prefix,omitempty"`       // Ipv6 prefix value is true, the ip6 prefix length input field is enabled , if it is false ipv6 total Host input is enable
 	IPv6PrefixLength *int     `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
-	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::
+	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::. Either ipv6Subnet or ipv6TotalHost needs to be passed if creating IPv6 subpool.
 	IPv6GateWay      string   `json:"ipv6GateWay,omitempty"`      // Gateway ip address details, example: 2001:db8:85a3:0:100::1
-	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : 2001:db8::1234
-	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: 2001:db8::1234
+	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : ["2001:db8::1234"]
+	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: ["2001:db8::1234"]
 	IPv4TotalHost    *int     `json:"ipv4TotalHost,omitempty"`    // IPv4 total host is required when ipv4prefix value is false.
 	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // IPv6 total host is required when ipv6prefix value is false.
 	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // Slaac Support
 }
 type RequestNetworkSettingsUpdateReserveIPSubpool struct {
 	Name             string   `json:"name,omitempty"`             // Name of the reserve ip sub pool
-	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is false only ipv4 input are required, otherwise both ipv6 and ipv4 are required
-	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: 1.1.1.1
-	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip  example: 4.4.4.4
-	IPv6GlobalPool   string   `json:"ipv6GlobalPool,omitempty"`   // IP v6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
-	IPv6Prefix       *bool    `json:"ipv6Prefix,omitempty"`       // IPv6 prefix value is true, the ip6 prefix length input field is enabled , if it is false  ipv6 total Host input is enable
+	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is false only ipv4 input are required. NOTE if value is false then any existing ipv6 subpool in the group will be removed.
+	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: ["1.1.1.1"]
+	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip  example: ["4.4.4.4"]
+	IPv6GlobalPool   string   `json:"ipv6GlobalPool,omitempty"`   // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
+	IPv6Prefix       *bool    `json:"ipv6Prefix,omitempty"`       // Ipv6 prefix value is true, the ip6 prefix length input field is enabled, if it is false ipv6 total Host input is enable
 	IPv6PrefixLength *int     `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
-	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::
+	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::.
+	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // Size of pool in terms of number of IPs. IPv6 total host is required when ipv6prefix value is false.
 	IPv6GateWay      string   `json:"ipv6GateWay,omitempty"`      // Gateway ip address details, example: 2001:db8:85a3:0:100::1
-	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : 2001:db8::1234
-	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: 2001:db8::1234
-	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // IPv6 total host is required when ipv6prefix value is false.
+	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : ["2001:db8::1234"]
+	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: ["2001:db8::1234"]
 	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // Slaac Support
-	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Ipv4 Gate Way
+	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Gateway ip address details, example: 175.175.0.1
 }
 type RequestNetworkSettingsCreateSpProfile struct {
 	Settings *RequestNetworkSettingsCreateSpProfileSettings `json:"settings,omitempty"` //
@@ -691,6 +1020,127 @@ type RequestNetworkSettingsUpdateSpProfileSettingsQos struct {
 	Model          string `json:"model,omitempty"`          // Model
 	WanProvider    string `json:"wanProvider,omitempty"`    // Wan Provider
 	OldProfileName string `json:"oldProfileName,omitempty"` // Old Profile Name
+}
+type RequestNetworkSettingsSyncNetworkDevicesCredential struct {
+	DeviceCredentialID string `json:"deviceCredentialId,omitempty"` // It must be cli/snmpV2Read/snmpV2Write/snmpV3 Id.
+	SiteID             string `json:"siteId,omitempty"`             // Site Id.
+}
+type RequestNetworkSettingsSetAAASettingsForASite struct {
+	AAANetwork *RequestNetworkSettingsSetAAASettingsForASiteAAANetwork `json:"aaaNetwork,omitempty"` //
+	AAAClient  *RequestNetworkSettingsSetAAASettingsForASiteAAAClient  `json:"aaaClient,omitempty"`  //
+}
+type RequestNetworkSettingsSetAAASettingsForASiteAAANetwork struct {
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
+	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+}
+type RequestNetworkSettingsSetAAASettingsForASiteAAAClient struct {
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node.  Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
+	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+}
+type RequestNetworkSettingsSetBannerSettingsForASite struct {
+	Banner *RequestNetworkSettingsSetBannerSettingsForASiteBanner `json:"banner,omitempty"` //
+}
+type RequestNetworkSettingsSetBannerSettingsForASiteBanner struct {
+	Type    string `json:"type,omitempty"`    // Type
+	Message string `json:"message,omitempty"` // Custom message that appears when logging into routers, switches, and hubs. Required for custom type.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASite struct {
+	CliCredentialsID          *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID          `json:"cliCredentialsId,omitempty"`          //
+	SNMPv2CReadCredentialsID  *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CReadCredentialsID  `json:"snmpv2cReadCredentialsId,omitempty"`  //
+	SNMPv2CWriteCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CWriteCredentialsID `json:"snmpv2cWriteCredentialsId,omitempty"` //
+	SNMPv3CredentialsID       *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv3CredentialsID       `json:"snmpv3CredentialsId,omitempty"`       //
+	HTTPReadCredentialsID     *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPReadCredentialsID     `json:"httpReadCredentialsId,omitempty"`     //
+	HTTPWriteCredentialsID    *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CReadCredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CWriteCredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv3CredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPReadCredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID struct {
+	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
+}
+type RequestNetworkSettingsSetDhcpSettingsForASite struct {
+	Dhcp *RequestNetworkSettingsSetDhcpSettingsForASiteDhcp `json:"dhcp,omitempty"` //
+}
+type RequestNetworkSettingsSetDhcpSettingsForASiteDhcp struct {
+	Servers []string `json:"servers,omitempty"` // DHCP servers for managing client device networking configuration. Max:10
+}
+type RequestNetworkSettingsSetDNSSettingsForASite struct {
+	DNS *RequestNetworkSettingsSetDNSSettingsForASiteDNS `json:"dns,omitempty"` //
+}
+type RequestNetworkSettingsSetDNSSettingsForASiteDNS struct {
+	DomainName string   `json:"domainName,omitempty"` // Network's domain name. Example : myCompnay.com
+	DNSServers []string `json:"dnsServers,omitempty"` // DNS servers for hostname resolution.
+}
+type RequestNetworkSettingsSetImageDistributionSettingsForASite struct {
+	ImageDistribution *RequestNetworkSettingsSetImageDistributionSettingsForASiteImageDistribution `json:"imageDistribution,omitempty"` //
+}
+type RequestNetworkSettingsSetImageDistributionSettingsForASiteImageDistribution struct {
+	Servers []string `json:"servers,omitempty"` // This field holds an array of unique identifiers representing image distribution servers. Use ‘/intent/api/v1/images/distributionServerSettings’ to find the Image distribution server Id. Max:2. Use SFTP servers to act as image distribution servers. A distributed SWIM architecture, using suitably located SFTP servers, can help support large-scale device software image upgrades and conserve WAN bandwidth.
+}
+type RequestNetworkSettingsSetNTPSettingsForASite struct {
+	Ntp *RequestNetworkSettingsSetNTPSettingsForASiteNtp `json:"ntp,omitempty"` //
+}
+type RequestNetworkSettingsSetNTPSettingsForASiteNtp struct {
+	Servers []string `json:"servers,omitempty"` // NTP servers to facilitate system clock synchronization for your network. Max:10
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASite struct {
+	WiredDataCollection   *RequestNetworkSettingsSetTelemetrySettingsForASiteWiredDataCollection   `json:"wiredDataCollection,omitempty"`   //
+	WirelessTelemetry     *RequestNetworkSettingsSetTelemetrySettingsForASiteWirelessTelemetry     `json:"wirelessTelemetry,omitempty"`     //
+	SNMPTraps             *RequestNetworkSettingsSetTelemetrySettingsForASiteSNMPTraps             `json:"snmpTraps,omitempty"`             //
+	Syslogs               *RequestNetworkSettingsSetTelemetrySettingsForASiteSyslogs               `json:"syslogs,omitempty"`               //
+	ApplicationVisibility *RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibility `json:"applicationVisibility,omitempty"` //
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteWiredDataCollection struct {
+	EnableWiredDataCollectio *bool `json:"enableWiredDataCollectio,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteWirelessTelemetry struct {
+	EnableWirelessTelemetry *bool `json:"enableWirelessTelemetry,omitempty"` // Enables Streaming Telemetry on your wireless controllers in order to determine the health of your wireless controller, access points and wireless clients.
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteSNMPTraps struct {
+	UseBuiltinTrapServer *bool    `json:"useBuiltinTrapServer,omitempty"` // Enable this server as a destination server for SNMP traps and messages from your network
+	ExternalTrapServers  []string `json:"externalTrapServers,omitempty"`  // External SNMP trap servers. Example: ["250.162.252.170","2001:db8:3c4d:15::1a2f:1a2b"]
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteSyslogs struct {
+	UseBuiltinSyslogServer *bool    `json:"useBuiltinSyslogServer,omitempty"` // Enable this server as a destination server for syslog messages.
+	ExternalSyslogServers  []string `json:"externalSyslogServers,omitempty"`  // External syslog servers. Example: ["250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"]
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibility struct {
+	Collector                  *RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibilityCollector `json:"collector,omitempty"`                  //
+	EnableOnWiredAccessDevices *bool                                                                             `json:"enableOnWiredAccessDevices,omitempty"` // Enable Netflow Application Telemetry and Controller Based Application Recognition (CBAR) by default upon network device site assignment for wired access devices.
+}
+type RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibilityCollector struct {
+	CollectorType string `json:"collectorType,omitempty"` // Collector Type
+	Address       string `json:"address,omitempty"`       // IP Address. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional. Examples: "250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"
+	Port          *int   `json:"port,omitempty"`          // Min:1; Max: 65535. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional.
+}
+type RequestNetworkSettingsSetTimeZoneForASite struct {
+	TimeZone *RequestNetworkSettingsSetTimeZoneForASiteTimeZone `json:"timeZone,omitempty"` //
+}
+type RequestNetworkSettingsSetTimeZoneForASiteTimeZone struct {
+	IDentifier string `json:"identifier,omitempty"` // Time zone that corresponds to the site's physical location. The site time zone is used when scheduling device provisioning and updates. Example: GMT
+}
+type RequestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite struct {
+	DeviceIDs []string `json:"deviceIds,omitempty"` // The list of device Ids to perform the provisioning against
 }
 type RequestNetworkSettingsAssignDeviceCredentialToSiteV2 struct {
 	CliID         string `json:"cliId,omitempty"`         // CLI Credential Id
@@ -825,12 +1275,12 @@ type RequestNetworkSettingsUpdateSpProfileV2SettingsQos struct {
 }
 
 //GetDeviceCredentialDetails Get Device Credential Details - 899f-08e7-401b-82dd
-/* API to get device credential details.
+/* API to get device credential details. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Get All Global Credentials V2
 
 
 @param GetDeviceCredentialDetailsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-details-v1
 */
 func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialDetailsQueryParams *GetDeviceCredentialDetailsQueryParams) (*ResponseNetworkSettingsGetDeviceCredentialDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
@@ -862,12 +1312,12 @@ func (s *NetworkSettingsService) GetDeviceCredentialDetails(GetDeviceCredentialD
 }
 
 //GetGlobalPool Get Global Pool - c0bc-a856-43c8-b58d
-/* API to get global pool.
+/* API to get the global pool.
 
 
 @param GetGlobalPoolQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-global-pool-v1
 */
 func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlobalPoolQueryParams) (*ResponseNetworkSettingsGetGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
@@ -904,7 +1354,7 @@ func (s *NetworkSettingsService) GetGlobalPool(GetGlobalPoolQueryParams *GetGlob
 
 @param GetNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-v1
 */
 func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQueryParams) (*ResponseNetworkSettingsGetNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network"
@@ -941,7 +1391,7 @@ func (s *NetworkSettingsService) GetNetwork(GetNetworkQueryParams *GetNetworkQue
 
 @param GetReserveIPSubpoolQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryParams *GetReserveIPSubpoolQueryParams) (*ResponseNetworkSettingsGetReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool"
@@ -977,7 +1427,7 @@ func (s *NetworkSettingsService) GetReserveIPSubpool(GetReserveIPSubpoolQueryPar
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-service-provider-details-v1
 */
 func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSettingsGetServiceProviderDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
@@ -1002,6 +1452,403 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSe
 	}
 
 	result := response.Result().(*ResponseNetworkSettingsGetServiceProviderDetails)
+	return result, response, err
+
+}
+
+//RetrieveAAASettingsForASite Retrieve AAA settings for a site - 3c99-79ea-4ab9-bd33
+/* Retrieve AAA settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveAAASettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-a-a-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveAAASettingsForASite(id string, RetrieveAAASettingsForASiteQueryParams *RetrieveAAASettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveAAASettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/aaaSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveAAASettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveAAASettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveAAASettingsForASite(id, RetrieveAAASettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveAAASettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveAAASettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveBannerSettingsForASite Retrieve banner settings for a site - 2a9f-3b2f-4cda-8390
+/* Retrieve banner settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveBannerSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-banner-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveBannerSettingsForASite(id string, RetrieveBannerSettingsForASiteQueryParams *RetrieveBannerSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveBannerSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/bannerSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveBannerSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveBannerSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveBannerSettingsForASite(id, RetrieveBannerSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveBannerSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveBannerSettingsForASite)
+	return result, response, err
+
+}
+
+//GetDeviceCredentialSettingsForASite Get device credential settings for a site - bebf-c9fc-4d3a-be03
+/* Gets device credential settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the credential is unset, and that no credential of that type will be used for the site.
+
+
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
+
+@param GetDeviceCredentialSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-credential-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) GetDeviceCredentialSettingsForASite(id string, GetDeviceCredentialSettingsForASiteQueryParams *GetDeviceCredentialSettingsForASiteQueryParams) (*ResponseNetworkSettingsGetDeviceCredentialSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/deviceCredentials"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(GetDeviceCredentialSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsGetDeviceCredentialSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceCredentialSettingsForASite(id, GetDeviceCredentialSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetDeviceCredentialSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsGetDeviceCredentialSettingsForASite)
+	return result, response, err
+
+}
+
+//GetNetworkDevicesCredentialsSyncStatus Get network devices credentials sync status - 0f9e-d8a6-45eb-9590
+/* Get network devices credentials sync status at a given site.
+
+
+@param id id path parameter. Site Id.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-network-devices-credentials-sync-status-v1
+*/
+func (s *NetworkSettingsService) GetNetworkDevicesCredentialsSyncStatus(id string) (*ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/deviceCredentials/status"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetNetworkDevicesCredentialsSyncStatus(id)
+		}
+		return nil, response, fmt.Errorf("error with operation GetNetworkDevicesCredentialsSyncStatus")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus)
+	return result, response, err
+
+}
+
+//RetrieveDHCPSettingsForASite Retrieve DHCP settings for a site - cfbb-ca8d-4529-a94b
+/* Retrieve DHCP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveDHCPSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-h-c-p-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveDHCPSettingsForASite(id string, RetrieveDHCPSettingsForASiteQueryParams *RetrieveDHCPSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveDHCPSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/dhcpSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveDHCPSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveDHCPSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveDHCPSettingsForASite(id, RetrieveDHCPSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveDHCPSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveDHCPSettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveDNSSettingsForASite Retrieve DNS settings for a site - d7a4-0932-41d9-bcf8
+/* Retrieve DNS settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveDNSSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-d-n-s-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveDNSSettingsForASite(id string, RetrieveDNSSettingsForASiteQueryParams *RetrieveDNSSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveDNSSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/dnsSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveDNSSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveDNSSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveDNSSettingsForASite(id, RetrieveDNSSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveDNSSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveDNSSettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveImageDistributionSettingsForASite Retrieve image distribution settings for a site - d2ad-d9bc-4bcb-9fed
+/* Retrieve image distribution settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveImageDistributionSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-image-distribution-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveImageDistributionSettingsForASite(id string, RetrieveImageDistributionSettingsForASiteQueryParams *RetrieveImageDistributionSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/imageDistributionSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveImageDistributionSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveImageDistributionSettingsForASite(id, RetrieveImageDistributionSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveImageDistributionSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveNTPSettingsForASite Retrieve NTP settings for a site - beae-2bf1-4cdb-8f60
+/* Retrieve NTP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveNTPSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-n-t-p-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveNTPSettingsForASite(id string, RetrieveNTPSettingsForASiteQueryParams *RetrieveNTPSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveNTPSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/ntpSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveNTPSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveNTPSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveNTPSettingsForASite(id, RetrieveNTPSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveNTPSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveNTPSettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveTelemetrySettingsForASite Retrieve Telemetry settings for a site - 11a7-cbc7-4a9a-bac3
+/* Retrieves telemetry settings for the given site. `null` values indicate that the setting will be inherited from the parent site.
+
+
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
+
+@param RetrieveTelemetrySettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-telemetry-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveTelemetrySettingsForASite(id string, RetrieveTelemetrySettingsForASiteQueryParams *RetrieveTelemetrySettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveTelemetrySettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/telemetrySettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveTelemetrySettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveTelemetrySettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTelemetrySettingsForASite(id, RetrieveTelemetrySettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTelemetrySettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveTelemetrySettingsForASite)
+	return result, response, err
+
+}
+
+//RetrieveTimeZoneSettingsForASite Retrieve time zone settings for a site - 5ba6-0966-4768-9ae7
+/* Retrieve time zone settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the setting is unset at a site.
+
+
+@param id id path parameter. Site Id
+
+@param RetrieveTimeZoneSettingsForASiteQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-time-zone-settings-for-a-site-v1
+*/
+func (s *NetworkSettingsService) RetrieveTimeZoneSettingsForASite(id string, RetrieveTimeZoneSettingsForASiteQueryParams *RetrieveTimeZoneSettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/timeZoneSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(RetrieveTimeZoneSettingsForASiteQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTimeZoneSettingsForASite(id, RetrieveTimeZoneSettingsForASiteQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTimeZoneSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite)
 	return result, response, err
 
 }
@@ -1077,7 +1924,7 @@ func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetwork
 
 }
 
-//AssignDeviceCredentialToSite Assign Device Credential To Site. - 4da9-1a54-4e29-842d
+//AssignDeviceCredentialToSite Assign Device Credential To Site - 4da9-1a54-4e29-842d
 /* Assign Device Credential to a site.
 
 
@@ -1085,7 +1932,7 @@ func (s *NetworkSettingsService) GetServiceProviderDetailsV2() (*ResponseNetwork
 
 @param AssignDeviceCredentialToSiteHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!assign-device-credential-to-site-v1
 */
 func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, requestNetworkSettingsAssignDeviceCredentialToSite *RequestNetworkSettingsAssignDeviceCredentialToSite, AssignDeviceCredentialToSiteHeaderParams *AssignDeviceCredentialToSiteHeaderParams) (*ResponseNetworkSettingsAssignDeviceCredentialToSite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/credential-to-site/{siteId}"
@@ -1131,11 +1978,11 @@ func (s *NetworkSettingsService) AssignDeviceCredentialToSite(siteID string, req
 }
 
 //CreateDeviceCredentials Create Device Credentials - fbb9-5b37-484a-9fce
-/* API to create device credentials.
+/* API to create device credentials. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Create Global Credentials V2
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-credentials
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-device-credentials-v1
 */
 func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsCreateDeviceCredentials *RequestNetworkSettingsCreateDeviceCredentials) (*ResponseNetworkSettingsCreateDeviceCredentials, *resty.Response, error) {
 	path := "/dna/intent/api/v1/device-credential"
@@ -1172,7 +2019,7 @@ func (s *NetworkSettingsService) CreateDeviceCredentials(requestNetworkSettingsC
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-global-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-global-pool-v1
 */
 func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGlobalPool *RequestNetworkSettingsCreateGlobalPool) (*ResponseNetworkSettingsCreateGlobalPool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/global-pool"
@@ -1212,7 +2059,7 @@ func (s *NetworkSettingsService) CreateGlobalPool(requestNetworkSettingsCreateGl
 
 @param CreateNetworkHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-network-v1
 */
 func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSettingsCreateNetwork *RequestNetworkSettingsCreateNetwork, CreateNetworkHeaderParams *CreateNetworkHeaderParams) (*ResponseNetworkSettingsCreateNetwork, *resty.Response, error) {
 	path := "/dna/intent/api/v1/network/{siteId}"
@@ -1264,7 +2111,7 @@ func (s *NetworkSettingsService) CreateNetwork(siteID string, requestNetworkSett
 @param siteID siteId path parameter. Site id to reserve the ip sub pool.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkSettingsReserveIPSubpool *RequestNetworkSettingsReserveIPSubpool) (*ResponseNetworkSettingsReserveIPSubpool, *resty.Response, error) {
 	path := "/dna/intent/api/v1/reserve-ip-subpool/{siteId}"
@@ -1302,7 +2149,7 @@ func (s *NetworkSettingsService) ReserveIPSubpool(siteID string, requestNetworkS
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-sp-profile-v1
 */
 func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPProfile *RequestNetworkSettingsCreateSpProfile) (*ResponseNetworkSettingsCreateSpProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/service-provider"
@@ -1330,6 +2177,80 @@ func (s *NetworkSettingsService) CreateSpProfile(requestNetworkSettingsCreateSPP
 	}
 
 	result := response.Result().(*ResponseNetworkSettingsCreateSpProfile)
+	return result, response, err
+
+}
+
+//SyncNetworkDevicesCredential Sync network devices credential - 5ca0-2a36-4d68-92e7
+/* When sync is triggered at a site with the credential that are associated to the same site, network devices in impacted sites (child sites which are inheriting the credential) get managed in inventory with the associated site credential. Credential gets configured on network devices before these get managed in inventory. Please make a note that cli credential wouldn't be configured on AAA authenticated devices but they just get managed with the associated site cli credential.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!sync-network-devices-credential-v1
+*/
+func (s *NetworkSettingsService) SyncNetworkDevicesCredential(requestNetworkSettingsSyncNetworkDevicesCredential *RequestNetworkSettingsSyncNetworkDevicesCredential) (*ResponseNetworkSettingsSyncNetworkDevicesCredential, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/deviceCredentials/apply"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSyncNetworkDevicesCredential).
+		SetResult(&ResponseNetworkSettingsSyncNetworkDevicesCredential{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SyncNetworkDevicesCredential(requestNetworkSettingsSyncNetworkDevicesCredential)
+		}
+
+		return nil, response, fmt.Errorf("error with operation SyncNetworkDevicesCredential")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSyncNetworkDevicesCredential)
+	return result, response, err
+
+}
+
+//UpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite Update a device(s) telemetry settings to conform to the telemetry settings for its site - 14bf-7997-432b-94a1
+/* Update a device(s) telemetry settings to conform to the telemetry settings for its site.  One Task is created to track the update, for more granular status tracking, split your devices into multiple requests.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-a-devices-telemetry-settings-to-conform-to-the-telemetry-settings-for-its-site-v1
+*/
+func (s *NetworkSettingsService) UpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite(requestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite *RequestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite) (*ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/telemetrySettings/apply"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite).
+		SetResult(&ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite(requestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite)
+		}
+
+		return nil, response, fmt.Errorf("error with operation UpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite)
 	return result, response, err
 
 }
@@ -1452,7 +2373,7 @@ func (s *NetworkSettingsService) CreateSpProfileV2(requestNetworkSettingsCreateS
 }
 
 //UpdateDeviceCredentials Update Device Credentials - 4f94-7a1c-4fc8-84f6
-/* API to update device credentials.
+/* API to update device credentials. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Update Global Credentials V2
 
 
  */
@@ -1625,6 +2546,330 @@ func (s *NetworkSettingsService) UpdateSpProfile(requestNetworkSettingsUpdateSPP
 
 }
 
+//SetAAASettingsForASite Set AAA settings for a site - 3582-ca30-4718-a064
+/* Set AAA settings for a site; `null` values indicate that the settings will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetAAASettingsForASite(id string, requestNetworkSettingsSetAAASettingsForASite *RequestNetworkSettingsSetAAASettingsForASite) (*ResponseNetworkSettingsSetAAASettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/aaaSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetAAASettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetAAASettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetAAASettingsForASite(id, requestNetworkSettingsSetAAASettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetAAASettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetAAASettingsForASite)
+	return result, response, err
+
+}
+
+//SetBannerSettingsForASite Set banner settings for a site - 0aae-aa56-44f9-95a7
+/* Set banner settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetBannerSettingsForASite(id string, requestNetworkSettingsSetBannerSettingsForASite *RequestNetworkSettingsSetBannerSettingsForASite) (*ResponseNetworkSettingsSetBannerSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/bannerSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetBannerSettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetBannerSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetBannerSettingsForASite(id, requestNetworkSettingsSetBannerSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetBannerSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetBannerSettingsForASite)
+	return result, response, err
+
+}
+
+//UpdateDeviceCredentialSettingsForASite Update device credential settings for a site. - 5aa0-6949-4dfa-bec5
+/* Updates device credential settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the credential is unset, and that no credential of that type will be used for the site.
+
+
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
+
+*/
+func (s *NetworkSettingsService) UpdateDeviceCredentialSettingsForASite(id string, requestNetworkSettingsUpdateDeviceCredentialSettingsForASite *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASite) (*ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/deviceCredentials"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsUpdateDeviceCredentialSettingsForASite).
+		SetResult(&ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateDeviceCredentialSettingsForASite(id, requestNetworkSettingsUpdateDeviceCredentialSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation UpdateDeviceCredentialSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite)
+	return result, response, err
+
+}
+
+//SetDhcpSettingsForASite Set dhcp settings for a site - c1ac-194d-40d9-8ae4
+/* Set DHCP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetDhcpSettingsForASite(id string, requestNetworkSettingsSetDhcpSettingsForASite *RequestNetworkSettingsSetDhcpSettingsForASite) (*ResponseNetworkSettingsSetDhcpSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/dhcpSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetDhcpSettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetDhcpSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetDhcpSettingsForASite(id, requestNetworkSettingsSetDhcpSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetDhcpSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetDhcpSettingsForASite)
+	return result, response, err
+
+}
+
+//SetDNSSettingsForASite Set DNS settings for a site - 9892-798e-4ed8-a40b
+/* Set DNS settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetDNSSettingsForASite(id string, requestNetworkSettingsSetDNSSettingsForASite *RequestNetworkSettingsSetDNSSettingsForASite) (*ResponseNetworkSettingsSetDNSSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/dnsSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetDNSSettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetDNSSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetDNSSettingsForASite(id, requestNetworkSettingsSetDNSSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetDNSSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetDNSSettingsForASite)
+	return result, response, err
+
+}
+
+//SetImageDistributionSettingsForASite Set image distribution settings for a site - 8ab7-3889-45f8-9e5d
+/* Set image distribution settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetImageDistributionSettingsForASite(id string, requestNetworkSettingsSetImageDistributionSettingsForASite *RequestNetworkSettingsSetImageDistributionSettingsForASite) (*ResponseNetworkSettingsSetImageDistributionSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/imageDistributionSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetImageDistributionSettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetImageDistributionSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetImageDistributionSettingsForASite(id, requestNetworkSettingsSetImageDistributionSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetImageDistributionSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetImageDistributionSettingsForASite)
+	return result, response, err
+
+}
+
+//SetNTPSettingsForASite Set NTP settings for a site - 9d80-8815-42a9-b006
+/* Set NTP settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetNTPSettingsForASite(id string, requestNetworkSettingsSetNTPSettingsForASite *RequestNetworkSettingsSetNTPSettingsForASite) (*ResponseNetworkSettingsSetNTPSettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/ntpSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetNTPSettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetNTPSettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetNTPSettingsForASite(id, requestNetworkSettingsSetNTPSettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetNTPSettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetNTPSettingsForASite)
+	return result, response, err
+
+}
+
+//SetTelemetrySettingsForASite Set Telemetry settings for a site - a5a1-6835-40ab-8d2f
+/* Sets telemetry settings for the given site; `null` values indicate that the setting will be inherited from the parent site.
+
+
+@param id id path parameter. Site Id, retrievable from the `id` attribute in `/dna/intent/api/v1/sites`
+
+*/
+func (s *NetworkSettingsService) SetTelemetrySettingsForASite(id string, requestNetworkSettingsSetTelemetrySettingsForASite *RequestNetworkSettingsSetTelemetrySettingsForASite) (*ResponseNetworkSettingsSetTelemetrySettingsForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/telemetrySettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetTelemetrySettingsForASite).
+		SetResult(&ResponseNetworkSettingsSetTelemetrySettingsForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetTelemetrySettingsForASite(id, requestNetworkSettingsSetTelemetrySettingsForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetTelemetrySettingsForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetTelemetrySettingsForASite)
+	return result, response, err
+
+}
+
+//SetTimeZoneForASite Set time zone for a site - 16a7-b874-4b19-88d0
+/* Set time zone settings for a site; `null` values indicate that the setting will be inherited from the parent site; empty objects (`{}`) indicate that the settings is unset.
+
+
+@param id id path parameter. Site Id
+
+*/
+func (s *NetworkSettingsService) SetTimeZoneForASite(id string, requestNetworkSettingsSetTimeZoneForASite *RequestNetworkSettingsSetTimeZoneForASite) (*ResponseNetworkSettingsSetTimeZoneForASite, *resty.Response, error) {
+	path := "/dna/intent/api/v1/sites/{id}/timeZoneSettings"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestNetworkSettingsSetTimeZoneForASite).
+		SetResult(&ResponseNetworkSettingsSetTimeZoneForASite{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.SetTimeZoneForASite(id, requestNetworkSettingsSetTimeZoneForASite)
+		}
+		return nil, response, fmt.Errorf("error with operation SetTimeZoneForASite")
+	}
+
+	result := response.Result().(*ResponseNetworkSettingsSetTimeZoneForASite)
+	return result, response, err
+
+}
+
 //UpdateNetworkV2 Update Network V2 - ac85-8bd9-4c78-a705
 /* API to update network settings for DHCP, Syslog, SNMP, NTP, Network AAA, Client and Endpoint AAA, and/or DNS center server settings.
 
@@ -1695,13 +2940,13 @@ func (s *NetworkSettingsService) UpdateSpProfileV2(requestNetworkSettingsUpdateS
 }
 
 //DeleteDeviceCredential Delete Device Credential - 259e-ab30-4598-8958
-/* Delete device credential.
+/* Delete device credential. This API has been deprecated and will not be available in a Cisco DNA Center release after August 1st 2024 23:59:59 GMT. Please refer new Intent API : Delete Global Credentials V2
 
 
 @param id id path parameter. global credential id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-credential
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-device-credential-v1
 */
 func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNetworkSettingsDeleteDeviceCredential, *resty.Response, error) {
 	//id string
@@ -1722,7 +2967,8 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceCredential(id)
+			return s.DeleteDeviceCredential(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceCredential")
 	}
@@ -1739,7 +2985,7 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 @param id id path parameter. global pool id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-ip-pool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-global-ip-pool-v1
 */
 func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetworkSettingsDeleteGlobalIPPool, *resty.Response, error) {
 	//id string
@@ -1777,7 +3023,7 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetwork
 @param id id path parameter. Id of reserve ip subpool to be deleted.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-reserve-ip-subpool
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!release-reserve-ip-subpool-v1
 */
 func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNetworkSettingsReleaseReserveIPSubpool, *resty.Response, error) {
 	//id string
@@ -1815,7 +3061,7 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 @param spProfileName spProfileName path parameter. sp profile name
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile-v1
 */
 func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*ResponseNetworkSettingsDeleteSpProfile, *resty.Response, error) {
 	//spProfileName string
@@ -1850,7 +3096,7 @@ func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*Respons
 /* API to delete Service Provider Profile (QoS).
 
 
-@param spProfileName spProfileName path parameter. sp profile name
+@param spProfileName spProfileName path parameter. SP profile name
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-sp-profile-v2

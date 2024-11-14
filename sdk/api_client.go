@@ -24,8 +24,10 @@ const DNAC_PASSWORD = "DNAC_PASSWORD"
 const DNAC_DEBUG = "DNAC_DEBUG"
 const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
 const DNAC_WAIT_TIME = "DNAC_WAIT_TIME"
-const VERSION = "2.3.5.3"
-const USER_AGENT = "go-cisco-dnacsdk/" + VERSION
+
+var VERSION = "2.3.7.6.1"
+var DNAC_USER_STRING = "DNAC_USER_STRING"
+var USER_AGENT = "go-cisco-dnacentersdk/" + VERSION
 
 type FileDownload struct {
 	FileName string
@@ -37,16 +39,17 @@ func (f *FileDownload) SaveDownload(path string) error {
 	return ioutil.WriteFile(fpath, f.FileData, 0664)
 }
 
-// Client manages communication with the Cisco DNA Center API
+// Client manages communication with the Cisco Catalyst Center API
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
 	// API Services
 	Authentication              *AuthenticationService
+	AuthenticationManagement    *AuthenticationManagementService
+	AIEndpointAnalytics         *AIEndpointAnalyticsService
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
-	AuthenticationManagement    *AuthenticationManagementService
-	CiscoDnaCenterSystem        *CiscoDnaCenterSystemService
+	CiscoTrustedCertificates    *CiscoTrustedCertificatesService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService
 	Compliance                  *ComplianceService
@@ -55,6 +58,7 @@ type Client struct {
 	DeviceOnboardingPnp         *DeviceOnboardingPnpService
 	DeviceReplacement           *DeviceReplacementService
 	Devices                     *DevicesService
+	DisasterRecovery            *DisasterRecoveryService
 	Discovery                   *DiscoveryService
 	EoX                         *EoXService
 	EventManagement             *EventManagementService
@@ -95,7 +99,7 @@ func (s *Client) SetAuthToken(accessToken string) {
 	s.common.client.SetHeader("X-Auth-Token", accessToken)
 }
 
-// Error indicates an error from the invocation of a Cisco DNA Center API.
+// Error indicates an error from the invocation of a Cisco Catalyst Center API.
 var Error map[string]interface{}
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
@@ -116,10 +120,15 @@ func NewClient() (*Client, error) {
 }
 
 // NewClientWithOptions is the client with options passed with parameters
-func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
+func NewClientWithOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int, userString ...string) (*Client, error) {
 	var err error
 
-	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest)
+	var user string
+	if len(userString) > 0 {
+		user = "-" + userString[0]
+	}
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest, user)
 	if err != nil {
 		return nil, err
 	}
@@ -128,7 +137,7 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 }
 
 // SetOptions sets the environment variables
-func SetOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) error {
+func SetOptions(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int, userString string) error {
 	var err error
 	err = os.Setenv(DNAC_BASE_URL, baseURL)
 	if err != nil {
@@ -150,6 +159,10 @@ func SetOptions(baseURL string, username string, password string, debug string, 
 	if err != nil {
 		return err
 	}
+	err = os.Setenv(DNAC_USER_STRING, userString)
+	if err != nil {
+		return err
+	}
 	if waitTimeToManyRequest != nil {
 		err = os.Setenv(DNAC_WAIT_TIME, strconv.Itoa(*waitTimeToManyRequest))
 		if err != nil {
@@ -164,12 +177,17 @@ func SetOptions(baseURL string, username string, password string, debug string, 
 	return nil
 }
 
+func GetUserAgent() string {
+	return USER_AGENT + os.Getenv(DNAC_USER_STRING)
+}
+
 // NewClientNoAuth returns the client object without trying to authenticate
 func NewClientNoAuth() (*Client, error) {
 	var err error
 
 	client := resty.New()
-	client.SetHeader("User-Agent", USER_AGENT)
+
+	client.SetHeader("User-Agent", GetUserAgent())
 	c := &Client{}
 	c.common.client = client
 	waitTimeToManyRequest := 0
@@ -186,6 +204,7 @@ func NewClientNoAuth() (*Client, error) {
 	} else {
 		err = fmt.Errorf("enviroment variable %s was not defined", DNAC_BASE_URL)
 	}
+
 	if os.Getenv(DNAC_WAIT_TIME) != "" {
 		waitTimeToManyRequest, err = strconv.Atoi(os.Getenv(DNAC_WAIT_TIME))
 		if err != nil {
@@ -194,6 +213,7 @@ func NewClientNoAuth() (*Client, error) {
 	} else {
 		waitTimeToManyRequest = 1
 	}
+
 	c.common.client.AddRetryCondition(
 		// RetryConditionFunc type is for retry condition function
 		// input: non-nil Response OR request execution error
@@ -201,7 +221,7 @@ func NewClientNoAuth() (*Client, error) {
 			retry := false
 			if r.StatusCode() == http.StatusUnauthorized {
 				cl := resty.New()
-				cl.SetHeader("User-Agent", USER_AGENT)
+				cl.SetHeader("User-Agent", GetUserAgent())
 
 				username := os.Getenv("DNAC_USERNAME")
 				password := os.Getenv("DNAC_PASSWORD")
@@ -244,15 +264,16 @@ func NewClientNoAuth() (*Client, error) {
 		// MaxWaitTime can be overridden as well.
 		// Default is 2 seconds.
 		SetRetryMaxWaitTime(time.Duration(waitTimeToManyRequest+1) * time.Minute)
+
 	if err != nil {
 		return nil, err
 	}
 
 	c.Authentication = (*AuthenticationService)(&c.common)
+	c.AIEndpointAnalytics = (*AIEndpointAnalyticsService)(&c.common)
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
-	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
-	c.CiscoDnaCenterSystem = (*CiscoDnaCenterSystemService)(&c.common)
+	c.CiscoTrustedCertificates = (*CiscoTrustedCertificatesService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
 	c.Compliance = (*ComplianceService)(&c.common)
@@ -261,6 +282,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.DeviceOnboardingPnp = (*DeviceOnboardingPnpService)(&c.common)
 	c.DeviceReplacement = (*DeviceReplacementService)(&c.common)
 	c.Devices = (*DevicesService)(&c.common)
+	c.DisasterRecovery = (*DisasterRecoveryService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
 	c.EoX = (*EoXService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
@@ -295,10 +317,17 @@ func NewClientNoAuth() (*Client, error) {
 }
 
 // NewClientWithOptionsNoAuth returns the client object without trying to authenticate and sets environment variables
-func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int) (*Client, error) {
+func NewClientWithOptionsNoAuth(baseURL string, username string, password string, debug string, sslVerify string, waitTimeToManyRequest *int, userString ...string) (*Client, error) {
 	var err error
 
-	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest)
+	var user string
+	if len(userString) > 0 {
+		user = "-" + userString[0]
+	} else {
+		user = ""
+	}
+
+	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest, user)
 	if err != nil {
 		return nil, err
 	}
@@ -343,11 +372,11 @@ func (s *Client) AuthClient() error {
 
 // RestyClient returns the resty.Client used by the sdk
 func (s *Client) RestyClient() *resty.Client {
-	s.common.client.SetHeader("User-Agent", USER_AGENT)
+	s.common.client.SetHeader("User-Agent", GetUserAgent())
 	return s.common.client
 }
 
-func (s *Client) SetDNACWaitTimeToManyRequest(waitTimeToManyRequest int) error {
+func (s *Client) SetCatalystWaitTimeToManyRequest(waitTimeToManyRequest int) error {
 
 	err := os.Setenv(DNAC_WAIT_TIME, strconv.Itoa(waitTimeToManyRequest))
 	if err != nil {

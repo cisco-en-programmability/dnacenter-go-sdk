@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
 )
 
-// client is DNA Center API client
+// client is Catalyst Center API client
 var client *dnac.Client
 
 func responseInterfaceToString(v interface{}) string {
@@ -93,7 +93,7 @@ func main() {
 	// 	return
 	// }
 
-	resp, _, err := client.ConfigurationTemplates.GetProjectsDetails(&dnac.GetProjectsDetailsQueryParams{
+	resp, _, err := client.ConfigurationTemplates.GetProjectsDetailsV2(&dnac.GetProjectsDetailsV2QueryParams{
 		Name: "Onboarding Configuration",
 	})
 

@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v5/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
 )
 
-// Client is DNA Center API client
+// Client is Catalyst Center API client
 var Client *dnac.Client
 
 func main() {

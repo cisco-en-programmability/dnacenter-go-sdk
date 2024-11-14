@@ -73,7 +73,7 @@ type ResponseApplicationsApplicationsResponseServerNetworkLatency interface{}
 
 @param ApplicationsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!applications
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!applications-v1
 */
 func (s *ApplicationsService) Applications(ApplicationsQueryParams *ApplicationsQueryParams) (*ResponseApplicationsApplications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-health"

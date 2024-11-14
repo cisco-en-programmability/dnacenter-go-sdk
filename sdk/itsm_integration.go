@@ -96,11 +96,25 @@ type ResponseItemItsmIntegrationGetAllItsmIntegrationSettings struct {
 	TenantID           string                                                                        `json:"tenantId,omitempty"`           // Tenant Id
 }
 type ResponseItemItsmIntegrationGetAllItsmIntegrationSettingsSoftwareVersionLog interface{}
+type ResponseItsmIntegrationGetItsmIntegrationStatus struct {
+	Response *[]ResponseItsmIntegrationGetItsmIntegrationStatusResponse `json:"response,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  // Version
+}
+type ResponseItsmIntegrationGetItsmIntegrationStatusResponse struct {
+	ID             string                                                                   `json:"id,omitempty"`             // Bundle Id
+	Name           string                                                                   `json:"name,omitempty"`           // Bundle name
+	Status         string                                                                   `json:"status,omitempty"`         // Bundle Status
+	Configurations *[]ResponseItsmIntegrationGetItsmIntegrationStatusResponseConfigurations `json:"configurations,omitempty"` //
+}
+type ResponseItsmIntegrationGetItsmIntegrationStatusResponseConfigurations struct {
+	DypSchemaName string `json:"dypSchemaName,omitempty"` // DYP name of the configuration
+	DypInstanceID string `json:"dypInstanceId,omitempty"` // DYP instance Id of the configuration
+}
 type RequestItsmIntegrationCreateItsmIntegrationSetting struct {
 	Name        string                                                  `json:"name,omitempty"`        // Name of the setting instance
 	Description string                                                  `json:"description,omitempty"` // Description of the setting instance
 	Data        *RequestItsmIntegrationCreateItsmIntegrationSettingData `json:"data,omitempty"`        //
-	DypName     string                                                  `json:"dypName,omitempty"`     // It should be ServiceNowConnection
+	DypName     string                                                  `json:"dypName,omitempty"`     // It can be ServiceNowConnection
 }
 type RequestItsmIntegrationCreateItsmIntegrationSettingData struct {
 	ConnectionSettings *RequestItsmIntegrationCreateItsmIntegrationSettingDataConnectionSettings `json:"ConnectionSettings,omitempty"` //
@@ -114,7 +128,7 @@ type RequestItsmIntegrationUpdateItsmIntegrationSetting struct {
 	Name        string                                                  `json:"name,omitempty"`        // Name of the setting instance
 	Description string                                                  `json:"description,omitempty"` // Description of the setting instance
 	Data        *RequestItsmIntegrationUpdateItsmIntegrationSettingData `json:"data,omitempty"`        //
-	DypName     string                                                  `json:"dypName,omitempty"`     // It should be ServiceNowConnection
+	DypName     string                                                  `json:"dypName,omitempty"`     // It can be ServiceNowConnection
 }
 type RequestItsmIntegrationUpdateItsmIntegrationSettingData struct {
 	ConnectionSettings *RequestItsmIntegrationUpdateItsmIntegrationSettingDataConnectionSettings `json:"ConnectionSettings,omitempty"` //
@@ -132,7 +146,7 @@ type RequestItsmIntegrationUpdateItsmIntegrationSettingDataConnectionSettings st
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id-v1
 */
 func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string) (*ResponseItsmIntegrationGetItsmIntegrationSettingByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm/{instanceId}"
@@ -167,7 +181,7 @@ func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings-v1
 */
 func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmIntegrationGetAllItsmIntegrationSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/itsm/instances"
@@ -196,12 +210,46 @@ func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmI
 
 }
 
+//GetItsmIntegrationStatus Get ITSM Integration status - b7a2-ea02-4e69-abdf
+/* Fetches ITSM Integration status
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-status-v1
+*/
+func (s *ItsmIntegrationService) GetItsmIntegrationStatus() (*ResponseItsmIntegrationGetItsmIntegrationStatus, *resty.Response, error) {
+	path := "/dna/intent/api/v1/integration-settings/status"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseItsmIntegrationGetItsmIntegrationStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetItsmIntegrationStatus()
+		}
+		return nil, response, fmt.Errorf("error with operation GetItsmIntegrationStatus")
+	}
+
+	result := response.Result().(*ResponseItsmIntegrationGetItsmIntegrationStatus)
+	return result, response, err
+
+}
+
 //CreateItsmIntegrationSetting Create ITSM Integration setting - 0cb0-1a15-4d79-a440
 /* Creates ITSM Integration setting
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting-v1
 */
 func (s *ItsmIntegrationService) CreateItsmIntegrationSetting(requestItsmIntegrationCreateITSMIntegrationSetting *RequestItsmIntegrationCreateItsmIntegrationSetting) (*ResponseItsmIntegrationCreateItsmIntegrationSetting, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm"
@@ -276,7 +324,7 @@ func (s *ItsmIntegrationService) UpdateItsmIntegrationSetting(instanceID string,
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting-v1
 */
 func (s *ItsmIntegrationService) DeleteItsmIntegrationSetting(instanceID string) (*resty.Response, error) {
 	//instanceID string

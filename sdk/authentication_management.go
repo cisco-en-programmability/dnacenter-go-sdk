@@ -49,7 +49,7 @@ type ResponseAuthenticationManagementImportCertificateP12Response struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
 }
-type ResponseAuthenticationManagementAuthenticationApI struct {
+type ResponseAuthenticationManagementAuthenticationAPI struct {
 	Token string `json:"Token,omitempty"` // Token
 }
 
@@ -140,20 +140,20 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 
 }
 
-//AuthenticationApI Authentication API - ac8a-e94c-4e69-a09d
-/* API to obtain an access token, which remains valid for 1 hour. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco DNA Center.
+//AuthenticationAPI Authentication API - ac8a-e94c-4e69-a09d
+/* API to obtain an access token, which remains valid for 1 hour. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco Catalyst Center.
 
 
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!authentication-api
 */
-func (s *AuthenticationManagementService) AuthenticationApI() (*ResponseAuthenticationManagementAuthenticationApI, *resty.Response, error) {
+func (s *AuthenticationManagementService) AuthenticationAPI() (*ResponseAuthenticationManagementAuthenticationAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/auth/token"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseAuthenticationManagementAuthenticationApI{}).
+		SetResult(&ResponseAuthenticationManagementAuthenticationAPI{}).
 		SetError(&Error).
 		Post(path)
 
@@ -163,10 +163,10 @@ func (s *AuthenticationManagementService) AuthenticationApI() (*ResponseAuthenti
 	}
 
 	if response.IsError() {
-		return nil, response, fmt.Errorf("error with operation AuthenticationApI")
+		return nil, response, fmt.Errorf("error with operation AuthenticationApi")
 	}
 
-	result := response.Result().(*ResponseAuthenticationManagementAuthenticationApI)
+	result := response.Result().(*ResponseAuthenticationManagementAuthenticationAPI)
 	return result, response, err
 
 }

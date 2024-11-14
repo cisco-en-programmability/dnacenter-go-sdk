@@ -16,6 +16,48 @@ type GetListOfScheduledReportsQueryParams struct {
 	ViewID      string `url:"viewId,omitempty"`      //viewId of view for report
 }
 
+// # Review unknown case
+type ResponseReportsExecutingTheFlexibleReport struct {
+	ExecutionID   string                                               `json:"executionId,omitempty"`   // Report ExecutionId (Unique UUID)
+	StartTime     *float64                                             `json:"startTime,omitempty"`     // Report execution start time (Represent the specified number of milliseconds since the epoch time)
+	EndTime       *float64                                             `json:"endTime,omitempty"`       // Report execution end time (Represent the specified number of milliseconds since the epoch time)
+	RequestStatus string                                               `json:"requestStatus,omitempty"` // Report  request status
+	Errors        []string                                             `json:"errors,omitempty"`        // Errors associated to the report execution
+	Warnings      *[]ResponseReportsExecutingTheFlexibleReportWarnings `json:"warnings,omitempty"`      // Warnings associated to the report execution
+}
+type ResponseReportsExecutingTheFlexibleReportWarnings interface{}
+type ResponseReportsGetExecutionIDByReportID struct {
+	ReportID          string                                               `json:"reportId,omitempty"`          // Report Id (Unique UUID)
+	ReportName        string                                               `json:"reportName,omitempty"`        // Name of the report
+	Executions        *[]ResponseReportsGetExecutionIDByReportIDExecutions `json:"executions,omitempty"`        //
+	ExecutionCount    *int                                                 `json:"executionCount,omitempty"`    // Total number of report executions
+	ReportWasExecuted *bool                                                `json:"reportWasExecuted,omitempty"` // Report execution status flag (true if execution is started, false if the execution is not started)
+}
+type ResponseReportsGetExecutionIDByReportIDExecutions struct {
+	ExecutionID   string                                                       `json:"executionId,omitempty"`   // Report ExecutionId (Unique UUID)
+	StartTime     *int                                                         `json:"startTime,omitempty"`     // Report execution start time (Represent the specified number of milliseconds since the epoch time)
+	EndTime       *float64                                                     `json:"endTime,omitempty"`       // Report execution end time (Represent the specified number of milliseconds since the epoch time)
+	ProcessStatus string                                                       `json:"processStatus,omitempty"` // Report execution status
+	RequestStatus string                                                       `json:"requestStatus,omitempty"` // Report request status
+	Errors        []string                                                     `json:"errors,omitempty"`        // Errors associated with the report execution
+	Warnings      *[]ResponseReportsGetExecutionIDByReportIDExecutionsWarnings `json:"warnings,omitempty"`      // Warnings associated with the report execution
+}
+type ResponseReportsGetExecutionIDByReportIDExecutionsWarnings interface{}
+type ResponseReportsUpdateScheduleOfFlexibleReport struct {
+	Schedule *ResponseReportsUpdateScheduleOfFlexibleReportSchedule `json:"schedule,omitempty"` // Schedule information
+}
+type ResponseReportsUpdateScheduleOfFlexibleReportSchedule interface{}
+type ResponseReportsGetFlexibleReportScheduleByReportID struct {
+	Schedule *ResponseReportsGetFlexibleReportScheduleByReportIDSchedule `json:"schedule,omitempty"` // Schedule information
+}
+type ResponseReportsGetFlexibleReportScheduleByReportIDSchedule interface{}
+type ResponseReportsGetAllFlexibleReportSchedules []ResponseItemReportsGetAllFlexibleReportSchedules // Array of ResponseReportsGetAllFlexibleReportSchedules
+type ResponseItemReportsGetAllFlexibleReportSchedules struct {
+	ReportID   string                                                    `json:"reportId,omitempty"`   // Report Id (Unique UUID)
+	Schedule   *ResponseItemReportsGetAllFlexibleReportSchedulesSchedule `json:"schedule,omitempty"`   // Schedule information
+	ReportName string                                                    `json:"reportName,omitempty"` // Name of the report
+}
+type ResponseItemReportsGetAllFlexibleReportSchedulesSchedule interface{}
 type ResponseReportsCreateOrScheduleAReport struct {
 	Tags              []string                                            `json:"tags,omitempty"`              // array of tags for report
 	DataCategory      string                                              `json:"dataCategory,omitempty"`      // data category of the report
@@ -221,8 +263,8 @@ type ResponseReportsGetAllExecutionDetailsForAGivenReportView struct {
 }
 type ResponseReportsGetAllExecutionDetailsForAGivenReportViewFieldGroups interface{}
 type ResponseReportsGetAllExecutionDetailsForAGivenReportViewFilters interface{}
-type ResponseReportsGetAllExecutionDetailsForAGivenReportViewFormat interface{}
-type ResponseReportsGetAllViewGroups []ResponseItemReportsGetAllViewGroups // Array of ResponseReportsGetAllViewGroups
+type ResponseReportsGetAllExecutionDetailsForAGivenReportViewFormat interface{} // # Review unknown case
+type ResponseReportsGetAllViewGroups []ResponseItemReportsGetAllViewGroups      // Array of ResponseReportsGetAllViewGroups
 type ResponseItemReportsGetAllViewGroups struct {
 	Category    string `json:"category,omitempty"`    // category of the view group
 	Description string `json:"description,omitempty"` // view group description
@@ -302,6 +344,10 @@ type ResponseReportsGetViewDetailsForAGivenViewGroupViewSchedules struct {
 	Type    string `json:"type,omitempty"`    // schedule type
 	Default *bool  `json:"default,omitempty"` // true, if the schedule type is default
 }
+type RequestReportsUpdateScheduleOfFlexibleReport struct {
+	Schedule *RequestReportsUpdateScheduleOfFlexibleReportSchedule `json:"schedule,omitempty"` // Schedule information
+}
+type RequestReportsUpdateScheduleOfFlexibleReportSchedule interface{}
 type RequestReportsCreateOrScheduleAReport struct {
 	Tags             []string                                           `json:"tags,omitempty"`             // array of tags for report
 	Deliveries       *[]RequestReportsCreateOrScheduleAReportDeliveries `json:"deliveries,omitempty"`       // Array of available delivery channels
@@ -310,6 +356,7 @@ type RequestReportsCreateOrScheduleAReport struct {
 	View             *RequestReportsCreateOrScheduleAReportView         `json:"view,omitempty"`             //
 	ViewGroupID      string                                             `json:"viewGroupId,omitempty"`      // viewGroupId of the viewgroup for the report
 	ViewGroupVersion string                                             `json:"viewGroupVersion,omitempty"` // version of viewgroup for the report
+	DataCategory     string                                             `json:"dataCategory,omitempty"`     // category of viewgroup for the report
 }
 type RequestReportsCreateOrScheduleAReportDeliveries interface{}
 type RequestReportsCreateOrScheduleAReportSchedule interface{}
@@ -341,13 +388,159 @@ type RequestReportsCreateOrScheduleAReportViewFormat struct {
 	Name       string `json:"name,omitempty"`       // format name of report
 }
 
+//DownloadFlexibleReport Download Flexible Report - a1bc-fba5-4c1b-849d
+/* This is used to download the flexible report. The API returns report content. Save the response to a file by converting the response data as a blob and setting the file format available from content-disposition response header.
+
+
+@param reportID reportId path parameter. Id of the report
+
+@param executionID executionId path parameter. Id of execution
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-flexible-report-v1
+*/
+func (s *ReportsService) DownloadFlexibleReport(reportID string, executionID string) (*resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/report/content/{reportId}/{executionId}"
+	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
+	path = strings.Replace(path, "{executionId}", fmt.Sprintf("%v", executionID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DownloadFlexibleReport(reportID, executionID)
+		}
+		return response, fmt.Errorf("error with operation DownloadFlexibleReport")
+	}
+
+	return response, err
+
+}
+
+//GetExecutionIDByReportID Get Execution Id by Report Id - 3e91-6aa5-4369-a739
+/* Get Execution Id by Report Id
+
+
+@param reportID reportId path parameter. Id of the report
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-execution-id-by-report-id-v1
+*/
+func (s *ReportsService) GetExecutionIDByReportID(reportID string) (*ResponseReportsGetExecutionIDByReportID, *resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/report/{reportId}/executions"
+	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseReportsGetExecutionIDByReportID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetExecutionIDByReportID(reportID)
+		}
+		return nil, response, fmt.Errorf("error with operation GetExecutionIdByReportId")
+	}
+
+	result := response.Result().(*ResponseReportsGetExecutionIDByReportID)
+	return result, response, err
+
+}
+
+//GetFlexibleReportScheduleByReportID Get flexible report schedule by report id - 2a91-ebd9-4949-a73c
+/* Get flexible report schedule by report id
+
+
+@param reportID reportId path parameter. Id of the report
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-flexible-report-schedule-by-report-id-v1
+*/
+func (s *ReportsService) GetFlexibleReportScheduleByReportID(reportID string) (*ResponseReportsGetFlexibleReportScheduleByReportID, *resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/schedule/{reportId}"
+	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseReportsGetFlexibleReportScheduleByReportID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetFlexibleReportScheduleByReportID(reportID)
+		}
+		return nil, response, fmt.Errorf("error with operation GetFlexibleReportScheduleByReportId")
+	}
+
+	result := response.Result().(*ResponseReportsGetFlexibleReportScheduleByReportID)
+	return result, response, err
+
+}
+
+//GetAllFlexibleReportSchedules Get all flexible report schedules - 7fa5-299b-4d49-8d6f
+/* Get all flexible report schedules
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-flexible-report-schedules-v1
+*/
+func (s *ReportsService) GetAllFlexibleReportSchedules() (*ResponseReportsGetAllFlexibleReportSchedules, *resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/schedules"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseReportsGetAllFlexibleReportSchedules{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetAllFlexibleReportSchedules()
+		}
+		return nil, response, fmt.Errorf("error with operation GetAllFlexibleReportSchedules")
+	}
+
+	result := response.Result().(*ResponseReportsGetAllFlexibleReportSchedules)
+	return result, response, err
+
+}
+
 //GetListOfScheduledReports Get list of scheduled reports - 2ab4-b80d-49ca-ae42
 /* Get list of scheduled report configurations.
 
 
 @param GetListOfScheduledReportsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-scheduled-reports
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-scheduled-reports-v1
 */
 func (s *ReportsService) GetListOfScheduledReports(GetListOfScheduledReportsQueryParams *GetListOfScheduledReportsQueryParams) (*ResponseReportsGetListOfScheduledReports, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports"
@@ -385,7 +578,7 @@ func (s *ReportsService) GetListOfScheduledReports(GetListOfScheduledReportsQuer
 @param reportID reportId path parameter. reportId of report
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-a-scheduled-report
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-a-scheduled-report-v1
 */
 func (s *ReportsService) GetAScheduledReport(reportID string) (*ResponseReportsGetAScheduledReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}"
@@ -422,7 +615,7 @@ func (s *ReportsService) GetAScheduledReport(reportID string) (*ResponseReportsG
 @param reportID reportId path parameter. reportId of report
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-execution-details-for-a-given-report
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-execution-details-for-a-given-report-v1
 */
 func (s *ReportsService) GetAllExecutionDetailsForAGivenReport(reportID string) (*ResponseReportsGetAllExecutionDetailsForAGivenReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}/executions"
@@ -461,7 +654,7 @@ func (s *ReportsService) GetAllExecutionDetailsForAGivenReport(reportID string) 
 @param executionID executionId path parameter. executionId of report execution
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-report-content
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-report-content-v1
 */
 func (s *ReportsService) DownloadReportContent(reportID string, executionID string) (FileDownload, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports/{reportId}/executions/{executionId}"
@@ -500,7 +693,7 @@ func (s *ReportsService) DownloadReportContent(reportID string, executionID stri
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-view-groups
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-view-groups-v1
 */
 func (s *ReportsService) GetAllViewGroups() (*ResponseReportsGetAllViewGroups, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups"
@@ -536,7 +729,7 @@ func (s *ReportsService) GetAllViewGroups() (*ResponseReportsGetAllViewGroups, *
 @param viewGroupID viewGroupId path parameter. viewGroupId of viewgroup.
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-views-for-a-given-view-group
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-views-for-a-given-view-group-v1
 */
 func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*ResponseReportsGetViewsForAGivenViewGroup, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups/{viewGroupId}"
@@ -575,7 +768,7 @@ func (s *ReportsService) GetViewsForAGivenViewGroup(viewGroupID string) (*Respon
 @param viewID viewId path parameter. view id of view
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-view-details-for-a-given-view-group-view
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-view-details-for-a-given-view-group-view-v1
 */
 func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string, viewID string) (*ResponseReportsGetViewDetailsForAGivenViewGroupView, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/view-groups/{viewGroupId}/views/{viewId}"
@@ -606,12 +799,51 @@ func (s *ReportsService) GetViewDetailsForAGivenViewGroupView(viewGroupID string
 
 }
 
+//ExecutingTheFlexibleReport Executing the Flexible report - 4886-9a2c-4c5a-b570
+/* This API is used for executing the report
+
+
+@param reportID reportId path parameter. Id of the Report
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!executing-the-flexible-report-v1
+*/
+func (s *ReportsService) ExecutingTheFlexibleReport(reportID string) (*ResponseReportsExecutingTheFlexibleReport, *resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/report/{reportId}/execute"
+	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseReportsExecutingTheFlexibleReport{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ExecutingTheFlexibleReport(reportID)
+		}
+
+		return nil, response, fmt.Errorf("error with operation ExecutingTheFlexibleReport")
+	}
+
+	result := response.Result().(*ResponseReportsExecutingTheFlexibleReport)
+	return result, response, err
+
+}
+
 //CreateOrScheduleAReport Create or Schedule a report - 8abf-291a-42aa-8860
 /* Create/Schedule a report configuration. Use "Get view details for a given view group & view" API to get the metadata required to configure a report.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-schedule-a-report
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-or-schedule-a-report-v1
 */
 func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleAReport *RequestReportsCreateOrScheduleAReport) (*ResponseReportsCreateOrScheduleAReport, *resty.Response, error) {
 	path := "/dna/intent/api/v1/data/reports"
@@ -643,6 +875,42 @@ func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleA
 
 }
 
+//UpdateScheduleOfFlexibleReport Update schedule of flexible report - 498f-2b3d-4cd8-bd9d
+/* Update schedule of flexible report
+
+
+@param reportID reportId path parameter. Id of the report
+
+*/
+func (s *ReportsService) UpdateScheduleOfFlexibleReport(reportID string, requestReportsUpdateScheduleOfFlexibleReport *RequestReportsUpdateScheduleOfFlexibleReport) (*ResponseReportsUpdateScheduleOfFlexibleReport, *resty.Response, error) {
+	path := "/dna/data/api/v1/flexible-report/schedule/{reportId}"
+	path = strings.Replace(path, "{reportId}", fmt.Sprintf("%v", reportID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestReportsUpdateScheduleOfFlexibleReport).
+		SetResult(&ResponseReportsUpdateScheduleOfFlexibleReport{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateScheduleOfFlexibleReport(reportID, requestReportsUpdateScheduleOfFlexibleReport)
+		}
+		return nil, response, fmt.Errorf("error with operation UpdateScheduleOfFlexibleReport")
+	}
+
+	result := response.Result().(*ResponseReportsUpdateScheduleOfFlexibleReport)
+	return result, response, err
+
+}
+
 //DeleteAScheduledReport Delete a scheduled report - 239c-6921-4f9b-b12e
 /* Delete a scheduled report configuration. Deletes the report executions also.
 
@@ -650,7 +918,7 @@ func (s *ReportsService) CreateOrScheduleAReport(requestReportsCreateOrScheduleA
 @param reportID reportId path parameter. reportId of report
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a-scheduled-report
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a-scheduled-report-v1
 */
 func (s *ReportsService) DeleteAScheduledReport(reportID string) (*ResponseReportsDeleteAScheduledReport, *resty.Response, error) {
 	//reportID string

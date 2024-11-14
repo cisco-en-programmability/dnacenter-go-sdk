@@ -2,6 +2,7 @@ package dnac
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -123,7 +124,9 @@ type ResponseDisasterRecoveryDisasterRecoveryStatusIPsecTunnel struct {
 /* Returns the status of Disaster Recovery operation performed on the system.
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-operational-status-v1
+*/
 func (s *DisasterRecoveryService) DisasterRecoveryOperationalStatus() (*ResponseDisasterRecoveryDisasterRecoveryOperationalStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/disasterrecovery/system/operationstatus"
 
@@ -140,6 +143,9 @@ func (s *DisasterRecoveryService) DisasterRecoveryOperationalStatus() (*Response
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DisasterRecoveryOperationalStatus()
+		}
 		return nil, response, fmt.Errorf("error with operation DisasterRecoveryOperationalStatus")
 	}
 
@@ -152,7 +158,9 @@ func (s *DisasterRecoveryService) DisasterRecoveryOperationalStatus() (*Response
 /* Detailed and Summarized status of DR components (Active, Standby and Witness system's health).
 
 
- */
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-status-v1
+*/
 func (s *DisasterRecoveryService) DisasterRecoveryStatus() (*ResponseDisasterRecoveryDisasterRecoveryStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/disasterrecovery/system/status"
 
@@ -169,6 +177,9 @@ func (s *DisasterRecoveryService) DisasterRecoveryStatus() (*ResponseDisasterRec
 	}
 
 	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DisasterRecoveryStatus()
+		}
 		return nil, response, fmt.Errorf("error with operation DisasterRecoveryStatus")
 	}
 

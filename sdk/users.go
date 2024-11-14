@@ -10,8 +10,9 @@ import (
 type UsersService service
 
 type GetUserEnrichmentDetailsHeaderParams struct {
-	EntityType  string `url:"entity_type,omitempty"`  //Expects type string. User enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
-	EntityValue string `url:"entity_value,omitempty"` //Expects type string. Contains the actual value for the entity type that has been defined
+	EntityType        string `url:"entity_type,omitempty"`         //Expects type string. User enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
+	EntityValue       string `url:"entity_value,omitempty"`        //Expects type string. Contains the actual value for the entity type that has been defined
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool.
 }
 
 type ResponseUsersGetUserEnrichmentDetails []ResponseItemUsersGetUserEnrichmentDetails // Array of ResponseUsersGetUserEnrichmentDetails
@@ -167,7 +168,7 @@ type ResponseItemUsersGetUserEnrichmentDetailsConnectedDeviceDeviceDetailsNeighb
 
 @param GetUserEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-user-enrichment-details
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-user-enrichment-details-v1
 */
 func (s *UsersService) GetUserEnrichmentDetails(GetUserEnrichmentDetailsHeaderParams *GetUserEnrichmentDetailsHeaderParams) (*ResponseUsersGetUserEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/user-enrichment-details"
@@ -186,6 +187,10 @@ func (s *UsersService) GetUserEnrichmentDetails(GetUserEnrichmentDetailsHeaderPa
 
 		if GetUserEnrichmentDetailsHeaderParams.EntityValue != "" {
 			clientRequest = clientRequest.SetHeader("entity_value", GetUserEnrichmentDetailsHeaderParams.EntityValue)
+		}
+
+		if GetUserEnrichmentDetailsHeaderParams.Persistbapioutput != "" {
+			clientRequest = clientRequest.SetHeader("__persistbapioutput", GetUserEnrichmentDetailsHeaderParams.Persistbapioutput)
 		}
 
 	}
