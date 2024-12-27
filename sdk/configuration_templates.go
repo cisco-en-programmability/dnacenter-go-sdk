@@ -11,6 +11,14 @@ import (
 
 type ConfigurationTemplatesService service
 
+type GetTemplateProjectsQueryParams struct {
+	Name   string  `url:"name,omitempty"`   //Name of project to be searched
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1.
+}
+type GetTemplateProjectCountQueryParams struct {
+	Name string `url:"name,omitempty"` //Name of project to be searched
+}
 type CreatesACloneOfTheGivenTemplateQueryParams struct {
 	ProjectID string `url:"projectId,omitempty"` //UUID of the project in which the template needs to be created
 }
@@ -40,12 +48,26 @@ type GetsTheTemplatesAvailableQueryParams struct {
 type GetsDetailsOfAGivenTemplateQueryParams struct {
 	LatestVersion bool `url:"latestVersion,omitempty"` //latestVersion flag to get the latest versioned template
 }
+type DetachAListOfNetworkProfilesFromADayNCliTemplateQueryParams struct {
+	ProfileID string `url:"profileId,omitempty"` //The id or ids of the network profile, retrievable from /dna/intent/api/v1/networkProfilesForSites. The maximum number of profile Ids allowed is 20.  A list of profile ids can be passed as a queryParameter in two ways:   a comma-separated string ( profileId=388a23e9-4739-4be7-a0aa-cc5a95d158dd,2726dc60-3a12-451e-947a-d972ebf58743), or...  as separate query parameters with the same name ( profileId=388a23e9-4739-4be7-a0aa-cc5a95d158dd&profileId=2726dc60-3a12-451e-947a-d972ebf58743
+}
+type GetTemplateVersionsQueryParams struct {
+	VersionNumber int     `url:"versionNumber,omitempty"` //Filter response to only get the template version that matches this version number
+	LatestVersion bool    `url:"latestVersion,omitempty"` //Filter response to only include the latest version of a template
+	Order         string  `url:"order,omitempty"`         //Whether ascending or descending order should be used to sort the response.
+	Limit         float64 `url:"limit,omitempty"`         //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Offset        int     `url:"offset,omitempty"`        //The first record to show for this page; the first record is numbered 1.
+}
+type GetTemplateVersionsCountQueryParams struct {
+	VersionNumber int  `url:"versionNumber,omitempty"` //Filter response to only get the template version that matches this version number
+	LatestVersion bool `url:"latestVersion,omitempty"` //Filter response to only include the latest version of a template
+}
 type GetProjectsDetailsV2QueryParams struct {
-	ID        string `url:"id,omitempty"`        //Id of project to be searched
-	Name      string `url:"name,omitempty"`      //Name of project to be searched
-	Offset    int    `url:"offset,omitempty"`    //Index of first result
-	Limit     int    `url:"limit,omitempty"`     //Limits number of results
-	SortOrder string `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (dsc)
+	ID        string  `url:"id,omitempty"`        //Id of project to be searched
+	Name      string  `url:"name,omitempty"`      //Name of project to be searched
+	Offset    int     `url:"offset,omitempty"`    //Index of first result
+	Limit     float64 `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	SortOrder string  `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (dsc)
 }
 type GetTemplatesDetailsV2QueryParams struct {
 	ID                         string   `url:"id,omitempty"`                         //Id of template to be searched
@@ -64,9 +86,75 @@ type GetTemplatesDetailsV2QueryParams struct {
 	AllTemplateAttributes      bool     `url:"allTemplateAttributes,omitempty"`      //Return all template attributes
 	IncludeVersionDetails      bool     `url:"includeVersionDetails,omitempty"`      //Include template version details
 	Offset                     int      `url:"offset,omitempty"`                     //Index of first result
-	Limit                      int      `url:"limit,omitempty"`                      //Limits number of results
+	Limit                      float64  `url:"limit,omitempty"`                      //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 }
 
+type ResponseConfigurationTemplatesCreateTemplateProject struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *ResponseConfigurationTemplatesCreateTemplateProjectResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesCreateTemplateProjectResponse struct {
+	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesGetTemplateProjects struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *[]ResponseConfigurationTemplatesGetTemplateProjectsResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateProjectsResponse struct {
+	ProjectID string `json:"projectId,omitempty"` // UUID of the project
+
+	Name string `json:"name,omitempty"` // Name of the project
+
+	Description string `json:"description,omitempty"` // Description of the project
+
+	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Timestamp of when the project was updated or modified
+}
+type ResponseConfigurationTemplatesGetTemplateProjectCount struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *ResponseConfigurationTemplatesGetTemplateProjectCountResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateProjectCountResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count
+}
+type ResponseConfigurationTemplatesGetTemplateProject struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *ResponseConfigurationTemplatesGetTemplateProjectResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateProjectResponse struct {
+	ProjectID string `json:"projectId,omitempty"` // UUID of the project
+
+	Name string `json:"name,omitempty"` // Name of the project
+
+	Description string `json:"description,omitempty"` // Description of the project
+
+	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Timestamp of when the project was updated or modified
+}
+type ResponseConfigurationTemplatesUpdateTemplateProject struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *ResponseConfigurationTemplatesUpdateTemplateProjectResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesUpdateTemplateProjectResponse struct {
+	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesDeleteTemplateProject struct {
+	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
+
+	Response *ResponseConfigurationTemplatesDeleteTemplateProjectResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesDeleteTemplateProjectResponse struct {
+	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
 type ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate struct {
 	Response *ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplateResponse `json:"response,omitempty"` //
 	Version  string                                                                 `json:"version,omitempty"`  //
@@ -869,11 +957,156 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors s
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors interface{}
-type ResponseConfigurationTemplatesGetProjectsDetailsV2 struct {
-	Response []ResponseConfigurationTemplatesGetProjectsDetailsResponse `json:"response,omitempty"` // Response
+type ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate struct {
+	object string `json:"object,omitempty"` // object
 }
-
-type ResponseConfigurationTemplatesGetProjectsDetailsResponse struct {
+type ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate struct {
+	Version  string                                                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplateResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplate struct {
+	Version  string                                                                                  `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplateResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate struct {
+	Version  string                                                                                `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplateResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplate struct {
+	Version  string                                                                                      `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplateResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplateResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count
+}
+type ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplate struct {
+	Version  string                                                                           `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplateResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplateResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesGetTemplateVersions struct {
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *[]ResponseConfigurationTemplatesGetTemplateVersionsResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsResponse struct {
+	VersionID         string                                                                      `json:"versionId,omitempty"`         // The id of this version
+	Version           *int                                                                        `json:"version,omitempty"`           // The version number of this version
+	VersionTime       *float64                                                                    `json:"versionTime,omitempty"`       // Time at which this version was committed
+	RegularTemplate   *ResponseConfigurationTemplatesGetTemplateVersionsResponseRegularTemplate   `json:"RegularTemplate,omitempty"`   //
+	CompositeTemplate *ResponseConfigurationTemplatesGetTemplateVersionsResponseCompositeTemplate `json:"CompositeTemplate,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsResponseRegularTemplate struct {
+	TemplateID      string                                                                              `json:"templateId,omitempty"`      // The id of the template
+	Name            string                                                                              `json:"name,omitempty"`            // Name of the template
+	ProjectID       string                                                                              `json:"projectId,omitempty"`       // Id of the project
+	Description     string                                                                              `json:"description,omitempty"`     // Description of the template
+	SoftwareFamily  string                                                                              `json:"softwareFamily,omitempty"`  // Software Family
+	Author          string                                                                              `json:"author,omitempty"`          // Author of the template
+	Products        *[]ResponseConfigurationTemplatesGetTemplateVersionsResponseRegularTemplateProducts `json:"products,omitempty"`        //
+	LastUpdateTime  *float64                                                                            `json:"lastUpdateTime,omitempty"`  // Timestamp of when the template was updated or modified
+	Type            string                                                                              `json:"type,omitempty"`            // The type of the template
+	Language        string                                                                              `json:"language,omitempty"`        // Language of the template
+	TemplateContent string                                                                              `json:"templateContent,omitempty"` // Template content (uses LF styling for line-breaks)
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsResponseRegularTemplateProducts struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Family name of the product
+	ProductSeries string `json:"productSeries,omitempty"` // Series name of the product
+	ProductName   string `json:"productName,omitempty"`   // Name of the product
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsResponseCompositeTemplate struct {
+	TemplateID     string                                                                                `json:"templateId,omitempty"`     // The id of the template
+	Name           string                                                                                `json:"name,omitempty"`           // Name of the template
+	ProjectID      string                                                                                `json:"projectId,omitempty"`      // Id of the project
+	Description    string                                                                                `json:"description,omitempty"`    // Description of the template
+	SoftwareFamily string                                                                                `json:"softwareFamily,omitempty"` // Software Family
+	Author         string                                                                                `json:"author,omitempty"`         // Author of the template
+	Products       *[]ResponseConfigurationTemplatesGetTemplateVersionsResponseCompositeTemplateProducts `json:"products,omitempty"`       //
+	LastUpdateTime *float64                                                                              `json:"lastUpdateTime,omitempty"` // Timestamp of when the template was updated or modified
+	Type           string                                                                                `json:"type,omitempty"`           // The type of the template
+	FailurePolicy  string                                                                                `json:"failurePolicy,omitempty"`  // Policy to handle failure only applicable for composite templates  CONTINUE_ON_ERROR: If a composed template fails while deploying a device, continue deploying the next composed template  ABORT_TARGET_ON_ERROR: If a composed template fails while deploying to a device, abort the subsequent composed templates to that device if there any remaining
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsResponseCompositeTemplateProducts struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Family name of the product
+	ProductSeries string `json:"productSeries,omitempty"` // Series name of the product
+	ProductName   string `json:"productName,omitempty"`   // Name of the product
+}
+type ResponseConfigurationTemplatesCommitTemplateForANewVersion struct {
+	Version  string                                                              `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesCommitTemplateForANewVersionResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesCommitTemplateForANewVersionResponse struct {
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
+	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsCount struct {
+	Version  string                                                          `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesGetTemplateVersionsCountResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateVersionsCountResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count
+}
+type ResponseConfigurationTemplatesGetTemplateVersion struct {
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
+	Response *ResponseConfigurationTemplatesGetTemplateVersionResponse `json:"response,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateVersionResponse struct {
+	VersionID         string                                                                     `json:"versionId,omitempty"`         // The id of this version
+	Version           *int                                                                       `json:"version,omitempty"`           // The version number of this version
+	VersionTime       *float64                                                                   `json:"versionTime,omitempty"`       // Time at which this version was committed
+	RegularTemplate   *ResponseConfigurationTemplatesGetTemplateVersionResponseRegularTemplate   `json:"RegularTemplate,omitempty"`   //
+	CompositeTemplate *ResponseConfigurationTemplatesGetTemplateVersionResponseCompositeTemplate `json:"CompositeTemplate,omitempty"` //
+}
+type ResponseConfigurationTemplatesGetTemplateVersionResponseRegularTemplate struct {
+	TemplateID      string                                                                             `json:"templateId,omitempty"`      // The id of the template
+	Name            string                                                                             `json:"name,omitempty"`            // Name of the template
+	ProjectID       string                                                                             `json:"projectId,omitempty"`       // Id of the project
+	Description     string                                                                             `json:"description,omitempty"`     // Description of the template
+	SoftwareFamily  string                                                                             `json:"softwareFamily,omitempty"`  // Software Family
+	Author          string                                                                             `json:"author,omitempty"`          // Author of the template
+	Products        *[]ResponseConfigurationTemplatesGetTemplateVersionResponseRegularTemplateProducts `json:"products,omitempty"`        //
+	LastUpdateTime  *float64                                                                           `json:"lastUpdateTime,omitempty"`  // Timestamp of when the template was updated or modified
+	Type            string                                                                             `json:"type,omitempty"`            // The type of the template
+	Language        string                                                                             `json:"language,omitempty"`        // Language of the template
+	TemplateContent string                                                                             `json:"templateContent,omitempty"` // Template content (uses LF styling for line-breaks)
+}
+type ResponseConfigurationTemplatesGetTemplateVersionResponseRegularTemplateProducts struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Family name of the product
+	ProductSeries string `json:"productSeries,omitempty"` // Series name of the product
+	ProductName   string `json:"productName,omitempty"`   // Name of the product
+}
+type ResponseConfigurationTemplatesGetTemplateVersionResponseCompositeTemplate struct {
+	TemplateID     string                                                                               `json:"templateId,omitempty"`     // The id of the template
+	Name           string                                                                               `json:"name,omitempty"`           // Name of the template
+	ProjectID      string                                                                               `json:"projectId,omitempty"`      // Id of the project
+	Description    string                                                                               `json:"description,omitempty"`    // Description of the template
+	SoftwareFamily string                                                                               `json:"softwareFamily,omitempty"` // Software Family
+	Author         string                                                                               `json:"author,omitempty"`         // Author of the template
+	Products       *[]ResponseConfigurationTemplatesGetTemplateVersionResponseCompositeTemplateProducts `json:"products,omitempty"`       //
+	LastUpdateTime *float64                                                                             `json:"lastUpdateTime,omitempty"` // Timestamp of when the template was updated or modified
+	Type           string                                                                               `json:"type,omitempty"`           // The type of the template
+	FailurePolicy  string                                                                               `json:"failurePolicy,omitempty"`  // Policy to handle failure only applicable for composite templates  CONTINUE_ON_ERROR: If a composed template fails while deploying a device, continue deploying the next composed template  ABORT_TARGET_ON_ERROR: If a composed template fails while deploying to a device, abort the subsequent composed templates to that device if there any remaining
+}
+type ResponseConfigurationTemplatesGetTemplateVersionResponseCompositeTemplateProducts struct {
+	ProductFamily string `json:"productFamily,omitempty"` // Family name of the product
+	ProductSeries string `json:"productSeries,omitempty"` // Series name of the product
+	ProductName   string `json:"productName,omitempty"`   // Name of the product
+}
+type ResponseConfigurationTemplatesGetProjectsDetailsV2 struct {
 	CreateTime     *int                                                         `json:"createTime,omitempty"`     // Create time of project
 	Description    string                                                       `json:"description,omitempty"`    // Description of project
 	ID             string                                                       `json:"id,omitempty"`             // UUID of project
@@ -1104,6 +1337,16 @@ type ResponseConfigurationTemplatesDeployTemplateV2 struct {
 type ResponseConfigurationTemplatesDeployTemplateV2Response struct {
 	TaskID string `json:"taskId,omitempty"` //
 	URL    string `json:"url,omitempty"`    //
+}
+type RequestConfigurationTemplatesCreateTemplateProject struct {
+	Name string `json:"name,omitempty"` // Name of the project
+
+	Description string `json:"description,omitempty"` // Description of the project
+}
+type RequestConfigurationTemplatesUpdateTemplateProject struct {
+	Name string `json:"name,omitempty"` // Name of the project
+
+	Description string `json:"description,omitempty"` // Description of the project
 }
 type RequestConfigurationTemplatesCreateProject struct {
 	Tags           *[]RequestConfigurationTemplatesCreateProjectTags    `json:"tags,omitempty"`           //
@@ -1756,6 +1999,15 @@ type RequestConfigurationTemplatesVersionTemplate struct {
 	Comments   string `json:"comments,omitempty"`   // Template version comments
 	TemplateID string `json:"templateId,omitempty"` // UUID of template
 }
+type RequestConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate struct {
+	ProfileID string `json:"profileId,omitempty"` // The id of the network profile, retrievable from `/intent/api/v1/networkProfilesForSites`
+}
+type RequestConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate struct {
+	Items *[][]string `json:"items,omitempty"` // Root
+}
+type RequestConfigurationTemplatesCommitTemplateForANewVersion struct {
+	CommitNote string `json:"commitNote,omitempty"` // A message to leave as a note with the commit of a template. The maximum length allowed is 255 characters.
+}
 type RequestConfigurationTemplatesDeployTemplateV2 struct {
 	ForcePushTemplate            *bool                                                      `json:"forcePushTemplate,omitempty"`            //
 	IsComposite                  *bool                                                      `json:"isComposite,omitempty"`                  // Composite template flag
@@ -1773,6 +2025,118 @@ type RequestConfigurationTemplatesDeployTemplateV2TargetInfo struct {
 	VersionedTemplateID string                                                         `json:"versionedTemplateId,omitempty"` // Versioned templateUUID to be provisioned
 }
 type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams map[string]interface{}
+type RequestConfigurationTemplatesDeployTemplateV2TargetInfoResourceParams interface{}
+
+//GetTemplateProjects Get Template Projects - 03b6-793d-45e8-9ff1
+/* Get all matching template projects based on the filters selected.
+
+
+@param GetTemplateProjectsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-projects
+*/
+func (s *ConfigurationTemplatesService) GetTemplateProjects(GetTemplateProjectsQueryParams *GetTemplateProjectsQueryParams) (*ResponseConfigurationTemplatesGetTemplateProjects, *resty.Response, error) {
+	path := "/dna/intent/api/v1/projects"
+
+	queryString, _ := query.Values(GetTemplateProjectsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetTemplateProjects{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateProjects(GetTemplateProjectsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateProjects")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateProjects)
+	return result, response, err
+
+}
+
+//GetTemplateProjectCount Get Template Project Count - d394-ab82-44f8-9435
+/* Get the count of all template projects.
+
+
+@param GetTemplateProjectCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-project-count
+*/
+func (s *ConfigurationTemplatesService) GetTemplateProjectCount(GetTemplateProjectCountQueryParams *GetTemplateProjectCountQueryParams) (*ResponseConfigurationTemplatesGetTemplateProjectCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/projects/count"
+
+	queryString, _ := query.Values(GetTemplateProjectCountQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetTemplateProjectCount{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateProjectCount(GetTemplateProjectCountQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateProjectCount")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateProjectCount)
+	return result, response, err
+
+}
+
+//GetTemplateProject Get Template Project - 90b7-68c6-41d8-a1bd
+/* Get a template project by the project's ID.
+
+
+@param projectID projectId path parameter. The id of the project to get, retrieveable from `GET /dna/intent/api/v1/projects`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-project
+*/
+func (s *ConfigurationTemplatesService) GetTemplateProject(projectID string) (*ResponseConfigurationTemplatesGetTemplateProject, *resty.Response, error) {
+	path := "/dna/intent/api/v1/projects/{projectId}"
+	path = strings.Replace(path, "{projectId}", fmt.Sprintf("%v", projectID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesGetTemplateProject{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateProject(projectID)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateProject")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateProject)
+	return result, response, err
+
+}
 
 //GetsAListOfProjects Gets a list of projects - 4f80-08c2-400b-98ee
 /* List the projects
@@ -1780,7 +2144,7 @@ type RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams map[string]in
 
 @param GetsAListOfProjectsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-list-of-projects-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-a-list-of-projects
 */
 func (s *ConfigurationTemplatesService) GetsAListOfProjects(GetsAListOfProjectsQueryParams *GetsAListOfProjectsQueryParams) (*ResponseConfigurationTemplatesGetsAListOfProjects, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project"
@@ -1818,7 +2182,7 @@ func (s *ConfigurationTemplatesService) GetsAListOfProjects(GetsAListOfProjectsQ
 @param projectID projectId path parameter. projectId(UUID) of project to get project details
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-details-of-a-given-project-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-details-of-a-given-project
 */
 func (s *ConfigurationTemplatesService) GetsTheDetailsOfAGivenProject(projectID string) (*ResponseConfigurationTemplatesGetsTheDetailsOfAGivenProject, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}"
@@ -1854,7 +2218,7 @@ func (s *ConfigurationTemplatesService) GetsTheDetailsOfAGivenProject(projectID 
 
 @param GetsTheTemplatesAvailableQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-templates-available-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-the-templates-available
 */
 func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(GetsTheTemplatesAvailableQueryParams *GetsTheTemplatesAvailableQueryParams) (*ResponseConfigurationTemplatesGetsTheTemplatesAvailable, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template"
@@ -1892,7 +2256,7 @@ func (s *ConfigurationTemplatesService) GetsTheTemplatesAvailable(GetsTheTemplat
 @param deploymentID deploymentId path parameter. UUID of deployment to retrieve template deployment status
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!status-of-template-deployment-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!status-of-template-deployment
 */
 func (s *ConfigurationTemplatesService) StatusOfTemplateDeployment(deploymentID string) (*ResponseConfigurationTemplatesStatusOfTemplateDeployment, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/deploy/status/{deploymentId}"
@@ -1929,7 +2293,7 @@ func (s *ConfigurationTemplatesService) StatusOfTemplateDeployment(deploymentID 
 @param templateID templateId path parameter. templateId(UUID) to get list of versioned templates
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-all-the-versions-of-a-given-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-all-the-versions-of-a-given-template
 */
 func (s *ConfigurationTemplatesService) GetsAllTheVersionsOfAGivenTemplate(templateID string) (*ResponseConfigurationTemplatesGetsAllTheVersionsOfAGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/version/{templateId}"
@@ -1967,7 +2331,7 @@ func (s *ConfigurationTemplatesService) GetsAllTheVersionsOfAGivenTemplate(templ
 
 @param GetsDetailsOfAGivenTemplateQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-details-of-a-given-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!gets-details-of-a-given-template
 */
 func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID string, GetsDetailsOfAGivenTemplateQueryParams *GetsDetailsOfAGivenTemplateQueryParams) (*ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/{templateId}"
@@ -1999,13 +2363,207 @@ func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID s
 
 }
 
+//RetrieveTheNetworkProfilesAttachedToACLITemplate Retrieve the network profiles attached to a CLI template - 7887-b9c5-40d9-b707
+/* Retrieves the list of network profiles that a CLI template is currently attached to by the template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-network-profiles-attached-to-acl-i-template
+*/
+func (s *ConfigurationTemplatesService) RetrieveTheNetworkProfilesAttachedToACLITemplate(templateID string) (*ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTheNetworkProfilesAttachedToACLITemplate(templateID)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTheNetworkProfilesAttachedToAclITemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate)
+	return result, response, err
+
+}
+
+//RetrieveCountOfNetworkProfilesAttachedToACLITemplate Retrieve count of network profiles attached to a CLI template - f1ab-98e1-426a-9a06
+/* Retrieves the count of network profiles that a CLI template has been attached to by the template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-count-of-network-profiles-attached-to-acl-i-template
+*/
+func (s *ConfigurationTemplatesService) RetrieveCountOfNetworkProfilesAttachedToACLITemplate(templateID string) (*ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites/count"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplate{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveCountOfNetworkProfilesAttachedToACLITemplate(templateID)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveCountOfNetworkProfilesAttachedToAclITemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesRetrieveCountOfNetworkProfilesAttachedToACLITemplate)
+	return result, response, err
+
+}
+
+//GetTemplateVersions Get Template Versions - b08a-5b15-4c99-beb3
+/* Get a template's version information.
+
+
+@param templateID templateId path parameter. The id of the template to get versions of, retrieveable from `GET /dna/intent/api/v1/templates`
+
+@param GetTemplateVersionsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-versions
+*/
+func (s *ConfigurationTemplatesService) GetTemplateVersions(templateID string, GetTemplateVersionsQueryParams *GetTemplateVersionsQueryParams) (*ResponseConfigurationTemplatesGetTemplateVersions, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/versions"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	queryString, _ := query.Values(GetTemplateVersionsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetTemplateVersions{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateVersions(templateID, GetTemplateVersionsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateVersions")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateVersions)
+	return result, response, err
+
+}
+
+//GetTemplateVersionsCount Get Template Versions Count - 57a5-d893-4d98-a66f
+/* Get the count of a template's version information.
+
+
+@param templateID templateId path parameter. The id of the template to get versions of, retrieveable from `GET /dna/intent/api/v1/templates`
+
+@param GetTemplateVersionsCountQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-versions-count
+*/
+func (s *ConfigurationTemplatesService) GetTemplateVersionsCount(templateID string, GetTemplateVersionsCountQueryParams *GetTemplateVersionsCountQueryParams) (*ResponseConfigurationTemplatesGetTemplateVersionsCount, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/versions/count"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	queryString, _ := query.Values(GetTemplateVersionsCountQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesGetTemplateVersionsCount{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateVersionsCount(templateID, GetTemplateVersionsCountQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateVersionsCount")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateVersionsCount)
+	return result, response, err
+
+}
+
+//GetTemplateVersion Get Template Version - 689b-e88b-4c18-8a8c
+/* Get a template's version by the version ID.
+
+
+@param templateID templateId path parameter. The id of the template to get versions of, retrieveable from `GET /dna/intent/api/v1/templates`
+
+@param versionID versionId path parameter. The id of the versioned template to get versions of, retrieveable from `GET /dna/intent/api/v1/templates/{id}/versions`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-template-version
+*/
+func (s *ConfigurationTemplatesService) GetTemplateVersion(templateID string, versionID string) (*ResponseConfigurationTemplatesGetTemplateVersion, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/versions/{versionId}"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+	path = strings.Replace(path, "{versionId}", fmt.Sprintf("%v", versionID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesGetTemplateVersion{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTemplateVersion(templateID, versionID)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTemplateVersion")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesGetTemplateVersion)
+	return result, response, err
+
+}
+
 //GetProjectsDetailsV2 Get project(s) details - 9a8c-aa6d-459b-a4a2
 /* Get project(s) details
 
 
 @param GetProjectsDetailsV2QueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-projects-details-v2
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-projects-details
 */
 func (s *ConfigurationTemplatesService) GetProjectsDetailsV2(GetProjectsDetailsV2QueryParams *GetProjectsDetailsV2QueryParams) (*ResponseConfigurationTemplatesGetProjectsDetailsV2, *resty.Response, error) {
 	path := "/dna/intent/api/v2/template-programmer/project"
@@ -2073,6 +2631,43 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetailsV2(GetTemplatesDetail
 
 }
 
+//CreateTemplateProject Create Template Project - a280-e91c-498b-a571
+/* Create a template project.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-template-project
+*/
+func (s *ConfigurationTemplatesService) CreateTemplateProject(requestConfigurationTemplatesCreateTemplateProject *RequestConfigurationTemplatesCreateTemplateProject) (*ResponseConfigurationTemplatesCreateTemplateProject, *resty.Response, error) {
+	path := "/dna/intent/api/v1/projects"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestConfigurationTemplatesCreateTemplateProject).
+		SetResult(&ResponseConfigurationTemplatesCreateTemplateProject{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateTemplateProject(requestConfigurationTemplatesCreateTemplateProject)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CreateTemplateProject")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesCreateTemplateProject)
+	return result, response, err
+
+}
+
 //CreatesACloneOfTheGivenTemplate Creates a clone of the given template - 0384-4a0a-4ee8-bfc2
 /* API to clone template
 
@@ -2084,7 +2679,7 @@ func (s *ConfigurationTemplatesService) GetTemplatesDetailsV2(GetTemplatesDetail
 @param projectID projectId path parameter.
 @param CreatesACloneOfTheGivenTemplateQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-clone-of-the-given-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-clone-of-the-given-template
 */
 func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name string, templateID string, projectID string, CreatesACloneOfTheGivenTemplateQueryParams *CreatesACloneOfTheGivenTemplateQueryParams) (*ResponseConfigurationTemplatesCreatesACloneOfTheGivenTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/clone/name/{name}/project/{projectId}/template/{templateId}"
@@ -2126,7 +2721,7 @@ func (s *ConfigurationTemplatesService) CreatesACloneOfTheGivenTemplate(name str
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-project-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-project
 */
 func (s *ConfigurationTemplatesService) CreateProject(requestConfigurationTemplatesCreateProject *RequestConfigurationTemplatesCreateProject) (*ResponseConfigurationTemplatesCreateProject, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project"
@@ -2164,7 +2759,7 @@ func (s *ConfigurationTemplatesService) CreateProject(requestConfigurationTempla
 
 @param ImportsTheProjectsProvidedQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-projects-provided-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-projects-provided
 */
 func (s *ConfigurationTemplatesService) ImportsTheProjectsProvided(ImportsTheProjectsProvidedQueryParams *ImportsTheProjectsProvidedQueryParams) (*ResponseConfigurationTemplatesImportsTheProjectsProvided, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/importprojects"
@@ -2203,7 +2798,7 @@ func (s *ConfigurationTemplatesService) ImportsTheProjectsProvided(ImportsThePro
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-projects-for-a-given-criteria-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-projects-for-a-given-criteria
 */
 func (s *ConfigurationTemplatesService) ExportsTheProjectsForAGivenCriteria(requestConfigurationTemplatesExportsTheProjectsForAGivenCriteria *RequestConfigurationTemplatesExportsTheProjectsForAGivenCriteria) (*ResponseConfigurationTemplatesExportsTheProjectsForAGivenCriteria, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/name/exportprojects"
@@ -2243,7 +2838,7 @@ func (s *ConfigurationTemplatesService) ExportsTheProjectsForAGivenCriteria(requ
 
 @param ImportsTheTemplatesProvidedQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-templates-provided-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!imports-the-templates-provided
 */
 func (s *ConfigurationTemplatesService) ImportsTheTemplatesProvided(projectName string, requestConfigurationTemplatesImportsTheTemplatesProvided *RequestConfigurationTemplatesImportsTheTemplatesProvided, ImportsTheTemplatesProvidedQueryParams *ImportsTheTemplatesProvidedQueryParams) (*ResponseConfigurationTemplatesImportsTheTemplatesProvided, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/name/{projectName}/template/importtemplates"
@@ -2285,7 +2880,7 @@ func (s *ConfigurationTemplatesService) ImportsTheTemplatesProvided(projectName 
 @param projectID projectId path parameter. UUID of the project in which the template needs to be created
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-template
 */
 func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, requestConfigurationTemplatesCreateTemplate *RequestConfigurationTemplatesCreateTemplate) (*ResponseConfigurationTemplatesCreateTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/project/{projectId}/template"
@@ -2323,7 +2918,7 @@ func (s *ConfigurationTemplatesService) CreateTemplate(projectID string, request
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deploy-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deploy-template
 */
 func (s *ConfigurationTemplatesService) DeployTemplate(requestConfigurationTemplatesDeployTemplate *RequestConfigurationTemplatesDeployTemplate) (*ResponseConfigurationTemplatesDeployTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/deploy"
@@ -2360,7 +2955,7 @@ func (s *ConfigurationTemplatesService) DeployTemplate(requestConfigurationTempl
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-templates-for-a-given-criteria-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!exports-the-templates-for-a-given-criteria
 */
 func (s *ConfigurationTemplatesService) ExportsTheTemplatesForAGivenCriteria(requestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria *RequestConfigurationTemplatesExportsTheTemplatesForAGivenCriteria) (*ResponseConfigurationTemplatesExportsTheTemplatesForAGivenCriteria, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/exporttemplates"
@@ -2397,7 +2992,7 @@ func (s *ConfigurationTemplatesService) ExportsTheTemplatesForAGivenCriteria(req
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!version-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!version-template
 */
 func (s *ConfigurationTemplatesService) VersionTemplate(requestConfigurationTemplatesVersionTemplate *RequestConfigurationTemplatesVersionTemplate) (*ResponseConfigurationTemplatesVersionTemplate, *resty.Response, error) {
 	path := "/dna/intent/api/v1/template-programmer/template/version"
@@ -2425,6 +3020,126 @@ func (s *ConfigurationTemplatesService) VersionTemplate(requestConfigurationTemp
 	}
 
 	result := response.Result().(*ResponseConfigurationTemplatesVersionTemplate)
+	return result, response, err
+
+}
+
+//AttachNetworkProfileToADayNCliTemplate Attach network profile to a Day-N CLI template - ecba-b925-4ed9-b235
+/* Attaches a network profile to a Day-N CLI template by passing the profile ID and template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!attach-network-profile-to-a-day-n-cli-template
+*/
+func (s *ConfigurationTemplatesService) AttachNetworkProfileToADayNCliTemplate(templateID string, requestConfigurationTemplatesAttachNetworkProfileToADayNCLITemplate *RequestConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate) (*ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestConfigurationTemplatesAttachNetworkProfileToADayNCLITemplate).
+		SetResult(&ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AttachNetworkProfileToADayNCliTemplate(templateID, requestConfigurationTemplatesAttachNetworkProfileToADayNCLITemplate)
+		}
+
+		return nil, response, fmt.Errorf("error with operation AttachNetworkProfileToADayNCliTemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate)
+	return result, response, err
+
+}
+
+//AttachAListOfNetworkProfilesToADayNCliTemplate Attach a list of network profiles to a Day-N CLI template - 26a5-cb41-46c8-8fe4
+/* Attaches a list of network profiles to the Day-N CLI template by passing the profile IDs and template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!attach-a-list-of-network-profiles-to-a-day-n-cli-template
+*/
+func (s *ConfigurationTemplatesService) AttachAListOfNetworkProfilesToADayNCliTemplate(templateID string, requestConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCLITemplate *RequestConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate) (*ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites/bulk"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCLITemplate).
+		SetResult(&ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AttachAListOfNetworkProfilesToADayNCliTemplate(templateID, requestConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCLITemplate)
+		}
+
+		return nil, response, fmt.Errorf("error with operation AttachAListOfNetworkProfilesToADayNCliTemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesAttachAListOfNetworkProfilesToADayNCliTemplate)
+	return result, response, err
+
+}
+
+//CommitTemplateForANewVersion Commit Template For a New Version - c8bd-49fa-4999-b43b
+/* Transitions the current draft of a template to a new committed version with a higher version number.
+
+
+@param templateID templateId path parameter. The id of the template to commit a new version for, retrieveable from `GET /dna/intent/api/v1/templates`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!commit-template-for-a-new-version
+*/
+func (s *ConfigurationTemplatesService) CommitTemplateForANewVersion(templateID string, requestConfigurationTemplatesCommitTemplateForANewVersion *RequestConfigurationTemplatesCommitTemplateForANewVersion) (*ResponseConfigurationTemplatesCommitTemplateForANewVersion, *resty.Response, error) {
+	path := "/dna/intent/api/v1/templates/{templateId}/versions/commit"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestConfigurationTemplatesCommitTemplateForANewVersion).
+		SetResult(&ResponseConfigurationTemplatesCommitTemplateForANewVersion{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CommitTemplateForANewVersion(templateID, requestConfigurationTemplatesCommitTemplateForANewVersion)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CommitTemplateForANewVersion")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesCommitTemplateForANewVersion)
 	return result, response, err
 
 }
@@ -2462,6 +3177,42 @@ func (s *ConfigurationTemplatesService) DeployTemplateV2(requestConfigurationTem
 	}
 
 	result := response.Result().(*ResponseConfigurationTemplatesDeployTemplateV2)
+	return result, response, err
+
+}
+
+//UpdateTemplateProject Update Template Project - 5891-e9e3-464a-8787
+/* Update a template project by the project's ID.
+
+
+@param projectID projectId path parameter. The id of the project to update, retrieveable from `GET /dna/intent/api/v1/projects`
+
+*/
+func (s *ConfigurationTemplatesService) UpdateTemplateProject(projectID string, requestConfigurationTemplatesUpdateTemplateProject *RequestConfigurationTemplatesUpdateTemplateProject) (*ResponseConfigurationTemplatesUpdateTemplateProject, *resty.Response, error) {
+	path := "/dna/intent/api/v1/projects/{projectId}"
+	path = strings.Replace(path, "{projectId}", fmt.Sprintf("%v", projectID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestConfigurationTemplatesUpdateTemplateProject).
+		SetResult(&ResponseConfigurationTemplatesUpdateTemplateProject{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateTemplateProject(projectID, requestConfigurationTemplatesUpdateTemplateProject)
+		}
+		return nil, response, fmt.Errorf("error with operation UpdateTemplateProject")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesUpdateTemplateProject)
 	return result, response, err
 
 }
@@ -2565,6 +3316,44 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(requestConfigurationTemp
 
 }
 
+//DeleteTemplateProject Delete Template Project - 9c8e-baae-413b-9dbf
+/* Delete a template project by the project's ID.
+
+
+@param projectID projectId path parameter. the id of the project to delete, retrieveable from `GET /dna/intent/api/v1/projects`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-template-project
+*/
+func (s *ConfigurationTemplatesService) DeleteTemplateProject(projectID string) (*ResponseConfigurationTemplatesDeleteTemplateProject, *resty.Response, error) {
+	//projectID string
+	path := "/dna/intent/api/v1/projects/{projectId}"
+	path = strings.Replace(path, "{projectId}", fmt.Sprintf("%v", projectID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesDeleteTemplateProject{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteTemplateProject(projectID)
+		}
+		return nil, response, fmt.Errorf("error with operation DeleteTemplateProject")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesDeleteTemplateProject)
+	return result, response, err
+
+}
+
 //DeletesTheProject Deletes the project - 8cbb-79f4-4259-82d4
 /* Deletes the project by its id
 
@@ -2572,7 +3361,7 @@ func (s *ConfigurationTemplatesService) PreviewTemplate(requestConfigurationTemp
 @param projectID projectId path parameter. projectId(UUID) of project to be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-project-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-project
 */
 func (s *ConfigurationTemplatesService) DeletesTheProject(projectID string) (*ResponseConfigurationTemplatesDeletesTheProject, *resty.Response, error) {
 	//projectID string
@@ -2610,7 +3399,7 @@ func (s *ConfigurationTemplatesService) DeletesTheProject(projectID string) (*Re
 @param templateID templateId path parameter. templateId(UUID) of template to be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-template-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-template
 */
 func (s *ConfigurationTemplatesService) DeletesTheTemplate(templateID string) (*ResponseConfigurationTemplatesDeletesTheTemplate, *resty.Response, error) {
 	//templateID string
@@ -2637,6 +3426,88 @@ func (s *ConfigurationTemplatesService) DeletesTheTemplate(templateID string) (*
 	}
 
 	result := response.Result().(*ResponseConfigurationTemplatesDeletesTheTemplate)
+	return result, response, err
+
+}
+
+//DetachAListOfNetworkProfilesFromADayNCliTemplate Detach a list of network profiles from a Day-N CLI template - a487-0999-4c7a-a94d
+/* Detach a list of network profiles from a Day-N CLI template with a list of profile IDs along with the template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+@param DetachAListOfNetworkProfilesFromADayNCLITemplateQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!detach-a-list-of-network-profiles-from-a-day-n-cli-template
+*/
+func (s *ConfigurationTemplatesService) DetachAListOfNetworkProfilesFromADayNCliTemplate(templateID string, DetachAListOfNetworkProfilesFromADayNCLITemplateQueryParams *DetachAListOfNetworkProfilesFromADayNCliTemplateQueryParams) (*ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplate, *resty.Response, error) {
+	//templateID string,DetachAListOfNetworkProfilesFromADayNCLITemplateQueryParams *DetachAListOfNetworkProfilesFromADayNCliTemplateQueryParams
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites/bulk"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+
+	queryString, _ := query.Values(DetachAListOfNetworkProfilesFromADayNCLITemplateQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplate{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DetachAListOfNetworkProfilesFromADayNCliTemplate(templateID, DetachAListOfNetworkProfilesFromADayNCLITemplateQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation DetachAListOfNetworkProfilesFromADayNCliTemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesDetachAListOfNetworkProfilesFromADayNCliTemplate)
+	return result, response, err
+
+}
+
+//DetachANetworkProfileFromADayNCliTemplate Detach a network profile from a Day-N CLI template - d98b-2986-4d5b-b04c
+/* Detach a network profile from a Day-N CLI template by the profile ID and template ID.
+
+
+@param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
+
+@param profileID profileId path parameter. The `id` of the network profile, retrievable from `GET /intent/api/v1/networkProfilesForSites`
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!detach-a-network-profile-from-a-day-n-cli-template
+*/
+func (s *ConfigurationTemplatesService) DetachANetworkProfileFromADayNCliTemplate(templateID string, profileID string) (*ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplate, *resty.Response, error) {
+	//templateID string,profileID string
+	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites/{profileId}"
+	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
+	path = strings.Replace(path, "{profileId}", fmt.Sprintf("%v", profileID), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplate{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DetachANetworkProfileFromADayNCliTemplate(templateID, profileID)
+		}
+		return nil, response, fmt.Errorf("error with operation DetachANetworkProfileFromADayNCliTemplate")
+	}
+
+	result := response.Result().(*ResponseConfigurationTemplatesDetachANetworkProfileFromADayNCliTemplate)
 	return result, response, err
 
 }

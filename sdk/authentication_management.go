@@ -3,6 +3,7 @@ package dnac
 import (
 	"fmt"
 	"io"
+	"net/http"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/go-querystring/query"
@@ -11,8 +12,8 @@ import (
 type AuthenticationManagementService service
 
 type ImportCertificateQueryParams struct {
-	PkPassword  string   `url:"pkPassword,omitempty"`  //Private Key Passsword
-	ListOfUsers []string `url:"listOfUsers,omitempty"` //listOfUsers
+	PkPassword  string   `url:"pkPassword,omitempty"`  //Password for encrypted private key
+	ListOfUsers []string `url:"listOfUsers,omitempty"` //Specify whether the certificate will be used for controller ("server"), disaster recovery ("ipsec") or both ("server, ipsec"). If no value is provided, the default value taken will be "server"
 }
 
 type ImportCertificateMultipartFields struct {
@@ -23,9 +24,9 @@ type ImportCertificateMultipartFields struct {
 }
 
 type ImportCertificateP12QueryParams struct {
-	P12Password string   `url:"p12Password,omitempty"` //P12 Passsword
-	PkPassword  string   `url:"pkPassword,omitempty"`  //Private Key Passsword
-	ListOfUsers []string `url:"listOfUsers,omitempty"` //listOfUsers
+	P12Password string   `url:"p12Password,omitempty"` //The password for PKCS12 certificate bundle
+	PkPassword  string   `url:"pkPassword,omitempty"`  //Password for encrypted private key
+	ListOfUsers []string `url:"listOfUsers,omitempty"` //Specify whether the certificate will be used for controller ("server"), disaster recovery ("ipsec") or both ("server, ipsec"). If no value is provided, the default value taken will be "server"
 }
 
 type ImportCertificateP12MultipartFields struct {
@@ -54,7 +55,7 @@ type ResponseAuthenticationManagementAuthenticationAPI struct {
 }
 
 //ImportCertificate importCertificate - 2a9e-c8a4-454a-b942
-/* This method is used to upload a certificate
+/* This API enables a user to import a PEM certificate and its key for the controller and/or disaster recovery.
 
 
 @param ImportCertificateQueryParams Filtering parameter
@@ -89,6 +90,11 @@ func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQue
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportCertificate(ImportCertificateQueryParams, ImportCertificateMultipartFields)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportCertificate")
 	}
 
@@ -98,7 +104,7 @@ func (s *AuthenticationManagementService) ImportCertificate(ImportCertificateQue
 }
 
 //ImportCertificateP12 importCertificateP12 - 368e-79cf-4329-b63f
-/* This method is used to upload a PKCS#12 file
+/* This API enables a user to import a PKCS12 certificate bundle for the controller and/or disaster recovery.
 
 
 @param ImportCertificateP12QueryParams Filtering parameter
@@ -132,6 +138,11 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.ImportCertificateP12(ImportCertificateP12QueryParams, ImportCertificateP12MultipartFields)
+		}
+
 		return nil, response, fmt.Errorf("error with operation ImportCertificateP12")
 	}
 
@@ -141,7 +152,7 @@ func (s *AuthenticationManagementService) ImportCertificateP12(ImportCertificate
 }
 
 //AuthenticationAPI Authentication API - ac8a-e94c-4e69-a09d
-/* API to obtain an access token, which remains valid for 1 hour. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco Catalyst Center.
+/* API to obtain an access token, which remains valid for 1 hour. The token obtained using this API is required to be set as value to the X-Auth-Token HTTP Header for all API calls to Cisco DNA Center.
 
 
 
@@ -163,6 +174,11 @@ func (s *AuthenticationManagementService) AuthenticationAPI() (*ResponseAuthenti
 	}
 
 	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AuthenticationAPI()
+		}
+
 		return nil, response, fmt.Errorf("error with operation AuthenticationApi")
 	}
 

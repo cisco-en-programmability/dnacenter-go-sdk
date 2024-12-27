@@ -26,14 +26,16 @@ type ResponseUserandRolesAddRoleAPI struct {
 	Response *ResponseUserandRolesAddRoleAPIResponse `json:"response,omitempty"` //
 }
 type ResponseUserandRolesAddRoleAPIResponse struct {
-	RoleID  string `json:"roleId,omitempty"`  // Role Id
+	RoleID string `json:"roleId,omitempty"` // Role Id
+
 	Message string `json:"message,omitempty"` // Message
 }
 type ResponseUserandRolesUpdateRoleAPI struct {
 	Response *ResponseUserandRolesUpdateRoleAPIResponse `json:"response,omitempty"` //
 }
 type ResponseUserandRolesUpdateRoleAPIResponse struct {
-	RoleID  string `json:"roleId,omitempty"`  // Role Id
+	RoleID string `json:"roleId,omitempty"` // Role Id
+
 	Message string `json:"message,omitempty"` // Message
 }
 type ResponseUserandRolesGetPermissionsAPI struct {
@@ -43,9 +45,12 @@ type ResponseUserandRolesGetPermissionsAPIResponse struct {
 	ResourceTypes *[]ResponseUserandRolesGetPermissionsAPIResponseResourceTypes `json:"resource-types,omitempty"` //
 }
 type ResponseUserandRolesGetPermissionsAPIResponseResourceTypes struct {
-	Type              string `json:"type,omitempty"`              // Type
-	DisplayName       string `json:"displayName,omitempty"`       // Display Name
-	Description       string `json:"description,omitempty"`       // Description
+	Type string `json:"type,omitempty"` // Type
+
+	DisplayName string `json:"displayName,omitempty"` // Display Name
+
+	Description string `json:"description,omitempty"` // Description
+
 	DefaultPermission string `json:"defaultPermission,omitempty"` // Default permission
 }
 type ResponseUserandRolesDeleteRoleAPI struct {
@@ -62,19 +67,27 @@ type ResponseUserandRolesGetRolesAPIResponse struct {
 }
 type ResponseUserandRolesGetRolesAPIResponseRoles struct {
 	ResourceTypes *[]ResponseUserandRolesGetRolesAPIResponseRolesResourceTypes `json:"resourceTypes,omitempty"` //
-	Meta          *ResponseUserandRolesGetRolesAPIResponseRolesMeta            `json:"meta,omitempty"`          //
-	RoleID        string                                                       `json:"roleId,omitempty"`        // Role Id
-	Name          string                                                       `json:"name,omitempty"`          // Role name
-	Description   string                                                       `json:"description,omitempty"`   // Description
-	Type          string                                                       `json:"type,omitempty"`          // Role type, possible values are: "DEFAULT", "SYSTEM", "CUSTOM"
+
+	Meta *ResponseUserandRolesGetRolesAPIResponseRolesMeta `json:"meta,omitempty"` //
+
+	RoleID string `json:"roleId,omitempty"` // Role Id
+
+	Name string `json:"name,omitempty"` // Role name
+
+	Description string `json:"description,omitempty"` // Description
+
+	Type string `json:"type,omitempty"` // Role type, possible values are: "DEFAULT", "SYSTEM", "CUSTOM"
 }
 type ResponseUserandRolesGetRolesAPIResponseRolesResourceTypes struct {
 	Operations []string `json:"operations,omitempty"` // Operations
-	Type       string   `json:"type,omitempty"`       // Type
+
+	Type string `json:"type,omitempty"` // Type
 }
 type ResponseUserandRolesGetRolesAPIResponseRolesMeta struct {
-	CreatedBy    string `json:"createdBy,omitempty"`    // The user that creates the resource type
-	Created      string `json:"created,omitempty"`      // The timestamp that the resource type was created
+	CreatedBy string `json:"createdBy,omitempty"` // The user that creates the resource type
+
+	Created string `json:"created,omitempty"` // The timestamp that the resource type was created
+
 	LastModified string `json:"lastModified,omitempty"` // The latestest timestamp that the resource type was updated
 }
 type ResponseUserandRolesGetUsersAPI struct {
@@ -84,21 +97,29 @@ type ResponseUserandRolesGetUsersAPIResponse struct {
 	Users *[]ResponseUserandRolesGetUsersAPIResponseUsers `json:"users,omitempty"` //
 }
 type ResponseUserandRolesGetUsersAPIResponseUsers struct {
-	FirstName            string   `json:"firstName,omitempty"`            // First Name
-	LastName             string   `json:"lastName,omitempty"`             // Last Name
-	AuthSource           string   `json:"authSource,omitempty"`           // Authentiction source, internal or external
-	PassphraseUpdateTime string   `json:"passphraseUpdateTime,omitempty"` // Passphrase Update Time
-	RoleList             []string `json:"roleList,omitempty"`             // A list of role ids
-	UserID               string   `json:"userId,omitempty"`               // User Id
-	Email                string   `json:"email,omitempty"`                // Email
-	Username             string   `json:"username,omitempty"`             // Username
+	FirstName string `json:"firstName,omitempty"` // First Name
+
+	LastName string `json:"lastName,omitempty"` // Last Name
+
+	AuthSource string `json:"authSource,omitempty"` // Authentiction source, internal or external
+
+	PassphraseUpdateTime string `json:"passphraseUpdateTime,omitempty"` // Passphrase Update Time
+
+	RoleList []string `json:"roleList,omitempty"` // A list of role ids
+
+	UserID string `json:"userId,omitempty"` // User Id
+
+	Email string `json:"email,omitempty"` // Email
+
+	Username string `json:"username,omitempty"` // Username
 }
 type ResponseUserandRolesAddUserAPI struct {
 	Response *ResponseUserandRolesAddUserAPIResponse `json:"response,omitempty"` //
 }
 type ResponseUserandRolesAddUserAPIResponse struct {
 	Message string `json:"message,omitempty"` // Message
-	UserID  string `json:"userId,omitempty"`  // User Id
+
+	UserID string `json:"userId,omitempty"` // User Id
 }
 type ResponseUserandRolesUpdateUserAPI struct {
 	Response *ResponseUserandRolesUpdateUserAPIResponse `json:"response,omitempty"` //
@@ -134,16 +155,25 @@ type ResponseUserandRolesGetExternalAuthenticationServersAPIResponse struct {
 	AAAServers *[]ResponseUserandRolesGetExternalAuthenticationServersAPIResponseAAAServers `json:"aaa-servers,omitempty"` //
 }
 type ResponseUserandRolesGetExternalAuthenticationServersAPIResponseAAAServers struct {
-	AccountingPort     *int   `json:"accountingPort,omitempty"`     // RADIUS server accounting requests port
-	Retries            *int   `json:"retries,omitempty"`            // Retries
-	Protocol           string `json:"protocol,omitempty"`           // Protocol
-	SocketTimeout      *int   `json:"socketTimeout,omitempty"`      // Timeout in seconds
-	ServerIP           string `json:"serverIp,omitempty"`           // Server Ip
-	SharedSecret       string `json:"sharedSecret,omitempty"`       // Shared Secret
-	ServerID           string `json:"serverId,omitempty"`           // Server Id
-	AuthenticationPort *int   `json:"authenticationPort,omitempty"` // RADIUS server authorization requests port
-	AAAAttribute       string `json:"aaaAttribute,omitempty"`       // Aaa Attribute
-	Role               string `json:"role,omitempty"`               // Role of AAA server, primary or secondary server
+	AccountingPort *int `json:"accountingPort,omitempty"` // RADIUS server accounting requests port
+
+	Retries *int `json:"retries,omitempty"` // Retries
+
+	Protocol string `json:"protocol,omitempty"` // Protocol
+
+	SocketTimeout *int `json:"socketTimeout,omitempty"` // Timeout in seconds
+
+	ServerIP string `json:"serverIp,omitempty"` // Server Ip
+
+	SharedSecret string `json:"sharedSecret,omitempty"` // Shared Secret
+
+	ServerID string `json:"serverId,omitempty"` // Server Id
+
+	AuthenticationPort *int `json:"authenticationPort,omitempty"` // RADIUS server authorization requests port
+
+	AAAAttribute string `json:"aaaAttribute,omitempty"` // Aaa Attribute
+
+	Role string `json:"role,omitempty"` // Role of AAA server, primary or secondary server
 }
 type ResponseUserandRolesAddAndUpdateAAAAttributeAPI struct {
 	Response *ResponseUserandRolesAddAndUpdateAAAAttributeAPIResponse `json:"response,omitempty"` //
@@ -167,38 +197,54 @@ type ResponseUserandRolesGetAAAAttributeAPIResponseAAAAttributes struct {
 	AttributeName string `json:"attributeName,omitempty"` // Value of the custom AAA attribute name
 }
 type RequestUserandRolesAddRoleAPI struct {
-	Role          string                                        `json:"role,omitempty"`          // Name of the role
-	Description   string                                        `json:"description,omitempty"`   // Description of role
+	Role string `json:"role,omitempty"` // Name of the role
+
+	Description string `json:"description,omitempty"` // Description of role
+
 	ResourceTypes *[]RequestUserandRolesAddRoleAPIResourceTypes `json:"resourceTypes,omitempty"` //
 }
 type RequestUserandRolesAddRoleAPIResourceTypes struct {
-	Type       string   `json:"type,omitempty"`       // Name of the application in Cisco DNA Center System
+	Type string `json:"type,omitempty"` // Name of the application in the System
+
 	Operations []string `json:"operations,omitempty"` // List of operations allowed for the application. Possible values are "gRead", "gCreate", "gUpdate", "gRemove", or some combination of these.
 }
 type RequestUserandRolesUpdateRoleAPI struct {
-	RoleID        string                                           `json:"roleId,omitempty"`        // Id of the role
-	Description   string                                           `json:"description,omitempty"`   // Description of the role
+	RoleID string `json:"roleId,omitempty"` // Id of the role
+
+	Description string `json:"description,omitempty"` // Description of the role
+
 	ResourceTypes *[]RequestUserandRolesUpdateRoleAPIResourceTypes `json:"resourceTypes,omitempty"` //
 }
 type RequestUserandRolesUpdateRoleAPIResourceTypes struct {
-	Type       string   `json:"type,omitempty"`       // Name of application in Cisco DNA Center System
+	Type string `json:"type,omitempty"` // Name of application in the System
+
 	Operations []string `json:"operations,omitempty"` // List of operations allowed for the application. Possible values are "gRead", "gCreate", "gUpdate", "gRemove", or some combination of these.
 }
 type RequestUserandRolesAddUserAPI struct {
-	FirstName string   `json:"firstName,omitempty"` // First Name
-	LastName  string   `json:"lastName,omitempty"`  // Last Name
-	Username  string   `json:"username,omitempty"`  // Username
-	Password  string   `json:"password,omitempty"`  // Password
-	Email     string   `json:"email,omitempty"`     // Email
-	RoleList  []string `json:"roleList,omitempty"`  // Role id list
+	FirstName string `json:"firstName,omitempty"` // First Name
+
+	LastName string `json:"lastName,omitempty"` // Last Name
+
+	Username string `json:"username,omitempty"` // Username
+
+	Password string `json:"password,omitempty"` // Password
+
+	Email string `json:"email,omitempty"` // Email
+
+	RoleList []string `json:"roleList,omitempty"` // Role id list
 }
 type RequestUserandRolesUpdateUserAPI struct {
-	FirstName string   `json:"firstName,omitempty"` // firstName should be set if the original value is not empty
-	LastName  string   `json:"lastName,omitempty"`  // lastName should be set if the original value is not empty
-	Email     string   `json:"email,omitempty"`     // email should be set if the original value is not empty
-	Username  string   `json:"username,omitempty"`  // Username
-	UserID    string   `json:"userId,omitempty"`    // User Id
-	RoleList  []string `json:"roleList,omitempty"`  // Role id list
+	FirstName string `json:"firstName,omitempty"` // firstName should be set if the original value is not empty
+
+	LastName string `json:"lastName,omitempty"` // lastName should be set if the original value is not empty
+
+	Email string `json:"email,omitempty"` // email should be set if the original value is not empty
+
+	Username string `json:"username,omitempty"` // Username
+
+	UserID string `json:"userId,omitempty"` // User Id
+
+	RoleList []string `json:"roleList,omitempty"` // Role id list
 }
 type RequestUserandRolesManageExternalAuthenticationSettingAPI struct {
 	Enable *bool `json:"enable,omitempty"` // Enable/disable External Authentication.
@@ -208,11 +254,11 @@ type RequestUserandRolesAddAndUpdateAAAAttributeAPI struct {
 }
 
 //GetPermissionsAPI Get permissions API - 8a9c-6885-455b-a2db
-/* Get permissions for a role from Cisco DNA Center System.
+/* Get permissions for a role in the system.
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-permissions-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-permissions-api
 */
 func (s *UserandRolesService) GetPermissionsAPI() (*ResponseUserandRolesGetPermissionsAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/role/permissions"
@@ -242,12 +288,12 @@ func (s *UserandRolesService) GetPermissionsAPI() (*ResponseUserandRolesGetPermi
 }
 
 //GetRolesAPI Get roles API - 7c86-da3f-4b08-8593
-/* Get all roles for the Cisco DNA Center System.
+/* Get all roles in the system
 
 
 @param GetRolesAPIHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-roles-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-roles-api
 */
 func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesAPIHeaderParams) (*ResponseUserandRolesGetRolesAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/roles"
@@ -289,12 +335,12 @@ func (s *UserandRolesService) GetRolesAPI(GetRolesAPIHeaderParams *GetRolesAPIHe
 }
 
 //GetUsersAPI Get users API - 918c-89fa-4a98-a528
-/* Get all users for the Cisco DNA Center System.
+/* Get all users in the system
 
 
 @param GetUsersAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-users-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-users-api
 */
 func (s *UserandRolesService) GetUsersAPI(GetUsersAPIQueryParams *GetUsersAPIQueryParams) (*ResponseUserandRolesGetUsersAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
@@ -330,7 +376,7 @@ func (s *UserandRolesService) GetUsersAPI(GetUsersAPIQueryParams *GetUsersAPIQue
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-setting-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-setting-api
 */
 func (s *UserandRolesService) GetExternalAuthenticationSettingAPI() (*ResponseUserandRolesGetExternalAuthenticationSettingAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-authentication"
@@ -365,7 +411,7 @@ func (s *UserandRolesService) GetExternalAuthenticationSettingAPI() (*ResponseUs
 
 @param GetExternalAuthenticationServersAPIQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-servers-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-external-authentication-servers-api
 */
 func (s *UserandRolesService) GetExternalAuthenticationServersAPI(GetExternalAuthenticationServersAPIQueryParams *GetExternalAuthenticationServersAPIQueryParams) (*ResponseUserandRolesGetExternalAuthenticationServersAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-servers"
@@ -401,7 +447,7 @@ func (s *UserandRolesService) GetExternalAuthenticationServersAPI(GetExternalAut
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-a-a-a-attribute-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-a-a-a-attribute-api
 */
 func (s *UserandRolesService) GetAAAAttributeAPI() (*ResponseUserandRolesGetAAAAttributeAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-servers/aaa-attribute"
@@ -431,11 +477,11 @@ func (s *UserandRolesService) GetAAAAttributeAPI() (*ResponseUserandRolesGetAAAA
 }
 
 //AddRoleAPI Add role API - b697-0a1e-46a9-b542
-/* Add a new role in Cisco DNA Center System.
+/* Add a new role in the system
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-role-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-role-api
 */
 func (s *UserandRolesService) AddRoleAPI(requestUserandRolesAddRoleAPI *RequestUserandRolesAddRoleAPI) (*ResponseUserandRolesAddRoleAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/role"
@@ -468,11 +514,11 @@ func (s *UserandRolesService) AddRoleAPI(requestUserandRolesAddRoleAPI *RequestU
 }
 
 //AddUserAPI Add user API - 6c9a-09c4-4a39-9e2b
-/* Add a new user for Cisco DNA Center System.
+/* Add a new user in the system
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-user-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-user-api
 */
 func (s *UserandRolesService) AddUserAPI(requestUserandRolesAddUserAPI *RequestUserandRolesAddUserAPI) (*ResponseUserandRolesAddUserAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/user"
@@ -505,13 +551,13 @@ func (s *UserandRolesService) AddUserAPI(requestUserandRolesAddUserAPI *RequestU
 }
 
 //ManageExternalAuthenticationSettingAPI Manage External Authentication Setting API - e09c-1806-48da-bb40
-/* Enable or disable external authentication on Cisco DNA Center System.
+/* Enable or disable external authentication in the System.
 Please find the Administrator Guide for your particular release from the list linked below and follow the steps required to enable external authentication before trying to do so from this API.
 https://www.cisco.com/c/en/us/support/cloud-systems-management/dna-center/products-maintenance-guides-list.html
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!manage-external-authentication-setting-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!manage-external-authentication-setting-api
 */
 func (s *UserandRolesService) ManageExternalAuthenticationSettingAPI(requestUserandRolesManageExternalAuthenticationSettingAPI *RequestUserandRolesManageExternalAuthenticationSettingAPI) (*ResponseUserandRolesManageExternalAuthenticationSettingAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-authentication"
@@ -548,7 +594,7 @@ func (s *UserandRolesService) ManageExternalAuthenticationSettingAPI(requestUser
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-and-update-a-a-a-attribute-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-and-update-a-a-a-attribute-api
 */
 func (s *UserandRolesService) AddAndUpdateAAAAttributeAPI(requestUserandRolesAddAndUpdateAAAAttributeAPI *RequestUserandRolesAddAndUpdateAAAAttributeAPI) (*ResponseUserandRolesAddAndUpdateAAAAttributeAPI, *resty.Response, error) {
 	path := "/dna/system/api/v1/users/external-servers/aaa-attribute"
@@ -581,7 +627,7 @@ func (s *UserandRolesService) AddAndUpdateAAAAttributeAPI(requestUserandRolesAdd
 }
 
 //UpdateRoleAPI Update role API - 539c-ea73-400b-bf20
-/* Update a role in Cisco DNA Center System.
+/* Update a role in the system
 
 
  */
@@ -614,7 +660,7 @@ func (s *UserandRolesService) UpdateRoleAPI(requestUserandRolesUpdateRoleAPI *Re
 }
 
 //UpdateUserAPI Update user API - f596-6adc-492b-a2ff
-/* Update a user for Cisco DNA Center System.
+/* Update a user in the system
 
 
  */
@@ -647,13 +693,13 @@ func (s *UserandRolesService) UpdateUserAPI(requestUserandRolesUpdateUserAPI *Re
 }
 
 //DeleteRoleAPI Delete role API - d3b9-8bdc-472b-b236
-/* Delete a role in Cisco DNA Center System
+/* Delete a role in the system
 
 
 @param roleID roleId path parameter. The Id of the role to be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-role-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-role-api
 */
 func (s *UserandRolesService) DeleteRoleAPI(roleID string) (*ResponseUserandRolesDeleteRoleAPI, *resty.Response, error) {
 	//roleID string
@@ -674,8 +720,7 @@ func (s *UserandRolesService) DeleteRoleAPI(roleID string) (*ResponseUserandRole
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteRoleAPI(
-				roleID)
+			return s.DeleteRoleAPI(roleID)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteRoleApi")
 	}
@@ -686,13 +731,13 @@ func (s *UserandRolesService) DeleteRoleAPI(roleID string) (*ResponseUserandRole
 }
 
 //DeleteUserAPI Delete user API - 69b4-ba37-4aca-8e86
-/* Delete a user from Cisco DNA Center System.
+/* Delete a user in the system
 
 
 @param userID userId path parameter. The id of the user to be deleted
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-user-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-user-api
 */
 func (s *UserandRolesService) DeleteUserAPI(userID string) (*ResponseUserandRolesDeleteUserAPI, *resty.Response, error) {
 	//userID string
@@ -728,7 +773,7 @@ func (s *UserandRolesService) DeleteUserAPI(userID string) (*ResponseUserandRole
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a-a-a-attribute-api-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-a-a-a-attribute-api
 */
 func (s *UserandRolesService) DeleteAAAAttributeAPI() (*ResponseUserandRolesDeleteAAAAttributeAPI, *resty.Response, error) {
 	//

@@ -25,7 +25,7 @@ const DNAC_DEBUG = "DNAC_DEBUG"
 const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
 const DNAC_WAIT_TIME = "DNAC_WAIT_TIME"
 
-var VERSION = "2.3.7.6.1"
+var VERSION = "2.3.7.9"
 var DNAC_USER_STRING = "DNAC_USER_STRING"
 var USER_AGENT = "go-cisco-dnacentersdk/" + VERSION
 
@@ -45,10 +45,10 @@ type Client struct {
 
 	// API Services
 	Authentication              *AuthenticationService
-	AuthenticationManagement    *AuthenticationManagementService
 	AIEndpointAnalytics         *AIEndpointAnalyticsService
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
+	AuthenticationManagement    *AuthenticationManagementService
 	CiscoTrustedCertificates    *CiscoTrustedCertificatesService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService
@@ -125,7 +125,9 @@ func NewClientWithOptions(baseURL string, username string, password string, debu
 
 	var user string
 	if len(userString) > 0 {
-		user = "-" + userString[0]
+		user = "-" + string(userString[0])
+	} else {
+		user = " "
 	}
 
 	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest, user)
@@ -273,6 +275,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.AIEndpointAnalytics = (*AIEndpointAnalyticsService)(&c.common)
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
+	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
 	c.CiscoTrustedCertificates = (*CiscoTrustedCertificatesService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
@@ -324,7 +327,7 @@ func NewClientWithOptionsNoAuth(baseURL string, username string, password string
 	if len(userString) > 0 {
 		user = "-" + userString[0]
 	} else {
-		user = ""
+		user = " "
 	}
 
 	err = SetOptions(baseURL, username, password, debug, sslVerify, waitTimeToManyRequest, user)
@@ -376,7 +379,7 @@ func (s *Client) RestyClient() *resty.Client {
 	return s.common.client
 }
 
-func (s *Client) SetCatalystWaitTimeToManyRequest(waitTimeToManyRequest int) error {
+func (s *Client) SetDnaWaitTimeToManyRequest(waitTimeToManyRequest int) error {
 
 	err := os.Setenv(DNAC_WAIT_TIME, strconv.Itoa(waitTimeToManyRequest))
 	if err != nil {

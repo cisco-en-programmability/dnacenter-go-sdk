@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [6.0.0] - 2024-11-14
+## [7.0.0] - 2024-12-27
+### Added
+New services for Cisco Catalyst Center 2.3.7.9's API:
+- AuthenticationManagement    *AuthenticationManagementService
 
+## [6.0.0] - 2024-11-14
 ### Added
 New services for Cisco Catalyst Center 2.3.7.6's API:
 - CiscoTrustedCertificates *CiscoTrustedCertificatesService
@@ -31,7 +35,7 @@ New services for Cisco Catalyst Center 2.3.7.6's API:
 ## [5.0.28] - 2024-06-04
 - `TopOfStackSerialNumber` and `CablingScheme` added to `RequestDeviceOnboardingPnpClaimADeviceToASite`
 - Fix `ResponseItemWirelessGetWirelessProfileProfileDetailsSSIDDetails` to support empty string
-  
+
 ### Note
 - SDK now compatible with Cisco Catalyst Center 2.3.7.6's API.
 
@@ -39,7 +43,7 @@ New services for Cisco Catalyst Center 2.3.7.6's API:
 - Function `GetTemplatesDetails` change response struct from an object to an array objects.
 
 ## [5.0.26] - 2024-04-22
-- Functions were modified to be called recursively in case of Status Unauthorized. 
+- Functions were modified to be called recursively in case of Status Unauthorized.
 
 ## [5.0.25] - 2024-02-13
 - `EndTime` attribute change to `*int` in `ResponseTaskGetTaskTreeResponse`.
@@ -227,10 +231,10 @@ New services for Cisco Catalyst Center 2.3.7.6's API:
 
 ## [4.0.11] - 2022-11-16
 - Change `ConnectedToInternet` and `BorderWithExternalConnectivity` parameters from `bool` to `string`.
-  
+
 ## [4.0.10] - 2022-11-15
 - Change`RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL2Handoff` to allow array.
-  
+
 ## [4.0.9] - 2022-11-14
 ### Changed
 - Change `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3Handoff` to allow array.
@@ -256,17 +260,17 @@ New services for Cisco Catalyst Center 2.3.7.6's API:
 ## [4.0.4] - 2022-07-19
 ### Changed
 - `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric.Payload` atributte removed from `sda.ResponseSdaGetBorderDeviceDetailFromSdaFabric`.
-  
+
 ## [4.0.3] - 2022-07-12
 ### Changed
 - `[]RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork` becomes to `RequestItemSdaAddBorderDeviceInSdaFabricExternalConnectivitySettingsL3HandoffVirtualNetwork`.
-  
+
 ## [4.0.2] - 2022-07-08
 ### Changed
 - `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.TrustCert` parameter turns to `boolean`.
 - `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.ConnectTimeout` parameter turns to `number`.
 - `event_management.ResponseItemEventManagementGetEventSubscriptionsSubscriptionEndpointsSubscriptionDetails.ReadTimeout` parameter turns to `number`.
-  
+
 ### Added
 - Added `SiteNameHierarchy`, `FabricName`, `FabricType` and `FabricDomainType` to
 `ResponseSdaGetSiteFromSdaFabric` of `sda`
@@ -289,10 +293,10 @@ Services removed on Cisco Catalyst Center 2.3.3.0's API:
 - AuthenticationManagement *AuthenticationManagementService
 - DisasterRecovery *DisasterRecoveryService
 - Policy *PolicyService
-  
+
 ### Changed
 - SDK now compatible with Cisco Catalyst Center 2.3.3.0's API.
-  
+
 ## [3.6.3] - 2022-03-17
 ### Changed
 - Changed `RequestConfigurationTemplatesDeployTemplateV2TargetInfoParams` from `interface` to `map[string]interface{}`
@@ -318,7 +322,7 @@ Services removed on Cisco Catalyst Center 2.3.3.0's API:
     + `RequestDeviceOnboardingPnpClaimADeviceToASite.ConfigInfo.ConfigParameters`
     + `RequestDeviceOnboardingPnpClaimADeviceToASite.ConfigInfo.ConfigParameters.Key`
     + `RequestDeviceOnboardingPnpClaimADeviceToASite.ConfigInfo.ConfigParameters.Value`
-  
+
 ## [3.6.0] - 2022-03-15
 ### Added
 - Added new service `CustomCallService`
@@ -541,7 +545,7 @@ Services removed on Cisco Catalyst Center 2.3.3.0's API:
 
 ### Changed
 - Int for count values and float64 for percentages in topology.go
-  
+
 ### Fixed
 - Int for count values and float64 for percentages in topology.go
 
@@ -553,15 +557,15 @@ Services removed on Cisco Catalyst Center 2.3.3.0's API:
 - New definition for GetApplicationsResponse, uses GetApplicationsResponseResponse
 - Adds Attributes to GetSiteResponseResponseAdditionalInfo
 - Adds GetSiteResponseResponseAdditionalInfoAttributes struct
-- Add headers for GetClientEnrichmentDetails 
-  
+- Add headers for GetClientEnrichmentDetails
+
 ### Changed
 - Changes structure definitions of application_policy and sites
 - Changes struct name from GetApplicationsResponse to GetApplicationsResponseResponse
 - AdditionalInfo is []GetSiteResponseResponseAdditionalInfo, not GetSiteResponseResponseAdditionalInfo
 - Changes json attribute, replaces namespace to nameSpace
 - Changes the type in network_settings.go from int to uint64 for GetGlobalPoolResponseResponse
-- Update README 
+- Update README
 - Update example reference
 - Update dependencies
 - Add workflow and scripts

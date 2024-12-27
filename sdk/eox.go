@@ -10,6 +10,11 @@ import (
 
 type EoXService service
 
+type GetEoXStatusForAllDevicesQueryParams struct {
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page. Default is 500 if not specified. Maximum allowed limit is 500.
+	Offset float64 `url:"offset,omitempty"` //The first record to show for this page, the first record is numbered 1
+}
+
 type ResponseEoXGetEoXStatusForAllDevices struct {
 	Response *[]ResponseEoXGetEoXStatusForAllDevicesResponse `json:"response,omitempty"` //
 	Version  string                                          `json:"version,omitempty"`  // Version of the response
@@ -23,7 +28,7 @@ type ResponseEoXGetEoXStatusForAllDevicesResponse struct {
 	LastScanTime *int                                                   `json:"lastScanTime,omitempty"` // Time at which the network device was scanned. The representation is unix time.
 }
 type ResponseEoXGetEoXStatusForAllDevicesResponseSummary struct {
-	EoXType string `json:"EoXType,omitempty"` // Type of EoX Alert
+	EoXType string `json:"eoxType,omitempty"` // Type of EoX Alert
 }
 type ResponseEoXGetEoXDetailsPerDevice struct {
 	Response *ResponseEoXGetEoXDetailsPerDeviceResponse `json:"response,omitempty"` //
@@ -73,11 +78,12 @@ type ResponseEoXGetEoXSummaryResponse struct {
 /* Retrieves EoX status for all devices in the network
 
 
+@param GetEoXStatusForAllDevicesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-status-for-all-devices-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-status-for-all-devices
 */
 func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
-	path := "/dna/intent/api/v1/EoX-status/device"
+	path := "/dna/intent/api/v1/eox-status/device"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -110,10 +116,10 @@ func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-details-per-device-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-details-per-device
 */
 func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoXDetailsPerDevice, *resty.Response, error) {
-	path := "/dna/intent/api/v1/EoX-status/device/{deviceId}"
+	path := "/dna/intent/api/v1/eox-status/device/{deviceId}"
 	path = strings.Replace(path, "{deviceId}", fmt.Sprintf("%v", deviceID), -1)
 
 	response, err := s.client.R().
@@ -145,10 +151,10 @@ func (s *EoXService) GetEoXDetailsPerDevice(deviceID string) (*ResponseEoXGetEoX
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-EoX-summary-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-summary
 */
 func (s *EoXService) GetEoXSummary() (*ResponseEoXGetEoXSummary, *resty.Response, error) {
-	path := "/dna/intent/api/v1/EoX-status/summary"
+	path := "/dna/intent/api/v1/eox-status/summary"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
