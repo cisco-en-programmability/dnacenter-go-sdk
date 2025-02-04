@@ -31,20 +31,20 @@ type RetrieveASpecificAssuranceTaskByIDHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type GetTasksOperationalTasksQueryParams struct {
-	StartTime     string  `url:"startTime,omitempty"`     //This is the epoch start time from which tasks need to be fetched
-	EndTime       string  `url:"endTime,omitempty"`       //This is the epoch end time upto which audit records need to be fetched
-	Data          string  `url:"data,omitempty"`          //Fetch tasks that contains this data
-	ErrorCode     string  `url:"errorCode,omitempty"`     //Fetch tasks that have this error code
-	ServiceType   string  `url:"serviceType,omitempty"`   //Fetch tasks with this service type
-	Username      string  `url:"username,omitempty"`      //Fetch tasks with this username
-	Progress      string  `url:"progress,omitempty"`      //Fetch tasks that contains this progress
-	IsError       string  `url:"isError,omitempty"`       //Fetch tasks ended as success or failure. Valid values: true, false
-	FailureReason string  `url:"failureReason,omitempty"` //Fetch tasks that contains this failure reason
-	ParentID      string  `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
-	Offset        float64 `url:"offset,omitempty"`        //The first record to show for this page; the first record is numbered 1.
-	Limit         float64 `url:"limit,omitempty"`         //The number of records to show for this page;The minimum is 1, and the maximum is 500.
-	SortBy        string  `url:"sortBy,omitempty"`        //Sort results by this field
-	Order         string  `url:"order,omitempty"`         //Sort order - asc or dsc
+	StartTime     string `url:"startTime,omitempty"`     //This is the epoch start time from which tasks need to be fetched
+	EndTime       string `url:"endTime,omitempty"`       //This is the epoch end time upto which audit records need to be fetched
+	Data          string `url:"data,omitempty"`          //Fetch tasks that contains this data
+	ErrorCode     string `url:"errorCode,omitempty"`     //Fetch tasks that have this error code
+	ServiceType   string `url:"serviceType,omitempty"`   //Fetch tasks with this service type
+	Username      string `url:"username,omitempty"`      //Fetch tasks with this username
+	Progress      string `url:"progress,omitempty"`      //Fetch tasks that contains this progress
+	IsError       string `url:"isError,omitempty"`       //Fetch tasks ended as success or failure. Valid values: true, false
+	FailureReason string `url:"failureReason,omitempty"` //Fetch tasks that contains this failure reason
+	ParentID      string `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
+	Offset        int    `url:"offset,omitempty"`        //The first record to show for this page; the first record is numbered 1.
+	Limit         int    `url:"limit,omitempty"`         //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	SortBy        string `url:"sortBy,omitempty"`        //Sort results by this field
+	Order         string `url:"order,omitempty"`         //Sort order - asc or dsc
 }
 type GetTaskCountQueryParams struct {
 	StartTime     string `url:"startTime,omitempty"`     //This is the epoch start time from which tasks need to be fetched
@@ -59,15 +59,15 @@ type GetTaskCountQueryParams struct {
 	ParentID      string `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
 }
 type GetTasksQueryParams struct {
-	Offset    float64 `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 1.
-	Limit     float64 `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
-	SortBy    string  `url:"sortBy,omitempty"`    //A property within the response to sort by.
-	Order     string  `url:"order,omitempty"`     //Whether ascending or descending order should be used to sort the response.
-	StartTime int     `url:"startTime,omitempty"` //This is the epoch millisecond start time from which tasks need to be fetched
-	EndTime   int     `url:"endTime,omitempty"`   //This is the epoch millisecond end time upto which task records need to be fetched
-	ParentID  string  `url:"parentId,omitempty"`  //Fetch tasks that have this parent Id
-	RootID    string  `url:"rootId,omitempty"`    //Fetch tasks that have this root Id
-	Status    string  `url:"status,omitempty"`    //Fetch tasks that have this status. Available values : PENDING, FAILURE, SUCCESS
+	Offset    int    `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 1.
+	Limit     int    `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	SortBy    string `url:"sortBy,omitempty"`    //A property within the response to sort by.
+	Order     string `url:"order,omitempty"`     //Whether ascending or descending order should be used to sort the response.
+	StartTime int    `url:"startTime,omitempty"` //This is the epoch millisecond start time from which tasks need to be fetched
+	EndTime   int    `url:"endTime,omitempty"`   //This is the epoch millisecond end time upto which task records need to be fetched
+	ParentID  string `url:"parentId,omitempty"`  //Fetch tasks that have this parent Id
+	RootID    string `url:"rootId,omitempty"`    //Fetch tasks that have this root Id
+	Status    string `url:"status,omitempty"`    //Fetch tasks that have this status. Available values : PENDING, FAILURE, SUCCESS
 }
 type GetTasksCountQueryParams struct {
 	StartTime int    `url:"startTime,omitempty"` //This is the epoch millisecond start time from which tasks need to be fetched

@@ -1829,6 +1829,7 @@ type ResponseDevicesGetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDev
 	ConnectedSwitchUUID     string   `json:"connectedSwitchUuid,omitempty"`     // Connected Switch Uuid
 	IeeeCompliant           *bool    `json:"ieeeCompliant,omitempty"`           // Ieee Compliant
 	ConnectedSwitchType     string   `json:"connectedSwitchType,omitempty"`     // Connected Switch Type
+	SiteName                string   `json:"siteName,omitempty"`
 }
 type ResponseDevicesGetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevicesPage struct {
 	Limit  *int                                                                                         `json:"limit,omitempty"`  // Limit
@@ -1987,6 +1988,7 @@ type ResponseDevicesGetTheInterfaceDataForTheGivenInterfaceIDinstanceUUIDAlongWi
 	ConnectedSwitchUUID     string   `json:"connectedSwitchUuid,omitempty"`     // Connected Switch Uuid
 	IeeeCompliant           *bool    `json:"ieeeCompliant,omitempty"`           // Ieee Compliant
 	ConnectedSwitchType     string   `json:"connectedSwitchType,omitempty"`     // Connected Switch Type
+	SiteName                string   `json:"siteName,omitempty"`
 }
 type ResponseDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRange struct {
 	Response       *[]ResponseDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeResponse `json:"response,omitempty"`       //
@@ -7668,6 +7670,27 @@ type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFilt
 	EndTime *int `json:"endTime,omitempty"` // End Time
 
 	Filters *[]RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters `json:"filters,omitempty"` //
+
+	Views []string `json:"views,omitempty"`
+
+	Attributes []string `json:"attributes,omitempty"`
+
+	AggregateAttributes []RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes `json:"aggregateAttributes,omitempty"`
+
+	Page *RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage `json:"page,omitempty"`
+}
+type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage struct {
+	Limit  *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
+	SortBy *[]RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy
+}
+type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy struct {
+	Name  string `json:"name,omitempty"`
+	Order string `json:"order,omitempty"`
+}
+type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes struct {
+	Name     string `json:"name,omitempty"`
+	Function string `json:"function,omitempty"`
 }
 type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters struct {
 	Key string `json:"key,omitempty"` // Key

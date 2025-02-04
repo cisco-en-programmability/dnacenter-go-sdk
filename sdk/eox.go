@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/google/go-querystring/query"
 )
 
 type EoXService service
@@ -82,13 +83,15 @@ type ResponseEoXGetEoXSummaryResponse struct {
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-eox-status-for-all-devices
 */
-func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
+func (s *EoXService) GetEoXStatusForAllDevices(GetEoXStatusForAllDevicesQueryParams *GetEoXStatusForAllDevicesQueryParams) (*ResponseEoXGetEoXStatusForAllDevices, *resty.Response, error) {
 	path := "/dna/intent/api/v1/eox-status/device"
+
+	queryString, _ := query.Values(GetEoXStatusForAllDevicesQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseEoXGetEoXStatusForAllDevices{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseEoXGetEoXStatusForAllDevices{}).
 		SetError(&Error).
 		Get(path)
 
@@ -99,7 +102,7 @@ func (s *EoXService) GetEoXStatusForAllDevices() (*ResponseEoXGetEoXStatusForAll
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetEoXStatusForAllDevices()
+			return s.GetEoXStatusForAllDevices(GetEoXStatusForAllDevicesQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation GetEoXStatusForAllDevices")
 	}

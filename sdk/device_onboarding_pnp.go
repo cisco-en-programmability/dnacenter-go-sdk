@@ -12,8 +12,8 @@ import (
 type DeviceOnboardingPnpService service
 
 type GetDeviceListSiteManagementQueryParams struct {
-	Limit            float64  `url:"limit,omitempty"`            //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
-	Offset           float64  `url:"offset,omitempty"`           //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
+	Limit            int      `url:"limit,omitempty"`            //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
+	Offset           int      `url:"offset,omitempty"`           //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
 	Sort             []string `url:"sort,omitempty"`             //Comma seperated list of fields to sort on
 	SortOrder        string   `url:"sortOrder,omitempty"`        //Sort Order Ascending (asc) or Descending (des)
 	SerialNumber     []string `url:"serialNumber,omitempty"`     //Device Serial Number
@@ -54,8 +54,8 @@ type DeregisterVirtualAccountQueryParams struct {
 	Name   string `url:"name,omitempty"`   //Virtual Account Name
 }
 type GetWorkflowsQueryParams struct {
-	Limit     float64  `url:"limit,omitempty"`     //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
-	Offset    float64  `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
+	Limit     int      `url:"limit,omitempty"`     //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
+	Offset    int      `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
 	Sort      []string `url:"sort,omitempty"`      //Comma seperated lost of fields to sort on
 	SortOrder string   `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (des)
 	Type      []string `url:"type,omitempty"`      //Workflow Type

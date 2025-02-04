@@ -63,11 +63,11 @@ type GetTemplateVersionsCountQueryParams struct {
 	LatestVersion bool `url:"latestVersion,omitempty"` //Filter response to only include the latest version of a template
 }
 type GetProjectsDetailsV2QueryParams struct {
-	ID        string  `url:"id,omitempty"`        //Id of project to be searched
-	Name      string  `url:"name,omitempty"`      //Name of project to be searched
-	Offset    int     `url:"offset,omitempty"`    //Index of first result
-	Limit     float64 `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
-	SortOrder string  `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (dsc)
+	ID        string `url:"id,omitempty"`        //Id of project to be searched
+	Name      string `url:"name,omitempty"`      //Name of project to be searched
+	Offset    int    `url:"offset,omitempty"`    //Index of first result
+	Limit     int    `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	SortOrder string `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (dsc)
 }
 type GetTemplatesDetailsV2QueryParams struct {
 	ID                         string   `url:"id,omitempty"`                         //Id of template to be searched
@@ -86,7 +86,7 @@ type GetTemplatesDetailsV2QueryParams struct {
 	AllTemplateAttributes      bool     `url:"allTemplateAttributes,omitempty"`      //Return all template attributes
 	IncludeVersionDetails      bool     `url:"includeVersionDetails,omitempty"`      //Include template version details
 	Offset                     int      `url:"offset,omitempty"`                     //Index of first result
-	Limit                      float64  `url:"limit,omitempty"`                      //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Limit                      int      `url:"limit,omitempty"`                      //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 }
 
 type ResponseConfigurationTemplatesCreateTemplateProject struct {
@@ -957,9 +957,7 @@ type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrors s
 }
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsRollbackTemplateErrors interface{}
 type ResponseConfigurationTemplatesGetsDetailsOfAGivenTemplateValidationErrorsTemplateErrors interface{}
-type ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate struct {
-	object string `json:"object,omitempty"` // object
-}
+type ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate interface{}
 type ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplate struct {
 	Version  string                                                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseConfigurationTemplatesAttachNetworkProfileToADayNCliTemplateResponse `json:"response,omitempty"` //
@@ -2370,21 +2368,20 @@ func (s *ConfigurationTemplatesService) GetsDetailsOfAGivenTemplate(templateID s
 @param templateID templateId path parameter. The `id` of the template, retrievable from `GET /intent/api/v1/templates`
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-network-profiles-attached-to-acl-i-template
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-network-profiles-attached-to-acli-template
 */
-func (s *ConfigurationTemplatesService) RetrieveTheNetworkProfilesAttachedToACLITemplate(templateID string) (*ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate, *resty.Response, error) {
+func (s *ConfigurationTemplatesService) RetrieveTheNetworkProfilesAttachedToACLITemplate(templateID string) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/templates/{templateId}/networkProfilesForSites"
 	path = strings.Replace(path, "{templateId}", fmt.Sprintf("%v", templateID), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
@@ -2392,11 +2389,9 @@ func (s *ConfigurationTemplatesService) RetrieveTheNetworkProfilesAttachedToACLI
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.RetrieveTheNetworkProfilesAttachedToACLITemplate(templateID)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrieveTheNetworkProfilesAttachedToAclITemplate")
+		return response, fmt.Errorf("error with operation RetrieveTheNetworkProfilesAttachedToAclITemplate")
 	}
-
-	result := response.Result().(*ResponseConfigurationTemplatesRetrieveTheNetworkProfilesAttachedToACLITemplate)
-	return result, response, err
+	return response, err
 
 }
 

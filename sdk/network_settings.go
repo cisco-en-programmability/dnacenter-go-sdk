@@ -51,7 +51,7 @@ type GetReserveIPSubpoolQueryParams struct {
 	SiteID                string  `url:"siteId,omitempty"`                //site id of site from which to retrieve associated reserve pools. Either siteId (per site queries) or ignoreInheritedGroups must be used. They can also be used together.
 	Offset                float64 `url:"offset,omitempty"`                //offset/starting row. Indexed from 1.
 	Limit                 float64 `url:"limit,omitempty"`                 //Number of reserve pools to be retrieved. Default is 25 if not specified. Maximum allowed limit is 500.
-	IgnoreInheritedGroups bool    `url:"ignoreInheritedGroups,omitempty"` //Ignores pools inherited from parent site. Either siteId or ignoreInheritedGroups must be passed. They can also be used together.
+	IgnoreInheritedGroups string  `url:"ignoreInheritedGroups,omitempty"` //Ignores pools inherited from parent site. Either siteId or ignoreInheritedGroups must be passed. They can also be used together.
 	PoolUsage             string  `url:"poolUsage,omitempty"`             //Can take values empty, partially-full or empty-partially-full
 	GroupName             string  `url:"groupName,omitempty"`             //Name of the group
 }

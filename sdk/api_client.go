@@ -49,6 +49,7 @@ type Client struct {
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
 	AuthenticationManagement    *AuthenticationManagementService
+	CiscoIMC                    *CiscoIMCService
 	CiscoTrustedCertificates    *CiscoTrustedCertificatesService
 	Clients                     *ClientsService
 	CommandRunner               *CommandRunnerService

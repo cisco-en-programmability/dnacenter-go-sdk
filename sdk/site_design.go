@@ -41,12 +41,12 @@ type UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //The id or ids of the network profile, retrievable from /dna/intent/api/v1/sites.. A list of profile ids can be passed as a queryParameter in two ways:  1. a comma-separated string ( siteId=388a23e9-4739-4be7-a0aa-cc5a95d158dd,2726dc60-3a12-451e-947a-d972ebf58743), or... 2. as separate query parameters with the same name ( siteId=388a23e9-4739-4be7-a0aa-cc5a95d158dd&siteId=2726dc60-3a12-451e-947a-d972ebf58743
 }
 type GetSitesQueryParams struct {
-	Name           string  `url:"name,omitempty"`            //Site name.
-	NameHierarchy  string  `url:"nameHierarchy,omitempty"`   //Site name hierarchy.
-	Type           string  `url:"type,omitempty"`            //Site type.
-	UnitsOfMeasure string  `url:"_unitsOfMeasure,omitempty"` //Floor units of measure
-	Offset         float64 `url:"offset,omitempty"`          //The first record to show for this page; the first record is numbered 1.
-	Limit          float64 `url:"limit,omitempty"`           //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Name           string `url:"name,omitempty"`            //Site name.
+	NameHierarchy  string `url:"nameHierarchy,omitempty"`   //Site name hierarchy.
+	Type           string `url:"type,omitempty"`            //Site type.
+	UnitsOfMeasure string `url:"_unitsOfMeasure,omitempty"` //Floor units of measure
+	Offset         int    `url:"offset,omitempty"`          //The first record to show for this page; the first record is numbered 1.
+	Limit          int    `url:"limit,omitempty"`           //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 }
 type GetSitesCountQueryParams struct {
 	Name string `url:"name,omitempty"` //Site name.

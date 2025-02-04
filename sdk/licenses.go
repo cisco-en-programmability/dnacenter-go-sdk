@@ -236,6 +236,26 @@ type ResponseLicensesLicenseUsageDetails struct {
 	UsedDnaLicense *ResponseLicensesLicenseUsageDetailsUsedDnaLicense `json:"used_dna_license,omitempty"` //
 
 	UsedNetworkLicense *ResponseLicensesLicenseUsageDetailsUsedNetworkLicense `json:"used_network_license,omitempty"` //
+
+	PurchasedIseLicense *ResponseLicensesLicenseUsageDetailsPurchasedIseLicense `json:"purchased_ise_license,omitempty"`
+
+	UsedIseLicense *ResponseLicensesLicenseUsageDetailsUsedIseLicense `json:"used_ise_license,omitempty"`
+}
+type ResponseLicensesLicenseUsageDetailsUsedIseLicense struct {
+	TotalLicenseCount  *int                                                                   `json:"total_license_count,omitempty"`
+	LicenseCountByType *[]ResponseLicensesLicenseUsageDetailsUsedIseLicenseLicenseCountByType `json:"license_count_by_type,omitempty"`
+}
+type ResponseLicensesLicenseUsageDetailsUsedIseLicenseLicenseCountByType struct {
+	LicenseType  string `json:"license_type,omitempty"`
+	LicenseCount *int   `json:"license_count,omitempty"`
+}
+type ResponseLicensesLicenseUsageDetailsPurchasedIseLicense struct {
+	TotalLicenseCount  *int                                                                        `json:"total_license_count,omitempty"`
+	LicenseCountByType *[]ResponseLicensesLicenseUsageDetailsPurchasedIseLicenseLicenseCountByType `json:"license_count_by_type,omitempty"`
+}
+type ResponseLicensesLicenseUsageDetailsPurchasedIseLicenseLicenseCountByType struct {
+	LicenseType  string `json:"license_type,omitempty"`
+	LicenseCount *int   `json:"license_count,omitempty"`
 }
 type ResponseLicensesLicenseUsageDetailsPurchasedDnaLicense struct {
 	TotalLicenseCount  *int                                                                        `json:"total_license_count,omitempty"`   // Total number of licenses

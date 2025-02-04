@@ -79,8 +79,15 @@ type ResponseItsmIntegrationGetItsmIntegrationSettingByIDDataConnectionSettings 
 	AuthUserName string `json:"Auth_UserName,omitempty"` // Auth User Name
 	AuthPassword string `json:"Auth_Password,omitempty"` // Auth Password
 }
-type ResponseItsmIntegrationGetAllItsmIntegrationSettings []ResponseItemItsmIntegrationGetAllItsmIntegrationSettings // Array of ResponseItsmIntegrationGetAllITSMIntegrationSettings
-type ResponseItemItsmIntegrationGetAllItsmIntegrationSettings struct {
+type ResponseItsmIntegrationGetAllItsmIntegrationSettings struct { // Array of ResponseItsmIntegrationGetAllITSMIntegrationSettings
+	Page         *int                                                       `json:"page,omitempty"`
+	PageSize     *int                                                       `json:"pageSize,omitempty"`
+	TotalPages   *int                                                       `json:"totalPages,omitempty"`
+	Data         []ResponseItsmIntegrationGetAllItsmIntegrationSettingsData `json:"data,omitempty"`
+	TotalRecords *int                                                       `json:"totalRecords,omitempty"`
+}
+type ResponseItsmIntegrationGetAllItsmIntegrationSettingsData struct {
+	TypeID             string                                                                        `json:"_id,omitempty"`
 	ID                 string                                                                        `json:"id,omitempty"`                 // Id
 	DypID              string                                                                        `json:"dypId,omitempty"`              // Dyp Id
 	DypName            string                                                                        `json:"dypName,omitempty"`            // Dyp Name
@@ -91,11 +98,11 @@ type ResponseItemItsmIntegrationGetAllItsmIntegrationSettings struct {
 	CreatedDate        *int                                                                          `json:"createdDate,omitempty"`        // Created Date
 	CreatedBy          string                                                                        `json:"createdBy,omitempty"`          // Created By
 	UpdatedBy          string                                                                        `json:"updatedBy,omitempty"`          // Updated By
-	SoftwareVersionLog *[]ResponseItemItsmIntegrationGetAllItsmIntegrationSettingsSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
+	SoftwareVersionLog *[]ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
 	SchemaVersion      *float64                                                                      `json:"schemaVersion,omitempty"`      // Schema Version
 	TenantID           string                                                                        `json:"tenantId,omitempty"`           // Tenant Id
 }
-type ResponseItemItsmIntegrationGetAllItsmIntegrationSettingsSoftwareVersionLog interface{}
+type ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog interface{}
 type ResponseItsmIntegrationGetItsmIntegrationStatus struct {
 	Response *[]ResponseItsmIntegrationGetItsmIntegrationStatusResponse `json:"response,omitempty"` //
 	Version  string                                                     `json:"version,omitempty"`  // Version
