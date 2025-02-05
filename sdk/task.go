@@ -11,6 +11,25 @@ import (
 
 type TaskService service
 
+type RetrieveAListOfAssuranceTasksQueryParams struct {
+	Limit  float64 `url:"limit,omitempty"`  //Maximum number of records to return
+	Offset float64 `url:"offset,omitempty"` //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
+	SortBy string  `url:"sortBy,omitempty"` //A field within the response to sort by.
+	Order  string  `url:"order,omitempty"`  //The sort order of the field ascending or descending.
+	Status string  `url:"status,omitempty"` //used to get a subset of tasks by their status
+}
+type RetrieveAListOfAssuranceTasksHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams struct {
+	Status string `url:"status,omitempty"` //used to get a subset of tasks by their status
+}
+type RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type RetrieveASpecificAssuranceTaskByIDHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
 type GetTasksOperationalTasksQueryParams struct {
 	StartTime     string `url:"startTime,omitempty"`     //This is the epoch start time from which tasks need to be fetched
 	EndTime       string `url:"endTime,omitempty"`       //This is the epoch end time upto which audit records need to be fetched
@@ -22,8 +41,8 @@ type GetTasksOperationalTasksQueryParams struct {
 	IsError       string `url:"isError,omitempty"`       //Fetch tasks ended as success or failure. Valid values: true, false
 	FailureReason string `url:"failureReason,omitempty"` //Fetch tasks that contains this failure reason
 	ParentID      string `url:"parentId,omitempty"`      //Fetch tasks that have this parent Id
-	Offset        int    `url:"offset,omitempty"`        //offset
-	Limit         int    `url:"limit,omitempty"`         //limit
+	Offset        int    `url:"offset,omitempty"`        //The first record to show for this page; the first record is numbered 1.
+	Limit         int    `url:"limit,omitempty"`         //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 	SortBy        string `url:"sortBy,omitempty"`        //Sort results by this field
 	Order         string `url:"order,omitempty"`         //Sort order - asc or dsc
 }
@@ -41,7 +60,7 @@ type GetTaskCountQueryParams struct {
 }
 type GetTasksQueryParams struct {
 	Offset    int    `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 1.
-	Limit     int    `url:"limit,omitempty"`     //The number of records to show for this page.
+	Limit     int    `url:"limit,omitempty"`     //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 	SortBy    string `url:"sortBy,omitempty"`    //A property within the response to sort by.
 	Order     string `url:"order,omitempty"`     //Whether ascending or descending order should be used to sort the response.
 	StartTime int    `url:"startTime,omitempty"` //This is the epoch millisecond start time from which tasks need to be fetched
@@ -58,163 +77,506 @@ type GetTasksCountQueryParams struct {
 	Status    string `url:"status,omitempty"`    //Fetch tasks that have this status. Available values : PENDING, FAILURE, SUCCESS
 }
 
-type ResponseTaskGetBusinessAPIExecutionDetails struct {
-	BapiKey           string `json:"bapiKey,omitempty"`           // Business API Key (UUID)
-	BapiName          string `json:"bapiName,omitempty"`          // Name of the Business API
-	BapiExecutionID   string `json:"bapiExecutionId,omitempty"`   // Execution Id of the Business API (UUID)
-	StartTime         string `json:"startTime,omitempty"`         // Execution Start Time of the Business API (Date Time Format)
-	StartTimeEpoch    *int   `json:"startTimeEpoch,omitempty"`    // Execution Start Time of the Business API (Epoch Milliseconds)
-	EndTime           string `json:"endTime,omitempty"`           // Execution End Time of the Business API (Date Time Format)
-	EndTimeEpoch      *int   `json:"endTimeEpoch,omitempty"`      // Execution End Time of the Business API (Epoch Milliseconds)
-	TimeDuration      *int   `json:"timeDuration,omitempty"`      // Time taken for Business API Execution (Milliseconds)
-	Status            string `json:"status,omitempty"`            // Execution status of the Business API
-	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
-	BapiError         string `json:"bapiError,omitempty"`         // Business API error message
+type ResponseTaskRetrieveAListOfAssuranceTasks struct {
+	Response *[]ResponseTaskRetrieveAListOfAssuranceTasksResponse `json:"response,omitempty"` //
+
+	Page *ResponseTaskRetrieveAListOfAssuranceTasksPage `json:"page,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
 }
+type ResponseTaskRetrieveAListOfAssuranceTasksResponse struct {
+	ID string `json:"id,omitempty"` // Id
+
+	Status string `json:"status,omitempty"` // Status
+
+	StartTime *int `json:"startTime,omitempty"` // Start Time
+
+	EndTime *int `json:"endTime,omitempty"` // End Time
+
+	UpdateTime *int `json:"updateTime,omitempty"` // Update Time
+
+	Progress string `json:"progress,omitempty"` // Progress
+
+	FailureReason string `json:"failureReason,omitempty"` // Failure Reason
+
+	ErrorCode string `json:"errorCode,omitempty"` // Error Code
+
+	RequestType string `json:"requestType,omitempty"` // Request Type
+
+	Data *ResponseTaskRetrieveAListOfAssuranceTasksResponseData `json:"data,omitempty"` // Data
+
+	ResultURL string `json:"resultUrl,omitempty"` // Result Url
+}
+type ResponseTaskRetrieveAListOfAssuranceTasksResponseData interface{}
+type ResponseTaskRetrieveAListOfAssuranceTasksPage struct {
+	Limit *int `json:"limit,omitempty"` // Limit
+
+	Offset *int `json:"offset,omitempty"` // Offset
+
+	Count *int `json:"count,omitempty"` // Count
+
+	SortBy *[]ResponseTaskRetrieveAListOfAssuranceTasksPageSortBy `json:"sortBy,omitempty"` //
+}
+type ResponseTaskRetrieveAListOfAssuranceTasksPageSortBy struct {
+	Name string `json:"name,omitempty"` // Name
+
+	Order string `json:"order,omitempty"` // Order
+}
+type ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist struct {
+	Response *ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseTaskRetrieveASpecificAssuranceTaskByID struct {
+	Response *ResponseTaskRetrieveASpecificAssuranceTaskByIDResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseTaskRetrieveASpecificAssuranceTaskByIDResponse struct {
+	ID string `json:"id,omitempty"` // Id
+
+	Status string `json:"status,omitempty"` // Status
+
+	StartTime *int `json:"startTime,omitempty"` // Start Time
+
+	EndTime *int `json:"endTime,omitempty"` // End Time
+
+	UpdateTime *int `json:"updateTime,omitempty"` // Update Time
+
+	Progress string `json:"progress,omitempty"` // Progress
+
+	FailureReason string `json:"failureReason,omitempty"` // Failure Reason
+
+	ErrorCode string `json:"errorCode,omitempty"` // Error Code
+
+	RequestType string `json:"requestType,omitempty"` // Request Type
+
+	Data *ResponseTaskRetrieveASpecificAssuranceTaskByIDResponseData `json:"data,omitempty"` // Data
+
+	ResultURL string `json:"resultUrl,omitempty"` // Result Url
+}
+type ResponseTaskRetrieveASpecificAssuranceTaskByIDResponseData interface{}
+type ResponseTaskGetBusinessAPIExecutionDetails struct {
+	BapiKey string `json:"bapiKey,omitempty"` // Business API Key (UUID)
+
+	BapiName string `json:"bapiName,omitempty"` // Name of the Business API
+
+	BapiExecutionID string `json:"bapiExecutionId,omitempty"` // Execution Id of the Business API (UUID)
+
+	StartTime string `json:"startTime,omitempty"` // Execution Start Time of the Business API (Date Time Format)
+
+	StartTimeEpoch *int `json:"startTimeEpoch,omitempty"` // Execution Start Time of the Business API (Epoch Milliseconds)
+
+	EndTime string `json:"endTime,omitempty"` // Execution End Time of the Business API (Date Time Format)
+
+	EndTimeEpoch *int `json:"endTimeEpoch,omitempty"` // Execution End Time of the Business API (Epoch Milliseconds)
+
+	TimeDuration *int `json:"timeDuration,omitempty"` // Time taken for Business API Execution (Milliseconds)
+
+	Status string `json:"status,omitempty"` // Execution status of the Business API
+
+	BapiSyncResponse string `json:"bapiSyncResponse,omitempty"` // Returns the actual response of the original API as a string
+
+	BapiSyncResponseJSON *ResponseTaskGetBusinessAPIExecutionDetailsBapiSyncResponseJSON `json:"bapiSyncResponseJson,omitempty"` // Returns the actual response of the original API  as a json
+
+	RuntimeInstanceID string `json:"runtimeInstanceId,omitempty"` // Pod Id in which the Business API is executed
+
+	BapiError string `json:"bapiError,omitempty"` // Returns the error response of the original API  as a string
+}
+type ResponseTaskGetBusinessAPIExecutionDetailsBapiSyncResponseJSON interface{}
 type ResponseTaskGetTasksOperationalTasks struct {
 	Response *[]ResponseTaskGetTasksOperationalTasksResponse `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTasksOperationalTasksResponse struct {
-	AdditionalStatusURL string   `json:"additionalStatusURL,omitempty"` //
-	Data                string   `json:"data,omitempty"`                //
-	EndTime             *int     `json:"endTime,omitempty"`             //
-	ErrorCode           string   `json:"errorCode,omitempty"`           //
-	ErrorKey            string   `json:"errorKey,omitempty"`            //
-	FailureReason       string   `json:"failureReason,omitempty"`       //
-	ID                  string   `json:"id,omitempty"`                  //
-	InstanceTenantID    string   `json:"instanceTenantId,omitempty"`    //
-	IsError             *bool    `json:"isError,omitempty"`             //
-	LastUpdate          *int     `json:"lastUpdate,omitempty"`          //
-	OperationIDList     []string `json:"operationIdList,omitempty"`     //
-	ParentID            string   `json:"parentId,omitempty"`            //
-	Progress            string   `json:"progress,omitempty"`            //
-	RootID              string   `json:"rootId,omitempty"`              //
-	ServiceType         string   `json:"serviceType,omitempty"`         //
-	StartTime           *int     `json:"startTime,omitempty"`           //
-	Username            string   `json:"username,omitempty"`            //
-	Version             *int     `json:"version,omitempty"`             //
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+
+	Data string `json:"data,omitempty"` //
+
+	EndTime *int `json:"endTime,omitempty"` //
+
+	ErrorCode string `json:"errorCode,omitempty"` //
+
+	ErrorKey string `json:"errorKey,omitempty"` //
+
+	FailureReason string `json:"failureReason,omitempty"` //
+
+	ID string `json:"id,omitempty"` //
+
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+
+	IsError *bool `json:"isError,omitempty"` //
+
+	LastUpdate *int `json:"lastUpdate,omitempty"` //
+
+	OperationIDList []string `json:"operationIdList,omitempty"` //
+
+	ParentID string `json:"parentId,omitempty"` //
+
+	Progress string `json:"progress,omitempty"` //
+
+	RootID string `json:"rootId,omitempty"` //
+
+	ServiceType string `json:"serviceType,omitempty"` //
+
+	StartTime *int `json:"startTime,omitempty"` //
+
+	Username string `json:"username,omitempty"` //
+
+	Version *int `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskCount struct {
-	Response *int   `json:"response,omitempty"` //
-	Version  string `json:"version,omitempty"`  //
+	Response *int `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskByOperationID struct {
 	Response *[]ResponseTaskGetTaskByOperationIDResponse `json:"response,omitempty"` //
-	Version  string                                      `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskByOperationIDResponse struct {
-	AdditionalStatusURL string   `json:"additionalStatusURL,omitempty"` //
-	Data                string   `json:"data,omitempty"`                //
-	EndTime             *int     `json:"endTime,omitempty"`             //
-	ErrorCode           string   `json:"errorCode,omitempty"`           //
-	ErrorKey            string   `json:"errorKey,omitempty"`            //
-	FailureReason       string   `json:"failureReason,omitempty"`       //
-	ID                  string   `json:"id,omitempty"`                  //
-	InstanceTenantID    string   `json:"instanceTenantId,omitempty"`    //
-	IsError             *bool    `json:"isError,omitempty"`             //
-	LastUpdate          *int     `json:"lastUpdate,omitempty"`          //
-	OperationIDList     []string `json:"operationIdList,omitempty"`     //
-	ParentID            string   `json:"parentId,omitempty"`            //
-	Progress            string   `json:"progress,omitempty"`            //
-	RootID              string   `json:"rootId,omitempty"`              //
-	ServiceType         string   `json:"serviceType,omitempty"`         //
-	StartTime           *int     `json:"startTime,omitempty"`           //
-	Username            string   `json:"username,omitempty"`            //
-	Version             *int     `json:"version,omitempty"`             //
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+
+	Data string `json:"data,omitempty"` //
+
+	EndTime *int `json:"endTime,omitempty"` //
+
+	ErrorCode string `json:"errorCode,omitempty"` //
+
+	ErrorKey string `json:"errorKey,omitempty"` //
+
+	FailureReason string `json:"failureReason,omitempty"` //
+
+	ID string `json:"id,omitempty"` //
+
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+
+	IsError *bool `json:"isError,omitempty"` //
+
+	LastUpdate *int `json:"lastUpdate,omitempty"` //
+
+	OperationIDList []string `json:"operationIdList,omitempty"` //
+
+	ParentID string `json:"parentId,omitempty"` //
+
+	Progress string `json:"progress,omitempty"` //
+
+	RootID string `json:"rootId,omitempty"` //
+
+	ServiceType string `json:"serviceType,omitempty"` //
+
+	StartTime *int `json:"startTime,omitempty"` //
+
+	Username string `json:"username,omitempty"` //
+
+	Version *int `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskByID struct {
 	Response *ResponseTaskGetTaskByIDResponse `json:"response,omitempty"` //
-	Version  string                           `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskByIDResponse struct {
-	AdditionalStatusURL string   `json:"additionalStatusURL,omitempty"` //
-	Data                string   `json:"data,omitempty"`                //
-	EndTime             *int     `json:"endTime,omitempty"`             //
-	ErrorCode           string   `json:"errorCode,omitempty"`           //
-	ErrorKey            string   `json:"errorKey,omitempty"`            //
-	FailureReason       string   `json:"failureReason,omitempty"`       //
-	ID                  string   `json:"id,omitempty"`                  //
-	InstanceTenantID    string   `json:"instanceTenantId,omitempty"`    //
-	IsError             *bool    `json:"isError,omitempty"`             //
-	LastUpdate          *int     `json:"lastUpdate,omitempty"`          //
-	OperationIDList     []string `json:"operationIdList,omitempty"`     //
-	ParentID            string   `json:"parentId,omitempty"`            //
-	Progress            string   `json:"progress,omitempty"`            //
-	RootID              string   `json:"rootId,omitempty"`              //
-	ServiceType         string   `json:"serviceType,omitempty"`         //
-	StartTime           *int     `json:"startTime,omitempty"`           //
-	Username            string   `json:"username,omitempty"`            //
-	Version             *int     `json:"version,omitempty"`             //
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+
+	Data string `json:"data,omitempty"` //
+
+	EndTime *int `json:"endTime,omitempty"` //
+
+	ErrorCode string `json:"errorCode,omitempty"` //
+
+	ErrorKey string `json:"errorKey,omitempty"` //
+
+	FailureReason string `json:"failureReason,omitempty"` //
+
+	ID string `json:"id,omitempty"` //
+
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+
+	IsError *bool `json:"isError,omitempty"` //
+
+	LastUpdate *int `json:"lastUpdate,omitempty"` //
+
+	OperationIDList []string `json:"operationIdList,omitempty"` //
+
+	ParentID string `json:"parentId,omitempty"` //
+
+	Progress string `json:"progress,omitempty"` //
+
+	RootID string `json:"rootId,omitempty"` //
+
+	ServiceType string `json:"serviceType,omitempty"` //
+
+	StartTime *int `json:"startTime,omitempty"` //
+
+	Username string `json:"username,omitempty"` //
+
+	Version *int `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskTree struct {
 	Response *[]ResponseTaskGetTaskTreeResponse `json:"response,omitempty"` //
-	Version  string                             `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskTreeResponse struct {
-	AdditionalStatusURL string   `json:"additionalStatusURL,omitempty"` //
-	Data                string   `json:"data,omitempty"`                //
-	EndTime             *int     `json:"endTime,omitempty"`             //
-	ErrorCode           string   `json:"errorCode,omitempty"`           //
-	ErrorKey            string   `json:"errorKey,omitempty"`            //
-	FailureReason       string   `json:"failureReason,omitempty"`       //
-	ID                  string   `json:"id,omitempty"`                  //
-	InstanceTenantID    string   `json:"instanceTenantId,omitempty"`    //
-	IsError             *bool    `json:"isError,omitempty"`             //
-	LastUpdate          *int     `json:"lastUpdate,omitempty"`          //
-	OperationIDList     []string `json:"operationIdList,omitempty"`     //
-	ParentID            string   `json:"parentId,omitempty"`            //
-	Progress            string   `json:"progress,omitempty"`            //
-	RootID              string   `json:"rootId,omitempty"`              //
-	ServiceType         string   `json:"serviceType,omitempty"`         //
-	StartTime           *int     `json:"startTime,omitempty"`           //
-	Username            string   `json:"username,omitempty"`            //
-	Version             *int     `json:"version,omitempty"`             //
+	AdditionalStatusURL string `json:"additionalStatusURL,omitempty"` //
+
+	Data string `json:"data,omitempty"` //
+
+	EndTime *int `json:"endTime,omitempty"` //
+
+	ErrorCode string `json:"errorCode,omitempty"` //
+
+	ErrorKey string `json:"errorKey,omitempty"` //
+
+	FailureReason string `json:"failureReason,omitempty"` //
+
+	ID string `json:"id,omitempty"` //
+
+	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+
+	IsError *bool `json:"isError,omitempty"` //
+
+	LastUpdate *int `json:"lastUpdate,omitempty"` //
+
+	OperationIDList []string `json:"operationIdList,omitempty"` //
+
+	ParentID string `json:"parentId,omitempty"` //
+
+	Progress string `json:"progress,omitempty"` //
+
+	RootID string `json:"rootId,omitempty"` //
+
+	ServiceType string `json:"serviceType,omitempty"` //
+
+	StartTime *int `json:"startTime,omitempty"` //
+
+	Username string `json:"username,omitempty"` //
+
+	Version *int `json:"version,omitempty"` //
 }
 type ResponseTaskGetTasks struct {
 	Response *[]ResponseTaskGetTasksResponse `json:"response,omitempty"` //
-	Version  string                          `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTasksResponse struct {
-	EndTime        *int   `json:"endTime,omitempty"`        // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
-	ID             string `json:"id,omitempty"`             // The ID of this task
-	UpdatedTime    *int   `json:"updatedTime,omitempty"`    // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
-	ParentID       string `json:"parentId,omitempty"`       // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId.
+	EndTime *int `json:"endTime,omitempty"` // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
+
+	ID string `json:"id,omitempty"` // The ID of this task
+
+	UpdatedTime *int `json:"updatedTime,omitempty"` // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
+
+	ParentID string `json:"parentId,omitempty"` // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId.
+
 	ResultLocation string `json:"resultLocation,omitempty"` // A server-relative URL indicating where additional task-specific details may be found
-	RootID         string `json:"rootId,omitempty"`         // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task.
-	StartTime      *int   `json:"startTime,omitempty"`      // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
-	Status         string `json:"status,omitempty"`         //
+
+	RootID string `json:"rootId,omitempty"` // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task.
+
+	StartTime *int `json:"startTime,omitempty"` // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
+
+	Status string `json:"status,omitempty"` //
 }
 type ResponseTaskGetTasksCount struct {
 	Response *ResponseTaskGetTasksCountResponse `json:"response,omitempty"` //
-	Version  string                             `json:"version,omitempty"`  // The version of the response
+
+	Version string `json:"version,omitempty"` // The version of the response
 }
 type ResponseTaskGetTasksCountResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseTaskGetTasksByID struct {
 	Response *ResponseTaskGetTasksByIDResponse `json:"response,omitempty"` //
-	Version  string                            `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTasksByIDResponse struct {
-	EndTime        *int   `json:"endTime,omitempty"`        // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
-	ID             string `json:"id,omitempty"`             // The ID of this task
-	UpdatedTime    *int   `json:"updatedTime,omitempty"`    // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
-	ParentID       string `json:"parentId,omitempty"`       // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId.
+	EndTime *int `json:"endTime,omitempty"` // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
+
+	ID string `json:"id,omitempty"` // The ID of this task
+
+	UpdatedTime *int `json:"updatedTime,omitempty"` // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
+
+	ParentID string `json:"parentId,omitempty"` // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId.
+
 	ResultLocation string `json:"resultLocation,omitempty"` // A server-relative URL indicating where additional task-specific details may be found
-	RootID         string `json:"rootId,omitempty"`         // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task.
-	StartTime      *int   `json:"startTime,omitempty"`      // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
-	Status         string `json:"status,omitempty"`         //
+
+	RootID string `json:"rootId,omitempty"` // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task.
+
+	StartTime *int `json:"startTime,omitempty"` // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
+
+	Status string `json:"status,omitempty"` //
 }
 type ResponseTaskGetTaskDetailsByID struct {
 	Response *ResponseTaskGetTaskDetailsByIDResponse `json:"response,omitempty"` //
-	Version  string                                  `json:"version,omitempty"`  //
+
+	Version string `json:"version,omitempty"` //
 }
 type ResponseTaskGetTaskDetailsByIDResponse struct {
-	Data          string `json:"data,omitempty"`          // Any data associated with this task; the value may vary significantly across different tasks
-	Progress      string `json:"progress,omitempty"`      // A textual representation which indicates the progress of this task; the value may vary significantly across different tasks
-	ErrorCode     string `json:"errorCode,omitempty"`     // An error code if in case this task has failed in its execution
+	Data string `json:"data,omitempty"` // Any data associated with this task; the value may vary significantly across different tasks
+
+	Progress string `json:"progress,omitempty"` // A textual representation which indicates the progress of this task; the value may vary significantly across different tasks
+
+	ErrorCode string `json:"errorCode,omitempty"` // An error code if in case this task has failed in its execution
+
 	FailureReason string `json:"failureReason,omitempty"` // A textual description indicating the reason why a task has failed
+}
+
+//RetrieveAListOfAssuranceTasks Retrieve a list of assurance tasks - ee8a-e874-40ca-8154
+/* returns all existing tasks in a paginated list
+default sorting of list is `startTime`, `asc`
+valid field to sort by are [`startTime`,`endTime`,`updateTime`,`status`] For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceTasks-1.0.0-resolved.yaml
+
+
+@param RetrieveAListOfAssuranceTasksHeaderParams Custom header parameters
+@param RetrieveAListOfAssuranceTasksQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-list-of-assurance-tasks
+*/
+func (s *TaskService) RetrieveAListOfAssuranceTasks(RetrieveAListOfAssuranceTasksHeaderParams *RetrieveAListOfAssuranceTasksHeaderParams, RetrieveAListOfAssuranceTasksQueryParams *RetrieveAListOfAssuranceTasksQueryParams) (*ResponseTaskRetrieveAListOfAssuranceTasks, *resty.Response, error) {
+	path := "/dna/data/api/v1/assuranceTasks"
+
+	queryString, _ := query.Values(RetrieveAListOfAssuranceTasksQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if RetrieveAListOfAssuranceTasksHeaderParams != nil {
+
+		if RetrieveAListOfAssuranceTasksHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", RetrieveAListOfAssuranceTasksHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseTaskRetrieveAListOfAssuranceTasks{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveAListOfAssuranceTasks(RetrieveAListOfAssuranceTasksHeaderParams, RetrieveAListOfAssuranceTasksQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveAListOfAssuranceTasks")
+	}
+
+	result := response.Result().(*ResponseTaskRetrieveAListOfAssuranceTasks)
+	return result, response, err
+
+}
+
+//RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist Retrieve a count of the number of assurance tasks that currently exist - b094-0b13-423b-bfb4
+/* returns a count of the number of assurance tasks that are not expired For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceTasks-1.0.0-resolved.yaml
+
+
+@param RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams Custom header parameters
+@param RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-count-of-the-number-of-assurance-tasks-that-currently-exist
+*/
+func (s *TaskService) RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist(RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams *RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams, RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams *RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams) (*ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist, *resty.Response, error) {
+	path := "/dna/data/api/v1/assuranceTasks/count"
+
+	queryString, _ := query.Values(RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams != nil {
+
+		if RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist(RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistHeaderParams, RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExistQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist")
+	}
+
+	result := response.Result().(*ResponseTaskRetrieveACountOfTheNumberOfAssuranceTasksThatCurrentlyExist)
+	return result, response, err
+
+}
+
+//RetrieveASpecificAssuranceTaskByID Retrieve a specific assurance task by id - 1e8f-7ae5-4798-88f1
+/* returns a task given a specific task id For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceTasks-1.0.0-resolved.yaml
+
+
+@param id id path parameter. unique task id
+
+@param RetrieveASpecificAssuranceTaskByIdHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-specific-assurance-task-by-id
+*/
+func (s *TaskService) RetrieveASpecificAssuranceTaskByID(id string, RetrieveASpecificAssuranceTaskByIdHeaderParams *RetrieveASpecificAssuranceTaskByIDHeaderParams) (*ResponseTaskRetrieveASpecificAssuranceTaskByID, *resty.Response, error) {
+	path := "/dna/data/api/v1/assuranceTasks/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if RetrieveASpecificAssuranceTaskByIdHeaderParams != nil {
+
+		if RetrieveASpecificAssuranceTaskByIdHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", RetrieveASpecificAssuranceTaskByIdHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetResult(&ResponseTaskRetrieveASpecificAssuranceTaskByID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveASpecificAssuranceTaskByID(id, RetrieveASpecificAssuranceTaskByIdHeaderParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveASpecificAssuranceTaskById")
+	}
+
+	result := response.Result().(*ResponseTaskRetrieveASpecificAssuranceTaskByID)
+	return result, response, err
+
 }
 
 //GetBusinessAPIExecutionDetails Get Business API Execution Details - c1bc-a8c1-41fb-9f75
@@ -224,7 +586,7 @@ type ResponseTaskGetTaskDetailsByIDResponse struct {
 @param executionID executionId path parameter. Execution Id of API
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-business-api-execution-details-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-business-api-execution-details
 */
 func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*ResponseTaskGetBusinessAPIExecutionDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/dnacaap/management/execution-status/{executionId}"
@@ -260,7 +622,7 @@ func (s *TaskService) GetBusinessAPIExecutionDetails(executionID string) (*Respo
 
 @param GetTasksOperationalTasksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-operational-tasks-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-operational-tasks
 */
 func (s *TaskService) GetTasksOperationalTasks(GetTasksOperationalTasksQueryParams *GetTasksOperationalTasksQueryParams) (*ResponseTaskGetTasksOperationalTasks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task"
@@ -297,7 +659,7 @@ func (s *TaskService) GetTasksOperationalTasks(GetTasksOperationalTasksQueryPara
 
 @param GetTaskCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-count
 */
 func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryParams) (*ResponseTaskGetTaskCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/count"
@@ -338,7 +700,7 @@ func (s *TaskService) GetTaskCount(GetTaskCountQueryParams *GetTaskCountQueryPar
 @param limit limit path parameter. The maximum value of {limit} supported is 500. <br/> Base 1 indexing for {limit}, minimum value is 1
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-operation-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-operation-id
 */
 func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit int) (*ResponseTaskGetTaskByOperationID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/operation/{operationId}/{offset}/{limit}"
@@ -377,7 +739,7 @@ func (s *TaskService) GetTaskByOperationID(operationID string, offset int, limit
 @param taskID taskId path parameter. UUID of the Task
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-by-id
 */
 func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}"
@@ -414,7 +776,7 @@ func (s *TaskService) GetTaskByID(taskID string) (*ResponseTaskGetTaskByID, *res
 @param taskID taskId path parameter. UUID of the Task
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-tree-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-tree
 */
 func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *resty.Response, error) {
 	path := "/dna/intent/api/v1/task/{taskId}/tree"
@@ -450,7 +812,7 @@ func (s *TaskService) GetTaskTree(taskID string) (*ResponseTaskGetTaskTree, *res
 
 @param GetTasksQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks
 */
 func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*ResponseTaskGetTasks, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks"
@@ -487,7 +849,7 @@ func (s *TaskService) GetTasks(GetTasksQueryParams *GetTasksQueryParams) (*Respo
 
 @param GetTasksCountQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-count
 */
 func (s *TaskService) GetTasksCount(GetTasksCountQueryParams *GetTasksCountQueryParams) (*ResponseTaskGetTasksCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/count"
@@ -525,7 +887,7 @@ func (s *TaskService) GetTasksCount(GetTasksCountQueryParams *GetTasksCountQuery
 @param id id path parameter. the `id` of the task to retrieve
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-by-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-tasks-by-id
 */
 func (s *TaskService) GetTasksByID(id string) (*ResponseTaskGetTasksByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/{id}"
@@ -562,7 +924,7 @@ func (s *TaskService) GetTasksByID(id string) (*ResponseTaskGetTasksByID, *resty
 @param id id path parameter. the `id` of the task to retrieve details for
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-details-by-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-task-details-by-id
 */
 func (s *TaskService) GetTaskDetailsByID(id string) (*ResponseTaskGetTaskDetailsByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/tasks/{id}/detail"

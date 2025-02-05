@@ -125,7 +125,7 @@ type ResponseDisasterRecoveryDisasterRecoveryStatusIPsecTunnel struct {
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-operational-status-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-operational-status
 */
 func (s *DisasterRecoveryService) DisasterRecoveryOperationalStatus() (*ResponseDisasterRecoveryDisasterRecoveryOperationalStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/disasterrecovery/system/operationstatus"
@@ -159,7 +159,7 @@ func (s *DisasterRecoveryService) DisasterRecoveryOperationalStatus() (*Response
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-status-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disaster-recovery-status
 */
 func (s *DisasterRecoveryService) DisasterRecoveryStatus() (*ResponseDisasterRecoveryDisasterRecoveryStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/disasterrecovery/system/status"

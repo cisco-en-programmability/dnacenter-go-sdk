@@ -48,7 +48,7 @@ type ResponseFileUploadFile interface{}
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-available-namespaces-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-available-namespaces
 */
 func (s *FileService) GetListOfAvailableNamespaces() (*ResponseFileGetListOfAvailableNamespaces, *resty.Response, error) {
 	path := "/dna/intent/api/v1/file/namespace"
@@ -84,7 +84,7 @@ func (s *FileService) GetListOfAvailableNamespaces() (*ResponseFileGetListOfAvai
 @param nameSpace nameSpace path parameter. A listing of fileId's
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-files-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-list-of-files
 */
 func (s *FileService) GetListOfFiles(nameSpace string) (*ResponseFileGetListOfFiles, *resty.Response, error) {
 	path := "/dna/intent/api/v1/file/namespace/{nameSpace}"
@@ -121,7 +121,7 @@ func (s *FileService) GetListOfFiles(nameSpace string) (*ResponseFileGetListOfFi
 @param fileID fileId path parameter. File Identification number
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-a-file-by-file-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!download-a-file-by-file-id
 */
 func (s *FileService) DownloadAFileByFileID(fileID string) (FileDownload, *resty.Response, error) {
 	path := "/dna/intent/api/v1/file/{fileId}"
@@ -161,7 +161,7 @@ func (s *FileService) DownloadAFileByFileID(fileID string) (FileDownload, *resty
 
 @param nameSpace nameSpace path parameter.
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!upload-file-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!upload-file
 */
 func (s *FileService) UploadFile(nameSpace string, UploadFileMultipartFields *UploadFileMultipartFields) (*ResponseFileUploadFile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/file/{nameSpace}"

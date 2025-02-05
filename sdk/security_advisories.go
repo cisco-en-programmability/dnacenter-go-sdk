@@ -15,18 +15,29 @@ type ResponseSecurityAdvisoriesGetAdvisoriesList struct {
 	Version  string                                               `json:"version,omitempty"`  // Version of the response
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesListResponse struct {
-	AdvisoryID                string                                                            `json:"advisoryId,omitempty"`                // Id of the advisory
-	DeviceCount               *int                                                              `json:"deviceCount,omitempty"`               // Number of devices vulnerable to the advisory
-	HiddenDeviceCount         *int                                                              `json:"hiddenDeviceCount,omitempty"`         // Number of devices vulnerable to the advisory but were suppressed by the user
-	Cves                      []string                                                          `json:"cves,omitempty"`                      // CVE (Common Vulnerabilities and Exposures) IDs of the advisory
-	PublicationURL            string                                                            `json:"publicationUrl,omitempty"`            // CISCO publication URL for the advisory
-	Sir                       string                                                            `json:"sir,omitempty"`                       // Security Impact Rating of the advisory
-	DetectionType             string                                                            `json:"detectionType,omitempty"`             // Criteria for advisory detection
-	DefaultDetectionType      string                                                            `json:"defaultDetectionType,omitempty"`      // Original criteria for advisory detection
-	DefaultConfigMatchPattern string                                                            `json:"defaultConfigMatchPattern,omitempty"` // Regular expression used by the system to detect the advisory
-	FixedVersions             *ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions `json:"fixedVersions,omitempty"`             // Map where each key is a vulnerable version and the value is a list of versions in which the advisory has been fixed
+	AdvisoryID string `json:"advisoryId,omitempty"` // Advisory Id
+
+	DeviceCount *int `json:"deviceCount,omitempty"` // Device Count
+
+	HiddenDeviceCount *float64 `json:"hiddenDeviceCount,omitempty"` // Hidden Device Count
+
+	Cves []string `json:"cves,omitempty"` // Cves
+
+	PublicationURL string `json:"publicationUrl,omitempty"` // Publication Url
+
+	Sir string `json:"sir,omitempty"` // Sir
+
+	DetectionType string `json:"detectionType,omitempty"` // Detection Type
+
+	DefaultDetectionType string `json:"defaultDetectionType,omitempty"` // Default Detection Type
+
+	DefaultConfigMatchPattern string `json:"defaultConfigMatchPattern,omitempty"` // Default Config Match Pattern
+
+	FixedVersions *ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions `json:"fixedVersions,omitempty"` //
 }
-type ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions interface{}
+type ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions struct {
+	Version string `json:"version,omitempty"` // version
+}
 type ResponseSecurityAdvisoriesGetAdvisoriesSummary struct {
 	Response *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponse `json:"response,omitempty"` //
 	Version  string                                                  `json:"version,omitempty"`  // Version of the response
@@ -115,7 +126,7 @@ type ResponseSecurityAdvisoriesGetAdvisoriesPerDeviceResponseFixedVersions inter
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-list-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-list
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdvisoriesGetAdvisoriesList, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory"
@@ -149,7 +160,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesList() (*ResponseSecurityAdviso
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-summary-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-summary
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdvisoriesGetAdvisoriesSummary, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/aggregate"
@@ -185,7 +196,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoriesSummary() (*ResponseSecurityAdv
 @param advisoryID advisoryId path parameter. Advisory ID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-per-advisory-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-per-advisory
 */
 func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*ResponseSecurityAdvisoriesGetDevicesPerAdvisory, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/advisory/{advisoryId}/device"
@@ -222,7 +233,7 @@ func (s *SecurityAdvisoriesService) GetDevicesPerAdvisory(advisoryID string) (*R
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisory-device-detail-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisory-device-detail
 */
 func (s *SecurityAdvisoriesService) GetAdvisoryDeviceDetail(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoryDeviceDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}"
@@ -259,7 +270,7 @@ func (s *SecurityAdvisoriesService) GetAdvisoryDeviceDetail(deviceID string) (*R
 @param deviceID deviceId path parameter. Device instance UUID
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-per-device-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-advisories-per-device
 */
 func (s *SecurityAdvisoriesService) GetAdvisoriesPerDevice(deviceID string) (*ResponseSecurityAdvisoriesGetAdvisoriesPerDevice, *resty.Response, error) {
 	path := "/dna/intent/api/v1/security-advisory/device/{deviceId}/advisory"

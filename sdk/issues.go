@@ -37,8 +37,8 @@ type GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams struct 
 	FabricVnName           string  `url:"fabricVnName,omitempty"`           //The name of the fabric virtual network Examples: fabricVnName=name1 (single fabric virtual network name requested) fabricVnName=name1&fabricVnName=name2&fabricVnName=name3 (multiple fabric virtual network names requested)
 	FabricTransitSiteID    string  `url:"fabricTransitSiteId,omitempty"`    //The UUID of the fabric transit site. (Ex. "flooruuid") Examples: fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26&fabricTransitSiteId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
 	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
-	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search. Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search. Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	View                   string  `url:"view,omitempty"`                   //The name of the View. Each view represents a specific data set. Please refer to the `IssuesView` Model for supported views. View is predefined set of attributes supported by the API. Only the attributes related to the given view will be part of the API response along with default attributes. If multiple views are provided, then response will contain attributes from all those views. If no views are specified, all attributes will be returned. | View Name | Included Attributes | | --- | --- | | `update` | updatedTime, updatedBy | | `site` | siteName, siteHierarchy, siteId, siteHierarchyId | Examples: `view=update` (single view requested) `view=update&view=site` (multiple views requested)
 	Attribute              string  `url:"attribute,omitempty"`              //List of attributes related to the issue. If these are provided, then only those attributes will be part of response along with the default attributes. Please refer to the `IssuesResponseAttribute` Model for supported attributes. Examples: `attribute=deviceType` (single attribute requested) `attribute=deviceType&attribute=updatedBy` (multiple attributes requested)
 	AiDriven               bool    `url:"aiDriven,omitempty"`               //Flag whether the issue is AI driven issue
@@ -73,8 +73,8 @@ type GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams str
 	FabricVnName           string  `url:"fabricVnName,omitempty"`           //The name of the fabric virtual network Examples: fabricVnName=name1 (single fabric virtual network name requested) fabricVnName=name1&fabricVnName=name2&fabricVnName=name3 (multiple fabric virtual network names requested)
 	FabricTransitSiteID    string  `url:"fabricTransitSiteId,omitempty"`    //The UUID of the fabric transit site. (Ex. "flooruuid") Examples: fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single id requested) fabricTransitSiteId=e52aecfe-b142-4287-a587-11a16ba6dd26&fabricTransitSiteId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple ids requested)
 	NetworkDeviceID        string  `url:"networkDeviceId,omitempty"`        //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceIds with & separator)
-	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
-	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	NetworkDeviceIPAddress string  `url:"networkDeviceIpAddress,omitempty"` //The list of Network Device management IP Address. (Ex. `121.1.1.10`) This field supports wildcard (`*`) character-based search. Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `networkDeviceIpAddress=121.1.1.10` `networkDeviceIpAddress=121.1.1.10&networkDeviceIpAddress=172.20.1.10&networkDeviceIpAddress=10.10.20.10` (multiple networkDevice IP Address with & separator)
+	MacAddress             string  `url:"macAddress,omitempty"`             //The macAddress of the network device or client This field supports wildcard (`*`) character-based search. Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	AiDriven               bool    `url:"aiDriven,omitempty"`               //Flag whether the issue is AI driven issue
 	FabricDriven           bool    `url:"fabricDriven,omitempty"`           //Flag whether the issue is related to a Fabric site, a virtual network or a transit.
 	FabricSiteDriven       bool    `url:"fabricSiteDriven,omitempty"`       //Flag whether the issue is Fabric site driven issue
@@ -160,14 +160,13 @@ type GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams 
 type GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
-type UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIDHeaderParams struct {
-	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
-	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+type GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
 type GetIssueEnrichmentDetailsHeaderParams struct {
 	EntityType        string `url:"entity_type,omitempty"`         //Expects type string. Issue enrichment details can be fetched based on either Issue ID or Client MAC address. This parameter value must either be issue_id/mac_address
 	EntityValue       string `url:"entity_value,omitempty"`        //Expects type string. Contains the actual value for the entity type that has been defined
-	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool.
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. For the enrichment details to be made available as part of the API response, this header must be set to true. This header must be explicitly passed when called from client applications outside Catalyst Center
 }
 type IssuesQueryParams struct {
 	StartTime   float64 `url:"startTime,omitempty"`   //Starting epoch time in milliseconds of query time window
@@ -208,9 +207,6 @@ type GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParam
 }
 type GetIssueTriggerDefinitionForGivenIDHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
-}
-type GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams struct {
-	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID can be used to trace the caller for queries executed on database. The caller id is like a optional attribute which can be added to API invocation like ui, python, postman, test-automation etc
 }
 
 type ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork struct {
@@ -622,6 +618,49 @@ type ResponseIssuesGetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFilte
 type ResponseIssuesGetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
+type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID struct {
+	Response *ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse `json:"response,omitempty"` //
+}
+type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse struct {
+	ID string `json:"id,omitempty"` // Id
+
+	Name string `json:"name,omitempty"` // Name
+
+	Description string `json:"description,omitempty"` // Description
+
+	ProfileID string `json:"profileId,omitempty"` // Profile Id
+
+	TriggerID string `json:"triggerId,omitempty"` // Trigger Id
+
+	Rules *[]ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules `json:"rules,omitempty"` //
+
+	IsEnabled *bool `json:"isEnabled,omitempty"` // Is Enabled
+
+	Priority string `json:"priority,omitempty"` // Priority
+
+	IsDeletable *bool `json:"isDeletable,omitempty"` // Is Deletable
+
+	IsNotificationEnabled *bool `json:"isNotificationEnabled,omitempty"` // Is Notification Enabled
+
+	CreatedTime *int `json:"createdTime,omitempty"` // Created Time
+
+	LastUpdatedTime *int `json:"lastUpdatedTime,omitempty"` // Last Updated Time
+}
+type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules struct {
+	Type string `json:"type,omitempty"` // Type
+
+	Severity *int `json:"severity,omitempty"` // Severity
+
+	Facility string `json:"facility,omitempty"` // Facility
+
+	Mnemonic string `json:"mnemonic,omitempty"` // Mnemonic
+
+	Pattern string `json:"pattern,omitempty"` // Pattern
+
+	Occurrences *int `json:"occurrences,omitempty"` // Occurrences
+
+	DurationInMinutes *int `json:"durationInMinutes,omitempty"` // Duration In Minutes
+}
 type ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID struct {
 	Response *ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIDResponse `json:"response,omitempty"` //
 }
@@ -756,46 +795,33 @@ type ResponseIssuesIssueTriggerDefinitionUpdate struct {
 	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseIssuesIssueTriggerDefinitionUpdateResponse struct {
-	ID                           string   `json:"id,omitempty"`                           // Id
-	Name                         string   `json:"name,omitempty"`                         // Name
-	DisplayName                  string   `json:"displayName,omitempty"`                  // Display Name
-	Description                  string   `json:"description,omitempty"`                  // Description
-	Priority                     string   `json:"priority,omitempty"`                     // Priority
-	DefaultPriority              string   `json:"defaultPriority,omitempty"`              // Default Priority
-	DeviceType                   string   `json:"deviceType,omitempty"`                   // Device Type
-	IssueEnabled                 *bool    `json:"issueEnabled,omitempty"`                 // Issue Enabled
-	ProfileID                    string   `json:"profileId,omitempty"`                    // Profile Id
-	DefinitionStatus             string   `json:"definitionStatus,omitempty"`             // Definition Status
-	CategoryName                 string   `json:"categoryName,omitempty"`                 // Category Name
-	SynchronizeToHealthThreshold *bool    `json:"synchronizeToHealthThreshold,omitempty"` // Synchronize To Health Threshold
-	ThresholdValue               *float64 `json:"thresholdValue,omitempty"`               // Threshold Value
-	LastModified                 string   `json:"lastModified,omitempty"`                 // Last Modified
-}
-type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID struct {
-	Response *ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse `json:"response,omitempty"` //
-}
-type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse struct {
-	ID                    string                                                                                      `json:"id,omitempty"`                    // Id
-	Name                  string                                                                                      `json:"name,omitempty"`                  // Name
-	Description           string                                                                                      `json:"description,omitempty"`           // Description
-	ProfileID             string                                                                                      `json:"profileId,omitempty"`             // Profile Id
-	TriggerID             string                                                                                      `json:"triggerId,omitempty"`             // Trigger Id
-	Rules                 *[]ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules `json:"rules,omitempty"`                 //
-	IsEnabled             *bool                                                                                       `json:"isEnabled,omitempty"`             // Is Enabled
-	Priority              string                                                                                      `json:"priority,omitempty"`              // Priority
-	IsDeletable           *bool                                                                                       `json:"isDeletable,omitempty"`           // Is Deletable
-	IsNotificationEnabled *bool                                                                                       `json:"isNotificationEnabled,omitempty"` // Is Notification Enabled
-	CreatedTime           *int                                                                                        `json:"createdTime,omitempty"`           // Created Time
-	LastUpdatedTime       *int                                                                                        `json:"lastUpdatedTime,omitempty"`       // Last Updated Time
-}
-type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules struct {
-	Type              string `json:"type,omitempty"`              // Type
-	Severity          *int   `json:"severity,omitempty"`          // Severity
-	Facility          string `json:"facility,omitempty"`          // Facility
-	Mnemonic          string `json:"mnemonic,omitempty"`          // Mnemonic
-	Pattern           string `json:"pattern,omitempty"`           // Pattern
-	Occurrences       *int   `json:"occurrences,omitempty"`       // Occurrences
-	DurationInMinutes *int   `json:"durationInMinutes,omitempty"` // Duration In Minutes
+	ID string `json:"id,omitempty"` // Id
+
+	Name string `json:"name,omitempty"` // Name
+
+	DisplayName string `json:"displayName,omitempty"` // Display Name
+
+	Description string `json:"description,omitempty"` // Description
+
+	Priority string `json:"priority,omitempty"` // Priority
+
+	DefaultPriority string `json:"defaultPriority,omitempty"` // Default Priority
+
+	DeviceType string `json:"deviceType,omitempty"` // Device Type
+
+	IssueEnabled *bool `json:"issueEnabled,omitempty"` // Issue Enabled
+
+	ProfileID string `json:"profileId,omitempty"` // Profile Id
+
+	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
+
+	CategoryName string `json:"categoryName,omitempty"` // Category Name
+
+	SynchronizeToHealthThreshold *bool `json:"synchronizeToHealthThreshold,omitempty"` // Synchronize To Health Threshold
+
+	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
+
+	LastModified string `json:"lastModified,omitempty"` // Last Modified
 }
 type RequestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters struct {
 	StartTime *int                                                             `json:"startTime,omitempty"` // Start Time
@@ -983,7 +1009,7 @@ type RequestIssuesIssueTriggerDefinitionUpdate struct {
 @param GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams Custom header parameters
 @param GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters-know-your-network-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters-know-your-network
 */
 func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams *GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams *GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams) (*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues"
@@ -1037,7 +1063,7 @@ func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetwork
 @param GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams Custom header parameters
 @param GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters-know-your-network-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters-know-your-network
 */
 func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork(GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkHeaderParams, GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams) (*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetwork, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/count"
@@ -1089,7 +1115,7 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNet
 @param GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdHeaderParams Custom header parameters
 @param GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-details-and-suggested-actions-of-an-issue-for-the-given-issue-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-details-and-suggested-actions-of-an-issue-for-the-given-issue-id
 */
 func (s *IssuesService) GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueID(id string, GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdHeaderParams *GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDHeaderParams, GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIdQueryParams *GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueIDQueryParams) (*ResponseIssuesGetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenIssueID, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/{id}"
@@ -1145,7 +1171,7 @@ func (s *IssuesService) GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenI
 
 @param GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-custom-issue-definitions-based-on-the-given-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-the-custom-issue-definitions-based-on-the-given-filters
 */
 func (s *IssuesService) GetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters(GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams *GetAllTheCustomIssueDefinitionsBasedOnTheGivenFiltersQueryParams) (*ResponseIssuesGetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions"
@@ -1183,7 +1209,7 @@ func (s *IssuesService) GetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters(Ge
 @param GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams Custom header parameters
 @param GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-custom-issue-definitions-count-based-on-the-provided-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-custom-issue-definitions-count-based-on-the-provided-filters
 */
 func (s *IssuesService) GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFilters(GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams *GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersHeaderParams, GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams *GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFiltersQueryParams) (*ResponseIssuesGetTheTotalCustomIssueDefinitionsCountBasedOnTheProvidedFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions/count"
@@ -1226,13 +1252,63 @@ func (s *IssuesService) GetTheTotalCustomIssueDefinitionsCountBasedOnTheProvided
 
 }
 
+//GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID Get the custom issue definition for the given custom issue definition Id. - d39f-a9d8-44b8-880d
+/* Get the custom issue definition for the given custom issue definition Id. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceUserDefinedIssueAPIs-1.0.0-resolved.yaml
+
+
+@param id id path parameter. Get the custom issue definition for the given custom issue definition Id.
+
+@param GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-custom-issue-definition-for-the-given-custom-issue-definition-id
+*/
+func (s *IssuesService) GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID(id string, GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams *GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams) (*ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID, *resty.Response, error) {
+	path := "/dna/intent/api/v1/customIssueDefinitions/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams != nil {
+
+		if GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetResult(&ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID(id, GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionId")
+	}
+
+	result := response.Result().(*ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID)
+	return result, response, err
+
+}
+
 //GetIssueEnrichmentDetails Get Issue Enrichment Details - 8684-39bb-4e89-a6e4
 /* Enriches a given network issue context (an issue id or end user’s Mac Address) with details about the issue(s), impacted hosts and suggested actions for remediation
 
 
 @param GetIssueEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-enrichment-details-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-enrichment-details
 */
 func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeaderParams *GetIssueEnrichmentDetailsHeaderParams) (*ResponseIssuesGetIssueEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issue-enrichment-details"
@@ -1287,7 +1363,7 @@ func (s *IssuesService) GetIssueEnrichmentDetails(GetIssueEnrichmentDetailsHeade
 
 @param IssuesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!issues
 */
 func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseIssuesIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/issues"
@@ -1325,7 +1401,7 @@ func (s *IssuesService) Issues(IssuesQueryParams *IssuesQueryParams) (*ResponseI
 @param ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams Custom header parameters
 @param ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-issue-trigger-definitions-for-given-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!returns-all-issue-trigger-definitions-for-given-filters
 */
 func (s *IssuesService) ReturnsAllIssueTriggerDefinitionsForGivenFilters(ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams *ReturnsAllIssueTriggerDefinitionsForGivenFiltersHeaderParams, ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams *ReturnsAllIssueTriggerDefinitionsForGivenFiltersQueryParams) (*ResponseIssuesReturnsAllIssueTriggerDefinitionsForGivenFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions"
@@ -1375,7 +1451,7 @@ func (s *IssuesService) ReturnsAllIssueTriggerDefinitionsForGivenFilters(Returns
 @param GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams Custom header parameters
 @param GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-system-defined-issue-definitions-based-on-provided-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-count-of-system-defined-issue-definitions-based-on-provided-filters
 */
 func (s *IssuesService) GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFilters(GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams *GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersHeaderParams, GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams *GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFiltersQueryParams) (*ResponseIssuesGetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvidedFilters, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions/count"
@@ -1426,7 +1502,7 @@ func (s *IssuesService) GetTheCountOfSystemDefinedIssueDefinitionsBasedOnProvide
 
 @param GetIssueTriggerDefinitionForGivenIdHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-trigger-definition-for-given-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-issue-trigger-definition-for-given-id
 */
 func (s *IssuesService) GetIssueTriggerDefinitionForGivenID(id string, GetIssueTriggerDefinitionForGivenIdHeaderParams *GetIssueTriggerDefinitionForGivenIDHeaderParams) (*ResponseIssuesGetIssueTriggerDefinitionForGivenID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/systemIssueDefinitions/{id}"
@@ -1468,63 +1544,13 @@ func (s *IssuesService) GetIssueTriggerDefinitionForGivenID(id string, GetIssueT
 
 }
 
-//GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID Get the custom issue definition for the given custom issue definition Id. - d39f-a9d8-44b8-880d
-/* Get the custom issue definition for the given custom issue definition Id. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceUserDefinedIssueAPIs-1.0.0-resolved.yaml
-
-
-@param id id path parameter. Get the custom issue definition for the given custom issue definition Id.
-
-@param GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams Custom header parameters
-
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-custom-issue-definition-for-the-given-custom-issue-definition-id-v1
-*/
-func (s *IssuesService) GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID(id string, GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams *GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDHeaderParams) (*ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID, *resty.Response, error) {
-	path := "/intent/api/v1/customIssueDefinitions/{id}"
-	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
-
-	var response *resty.Response
-	var err error
-	clientRequest := s.client.R().
-		SetHeader("Content-Type", "application/json").
-		SetHeader("Accept", "application/json")
-
-	if GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams != nil {
-
-		if GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams.XCaLLERID != "" {
-			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams.XCaLLERID)
-		}
-
-	}
-
-	response, err = clientRequest.
-		SetResult(&ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID{}).
-		SetError(&Error).
-		Get(path)
-
-	if err != nil {
-		return nil, nil, err
-
-	}
-
-	if response.IsError() {
-		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID(id, GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIdHeaderParams)
-		}
-		return nil, response, fmt.Errorf("error with operation GetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionId")
-	}
-
-	result := response.Result().(*ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID)
-	return result, response, err
-
-}
-
 //GetTheDetailsOfIssuesForGivenSetOfFilters Get the details of issues for given set of filters - 82ad-186f-4848-a3dd
 /* Returns all details of each issue along with suggested actions for given set of filters specified in request body. If there is no start and/or end time, then end time will be defaulted to current time and start time will be defaulted to 24-hours ago from end time. https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
 
 
 @param GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-details-of-issues-for-given-set-of-filters
 */
 func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters(requestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters *RequestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters, GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams *GetTheDetailsOfIssuesForGivenSetOfFiltersHeaderParams) (*ResponseIssuesGetTheDetailsOfIssuesForGivenSetOfFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/query"
@@ -1578,7 +1604,7 @@ func (s *IssuesService) GetTheDetailsOfIssuesForGivenSetOfFilters(requestIssuesG
 
 @param GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-total-number-of-issues-for-given-set-of-filters
 */
 func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters(requestIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters *RequestIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters, GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams *GetTheTotalNumberOfIssuesForGivenSetOfFiltersHeaderParams) (*ResponseIssuesGetTheTotalNumberOfIssuesForGivenSetOfFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/query/count"
@@ -1623,12 +1649,12 @@ func (s *IssuesService) GetTheTotalNumberOfIssuesForGivenSetOfFilters(requestIss
 }
 
 //GetSummaryAnalyticsDataOfIssues Get summary analytics data of issues - afaa-2bdf-424b-9161
-/* Gets the summary analytics data related to issues based on given filters and group by field. This data can be used to find issue counts grouped by different keys. https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
+/* Gets the summary analytics data related to issues based on given filters and group by field. This data can be used to find issue counts grouped by different keys. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.1-resolved.yaml
 
 
 @param GetSummaryAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-issues
 */
 func (s *IssuesService) GetSummaryAnalyticsDataOfIssues(requestIssuesGetSummaryAnalyticsDataOfIssues *RequestIssuesGetSummaryAnalyticsDataOfIssues, GetSummaryAnalyticsDataOfIssuesHeaderParams *GetSummaryAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetSummaryAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/summaryAnalytics"
@@ -1677,12 +1703,12 @@ func (s *IssuesService) GetSummaryAnalyticsDataOfIssues(requestIssuesGetSummaryA
 }
 
 //GetTopNAnalyticsDataOfIssues Get Top N analytics data of issues - 21a7-c91a-4f5a-b54d
-/* Gets the Top N analytics data related to issues based on given filters and group by field. This data can be used to find top sites which has most issues or top device types with most issue etc,. https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
+/* Gets the Top N analytics data related to issues based on given filters and group by field. This data can be used to find top sites which has most issues or top device types with most issue etc,. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.1-resolved.yaml
 
 
 @param GetTopNAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-issues
 */
 func (s *IssuesService) GetTopNAnalyticsDataOfIssues(requestIssuesGetTopNAnalyticsDataOfIssues *RequestIssuesGetTopNAnalyticsDataOfIssues, GetTopNAnalyticsDataOfIssuesHeaderParams *GetTopNAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetTopNAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/topNAnalytics"
@@ -1731,12 +1757,12 @@ func (s *IssuesService) GetTopNAnalyticsDataOfIssues(requestIssuesGetTopNAnalyti
 }
 
 //GetTrendAnalyticsDataOfIssues Get trend analytics data of issues - f9ae-db6a-4618-b045
-/* Gets the trend analytics data related to issues based on given filters and group by field. This data can be used to find issue counts in different intervals over a period of time. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.0-resolved.yaml
+/* Gets the trend analytics data related to issues based on given filters and group by field. This data can be used to find issue counts in different intervals over a period of time. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesList-1.0.1-resolved.yaml
 
 
 @param GetTrendAnalyticsDataOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-issues
 */
 func (s *IssuesService) GetTrendAnalyticsDataOfIssues(requestIssuesGetTrendAnalyticsDataOfIssues *RequestIssuesGetTrendAnalyticsDataOfIssues, GetTrendAnalyticsDataOfIssuesHeaderParams *GetTrendAnalyticsDataOfIssuesHeaderParams) (*ResponseIssuesGetTrendAnalyticsDataOfIssues, *resty.Response, error) {
 	path := "/dna/data/api/v1/assuranceIssues/trendAnalytics"
@@ -1785,12 +1811,12 @@ func (s *IssuesService) GetTrendAnalyticsDataOfIssues(requestIssuesGetTrendAnaly
 }
 
 //IgnoreTheGivenListOfIssues Ignore the given list of issues - 4b92-ca6b-4918-b9fd
-/* Ignores the given list of issues. The response contains the list of issues which were successfully ignored as well as the issues which are failed to ignore. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
+/* Ignores the given list of issues. The response contains the list of issues which were successfully ignored as well as the issues which are failed to ignore. After this API returns success response, it may take few seconds for the issue status to be updated if the system is heavily loaded. Please use `GET /dna/data/api/v1/assuranceIssues/{id}` API to fetch the details of a particular issue and verify `updatedTime`. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
 
 
 @param IgnoreTheGivenListOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!ignore-the-given-list-of-issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!ignore-the-given-list-of-issues
 */
 func (s *IssuesService) IgnoreTheGivenListOfIssues(requestIssuesIgnoreTheGivenListOfIssues *RequestIssuesIgnoreTheGivenListOfIssues, IgnoreTheGivenListOfIssuesHeaderParams *IgnoreTheGivenListOfIssuesHeaderParams) (*ResponseIssuesIgnoreTheGivenListOfIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/ignore"
@@ -1835,12 +1861,12 @@ func (s *IssuesService) IgnoreTheGivenListOfIssues(requestIssuesIgnoreTheGivenLi
 }
 
 //ResolveTheGivenListsOfIssues Resolve the given lists of issues - d48f-a9ed-4929-a6dd
-/* Resolves the given list of issues. The response contains the list of issues which were successfully resolved as well as the issues which are failed to resolve. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
+/* Resolves the given list of issues. The response contains the list of issues which were successfully resolved as well as the issues which are failed to resolve. After this API returns success response, it may take few seconds for the issue status to be updated if the system is heavily loaded. Please use `GET /dna/data/api/v1/assuranceIssues/{id}` API to fetch the details of a particular issue and verify `updatedTime`. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
 
 
 @param ResolveTheGivenListsOfIssuesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!resolve-the-given-lists-of-issues-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!resolve-the-given-lists-of-issues
 */
 func (s *IssuesService) ResolveTheGivenListsOfIssues(requestIssuesResolveTheGivenListsOfIssues *RequestIssuesResolveTheGivenListsOfIssues, ResolveTheGivenListsOfIssuesHeaderParams *ResolveTheGivenListsOfIssuesHeaderParams) (*ResponseIssuesResolveTheGivenListsOfIssues, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/resolve"
@@ -1885,14 +1911,14 @@ func (s *IssuesService) ResolveTheGivenListsOfIssues(requestIssuesResolveTheGive
 }
 
 //UpdateTheGivenIssueByUpdatingSelectedFields Update the given issue by updating selected fields - b0bc-dba1-4c19-8d7c
-/* Updates selected fields in the given issue. Currently the only field that can be updated is 'notes' field. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
+/* Updates selected fields in the given issue. Currently the only field that can be updated is 'notes' field. After this API returns success response, it may take few seconds for the issue details to be updated if the system is heavily loaded. Please use `GET /dna/data/api/v1/assuranceIssues/{id}` API to fetch the details of a particular issue and verify `updatedTime`. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-IssuesLifecycle-1.0.0-resolved.yaml
 
 
 @param id id path parameter. The issue Uuid
 
 @param UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-the-given-issue-by-updating-selected-fields-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-the-given-issue-by-updating-selected-fields
 */
 func (s *IssuesService) UpdateTheGivenIssueByUpdatingSelectedFields(id string, requestIssuesUpdateTheGivenIssueByUpdatingSelectedFields *RequestIssuesUpdateTheGivenIssueByUpdatingSelectedFields, UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams *UpdateTheGivenIssueByUpdatingSelectedFieldsHeaderParams) (*ResponseIssuesUpdateTheGivenIssueByUpdatingSelectedFields, *resty.Response, error) {
 	path := "/dna/intent/api/v1/assuranceIssues/{id}/update"
@@ -1947,7 +1973,7 @@ func (s *IssuesService) UpdateTheGivenIssueByUpdatingSelectedFields(id string, r
 
 @param CreatesANewUserDefinedIssueDefinitionsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-new-user-defined-issue-definitions-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!creates-a-new-user-defined-issue-definitions
 */
 func (s *IssuesService) CreatesANewUserDefinedIssueDefinitions(requestIssuesCreatesANewUserDefinedIssueDefinitions *RequestIssuesCreatesANewUserDefinedIssueDefinitions, CreatesANewUserDefinedIssueDefinitionsHeaderParams *CreatesANewUserDefinedIssueDefinitionsHeaderParams) (*ResponseIssuesCreatesANewUserDefinedIssueDefinitions, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions"
@@ -1992,12 +2018,11 @@ func (s *IssuesService) CreatesANewUserDefinedIssueDefinitions(requestIssuesCrea
 }
 
 //ExecuteSuggestedActionsCommands Execute Suggested Actions Commands - cfb2-ab10-4cea-bfbb
-/* This API triggers the execution of the suggested actions for an issue, given the Issue Id. It will return an execution Id. At the completion of the execution, the output of the commands associated with the suggested actions will be provided
-Invoking this API would provide the execution id. Execute the 'Get Business API Execution Details' API with this execution id, to receive the suggested actions commands output.
+/* This API fetches the issue details and suggested actions for an issue, given the Issue Id, executes the commands associated with the suggested actions to remediate the issue
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!execute-suggested-actions-commands-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!execute-suggested-actions-commands
 */
 func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSuggestedActionsCommands *RequestIssuesExecuteSuggestedActionsCommands) (*ResponseIssuesExecuteSuggestedActionsCommands, *resty.Response, error) {
 	path := "/dna/intent/api/v1/execute-suggested-actions-commands"
@@ -2037,7 +2062,7 @@ func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSugg
 
 @param UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams Custom header parameters
 */
-func (s *IssuesService) UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID(id string, requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId *RequestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID, UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams *UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIDHeaderParams) (*ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID, *resty.Response, error) {
+func (s *IssuesService) UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID(id string, requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId *RequestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID) (*ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
@@ -2046,14 +2071,6 @@ func (s *IssuesService) UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvided
 	clientRequest := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json")
-
-	if UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams != nil {
-
-		if UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams.XCaLLERID != "" {
-			clientRequest = clientRequest.SetHeader("X-CALLER-ID", UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams.XCaLLERID)
-		}
-
-	}
 
 	response, err = clientRequest.
 		SetBody(requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId).
@@ -2068,7 +2085,7 @@ func (s *IssuesService) UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvided
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID(id, requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId, UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams)
+			return s.UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID(id, requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId)
 		}
 		return nil, response, fmt.Errorf("error with operation UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId")
 	}
@@ -2122,7 +2139,7 @@ func (s *IssuesService) IssueTriggerDefinitionUpdate(id string, requestIssuesIss
 @param id id path parameter. The custom issue definition unique identifier
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-existing-custom-issue-definition-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-an-existing-custom-issue-definition
 */
 func (s *IssuesService) DeletesAnExistingCustomIssueDefinition(id string) (*resty.Response, error) {
 	//id string
@@ -2142,8 +2159,7 @@ func (s *IssuesService) DeletesAnExistingCustomIssueDefinition(id string) (*rest
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAnExistingCustomIssueDefinition(
-				id)
+			return s.DeletesAnExistingCustomIssueDefinition(id)
 		}
 		return response, fmt.Errorf("error with operation DeletesAnExistingCustomIssueDefinition")
 	}

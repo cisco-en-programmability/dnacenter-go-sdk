@@ -79,8 +79,15 @@ type ResponseItsmIntegrationGetItsmIntegrationSettingByIDDataConnectionSettings 
 	AuthUserName string `json:"Auth_UserName,omitempty"` // Auth User Name
 	AuthPassword string `json:"Auth_Password,omitempty"` // Auth Password
 }
-type ResponseItsmIntegrationGetAllItsmIntegrationSettings []ResponseItemItsmIntegrationGetAllItsmIntegrationSettings // Array of ResponseItsmIntegrationGetAllITSMIntegrationSettings
-type ResponseItemItsmIntegrationGetAllItsmIntegrationSettings struct {
+type ResponseItsmIntegrationGetAllItsmIntegrationSettings struct { // Array of ResponseItsmIntegrationGetAllITSMIntegrationSettings
+	Page         *int                                                       `json:"page,omitempty"`
+	PageSize     *int                                                       `json:"pageSize,omitempty"`
+	TotalPages   *int                                                       `json:"totalPages,omitempty"`
+	Data         []ResponseItsmIntegrationGetAllItsmIntegrationSettingsData `json:"data,omitempty"`
+	TotalRecords *int                                                       `json:"totalRecords,omitempty"`
+}
+type ResponseItsmIntegrationGetAllItsmIntegrationSettingsData struct {
+	TypeID             string                                                                        `json:"_id,omitempty"`
 	ID                 string                                                                        `json:"id,omitempty"`                 // Id
 	DypID              string                                                                        `json:"dypId,omitempty"`              // Dyp Id
 	DypName            string                                                                        `json:"dypName,omitempty"`            // Dyp Name
@@ -91,11 +98,11 @@ type ResponseItemItsmIntegrationGetAllItsmIntegrationSettings struct {
 	CreatedDate        *int                                                                          `json:"createdDate,omitempty"`        // Created Date
 	CreatedBy          string                                                                        `json:"createdBy,omitempty"`          // Created By
 	UpdatedBy          string                                                                        `json:"updatedBy,omitempty"`          // Updated By
-	SoftwareVersionLog *[]ResponseItemItsmIntegrationGetAllItsmIntegrationSettingsSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
+	SoftwareVersionLog *[]ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
 	SchemaVersion      *float64                                                                      `json:"schemaVersion,omitempty"`      // Schema Version
 	TenantID           string                                                                        `json:"tenantId,omitempty"`           // Tenant Id
 }
-type ResponseItemItsmIntegrationGetAllItsmIntegrationSettingsSoftwareVersionLog interface{}
+type ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog interface{}
 type ResponseItsmIntegrationGetItsmIntegrationStatus struct {
 	Response *[]ResponseItsmIntegrationGetItsmIntegrationStatusResponse `json:"response,omitempty"` //
 	Version  string                                                     `json:"version,omitempty"`  // Version
@@ -146,7 +153,7 @@ type RequestItsmIntegrationUpdateItsmIntegrationSettingDataConnectionSettings st
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-setting-by-id
 */
 func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string) (*ResponseItsmIntegrationGetItsmIntegrationSettingByID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm/{instanceId}"
@@ -181,7 +188,7 @@ func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings
 */
 func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmIntegrationGetAllItsmIntegrationSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/itsm/instances"
@@ -215,7 +222,7 @@ func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmI
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-status-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-itsm-integration-status
 */
 func (s *ItsmIntegrationService) GetItsmIntegrationStatus() (*ResponseItsmIntegrationGetItsmIntegrationStatus, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/status"
@@ -249,7 +256,7 @@ func (s *ItsmIntegrationService) GetItsmIntegrationStatus() (*ResponseItsmIntegr
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-itsm-integration-setting
 */
 func (s *ItsmIntegrationService) CreateItsmIntegrationSetting(requestItsmIntegrationCreateITSMIntegrationSetting *RequestItsmIntegrationCreateItsmIntegrationSetting) (*ResponseItsmIntegrationCreateItsmIntegrationSetting, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/instances/itsm"
@@ -324,7 +331,7 @@ func (s *ItsmIntegrationService) UpdateItsmIntegrationSetting(instanceID string,
 @param instanceID instanceId path parameter. Instance Id of the Integration setting instance
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-itsm-integration-setting
 */
 func (s *ItsmIntegrationService) DeleteItsmIntegrationSetting(instanceID string) (*resty.Response, error) {
 	//instanceID string

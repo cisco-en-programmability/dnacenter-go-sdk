@@ -25,6 +25,36 @@ type GetApplicationSetsQueryParams struct {
 type DeleteApplicationSetQueryParams struct {
 	ID string `url:"id,omitempty"` //
 }
+type RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams struct {
+	IDs                           string `url:"ids,omitempty"`                           //List of network devices ids. If this parameter is not provided, all network devices will be included in the response. Multiple network device IDs can be provided.
+	ManagementAddress             string `url:"managementAddress,omitempty"`             //The management address for the network device. This is normally IP address of the device. But it could be hostname in some cases like Meraki devices. Partial search is supported. For example, searching for `25.` would include `10.25.1.1`, `25.5.10.1`, `225.225.1.0`, `10.10.10.125`, etc.
+	Hostname                      string `url:"hostname,omitempty"`                      //The host name of the network device. Partial search is supported. For example, searching for `switch` will include `edge-switch1.domain.com`, `switch25`, etc.
+	SiteID                        string `url:"siteId,omitempty"`                        //The site ID where the network device is assigned.
+	AppTelemetryDeploymentStatus  string `url:"appTelemetryDeploymentStatus,omitempty"`  //Status of the application telemetry deployment on the network device. Available values: SCHEDULED, IN_PROGRESS, COMPLETED, FAILED, NOT_DEPLOYED.
+	AppTelemetryReadinessStatus   string `url:"appTelemetryReadinessStatus,omitempty"`   //Indicates whether the network device is ready for application telemetry enablement or not. Available values: ENABLED, READY, NOT_READY, NOT_SUPPORTED
+	CbarDeploymentStatus          string `url:"cbarDeploymentStatus,omitempty"`          //Status of the CBAR deployment on the network device. Available values: SCHEDULED, IN_PROGRESS, COMPLETED, FAILED, NOT_DEPLOYED
+	CbarReadinessStatus           string `url:"cbarReadinessStatus,omitempty"`           //Indicates whether the network device is ready for CBAR enablement or not. Available values: ENABLED, READY, NOT_READY, NOT_SUPPORTED
+	ProtocolPackStatus            string `url:"protocolPackStatus,omitempty"`            //Indicates whether the NBAR protocol pack is up-to-date or not on the network device. Available values: LATEST, OUTDATED, UNKNOWN
+	ProtocolPackUpdateStatus      string `url:"protocolPackUpdateStatus,omitempty"`      //Status of the NBAR protocol pack update on the network device. Available values: SCHEDULED, IN_PROGRESS, SUCCESS, FAILED, NONE
+	ApplicationRegistrySyncStatus string `url:"applicationRegistrySyncStatus,omitempty"` //Indicates whether the latest definitions from application registry have been synchronized with the network device or not. Available values: SYNCING, IN_SYNC, OUT_OF_SYNC, NOT_APPLICABLE
+	Offset                        string `url:"offset,omitempty"`                        //The first record to show for this page; the first record is numbered 1. Default value is: 1.
+	Limit                         string `url:"limit,omitempty"`                         //The number of records to show for this page. Minimum value is: 1, Maximum value is: 500
+	SortBy                        string `url:"sortBy,omitempty"`                        //A property within the response to sort by.
+	Order                         string `url:"order,omitempty"`                         //Whether ascending or descending order should be used to sort the response. Available values are: asc, desc. Default value is: asc
+}
+type RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams struct {
+	IDs                           string `url:"ids,omitempty"`                           //List of network devices ids. If this parameter is not provided, all network devices will be included in the response. Multiple network device IDs can be provided.
+	ManagementAddress             string `url:"managementAddress,omitempty"`             //The management address for the network device. This is normally IP address of the device. But it could be hostname in some cases like Meraki devices. Partial search is supported. For example, searching for `25.` would include `10.25.1.1`, `25.5.10.1`, `225.225.1.0`, `10.10.10.125`, etc.
+	Hostname                      string `url:"hostname,omitempty"`                      //The host name of the network device. Partial search is supported. For example, searching for `switch` will include `edge-switch1.domain.com`, `switch25`, etc.
+	SiteID                        string `url:"siteId,omitempty"`                        //The site ID where the network device is assigned.
+	AppTelemetryDeploymentStatus  string `url:"appTelemetryDeploymentStatus,omitempty"`  //Status of the application telemetry deployment on the network device. Available values: SCHEDULED, IN_PROGRESS, COMPLETED, FAILED, NOT_DEPLOYED
+	AppTelemetryReadinessStatus   string `url:"appTelemetryReadinessStatus,omitempty"`   //Indicates whether the network device is ready for application telemetry enablement or not. Available values: ENABLED, READY, NOT_READY, NOT_SUPPORTED
+	CbarDeploymentStatus          string `url:"cbarDeploymentStatus,omitempty"`          //Status of the CBAR deployment on the network device. Available values: SCHEDULED, IN_PROGRESS, COMPLETED, FAILED, NOT_DEPLOYED
+	CbarReadinessStatus           string `url:"cbarReadinessStatus,omitempty"`           //Indicates whether the network device is ready for CBAR enablement or not. Available values: ENABLED, READY, NOT_READY, NOT_SUPPORTED
+	ProtocolPackStatus            string `url:"protocolPackStatus,omitempty"`            //Indicates whether the NBAR protocol pack is up-to-date or not on the network device. Available values: LATEST, OUTDATED, UNKNOWN
+	ProtocolPackUpdateStatus      string `url:"protocolPackUpdateStatus,omitempty"`      //Status of the NBAR protocol pack update on the network device. Available values: SCHEDULED, IN_PROGRESS, SUCCESS, FAILED, NONE
+	ApplicationRegistrySyncStatus string `url:"applicationRegistrySyncStatus,omitempty"` //Indicates whether the latest definitions from application registry have been synchronized with the network device or not. Available values: SYNCING, IN_SYNC, OUT_OF_SYNC, NOT_APPLICABLE
+}
 type DeleteApplicationQueryParams struct {
 	ID string `url:"id,omitempty"` //Application's Id
 }
@@ -412,6 +442,82 @@ type ResponseApplicationPolicyGetApplicationSetsCount struct {
 	Response string `json:"response,omitempty"` // Response
 	Version  string `json:"version,omitempty"`  // Version
 }
+type ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus struct {
+	Response *[]ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version number of the response
+}
+type ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusResponse struct {
+	ID string `json:"id,omitempty"` // The network device id
+
+	ManagementAddress string `json:"managementAddress,omitempty"` // The management address for the network device
+
+	Hostname string `json:"hostname,omitempty"` // The host name of the network device
+
+	SiteID string `json:"siteId,omitempty"` // The site ID where the network device is assigned.
+
+	AppTelemetryDeploymentStatus string `json:"appTelemetryDeploymentStatus,omitempty"` // Status of the application telemetry deployment on the network device.
+
+	AppTelemetryReadinessStatus string `json:"appTelemetryReadinessStatus,omitempty"` // Indicates whether the network device is ready for application telemetry enablement or not.
+
+	CbarDeploymentStatus string `json:"cbarDeploymentStatus,omitempty"` // Status of the CBAR deployment on the network device.
+
+	CbarReadinessStatus string `json:"cbarReadinessStatus,omitempty"` // Indicates whether the network device is ready for CBAR enablement or not.
+
+	ProtocolPackStatus string `json:"protocolPackStatus,omitempty"` // Indicates whether the NBAR protocol pack is up-to-date or not on the network device.
+
+	ProtocolPackUpdateStatus string `json:"protocolPackUpdateStatus,omitempty"` // Status of the NBAR protocol pack update on the network device.
+
+	ApplicationRegistrySyncStatus string `json:"applicationRegistrySyncStatus,omitempty"` // Indicates whether the latest definitions from application registry have been synchronized with the network device or not.
+}
+type ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters struct {
+	Response *ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
+	Response *ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+
+	URL string `json:"url,omitempty"` // Url
+}
+type ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices struct {
+	Response *ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+
+	URL string `json:"url,omitempty"` // Url
+}
+type ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
+	Response *ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+
+	URL string `json:"url,omitempty"` // Url
+}
+type ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices struct {
+	Response *ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
+
+	Version string `json:"version,omitempty"` // Version
+}
+type ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task Id
+
+	URL string `json:"url,omitempty"` // Url
+}
 type ResponseApplicationPolicyCreateApplication struct {
 	Response *ResponseApplicationPolicyCreateApplicationResponse `json:"response,omitempty"` //
 	Version  string                                              `json:"version,omitempty"`  // Version
@@ -475,8 +581,8 @@ type ResponseItemApplicationPolicyGetApplicationsApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
 type ResponseApplicationPolicyGetApplicationsCount struct {
-	Response string `json:"response,omitempty"` // Response
-	Version  string `json:"version,omitempty"`  // Version
+	Response float64 `json:"response,omitempty"` // Response
+	Version  string  `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyGetQosDeviceInterfaceInfo struct {
 	Response *[]ResponseApplicationPolicyGetQosDeviceInterfaceInfoResponse `json:"response,omitempty"` //
@@ -553,6 +659,13 @@ type ResponseApplicationPolicyDeleteQosDeviceInterfaceInfo struct {
 type ResponseApplicationPolicyDeleteQosDeviceInterfaceInfoResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task id
 	URL    string `json:"url,omitempty"`    // Task url
+}
+type ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySetting struct {
+	Response *ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySettingResponse `json:"response,omitempty"` //
+	Version  string                                                                    `json:"version,omitempty"`  // The version of the response
+}
+type ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySettingResponse struct {
+	DeployByDefaultOnWiredDevices *bool `json:"deployByDefaultOnWiredDevices,omitempty"` // Flag to indicate whether QoS policy should be deployed automatically on wired network device when it is provisioned. This would be only applicable for cases where the network device is assigned to a site where a QoS policy has been configured.
 }
 type ResponseApplicationPolicyCreateApplicationSetsV2 struct {
 	Response *ResponseApplicationPolicyCreateApplicationSetsV2Response `json:"response,omitempty"` //
@@ -845,6 +958,32 @@ type RequestApplicationPolicyCreateApplicationSet []RequestItemApplicationPolicy
 type RequestItemApplicationPolicyCreateApplicationSet struct {
 	Name string `json:"name,omitempty"` // Name
 }
+type RequestApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
+	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids where Application Telemetry has to be disabled
+}
+type RequestApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices struct {
+	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids where CBAR has to be disabled
+}
+type RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
+	NetworkDevices *[]RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesNetworkDevices `json:"networkDevices,omitempty"` //
+}
+type RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesNetworkDevices struct {
+	ID string `json:"id,omitempty"` // Network device identifier
+
+	IncludeWLANModes []string `json:"includeWlanModes,omitempty"` // Types of WLAN modes which needs to be included for enablement. Applicable and mandatory only for wireless devices. Available values: LOCAL or NON_LOCAL.
+
+	IncludeGuestSSIDs *bool `json:"includeGuestSsids,omitempty"` // Flag to indicate whether guest SSIDs should be included for application telemetry enablement. Applicable only for wireless devices. Default value is false.
+}
+type RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices struct {
+	NetworkDevices *[]RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesNetworkDevices `json:"networkDevices,omitempty"` //
+}
+type RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesNetworkDevices struct {
+	ID string `json:"id,omitempty"` // Network device identifier
+
+	ExcludeInterfaceIDs []string `json:"excludeInterfaceIds,omitempty"` // List of interface identifiers which needs to be excluded from CBAR enablement. Applicable only for wired devices. Please note that this list considered as absolute exclusion and earlier exclusions are not considered. For example, if IF1 and IF2 have already been excluded from CBAR as part of earlier enablement, and this API is now called with IF3 and IF4 as inputs, then IF1 and IF2 are removed from exclusion list and only IF3 and IF4 are excluded.
+
+	ExcludeWLANModes []string `json:"excludeWlanModes,omitempty"` // WLAN modes which needs to be excluded from CBAR enablement. Applicable only for wireless devices. Applicable values are: LOCAL, FLEX, or FABRIC
+}
 type RequestApplicationPolicyCreateApplication []RequestItemApplicationPolicyCreateApplication // Array of RequestApplicationPolicyCreateApplication
 type RequestItemApplicationPolicyCreateApplication struct {
 	Name                      string                                                                    `json:"name,omitempty"`                      // Name
@@ -958,6 +1097,9 @@ type RequestItemApplicationPolicyCreateQosDeviceInterfaceInfoQosDeviceInterfaceI
 	Label              string `json:"label,omitempty"`              // SP Profile name
 	Role               string `json:"role,omitempty"`               // Interface role
 	UploadBW           *int   `json:"uploadBW,omitempty"`           // Upload bandwidth
+}
+type RequestApplicationPolicyUpdatesTheApplicationQoSPolicySetting struct {
+	DeployByDefaultOnWiredDevices *bool `json:"deployByDefaultOnWiredDevices,omitempty"` // Flag to indicate whether QoS policy should be deployed automatically on wired network device when it is provisioned. This would be only applicable for cases where the network device is assigned to a site where a QoS policy has been configured.
 }
 type RequestApplicationPolicyCreateApplicationSetsV2 []RequestItemApplicationPolicyCreateApplicationSetsV2 // Array of RequestApplicationPolicyCreateApplicationSetsV2
 type RequestItemApplicationPolicyCreateApplicationSetsV2 struct {
@@ -1077,7 +1219,7 @@ type RequestItemApplicationPolicyCreateApplicationsV2IndicativeNetworkIDentity s
 
 @param GetApplicationPolicyQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy
 */
 func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQueryParams *GetApplicationPolicyQueryParams) (*ResponseApplicationPolicyGetApplicationPolicy, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy"
@@ -1113,7 +1255,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicy(GetApplicationPolicyQuer
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-default-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-default
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseApplicationPolicyGetApplicationPolicyDefault, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-default"
@@ -1148,7 +1290,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyDefault() (*ResponseAppli
 
 @param GetApplicationPolicyQueuingProfileQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplicationPolicyQueuingProfileQueryParams *GetApplicationPolicyQueuingProfileQueryParams) (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
@@ -1184,7 +1326,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfile(GetApplica
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-policy-queuing-profile-count
 */
 func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*ResponseApplicationPolicyGetApplicationPolicyQueuingProfileCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile-count"
@@ -1219,7 +1361,7 @@ func (s *ApplicationPolicyService) GetApplicationPolicyQueuingProfileCount() (*R
 
 @param GetApplicationSetsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets
 */
 func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryParams *GetApplicationSetsQueryParams) (*ResponseApplicationPolicyGetApplicationSets, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
@@ -1255,7 +1397,7 @@ func (s *ApplicationPolicyService) GetApplicationSets(GetApplicationSetsQueryPar
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-application-sets-count
 */
 func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicationPolicyGetApplicationSetsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set-count"
@@ -1284,13 +1426,87 @@ func (s *ApplicationPolicyService) GetApplicationSetsCount() (*ResponseApplicati
 
 }
 
+//RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus Retrieve the list of network devices with their application visibility status - d2b0-d835-4b9a-8894
+/* This API retrieves the list of network devices with their application visibility status. The list can be filtered using the query parameters. Multiple filters can be applied.
+
+
+@param RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-list-of-network-devices-with-their-application-visibility-status
+*/
+func (s *ApplicationPolicyService) RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus(RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams *RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams) (*ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices"
+
+	queryString, _ := query.Values(RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus(RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus)
+	return result, response, err
+
+}
+
+//RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters Retrieve the count of network devices for the given application visibility status filters - 52af-ebf2-4119-94ab
+/* This API retrieves the count of network devices for the given application visibility status filters.
+
+
+@param RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-the-count-of-network-devices-for-the-given-application-visibility-status-filters
+*/
+func (s *ApplicationPolicyService) RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters(RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams *RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams) (*ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices/count"
+
+	queryString, _ := query.Values(RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters(RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters)
+	return result, response, err
+
+}
+
 //GetApplications Get Applications - 8893-b834-445b-b29c
 /* Get applications by offset/limit or by name
 
 
 @param GetApplicationsQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications
 */
 func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *GetApplicationsQueryParams) (*ResponseApplicationPolicyGetApplications, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
@@ -1326,7 +1542,7 @@ func (s *ApplicationPolicyService) GetApplications(GetApplicationsQueryParams *G
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-applications-count
 */
 func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationPolicyGetApplicationsCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications-count"
@@ -1361,7 +1577,7 @@ func (s *ApplicationPolicyService) GetApplicationsCount() (*ResponseApplicationP
 
 @param GetQosDeviceInterfaceInfoQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info
 */
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfaceInfoQueryParams *GetQosDeviceInterfaceInfoQueryParams) (*ResponseApplicationPolicyGetQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
@@ -1397,7 +1613,7 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfo(GetQosDeviceInterfa
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-count-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-qos-device-interface-info-count
 */
 func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseApplicationPolicyGetQosDeviceInterfaceInfoCount, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info-count"
@@ -1422,6 +1638,40 @@ func (s *ApplicationPolicyService) GetQosDeviceInterfaceInfoCount() (*ResponseAp
 	}
 
 	result := response.Result().(*ResponseApplicationPolicyGetQosDeviceInterfaceInfoCount)
+	return result, response, err
+
+}
+
+//RetrievesTheApplicationQoSPolicySetting Retrieves the application QoS policy setting - 2fae-cab8-418b-8894
+/* API to retrieve the application QoS policy setting.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-application-qo-s-policy-setting
+*/
+func (s *ApplicationPolicyService) RetrievesTheApplicationQoSPolicySetting() (*ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySetting, *resty.Response, error) {
+	path := "/dna/intent/api/v1/qosPolicySetting"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySetting{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesTheApplicationQoSPolicySetting()
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesTheApplicationQoSPolicySetting")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyRetrievesTheApplicationQoSPolicySetting)
 	return result, response, err
 
 }
@@ -1579,7 +1829,7 @@ func (s *ApplicationPolicyService) GetApplicationCountV2(GetApplicationCountV2Qu
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!application-policy-intent-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!application-policy-intent
 */
 func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPolicyApplicationPolicyIntent *RequestApplicationPolicyApplicationPolicyIntent) (*ResponseApplicationPolicyApplicationPolicyIntent, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-intent"
@@ -1616,7 +1866,7 @@ func (s *ApplicationPolicyService) ApplicationPolicyIntent(requestApplicationPol
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-policy-queuing-profile-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-policy-queuing-profile
 */
 func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(requestApplicationPolicyCreateApplicationPolicyQueuingProfile *RequestApplicationPolicyCreateApplicationPolicyQueuingProfile) (*ResponseApplicationPolicyCreateApplicationPolicyQueuingProfile, *resty.Response, error) {
 	path := "/dna/intent/api/v1/app-policy-queuing-profile"
@@ -1653,7 +1903,7 @@ func (s *ApplicationPolicyService) CreateApplicationPolicyQueuingProfile(request
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-set-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-set
 */
 func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicyCreateApplicationSet *RequestApplicationPolicyCreateApplicationSet) (*ResponseApplicationPolicyCreateApplicationSet, *resty.Response, error) {
 	path := "/dna/intent/api/v1/application-policy-application-set"
@@ -1685,12 +1935,166 @@ func (s *ApplicationPolicyService) CreateApplicationSet(requestApplicationPolicy
 
 }
 
+//DisableApplicationTelemetryFeatureOnMultipleNetworkDevices Disable application telemetry feature on multiple network devices - f0b9-883a-406b-9b6b
+/* This API can be used to disable application telemetry feature on multiple network devices. Request payload should include the list of network devices where it has to be disabled.
+This operation pushes configuration to the network devices, and is only permitted if the provisioning settings do not mandate a config preview for application telemetry disablement. In cases where such settings are active, attempting to use this endpoint will result in `422 Unprocessable Content` error.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disable-application-telemetry-feature-on-multiple-network-devices
+*/
+func (s *ApplicationPolicyService) DisableApplicationTelemetryFeatureOnMultipleNetworkDevices(requestApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices *RequestApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices) (*ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices/disableAppTelemetry"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices).
+		SetResult(&ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DisableApplicationTelemetryFeatureOnMultipleNetworkDevices(requestApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation DisableApplicationTelemetryFeatureOnMultipleNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices)
+	return result, response, err
+
+}
+
+//DisableCBARFeatureOnMultipleNetworkDevices Disable CBAR feature on multiple network devices - 9bae-b815-4a7a-951c
+/* This API can be used to disable CBAR feature on multiple network devices. Request payload should include the list of network devices where it has to be disabled.
+This operation pushes configuration to the network devices, and is only permitted if the provisioning settings do not mandate a config preview for CBAR disablement. In cases where such settings are active, attempting to use this endpoint will result in `422 Unprocessable Content` error.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!disable-c-b-a-r-feature-on-multiple-network-devices
+*/
+func (s *ApplicationPolicyService) DisableCBARFeatureOnMultipleNetworkDevices(requestApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices *RequestApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices) (*ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices/disableCbar"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices).
+		SetResult(&ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DisableCBARFeatureOnMultipleNetworkDevices(requestApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation DisableCBARFeatureOnMultipleNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices)
+	return result, response, err
+
+}
+
+//EnableApplicationTelemetryFeatureOnMultipleNetworkDevices Enable application telemetry feature on multiple network devices - 02a7-dbf2-458b-bc98
+/* This API can be used to enable application telemetry feature on multiple network devices. Request payload should include the list of network devices where application telemetry has to be enabled. For wireless controllers, it also needs the WLAN modes / SSID details to be included for enablement.
+Please note that this operation can be performed even if the feature is already enabled on the network device. It would push the updated configurations to the network device.
+This operation pushes configuration to the network devices, and is only permitted if the provisioning settings do not mandate a config preview for application telemetry enablement. In cases where such settings are active, attempting to use this endpoint will result in `422 Unprocessable Content` error.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!enable-application-telemetry-feature-on-multiple-network-devices
+*/
+func (s *ApplicationPolicyService) EnableApplicationTelemetryFeatureOnMultipleNetworkDevices(requestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices *RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices) (*ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices/enableAppTelemetry"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices).
+		SetResult(&ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.EnableApplicationTelemetryFeatureOnMultipleNetworkDevices(requestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation EnableApplicationTelemetryFeatureOnMultipleNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices)
+	return result, response, err
+
+}
+
+//EnableCBARFeatureOnMultipleNetworkDevices Enable CBAR feature on multiple network devices - 5b82-9a62-4e9a-810c
+/* This API can be used to enable CBAR feature on multiple network devices. Request payload should include the list of network devices where CBAR has to be enabled. It can optionally include list of interfaces (wired) or WLAN modes (wireless) to be excluded from CBAR enablement.
+Please note that this operation can be performed even if the feature is already enabled on the network device. It would push the updated configurations to the network device.
+This operation is only permitted if the provisioning settings do not mandate a configuration preview for CBAR enablement. In cases where such settings are active, attempting to use this endpoint will result in `422 Unprocessable Content` error.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!enable-c-b-a-r-feature-on-multiple-network-devices
+*/
+func (s *ApplicationPolicyService) EnableCBARFeatureOnMultipleNetworkDevices(requestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices *RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices) (*ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/applicationVisibility/networkDevices/enableCbar"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices).
+		SetResult(&ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.EnableCBARFeatureOnMultipleNetworkDevices(requestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation EnableCBARFeatureOnMultipleNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices)
+	return result, response, err
+
+}
+
 //CreateApplication Create Application - fb9b-f80f-491a-9851
 /* Create new Custom application
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-application
 */
 func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCreateApplication *RequestApplicationPolicyCreateApplication) (*ResponseApplicationPolicyCreateApplication, *resty.Response, error) {
 	path := "/dna/intent/api/v1/applications"
@@ -1727,7 +2131,7 @@ func (s *ApplicationPolicyService) CreateApplication(requestApplicationPolicyCre
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-qos-device-interface-info-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-qos-device-interface-info
 */
 func (s *ApplicationPolicyService) CreateQosDeviceInterfaceInfo(requestApplicationPolicyCreateQosDeviceInterfaceInfo *RequestApplicationPolicyCreateQosDeviceInterfaceInfo) (*ResponseApplicationPolicyCreateQosDeviceInterfaceInfo, *resty.Response, error) {
 	path := "/dna/intent/api/v1/qos-device-interface-info"
@@ -1932,6 +2336,37 @@ func (s *ApplicationPolicyService) UpdateQosDeviceInterfaceInfo(requestApplicati
 
 }
 
+//UpdatesTheApplicationQoSPolicySetting Updates the application QoS policy setting - 99ab-9b4a-46e8-b0f7
+/* API to update the application QoS policy setting.
+
+
+ */
+func (s *ApplicationPolicyService) UpdatesTheApplicationQoSPolicySetting(requestApplicationPolicyUpdatesTheApplicationQoSPolicySetting *RequestApplicationPolicyUpdatesTheApplicationQoSPolicySetting) (*resty.Response, error) {
+	path := "/dna/intent/api/v1/qosPolicySetting"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestApplicationPolicyUpdatesTheApplicationQoSPolicySetting).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdatesTheApplicationQoSPolicySetting(requestApplicationPolicyUpdatesTheApplicationQoSPolicySetting)
+		}
+		return response, fmt.Errorf("error with operation UpdatesTheApplicationQoSPolicySetting")
+	}
+
+	return response, err
+
+}
+
 //EditApplicationsV2 Edit Application/s - 6995-2aea-4f2b-a053
 /* Edit the attributes of an existing application
 
@@ -1972,7 +2407,7 @@ func (s *ApplicationPolicyService) EditApplicationsV2(requestApplicationPolicyEd
 @param id id path parameter. Id of custom queuing profile to delete
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-policy-queuing-profile-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-policy-queuing-profile
 */
 func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id string) (*ResponseApplicationPolicyDeleteApplicationPolicyQueuingProfile, *resty.Response, error) {
 	//id string
@@ -2009,7 +2444,7 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 
 @param DeleteApplicationSetQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-set
 */
 func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams) (*ResponseApplicationPolicyDeleteApplicationSet, *resty.Response, error) {
 	//DeleteApplicationSetQueryParams *DeleteApplicationSetQueryParams
@@ -2047,7 +2482,7 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQuer
 
 @param DeleteApplicationQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-application
 */
 func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParams *DeleteApplicationQueryParams) (*ResponseApplicationPolicyDeleteApplication, *resty.Response, error) {
 	//DeleteApplicationQueryParams *DeleteApplicationQueryParams
@@ -2086,7 +2521,7 @@ func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParam
 @param id id path parameter. Id of the qos device info, this object holds all qos device interface infos associate with network device id
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-qos-device-interface-info-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-qos-device-interface-info
 */
 func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*ResponseApplicationPolicyDeleteQosDeviceInterfaceInfo, *resty.Response, error) {
 	//id string

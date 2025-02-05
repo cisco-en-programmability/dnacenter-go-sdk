@@ -84,7 +84,9 @@ if devices.Response != nil {
 ```
 
 ## Documentation
-### dnacenter-go-sdk/v5
+### dnacenter-go-sdk/v7
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v7)
+### dnacenter-go-sdk/v6
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v6)
 ### dnacenter-go-sdk/v5
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v5)
@@ -107,6 +109,7 @@ if devices.Response != nil {
 | 4.y.z        |  2.3.3.0                           |
 | 5.y.z        |  2.3.5.3                           |
 | 6.y.z        |  2.3.7.6                           |
+| 7.y.z        |  2.3.7.9                           |
 
 ## Changelog
 

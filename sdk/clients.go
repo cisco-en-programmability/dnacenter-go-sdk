@@ -1271,7 +1271,7 @@ type RequestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeP
 @param RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams Custom header parameters
 @param RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-while-also-offering-basic-filtering-and-sorting-capabilities-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-while-also-offering-basic-filtering-and-sorting-capabilities
 */
 func (s *ClientsService) RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilities(RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams *RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesHeaderParams, RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams *RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilitiesQueryParams) (*ResponseClientsRetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilities, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients"
@@ -1321,7 +1321,7 @@ func (s *ClientsService) RetrievesTheListOfClientsWhileAlsoOfferingBasicFilterin
 @param RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams Custom header parameters
 @param RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-count-of-clients-by-applying-basic-filtering-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-count-of-clients-by-applying-basic-filtering
 */
 func (s *ClientsService) RetrievesTheTotalCountOfClientsByApplyingBasicFiltering(RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams *RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams, RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams *RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams) (*ResponseClientsRetrievesTheTotalCountOfClientsByApplyingBasicFiltering, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/count"
@@ -1368,12 +1368,12 @@ func (s *ClientsService) RetrievesTheTotalCountOfClientsByApplyingBasicFiltering
 /* Retrieves specific client information matching the MAC address. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-clients1-1.0.0-resolved.yaml
 
 
-@param id id path parameter. id is the client mac address. It can be specified is any notational conventions  01:23:45:67:89:AB or 01-23-45-67-89-AB or 0123.4567.89AB and is case insensitive
+@param id id path parameter. id is the client mac address. It can be specified is any notational conventions 01:23:45:67:89:AB or 01-23-45-67-89-AB or 0123.4567.89AB and is case insensitive
 
 @param RetrievesSpecificClientInformationMatchingTheMACAddressHeaderParams Custom header parameters
 @param RetrievesSpecificClientInformationMatchingTheMACAddressQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-matching-the-macaddress-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-matching-the-macaddress
 */
 func (s *ClientsService) RetrievesSpecificClientInformationMatchingTheMacaddress(id string, RetrievesSpecificClientInformationMatchingTheMACAddressHeaderParams *RetrievesSpecificClientInformationMatchingTheMacaddressHeaderParams, RetrievesSpecificClientInformationMatchingTheMACAddressQueryParams *RetrievesSpecificClientInformationMatchingTheMacaddressQueryParams) (*ResponseClientsRetrievesSpecificClientInformationMatchingTheMacaddress, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/{id}"
@@ -1423,7 +1423,7 @@ func (s *ClientsService) RetrievesSpecificClientInformationMatchingTheMacaddress
 
 @param GetClientDetailQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-detail-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-detail
 */
 func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDetailQueryParams) (*ResponseClientsGetClientDetail, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-detail"
@@ -1460,7 +1460,7 @@ func (s *ClientsService) GetClientDetail(GetClientDetailQueryParams *GetClientDe
 
 @param GetClientEnrichmentDetailsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-enrichment-details-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-enrichment-details
 */
 func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHeaderParams *GetClientEnrichmentDetailsHeaderParams) (*ResponseClientsGetClientEnrichmentDetails, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-enrichment-details"
@@ -1519,7 +1519,7 @@ func (s *ClientsService) GetClientEnrichmentDetails(GetClientEnrichmentDetailsHe
 
 @param GetOverallClientHealthQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-client-health-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-overall-client-health
 */
 func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParams *GetOverallClientHealthQueryParams) (*ResponseClientsGetOverallClientHealth, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-health"
@@ -1556,7 +1556,7 @@ func (s *ClientsService) GetOverallClientHealth(GetOverallClientHealthQueryParam
 
 @param ClientProximityQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!client-proximity-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!client-proximity
 */
 func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProximityQueryParams) (*ResponseClientsClientProximity, *resty.Response, error) {
 	path := "/dna/intent/api/v1/client-proximity"
@@ -1593,7 +1593,7 @@ func (s *ClientsService) ClientProximity(ClientProximityQueryParams *ClientProxi
 
 @param RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-by-applying-complex-filters-while-also-supporting-aggregate-attributes-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-clients-by-applying-complex-filters-while-also-supporting-aggregate-attributes
 */
 func (s *ClientsService) RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes(requestClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes *RequestClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes, RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams *RetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributesHeaderParams) (*ResponseClientsRetrievesTheListOfClientsByApplyingComplexFiltersWhileAlsoSupportingAggregateAttributes, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/query"
@@ -1643,7 +1643,7 @@ func (s *ClientsService) RetrievesTheListOfClientsByApplyingComplexFiltersWhileA
 
 @param RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-number-of-clients-by-applying-complex-filters-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-number-of-clients-by-applying-complex-filters
 */
 func (s *ClientsService) RetrievesTheNumberOfClientsByApplyingComplexFilters(requestClientsRetrievesTheNumberOfClientsByApplyingComplexFilters *RequestClientsRetrievesTheNumberOfClientsByApplyingComplexFilters, RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams *RetrievesTheNumberOfClientsByApplyingComplexFiltersHeaderParams) (*ResponseClientsRetrievesTheNumberOfClientsByApplyingComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/query/count"
@@ -1693,7 +1693,7 @@ func (s *ClientsService) RetrievesTheNumberOfClientsByApplyingComplexFilters(req
 
 @param RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-summary-analytics-data-related-to-clients-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-summary-analytics-data-related-to-clients
 */
 func (s *ClientsService) RetrievesSummaryAnalyticsDataRelatedToClients(requestClientsRetrievesSummaryAnalyticsDataRelatedToClients *RequestClientsRetrievesSummaryAnalyticsDataRelatedToClients, RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams *RetrievesSummaryAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesSummaryAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/summaryAnalytics"
@@ -1743,7 +1743,7 @@ func (s *ClientsService) RetrievesSummaryAnalyticsDataRelatedToClients(requestCl
 
 @param RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-top-n-analytics-data-related-to-clients-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-top-n-analytics-data-related-to-clients
 */
 func (s *ClientsService) RetrievesTheTopNAnalyticsDataRelatedToClients(requestClientsRetrievesTheTopNAnalyticsDataRelatedToClients *RequestClientsRetrievesTheTopNAnalyticsDataRelatedToClients, RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams *RetrievesTheTopNAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesTheTopNAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/topNAnalytics"
@@ -1793,7 +1793,7 @@ func (s *ClientsService) RetrievesTheTopNAnalyticsDataRelatedToClients(requestCl
 
 @param RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-trend-analytics-data-related-to-clients-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-trend-analytics-data-related-to-clients
 */
 func (s *ClientsService) RetrievesTheTrendAnalyticsDataRelatedToClients(requestClientsRetrievesTheTrendAnalyticsDataRelatedToClients *RequestClientsRetrievesTheTrendAnalyticsDataRelatedToClients, RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams *RetrievesTheTrendAnalyticsDataRelatedToClientsHeaderParams) (*ResponseClientsRetrievesTheTrendAnalyticsDataRelatedToClients, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/trendAnalytics"
@@ -1841,11 +1841,11 @@ func (s *ClientsService) RetrievesTheTrendAnalyticsDataRelatedToClients(requestC
 /* Retrieves the time series information of a specific client by applying complex filters, aggregate functions, and grouping. The data will be grouped based on the specified trend time interval. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-clients1-1.0.0-resolved.yaml
 
 
-@param id id path parameter. id is the client mac address. It can be specified in one of the notational conventions  01:23:45:67:89:AB or 01-23-45-67-89-AB or 0123.4567.89AB and is case insensitive
+@param id id path parameter. id is the client mac address. It can be specified in one of the notational conventions 01:23:45:67:89:AB or 01-23-45-67-89-AB or 0123.4567.89AB and is case insensitive
 
 @param RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-over-a-specified-period-of-time-v1
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-specific-client-information-over-a-specified-period-of-time
 */
 func (s *ClientsService) RetrievesSpecificClientInformationOverASpecifiedPeriodOfTime(id string, requestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime *RequestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime, RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams *RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams) (*ResponseClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime, *resty.Response, error) {
 	path := "/dna/data/api/v1/clients/{id}/trendAnalytics"

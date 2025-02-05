@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
 )
 
 // client is Catalyst Center API client
