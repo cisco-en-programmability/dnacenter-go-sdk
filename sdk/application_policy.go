@@ -581,8 +581,8 @@ type ResponseItemApplicationPolicyGetApplicationsApplicationSet struct {
 	IDRef string `json:"idRef,omitempty"` // Id Ref
 }
 type ResponseApplicationPolicyGetApplicationsCount struct {
-	Response string `json:"response,omitempty"` // Response
-	Version  string `json:"version,omitempty"`  // Version
+	Response float64 `json:"response,omitempty"` // Response
+	Version  string  `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyGetQosDeviceInterfaceInfo struct {
 	Response *[]ResponseApplicationPolicyGetQosDeviceInterfaceInfoResponse `json:"response,omitempty"` //

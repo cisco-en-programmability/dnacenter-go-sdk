@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 New services for Cisco Catalyst Center 2.3.7.9's API:
 - AuthenticationManagement    *AuthenticationManagementService
+- CiscoIMC                    *CiscoIMCService
 
 ## [6.0.0] - 2024-11-14
 ### Added
