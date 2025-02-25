@@ -4704,28 +4704,11 @@ type ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPMask struct {
 type ResponseDevicesUpdateInterfaceDetails struct {
 	Response *ResponseDevicesUpdateInterfaceDetailsResponse `json:"response,omitempty"` //
 
-	Version *ResponseDevicesUpdateInterfaceDetailsVersion `json:"version,omitempty"` //
+	Version string `json:"version,omitempty"` //
 }
 type ResponseDevicesUpdateInterfaceDetailsResponse struct {
-	Type string `json:"type,omitempty"` // Type
-
-	Properties *ResponseDevicesUpdateInterfaceDetailsResponseProperties `json:"properties,omitempty"` //
-
-	Required []string `json:"required,omitempty"` // Required
-}
-type ResponseDevicesUpdateInterfaceDetailsResponseProperties struct {
-	TaskID *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID `json:"taskId,omitempty"` //
-
-	URL *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL `json:"url,omitempty"` //
-}
-type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL struct {
-	Type string `json:"type,omitempty"` // Type
-}
-type ResponseDevicesUpdateInterfaceDetailsVersion struct {
-	Type string `json:"type,omitempty"` // Type
+	TaskID string `json:"taskId,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesLegitOperationsForInterface struct {
 	Response *ResponseDevicesLegitOperationsForInterfaceResponse `json:"response,omitempty"` //
