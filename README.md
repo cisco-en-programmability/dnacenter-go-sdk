@@ -5,7 +5,7 @@ dnacenter-go-sdk is a Go client library for [Catalyst Center Platform](https://d
 ## Usage
 
 ```go
-import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v6/sdk"
+import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
 ```
 
 ## Introduction
