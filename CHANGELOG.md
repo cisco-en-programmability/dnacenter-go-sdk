@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.2] - 2025-02-27
+### Changed
+- Update Readme
+
+
 ## [7.0.1] - 2025-02-25
 ### Changed
 - Response modification of the UpdateInterfaceDetails function
