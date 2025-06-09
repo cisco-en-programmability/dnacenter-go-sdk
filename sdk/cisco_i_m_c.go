@@ -12,67 +12,50 @@ type CiscoIMCService service
 
 type ResponseCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNode struct {
 	Response *ResponseCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNodeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                  `json:"version,omitempty"`  // The version of the response
 }
 type ResponseCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNodeResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseCiscoIMCRetrievesCiscoIMCConfigurationsForCatalystCenterNodes struct {
 	Response *[]ResponseCiscoIMCRetrievesCiscoIMCConfigurationsForCatalystCenterNodesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                           `json:"version,omitempty"`  // The version of the response
 }
 type ResponseCiscoIMCRetrievesCiscoIMCConfigurationsForCatalystCenterNodesResponse struct {
-	ID string `json:"id,omitempty"` // The unique identifier for this Cisco IMC configuration
-
-	NodeID string `json:"nodeId,omitempty"` // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api//nodes-config` API.
-
+	ID        string `json:"id,omitempty"`        // The unique identifier for this Cisco IMC configuration
+	NodeID    string `json:"nodeId,omitempty"`    // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api/v1/nodes-config` API.
 	IPAddress string `json:"ipAddress,omitempty"` // IP address of the Cisco IMC
-
-	Username string `json:"username,omitempty"` // Username of the Cisco IMC
+	Username  string `json:"username,omitempty"`  // Username of the Cisco IMC
 }
 type ResponseCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNode struct {
 	Response *ResponseCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNodeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                         `json:"version,omitempty"`  // The version of the response
 }
 type ResponseCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNodeResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseCiscoIMCRetrievesTheCiscoIMCConfigurationForACatalystCenterNode struct {
 	Response *ResponseCiscoIMCRetrievesTheCiscoIMCConfigurationForACatalystCenterNodeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                           `json:"version,omitempty"`  // The version of the response
 }
 type ResponseCiscoIMCRetrievesTheCiscoIMCConfigurationForACatalystCenterNodeResponse struct {
-	ID string `json:"id,omitempty"` // The unique identifier for this Cisco IMC configuration
-
-	NodeID string `json:"nodeId,omitempty"` // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api//nodes-config` API.
-
+	ID        string `json:"id,omitempty"`        // The unique identifier for this Cisco IMC configuration
+	NodeID    string `json:"nodeId,omitempty"`    // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api/v1/nodes-config` API.
 	IPAddress string `json:"ipAddress,omitempty"` // IP address of the Cisco IMC
-
-	Username string `json:"username,omitempty"` // Username of the Cisco IMC
+	Username  string `json:"username,omitempty"`  // Username of the Cisco IMC
 }
 type RequestCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNode struct {
-	NodeID string `json:"nodeId,omitempty"` // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api//nodes-config` API.
-
+	NodeID    string `json:"nodeId,omitempty"`    // The UUID that represents the Catalyst Center node. Its value can be obtained from the `id` attribute of the response of the `/dna/intent/api/v1/nodes-config` API.
 	IPAddress string `json:"ipAddress,omitempty"` // IP address of the Cisco IMC
-
-	Username string `json:"username,omitempty"` // Username of the Cisco IMC
-
-	Password string `json:"password,omitempty"` // Password of the Cisco IMC
+	Username  string `json:"username,omitempty"`  // Username of the Cisco IMC
+	Password  string `json:"password,omitempty"`  // Password of the Cisco IMC
 }
 type RequestCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNode struct {
 	IPAddress string `json:"ipAddress,omitempty"` // IP address of the Cisco IMC
-
-	Username string `json:"username,omitempty"` // Username of the Cisco IMC
-
-	Password string `json:"password,omitempty"` // Password of the Cisco IMC
+	Username  string `json:"username,omitempty"`  // Username of the Cisco IMC
+	Password  string `json:"password,omitempty"`  // Password of the Cisco IMC
 }
 
 //RetrievesCiscoIMCConfigurationsForCatalystCenterNodes Retrieves Cisco IMC configurations for Catalyst Center nodes - 0082-89c2-45e8-a710
@@ -83,10 +66,10 @@ The Cisco IMC configuration is relevant only for Catalyst Center deployments bas
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-cisco-i-m-c-configurations-for-catalyst-center-nodes-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-cisco-i-m-c-configurations-for-catalyst-center-nodes
 */
 func (s *CiscoIMCService) RetrievesCiscoIMCConfigurationsForCatalystCenterNodes() (*ResponseCiscoIMCRetrievesCiscoIMCConfigurationsForCatalystCenterNodes, *resty.Response, error) {
-	path := "/dna/system/api//ciscoImcs"
+	path := "/dna/system/api/v1/ciscoImcs"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -122,10 +105,10 @@ The Cisco IMC configuration is relevant only for Catalyst Center deployments bas
 @param id id path parameter. The unique identifier for this Cisco IMC configuration
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-cisco-i-m-c-configuration-for-a-catalyst-center-node-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-cisco-i-m-c-configuration-for-a-catalyst-center-node
 */
 func (s *CiscoIMCService) RetrievesTheCiscoIMCConfigurationForACatalystCenterNode(id string) (*ResponseCiscoIMCRetrievesTheCiscoIMCConfigurationForACatalystCenterNode, *resty.Response, error) {
-	path := "/dna/system/api//ciscoImcs/{id}"
+	path := "/dna/system/api/v1/ciscoImcs/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
@@ -153,7 +136,7 @@ func (s *CiscoIMCService) RetrievesTheCiscoIMCConfigurationForACatalystCenterNod
 }
 
 //AddsCiscoIMCConfigurationToACatalystCenterNode Adds Cisco IMC configuration to a Catalyst Center node - 98a8-a97d-4ba8-b8d1
-/* This API adds a Cisco Integrated Management Controller (IMC) configuration to a Cisco Catalyst Center node, identified by its `nodeId`. Obtain the `nodeId` from the `id` attribute in the response of the `/dna/intent/api//nodes-config` API.
+/* This API adds a Cisco Integrated Management Controller (IMC) configuration to a Cisco Catalyst Center node, identified by its `nodeId`. Obtain the `nodeId` from the `id` attribute in the response of the `/dna/intent/api/v1/nodes-config` API.
 The Cisco IMC configuration APIs enable the management of connections between Cisco IMC and Cisco Catalyst Center. By providing the Cisco IMC IP address and credentials to Catalyst Center, Catalyst Center can access and report the health status of hardware components within the Cisco appliance.
 More data about the Cisco IMC can be retrieved using the APIs exposed directly by Cisco IMC. Details are available in the Cisco IMC documentation https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-c-series-integrated-management-controller/series.html#~tab-documents
 The Cisco IMC configuration is relevant only for Catalyst Center deployments based on UCS appliances. In cases where Cisco IMC configuration is not supported by the deployment, these APIs will respond with a `404 Not Found` status code.
@@ -161,10 +144,10 @@ When Cisco IMC configuration is supported, this API responds with the URL of a d
 
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!adds-cisco-i-m-c-configuration-to-a-catalyst-center-node-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!adds-cisco-i-m-c-configuration-to-a-catalyst-center-node
 */
 func (s *CiscoIMCService) AddsCiscoIMCConfigurationToACatalystCenterNode(requestCiscoIMCAddsCiscoIMCConfigurationToACatalystCenterNode *RequestCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNode) (*ResponseCiscoIMCaddsCiscoIMCConfigurationToACatalystCenterNode, *resty.Response, error) {
-	path := "/dna/system/api//ciscoImcs"
+	path := "/dna/system/api/v1/ciscoImcs"
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
@@ -205,7 +188,7 @@ When Cisco IMC configuration is supported, this API responds with the URL of a d
 
 */
 func (s *CiscoIMCService) UpdatesTheCiscoIMCConfigurationForACatalystCenterNode(id string, requestCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNode *RequestCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNode) (*ResponseCiscoIMCUpdatesTheCiscoIMCConfigurationForACatalystCenterNode, *resty.Response, error) {
-	path := "/dna/system/api//ciscoImcs/{id}"
+	path := "/dna/system/api/v1/ciscoImcs/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().
@@ -243,11 +226,11 @@ The Cisco IMC configuration is relevant only for Catalyst Center deployments bas
 @param id id path parameter. The unique identifier for this Cisco IMC configuration
 
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-cisco-i-m-c-configuration-for-a-catalyst-center-node-
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!deletes-the-cisco-i-m-c-configuration-for-a-catalyst-center-node
 */
 func (s *CiscoIMCService) DeletesTheCiscoIMCConfigurationForACatalystCenterNode(id string) (*resty.Response, error) {
 	//id string
-	path := "/dna/system/api//ciscoImcs/{id}"
+	path := "/dna/system/api/v1/ciscoImcs/{id}"
 	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
 
 	response, err := s.client.R().

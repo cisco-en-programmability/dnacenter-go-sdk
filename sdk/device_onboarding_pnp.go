@@ -54,8 +54,8 @@ type DeregisterVirtualAccountQueryParams struct {
 	Name   string `url:"name,omitempty"`   //Virtual Account Name
 }
 type GetWorkflowsQueryParams struct {
-	Limit     int      `url:"limit,omitempty"`     //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
-	Offset    int      `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
+	Limit     float64  `url:"limit,omitempty"`     //The number of records to show for this page. The minimum and maximum values are 0 and 500, respectively
+	Offset    float64  `url:"offset,omitempty"`    //The first record to show for this page; the first record is numbered 0. The Minimum value is 0
 	Sort      []string `url:"sort,omitempty"`      //Comma seperated lost of fields to sort on
 	SortOrder string   `url:"sortOrder,omitempty"` //Sort Order Ascending (asc) or Descending (des)
 	Type      []string `url:"type,omitempty"`      //Workflow Type
@@ -2726,31 +2726,31 @@ type RequestDeviceOnboardingPnpResetDeviceDeviceResetListConfigListConfigParamet
 	Value string `json:"value,omitempty"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASite struct {
-	DeviceID        string                                                   `json:"deviceId,omitempty"`        // Device Id
-	SiteID          string                                                   `json:"siteId,omitempty"`          // Site Id
-	Type            string                                                   `json:"type,omitempty"`            // Type
-	ImageInfo       *RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo,omitempty"`       //
-	ConfigInfo      *RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo,omitempty"`      //
-	RfProfile       string                                                   `json:"rfProfile,omitempty"`       // for Access Points
-	StaticIP        string                                                   `json:"staticIP,omitempty"`        // for CatalystWLC/MobilityExpress
-	SubnetMask      string                                                   `json:"subnetMask,omitempty"`      // for CatalystWLC/MobilityExpress
-	Gateway         string                                                   `json:"gateway,omitempty"`         // for CatalystWLC/MobilityExpress
-	VLANID          string                                                   `json:"vlanId,omitempty"`          // for Catalyst 9800 WLC
-	IPInterfaceName string                                                   `json:"ipInterfaceName,omitempty"` // for Catalyst 9800 WLC
-	SensorProfile   string                                                   `json:"sensorProfile,omitempty"`   // for Sensors
-	Hostname        string                                                   `json:"hostname,omitempty"`        // hostname to configure on Device.
+	DeviceID        string                                                  `json:"deviceId,omitempty"`        // Device Id
+	SiteID          string                                                  `json:"siteId,omitempty"`          // Site Id
+	Type            string                                                  `json:"type,omitempty"`            // Type
+	ImageInfo       RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo  `json:"imageInfo"`                 //
+	ConfigInfo      RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo `json:"configInfo"`                //
+	RfProfile       string                                                  `json:"rfProfile,omitempty"`       // for Access Points
+	StaticIP        string                                                  `json:"staticIP,omitempty"`        // for CatalystWLC/MobilityExpress
+	SubnetMask      string                                                  `json:"subnetMask,omitempty"`      // for CatalystWLC/MobilityExpress
+	Gateway         string                                                  `json:"gateway,omitempty"`         // for CatalystWLC/MobilityExpress
+	VLANID          string                                                  `json:"vlanId,omitempty"`          // for Catalyst 9800 WLC
+	IPInterfaceName string                                                  `json:"ipInterfaceName,omitempty"` // for Catalyst 9800 WLC
+	SensorProfile   string                                                  `json:"sensorProfile,omitempty"`   // for Sensors
+	Hostname        string                                                  `json:"hostname,omitempty"`        // hostname to configure on Device.
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteImageInfo struct {
-	ImageID string `json:"imageId,omitempty"` // Image Id
-	Skip    *bool  `json:"skip,omitempty"`    // Skip
+	ImageID string `json:"imageId"` // Image Id
+	Skip    bool   `json:"skip"`    // Skip
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfo struct {
-	ConfigID         string                                                                     `json:"configId,omitempty"`         // Config Id
-	ConfigParameters *[]RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters,omitempty"` //
+	ConfigID         string                                                                    `json:"configId"`         // Config Id
+	ConfigParameters []RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters `json:"configParameters"` //
 }
 type RequestDeviceOnboardingPnpClaimADeviceToASiteConfigInfoConfigParameters struct {
-	Key   string `json:"key,omitempty"`   // Key
-	Value string `json:"value,omitempty"` // Value
+	Key   string `json:"key"`   // Key
+	Value string `json:"value"` // Value
 }
 type RequestDeviceOnboardingPnpPreviewConfig struct {
 	DeviceID string `json:"deviceId,omitempty"` //
@@ -3943,7 +3943,8 @@ func (s *DeviceOnboardingPnpService) DeleteDeviceByIDFromPnp(id string) (*Respon
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceByIDFromPnp(id)
+			return s.DeleteDeviceByIDFromPnp(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceByIdFromPnp")
 	}
@@ -3981,7 +3982,8 @@ func (s *DeviceOnboardingPnpService) DeregisterVirtualAccount(DeregisterVirtualA
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeregisterVirtualAccount(DeregisterVirtualAccountQueryParams)
+			return s.DeregisterVirtualAccount(
+				DeregisterVirtualAccountQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeregisterVirtualAccount")
 	}
@@ -4018,7 +4020,8 @@ func (s *DeviceOnboardingPnpService) DeleteWorkflowByID(id string) (*ResponseDev
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteWorkflowByID(id)
+			return s.DeleteWorkflowByID(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteWorkflowById")
 	}

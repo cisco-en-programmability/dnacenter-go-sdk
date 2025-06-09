@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v8/sdk"
 )
 
 // Client is Catalyst Center API client

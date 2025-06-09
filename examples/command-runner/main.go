@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v8/sdk"
 )
 
 // client is Catalyst Center API client

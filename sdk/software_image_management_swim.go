@@ -123,6 +123,50 @@ type CountOfNetworkDeviceImageUpdatesQueryParams struct {
 	StartTime         float64 `url:"startTime,omitempty"`         //Image update started after the given time (as milliseconds since UNIX epoch).
 	EndTime           float64 `url:"endTime,omitempty"`           //Image update started before the given time (as milliseconds since UNIX epoch).
 }
+type GetTheListOfNetworkDevicesWithImageDetailsQueryParams struct {
+	ManagementAddress         string  `url:"managementAddress,omitempty"`         //IP address or DNS name used to access and manage network devices.
+	NetworkDeviceImageStatus  string  `url:"networkDeviceImageStatus,omitempty"`  //Network device image status with respect to golden images. Available values : OUTDATED, UP_TO_DATE, UNKNOWN, CONFLICTED, UNSUPPORTED.
+	NetworkDeviceUpdateStatus string  `url:"networkDeviceUpdateStatus,omitempty"` //Network device current update status with respect to golden images. Available values : DISTRIBUTION_PENDING, DISTRIBUTION_IN_PROGRESS, DISTRIBUTION_FAILED, ACTIVATION_PENDING, ACTIVATION_IN_PROGRESS, ACTIVATION_FAILED, DEVICE_UP_TO_DATE,UNKNOWN.
+	SortBy                    string  `url:"sortBy,omitempty"`                    //Sort the response by a specified attribute. Available attributes for sorting are: `id`,`networkDeviceUpdateStatus`,`networkDeviceImageStatus`, `goldenImages.name`, `goldenImages.version`, `installedImages.name`, `installedImages.version`.
+	Order                     string  `url:"order,omitempty"`                     //Whether ascending or descending order should be used to sort the response. Available values : asc, desc.
+	Offset                    float64 `url:"offset,omitempty"`                    //The first record to show for this page; the first record is numbered 1. The minimum value is 1.
+	Limit                     float64 `url:"limit,omitempty"`                     //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively.
+}
+type CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams struct {
+	ManagementAddress         string `url:"managementAddress,omitempty"`         //IP address or DNS name used to access and manage network devices.
+	NetworkDeviceImageStatus  string `url:"networkDeviceImageStatus,omitempty"`  //Network device image status with respect to golden images. Available values : OUTDATED, UP_TO_DATE, UNKNOWN, CONFLICTED, UNSUPPORTED.
+	NetworkDeviceUpdateStatus string `url:"networkDeviceUpdateStatus,omitempty"` //Network device current update status with respect to golden images. Available values : DISTRIBUTION_PENDING, DISTRIBUTION_IN_PROGRESS, DISTRIBUTION_FAILED, ACTIVATION_PENDING, ACTIVATION_IN_PROGRESS, ACTIVATION_FAILED, DEVICE_UP_TO_DATE,UNKNOWN.
+}
+type NetworkDeviceImageUpdateValidationResultsQueryParams struct {
+	NetworkDeviceID string  `url:"networkDeviceId,omitempty"` //Network device identifier.
+	ID              string  `url:"id,omitempty"`              //Unique identifier of network device validation task.
+	OperationType   string  `url:"operationType,omitempty"`   //The operation type, as part of which this validation will get triggered. Available values : DISTRIBUTION, ACTIVATION, READINESS_CHECK.
+	Status          string  `url:"status,omitempty"`          //Status of the validation result. SUCCESS, FAILED, IN_PROGRESS, WARNING.
+	Type            string  `url:"type,omitempty"`            //Type of the validation. Available values : PRE_VALIDATION, POST_VALIDATION.
+	SortBy          string  `url:"sortBy,omitempty"`          //A property within the response to sort by.
+	Order           string  `url:"order,omitempty"`           //Whether ascending or descending order should be used to sort the response. Available values : asc, desc
+	Limit           float64 `url:"limit,omitempty"`           //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively.
+	Offset          float64 `url:"offset,omitempty"`          //The first record to show for this page; the first record is numbered 1. The minimum value is 1.
+}
+type CountOfNetworkDeviceImageUpdateValidationResultsQueryParams struct {
+	NetworkDeviceID string `url:"networkDeviceId,omitempty"` //Network device identifier.
+	OperationType   string `url:"operationType,omitempty"`   //The operation type, as part of which this validation will get triggered. Available values : DISTRIBUTION, ACTIVATION, READINESS_CHECK.
+	Status          string `url:"status,omitempty"`          //Status of the validation result. Available values : SUCCESS, FAILED, IN_PROGRESS, WARNING.
+	Type            string `url:"type,omitempty"`            //Type of the validation. Available values : PRE_VALIDATION, POST_VALIDATION.
+}
+type GetTheListOfCustomNetworkDeviceValidationsQueryParams struct {
+	ProductSeriesOrdinal float64 `url:"productSeriesOrdinal,omitempty"` //Unique identifier of product series.
+	OperationType        string  `url:"operationType,omitempty"`        //The operation type, as part of which this validation will get triggered. Available values : DISTRIBUTION, ACTIVATION.
+	Type                 string  `url:"type,omitempty"`                 //Type of the validation. Available values : PRE_VALIDATION, POST_VALIDATION.
+	Order                string  `url:"order,omitempty"`                //Whether ascending or descending order should be used to sort the response. Available values : asc, desc.
+	Offset               float64 `url:"offset,omitempty"`               //The first record to show for this page; the first record is numbered 1. The minimum value is 1.
+	Limit                float64 `url:"limit,omitempty"`                //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively.
+}
+type CountOfCustomNetworkDeviceValidationsQueryParams struct {
+	ProductSeriesOrdinal float64 `url:"productSeriesOrdinal,omitempty"` //Unique identifier of product series.
+	OperationType        string  `url:"operationType,omitempty"`        //The operation type, as part of which this validation will get triggered. Available values : DISTRIBUTION, ACTIVATION, READINESS_CHECK.
+	Type                 string  `url:"type,omitempty"`                 //Type of the validation. Available values : PRE_VALIDATION, POST_VALIDATION.
+}
 type RetrievesTheListOfNetworkDeviceProductNamesQueryParams struct {
 	ProductName string  `url:"productName,omitempty"` //Filter with network device product name. Supports partial case-insensitive search. A minimum of 3 characters are required for search
 	ProductID   string  `url:"productId,omitempty"`   //Filter with product ID (PID)
@@ -132,6 +176,14 @@ type RetrievesTheListOfNetworkDeviceProductNamesQueryParams struct {
 type CountOfNetworkProductNamesQueryParams struct {
 	ProductName string `url:"productName,omitempty"` //Filter with network device product name. Supports partial case-insensitive search. A minimum of 3 characters are required for search
 	ProductID   string `url:"productId,omitempty"`   //Filter with product ID (PID)
+}
+type RetrievesTheListOfNetworkDeviceProductSeriesQueryParams struct {
+	Name   string  `url:"name,omitempty"`   //Product series name. Supports partial case-insensitive search. A minimum of 3 characters is required for the search.
+	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1. The minimum value is 1.
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page. The minimum and maximum values are 1 and 500, respectively.
+}
+type CountOfNetworkProductSeriesQueryParams struct {
+	Name string `url:"name,omitempty"` //Product series name. Supports partial case-insensitive search. A minimum of 3 characters is required for the search.
 }
 type ReturnsTheImageSummaryForTheGivenSiteQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //Site identifier to get the aggreagte counts products under the site. The default value is global site id. See [https://developer.cisco.com/docs/dna-center](#!get-site) for `siteId`
@@ -149,661 +201,771 @@ type ReturnsTheCountOfNetworkDeviceProductNamesForASiteQueryParams struct {
 
 type ResponseSoftwareImageManagementSwimTriggerSoftwareImageActivation struct {
 	Response *ResponseSoftwareImageManagementSwimTriggerSoftwareImageActivationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                     `json:"version,omitempty"`  //
 }
 type ResponseSoftwareImageManagementSwimTriggerSoftwareImageActivationResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseSoftwareImageManagementSwimTriggerSoftwareImageDistribution struct {
 	Response *ResponseSoftwareImageManagementSwimTriggerSoftwareImageDistributionResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                       `json:"version,omitempty"`  //
 }
 type ResponseSoftwareImageManagementSwimTriggerSoftwareImageDistributionResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetails struct {
 	Response *[]ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                `json:"version,omitempty"`  //
 }
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponse struct {
 	ApplicableDevicesForImage *[]ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseApplicableDevicesForImage `json:"applicableDevicesForImage,omitempty"` //
-
-	ApplicationType string `json:"applicationType,omitempty"` //
-
-	CreatedTime string `json:"createdTime,omitempty"` //
-
-	ExtendedAttributes *ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseExtendedAttributes `json:"extendedAttributes,omitempty"` //
-
-	Family string `json:"family,omitempty"` //
-
-	Feature string `json:"feature,omitempty"` //
-
-	FileServiceID string `json:"fileServiceId,omitempty"` //
-
-	FileSize string `json:"fileSize,omitempty"` //
-
-	ImageIntegrityStatus string `json:"imageIntegrityStatus,omitempty"` //
-
-	ImageName string `json:"imageName,omitempty"` //
-
-	ImageSeries []string `json:"imageSeries,omitempty"` //
-
-	ImageSource string `json:"imageSource,omitempty"` //
-
-	ImageType string `json:"imageType,omitempty"` //
-
-	ImageUUID string `json:"imageUuid,omitempty"` //
-
-	ImportSourceType string `json:"importSourceType,omitempty"` //
-
-	IsTaggedGolden *bool `json:"isTaggedGolden,omitempty"` //
-
-	Md5Checksum string `json:"md5Checksum,omitempty"` //
-
-	Name string `json:"name,omitempty"` //
-
-	ProfileInfo *[]ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseProfileInfo `json:"profileInfo,omitempty"` //
-
-	ShaCheckSum string `json:"shaCheckSum,omitempty"` //
-
-	Vendor string `json:"vendor,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	ApplicationType           string                                                                                         `json:"applicationType,omitempty"`           //
+	CreatedTime               string                                                                                         `json:"createdTime,omitempty"`               //
+	ExtendedAttributes        *ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseExtendedAttributes          `json:"extendedAttributes,omitempty"`        //
+	Family                    string                                                                                         `json:"family,omitempty"`                    //
+	Feature                   string                                                                                         `json:"feature,omitempty"`                   //
+	FileServiceID             string                                                                                         `json:"fileServiceId,omitempty"`             //
+	FileSize                  string                                                                                         `json:"fileSize,omitempty"`                  //
+	ImageIntegrityStatus      string                                                                                         `json:"imageIntegrityStatus,omitempty"`      //
+	ImageName                 string                                                                                         `json:"imageName,omitempty"`                 //
+	ImageSeries               []string                                                                                       `json:"imageSeries,omitempty"`               //
+	ImageSource               string                                                                                         `json:"imageSource,omitempty"`               //
+	ImageType                 string                                                                                         `json:"imageType,omitempty"`                 //
+	ImageUUID                 string                                                                                         `json:"imageUuid,omitempty"`                 //
+	ImportSourceType          string                                                                                         `json:"importSourceType,omitempty"`          //
+	IsTaggedGolden            *bool                                                                                          `json:"isTaggedGolden,omitempty"`            //
+	Md5Checksum               string                                                                                         `json:"md5Checksum,omitempty"`               //
+	Name                      string                                                                                         `json:"name,omitempty"`                      //
+	ProfileInfo               *[]ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseProfileInfo               `json:"profileInfo,omitempty"`               //
+	ShaCheckSum               string                                                                                         `json:"shaCheckSum,omitempty"`               //
+	Vendor                    string                                                                                         `json:"vendor,omitempty"`                    //
+	Version                   string                                                                                         `json:"version,omitempty"`                   //
 }
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseApplicableDevicesForImage struct {
-	MdfID string `json:"mdfId,omitempty"` //
-
-	ProductID []string `json:"productId,omitempty"` //
-
-	ProductName string `json:"productName,omitempty"` //
+	MdfID       string   `json:"mdfId,omitempty"`       //
+	ProductID   []string `json:"productId,omitempty"`   //
+	ProductName string   `json:"productName,omitempty"` //
 }
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseExtendedAttributes interface{}
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseProfileInfo struct {
-	Description string `json:"description,omitempty"` //
-
+	Description        string                                                                                           `json:"description,omitempty"`        //
 	ExtendedAttributes *ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseProfileInfoExtendedAttributes `json:"extendedAttributes,omitempty"` //
-
-	Memory *int `json:"memory,omitempty"` //
-
-	ProductType string `json:"productType,omitempty"` //
-
-	ProfileName string `json:"profileName,omitempty"` //
-
-	Shares *int `json:"shares,omitempty"` //
-
-	VCPU *int `json:"vCpu,omitempty"` //
+	Memory             *int                                                                                             `json:"memory,omitempty"`             //
+	ProductType        string                                                                                           `json:"productType,omitempty"`        //
+	ProfileName        string                                                                                           `json:"profileName,omitempty"`        //
+	Shares             *int                                                                                             `json:"shares,omitempty"`             //
+	VCPU               *int                                                                                             `json:"vCpu,omitempty"`               //
 }
 type ResponseSoftwareImageManagementSwimGetSoftwareImageDetailsResponseProfileInfoExtendedAttributes interface{}
 type ResponseSoftwareImageManagementSwimGetDeviceFamilyIDentifiers struct {
-	Version string `json:"version,omitempty"` // Response Version
-
+	Version  string                                                                   `json:"version,omitempty"`  // Response Version
 	Response *[]ResponseSoftwareImageManagementSwimGetDeviceFamilyIDentifiersResponse `json:"response,omitempty"` //
 }
 type ResponseSoftwareImageManagementSwimGetDeviceFamilyIDentifiersResponse struct {
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family e.g. : Cisco Catalyst 6503 Switch-Catalyst 6500 Series Supervisor Engine 2T
-
+	DeviceFamily           string `json:"deviceFamily,omitempty"`           // Device Family e.g. : Cisco Catalyst 6503 Switch-Catalyst 6500 Series Supervisor Engine 2T
 	DeviceFamilyIDentifier string `json:"deviceFamilyIdentifier,omitempty"` // Device Family Identifier used for tagging an image golden for certain Device Family e.g. : 277696480-283933147
 }
 type ResponseSoftwareImageManagementSwimTagAsGoldenImage struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSoftwareImageManagementSwimTagAsGoldenImageResponse `json:"response,omitempty"` //
 }
 type ResponseSoftwareImageManagementSwimTagAsGoldenImageResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSoftwareImageManagementSwimRemoveGoldenTagForImage struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                              `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSoftwareImageManagementSwimRemoveGoldenTagForImageResponse `json:"response,omitempty"` //
 }
 type ResponseSoftwareImageManagementSwimRemoveGoldenTagForImageResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSoftwareImageManagementSwimGetGoldenTagStatusOfAnImage struct {
-	Version string `json:"version,omitempty"` // Response Version. E.G. : 1.0
-
+	Version  string                                                                  `json:"version,omitempty"`  // Response Version. E.G. : 1.0
 	Response *ResponseSoftwareImageManagementSwimGetGoldenTagStatusOfAnImageResponse `json:"response,omitempty"` //
 }
 type ResponseSoftwareImageManagementSwimGetGoldenTagStatusOfAnImageResponse struct {
-	DeviceRole string `json:"deviceRole,omitempty"` // Device Role. Possible Values : ALL, UNKNOWN, ACCESS, BORDER ROUTER, DISTRIBUTION and CORE.
-
-	TaggedGolden *bool `json:"taggedGolden,omitempty"` // Tagged Golden.
-
+	DeviceRole        string `json:"deviceRole,omitempty"`        // Device Role. Possible Values : ALL, UNKNOWN, ACCESS, BORDER ROUTER, DISTRIBUTION and CORE.
+	TaggedGolden      *bool  `json:"taggedGolden,omitempty"`      // Tagged Golden.
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name. If the Golden Tag is not tagged for the current site but is inherited from a higher enclosing site, it will contain the name of the site from where the tag is inherited.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id. If the Golden Tag is not tagged for the current site but is inherited from a higher enclosing site, it will contain the uuid of the site from where the tag is inherited. In case the golden tag is inherited from the Global site the value will be "-1".
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id. If the Golden Tag is not tagged for the current site but is inherited from a higher enclosing site, it will contain the uuid of the site from where the tag is inherited. In case the golden tag is inherited from the Global site the value will be "-1".
 }
 type ResponseSoftwareImageManagementSwimImportLocalSoftwareImage struct {
 	Response *ResponseSoftwareImageManagementSwimImportLocalSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                               `json:"version,omitempty"`  //
 }
 type ResponseSoftwareImageManagementSwimImportLocalSoftwareImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseSoftwareImageManagementSwimImportSoftwareImageViaURL struct {
 	Response *ResponseSoftwareImageManagementSwimImportSoftwareImageViaURLResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                `json:"version,omitempty"`  //
 }
 type ResponseSoftwareImageManagementSwimImportSoftwareImageViaURLResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImages struct {
 	Response *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                    `json:"version,omitempty"`  // Version
 }
 type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponse struct {
-	ID string `json:"id,omitempty"` // Software image identifier
-
-	Imported *bool `json:"imported,omitempty"` // Flag for image info whether it is imported image or cloud image
-
-	Name string `json:"name,omitempty"` // Name of the software image
-
-	Version string `json:"version,omitempty"` // Software image  version
-
-	ImageType string `json:"imageType,omitempty"` // Software image type
-
-	Recommended string `json:"recommended,omitempty"` // CISCO if the image is recommended from Cisco.com
-
-	CiscoLatest *bool `json:"ciscoLatest,omitempty"` // `true` if the image is latest/suggested from Cisco.com
-
-	IntegrityStatus string `json:"integrityStatus,omitempty"` // Image Integrity verification status with Known Good Verification
-
-	IsAddonImage *bool `json:"isAddonImage,omitempty"` // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
-
-	HasAddonImages *bool `json:"hasAddonImages,omitempty"` // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
-
+	ID                   string                                                                                        `json:"id,omitempty"`                   // Software image identifier
+	Imported             *bool                                                                                         `json:"imported,omitempty"`             // Flag for image info whether it is imported image or cloud image
+	Name                 string                                                                                        `json:"name,omitempty"`                 // Name of the software image
+	Version              string                                                                                        `json:"version,omitempty"`              // Software image  version
+	ImageType            string                                                                                        `json:"imageType,omitempty"`            // Software image type
+	Recommended          string                                                                                        `json:"recommended,omitempty"`          // CISCO if the image is recommended from Cisco.com
+	CiscoLatest          *bool                                                                                         `json:"ciscoLatest,omitempty"`          // `true` if the image is latest/suggested from Cisco.com
+	IntegrityStatus      string                                                                                        `json:"integrityStatus,omitempty"`      // Image Integrity verification status with Known Good Verification
+	IsAddonImage         *bool                                                                                         `json:"isAddonImage,omitempty"`         // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
+	HasAddonImages       *bool                                                                                         `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
 	GoldenTaggingDetails *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
-
-	ProductNames *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseProductNames `json:"productNames,omitempty"` //
-
-	IsGoldenTagged *bool `json:"isGoldenTagged,omitempty"` // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
+	ProductNames         *[]ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseProductNames         `json:"productNames,omitempty"`         //
+	IsGoldenTagged       *bool                                                                                         `json:"isGoldenTagged,omitempty"`       // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
 }
 type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseGoldenTaggingDetails struct {
-	DeviceRoles []string `json:"deviceRoles,omitempty"` // Golden tagging based on the device roles
-
-	DeviceTags []string `json:"deviceTags,omitempty"` // Golden tagging based on the device tags
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // The Site Id of the site that this setting is inherited from.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // The name of the site that this setting is inherited from
+	DeviceRoles       []string `json:"deviceRoles,omitempty"`       // Golden tagging based on the device roles
+	DeviceTags        []string `json:"deviceTags,omitempty"`        // Golden tagging based on the device tags
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // The Site Id of the site that this setting is inherited from.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // The name of the site that this setting is inherited from
 }
 type ResponseSoftwareImageManagementSwimReturnsListOfSoftwareImagesResponseProductNames struct {
-	ID string `json:"id,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductName string `json:"productName,omitempty"` // Network device product name
-
-	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	SupervisorProductName string `json:"supervisorProductName,omitempty"` // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
-
+	ID                           string   `json:"id,omitempty"`                           // Product name ordinal is unique value for each network device product
+	ProductName                  string   `json:"productName,omitempty"`                  // Network device product name
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal is unique value for each network device product
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
 	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
 }
 type ResponseSoftwareImageManagementSwimInitiatesSyncOfSoftwareImagesFromCiscoCom struct {
 	Response *ResponseSoftwareImageManagementSwimInitiatesSyncOfSoftwareImagesFromCiscoComResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimInitiatesSyncOfSoftwareImagesFromCiscoComResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImages struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImagesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                   `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfSoftwareImagesResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
 type ResponseSoftwareImageManagementSwimAddImageDistributionServer struct {
 	Response *ResponseSoftwareImageManagementSwimAddImageDistributionServerResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                 `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimAddImageDistributionServerResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimRetrieveImageDistributionServers struct {
 	Response *[]ResponseSoftwareImageManagementSwimRetrieveImageDistributionServersResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                         `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRetrieveImageDistributionServersResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier for the server
-
-	Username string `json:"username,omitempty"` // Server username
-
-	ServerAddress string `json:"serverAddress,omitempty"` // FQDN or IP address of the server
-
-	PortNumber *float64 `json:"portNumber,omitempty"` // Port number
-
-	RootLocation string `json:"rootLocation,omitempty"` // Server root location
+	ID            string   `json:"id,omitempty"`            // Unique identifier for the server
+	Username      string   `json:"username,omitempty"`      // Server username
+	ServerAddress string   `json:"serverAddress,omitempty"` // FQDN or IP address of the server
+	PortNumber    *float64 `json:"portNumber,omitempty"`    // Port number
+	RootLocation  string   `json:"rootLocation,omitempty"`  // Server root location
 }
 type ResponseSoftwareImageManagementSwimUpdateRemoteImageDistributionServer struct {
 	Response *ResponseSoftwareImageManagementSwimUpdateRemoteImageDistributionServerResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                          `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimUpdateRemoteImageDistributionServerResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimRetrieveSpecificImageDistributionServer struct {
 	Response *ResponseSoftwareImageManagementSwimRetrieveSpecificImageDistributionServerResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                              `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRetrieveSpecificImageDistributionServerResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier for the server
-
-	ServerAddress string `json:"serverAddress,omitempty"` // FQDN or IP address of the server
-
-	PortNumber *float64 `json:"portNumber,omitempty"` // Port number
-
-	RootLocation string `json:"rootLocation,omitempty"` // Server root location
-
-	Username string `json:"username,omitempty"` // Server username
+	ID            string   `json:"id,omitempty"`            // Unique identifier for the server
+	ServerAddress string   `json:"serverAddress,omitempty"` // FQDN or IP address of the server
+	PortNumber    *float64 `json:"portNumber,omitempty"`    // Port number
+	RootLocation  string   `json:"rootLocation,omitempty"`  // Server root location
+	Username      string   `json:"username,omitempty"`      // Server username
 }
 type ResponseSoftwareImageManagementSwimRemoveImageDistributionServer struct {
 	Response *ResponseSoftwareImageManagementSwimRemoveImageDistributionServerResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                    `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRemoveImageDistributionServerResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimDeleteImage struct {
 	Response *ResponseSoftwareImageManagementSwimDeleteImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                  `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimDeleteImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImage struct {
 	Response *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                              `json:"version,omitempty"`  // Version
 }
 type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponse struct {
-	ID string `json:"id,omitempty"` // Software image identifier
-
-	Imported *bool `json:"imported,omitempty"` // Flag for image info whether it is imported image or cloud image
-
-	Name string `json:"name,omitempty"` // Name of the software image
-
-	Version string `json:"version,omitempty"` // Software image  version
-
-	ImageType string `json:"imageType,omitempty"` // Software image type
-
-	Recommended string `json:"recommended,omitempty"` // CISCO if the image is recommended from Cisco.com
-
-	CiscoLatest *bool `json:"ciscoLatest,omitempty"` // `true` if the image is latest/suggested from Cisco.com
-
-	IntegrityStatus string `json:"integrityStatus,omitempty"` // Image Integrity verification status with Known Good Verification
-
-	IsAddonImage *bool `json:"isAddonImage,omitempty"` // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
-
-	HasAddonImages *bool `json:"hasAddonImages,omitempty"` // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
-
+	ID                   string                                                                                                                  `json:"id,omitempty"`                   // Software image identifier
+	Imported             *bool                                                                                                                   `json:"imported,omitempty"`             // Flag for image info whether it is imported image or cloud image
+	Name                 string                                                                                                                  `json:"name,omitempty"`                 // Name of the software image
+	Version              string                                                                                                                  `json:"version,omitempty"`              // Software image  version
+	ImageType            string                                                                                                                  `json:"imageType,omitempty"`            // Software image type
+	Recommended          string                                                                                                                  `json:"recommended,omitempty"`          // CISCO if the image is recommended from Cisco.com
+	CiscoLatest          *bool                                                                                                                   `json:"ciscoLatest,omitempty"`          // `true` if the image is latest/suggested from Cisco.com
+	IntegrityStatus      string                                                                                                                  `json:"integrityStatus,omitempty"`      // Image Integrity verification status with Known Good Verification
+	IsAddonImage         *bool                                                                                                                   `json:"isAddonImage,omitempty"`         // The value of `true` will indicate the image as an add-on image, while the value of `false` will indicate software image
+	HasAddonImages       *bool                                                                                                                   `json:"hasAddonImages,omitempty"`       // Software images that have an applicable list of add-on images. The value of `true` will return software images with add-on images, while the value of `false` will return software images without add-on images
 	GoldenTaggingDetails *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
-
-	ProductNames *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseProductNames `json:"productNames,omitempty"` //
-
-	IsGoldenTagged *bool `json:"isGoldenTagged,omitempty"` // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
+	ProductNames         *[]ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseProductNames         `json:"productNames,omitempty"`         //
+	IsGoldenTagged       *bool                                                                                                                   `json:"isGoldenTagged,omitempty"`       // The value of `true` will indicate the image marked as golden, while the value of `false` will indicate the image not marked as golden
 }
 type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseGoldenTaggingDetails struct {
-	DeviceRoles []string `json:"deviceRoles,omitempty"` // Golden tagging based on the device roles
-
-	DeviceTags []string `json:"deviceTags,omitempty"` // Golden tagging based on the device tags
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // The Site Id of the site that this setting is inherited from.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // The name of the site that this setting is inherited from
+	DeviceRoles       []string `json:"deviceRoles,omitempty"`       // Golden tagging based on the device roles
+	DeviceTags        []string `json:"deviceTags,omitempty"`        // Golden tagging based on the device tags
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // The Site Id of the site that this setting is inherited from.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // The name of the site that this setting is inherited from
 }
 type ResponseSoftwareImageManagementSwimRetrieveApplicableAddOnImagesForTheGivenSoftwareImageResponseProductNames struct {
-	ID string `json:"id,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductName string `json:"productName,omitempty"` // Network device product name
-
-	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	SupervisorProductName string `json:"supervisorProductName,omitempty"` // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
-
+	ID                           string   `json:"id,omitempty"`                           // Product name ordinal is unique value for each network device product
+	ProductName                  string   `json:"productName,omitempty"`                  // Network device product name
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal is unique value for each network device product
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
 	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImages struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImagesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimReturnsCountOfAddOnImagesResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
 type ResponseSoftwareImageManagementSwimDownloadTheSoftwareImage struct {
 	Response *ResponseSoftwareImageManagementSwimDownloadTheSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                               `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimDownloadTheSoftwareImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimTaggingGoldenImage struct {
 	Response *ResponseSoftwareImageManagementSwimTaggingGoldenImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                         `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimTaggingGoldenImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimUntaggingGoldenImage struct {
 	Response *ResponseSoftwareImageManagementSwimUntaggingGoldenImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                           `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimUntaggingGoldenImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImage struct {
 	Response *ResponseSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                            `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimRetrievesNetworkDeviceProductNamesAssignedToASoftwareImage struct {
 	Response *[]ResponseSoftwareImageManagementSwimRetrievesNetworkDeviceProductNamesAssignedToASoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                                   `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRetrievesNetworkDeviceProductNamesAssignedToASoftwareImageResponse struct {
-	ID string `json:"id,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductName string `json:"productName,omitempty"` // Network device product name
-
+	ID                 string   `json:"id,omitempty"`                 // Product name ordinal is unique value for each network device product
+	ProductName        string   `json:"productName,omitempty"`        // Network device product name
 	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductIDs []string `json:"productIds,omitempty"` // Supported PIDs
-
-	SiteIDs []string `json:"siteIds,omitempty"` // Sites where all  this image is assigned
-
-	Recommended string `json:"recommended,omitempty"` // If 'CISCO' network device product recommandation came from Cisco.com and 'USER' manually assigned
+	ProductIDs         []string `json:"productIds,omitempty"`         // Supported PIDs
+	SiteIDs            []string `json:"siteIds,omitempty"`            // Sites where all  this image is assigned
+	Recommended        string   `json:"recommended,omitempty"`        // If 'CISCO' network device product recommandation came from Cisco.com and 'USER' manually assigned
 }
 type ResponseSoftwareImageManagementSwimRetrievesTheCountOfAssignedNetworkDeviceProducts struct {
 	Response *ResponseSoftwareImageManagementSwimRetrievesTheCountOfAssignedNetworkDeviceProductsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                                       `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimRetrievesTheCountOfAssignedNetworkDeviceProductsResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
 type ResponseSoftwareImageManagementSwimUnassignNetworkDeviceProductNameFromTheGivenSoftwareImage struct {
 	Response *ResponseSoftwareImageManagementSwimUnassignNetworkDeviceProductNameFromTheGivenSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                                `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimUnassignNetworkDeviceProductNameFromTheGivenSoftwareImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage struct {
 	Response *ResponseSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImageResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                                                   `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImageResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseSoftwareImageManagementSwimGetNetworkDeviceImageUpdates struct {
 	Response *[]ResponseSoftwareImageManagementSwimGetNetworkDeviceImageUpdatesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API response version
+	Version  string                                                                     `json:"version,omitempty"`  // API response version
 }
 type ResponseSoftwareImageManagementSwimGetNetworkDeviceImageUpdatesResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier for the image update
-
-	ParentID string `json:"parentId,omitempty"` // Parent identifier for the image update
-
-	StartTime *float64 `json:"startTime,omitempty"` // Image update started after the given time (as milliseconds since UNIX epoch)
-
-	EndTime *float64 `json:"endTime,omitempty"` // Image update end time (as milliseconds since UNIX epoch)
-
-	Status string `json:"status,omitempty"` // Status of the image update
-
-	NetworkDeviceID string `json:"networkDeviceId,omitempty"` // Network device identifier
-
-	ManagementAddress string `json:"managementAddress,omitempty"` // Management address of the network device
-
-	HostName string `json:"hostName,omitempty"` // Host name of the network device for the image update
-
-	UpdateImageVersion string `json:"updateImageVersion,omitempty"` // Software image version
-
-	Type string `json:"type,omitempty"` // Type of the image update
+	ID                 string   `json:"id,omitempty"`                 // Unique identifier for the image update
+	ParentID           string   `json:"parentId,omitempty"`           // Parent identifier for the image update
+	StartTime          *float64 `json:"startTime,omitempty"`          // Image update started after the given time (as milliseconds since UNIX epoch)
+	EndTime            *float64 `json:"endTime,omitempty"`            // Image update end time (as milliseconds since UNIX epoch)
+	Status             string   `json:"status,omitempty"`             // Status of the image update
+	NetworkDeviceID    string   `json:"networkDeviceId,omitempty"`    // Network device identifier
+	ManagementAddress  string   `json:"managementAddress,omitempty"`  // Management address of the network device
+	HostName           string   `json:"hostName,omitempty"`           // Host name of the network device for the image update
+	UpdateImageVersion string   `json:"updateImageVersion,omitempty"` // Software image version
+	Type               string   `json:"type,omitempty"`               // Type of the image update
 }
 type ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdates struct {
 	Response *ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdatesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                       `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdatesResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetails struct {
+	Response *[]ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponse `json:"response,omitempty"` //
+	Version  string                                                                                   `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponse struct {
+	ID                        string                                                                                                     `json:"id,omitempty"`                        // Network device identifier.
+	ManagementAddress         string                                                                                                     `json:"managementAddress,omitempty"`         // Either an IP address or a fully-qualified domain name.
+	NetworkDevice             *ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseNetworkDevice        `json:"networkDevice,omitempty"`             //
+	NetworkDeviceImageStatus  string                                                                                                     `json:"networkDeviceImageStatus,omitempty"`  // The network device's current status concerns golden bundle images.
+	NetworkDeviceUpdateStatus string                                                                                                     `json:"networkDeviceUpdateStatus,omitempty"` // The network device's current update status concerns golden images.
+	GoldenImages              *[]ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseGoldenImages       `json:"goldenImages,omitempty"`              //
+	InstalledImages           *[]ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseInstalledImages    `json:"installedImages,omitempty"`           //
+	CompatibleFeatures        *[]ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseCompatibleFeatures `json:"compatibleFeatures,omitempty"`        //
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseNetworkDevice struct {
+	ID                           string   `json:"id,omitempty"`                           // The unique identifier for the record is the `id`. If there is no supervisor engine involved, the `id` will be the same as the `productNameOrdinal`. However, if the supervisor engine is applicable, the `id` will be in the form of `<productNameOrdinal>-<supervisorProductNameOrdinal>`.
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal.
+	ProductName                  string   `json:"productName,omitempty"`                  // Name of the product.
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`. Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseGoldenImages struct {
+	ID                   string                                                                                                                 `json:"id,omitempty"`                   // Software image identifier.
+	Name                 string                                                                                                                 `json:"name,omitempty"`                 // Name of the image.
+	Version              string                                                                                                                 `json:"version,omitempty"`              // Image version.
+	ImageType            string                                                                                                                 `json:"imageType,omitempty"`            // Image Type
+	GoldenTaggingDetails *ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseGoldenImagesGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseGoldenImagesGoldenTaggingDetails struct {
+	DeviceRoles string `json:"deviceRoles,omitempty"` // Role assigned to the network device.
+	DeviceTags  string `json:"deviceTags,omitempty"`  // A device tag is either user-defined or system-defined and is associated with a given network device.
+	SiteID      string `json:"siteId,omitempty"`      // The site id of the site from which these golden images originate.
+	SiteName    string `json:"siteName,omitempty"`    // The name of the site from which these golden images originate.
+	IsInherited *bool  `json:"isInherited,omitempty"` // Inherited flag is set to 'true' if the golden images are inherited from sites higher in the site hierarchy, and 'false' if they are from the native site.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseInstalledImages struct {
+	ID        string `json:"id,omitempty"`        // Software image identifier.
+	Name      string `json:"name,omitempty"`      // Network device running image.
+	Version   string `json:"version,omitempty"`   // Image version.
+	ImageType string `json:"imageType,omitempty"` // Image Type.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetailsResponseCompatibleFeatures struct {
+	Key   string `json:"key,omitempty"`   // Name of the compatible feature.
+	Value string `json:"value,omitempty"` // Feature that can be enabled or disabled.
+}
+type ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices struct {
+	Response *ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesResponse `json:"response,omitempty"` //
+	Version  string                                                                       `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFilters struct {
+	Response *ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFiltersResponse `json:"response,omitempty"` //
+	Version  string                                                                                    `json:"version,omitempty"`  // The version of the response
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFiltersResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices struct {
+	Response *ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevicesResponse `json:"response,omitempty"` //
+	Version  string                                                                           `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResults struct {
+	Response *[]ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResultsResponse `json:"response,omitempty"` //
+	Version  string                                                                                  `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResultsResponse struct {
+	ID              string                                                                                             `json:"id,omitempty"`              // Network validation result identifier.
+	ParentID        string                                                                                             `json:"parentId,omitempty"`        // Parent identifier for the network validation results.
+	Name            string                                                                                             `json:"name,omitempty"`            // Network device validation name.
+	OperationType   string                                                                                             `json:"operationType,omitempty"`   // The operation type, as part of which this validation got triggered.
+	Type            string                                                                                             `json:"type,omitempty"`            // The type of network device validation determines whether this validation runs before or after the operation.
+	NetworkDeviceID string                                                                                             `json:"networkDeviceId,omitempty"` // Network device identifier.
+	StartTime       *float64                                                                                           `json:"startTime,omitempty"`       // A date and time represented as milliseconds since the Unix epoch.
+	EndTime         *float64                                                                                           `json:"endTime,omitempty"`         // A date and time represented as milliseconds since the Unix epoch.
+	Status          string                                                                                             `json:"status,omitempty"`          // Status of the network device validation result.
+	ResultDetails   *ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResultsResponseResultDetails `json:"resultDetails,omitempty"`   //
+}
+type ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResultsResponseResultDetails struct {
+	Key   string `json:"key,omitempty"`   // Key
+	Value string `json:"value,omitempty"` // Holds the information for each `key`.
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResults struct {
+	Response *ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResultsResponse `json:"response,omitempty"` //
+	Version  string                                                                                       `json:"version,omitempty"`  // The version of the response
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResultsResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation struct {
+	Response *ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidationResponse `json:"response,omitempty"` //
+	Version  string                                                                          `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidationResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidations struct {
+	Response *[]ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidationsResponse `json:"response,omitempty"` //
+	Version  string                                                                                   `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidationsResponse struct {
+	ID                    string     `json:"id,omitempty"`                    // Unique identifier of network device validation.
+	Name                  string     `json:"name,omitempty"`                  // Name of the network device validation.
+	Type                  string     `json:"type,omitempty"`                  // The type of network device validation determines whether this validation runs before or after the operation.
+	OperationType         string     `json:"operationType,omitempty"`         // The operation type, as part of which this validation will get triggered.
+	Description           string     `json:"description,omitempty"`           // Details of the network device validation.
+	Category              string     `json:"category,omitempty"`              // Category of the network device validation.
+	Cli                   string     `json:"cli,omitempty"`                   // Show commands that will be executed. Validate the CLI - Cisco DevNet [ https://developer.cisco.com/docs/dna-center/2-3-7/run-read-only-commands-on-devices-to-get-their-real-time-configuration/ ]
+	ProductSeriesOrdinals *[]float64 `json:"productSeriesOrdinals,omitempty"` // The custom check will be mapped to the product series and devices that belong to this series. These devices will consume this check when triggered.
+}
+type ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidations struct {
+	Response *ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidationsResponse `json:"response,omitempty"` //
+	Version  string                                                                            `json:"version,omitempty"`  // The version of the response
+}
+type ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidationsResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation struct {
+	Response *ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidationResponse `json:"response,omitempty"` //
+	Version  string                                                                          `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidationResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetails struct {
+	Response *ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetailsResponse `json:"response,omitempty"` //
+	Version  string                                                                              `json:"version,omitempty"`  // The version of the response
+}
+type ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetailsResponse struct {
+	ID                    string     `json:"id,omitempty"`                    // Unique identifier of network device validation.
+	Name                  string     `json:"name,omitempty"`                  // Name of the network device validation.
+	Type                  string     `json:"type,omitempty"`                  // The type of network device validation determines whether this validation runs before or after the operation.
+	OperationType         string     `json:"operationType,omitempty"`         // The operation type, as part of which this validation will get triggered.
+	Description           string     `json:"description,omitempty"`           // Details of the network device validation.
+	Category              string     `json:"category,omitempty"`              // Category of the network device validation.
+	Cli                   string     `json:"cli,omitempty"`                   // Show commands that will be executed. Validate the CLI - Cisco DevNet [https://developer.cisco.com/docs/dna-center/2-3-7/run-read-only-commands-on-devices-to-get-their-real-time-configuration/]
+	ProductSeriesOrdinals *[]float64 `json:"productSeriesOrdinals,omitempty"` // The custom check will be mapped to the product series and devices that belong to this series. These devices will consume this check when triggered.
+}
+type ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidation struct {
+	Response *ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidationResponse `json:"response,omitempty"` //
+	Version  string                                                                          `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidationResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetails struct {
+	Response *ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponse `json:"response,omitempty"` //
+	Version  string                                                                         `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponse struct {
+	ID                        string                                                                                             `json:"id,omitempty"`                        // Network device identifier.
+	ManagementAddress         string                                                                                             `json:"managementAddress,omitempty"`         // Either an IP address or a fully-qualified domain name.
+	NetworkDevice             *ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseNetworkDevice        `json:"networkDevice,omitempty"`             //
+	NetworkDeviceImageStatus  string                                                                                             `json:"networkDeviceImageStatus,omitempty"`  // The network device's current status concerns golden bundle images.
+	NetworkDeviceUpdateStatus string                                                                                             `json:"networkDeviceUpdateStatus,omitempty"` // The network device's current update status concerns golden images.
+	GoldenImages              *[]ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseGoldenImages       `json:"goldenImages,omitempty"`              //
+	InstalledImages           *[]ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseInstalledImages    `json:"installedImages,omitempty"`           //
+	CompatibleFeatures        *[]ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseCompatibleFeatures `json:"compatibleFeatures,omitempty"`        //
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseNetworkDevice struct {
+	ID                           string   `json:"id,omitempty"`                           // The unique identifier for the record is the `id`. If there is no supervisor engine involved, the `id` will be the same as the `productNameOrdinal`. However, if the supervisor engine is applicable, the `id` will be in the form of `<productNameOrdinal>-<supervisorProductNameOrdinal>`.
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // Product name ordinal.
+	ProductName                  string   `json:"productName,omitempty"`                  // Name of product.
+	SupervisorProductName        string   `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`. Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseGoldenImages struct {
+	ID                   string                                                                                                         `json:"id,omitempty"`                   // Software image identifier.
+	Name                 string                                                                                                         `json:"name,omitempty"`                 // Name of the image.
+	Version              string                                                                                                         `json:"version,omitempty"`              // Image version.
+	ImageType            string                                                                                                         `json:"imageType,omitempty"`            // Image Type
+	GoldenTaggingDetails *ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseGoldenImagesGoldenTaggingDetails `json:"goldenTaggingDetails,omitempty"` //
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseGoldenImagesGoldenTaggingDetails struct {
+	DeviceRoles string `json:"deviceRoles,omitempty"` // Role assigned to the network device.
+	DeviceTags  string `json:"deviceTags,omitempty"`  // A device tag is either user-defined or system-defined and is associated with a given network device.
+	SiteID      string `json:"siteId,omitempty"`      // The site id of the site from which these golden images originate.
+	SiteName    string `json:"siteName,omitempty"`    // The name of the site from which these golden images originate.
+	IsInherited *bool  `json:"isInherited,omitempty"` // Inherited flag is set to 'true' if the golden images are inherited from sites higher in the site hierarchy, and 'false' if they are from the native site.
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseInstalledImages struct {
+	ID        string `json:"id,omitempty"`        // Software image identifier
+	Name      string `json:"name,omitempty"`      // Network device running image.
+	Version   string `json:"version,omitempty"`   // Image version.
+	ImageType string `json:"imageType,omitempty"` // Image Type.
+}
+type ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetailsResponseCompatibleFeatures struct {
+	Key   string `json:"key,omitempty"`   // Name of the compatible feature.
+	Value string `json:"value,omitempty"` // Feature that can be enabled or disabled.
+}
+type ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice struct {
+	Response *ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                                     `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice struct {
+	Response *ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                                         `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDeviceResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
+type ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDevice struct {
+	Response *ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                                             `json:"version,omitempty"`  // Version of the response.
+}
+type ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDeviceResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
+}
 type ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductNames struct {
 	Response *[]ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductNamesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                                    `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductNamesResponse struct {
-	ID string `json:"id,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductName string `json:"productName,omitempty"` // Network device product name
-
+	ID                 string   `json:"id,omitempty"`                 // Product name ordinal is unique value for each network device product
+	ProductName        string   `json:"productName,omitempty"`        // Network device product name
 	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductIDs []string `json:"productIds,omitempty"` // Supported PIDs
+	ProductIDs         []string `json:"productIds,omitempty"`         // Supported PIDs
 }
 type ResponseSoftwareImageManagementSwimCountOfNetworkProductNames struct {
 	Response *ResponseSoftwareImageManagementSwimCountOfNetworkProductNamesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                 `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimCountOfNetworkProductNamesResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
 type ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductName struct {
 	Response *ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductNameResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                       `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductNameResponse struct {
-	ID string `json:"id,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductName string `json:"productName,omitempty"` // Network device product name
-
+	ID                 string   `json:"id,omitempty"`                 // Product name ordinal is unique value for each network device product
+	ProductName        string   `json:"productName,omitempty"`        // Network device product name
 	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	ProductIDs []string `json:"productIds,omitempty"` // Supported PIDs
+	ProductIDs         []string `json:"productIds,omitempty"`         // Supported PIDs
+}
+type ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeries struct {
+	Response *[]ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeriesResponse `json:"response,omitempty"` //
+	Version  string                                                                                     `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeriesResponse struct {
+	ID                 string   `json:"id,omitempty"`                 // Unique identifier for product series.
+	ProductSeries      string   `json:"productSeries,omitempty"`      // Network device product Series.
+	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product series ordinal value.
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkProductSeries struct {
+	Response *ResponseSoftwareImageManagementSwimCountOfNetworkProductSeriesResponse `json:"response,omitempty"` //
+	Version  string                                                                  `json:"version,omitempty"`  // The version of the response
+}
+type ResponseSoftwareImageManagementSwimCountOfNetworkProductSeriesResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeries struct {
+	Response *ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeriesResponse `json:"response,omitempty"` //
+	Version  string                                                                         `json:"version,omitempty"`  // The version of the response.
+}
+type ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeriesResponse struct {
+	ID                 string   `json:"id,omitempty"`                 // Unique identifier for product series.
+	ProductSeries      string   `json:"productSeries,omitempty"`      // Network device product series.
+	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product series ordinal value.
 }
 type ResponseSoftwareImageManagementSwimReturnsTheImageSummaryForTheGivenSite struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsTheImageSummaryForTheGivenSiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                                            `json:"version,omitempty"`  // Version of the response
 }
 type ResponseSoftwareImageManagementSwimReturnsTheImageSummaryForTheGivenSiteResponse struct {
-	ImportedImageCount *float64 `json:"importedImageCount,omitempty"` // Count of images imported
-
-	InstalledImageCount *float64 `json:"installedImageCount,omitempty"` // Count of installed images
-
-	GoldenImageCount *float64 `json:"goldenImageCount,omitempty"` // Count of images marked as golden
-
-	NonGoldenImageCount *float64 `json:"nonGoldenImageCount,omitempty"` // Count of images not marked as golden
-
+	ImportedImageCount         *float64 `json:"importedImageCount,omitempty"`         // Count of images imported
+	InstalledImageCount        *float64 `json:"installedImageCount,omitempty"`        // Count of installed images
+	GoldenImageCount           *float64 `json:"goldenImageCount,omitempty"`           // Count of images marked as golden
+	NonGoldenImageCount        *float64 `json:"nonGoldenImageCount,omitempty"`        // Count of images not marked as golden
 	InstalledImageAdvisorCount *float64 `json:"installedImageAdvisorCount,omitempty"` // Advisor count of installed images
-
-	ProductCount *float64 `json:"productCount,omitempty"` // Count of Network device product name
-
-	ProductsWithGoldenCount *float64 `json:"productsWithGoldenCount,omitempty"` // Count of Network device product name marked as golden
-
+	ProductCount               *float64 `json:"productCount,omitempty"`               // Count of Network device product name
+	ProductsWithGoldenCount    *float64 `json:"productsWithGoldenCount,omitempty"`    // Count of Network device product name marked as golden
 	ProductsWithoutGoldenCount *float64 `json:"productsWithoutGoldenCount,omitempty"` // Count of Network device product name not marked as golden
 }
 type ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASite struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                                               `json:"version,omitempty"`  // Response version
 }
 type ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponse struct {
-	ID string `json:"id,omitempty"` // The unique identifier for the record is the `id`. If there is no supervisor engine involved, the `id` will be the same as the `productNameOrdinal`. However, if the supervisor engine is applicable, the `id` will be in the form of `<productNameOrdinal>-<supervisorProductNameOrdinal>`.
-
-	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal
-
-	ProductName string `json:"productName,omitempty"` // Name of product
-
-	SupervisorProductName string `json:"supervisorProductName,omitempty"` // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
-
-	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting  different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
-
-	NetworkDeviceCount *int `json:"networkDeviceCount,omitempty"` // Count of network devices
-
-	ImageSummary *ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponseImageSummary `json:"imageSummary,omitempty"` //
+	ID                           string                                                                                           `json:"id,omitempty"`                           // The unique identifier for the record is the `id`. If there is no supervisor engine involved, the `id` will be the same as the `productNameOrdinal`. However, if the supervisor engine is applicable, the `id` will be in the form of `<productNameOrdinal>-<supervisorProductNameOrdinal>`.
+	ProductNameOrdinal           *float64                                                                                         `json:"productNameOrdinal,omitempty"`           // Product name ordinal
+	ProductName                  string                                                                                           `json:"productName,omitempty"`                  // Name of product
+	SupervisorProductName        string                                                                                           `json:"supervisorProductName,omitempty"`        // Name of the Supervisor Engine Module, supported by the `productName`.                  Example: The `Cisco Catalyst 9404R Switch` chassis is capable of supporting  different supervisor engine modules: the `Cisco Catalyst 9400 Supervisor Engine-1`, the `Cisco Catalyst 9400 Supervisor Engine-1XL`, the `Cisco Catalyst 9400 Supervisor Engine-1XL-Y`, etc.
+	SupervisorProductNameOrdinal *float64                                                                                         `json:"supervisorProductNameOrdinal,omitempty"` // Supervisor Engine Module Ordinal, supported by the `productNameOrdinal`. Example: The `286315691` chassis ordinal is capable of supporting  different supervisor engine module ordinals: `286316172`, `286316710`, `286320394` etc.
+	NetworkDeviceCount           *int                                                                                             `json:"networkDeviceCount,omitempty"`           // Count of network devices
+	ImageSummary                 *ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponseImageSummary `json:"imageSummary,omitempty"`                 //
 }
 type ResponseSoftwareImageManagementSwimReturnsNetworkDeviceProductNamesForASiteResponseImageSummary struct {
-	InstalledImageCount *int `json:"installedImageCount,omitempty"` // Count of installed images
-
-	GoldenImageCount *int `json:"goldenImageCount,omitempty"` // Count of golden tagged images
-
+	InstalledImageCount        *int `json:"installedImageCount,omitempty"`        // Count of installed images
+	GoldenImageCount           *int `json:"goldenImageCount,omitempty"`           // Count of golden tagged images
 	InstalledImageAdvisorCount *int `json:"installedImageAdvisorCount,omitempty"` // Count of advisor on installed images
 }
 type ResponseSoftwareImageManagementSwimReturnsTheCountOfNetworkDeviceProductNamesForASite struct {
 	Response *ResponseSoftwareImageManagementSwimReturnsTheCountOfNetworkDeviceProductNamesForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                                         `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSoftwareImageManagementSwimReturnsTheCountOfNetworkDeviceProductNamesForASiteResponse struct {
 	Count *int `json:"count,omitempty"` // Reports a count, for example, a total count of records in a given resource.
 }
 type RequestSoftwareImageManagementSwimTriggerSoftwareImageActivation []RequestItemSoftwareImageManagementSwimTriggerSoftwareImageActivation // Array of RequestSoftwareImageManagementSwimTriggerSoftwareImageActivation
 type RequestItemSoftwareImageManagementSwimTriggerSoftwareImageActivation struct {
-	ActivateLowerImageVersion *bool `json:"activateLowerImageVersion,omitempty"` //
-
-	DeviceUpgradeMode string `json:"deviceUpgradeMode,omitempty"` //
-
-	DeviceUUID string `json:"deviceUuid,omitempty"` //
-
-	DistributeIfNeeded *bool `json:"distributeIfNeeded,omitempty"` //
-
-	ImageUUIDList []string `json:"imageUuidList,omitempty"` //
-
-	SmuImageUUIDList []string `json:"smuImageUuidList,omitempty"` //
+	ActivateLowerImageVersion *bool    `json:"activateLowerImageVersion,omitempty"` //
+	DeviceUpgradeMode         string   `json:"deviceUpgradeMode,omitempty"`         //
+	DeviceUUID                string   `json:"deviceUuid,omitempty"`                //
+	DistributeIfNeeded        *bool    `json:"distributeIfNeeded,omitempty"`        //
+	ImageUUIDList             []string `json:"imageUuidList,omitempty"`             //
+	SmuImageUUIDList          []string `json:"smuImageUuidList,omitempty"`          //
 }
 type RequestSoftwareImageManagementSwimTriggerSoftwareImageDistribution []RequestItemSoftwareImageManagementSwimTriggerSoftwareImageDistribution // Array of RequestSoftwareImageManagementSwimTriggerSoftwareImageDistribution
 type RequestItemSoftwareImageManagementSwimTriggerSoftwareImageDistribution struct {
 	DeviceUUID string `json:"deviceUuid,omitempty"` //
-
-	ImageUUID string `json:"imageUuid,omitempty"` //
+	ImageUUID  string `json:"imageUuid,omitempty"`  //
 }
 type RequestSoftwareImageManagementSwimTagAsGoldenImage struct {
-	ImageID string `json:"imageId,omitempty"` // imageId in uuid format.
-
-	SiteID string `json:"siteId,omitempty"` // SiteId in uuid format. For Global Site "-1" to be used.
-
-	DeviceRole string `json:"deviceRole,omitempty"` // Device Role. Permissible Values : ALL, UNKNOWN, ACCESS, BORDER ROUTER, DISTRIBUTION and CORE.
-
+	ImageID                string `json:"imageId,omitempty"`                // imageId in uuid format.
+	SiteID                 string `json:"siteId,omitempty"`                 // SiteId in uuid format. For Global Site "-1" to be used.
+	DeviceRole             string `json:"deviceRole,omitempty"`             // Device Role. Permissible Values : ALL, UNKNOWN, ACCESS, BORDER ROUTER, DISTRIBUTION and CORE.
 	DeviceFamilyIDentifier string `json:"deviceFamilyIdentifier,omitempty"` // Device Family Identifier e.g. : 277696480-283933147, 277696480
 }
 type RequestSoftwareImageManagementSwimImportSoftwareImageViaURL []RequestItemSoftwareImageManagementSwimImportSoftwareImageViaURL // Array of RequestSoftwareImageManagementSwimImportSoftwareImageViaURL
 type RequestItemSoftwareImageManagementSwimImportSoftwareImageViaURL struct {
 	ApplicationType string `json:"applicationType,omitempty"` //
-
-	ImageFamily string `json:"imageFamily,omitempty"` //
-
-	SourceURL string `json:"sourceURL,omitempty"` //
-
-	ThirdParty *bool `json:"thirdParty,omitempty"` //
-
-	Vendor string `json:"vendor,omitempty"` //
+	ImageFamily     string `json:"imageFamily,omitempty"`     //
+	SourceURL       string `json:"sourceURL,omitempty"`       //
+	ThirdParty      *bool  `json:"thirdParty,omitempty"`      //
+	Vendor          string `json:"vendor,omitempty"`          //
 }
 type RequestSoftwareImageManagementSwimAddImageDistributionServer struct {
-	ServerAddress string `json:"serverAddress,omitempty"` // FQDN or IP address of the server
-
-	Username string `json:"username,omitempty"` // Server username
-
-	PortNumber *float64 `json:"portNumber,omitempty"` // Port number
-
-	RootLocation string `json:"rootLocation,omitempty"` // Server root location
-
-	Password string `json:"password,omitempty"` // Server password
+	ServerAddress string   `json:"serverAddress,omitempty"` // FQDN or IP address of the server
+	Username      string   `json:"username,omitempty"`      // Server username
+	PortNumber    *float64 `json:"portNumber,omitempty"`    // Port number
+	RootLocation  string   `json:"rootLocation,omitempty"`  // Server root location
+	Password      string   `json:"password,omitempty"`      // Server password
 }
 type RequestSoftwareImageManagementSwimUpdateRemoteImageDistributionServer struct {
-	Username string `json:"username,omitempty"` // Server username
-
+	Username   string   `json:"username,omitempty"`   // Server username
 	PortNumber *float64 `json:"portNumber,omitempty"` // Port number
-
-	Password string `json:"password,omitempty"` // Server password
+	Password   string   `json:"password,omitempty"`   // Server password
 }
 type RequestSoftwareImageManagementSwimTaggingGoldenImage struct {
-	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // The product name ordinal is a unique value for each network device product. `productNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
-
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // The product name ordinal is a unique value for each network device product. `productNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
 	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // The supervisor engine module ordinal is a unique value for each supervisor module. `supervisorProductNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
-
-	DeviceRoles []string `json:"deviceRoles,omitempty"` // Device Roles. Available value will be [ CORE, DISTRIBUTION, UNKNOWN, ACCESS, BORDER ROUTER ]
-
-	DeviceTags []string `json:"deviceTags,omitempty"` // Device tags can be fetched fom API https://developer.cisco.com/docs/dna-center/#!get-tag
+	DeviceRoles                  []string `json:"deviceRoles,omitempty"`                  // Device Roles. Available value will be [ CORE, DISTRIBUTION, UNKNOWN, ACCESS, BORDER ROUTER ]
+	DeviceTags                   []string `json:"deviceTags,omitempty"`                   // Device tags can be fetched fom API https://developer.cisco.com/docs/dna-center/#!get-tag
 }
 type RequestSoftwareImageManagementSwimUntaggingGoldenImage struct {
-	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // The product name ordinal is a unique value for each network device product. `productNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
-
+	ProductNameOrdinal           *float64 `json:"productNameOrdinal,omitempty"`           // The product name ordinal is a unique value for each network device product. `productNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
 	SupervisorProductNameOrdinal *float64 `json:"supervisorProductNameOrdinal,omitempty"` // The supervisor engine module ordinal is a unique value for each supervisor module. `supervisorProductNameOrdinal` can be obtained from the response of API `/dna/intent/api/v1/siteWiseProductNames?siteId=<siteId>`
-
-	DeviceRoles []string `json:"deviceRoles,omitempty"` // Device Roles. Available value will be [ CORE, DISTRIBUTION, UNKNOWN, ACCESS, BORDER ROUTER ]
-
-	DeviceTags []string `json:"deviceTags,omitempty"` // Device tags can be fetched fom API https://developer.cisco.com/docs/dna-center/#!get-tag
+	DeviceRoles                  []string `json:"deviceRoles,omitempty"`                  // Device Roles. Available value will be [ CORE, DISTRIBUTION, UNKNOWN, ACCESS, BORDER ROUTER ]
+	DeviceTags                   []string `json:"deviceTags,omitempty"`                   // Device tags can be fetched fom API https://developer.cisco.com/docs/dna-center/#!get-tag
 }
 type RequestSoftwareImageManagementSwimAssignNetworkDeviceProductNameToTheGivenSoftwareImage struct {
 	ProductNameOrdinal *float64 `json:"productNameOrdinal,omitempty"` // Product name ordinal is unique value for each network device product
-
-	SiteIDs []string `json:"siteIds,omitempty"` // Sites where this image needs to be assigned. Ref https://developer.cisco.com/docs/dna-center/#!sites
+	SiteIDs            []string `json:"siteIds,omitempty"`            // Sites where this image needs to be assigned. Ref https://developer.cisco.com/docs/dna-center/#!sites
 }
 type RequestSoftwareImageManagementSwimUpdateTheListOfSitesForTheNetworkDeviceProductNameAssignedToTheSoftwareImage struct {
 	SiteIDs []string `json:"siteIds,omitempty"` // Sites where all this image need to be assigned
+}
+type RequestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices []RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices // Array of RequestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices
+type RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices struct {
+	ID                   string                                                                                      `json:"id,omitempty"`                   // Network device identifier.
+	InstalledImages      *[]RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesInstalledImages    `json:"installedImages,omitempty"`      //
+	CompatibleFeatures   *[]RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesCompatibleFeatures `json:"compatibleFeatures,omitempty"`   //
+	NetworkValidationIDs []string                                                                                    `json:"networkValidationIds,omitempty"` // List of unique identifiers of custom network device validations.
+}
+type RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesInstalledImages struct {
+	ID string `json:"id,omitempty"` // Software image identifier.
+}
+type RequestItemSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevicesCompatibleFeatures struct {
+	Key   string `json:"key,omitempty"`   // Name of the compatible feature.
+	Value string `json:"value,omitempty"` // Feature that can be enabled or disabled.
+}
+type RequestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices []RequestItemSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices // Array of RequestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices
+type RequestItemSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices struct {
+	ID                   string                                                                                         `json:"id,omitempty"`                   // Network device identifier.
+	DistributedImages    *[]RequestItemSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevicesDistributedImages `json:"distributedImages,omitempty"`    //
+	NetworkValidationIDs []string                                                                                       `json:"networkValidationIds,omitempty"` // List of unique identifier of custom network device validations.
+}
+type RequestItemSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevicesDistributedImages struct {
+	ID string `json:"id,omitempty"` // Software image identifier.
+}
+type RequestSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation struct {
+	Name                  string     `json:"name,omitempty"`                  // Name of the network device validation.
+	Type                  string     `json:"type,omitempty"`                  // The type of network device validation determines whether this validation runs before or after the operation.
+	OperationType         string     `json:"operationType,omitempty"`         // The operation type, as part of which this validation will get triggered.
+	Description           string     `json:"description,omitempty"`           // Details of the network device validation.
+	Cli                   string     `json:"cli,omitempty"`                   // Show commands that will be executed. Validate the CLI - Cisco DevNet [ https://developer.cisco.com/docs/dna-center/2-3-7/run-read-only-commands-on-devices-to-get-their-real-time-configuration/ ]
+	ProductSeriesOrdinals *[]float64 `json:"productSeriesOrdinals,omitempty"` // The custom check will be mapped to the product series and devices that belong to this series. These devices will consume this check when triggered. Fetch productSeriesOrdinal from API `/dna/intent/api/v1/productSeries`.
+}
+type RequestSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation struct {
+	Description           string     `json:"description,omitempty"`           // Details of the network device validation.
+	Cli                   string     `json:"cli,omitempty"`                   // Edit the Command line interface (CLI). Validate the CLI - Cisco DevNet [ https://developer.cisco.com/docs/dna-center/2-3-7/run-read-only-commands-on-devices-to-get-their-real-time-configuration/ ]
+	ProductSeriesOrdinals *[]float64 `json:"productSeriesOrdinals,omitempty"` // The custom check will be mapped to the product series and devices that belong to this series. These devices will consume this check when triggered.
+}
+type RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice struct {
+	InstalledImages      *[]RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceInstalledImages    `json:"installedImages,omitempty"`      //
+	CompatibleFeatures   *[]RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceCompatibleFeatures `json:"compatibleFeatures,omitempty"`   //
+	NetworkValidationIDs []string                                                                              `json:"networkValidationIds,omitempty"` // List of unique identifiers of custom network device validations.
+}
+type RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceInstalledImages struct {
+	ID string `json:"id,omitempty"` // Software image identifier.
+}
+type RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDeviceCompatibleFeatures struct {
+	Key   string `json:"key,omitempty"`   // Name of the compatible feature.
+	Value string `json:"value,omitempty"` // Feature that can be enabled or disabled.
+}
+type RequestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice struct {
+	DistributedImages    *[]RequestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDeviceDistributedImages `json:"distributedImages,omitempty"`    //
+	NetworkValidationIDs []string                                                                                 `json:"networkValidationIds,omitempty"` // List of unique identifiers of custom network device validations.
+}
+type RequestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDeviceDistributedImages struct {
+	ID string `json:"id,omitempty"` // Software image identifier.
 }
 
 //GetSoftwareImageDetails Get software image details - 0c8f-7a0b-49b9-aedd
@@ -1296,6 +1458,303 @@ func (s *SoftwareImageManagementSwimService) CountOfNetworkDeviceImageUpdates(Co
 
 }
 
+//GetTheListOfNetworkDevicesWithImageDetails Get the list of network devices with image details - 90b9-8925-48da-9af6
+/* This API retrieves information about running images and golden image bundle, if they are available for network devices. It also provides network device update status and image update status related to the golden image bundle and the compatible features supported by the network devices.
+Network devices with `networkDeviceImageStatus` set as `OUTDATED` are considered ready for update based on the golden bundle.
+
+
+@param GetTheListOfNetworkDevicesWithImageDetailsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-list-of-network-devices-with-image-details
+*/
+func (s *SoftwareImageManagementSwimService) GetTheListOfNetworkDevicesWithImageDetails(GetTheListOfNetworkDevicesWithImageDetailsQueryParams *GetTheListOfNetworkDevicesWithImageDetailsQueryParams) (*ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages"
+
+	queryString, _ := query.Values(GetTheListOfNetworkDevicesWithImageDetailsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetails{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTheListOfNetworkDevicesWithImageDetails(GetTheListOfNetworkDevicesWithImageDetailsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTheListOfNetworkDevicesWithImageDetails")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimGetTheListOfNetworkDevicesWithImageDetails)
+	return result, response, err
+
+}
+
+//CountOfNetworkDevicesForTheGivenStatusFilters Count of network devices for the given status filters - 7896-0b28-4c4a-8976
+/* Returns the count of network devices based on the given filters
+
+
+@param CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-devices-for-the-given-status-filters
+*/
+func (s *SoftwareImageManagementSwimService) CountOfNetworkDevicesForTheGivenStatusFilters(CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams *CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams) (*ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFilters, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/count"
+
+	queryString, _ := query.Values(CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFilters{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfNetworkDevicesForTheGivenStatusFilters(CountOfNetworkDevicesForTheGivenStatusFiltersQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountOfNetworkDevicesForTheGivenStatusFilters")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimCountOfNetworkDevicesForTheGivenStatusFilters)
+	return result, response, err
+
+}
+
+//NetworkDeviceImageUpdateValidationResults Network device image update validation results - e3b5-0967-4a5a-bf31
+/* This API provides a comprehensive overview of the outcomes from various tests and assessments defined by system and custom validations related to network device images. These results are essential for identifying potential issues, verifying configurations, and ensuring that the network meets the requirement for image update.
+
+
+@param NetworkDeviceImageUpdateValidationResultsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!network-device-image-update-validation-results
+*/
+func (s *SoftwareImageManagementSwimService) NetworkDeviceImageUpdateValidationResults(NetworkDeviceImageUpdateValidationResultsQueryParams *NetworkDeviceImageUpdateValidationResultsQueryParams) (*ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResults, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validationResults"
+
+	queryString, _ := query.Values(NetworkDeviceImageUpdateValidationResultsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResults{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.NetworkDeviceImageUpdateValidationResults(NetworkDeviceImageUpdateValidationResultsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation NetworkDeviceImageUpdateValidationResults")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimNetworkDeviceImageUpdateValidationResults)
+	return result, response, err
+
+}
+
+//CountOfNetworkDeviceImageUpdateValidationResults Count of network device image update validation results - 158d-aab6-45ca-abc9
+/* The count of network device validation results.
+
+
+@param CountOfNetworkDeviceImageUpdateValidationResultsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-device-image-update-validation-results
+*/
+func (s *SoftwareImageManagementSwimService) CountOfNetworkDeviceImageUpdateValidationResults(CountOfNetworkDeviceImageUpdateValidationResultsQueryParams *CountOfNetworkDeviceImageUpdateValidationResultsQueryParams) (*ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResults, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validationResults/count"
+
+	queryString, _ := query.Values(CountOfNetworkDeviceImageUpdateValidationResultsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResults{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfNetworkDeviceImageUpdateValidationResults(CountOfNetworkDeviceImageUpdateValidationResultsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountOfNetworkDeviceImageUpdateValidationResults")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimCountOfNetworkDeviceImageUpdateValidationResults)
+	return result, response, err
+
+}
+
+//GetTheListOfCustomNetworkDeviceValidations Get the list of custom network device validations - e4ae-9931-40c8-8c94
+/* Fetches custom network device validations that run on the network device as part of the update workflow. This process verifies and assesses the configuration of the network devices.
+
+
+@param GetTheListOfCustomNetworkDeviceValidationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-the-list-of-custom-network-device-validations
+*/
+func (s *SoftwareImageManagementSwimService) GetTheListOfCustomNetworkDeviceValidations(GetTheListOfCustomNetworkDeviceValidationsQueryParams *GetTheListOfCustomNetworkDeviceValidationsQueryParams) (*ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidations, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validations"
+
+	queryString, _ := query.Values(GetTheListOfCustomNetworkDeviceValidationsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidations{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetTheListOfCustomNetworkDeviceValidations(GetTheListOfCustomNetworkDeviceValidationsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetTheListOfCustomNetworkDeviceValidations")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimGetTheListOfCustomNetworkDeviceValidations)
+	return result, response, err
+
+}
+
+//CountOfCustomNetworkDeviceValidations Count of custom network device validations - beb4-b8fe-43b8-9127
+/* Count the number of network device validations.
+
+
+@param CountOfCustomNetworkDeviceValidationsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-custom-network-device-validations
+*/
+func (s *SoftwareImageManagementSwimService) CountOfCustomNetworkDeviceValidations(CountOfCustomNetworkDeviceValidationsQueryParams *CountOfCustomNetworkDeviceValidationsQueryParams) (*ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidations, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validations/count"
+
+	queryString, _ := query.Values(CountOfCustomNetworkDeviceValidationsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidations{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfCustomNetworkDeviceValidations(CountOfCustomNetworkDeviceValidationsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountOfCustomNetworkDeviceValidations")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimCountOfCustomNetworkDeviceValidations)
+	return result, response, err
+
+}
+
+//GetCustomNetworkDeviceValidationDetails Get custom network device validation details - 7db4-6aa3-4d58-af3f
+/* This API fetches the details for the given network device validation.
+
+
+@param id id path parameter. Unique identifier of network device validation.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-custom-network-device-validation-details
+*/
+func (s *SoftwareImageManagementSwimService) GetCustomNetworkDeviceValidationDetails(id string) (*ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validations/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetails{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetCustomNetworkDeviceValidationDetails(id)
+		}
+		return nil, response, fmt.Errorf("error with operation GetCustomNetworkDeviceValidationDetails")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimGetCustomNetworkDeviceValidationDetails)
+	return result, response, err
+
+}
+
+//FetchNetworkDeviceWithImageDetails Fetch network device with image details - ec9f-29d4-4faa-975d
+/* The API retrieves information about running images and golden image bundle, if they are available for the network device. It also provides network device update status and image update status related to the golden image bundle and the compatible features supported by the network device. Network device with `networkDeviceImageStatus` set as `OUTDATED` is considered ready for update based on the golden image bundle.
+
+
+@param id id path parameter. Network device identifier
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!fetch-network-device-with-image-details
+*/
+func (s *SoftwareImageManagementSwimService) FetchNetworkDeviceWithImageDetails(id string) (*ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetails, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetails{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.FetchNetworkDeviceWithImageDetails(id)
+		}
+		return nil, response, fmt.Errorf("error with operation FetchNetworkDeviceWithImageDetails")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimFetchNetworkDeviceWithImageDetails)
+	return result, response, err
+
+}
+
 //RetrievesTheListOfNetworkDeviceProductNames Retrieves the list of network device product names - a7bf-3baf-4c29-b1ca
 /* Get the list of network device product names, their ordinal, and the support PIDs based on filter criteria.
 
@@ -1403,6 +1862,117 @@ func (s *SoftwareImageManagementSwimService) RetrieveNetworkDeviceProductName(pr
 	}
 
 	result := response.Result().(*ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductName)
+	return result, response, err
+
+}
+
+//RetrievesTheListOfNetworkDeviceProductSeries Retrieves the list of network device product series. - a3ad-eb03-4428-91fe
+/* Get the list of network device product series and  their ordinal on filter criteria.
+
+
+@param RetrievesTheListOfNetworkDeviceProductSeriesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-network-device-product-series
+*/
+func (s *SoftwareImageManagementSwimService) RetrievesTheListOfNetworkDeviceProductSeries(RetrievesTheListOfNetworkDeviceProductSeriesQueryParams *RetrievesTheListOfNetworkDeviceProductSeriesQueryParams) (*ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeries, *resty.Response, error) {
+	path := "/dna/intent/api/v1/productSeries"
+
+	queryString, _ := query.Values(RetrievesTheListOfNetworkDeviceProductSeriesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeries{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesTheListOfNetworkDeviceProductSeries(RetrievesTheListOfNetworkDeviceProductSeriesQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfNetworkDeviceProductSeries")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimRetrievesTheListOfNetworkDeviceProductSeries)
+	return result, response, err
+
+}
+
+//CountOfNetworkProductSeries Count of network product series - 729e-793b-432a-9a7f
+/* Count of product series based on filter criteria
+
+
+@param CountOfNetworkProductSeriesQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-of-network-product-series
+*/
+func (s *SoftwareImageManagementSwimService) CountOfNetworkProductSeries(CountOfNetworkProductSeriesQueryParams *CountOfNetworkProductSeriesQueryParams) (*ResponseSoftwareImageManagementSwimCountOfNetworkProductSeries, *resty.Response, error) {
+	path := "/dna/intent/api/v1/productSeries/count"
+
+	queryString, _ := query.Values(CountOfNetworkProductSeriesQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseSoftwareImageManagementSwimCountOfNetworkProductSeries{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountOfNetworkProductSeries(CountOfNetworkProductSeriesQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountOfNetworkProductSeries")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimCountOfNetworkProductSeries)
+	return result, response, err
+
+}
+
+//RetrieveNetworkDeviceProductSeries Retrieve network device product series. - fd8e-aaa4-43da-8e7f
+/* Get the network device product series, its ordinal
+
+
+@param productSeriesOrdinal productSeriesOrdinal path parameter. Unique identifier of product series.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-network-device-product-series
+*/
+func (s *SoftwareImageManagementSwimService) RetrieveNetworkDeviceProductSeries(productSeriesOrdinal float64) (*ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeries, *resty.Response, error) {
+	path := "/dna/intent/api/v1/productSeries/{productSeriesOrdinal}"
+	path = strings.Replace(path, "{productSeriesOrdinal}", fmt.Sprintf("%v", productSeriesOrdinal), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeries{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrieveNetworkDeviceProductSeries(productSeriesOrdinal)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrieveNetworkDeviceProductSeries")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimRetrieveNetworkDeviceProductSeries)
 	return result, response, err
 
 }
@@ -1853,6 +2423,7 @@ func (s *SoftwareImageManagementSwimService) DownloadTheSoftwareImage(id string)
 /* Creates golden image tagging specifically for a particular device type or supervisor engine module. Conditions for tagging the golden image:
 1) The golden tagging of SMU, PISRT_SMU, APSP, and APDP image type depends on the golden tagged applied on the base image. If any discrepancies are identified in the request payload, the golden tagging process will fail. For example:
 
+
     a) If the base image is tagged with Device Role: ACCESS, then add-ons can only be done ACCESS role only and the same is applied if any device tag is used. Any other request will fail.
 
     b) If the base image is tagged at global or any site level then add-ons also need to be tagged at site level.
@@ -1902,6 +2473,7 @@ func (s *SoftwareImageManagementSwimService) TaggingGoldenImage(id string, siteI
 //UntaggingGoldenImage Untagging golden image - 82a0-7b30-422a-b0ff
 /* Untag the golden images specifically designed for a particular device type or supervisor engine module. Conditions for untagging the golden image:
 1) Untagging the golden image can only be done where the golden tagged is applied.
+
   For example, if golden tagging is applied to a global site, then untagging can only be done on a global site. Even though the same setting will be inherited on native, attempting to untag will fail.
 2) Untagging of SUBPACKAGE and ROMMON image type is not supported.
 
@@ -1985,6 +2557,236 @@ func (s *SoftwareImageManagementSwimService) AssignNetworkDeviceProductNameToThe
 
 }
 
+//BulkUpdateImagesOnNetworkDevices Bulk update images on network devices - 6385-38fa-44ea-ba6e
+/* This API initiates the process of updating the software image on the given network devices. Providing value for the `installedImages` in request payload will initiate both distribution and activation of the images. At the end of this process, only the images which are part of `installedImages` will be running on the network devices. To monitor the progress and completion of the update task, call the GET API `/dna/intent/api/v1/networkDeviceImageUpdates?parentId={taskId}`, where `taskId` is from the response of the current endpoint.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!bulk-update-images-on-network-devices
+*/
+func (s *SoftwareImageManagementSwimService) BulkUpdateImagesOnNetworkDevices(requestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices *RequestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices) (*ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/activate/bulk"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices).
+		SetResult(&ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.BulkUpdateImagesOnNetworkDevices(requestSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation BulkUpdateImagesOnNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimBulkUpdateImagesOnNetworkDevices)
+	return result, response, err
+
+}
+
+//BulkDistributeImagesOnNetworkDevices Bulk distribute images on network devices - d39e-fba4-49c8-9b34
+/* This API initiates the process of distributing the software image on the given network devices. Providing value for the `distributedImages` will only trigger the distribution process. To monitor the progress and completion of the update task, please call the GET API `/dna/intent/api/v1/networkDeviceImageUpdates?parentId={taskId}`, where `taskId` is from the response of the current endpoint.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!bulk-distribute-images-on-network-devices
+*/
+func (s *SoftwareImageManagementSwimService) BulkDistributeImagesOnNetworkDevices(requestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices *RequestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices) (*ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/distribute/bulk"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices).
+		SetResult(&ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.BulkDistributeImagesOnNetworkDevices(requestSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation BulkDistributeImagesOnNetworkDevices")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimBulkDistributeImagesOnNetworkDevices)
+	return result, response, err
+
+}
+
+//CreateCustomNetworkDeviceValidation Create custom network device validation - df9d-0902-4199-a2b2
+/* Custom network device validation refers to the tailored process of verifying and assessing the configurations of network devices based on specific organizational requirements and unique network environments. Unlike standard validations, custom network device validations are designed to address the distinctive needs and challenges of a particular network infrastructure, ensuring that devices operate optimally within the defined parameters. Upon task completion, the task API response's `resultLocation` attribute will provide the URL to retrieve the validation id.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-custom-network-device-validation
+*/
+func (s *SoftwareImageManagementSwimService) CreateCustomNetworkDeviceValidation(requestSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation *RequestSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation) (*ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validations"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation).
+		SetResult(&ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateCustomNetworkDeviceValidation(requestSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CreateCustomNetworkDeviceValidation")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimCreateCustomNetworkDeviceValidation)
+	return result, response, err
+
+}
+
+//UpdateImagesOnTheNetworkDevice Update images on the network device - 4099-3acd-4928-a5b2
+/* This API initiates the process of updating the software image on the network device. Providing value for the `installedImages` in request payload will initiate both distribution and activation of the images. At the end of this process, only the images which are part of `installedImages` will be running on the network device. To monitor the progress and completion of the update task, call the GET API `/dna/intent/api/v1/networkDeviceImageUpdates?parentId={taskId}`, where `taskId` is from the response of the current endpoint.
+
+
+@param id id path parameter. Network device identifier.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!update-images-on-the-network-device
+*/
+func (s *SoftwareImageManagementSwimService) UpdateImagesOnTheNetworkDevice(id string, requestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice *RequestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice) (*ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/{id}/activate"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice).
+		SetResult(&ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateImagesOnTheNetworkDevice(id, requestSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice)
+		}
+
+		return nil, response, fmt.Errorf("error with operation UpdateImagesOnTheNetworkDevice")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimUpdateImagesOnTheNetworkDevice)
+	return result, response, err
+
+}
+
+//DistributeImagesOnTheNetworkDevice Distribute images on the network device - c7ad-992e-43cb-89b6
+/* This API initiates the process of distributing the software image on the network device. Providing value for the `distributedImages` will only trigger the distribution process. To monitor the progress and completion of the update task, please call the GET API `/dna/intent/api/v1/networkDeviceImageUpdates?parentId={taskId}`, where `taskId` is from the response of the current endpoint.
+
+
+@param id id path parameter. Network device identifier.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!distribute-images-on-the-network-device
+*/
+func (s *SoftwareImageManagementSwimService) DistributeImagesOnTheNetworkDevice(id string, requestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice *RequestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice) (*ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/{id}/distribute"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice).
+		SetResult(&ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DistributeImagesOnTheNetworkDevice(id, requestSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice)
+		}
+
+		return nil, response, fmt.Errorf("error with operation DistributeImagesOnTheNetworkDevice")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimDistributeImagesOnTheNetworkDevice)
+	return result, response, err
+
+}
+
+//TriggerUpdateReadinessForNetworkDevice Trigger update readiness for network device - b593-3949-4068-9034
+/* Triggers an on-demand network device update readiness check, where system-defined pre-checks will be performed. Upon task completion, the task API response's `resultLocation` attribute will contain the URL for fetching the validation result.
+
+
+@param id id path parameter. Network device identifier.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!trigger-update-readiness-for-network-device
+*/
+func (s *SoftwareImageManagementSwimService) TriggerUpdateReadinessForNetworkDevice(id string) (*ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/{id}/readinessChecks"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDevice{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.TriggerUpdateReadinessForNetworkDevice(id)
+		}
+
+		return nil, response, fmt.Errorf("error with operation TriggerUpdateReadinessForNetworkDevice")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimTriggerUpdateReadinessForNetworkDevice)
+	return result, response, err
+
+}
+
 //UpdateRemoteImageDistributionServer Update remote image distribution server - 2caa-c9cc-469b-a3d5
 /* Update remote image distribution server details.
 
@@ -2060,6 +2862,42 @@ func (s *SoftwareImageManagementSwimService) UpdateTheListOfSitesForTheNetworkDe
 
 }
 
+//UpdateCustomNetworkDeviceValidation Update custom network device validation - bab1-78e1-48c9-a794
+/* Update the custom network device validation details.
+
+
+@param id id path parameter. Unique identifier of network device validation.
+
+*/
+func (s *SoftwareImageManagementSwimService) UpdateCustomNetworkDeviceValidation(id string, requestSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation *RequestSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation) (*ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceImages/validations/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation).
+		SetResult(&ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation{}).
+		SetError(&Error).
+		Put(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.UpdateCustomNetworkDeviceValidation(id, requestSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation)
+		}
+		return nil, response, fmt.Errorf("error with operation UpdateCustomNetworkDeviceValidation")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimUpdateCustomNetworkDeviceValidation)
+	return result, response, err
+
+}
+
 //RemoveGoldenTagForImage Remove Golden Tag for image. - f3b9-5978-4f6a-897a
 /* Remove golden tag. Set siteId as -1 for Global site.
 
@@ -2097,7 +2935,8 @@ func (s *SoftwareImageManagementSwimService) RemoveGoldenTagForImage(siteID stri
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveGoldenTagForImage(siteID, deviceFamilyIDentifier, deviceRole, imageID)
+			return s.RemoveGoldenTagForImage(
+				siteID, deviceFamilyIDentifier, deviceRole, imageID)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveGoldenTagForImage")
 	}
@@ -2135,7 +2974,8 @@ func (s *SoftwareImageManagementSwimService) RemoveImageDistributionServer(id st
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveImageDistributionServer(id)
+			return s.RemoveImageDistributionServer(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveImageDistributionServer")
 	}
@@ -2173,7 +3013,8 @@ func (s *SoftwareImageManagementSwimService) DeleteImage(id string) (*ResponseSo
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteImage(id)
+			return s.DeleteImage(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteImage")
 	}
@@ -2185,6 +3026,7 @@ func (s *SoftwareImageManagementSwimService) DeleteImage(id string) (*ResponseSo
 
 //UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage Unassign network device product name from the given software image - 3fa4-39e3-4a4b-8eaf
 /* This API unassigns the network device product name from all the sites for the given software image.
+
         Refer to `/dna/intent/api/v1/images` and `/dna/intent/api/v1/images/{imageId}/siteWiseProductNames` GET APIs for obtaining  `imageId` and `productNameOrdinal` respectively.
 
 
@@ -2215,12 +3057,52 @@ func (s *SoftwareImageManagementSwimService) UnassignNetworkDeviceProductNameFro
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage(imageID, productNameOrdinal)
+			return s.UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage(
+				imageID, productNameOrdinal)
 		}
 		return nil, response, fmt.Errorf("error with operation UnassignNetworkDeviceProductNameFromTheGivenSoftwareImage")
 	}
 
 	result := response.Result().(*ResponseSoftwareImageManagementSwimUnassignNetworkDeviceProductNameFromTheGivenSoftwareImage)
+	return result, response, err
+
+}
+
+//DeleteCustomNetworkDeviceValidation Delete custom network device validation - 4188-28f3-48e9-b25f
+/* Delete the custom network device validation.
+
+
+@param id id path parameter. Unique identifier of network device validation.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-custom-network-device-validation
+*/
+func (s *SoftwareImageManagementSwimService) DeleteCustomNetworkDeviceValidation(id string) (*ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidation, *resty.Response, error) {
+	//id string
+	path := "/dna/intent/api/v1/networkDeviceImages/validations/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidation{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeleteCustomNetworkDeviceValidation(
+				id)
+		}
+		return nil, response, fmt.Errorf("error with operation DeleteCustomNetworkDeviceValidation")
+	}
+
+	result := response.Result().(*ResponseSoftwareImageManagementSwimDeleteCustomNetworkDeviceValidation)
 	return result, response, err
 
 }

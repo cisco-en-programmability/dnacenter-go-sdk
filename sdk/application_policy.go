@@ -444,79 +444,59 @@ type ResponseApplicationPolicyGetApplicationSetsCount struct {
 }
 type ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatus struct {
 	Response *[]ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                                                                                  `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseApplicationPolicyRetrieveTheListOfNetworkDevicesWithTheirApplicationVisibilityStatusResponse struct {
-	ID string `json:"id,omitempty"` // The network device id
-
-	ManagementAddress string `json:"managementAddress,omitempty"` // The management address for the network device
-
-	Hostname string `json:"hostname,omitempty"` // The host name of the network device
-
-	SiteID string `json:"siteId,omitempty"` // The site ID where the network device is assigned.
-
-	AppTelemetryDeploymentStatus string `json:"appTelemetryDeploymentStatus,omitempty"` // Status of the application telemetry deployment on the network device.
-
-	AppTelemetryReadinessStatus string `json:"appTelemetryReadinessStatus,omitempty"` // Indicates whether the network device is ready for application telemetry enablement or not.
-
-	CbarDeploymentStatus string `json:"cbarDeploymentStatus,omitempty"` // Status of the CBAR deployment on the network device.
-
-	CbarReadinessStatus string `json:"cbarReadinessStatus,omitempty"` // Indicates whether the network device is ready for CBAR enablement or not.
-
-	ProtocolPackStatus string `json:"protocolPackStatus,omitempty"` // Indicates whether the NBAR protocol pack is up-to-date or not on the network device.
-
-	ProtocolPackUpdateStatus string `json:"protocolPackUpdateStatus,omitempty"` // Status of the NBAR protocol pack update on the network device.
-
+	ID                            string `json:"id,omitempty"`                            // The network device id
+	ManagementAddress             string `json:"managementAddress,omitempty"`             // The management address for the network device
+	Hostname                      string `json:"hostname,omitempty"`                      // The host name of the network device
+	SiteID                        string `json:"siteId,omitempty"`                        // The site ID where the network device is assigned.
+	AppTelemetryDeploymentStatus  string `json:"appTelemetryDeploymentStatus,omitempty"`  // Status of the application telemetry deployment on the network device.
+	AppTelemetryReadinessStatus   string `json:"appTelemetryReadinessStatus,omitempty"`   // Indicates whether the network device is ready for application telemetry enablement or not.
+	CbarDeploymentStatus          string `json:"cbarDeploymentStatus,omitempty"`          // Status of the CBAR deployment on the network device.
+	CbarReadinessStatus           string `json:"cbarReadinessStatus,omitempty"`           // Indicates whether the network device is ready for CBAR enablement or not.
+	ProtocolPackStatus            string `json:"protocolPackStatus,omitempty"`            // Indicates whether the NBAR protocol pack is up-to-date or not on the network device.
+	ProtocolPackUpdateStatus      string `json:"protocolPackUpdateStatus,omitempty"`      // Status of the NBAR protocol pack update on the network device.
 	ApplicationRegistrySyncStatus string `json:"applicationRegistrySyncStatus,omitempty"` // Indicates whether the latest definitions from application registry have been synchronized with the network device or not.
 }
 type ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFilters struct {
 	Response *ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                                          `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyRetrieveTheCountOfNetworkDevicesForTheGivenApplicationVisibilityStatusFiltersResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
 	Response *ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                       `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyDisableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevices struct {
 	Response *ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                       `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyDisableCBARFeatureOnMultipleNetworkDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevices struct {
 	Response *ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices struct {
 	Response *ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseApplicationPolicyCreateApplication struct {
 	Response *ResponseApplicationPolicyCreateApplicationResponse `json:"response,omitempty"` //
@@ -968,21 +948,17 @@ type RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkD
 	NetworkDevices *[]RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesNetworkDevices `json:"networkDevices,omitempty"` //
 }
 type RequestApplicationPolicyEnableApplicationTelemetryFeatureOnMultipleNetworkDevicesNetworkDevices struct {
-	ID string `json:"id,omitempty"` // Network device identifier
-
-	IncludeWLANModes []string `json:"includeWlanModes,omitempty"` // Types of WLAN modes which needs to be included for enablement. Applicable and mandatory only for wireless devices. Available values: LOCAL or NON_LOCAL.
-
-	IncludeGuestSSIDs *bool `json:"includeGuestSsids,omitempty"` // Flag to indicate whether guest SSIDs should be included for application telemetry enablement. Applicable only for wireless devices. Default value is false.
+	ID                string   `json:"id,omitempty"`                // Network device identifier
+	IncludeWLANModes  []string `json:"includeWlanModes,omitempty"`  // Types of WLAN modes which needs to be included for enablement. Applicable and mandatory only for wireless devices. Available values: LOCAL or NON_LOCAL.
+	IncludeGuestSSIDs *bool    `json:"includeGuestSsids,omitempty"` // Flag to indicate whether guest SSIDs should be included for application telemetry enablement. Applicable only for wireless devices. Default value is false.
 }
 type RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevices struct {
 	NetworkDevices *[]RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesNetworkDevices `json:"networkDevices,omitempty"` //
 }
 type RequestApplicationPolicyEnableCBARFeatureOnMultipleNetworkDevicesNetworkDevices struct {
-	ID string `json:"id,omitempty"` // Network device identifier
-
+	ID                  string   `json:"id,omitempty"`                  // Network device identifier
 	ExcludeInterfaceIDs []string `json:"excludeInterfaceIds,omitempty"` // List of interface identifiers which needs to be excluded from CBAR enablement. Applicable only for wired devices. Please note that this list considered as absolute exclusion and earlier exclusions are not considered. For example, if IF1 and IF2 have already been excluded from CBAR as part of earlier enablement, and this API is now called with IF3 and IF4 as inputs, then IF1 and IF2 are removed from exclusion list and only IF3 and IF4 are excluded.
-
-	ExcludeWLANModes []string `json:"excludeWlanModes,omitempty"` // WLAN modes which needs to be excluded from CBAR enablement. Applicable only for wireless devices. Applicable values are: LOCAL, FLEX, or FABRIC
+	ExcludeWLANModes    []string `json:"excludeWlanModes,omitempty"`    // WLAN modes which needs to be excluded from CBAR enablement. Applicable only for wireless devices. Applicable values are: LOCAL, FLEX, or FABRIC
 }
 type RequestApplicationPolicyCreateApplication []RequestItemApplicationPolicyCreateApplication // Array of RequestApplicationPolicyCreateApplication
 type RequestItemApplicationPolicyCreateApplication struct {
@@ -2428,7 +2404,8 @@ func (s *ApplicationPolicyService) DeleteApplicationPolicyQueuingProfile(id stri
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationPolicyQueuingProfile(id)
+			return s.DeleteApplicationPolicyQueuingProfile(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationPolicyQueuingProfile")
 	}
@@ -2466,7 +2443,8 @@ func (s *ApplicationPolicyService) DeleteApplicationSet(DeleteApplicationSetQuer
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationSet(DeleteApplicationSetQueryParams)
+			return s.DeleteApplicationSet(
+				DeleteApplicationSetQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationSet")
 	}
@@ -2504,7 +2482,8 @@ func (s *ApplicationPolicyService) DeleteApplication(DeleteApplicationQueryParam
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplication(DeleteApplicationQueryParams)
+			return s.DeleteApplication(
+				DeleteApplicationQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplication")
 	}
@@ -2542,7 +2521,8 @@ func (s *ApplicationPolicyService) DeleteQosDeviceInterfaceInfo(id string) (*Res
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteQosDeviceInterfaceInfo(id)
+			return s.DeleteQosDeviceInterfaceInfo(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteQosDeviceInterfaceInfo")
 	}
@@ -2580,7 +2560,8 @@ func (s *ApplicationPolicyService) DeleteApplicationSetV2(id string) (*ResponseA
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationSetV2(id)
+			return s.DeleteApplicationSetV2(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationSetV2")
 	}
@@ -2618,7 +2599,8 @@ func (s *ApplicationPolicyService) DeleteApplicationV2(id string) (*ResponseAppl
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteApplicationV2(id)
+			return s.DeleteApplicationV2(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteApplicationV2")
 	}

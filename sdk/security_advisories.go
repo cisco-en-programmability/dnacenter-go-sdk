@@ -11,32 +11,23 @@ import (
 type SecurityAdvisoriesService service
 
 type ResponseSecurityAdvisoriesGetAdvisoriesList struct {
-	Response *ResponseSecurityAdvisoriesGetAdvisoriesListResponse `json:"response,omitempty"` //
-	Version  string                                               `json:"version,omitempty"`  // Version of the response
+	Response *[]ResponseSecurityAdvisoriesGetAdvisoriesListResponse `json:"response,omitempty"` //
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesListResponse struct {
-	AdvisoryID string `json:"advisoryId,omitempty"` // Advisory Id
-
-	DeviceCount *int `json:"deviceCount,omitempty"` // Device Count
-
-	HiddenDeviceCount *float64 `json:"hiddenDeviceCount,omitempty"` // Hidden Device Count
-
-	Cves []string `json:"cves,omitempty"` // Cves
-
-	PublicationURL string `json:"publicationUrl,omitempty"` // Publication Url
-
-	Sir string `json:"sir,omitempty"` // Sir
-
-	DetectionType string `json:"detectionType,omitempty"` // Detection Type
-
-	DefaultDetectionType string `json:"defaultDetectionType,omitempty"` // Default Detection Type
-
-	DefaultConfigMatchPattern string `json:"defaultConfigMatchPattern,omitempty"` // Default Config Match Pattern
-
-	FixedVersions *ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions `json:"fixedVersions,omitempty"` //
+	AdvisoryID                string                                                            `json:"advisoryId,omitempty"`                // Advisory Id
+	DeviceCount               *int                                                              `json:"deviceCount,omitempty"`               // Device Count
+	HiddenDeviceCount         *float64                                                          `json:"hiddenDeviceCount,omitempty"`         // Hidden Device Count
+	Cves                      []string                                                          `json:"cves,omitempty"`                      // Cves
+	PublicationURL            string                                                            `json:"publicationUrl,omitempty"`            // Publication Url
+	Sir                       string                                                            `json:"sir,omitempty"`                       // Sir
+	DetectionType             string                                                            `json:"detectionType,omitempty"`             // Detection Type
+	DefaultDetectionType      string                                                            `json:"defaultDetectionType,omitempty"`      // Default Detection Type
+	DefaultConfigMatchPattern string                                                            `json:"defaultConfigMatchPattern,omitempty"` // Default Config Match Pattern
+	FixedVersions             *ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions `json:"fixedVersions,omitempty"`             //
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesListResponseFixedVersions struct {
-	Version string `json:"version,omitempty"` // version
+	V27E1A []string `json:"15.2(7)E1a,omitempty"` // 15.2(7) E1a
 }
 type ResponseSecurityAdvisoriesGetAdvisoriesSummary struct {
 	Response *ResponseSecurityAdvisoriesGetAdvisoriesSummaryResponse `json:"response,omitempty"` //

@@ -25,6 +25,14 @@ type LanAutomationStatusQueryParams struct {
 type LanAutomationDeviceUpdateQueryParams struct {
 	Feature string `url:"feature,omitempty"` //Feature ID for the update. Supported feature IDs include: LOOPBACK0_IPADDRESS_UPDATE, HOSTNAME_UPDATE, LINK_ADD, and LINK_DELETE.
 }
+type GetPortChannelsQueryParams struct {
+	Device1ManagementIPAddress string `url:"device1ManagementIPAddress,omitempty"` //The management IP address of the device1.
+	Device1UUID                string `url:"device1Uuid,omitempty"`                //Unique identifier for the network device1
+	Device2ManagementIPAddress string `url:"device2ManagementIPAddress,omitempty"` //The management IP address of the device2.
+	Device2UUID                string `url:"device2Uuid,omitempty"`                //Unique identifier for the network device2
+	Offset                     int    `url:"offset,omitempty"`                     //Starting record for pagination.
+	Limit                      int    `url:"limit,omitempty"`                      //Maximum number of Port Channel to return.
+}
 
 type ResponseLanAutomationLanAutomationStart struct {
 	Response *ResponseLanAutomationLanAutomationStartResponse `json:"response,omitempty"` //
@@ -110,7 +118,9 @@ type ResponseLanAutomationLanAutomationStatusResponse struct {
 	RedistributeIsisToBgp             *bool                                                                   `json:"redistributeIsisToBgp,omitempty"`             // Shows whether advertise LAN Automation summary route into BGP is enabled or not.
 	DiscoveryLevel                    *int                                                                    `json:"discoveryLevel,omitempty"`                    // Level below primary seed device upto which the new devices will be LAN Automated by this session, level + seed = tier. Supported range for level is [1-5], default level is 2.
 	DiscoveryTimeout                  *int                                                                    `json:"discoveryTimeout,omitempty"`                  // Discovery timeout in minutes. Until this time, the stop processing will not be triggered. Any device contacting after the provided discovery timeout will not be processed, and a device reset and reload will be attempted to bring it back to the PnP agent state before process completion. The supported timeout range is in minutes [20-10080].
-	DiscoveryDevices                  *[]ResponseLanAutomationLanAutomationStatusResponseDiscoveryDevices     `json:"discoveryDevices,omitempty"`                  // Specific devices that will be LAN Automated in this session. Any other device discovered via DHCP will be attempted for a reset and reload to bring it back to the PnP agent state at the end of the LAN Automation process before process completion. The maximum supported devices that can be provided for a session is 50.
+	DiscoveryDevices                  *[]ResponseLanAutomationLanAutomationStatusResponseDiscoveryDevices     `json:"discoveryDevices,omitempty"`                  //
+	HostNamePrefix                    string                                                                  `json:"hostNamePrefix,omitempty"`                    // Hostname prefix of the discovered devices
+	HostNameFileID                    string                                                                  `json:"hostNameFileId,omitempty"`                    // File ID for the uploaded file in the nw_orch namespace
 }
 type ResponseLanAutomationLanAutomationStatusResponseIPPools struct {
 	IPPoolName string `json:"ipPoolName,omitempty"` // Name of the IP pool.
@@ -122,7 +132,17 @@ type ResponseLanAutomationLanAutomationStatusResponseDiscoveredDeviceList struct
 	State              string   `json:"state,omitempty"`              // State of the device (Added to inventory/Deleted from inventory).
 	IPAddressInUseList []string `json:"ipAddressInUseList,omitempty"` // List of IP address used by the device.
 }
-type ResponseLanAutomationLanAutomationStatusResponseDiscoveryDevices interface{}
+type ResponseLanAutomationLanAutomationStatusResponseDiscoveryDevices struct {
+	DeviceSerialNumber        string `json:"deviceSerialNumber,omitempty"`        // Serial number of the device
+	DeviceHostName            string `json:"deviceHostName,omitempty"`            // Hostname of the device
+	DeviceManagementIPAddress string `json:"deviceManagementIPAddress,omitempty"` // Management IP Address of the device
+	DeviceSiteID              string `json:"deviceSiteId,omitempty"`              // Site UUID of the device
+	DeviceSiteNameHierarchy   string `json:"deviceSiteNameHierarchy,omitempty"`   // Site name hierarchy of the device
+	IsDeviceDiscovered        *bool  `json:"isDeviceDiscovered,omitempty"`        // Discovery status of the device
+	IsIPAllocated             *bool  `json:"isIPAllocated,omitempty"`             // IP Allocation status of the device
+	IsIPAssigned              *bool  `json:"isIPAssigned,omitempty"`              // IP Assignment status of the device
+	PnpDeviceID               string `json:"pnpDeviceId,omitempty"`               // PnP device ID
+}
 type ResponseLanAutomationLanAutomationStatusByID struct {
 	Response *[]ResponseLanAutomationLanAutomationStatusByIDResponse `json:"response,omitempty"` //
 	Version  string                                                  `json:"version,omitempty"`  // Version
@@ -142,7 +162,9 @@ type ResponseLanAutomationLanAutomationStatusByIDResponse struct {
 	RedistributeIsisToBgp             *bool                                                                       `json:"redistributeIsisToBgp,omitempty"`             // Shows whether advertise LAN Automation summary route into BGP is enabled or not.
 	DiscoveryLevel                    *int                                                                        `json:"discoveryLevel,omitempty"`                    // Level below primary seed device upto which the new devices will be LAN Automated by this session, level + seed = tier. Supported range for level is [1-5], default level is 2.
 	DiscoveryTimeout                  *int                                                                        `json:"discoveryTimeout,omitempty"`                  // Discovery timeout in minutes. Until this time, the stop processing will not be triggered. Any device contacting after the provided discovery timeout will not be processed, and a device reset and reload will be attempted to bring it back to the PnP agent state before process completion. The supported timeout range is in minutes [20-10080].
-	DiscoveryDevices                  *[]ResponseLanAutomationLanAutomationStatusByIDResponseDiscoveryDevices     `json:"discoveryDevices,omitempty"`                  // Specific devices that will be LAN Automated in this session. Any other device discovered via DHCP will be attempted for a reset and reload to bring it back to the PnP agent state at the end of the LAN Automation process before process completion. The maximum supported devices that can be provided for a session is 50.
+	DiscoveryDevices                  *[]ResponseLanAutomationLanAutomationStatusByIDResponseDiscoveryDevices     `json:"discoveryDevices,omitempty"`                  //
+	HostNamePrefix                    string                                                                      `json:"hostNamePrefix,omitempty"`                    // Hostname prefix of the discovered devices
+	HostNameFileID                    string                                                                      `json:"hostNameFileId,omitempty"`                    // File ID for the uploaded file in the nw_orch namespace
 }
 type ResponseLanAutomationLanAutomationStatusByIDResponseIPPools struct {
 	IPPoolName string `json:"ipPoolName,omitempty"` // Name of the IP pool.
@@ -154,7 +176,17 @@ type ResponseLanAutomationLanAutomationStatusByIDResponseDiscoveredDeviceList st
 	State              string   `json:"state,omitempty"`              // State of the device (Added to inventory/Deleted from inventory).
 	IPAddressInUseList []string `json:"ipAddressInUseList,omitempty"` // List of IP address used by the device.
 }
-type ResponseLanAutomationLanAutomationStatusByIDResponseDiscoveryDevices interface{}
+type ResponseLanAutomationLanAutomationStatusByIDResponseDiscoveryDevices struct {
+	DeviceSerialNumber        string `json:"deviceSerialNumber,omitempty"`        // Serial number of the device
+	DeviceHostName            string `json:"deviceHostName,omitempty"`            // Hostname of the device
+	DeviceManagementIPAddress string `json:"deviceManagementIPAddress,omitempty"` // Management IP Address of the device
+	DeviceSiteID              string `json:"deviceSiteId,omitempty"`              // Site UUID of the device
+	DeviceSiteNameHierarchy   string `json:"deviceSiteNameHierarchy,omitempty"`   // Site name hierarchy of the device
+	IsDeviceDiscovered        *bool  `json:"isDeviceDiscovered,omitempty"`        // Discovery status of the device
+	IsIPAllocated             *bool  `json:"isIPAllocated,omitempty"`             // IP Allocation status of the device
+	IsIPAssigned              *bool  `json:"isIPAssigned,omitempty"`              // IP Assignment status of the device
+	PnpDeviceID               string `json:"pnpDeviceId,omitempty"`               // PnP device ID
+}
 type ResponseLanAutomationLanAutomationDeviceUpdate struct {
 	Response *ResponseLanAutomationLanAutomationDeviceUpdateResponse `json:"response,omitempty"` //
 	Version  string                                                  `json:"version,omitempty"`  // version
@@ -177,6 +209,83 @@ type ResponseLanAutomationLanAutomationStopAndUpdateDevices struct {
 	Version  string                                                          `json:"version,omitempty"`  // version
 }
 type ResponseLanAutomationLanAutomationStopAndUpdateDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task ID
+	URL    string `json:"url,omitempty"`    // url to check the status of task
+}
+type ResponseLanAutomationGetPortChannels struct {
+	Response *[]ResponseLanAutomationGetPortChannelsResponse `json:"response,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  // Version number.
+}
+type ResponseLanAutomationGetPortChannelsResponse struct {
+	ID                         string                                                            `json:"id,omitempty"`                         // Unique id of the port-channel link. Concatenation of both device's Port Channel UUID.
+	Device1ManagementIPAddress string                                                            `json:"device1ManagementIPAddress,omitempty"` // IP address of device 1.
+	Device1UUID                string                                                            `json:"device1Uuid,omitempty"`                // ID of device1.
+	Device2ManagementIPAddress string                                                            `json:"device2ManagementIPAddress,omitempty"` // IP address of device 2.
+	Device2UUID                string                                                            `json:"device2Uuid,omitempty"`                // ID of device2.
+	Device1PortChannelUUID     string                                                            `json:"device1PortChannelUuid,omitempty"`     // ID of the port channel.
+	Device1PortChannelNumber   *int                                                              `json:"device1PortChannelNumber,omitempty"`   // Port Channel number.
+	Device2PortChannelUUID     string                                                            `json:"device2PortChannelUuid,omitempty"`     // ID of the port channel.
+	Device2PortChannelNumber   *int                                                              `json:"device2PortChannelNumber,omitempty"`   // Port Channel number.
+	PortChannelMembers         *[]ResponseLanAutomationGetPortChannelsResponsePortChannelMembers `json:"portChannelMembers,omitempty"`         //
+	PortChannelName            string                                                            `json:"portChannelName,omitempty"`            //
+}
+type ResponseLanAutomationGetPortChannelsResponsePortChannelMembers struct {
+	Device1InterfaceUUID string `json:"device1InterfaceUuid,omitempty"` // Device 1 interface UUID.
+	Device1Interface     string `json:"device1Interface,omitempty"`     // Device 1 interface.
+	Device2InterfaceUUID string `json:"device2InterfaceUuid,omitempty"` // Device 2 interface UUID.
+	Device2Interface     string `json:"device2Interface,omitempty"`     // Device 2 interface name.
+}
+type ResponseLanAutomationCreateANewPortChannelBetweenDevices struct {
+	Response *ResponseLanAutomationCreateANewPortChannelBetweenDevicesResponse `json:"response,omitempty"` //
+	Version  string                                                            `json:"version,omitempty"`  // version
+}
+type ResponseLanAutomationCreateANewPortChannelBetweenDevicesResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task ID
+	URL    string `json:"url,omitempty"`    // url to check the status of task
+}
+type ResponseLanAutomationGetPortChannelInformationByID struct {
+	Response *[]ResponseLanAutomationGetPortChannelInformationByIDResponse `json:"response,omitempty"` //
+	Version  string                                                        `json:"version,omitempty"`  // Version number.
+}
+type ResponseLanAutomationGetPortChannelInformationByIDResponse struct {
+	ID                         string                                                                          `json:"id,omitempty"`                         // Unique id of the port-channel link. Concatenation of both device's Port Channel UUID.
+	Device1ManagementIPAddress string                                                                          `json:"device1ManagementIPAddress,omitempty"` // IP address of device 1.
+	Device1UUID                string                                                                          `json:"device1Uuid,omitempty"`                // ID of device1.
+	Device2ManagementIPAddress string                                                                          `json:"device2ManagementIPAddress,omitempty"` // IP address of device 2.
+	Device2UUID                string                                                                          `json:"device2Uuid,omitempty"`                // ID of device2.
+	Device1PortChannelUUID     string                                                                          `json:"device1PortChannelUuid,omitempty"`     // ID of the port channel.
+	Device1PortChannelNumber   *int                                                                            `json:"device1PortChannelNumber,omitempty"`   // Port Channel number.
+	Device2PortChannelUUID     string                                                                          `json:"device2PortChannelUuid,omitempty"`     // ID of the port channel.
+	Device2PortChannelNumber   *int                                                                            `json:"device2PortChannelNumber,omitempty"`   // Port Channel number.
+	PortChannelMembers         *[]ResponseLanAutomationGetPortChannelInformationByIDResponsePortChannelMembers `json:"portChannelMembers,omitempty"`         //
+}
+type ResponseLanAutomationGetPortChannelInformationByIDResponsePortChannelMembers struct {
+	Device1InterfaceUUID string `json:"device1InterfaceUuid,omitempty"` // Device 1 interface UUID.
+	Device1Interface     string `json:"device1Interface,omitempty"`     // Device 1 interface.
+	Device2InterfaceUUID string `json:"device2InterfaceUuid,omitempty"` // Device 2 interface UUID.
+	Device2Interface     string `json:"device2Interface,omitempty"`     // Device 2 interface name.
+}
+type ResponseLanAutomationDeletePortChannel struct {
+	Response *ResponseLanAutomationDeletePortChannelResponse `json:"response,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  // version
+}
+type ResponseLanAutomationDeletePortChannelResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task ID
+	URL    string `json:"url,omitempty"`    // url to check the status of task
+}
+type ResponseLanAutomationAddALanAutomatedLinkToAPortChannel struct {
+	Response *ResponseLanAutomationAddALanAutomatedLinkToAPortChannelResponse `json:"response,omitempty"` //
+	Version  string                                                           `json:"version,omitempty"`  // version
+}
+type ResponseLanAutomationAddALanAutomatedLinkToAPortChannelResponse struct {
+	TaskID string `json:"taskId,omitempty"` // Task ID
+	URL    string `json:"url,omitempty"`    // url to check the status of task
+}
+type ResponseLanAutomationRemoveALinkFromPortChannel struct {
+	Response *ResponseLanAutomationRemoveALinkFromPortChannelResponse `json:"response,omitempty"` //
+	Version  string                                                   `json:"version,omitempty"`  // version
+}
+type ResponseLanAutomationRemoveALinkFromPortChannelResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
 	URL    string `json:"url,omitempty"`    // url to check the status of task
 }
@@ -227,7 +336,7 @@ type RequestLanAutomationLanAutomationDeviceUpdateLinkUpdate struct {
 	SourceDeviceInterfaceName            string `json:"sourceDeviceInterfaceName,omitempty"`            // Source Device Interface Name
 	DestinationDeviceManagementIPAddress string `json:"destinationDeviceManagementIPAddress,omitempty"` // Destination Device Management IP Address
 	DestinationDeviceInterfaceName       string `json:"destinationDeviceInterfaceName,omitempty"`       // Destination Device Interface Name
-	IPPoolName                           string `json:"ipPoolName,omitempty"`                           // Name of the IP LAN Pool, required for Link Add should be from discovery site of source and destination device.
+	IPPoolName                           string `json:"ipPoolName,omitempty"`                           // Name of the IP LAN Pool, required for Link Add should be from discovery site of source and destination device. It is optional for Link Delete.
 }
 type RequestLanAutomationLanAutomationDeviceUpdateHostnameUpdateDevices struct {
 	DeviceManagementIPAddress string `json:"deviceManagementIPAddress,omitempty"` // Device Management IP Address
@@ -237,6 +346,37 @@ type RequestLanAutomationLanAutomationStopAndUpdateDevices []RequestItemLanAutom
 type RequestItemLanAutomationLanAutomationStopAndUpdateDevices struct {
 	DeviceManagementIPAddress string `json:"deviceManagementIPAddress,omitempty"` // Device Management IP Address
 	NewLoopback0IPAddress     string `json:"newLoopback0IPAddress,omitempty"`     // New Loopback0 IP Address from LAN pool of Device Discovery Site.
+}
+type RequestLanAutomationCreateANewPortChannelBetweenDevices struct {
+	Device1ManagementIPAddress string                                                                       `json:"device1ManagementIPAddress,omitempty"` // Either device1ManagementIPAddress or device1Uuid is required.
+	Device1UUID                string                                                                       `json:"device1Uuid,omitempty"`                // Either device1ManagementIPAddress or device1Uuid is required.
+	Device2ManagementIPAddress string                                                                       `json:"device2ManagementIPAddress,omitempty"` // Either device2ManagementIPAddress or device2Uuid is required.
+	Device2UUID                string                                                                       `json:"device2Uuid,omitempty"`                // Either device2ManagementIPAddress or device2Uuid is required.
+	PortChannelMembers         *[]RequestLanAutomationCreateANewPortChannelBetweenDevicesPortChannelMembers `json:"portChannelMembers,omitempty"`         //
+}
+type RequestLanAutomationCreateANewPortChannelBetweenDevicesPortChannelMembers struct {
+	Device1InterfaceUUID string `json:"device1InterfaceUuid,omitempty"` // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device1Interface     string `json:"device1Interface,omitempty"`     // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device2InterfaceUUID string `json:"device2InterfaceUuid,omitempty"` // Either device2InterfaceUuid or device2InterfaceName is required.
+	Device2Interface     string `json:"device2Interface,omitempty"`     // Either device2InterfaceUuid or device2InterfaceName is required.
+}
+type RequestLanAutomationAddALanAutomatedLinkToAPortChannel struct {
+	PortChannelMembers *[]RequestLanAutomationAddALanAutomatedLinkToAPortChannelPortChannelMembers `json:"portChannelMembers,omitempty"` //
+}
+type RequestLanAutomationAddALanAutomatedLinkToAPortChannelPortChannelMembers struct {
+	Device1InterfaceUUID string `json:"device1InterfaceUuid,omitempty"` // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device1Interface     string `json:"device1Interface,omitempty"`     // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device2InterfaceUUID string `json:"device2InterfaceUuid,omitempty"` // Either device2InterfaceUuid or device1InterfaceName is required.
+	Device2Interface     string `json:"device2Interface,omitempty"`     // Either device2InterfaceUuid or device1InterfaceName is required.
+}
+type RequestLanAutomationRemoveALinkFromPortChannel struct {
+	PortChannelMembers *[]RequestLanAutomationRemoveALinkFromPortChannelPortChannelMembers `json:"portChannelMembers,omitempty"` //
+}
+type RequestLanAutomationRemoveALinkFromPortChannelPortChannelMembers struct {
+	Device1InterfaceUUID string `json:"device1InterfaceUuid,omitempty"` // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device1Interface     string `json:"device1Interface,omitempty"`     // Either device1InterfaceUuid or device1InterfaceName is required.
+	Device2InterfaceUUID string `json:"device2InterfaceUuid,omitempty"` // Either device2InterfaceUuid or device1InterfaceName is required.
+	Device2Interface     string `json:"device2Interface,omitempty"`     // Either device2InterfaceUuid or device1InterfaceName is required.
 }
 type RequestLanAutomationLanAutomationStartV2 []RequestItemLanAutomationLanAutomationStartV2 // Array of RequestLanAutomationLANAutomationStartV2
 type RequestItemLanAutomationLanAutomationStartV2 struct {
@@ -530,6 +670,80 @@ func (s *LanAutomationService) LanAutomationStatusByID(id string) (*ResponseLanA
 
 }
 
+//GetPortChannels Get Port Channels - c9a9-9a58-452a-87b8
+/* Returns a list of Port Channel between the LAN Automation associated devices.
+
+
+@param GetPortChannelsQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channels
+*/
+func (s *LanAutomationService) GetPortChannels(GetPortChannelsQueryParams *GetPortChannelsQueryParams) (*ResponseLanAutomationGetPortChannels, *resty.Response, error) {
+	path := "/dna/intent/api/v1/lanAutomation/portChannels"
+
+	queryString, _ := query.Values(GetPortChannelsQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseLanAutomationGetPortChannels{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPortChannels(GetPortChannelsQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetPortChannels")
+	}
+
+	result := response.Result().(*ResponseLanAutomationGetPortChannels)
+	return result, response, err
+
+}
+
+//GetPortChannelInformationByID Get Port Channel information by id - 0d8c-1a1b-4cf8-82f4
+/* This API retrieves Port Channel information using its ID.
+
+
+@param id id path parameter. ID of the port channel.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-port-channel-information-by-id
+*/
+func (s *LanAutomationService) GetPortChannelInformationByID(id string) (*ResponseLanAutomationGetPortChannelInformationByID, *resty.Response, error) {
+	path := "/dna/intent/api/v1/lanAutomation/portChannels/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseLanAutomationGetPortChannelInformationByID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetPortChannelInformationByID(id)
+		}
+		return nil, response, fmt.Errorf("error with operation GetPortChannelInformationById")
+	}
+
+	result := response.Result().(*ResponseLanAutomationGetPortChannelInformationByID)
+	return result, response, err
+
+}
+
 //LanAutomationStart LAN Automation Start - 9795-f927-469a-a6d2
 /* Invoke this API to start LAN Automation for the given site.
 
@@ -567,8 +781,125 @@ func (s *LanAutomationService) LanAutomationStart(requestLanAutomationLANAutomat
 
 }
 
+//CreateANewPortChannelBetweenDevices Create a New Port Channel between devices - 1690-29e1-475b-8733
+/* This API creates a Port Channel between two LAN Automation associated devices using the PAgP protocol, with a minimum of 2 and a maximum of 8 LAN Automated interfaces in UP status.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!create-a-new-port-channel-between-devices
+*/
+func (s *LanAutomationService) CreateANewPortChannelBetweenDevices(requestLanAutomationCreateANewPortChannelBetweenDevices *RequestLanAutomationCreateANewPortChannelBetweenDevices) (*ResponseLanAutomationCreateANewPortChannelBetweenDevices, *resty.Response, error) {
+	path := "/dna/intent/api/v1/lanAutomation/portChannels"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestLanAutomationCreateANewPortChannelBetweenDevices).
+		SetResult(&ResponseLanAutomationCreateANewPortChannelBetweenDevices{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CreateANewPortChannelBetweenDevices(requestLanAutomationCreateANewPortChannelBetweenDevices)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CreateANewPortChannelBetweenDevices")
+	}
+
+	result := response.Result().(*ResponseLanAutomationCreateANewPortChannelBetweenDevices)
+	return result, response, err
+
+}
+
+//AddALanAutomatedLinkToAPortChannel Add a LAN Automated link to a Port Channel - f6a9-e8d7-4d6b-9ef2
+/* This API adds a new LAN Automated link as a member to an existing Port Channel, provided the interface is in UP state and already LAN Automated.
+
+
+@param id id path parameter. ID of the port channel.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!add-a-lan-automated-link-to-a-port-channel
+*/
+func (s *LanAutomationService) AddALanAutomatedLinkToAPortChannel(id string, requestLanAutomationAddALANAutomatedLinkToAPortChannel *RequestLanAutomationAddALanAutomatedLinkToAPortChannel) (*ResponseLanAutomationAddALanAutomatedLinkToAPortChannel, *resty.Response, error) {
+	path := "/dna/intent/api/v1/lanAutomation/portChannels/{id}/addLink"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestLanAutomationAddALANAutomatedLinkToAPortChannel).
+		SetResult(&ResponseLanAutomationAddALanAutomatedLinkToAPortChannel{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.AddALanAutomatedLinkToAPortChannel(id, requestLanAutomationAddALANAutomatedLinkToAPortChannel)
+		}
+
+		return nil, response, fmt.Errorf("error with operation AddALanAutomatedLinkToAPortChannel")
+	}
+
+	result := response.Result().(*ResponseLanAutomationAddALanAutomatedLinkToAPortChannel)
+	return result, response, err
+
+}
+
+//RemoveALinkFromPortChannel Remove a link from Port Channel - 05bf-0a11-4e1a-824f
+/* This API removes a member link from an existing Port Channel, reverting the link to a P2P L3 interface.
+
+
+@param id id path parameter. ID of the port channel.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!remove-a-link-from-port-channel
+*/
+func (s *LanAutomationService) RemoveALinkFromPortChannel(id string, requestLanAutomationRemoveALinkFromPortChannel *RequestLanAutomationRemoveALinkFromPortChannel) (*ResponseLanAutomationRemoveALinkFromPortChannel, *resty.Response, error) {
+	path := "/dna/intent/api/v1/lanAutomation/portChannels/{id}/removeLink"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetBody(requestLanAutomationRemoveALinkFromPortChannel).
+		SetResult(&ResponseLanAutomationRemoveALinkFromPortChannel{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RemoveALinkFromPortChannel(id, requestLanAutomationRemoveALinkFromPortChannel)
+		}
+
+		return nil, response, fmt.Errorf("error with operation RemoveALinkFromPortChannel")
+	}
+
+	result := response.Result().(*ResponseLanAutomationRemoveALinkFromPortChannel)
+	return result, response, err
+
+}
+
 //LanAutomationStartV2 LAN Automation Start V2 - 51ba-8921-46da-9bec
-/* Invoke V2 LAN Automation Start API, which supports optional auto-stop processing feature based on the provided timeout or a specific device list, or both. The stop processing will be executed automatically when either of the cases is satisfied, without specifically calling the stop API. The V2 API behaves similarly to  if no timeout or device list is provided, and the user needs to call the stop API for LAN Automation stop processing. With the V2 API, the user can also specify the level up to which the devices can be LAN automated.
+/* Invoke V2 LAN Automation Start API, which supports optional auto-stop processing feature based on the provided timeout or a specific device list, or both. The stop processing will be executed automatically when either of the cases is satisfied, without specifically calling the stop API. The V2 API behaves similarly to V1 if no timeout or device list is provided, and the user needs to call the stop API for LAN Automation stop processing. With the V2 API, the user can also specify the level up to which the devices can be LAN automated.
 
 
 
@@ -740,12 +1071,52 @@ func (s *LanAutomationService) LanAutomationStop(id string) (*ResponseLanAutomat
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.LanAutomationStop(id)
+			return s.LanAutomationStop(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation LanAutomationStop")
 	}
 
 	result := response.Result().(*ResponseLanAutomationLanAutomationStop)
+	return result, response, err
+
+}
+
+//DeletePortChannel Delete Port Channel - 9099-fb62-4c98-bf2e
+/* This API deletes a Port Channel between LAN Automation associated devices using a valid Port Channel ID.
+
+
+@param id id path parameter. ID of the port channel.
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!delete-port-channel
+*/
+func (s *LanAutomationService) DeletePortChannel(id string) (*ResponseLanAutomationDeletePortChannel, *resty.Response, error) {
+	//id string
+	path := "/dna/intent/api/v1/lanAutomation/portChannels/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseLanAutomationDeletePortChannel{}).
+		SetError(&Error).
+		Delete(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.DeletePortChannel(
+				id)
+		}
+		return nil, response, fmt.Errorf("error with operation DeletePortChannel")
+	}
+
+	result := response.Result().(*ResponseLanAutomationDeletePortChannel)
 	return result, response, err
 
 }

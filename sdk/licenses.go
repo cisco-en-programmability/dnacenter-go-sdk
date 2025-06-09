@@ -39,29 +39,23 @@ type LicenseUsageDetailsQueryParams struct {
 
 type ResponseLicensesRetrievesCSSMConnectionMode struct {
 	Response *ResponseLicensesRetrievesCSSMConnectionModeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                               `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesRetrievesCSSMConnectionModeResponse struct {
-	ConnectionMode string `json:"connectionMode,omitempty"` // The CSSM connection modes of Catalyst Center are DIRECT, ON_PREMISE and SMART_PROXY
-
-	Parameters *ResponseLicensesRetrievesCSSMConnectionModeResponseParameters `json:"parameters,omitempty"` //
+	ConnectionMode string                                                         `json:"connectionMode,omitempty"` // The CSSM connection modes of Catalyst Center are DIRECT, ON_PREMISE and SMART_PROXY
+	Parameters     *ResponseLicensesRetrievesCSSMConnectionModeResponseParameters `json:"parameters,omitempty"`     //
 }
 type ResponseLicensesRetrievesCSSMConnectionModeResponseParameters struct {
-	OnPremiseHost string `json:"onPremiseHost,omitempty"` // On-premise host
-
+	OnPremiseHost    string `json:"onPremiseHost,omitempty"`    // On-premise host
 	SmartAccountName string `json:"smartAccountName,omitempty"` // On-premise CSSM local smart account name
-
-	ClientID string `json:"clientId,omitempty"` // On-premise CSSM client id
+	ClientID         string `json:"clientId,omitempty"`         // On-premise CSSM client id
 }
 type ResponseLicensesUpdateCSSMConnectionMode struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                            `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseLicensesUpdateCSSMConnectionModeResponse `json:"response,omitempty"` //
 }
 type ResponseLicensesUpdateCSSMConnectionModeResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseLicensesRetrieveLicenseSetting struct {
@@ -86,7 +80,6 @@ type ResponseLicensesDeviceCountDetails struct {
 }
 type ResponseLicensesDeviceLicenseSummary struct {
 	Response *[]ResponseLicensesDeviceLicenseSummaryResponse `json:"response,omitempty"` //
-	Version  string                                          `json:"version,omitempty"`  // Version
 }
 type ResponseLicensesDeviceLicenseSummaryResponse struct {
 	AuthorizationStatus              string `json:"authorization_status,omitempty"`                  // Smart license authorization status of device
@@ -124,57 +117,6 @@ type ResponseLicensesDeviceLicenseSummaryResponse struct {
 	CustomerTag3                     string `json:"customer_tag3,omitempty"`                         // Customer Tag3 set on device
 	CustomerTag4                     string `json:"customer_tag4,omitempty"`                         // Customer Tag4 set on device
 	SmartAccountName                 string `json:"smart_account_name,omitempty"`                    // Name of smart account
-}
-type ResponseLicensesDeviceLicenseDetails struct {
-	DeviceUUID              string                                                `json:"device_uuid,omitempty"`               // Id of device
-	Site                    string                                                `json:"site,omitempty"`                      // Site of device
-	Model                   string                                                `json:"model,omitempty"`                     // Model of device
-	LicenseMode             string                                                `json:"license_mode,omitempty"`              // Mode of license
-	IsLicenseExpired        *bool                                                 `json:"is_license_expired,omitempty"`        // Is device license expired
-	SoftwareVersion         string                                                `json:"software_version,omitempty"`          // Software image version of device
-	NetworkLicense          string                                                `json:"network_license,omitempty"`           // Device network license level
-	EvaluationLicenseExpiry string                                                `json:"evaluation_license_expiry,omitempty"` // Evaluation period expiry date
-	DeviceName              string                                                `json:"device_name,omitempty"`               // Name of device
-	DeviceType              string                                                `json:"device_type,omitempty"`               // Type of device
-	DnaLevel                string                                                `json:"dna_level,omitempty"`                 // Device Cisco DNA license level
-	VirtualAccountName      string                                                `json:"virtual_account_name,omitempty"`      // Name of virtual account
-	IPAddress               string                                                `json:"ip_address,omitempty"`                // IP address of device
-	MacAddress              string                                                `json:"mac_address,omitempty"`               // MAC address of device
-	SntcStatus              string                                                `json:"sntc_status,omitempty"`               // Valid if device is covered under license contract and invalid if not covered, otherwise unknown.
-	FeatureLicense          []string                                              `json:"feature_license,omitempty"`           // Name of feature licenses
-	HasSupCards             *bool                                                 `json:"has_sup_cards,omitempty"`             // Whether device has supervisor cards
-	Udi                     string                                                `json:"udi,omitempty"`                       // Unique Device Identifier
-	StackedDevices          *[]ResponseLicensesDeviceLicenseDetailsStackedDevices `json:"stacked_devices,omitempty"`           //
-	IsStackedDevice         *bool                                                 `json:"is_stacked_device,omitempty"`         // Is Stacked Device
-	AccessPoints            *[]ResponseLicensesDeviceLicenseDetailsAccessPoints   `json:"access_points,omitempty"`             //
-	ChassisDetails          *ResponseLicensesDeviceLicenseDetailsChassisDetails   `json:"chassis_details,omitempty"`           //
-}
-type ResponseLicensesDeviceLicenseDetailsStackedDevices struct {
-	MacAddress   string `json:"mac_address,omitempty"`   // Stack mac address
-	ID           *int   `json:"id,omitempty"`            // Id
-	Role         string `json:"role,omitempty"`          // Chassis role
-	SerialNumber string `json:"serial_number,omitempty"` // Chassis serial number
-}
-type ResponseLicensesDeviceLicenseDetailsAccessPoints struct {
-	ApType string `json:"ap_type,omitempty"` // Type of access point
-	Count  string `json:"count,omitempty"`   // Number of access point
-}
-type ResponseLicensesDeviceLicenseDetailsChassisDetails struct {
-	BoardSerialNumber string                                                               `json:"board_serial_number,omitempty"` // Board serial number
-	Modules           *[]ResponseLicensesDeviceLicenseDetailsChassisDetailsModules         `json:"modules,omitempty"`             //
-	SupervisorCards   *[]ResponseLicensesDeviceLicenseDetailsChassisDetailsSupervisorCards `json:"supervisor_cards,omitempty"`    //
-	Port              *int                                                                 `json:"port,omitempty"`                // Number of port
-}
-type ResponseLicensesDeviceLicenseDetailsChassisDetailsModules struct {
-	ModuleType   string `json:"module_type,omitempty"`   // Type of module
-	ModuleName   string `json:"module_name,omitempty"`   // Name of module
-	SerialNumber string `json:"serial_number,omitempty"` // Serial number of module
-	ID           *int   `json:"id,omitempty"`            // Id of module
-}
-type ResponseLicensesDeviceLicenseDetailsChassisDetailsSupervisorCards struct {
-	SerialNumber       string `json:"serial_number,omitempty"`        // Serial number of supervisor card
-	SupervisorCardType string `json:"supervisor_card_type,omitempty"` // Type of supervisor card
-	Status             string `json:"status,omitempty"`               // Status of supervisor card
 }
 type ResponseLicensesDeviceDeregistration struct {
 	Response *ResponseLicensesDeviceDeregistrationResponse `json:"response,omitempty"` //
@@ -229,33 +171,10 @@ type ResponseLicensesLicenseTermDetailsLicenseDetails struct {
 	IsLicenseExpired         string `json:"is_license_expired,omitempty"`          // Is license expired
 }
 type ResponseLicensesLicenseUsageDetails struct {
-	PurchasedDnaLicense *ResponseLicensesLicenseUsageDetailsPurchasedDnaLicense `json:"purchased_dna_license,omitempty"` //
-
+	PurchasedDnaLicense     *ResponseLicensesLicenseUsageDetailsPurchasedDnaLicense     `json:"purchased_dna_license,omitempty"`     //
 	PurchasedNetworkLicense *ResponseLicensesLicenseUsageDetailsPurchasedNetworkLicense `json:"purchased_network_license,omitempty"` //
-
-	UsedDnaLicense *ResponseLicensesLicenseUsageDetailsUsedDnaLicense `json:"used_dna_license,omitempty"` //
-
-	UsedNetworkLicense *ResponseLicensesLicenseUsageDetailsUsedNetworkLicense `json:"used_network_license,omitempty"` //
-
-	PurchasedIseLicense *ResponseLicensesLicenseUsageDetailsPurchasedIseLicense `json:"purchased_ise_license,omitempty"`
-
-	UsedIseLicense *ResponseLicensesLicenseUsageDetailsUsedIseLicense `json:"used_ise_license,omitempty"`
-}
-type ResponseLicensesLicenseUsageDetailsUsedIseLicense struct {
-	TotalLicenseCount  *int                                                                   `json:"total_license_count,omitempty"`
-	LicenseCountByType *[]ResponseLicensesLicenseUsageDetailsUsedIseLicenseLicenseCountByType `json:"license_count_by_type,omitempty"`
-}
-type ResponseLicensesLicenseUsageDetailsUsedIseLicenseLicenseCountByType struct {
-	LicenseType  string `json:"license_type,omitempty"`
-	LicenseCount *int   `json:"license_count,omitempty"`
-}
-type ResponseLicensesLicenseUsageDetailsPurchasedIseLicense struct {
-	TotalLicenseCount  *int                                                                        `json:"total_license_count,omitempty"`
-	LicenseCountByType *[]ResponseLicensesLicenseUsageDetailsPurchasedIseLicenseLicenseCountByType `json:"license_count_by_type,omitempty"`
-}
-type ResponseLicensesLicenseUsageDetailsPurchasedIseLicenseLicenseCountByType struct {
-	LicenseType  string `json:"license_type,omitempty"`
-	LicenseCount *int   `json:"license_count,omitempty"`
+	UsedDnaLicense          *ResponseLicensesLicenseUsageDetailsUsedDnaLicense          `json:"used_dna_license,omitempty"`          //
+	UsedNetworkLicense      *ResponseLicensesLicenseUsageDetailsUsedNetworkLicense      `json:"used_network_license,omitempty"`      //
 }
 type ResponseLicensesLicenseUsageDetailsPurchasedDnaLicense struct {
 	TotalLicenseCount  *int                                                                        `json:"total_license_count,omitempty"`   // Total number of licenses
@@ -289,120 +208,114 @@ type ResponseLicensesLicenseUsageDetailsUsedNetworkLicenseLicenseCountByType str
 	LicenseType  string `json:"license_type,omitempty"`  // Type of license
 	LicenseCount *int   `json:"license_count,omitempty"` // Number of licenses
 }
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicenses struct {
+	Response *ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponse `json:"response,omitempty"` //
+	Version  string                                                           `json:"version,omitempty"`  // The version of the response
+}
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponse struct {
+	NetworkDeviceLicenseSummary       *ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummary `json:"networkDeviceLicenseSummary,omitempty"`       //
+	UnregisteredNetworkDeviceCount    *int                                                                                        `json:"unregisteredNetworkDeviceCount,omitempty"`    // Count of network devices that do not have licenses enabled
+	OutOfComplianceNetworkDeviceCount *int                                                                                        `json:"outOfComplianceNetworkDeviceCount,omitempty"` // Count of network devices with out-of-compliance licenses. This state is seen when the license does not have an available license in the corresponding Virtual Account that the network device is registered to in the Cisco Smart Account.
+	ExpiredNetworkDeviceLicenseCount  *int                                                                                        `json:"expiredNetworkDeviceLicenseCount,omitempty"`  // Count of network devices with expired licenses
+	ExpiringNetworkDeviceLicenseCount *int                                                                                        `json:"expiringNetworkDeviceLicenseCount,omitempty"` // Count of network device licenses expiring in 30 days
+}
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummary struct {
+	NetworkLicenseSummary *ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryNetworkLicenseSummary `json:"networkLicenseSummary,omitempty"` //
+	DnaLicenseSummary     *ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryDnaLicenseSummary     `json:"dnaLicenseSummary,omitempty"`     //
+	CnsLicenseSummary     *ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryCnsLicenseSummary     `json:"cnsLicenseSummary,omitempty"`     //
+}
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryNetworkLicenseSummary struct {
+	EssentialCount *int `json:"essentialCount,omitempty"` // Count of consumed essential licenses
+	AdvantageCount *int `json:"advantageCount,omitempty"` // Count of consumed advantage licenses
+}
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryDnaLicenseSummary struct {
+	EssentialCount *int `json:"essentialCount,omitempty"` // Count of consumed essential licenses
+	AdvantageCount *int `json:"advantageCount,omitempty"` // Count of consumed advantage licenses
+}
+type ResponseLicensesRetrievesSummaryOfNetworkDeviceLicensesResponseNetworkDeviceLicenseSummaryCnsLicenseSummary struct {
+	EssentialCount *int `json:"essentialCount,omitempty"` // Count of consumed essential licenses
+	AdvantageCount *int `json:"advantageCount,omitempty"` // Count of consumed advantage licenses
+}
 type ResponseLicensesSmartLicensingDeregistration struct {
 	Response *ResponseLicensesSmartLicensingDeregistrationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                                `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesSmartLicensingDeregistrationResponse struct {
 	URL string `json:"url,omitempty"` // URL to track the operation status
 }
 type ResponseLicensesSystemLicensingLastOperationStatus struct {
 	Response *ResponseLicensesSystemLicensingLastOperationStatusResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                                      `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesSystemLicensingLastOperationStatusResponse struct {
-	ID string `json:"id,omitempty"` // The ID of this task
-
-	Status string `json:"status,omitempty"` // Summarizes the status of a task
-
-	IsError *bool `json:"isError,omitempty"` // A boolean indicating if this task has ended with or without error. true indicates a failure, whereas false indicates a success.
-
-	FailureReason string `json:"failureReason,omitempty"` // A textual description indicating the reason why a task has failed
-
-	ErrorCode string `json:"errorCode,omitempty"` // An error code if in case this task has failed in its execution
-
-	LastUpdate *float64 `json:"lastUpdate,omitempty"` // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
+	ID            string   `json:"id,omitempty"`            // The ID of this task
+	Status        string   `json:"status,omitempty"`        // Summarizes the status of a task
+	IsError       *bool    `json:"isError,omitempty"`       // A boolean indicating if this task has ended with or without error. true indicates a failure, whereas false indicates a success.
+	FailureReason string   `json:"failureReason,omitempty"` // A textual description indicating the reason why a task has failed
+	ErrorCode     string   `json:"errorCode,omitempty"`     // An error code if in case this task has failed in its execution
+	LastUpdate    *float64 `json:"lastUpdate,omitempty"`    // A timestamp of when this task was last updated; as measured in Unix epoch time in milliseconds
 }
 type ResponseLicensesSystemLicensingRegistration struct {
 	Response *ResponseLicensesSystemLicensingRegistrationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                               `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesSystemLicensingRegistrationResponse struct {
 	URL string `json:"url,omitempty"` // URL to track the operation status
 }
 type ResponseLicensesSmartLicensingRenewOperation struct {
 	Response *ResponseLicensesSmartLicensingRenewOperationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                                `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesSmartLicensingRenewOperationResponse struct {
 	URL string `json:"url,omitempty"` // URL to track the operation status
 }
 type ResponseLicensesSystemLicensingStatus struct {
 	Response *ResponseLicensesSystemLicensingStatusResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // API version
+	Version  string                                         `json:"version,omitempty"`  // API version
 }
 type ResponseLicensesSystemLicensingStatusResponse struct {
-	RegistrationStatus *ResponseLicensesSystemLicensingStatusResponseRegistrationStatus `json:"registrationStatus,omitempty"` //
-
+	RegistrationStatus  *ResponseLicensesSystemLicensingStatusResponseRegistrationStatus  `json:"registrationStatus,omitempty"`  //
 	AuthorizationStatus *ResponseLicensesSystemLicensingStatusResponseAuthorizationStatus `json:"authorizationStatus,omitempty"` //
-
-	Entitlements *ResponseLicensesSystemLicensingStatusResponseEntitlements `json:"entitlements,omitempty"` //
-
-	SmartAccountID string `json:"smartAccountId,omitempty"` // Smart Account id to which the system is registered
-
-	VirtualAccountID string `json:"virtualAccountId,omitempty"` // Virtual Account id to which the system is registered
-
-	ExportControl string `json:"exportControl,omitempty"` // Export-Controlled setting of Smart Account
+	Entitlements        *ResponseLicensesSystemLicensingStatusResponseEntitlements        `json:"entitlements,omitempty"`        //
+	SmartAccountID      string                                                            `json:"smartAccountId,omitempty"`      // Smart Account id to which the system is registered
+	VirtualAccountID    string                                                            `json:"virtualAccountId,omitempty"`    // Virtual Account id to which the system is registered
+	ExportControl       string                                                            `json:"exportControl,omitempty"`       // Export-Controlled setting of Smart Account
 }
 type ResponseLicensesSystemLicensingStatusResponseRegistrationStatus struct {
-	Status string `json:"status,omitempty"` // REGISTERED if the system is registered with CSSM, otherwise UNREGISTERED.
-
-	LastAttemptTimestamp *float64 `json:"lastAttemptTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	ExpiryTimestamp *float64 `json:"expiryTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	NextAttemptTimestamp *float64 `json:"nextAttemptTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	LastAttemptStatus string `json:"lastAttemptStatus,omitempty"` // The last registration request's status
-
-	LastAttemptFailReason string `json:"lastAttemptFailReason,omitempty"` // The reason for last registration request failure
+	Status                string   `json:"status,omitempty"`                // REGISTERED if the system is registered with CSSM, otherwise UNREGISTERED.
+	LastAttemptTimestamp  *float64 `json:"lastAttemptTimestamp,omitempty"`  // A date and time represented as milliseconds since the Unix epoch.
+	ExpiryTimestamp       *float64 `json:"expiryTimestamp,omitempty"`       // A date and time represented as milliseconds since the Unix epoch.
+	NextAttemptTimestamp  *float64 `json:"nextAttemptTimestamp,omitempty"`  // A date and time represented as milliseconds since the Unix epoch.
+	LastAttemptStatus     string   `json:"lastAttemptStatus,omitempty"`     // The last registration request's status
+	LastAttemptFailReason string   `json:"lastAttemptFailReason,omitempty"` // The reason for last registration request failure
 }
 type ResponseLicensesSystemLicensingStatusResponseAuthorizationStatus struct {
-	Status string `json:"status,omitempty"` // This denotes the authorization status of the system.
-
-	LastAttemptTimestamp *float64 `json:"lastAttemptTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
+	Status                       string   `json:"status,omitempty"`                       // This denotes the authorization status of the system.
+	LastAttemptTimestamp         *float64 `json:"lastAttemptTimestamp,omitempty"`         // A date and time represented as milliseconds since the Unix epoch.
 	EvaluationRemainderTimestamp *float64 `json:"evaluationRemainderTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	ExpiryTimestamp *float64 `json:"expiryTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	NextAttemptTimestamp *float64 `json:"nextAttemptTimestamp,omitempty"` // A date and time represented as milliseconds since the Unix epoch.
-
-	LastAttemptStatus string `json:"lastAttemptStatus,omitempty"` // The last authorization request's status
-
-	LastAttemptFailReason string `json:"lastAttemptFailReason,omitempty"` // The reason for last authorization request failure
+	ExpiryTimestamp              *float64 `json:"expiryTimestamp,omitempty"`              // A date and time represented as milliseconds since the Unix epoch.
+	NextAttemptTimestamp         *float64 `json:"nextAttemptTimestamp,omitempty"`         // A date and time represented as milliseconds since the Unix epoch.
+	LastAttemptStatus            string   `json:"lastAttemptStatus,omitempty"`            // The last authorization request's status
+	LastAttemptFailReason        string   `json:"lastAttemptFailReason,omitempty"`        // The reason for last authorization request failure
 }
 type ResponseLicensesSystemLicensingStatusResponseEntitlements struct {
-	Tag string `json:"tag,omitempty"` // Entitlement tag associated with the available licenses
-
+	Tag         string `json:"tag,omitempty"`         // Entitlement tag associated with the available licenses
 	Description string `json:"description,omitempty"` // Name or description of the license entitlement
-
-	UsageCount *int `json:"usageCount,omitempty"` // Available license count
-
-	Status string `json:"status,omitempty"` // This denotes the authorization status of the available licenses.
+	UsageCount  *int   `json:"usageCount,omitempty"`  // Available license count
+	Status      string `json:"status,omitempty"`      // This denotes the authorization status of the available licenses.
 }
 type RequestLicensesUpdateCSSMConnectionMode struct {
-	ConnectionMode string `json:"connectionMode,omitempty"` // The CSSM connection modes of Catalyst Center are DIRECT, ON_PREMISE and SMART_PROXY.
-
-	Parameters *RequestLicensesUpdateCSSMConnectionModeParameters `json:"parameters,omitempty"` //
+	ConnectionMode string                                             `json:"connectionMode,omitempty"` // The CSSM connection modes of Catalyst Center are DIRECT, ON_PREMISE and SMART_PROXY.
+	Parameters     *RequestLicensesUpdateCSSMConnectionModeParameters `json:"parameters,omitempty"`     //
 }
 type RequestLicensesUpdateCSSMConnectionModeParameters struct {
-	OnPremiseHost string `json:"onPremiseHost,omitempty"` // On-premise CSSM hostname or IP address
-
+	OnPremiseHost    string `json:"onPremiseHost,omitempty"`    // On-premise CSSM hostname or IP address
 	SmartAccountName string `json:"smartAccountName,omitempty"` // On-premise CSSM local smart account name
-
-	ClientID string `json:"clientId,omitempty"` // On-premise CSSM client id
-
-	ClientSecret string `json:"clientSecret,omitempty"` // On-premise CSSM client secret
+	ClientID         string `json:"clientId,omitempty"`         // On-premise CSSM client id
+	ClientSecret     string `json:"clientSecret,omitempty"`     // On-premise CSSM client secret
 }
 type RequestLicensesUpdateLicenseSetting struct {
-	DefaultSmartAccountID string `json:"defaultSmartAccountId,omitempty"` // Default smart account id
-
+	DefaultSmartAccountID            string `json:"defaultSmartAccountId,omitempty"`            // Default smart account id
 	AutoRegistrationVirtualAccountID string `json:"autoRegistrationVirtualAccountId,omitempty"` // Virtual account id
 }
 type RequestLicensesDeviceDeregistration struct {
@@ -570,19 +483,18 @@ func (s *LicensesService) DeviceLicenseSummary(DeviceLicenseSummaryQueryParams *
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!device-license-details
 */
-func (s *LicensesService) DeviceLicenseDetails(deviceuuid string) (*ResponseLicensesDeviceLicenseDetails, *resty.Response, error) {
+func (s *LicensesService) DeviceLicenseDetails(deviceuuid string) (*resty.Response, error) {
 	path := "/dna/intent/api/v1/licenses/device/{device_uuid}/details"
 	path = strings.Replace(path, "{device_uuid}", fmt.Sprintf("%v", deviceuuid), -1)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseLicensesDeviceLicenseDetails{}).
 		SetError(&Error).
 		Get(path)
 
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 
 	}
 
@@ -590,11 +502,10 @@ func (s *LicensesService) DeviceLicenseDetails(deviceuuid string) (*ResponseLice
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.DeviceLicenseDetails(deviceuuid)
 		}
-		return nil, response, fmt.Errorf("error with operation DeviceLicenseDetails")
+		return response, fmt.Errorf("error with operation DeviceLicenseDetails")
 	}
 
-	result := response.Result().(*ResponseLicensesDeviceLicenseDetails)
-	return result, response, err
+	return response, err
 
 }
 
@@ -751,6 +662,40 @@ func (s *LicensesService) LicenseUsageDetails(smartaccountTypeID string, virtual
 	}
 
 	result := response.Result().(*ResponseLicensesLicenseUsageDetails)
+	return result, response, err
+
+}
+
+//RetrievesSummaryOfNetworkDeviceLicenses Retrieves summary of network device licenses - 9c8e-f921-4b0a-8f2d
+/* Retrieves the summary of consumed network, DNA, and Cisco Networking Subscription (CNS) licenses, along with the counts of unregistered and out-of-compliance network devices, and expired and expiring network device licenses.
+
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-summary-of-network-device-licenses
+*/
+func (s *LicensesService) RetrievesSummaryOfNetworkDeviceLicenses() (*ResponseLicensesRetrievesSummaryOfNetworkDeviceLicenses, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDeviceLicenses/summary"
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseLicensesRetrievesSummaryOfNetworkDeviceLicenses{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesSummaryOfNetworkDeviceLicenses()
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesSummaryOfNetworkDeviceLicenses")
+	}
+
+	result := response.Result().(*ResponseLicensesRetrievesSummaryOfNetworkDeviceLicenses)
 	return result, response, err
 
 }

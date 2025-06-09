@@ -28,7 +28,7 @@ type GetAuditLogParentRecordsQueryParams struct {
 	IsSystemEvents bool    `url:"isSystemEvents,omitempty"` //Parameter to filter system generated audit-logs.
 	Description    string  `url:"description,omitempty"`    //String full/partial search - (Provided input string is case insensitively matched for records).
 	Offset         float64 `url:"offset,omitempty"`         //Position of a particular Audit Log record in the data.
-	Limit          float64 `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page.
+	Limit          float64 `url:"limit,omitempty"`          //Number of Audit Log records to be returned per page. Default is 25 if not specified. Maximum allowed limit is 25
 	StartTime      float64 `url:"startTime,omitempty"`      //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime        float64 `url:"endTime,omitempty"`        //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy         string  `url:"sortBy,omitempty"`         //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -73,7 +73,7 @@ type GetAuditLogRecordsQueryParams struct {
 	IsSystemEvents   bool    `url:"isSystemEvents,omitempty"`   //Parameter to filter system generated audit-logs.
 	Description      string  `url:"description,omitempty"`      //String full/partial search - (Provided input string is case insensitively matched for records).
 	Offset           float64 `url:"offset,omitempty"`           //Position of a particular Audit Log record in the data.
-	Limit            float64 `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page.
+	Limit            float64 `url:"limit,omitempty"`            //Number of Audit Log records to be returned per page. Default is 25 if not specified. Maximum allowed limit is 25
 	StartTime        float64 `url:"startTime,omitempty"`        //Start Time in milliseconds since Epoch Eg. 1597950637211 (when provided endTime is mandatory)
 	EndTime          float64 `url:"endTime,omitempty"`          //End Time in milliseconds since Epoch Eg. 1597961437211 (when provided startTime is mandatory)
 	SortBy           string  `url:"sortBy,omitempty"`           //Sort the Audit Logs by certain fields. Supported values are event notification header attributes.
@@ -814,8 +814,7 @@ type ResponseItemEventManagementGetEventArtifactsEventPayloadDetails struct {
 type ResponseItemEventManagementGetEventArtifactsEventPayloadAdditionalDetails interface{}
 type ResponseItemEventManagementGetEventArtifactsEventTemplates interface{}
 type ResponseItemEventManagementGetEventArtifactsConfigs struct {
-	IsAlert *bool `json:"isAlert,omitempty"` // Is Alert
-
+	IsAlert           *bool `json:"isAlert,omitempty"`           // Is Alert
 	IsACKnowledgeable *bool `json:"isACKnowledgeable,omitempty"` // Is A C Knowledgeable
 }
 type ResponseEventManagementEventArtifactCount struct {
@@ -2622,7 +2621,8 @@ func (s *EventManagementService) DeleteEventSubscriptions(DeleteEventSubscriptio
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteEventSubscriptions(DeleteEventSubscriptionsQueryParams)
+			return s.DeleteEventSubscriptions(
+				DeleteEventSubscriptionsQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteEventSubscriptions")
 	}

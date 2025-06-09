@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0] - 2025-06-09
+- New services for Cisco Catalyst Center 3.1.3.0's API:
+    * Backup service
+    * IndustrialConfiguration service
+    * KnowYourNetwork service
+    * Restore service
+    * Wired service
+- SDK is now compatible with Cisco Catalyst Center 3.1.3.0's API.
+
+
 ## [7.0.2] - 2025-02-27
 ### Changed
 - Update Readme

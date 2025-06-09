@@ -52,311 +52,241 @@ type RetrieveTagsAssociatedWithNetworkDevicesQueryParams struct {
 }
 
 type ResponseTagUpdateTag struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagUpdateTagResponse `json:"response,omitempty"` //
 }
 type ResponseTagUpdateTagResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
-
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagGetTag struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                       `json:"version,omitempty"`  //
 	Response *[]ResponseTagGetTagResponse `json:"response,omitempty"` //
 }
 type ResponseTagGetTagResponse struct {
-	SystemTag *bool `json:"systemTag,omitempty"` //
-
-	Description string `json:"description,omitempty"` //
-
-	DynamicRules *[]ResponseTagGetTagResponseDynamicRules `json:"dynamicRules,omitempty"` //
-
-	Name string `json:"name,omitempty"` //
-
-	ID string `json:"id,omitempty"` //
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	SystemTag        *bool                                    `json:"systemTag,omitempty"`        //
+	Description      string                                   `json:"description,omitempty"`      //
+	DynamicRules     *[]ResponseTagGetTagResponseDynamicRules `json:"dynamicRules,omitempty"`     //
+	Name             string                                   `json:"name,omitempty"`             //
+	ID               string                                   `json:"id,omitempty"`               //
+	InstanceTenantID string                                   `json:"instanceTenantId,omitempty"` //
 }
 type ResponseTagGetTagResponseDynamicRules struct {
-	MemberType string `json:"memberType,omitempty"` //
-
-	Rules *ResponseTagGetTagResponseDynamicRulesRules `json:"rules,omitempty"` //
+	MemberType string                                      `json:"memberType,omitempty"` //
+	Rules      *ResponseTagGetTagResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagResponseDynamicRulesRules struct {
-	Values []string `json:"values,omitempty"` //
-
-	Items *[]ResponseTagGetTagResponseDynamicRulesRulesItems `json:"items,omitempty"` //
-
-	Operation string `json:"operation,omitempty"` //
-
-	Name string `json:"name,omitempty"` //
-
-	Value string `json:"value,omitempty"` //
+	Values    []string                                           `json:"values,omitempty"`    //
+	Items     *[]ResponseTagGetTagResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                             `json:"operation,omitempty"` //
+	Name      string                                             `json:"name,omitempty"`      //
+	Value     string                                             `json:"value,omitempty"`     //
 }
 type ResponseTagGetTagResponseDynamicRulesRulesItems interface{}
 type ResponseTagCreateTag struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagCreateTagResponse `json:"response,omitempty"` //
 }
 type ResponseTagCreateTagResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagGetTagCount struct {
-	Version string `json:"version,omitempty"` //
-
-	Response *int `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
+	Response *int   `json:"response,omitempty"` //
 }
 type ResponseTagUpdateTagMembership struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                                  `json:"version,omitempty"`  //
 	Response *ResponseTagUpdateTagMembershipResponse `json:"response,omitempty"` //
 }
 type ResponseTagUpdateTagMembershipResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagGetTagResourceTypes struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string   `json:"version,omitempty"`  //
 	Response []string `json:"response,omitempty"` //
 }
 type ResponseTagDeleteTag struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                        `json:"version,omitempty"`  //
 	Response *ResponseTagDeleteTagResponse `json:"response,omitempty"` //
 }
 type ResponseTagDeleteTagResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagGetTagByID struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                         `json:"version,omitempty"`  //
 	Response *ResponseTagGetTagByIDResponse `json:"response,omitempty"` //
 }
 type ResponseTagGetTagByIDResponse struct {
-	SystemTag *bool `json:"systemTag,omitempty"` //
-
-	Description string `json:"description,omitempty"` //
-
-	DynamicRules *[]ResponseTagGetTagByIDResponseDynamicRules `json:"dynamicRules,omitempty"` //
-
-	Name string `json:"name,omitempty"` //
-
-	ID string `json:"id,omitempty"` //
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` //
+	SystemTag        *bool                                        `json:"systemTag,omitempty"`        //
+	Description      string                                       `json:"description,omitempty"`      //
+	DynamicRules     *[]ResponseTagGetTagByIDResponseDynamicRules `json:"dynamicRules,omitempty"`     //
+	Name             string                                       `json:"name,omitempty"`             //
+	ID               string                                       `json:"id,omitempty"`               //
+	InstanceTenantID string                                       `json:"instanceTenantId,omitempty"` //
 }
 type ResponseTagGetTagByIDResponseDynamicRules struct {
-	MemberType string `json:"memberType,omitempty"` //
-
-	Rules *ResponseTagGetTagByIDResponseDynamicRulesRules `json:"rules,omitempty"` //
+	MemberType string                                          `json:"memberType,omitempty"` //
+	Rules      *ResponseTagGetTagByIDResponseDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type ResponseTagGetTagByIDResponseDynamicRulesRules struct {
-	Values []string `json:"values,omitempty"` //
-
-	Items *[]ResponseTagGetTagByIDResponseDynamicRulesRulesItems `json:"items,omitempty"` //
-
-	Operation string `json:"operation,omitempty"` //
-
-	Name string `json:"name,omitempty"` //
-
-	Value string `json:"value,omitempty"` //
+	Values    []string                                               `json:"values,omitempty"`    //
+	Items     *[]ResponseTagGetTagByIDResponseDynamicRulesRulesItems `json:"items,omitempty"`     //
+	Operation string                                                 `json:"operation,omitempty"` //
+	Name      string                                                 `json:"name,omitempty"`      //
+	Value     string                                                 `json:"value,omitempty"`     //
 }
 type ResponseTagGetTagByIDResponseDynamicRulesRulesItems interface{}
 type ResponseTagGetTagMembersByID struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                                  `json:"version,omitempty"`  //
 	Response *[]ResponseTagGetTagMembersByIDResponse `json:"response,omitempty"` //
 }
 type ResponseTagGetTagMembersByIDResponse struct {
 	InstanceUUID string `json:"instanceUuid,omitempty"` //
 }
 type ResponseTagAddMembersToTheTag struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                                 `json:"version,omitempty"`  //
 	Response *ResponseTagAddMembersToTheTagResponse `json:"response,omitempty"` //
 }
 type ResponseTagAddMembersToTheTagResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagGetTagMemberCount struct {
-	Version string `json:"version,omitempty"` //
-
-	Response *int `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
+	Response *int   `json:"response,omitempty"` //
 }
 type ResponseTagRemoveTagMember struct {
-	Version string `json:"version,omitempty"` //
-
+	Version  string                              `json:"version,omitempty"`  //
 	Response *ResponseTagRemoveTagMemberResponse `json:"response,omitempty"` //
 }
 type ResponseTagRemoveTagMemberResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseTagRetrieveTagsAssociatedWithTheInterfaces struct {
 	Response *[]ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                        `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponse struct {
-	ID string `json:"id,omitempty"` // Id of the member (network device or interface)
-
+	ID   string                                                            `json:"id,omitempty"`   // Id of the member (network device or interface)
 	Tags *[]ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponseTags `json:"tags,omitempty"` //
 }
 type ResponseTagRetrieveTagsAssociatedWithTheInterfacesResponseTags struct {
-	ID string `json:"id,omitempty"` // Tag id
-
+	ID   string `json:"id,omitempty"`   // Tag id
 	Name string `json:"name,omitempty"` // Tag name
 }
 type ResponseTagUpdateTagsAssociatedWithTheInterfaces struct {
 	Response *ResponseTagUpdateTagsAssociatedWithTheInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                    `json:"version,omitempty"`  // Response version
 }
 type ResponseTagUpdateTagsAssociatedWithTheInterfacesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTag struct {
 	Response *ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTagResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                                             `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagRetrieveTheCountOfInterfacesThatAreAssociatedWithAtLeastOneTagResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseTagQueryTheTagsAssociatedWithInterfaces struct {
 	Response *[]ResponseTagQueryTheTagsAssociatedWithInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                     `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagQueryTheTagsAssociatedWithInterfacesResponse struct {
-	ID string `json:"id,omitempty"` // Id of the member (network device or interface)
-
+	ID   string                                                         `json:"id,omitempty"`   // Id of the member (network device or interface)
 	Tags *[]ResponseTagQueryTheTagsAssociatedWithInterfacesResponseTags `json:"tags,omitempty"` //
 }
 type ResponseTagQueryTheTagsAssociatedWithInterfacesResponseTags struct {
-	ID string `json:"id,omitempty"` // Tag id
-
+	ID   string `json:"id,omitempty"`   // Tag id
 	Name string `json:"name,omitempty"` // Tag name
 }
 type ResponseTagRetrieveTagsAssociatedWithNetworkDevices struct {
 	Response *[]ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                         `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponse struct {
-	ID string `json:"id,omitempty"` // Id of the member (network device or interface)
-
+	ID   string                                                             `json:"id,omitempty"`   // Id of the member (network device or interface)
 	Tags *[]ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponseTags `json:"tags,omitempty"` //
 }
 type ResponseTagRetrieveTagsAssociatedWithNetworkDevicesResponseTags struct {
-	ID string `json:"id,omitempty"` // Tag id
-
+	ID   string `json:"id,omitempty"`   // Tag id
 	Name string `json:"name,omitempty"` // Tag name
 }
 type ResponseTagUpdateTagsAssociatedWithTheNetworkDevices struct {
 	Response *ResponseTagUpdateTagsAssociatedWithTheNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Response version
+	Version  string                                                        `json:"version,omitempty"`  // Response version
 }
 type ResponseTagUpdateTagsAssociatedWithTheNetworkDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` // The UUID of the task
-
-	URL string `json:"url,omitempty"` // The path to the API endpoint to GET for information on the task
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task
 }
 type ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTag struct {
 	Response *ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTagResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                                                 `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagRetrieveTheCountOfNetworkDevicesThatAreAssociatedWithAtLeastOneTagResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseTagQueryTheTagsAssociatedWithNetworkDevices struct {
 	Response *[]ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response.
+	Version  string                                                         `json:"version,omitempty"`  // The version of the response.
 }
 type ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponse struct {
-	ID string `json:"id,omitempty"` // Id of the member (network device or interface)
-
+	ID   string                                                             `json:"id,omitempty"`   // Id of the member (network device or interface)
 	Tags *[]ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponseTags `json:"tags,omitempty"` //
 }
 type ResponseTagQueryTheTagsAssociatedWithNetworkDevicesResponseTags struct {
-	ID string `json:"id,omitempty"` // Tag id
-
+	ID   string `json:"id,omitempty"`   // Tag id
 	Name string `json:"name,omitempty"` // Tag name
 }
 type RequestTagUpdateTag struct {
-	SystemTag *bool `json:"systemTag,omitempty"` // true for system created tags, false for user defined tags
-
-	Description string `json:"description,omitempty"` // description of the tag.
-
-	DynamicRules *[]RequestTagUpdateTagDynamicRules `json:"dynamicRules,omitempty"` //
-
-	Name string `json:"name,omitempty"` // name of the tag.
-
-	ID string `json:"id,omitempty"` // mandatory instanceUuid of the tag that needs to be updated.
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
+	SystemTag        *bool                              `json:"systemTag,omitempty"`        // true for system created tags, false for user defined tags
+	Description      string                             `json:"description,omitempty"`      // description of the tag.
+	DynamicRules     *[]RequestTagUpdateTagDynamicRules `json:"dynamicRules,omitempty"`     //
+	Name             string                             `json:"name,omitempty"`             // name of the tag.
+	ID               string                             `json:"id,omitempty"`               // mandatory instanceUuid of the tag that needs to be updated.
+	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
 }
 type RequestTagUpdateTagDynamicRules struct {
-	MemberType string `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
-
-	Rules *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"` //
+	MemberType string                                `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
+	Rules      *RequestTagUpdateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagUpdateTagDynamicRulesRules struct {
-	Values    []string    `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
-	Items     interface{} `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
-	Operation string      `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
-	Name      string      `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
-	Value     string      `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
+	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     *[]RequestTagUpdateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-
+type RequestTagUpdateTagDynamicRulesRulesItems interface{}
 type RequestTagCreateTag struct {
-	SystemTag *bool `json:"systemTag,omitempty"` // true for system created tags, false for user defined tags
-
-	Description string `json:"description,omitempty"` // description of the tag.
-
-	DynamicRules *[]RequestTagCreateTagDynamicRules `json:"dynamicRules,omitempty"` //
-
-	Name string `json:"name,omitempty"` // name of the tag.
-
-	ID string `json:"id,omitempty"` // instanceUuid generated for the tag.
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
+	SystemTag        *bool                              `json:"systemTag,omitempty"`        // true for system created tags, false for user defined tags
+	Description      string                             `json:"description,omitempty"`      // description of the tag.
+	DynamicRules     *[]RequestTagCreateTagDynamicRules `json:"dynamicRules,omitempty"`     //
+	Name             string                             `json:"name,omitempty"`             // name of the tag.
+	ID               string                             `json:"id,omitempty"`               // instanceUuid generated for the tag.
+	InstanceTenantID string                             `json:"instanceTenantId,omitempty"` // instanceTenantId generated for the tag.
 }
 type RequestTagCreateTagDynamicRules struct {
-	MemberType string `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
-
-	Rules *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"` //
+	MemberType string                                `json:"memberType,omitempty"` // memberType of the tag (e.g. networkdevice, interface)
+	Rules      *RequestTagCreateTagDynamicRulesRules `json:"rules,omitempty"`      //
 }
 type RequestTagCreateTagDynamicRulesRules struct {
-	Values    []string    `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
-	Items     interface{} `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
-	Operation string      `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
-	Name      string      `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
-	Value     string      `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
+	Values    []string                                     `json:"values,omitempty"`    // values of the parameter,Only one of the value or values can be used for the given parameter. (for managementIpAddress e.g. ["10.197.124.90","10.197.124.91"])
+	Items     *[]RequestTagCreateTagDynamicRulesRulesItems `json:"items,omitempty"`     // items details,multiple rules can be defined by items(e.g. "items": [{"operation": "ILIKE", "name": "managementIpAddress", "value": "%10%"}, {"operation": "ILIKE", "name": "hostname", "value": "%NA%"} ])
+	Operation string                                       `json:"operation,omitempty"` // opeartion used in the rules (e.g. OR,IN,EQ,LIKE,ILIKE,AND)
+	Name      string                                       `json:"name,omitempty"`      // name of the parameter (e.g. for interface:portName,adminStatus,speed,status,description. for networkdevice:family,series,hostname,managementIpAddress,groupNameHierarchy,softwareVersion)
+	Value     string                                       `json:"value,omitempty"`     // value of the parameter (e.g. for portName:1/0/1,for adminStatus,status:up/down, for speed: any integer value, for description: any valid string, for family:switches, for series:C3650, for managementIpAddress:10.197.124.90, groupNameHierarchy:Global, softwareVersion: 16.9.1)
 }
-
+type RequestTagCreateTagDynamicRulesRulesItems interface{}
 type RequestTagUpdateTagMembership struct {
 	MemberToTags map[string][]string `json:"memberToTags,omitempty"` //
-
-	MemberType string `json:"memberType,omitempty"` //
+	MemberType   string              `json:"memberType,omitempty"`   //
 }
 type RequestTagUpdateTagMembershipMemberToTags struct {
 	Key []string `json:"key,omitempty"` //
@@ -364,8 +294,7 @@ type RequestTagUpdateTagMembershipMemberToTags struct {
 type RequestTagAddMembersToTheTag map[string][]string
 type RequestTagUpdateTagsAssociatedWithTheInterfaces []RequestItemTagUpdateTagsAssociatedWithTheInterfaces // Array of RequestTagUpdateTagsAssociatedWithTheInterfaces
 type RequestItemTagUpdateTagsAssociatedWithTheInterfaces struct {
-	ID string `json:"id,omitempty"` // Interface id
-
+	ID   string                                                     `json:"id,omitempty"`   // Interface id
 	Tags *[]RequestItemTagUpdateTagsAssociatedWithTheInterfacesTags `json:"tags,omitempty"` //
 }
 type RequestItemTagUpdateTagsAssociatedWithTheInterfacesTags struct {
@@ -376,8 +305,7 @@ type RequestTagQueryTheTagsAssociatedWithInterfaces struct {
 }
 type RequestTagUpdateTagsAssociatedWithTheNetworkDevices []RequestItemTagUpdateTagsAssociatedWithTheNetworkDevices // Array of RequestTagUpdateTagsAssociatedWithTheNetworkDevices
 type RequestItemTagUpdateTagsAssociatedWithTheNetworkDevices struct {
-	ID string `json:"id,omitempty"` // Network device id
-
+	ID   string                                                         `json:"id,omitempty"`   // Network device id
 	Tags *[]RequestItemTagUpdateTagsAssociatedWithTheNetworkDevicesTags `json:"tags,omitempty"` //
 }
 type RequestItemTagUpdateTagsAssociatedWithTheNetworkDevicesTags struct {
@@ -1065,7 +993,8 @@ func (s *TagService) DeleteTag(id string) (*ResponseTagDeleteTag, *resty.Respons
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteTag(id)
+			return s.DeleteTag(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteTag")
 	}
@@ -1106,7 +1035,8 @@ func (s *TagService) RemoveTagMember(id string, memberID string) (*ResponseTagRe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveTagMember(id, memberID)
+			return s.RemoveTagMember(
+				id, memberID)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveTagMember")
 	}

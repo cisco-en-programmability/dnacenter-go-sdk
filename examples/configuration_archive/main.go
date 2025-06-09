@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
+	dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v8/sdk"
 )
 
 // client is Catalyst Center API client
@@ -39,7 +39,7 @@ func main() {
 
 	fmt.Println("Post ConfArchive")
 	reqBody := &dnac.RequestConfigurationArchiveExportDeviceConfigurations{
-		DeviceID: deviceUUID,
+		DeviceID: []string{deviceUUID},
 		Password: "C1sco123!",
 	}
 

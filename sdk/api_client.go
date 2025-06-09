@@ -25,7 +25,7 @@ const DNAC_DEBUG = "DNAC_DEBUG"
 const DNAC_SSL_VERIFY = "DNAC_SSL_VERIFY"
 const DNAC_WAIT_TIME = "DNAC_WAIT_TIME"
 
-var VERSION = "2.3.7.9"
+var VERSION = "3.1.3.0"
 var DNAC_USER_STRING = "DNAC_USER_STRING"
 var USER_AGENT = "go-cisco-dnacentersdk/" + VERSION
 
@@ -39,7 +39,7 @@ func (f *FileDownload) SaveDownload(path string) error {
 	return ioutil.WriteFile(fpath, f.FileData, 0664)
 }
 
-// Client manages communication with the Cisco Catalyst Center API
+// Client manages communication with the Cisco DNA Center API
 type Client struct {
 	common service // Reuse a single struct instead of allocating one for each service on the heap.
 
@@ -49,6 +49,7 @@ type Client struct {
 	ApplicationPolicy           *ApplicationPolicyService
 	Applications                *ApplicationsService
 	AuthenticationManagement    *AuthenticationManagementService
+	Backup                      *BackupService
 	CiscoIMC                    *CiscoIMCService
 	CiscoTrustedCertificates    *CiscoTrustedCertificatesService
 	Clients                     *ClientsService
@@ -61,20 +62,23 @@ type Client struct {
 	Devices                     *DevicesService
 	DisasterRecovery            *DisasterRecoveryService
 	Discovery                   *DiscoveryService
-	EoX                         *EoXService
+	Eox                         *EoxService
 	EventManagement             *EventManagementService
 	FabricWireless              *FabricWirelessService
 	File                        *FileService
 	HealthAndPerformance        *HealthAndPerformanceService
 	Itsm                        *ItsmService
 	ItsmIntegration             *ItsmIntegrationService
+	IndustrialConfiguration     *IndustrialConfigurationService
 	Issues                      *IssuesService
+	KnowYourNetwork             *KnowYourNetworkService
 	LanAutomation               *LanAutomationService
 	Licenses                    *LicensesService
 	NetworkSettings             *NetworkSettingsService
 	PathTrace                   *PathTraceService
 	Platform                    *PlatformService
 	Reports                     *ReportsService
+	Restore                     *RestoreService
 	Sda                         *SdaService
 	SecurityAdvisories          *SecurityAdvisoriesService
 	Sensors                     *SensorsService
@@ -87,6 +91,7 @@ type Client struct {
 	Topology                    *TopologyService
 	UserandRoles                *UserandRolesService
 	Users                       *UsersService
+	Wired                       *WiredService
 	Wireless                    *WirelessService
 	CustomCall                  *CustomCallService
 }
@@ -100,7 +105,7 @@ func (s *Client) SetAuthToken(accessToken string) {
 	s.common.client.SetHeader("X-Auth-Token", accessToken)
 }
 
-// Error indicates an error from the invocation of a Cisco Catalyst Center API.
+// Error indicates an error from the invocation of a Cisco DNA Center API.
 var Error map[string]interface{}
 
 // NewClient creates a new API client. Requires a userAgent string describing your application.
@@ -277,6 +282,8 @@ func NewClientNoAuth() (*Client, error) {
 	c.ApplicationPolicy = (*ApplicationPolicyService)(&c.common)
 	c.Applications = (*ApplicationsService)(&c.common)
 	c.AuthenticationManagement = (*AuthenticationManagementService)(&c.common)
+	c.Backup = (*BackupService)(&c.common)
+	c.CiscoIMC = (*CiscoIMCService)(&c.common)
 	c.CiscoTrustedCertificates = (*CiscoTrustedCertificatesService)(&c.common)
 	c.Clients = (*ClientsService)(&c.common)
 	c.CommandRunner = (*CommandRunnerService)(&c.common)
@@ -288,20 +295,23 @@ func NewClientNoAuth() (*Client, error) {
 	c.Devices = (*DevicesService)(&c.common)
 	c.DisasterRecovery = (*DisasterRecoveryService)(&c.common)
 	c.Discovery = (*DiscoveryService)(&c.common)
-	c.EoX = (*EoXService)(&c.common)
+	c.Eox = (*EoxService)(&c.common)
 	c.EventManagement = (*EventManagementService)(&c.common)
 	c.FabricWireless = (*FabricWirelessService)(&c.common)
 	c.File = (*FileService)(&c.common)
 	c.HealthAndPerformance = (*HealthAndPerformanceService)(&c.common)
 	c.Itsm = (*ItsmService)(&c.common)
 	c.ItsmIntegration = (*ItsmIntegrationService)(&c.common)
+	c.IndustrialConfiguration = (*IndustrialConfigurationService)(&c.common)
 	c.Issues = (*IssuesService)(&c.common)
+	c.KnowYourNetwork = (*KnowYourNetworkService)(&c.common)
 	c.LanAutomation = (*LanAutomationService)(&c.common)
 	c.Licenses = (*LicensesService)(&c.common)
 	c.NetworkSettings = (*NetworkSettingsService)(&c.common)
 	c.PathTrace = (*PathTraceService)(&c.common)
 	c.Platform = (*PlatformService)(&c.common)
 	c.Reports = (*ReportsService)(&c.common)
+	c.Restore = (*RestoreService)(&c.common)
 	c.Sda = (*SdaService)(&c.common)
 	c.SecurityAdvisories = (*SecurityAdvisoriesService)(&c.common)
 	c.Sensors = (*SensorsService)(&c.common)
@@ -314,6 +324,7 @@ func NewClientNoAuth() (*Client, error) {
 	c.Topology = (*TopologyService)(&c.common)
 	c.UserandRoles = (*UserandRolesService)(&c.common)
 	c.Users = (*UsersService)(&c.common)
+	c.Wired = (*WiredService)(&c.common)
 	c.Wireless = (*WirelessService)(&c.common)
 	c.CustomCall = (*CustomCallService)(&c.common)
 
