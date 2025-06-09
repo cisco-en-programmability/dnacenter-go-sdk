@@ -5,7 +5,7 @@ dnacenter-go-sdk is a Go client library for [Catalyst Center Platform](https://d
 ## Usage
 
 ```go
-import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v7/sdk"
+import dnac "github.com/cisco-en-programmability/dnacenter-go-sdk/v8/sdk"
 ```
 
 ## Introduction
@@ -85,7 +85,7 @@ if devices.Response != nil {
 
 ## Documentation
 ### dnacenter-go-sdk/v7
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v7)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v8)
 ### dnacenter-go-sdk/v6
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/)](https://pkg.go.dev/github.com/cisco-en-programmability/dnacenter-go-sdk/v6)
 ### dnacenter-go-sdk/v5
