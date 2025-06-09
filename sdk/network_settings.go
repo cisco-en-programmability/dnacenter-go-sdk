@@ -23,17 +23,17 @@ type GetGlobalPoolQueryParams struct {
 }
 type RetrievesGlobalIPAddressPoolsQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1.
-	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page; the minimum is 1, and the maximum is 500.
 	SortBy string  `url:"sortBy,omitempty"` //A property within the response to sort by.
 	Order  string  `url:"order,omitempty"`  //Whether ascending or descending order should be used to sort the response.
 }
 type RetrievesSubpoolsIDsOfAGlobalIPAddressPoolQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1.
-	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page; the minimum is 1, and the maximum is 500.
 }
 type RetrievesIPAddressSubpoolsQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //The first record to show for this page; the first record is numbered 1.
-	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Limit  float64 `url:"limit,omitempty"`  //The number of records to show for this page; the minimum is 1, and the maximum is 500.
 	SortBy string  `url:"sortBy,omitempty"` //A property within the response to sort by.
 	Order  string  `url:"order,omitempty"`  //Whether ascending or descending order should be used to sort the response.
 	SiteID string  `url:"siteId,omitempty"` //The `id` of the site for which to retrieve IP address subpools. Only subpools whose `siteId` exactly matches will be fetched, parent or child site matches will not be included.
@@ -51,7 +51,7 @@ type GetReserveIPSubpoolQueryParams struct {
 	SiteID                string  `url:"siteId,omitempty"`                //site id of site from which to retrieve associated reserve pools. Either siteId (per site queries) or ignoreInheritedGroups must be used. They can also be used together.
 	Offset                float64 `url:"offset,omitempty"`                //offset/starting row. Indexed from 1.
 	Limit                 float64 `url:"limit,omitempty"`                 //Number of reserve pools to be retrieved. Default is 25 if not specified. Maximum allowed limit is 500.
-	IgnoreInheritedGroups string  `url:"ignoreInheritedGroups,omitempty"` //Ignores pools inherited from parent site. Either siteId or ignoreInheritedGroups must be passed. They can also be used together.
+	IgnoreInheritedGroups bool    `url:"ignoreInheritedGroups,omitempty"` //Ignores pools inherited from parent site. Either siteId or ignoreInheritedGroups must be passed. They can also be used together.
 	PoolUsage             string  `url:"poolUsage,omitempty"`             //Can take values empty, partially-full or empty-partially-full
 	GroupName             string  `url:"groupName,omitempty"`             //Name of the group
 }
@@ -237,332 +237,225 @@ type ResponseNetworkSettingsDeleteGlobalIPPool struct {
 	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsCreateAGlobalIPAddressPool struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsCreateAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsCreateAGlobalIPAddressPoolResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrievesGlobalIPAddressPools struct {
 	Response *[]ResponseNetworkSettingsRetrievesGlobalIPAddressPoolsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                          `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrievesGlobalIPAddressPoolsResponse struct {
 	AddressSpace *ResponseNetworkSettingsRetrievesGlobalIPAddressPoolsResponseAddressSpace `json:"addressSpace,omitempty"` //
-
-	ID string `json:"id,omitempty"` // The UUID for this global IP pool.
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
+	ID           string                                                                    `json:"id,omitempty"`           // The UUID for this global IP pool.
+	Name         string                                                                    `json:"name,omitempty"`         // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType     string                                                                    `json:"poolType,omitempty"`     // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
 }
 type ResponseNetworkSettingsRetrievesGlobalIPAddressPoolsResponseAddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
 }
 type ResponseNetworkSettingsCountsGlobalIPAddressPools struct {
 	Response *ResponseNetworkSettingsCountsGlobalIPAddressPoolsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                     `json:"version,omitempty"`  // The version of the response
 }
 type ResponseNetworkSettingsCountsGlobalIPAddressPoolsResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseNetworkSettingsRetrievesSubpoolsIDsOfAGlobalIPAddressPool struct {
 	Response *[]ResponseNetworkSettingsRetrievesSubpoolsIDsOfAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                       `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrievesSubpoolsIDsOfAGlobalIPAddressPoolResponse struct {
 	ID string `json:"id,omitempty"` // ID of the subpool
 }
 type ResponseNetworkSettingsCountsSubpoolsOfAGlobalIPAddressPool struct {
 	Response *ResponseNetworkSettingsCountsSubpoolsOfAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                               `json:"version,omitempty"`  // The version of the response
 }
 type ResponseNetworkSettingsCountsSubpoolsOfAGlobalIPAddressPoolResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseNetworkSettingsRetrievesAGlobalIPAddressPool struct {
 	Response *ResponseNetworkSettingsRetrievesAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                        `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrievesAGlobalIPAddressPoolResponse struct {
 	AddressSpace *ResponseNetworkSettingsRetrievesAGlobalIPAddressPoolResponseAddressSpace `json:"addressSpace,omitempty"` //
-
-	ID string `json:"id,omitempty"` // The UUID for this global IP pool.
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
+	ID           string                                                                    `json:"id,omitempty"`           // The UUID for this global IP pool.
+	Name         string                                                                    `json:"name,omitempty"`         // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType     string                                                                    `json:"poolType,omitempty"`     // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
 }
 type ResponseNetworkSettingsRetrievesAGlobalIPAddressPoolResponseAddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
 }
 type ResponseNetworkSettingsUpdatesAGlobalIPAddressPool struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                      `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsUpdatesAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsUpdatesAGlobalIPAddressPoolResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsDeleteAGlobalIPAddressPool struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsDeleteAGlobalIPAddressPoolResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsDeleteAGlobalIPAddressPoolResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsReservecreateIPAddressSubpools struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                         `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsReservecreateIPAddressSubpoolsResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsReservecreateIPAddressSubpoolsResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrievesIPAddressSubpools struct {
 	Response *[]ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                       `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponse struct {
-	ID string `json:"id,omitempty"` // The UUID for this reserve IP pool (subpool).
-
+	ID               string                                                                     `json:"id,omitempty"`               // The UUID for this reserve IP pool (subpool).
 	IPV4AddressSpace *ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponseIPV4AddressSpace `json:"ipV4AddressSpace,omitempty"` //
-
 	IPV6AddressSpace *ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponseIPV6AddressSpace `json:"ipV6AddressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
-
-	SiteID string `json:"siteId,omitempty"` // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
-
-	SiteName string `json:"siteName,omitempty"` // The name of the site that this subpool belongs to.
+	Name             string                                                                     `json:"name,omitempty"`             // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType         string                                                                     `json:"poolType,omitempty"`         // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
+	SiteID           string                                                                     `json:"siteId,omitempty"`           // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
+	SiteName         string                                                                     `json:"siteName,omitempty"`         // The name of the site that this subpool belongs to.
 }
 type ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponseIPV4AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type ResponseNetworkSettingsRetrievesIPAddressSubpoolsResponseIPV6AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type ResponseNetworkSettingsCountsIPAddressSubpools struct {
 	Response *ResponseNetworkSettingsCountsIPAddressSubpoolsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                  `json:"version,omitempty"`  // The version of the response
 }
 type ResponseNetworkSettingsCountsIPAddressSubpoolsResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseNetworkSettingsReleaseAnIPAddressSubpool struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsReleaseAnIPAddressSubpoolResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsReleaseAnIPAddressSubpoolResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsUpdatesAnIPAddressSubpool struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsUpdatesAnIPAddressSubpoolResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsUpdatesAnIPAddressSubpoolResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrievesAnIPAddressSubpool struct {
 	Response *ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponse struct {
-	ID string `json:"id,omitempty"` // The UUID for this reserve IP pool (subpool).
-
+	ID               string                                                                      `json:"id,omitempty"`               // The UUID for this reserve IP pool (subpool).
 	IPV4AddressSpace *ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponseIPV4AddressSpace `json:"ipV4AddressSpace,omitempty"` //
-
 	IPV6AddressSpace *ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponseIPV6AddressSpace `json:"ipV6AddressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
-
-	SiteID string `json:"siteId,omitempty"` // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
-
-	SiteName string `json:"siteName,omitempty"` // The name of the site that this subpool belongs to.
+	Name             string                                                                      `json:"name,omitempty"`             // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType         string                                                                      `json:"poolType,omitempty"`         // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
+	SiteID           string                                                                      `json:"siteId,omitempty"`           // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
+	SiteName         string                                                                      `json:"siteName,omitempty"`         // The name of the site that this subpool belongs to.
 }
 type ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponseIPV4AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type ResponseNetworkSettingsRetrievesAnIPAddressSubpoolResponseIPV6AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type ResponseNetworkSettingsGetNetwork struct {
 	Response *[]ResponseNetworkSettingsGetNetworkResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                       `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetNetworkResponse struct {
-	InstanceType string `json:"instanceType,omitempty"` // Instance Type
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid
-
-	Namespace string `json:"namespace,omitempty"` // Namespace
-
-	Type string `json:"type,omitempty"` // Type
-
-	Key string `json:"key,omitempty"` // Key
-
-	Version *int `json:"version,omitempty"` // Version
-
-	Value *[]ResponseNetworkSettingsGetNetworkResponseValue `json:"value,omitempty"` //
-
-	GroupUUID string `json:"groupUuid,omitempty"` // Group Uuid
-
-	InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-
-	InheritedGroupName string `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string                                            `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string                                            `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string                                            `json:"namespace,omitempty"`          // Namespace
+	Type               string                                            `json:"type,omitempty"`               // Type
+	Key                string                                            `json:"key,omitempty"`                // Key
+	Version            *int                                              `json:"version,omitempty"`            // Version
+	Value              *[]ResponseNetworkSettingsGetNetworkResponseValue `json:"value,omitempty"`              //
+	GroupUUID          string                                            `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string                                            `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string                                            `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsGetNetworkResponseValue struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // Ip Addresses
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configure Dnac I P
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // Ip Addresses
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configure Dnac I P
 }
 type ResponseNetworkSettingsCreateNetwork struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsUpdateNetwork struct {
 	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
@@ -570,18 +463,15 @@ type ResponseNetworkSettingsUpdateNetwork struct {
 	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsRetrieveCliTemplatesAttachedToANetworkProfile struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                          `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *[]ResponseNetworkSettingsRetrieveCliTemplatesAttachedToANetworkProfileResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveCliTemplatesAttachedToANetworkProfileResponse struct {
-	ID string `json:"id,omitempty"` // The id of the template attached to the site profile - `/intent/api/v1/templates`
-
+	ID   string `json:"id,omitempty"`   // The id of the template attached to the site profile - `/intent/api/v1/templates`
 	Name string `json:"name,omitempty"` // The name of the template attached to the site profile - `/intent/api/v1/templates`
 }
 type ResponseNetworkSettingsRetrieveCountOfCliTemplatesAttachedToANetworkProfile struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                               `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsRetrieveCountOfCliTemplatesAttachedToANetworkProfileResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveCountOfCliTemplatesAttachedToANetworkProfileResponse struct {
@@ -589,439 +479,314 @@ type ResponseNetworkSettingsRetrieveCountOfCliTemplatesAttachedToANetworkProfile
 }
 type ResponseNetworkSettingsGetReserveIPSubpool struct {
 	Response *[]ResponseNetworkSettingsGetReserveIPSubpoolResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetReserveIPSubpoolResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	GroupName string `json:"groupName,omitempty"` // Group Name
-
-	IPPools *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools `json:"ipPools,omitempty"` //
-
-	SiteID string `json:"siteId,omitempty"` // Site Id
-
-	SiteHierarchy string `json:"siteHierarchy,omitempty"` // Site Hierarchy
-
-	Type string `json:"type,omitempty"` // Type
-
-	GroupOwner string `json:"groupOwner,omitempty"` // Group Owner
+	ID            string                                                       `json:"id,omitempty"`            // Id
+	GroupName     string                                                       `json:"groupName,omitempty"`     // Group Name
+	IPPools       *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools `json:"ipPools,omitempty"`       //
+	SiteID        string                                                       `json:"siteId,omitempty"`        // Site Id
+	SiteHierarchy string                                                       `json:"siteHierarchy,omitempty"` // Site Hierarchy
+	Type          string                                                       `json:"type,omitempty"`          // Type
+	GroupOwner    string                                                       `json:"groupOwner,omitempty"`    // Group Owner
 }
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPools struct {
-	IPPoolName string `json:"ipPoolName,omitempty"` // Ip Pool Name
-
-	DhcpServerIPs *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs `json:"dhcpServerIps,omitempty"` // Dhcp Server Ips
-
-	Gateways []string `json:"gateways,omitempty"` // Gateways
-
-	CreateTime *int `json:"createTime,omitempty"` // Create Time
-
-	LastUpdateTime *int `json:"lastUpdateTime,omitempty"` // Last Update Time
-
-	TotalIPAddressCount *int `json:"totalIpAddressCount,omitempty"` // Total Ip Address Count
-
-	UsedIPAddressCount *int `json:"usedIpAddressCount,omitempty"` // Used Ip Address Count
-
-	ParentUUID string `json:"parentUuid,omitempty"` // Parent Uuid
-
-	Owner string `json:"owner,omitempty"` // Owner
-
-	Shared *bool `json:"shared,omitempty"` // Shared
-
-	Overlapping *bool `json:"overlapping,omitempty"` // Overlapping
-
-	ConfigureExternalDhcp *bool `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
-
-	UsedPercentage string `json:"usedPercentage,omitempty"` // Used Percentage
-
-	ClientOptions *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions `json:"clientOptions,omitempty"` // Client Options
-
-	GroupUUID string `json:"groupUuid,omitempty"` // Group Uuid
-
-	DNSServerIPs *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs `json:"dnsServerIps,omitempty"` // Dns Server Ips
-
-	Context *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext `json:"context,omitempty"` //
-
-	IPv6 *bool `json:"ipv6,omitempty"` // Ipv6
-
-	ID string `json:"id,omitempty"` // Id
-
-	IPPoolCidr string `json:"ipPoolCidr,omitempty"` // Ip Pool Cidr
+	IPPoolName            string                                                                    `json:"ipPoolName,omitempty"`            // Ip Pool Name
+	DhcpServerIPs         *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs `json:"dhcpServerIps,omitempty"`         // Dhcp Server Ips
+	Gateways              []string                                                                  `json:"gateways,omitempty"`              // Gateways
+	CreateTime            *int                                                                      `json:"createTime,omitempty"`            // Create Time
+	LastUpdateTime        *int                                                                      `json:"lastUpdateTime,omitempty"`        // Last Update Time
+	TotalIPAddressCount   *int                                                                      `json:"totalIpAddressCount,omitempty"`   // Total Ip Address Count
+	UsedIPAddressCount    *int                                                                      `json:"usedIpAddressCount,omitempty"`    // Used Ip Address Count
+	ParentUUID            string                                                                    `json:"parentUuid,omitempty"`            // Parent Uuid
+	Owner                 string                                                                    `json:"owner,omitempty"`                 // Owner
+	Shared                *bool                                                                     `json:"shared,omitempty"`                // Shared
+	Overlapping           *bool                                                                     `json:"overlapping,omitempty"`           // Overlapping
+	ConfigureExternalDhcp *bool                                                                     `json:"configureExternalDhcp,omitempty"` // Configure External Dhcp
+	UsedPercentage        string                                                                    `json:"usedPercentage,omitempty"`        // Used Percentage
+	ClientOptions         *ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions   `json:"clientOptions,omitempty"`         // Client Options
+	GroupUUID             string                                                                    `json:"groupUuid,omitempty"`             // Group Uuid
+	DNSServerIPs          *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs  `json:"dnsServerIps,omitempty"`          // Dns Server Ips
+	Context               *[]ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext       `json:"context,omitempty"`               //
+	IPv6                  *bool                                                                     `json:"ipv6,omitempty"`                  // Ipv6
+	ID                    string                                                                    `json:"id,omitempty"`                    // Id
+	IPPoolCidr            string                                                                    `json:"ipPoolCidr,omitempty"`            // Ip Pool Cidr
 }
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDhcpServerIPs interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsClientOptions interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsDNSServerIPs interface{}
 type ResponseNetworkSettingsGetReserveIPSubpoolResponseIPPoolsContext struct {
-	Owner string `json:"owner,omitempty"` // Owner
-
-	ContextKey string `json:"contextKey,omitempty"` // Context Key
-
+	Owner        string `json:"owner,omitempty"`        // Owner
+	ContextKey   string `json:"contextKey,omitempty"`   // Context Key
 	ContextValue string `json:"contextValue,omitempty"` // Context Value
 }
 type ResponseNetworkSettingsReleaseReserveIPSubpool struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsReserveIPSubpool struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsUpdateReserveIPSubpool struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsGetServiceProviderDetails struct {
 	Response *[]ResponseNetworkSettingsGetServiceProviderDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsResponse struct {
-	InstanceType string `json:"instanceType,omitempty"` // Instance Type
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid
-
-	Namespace string `json:"namespace,omitempty"` // Namespace
-
-	Type string `json:"type,omitempty"` // Type
-
-	Key string `json:"key,omitempty"` // Key
-
-	Version *int `json:"version,omitempty"` // Version
-
-	Value *[]ResponseNetworkSettingsGetServiceProviderDetailsResponseValue `json:"value,omitempty"` //
-
-	GroupUUID string `json:"groupUuid,omitempty"` // Group Uuid
-
-	InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-
-	InheritedGroupName string `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string                                                           `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string                                                           `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string                                                           `json:"namespace,omitempty"`          // Namespace
+	Type               string                                                           `json:"type,omitempty"`               // Type
+	Key                string                                                           `json:"key,omitempty"`                // Key
+	Version            *int                                                             `json:"version,omitempty"`            // Version
+	Value              *[]ResponseNetworkSettingsGetServiceProviderDetailsResponseValue `json:"value,omitempty"`              //
+	GroupUUID          string                                                           `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string                                                           `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string                                                           `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsResponseValue struct {
-	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
-
-	SpProfileName string `json:"spProfileName,omitempty"` // Sp Profile Name
-
+	WanProvider    string `json:"wanProvider,omitempty"`    // Wan Provider
+	SpProfileName  string `json:"spProfileName,omitempty"`  // Sp Profile Name
 	SLAProfileName string `json:"slaProfileName,omitempty"` // Sla Profile Name
 }
 type ResponseNetworkSettingsCreateSpProfile struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsUpdateSpProfile struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsSyncNetworkDevicesCredential struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSyncNetworkDevicesCredentialResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSyncNetworkDevicesCredentialResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsSetAAASettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetAAASettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetAAASettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrieveAAASettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponse struct {
 	AAANetwork *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAANetwork `json:"aaaNetwork,omitempty"` //
-
-	AAAClient *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAAClient `json:"aaaClient,omitempty"` //
+	AAAClient  *ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAAClient  `json:"aaaClient,omitempty"`  //
 }
 type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAANetwork struct {
-	ServerType string `json:"serverType,omitempty"` // Server Type
-
-	Protocol string `json:"protocol,omitempty"` // Protocol
-
-	Pan string `json:"pan,omitempty"` // Administration Node. Required for ISE.
-
-	PrimaryServerIP string `json:"primaryServerIp,omitempty"` // The server to use as a primary.
-
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
 	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
-
-	SharedSecret string `json:"sharedSecret,omitempty"` // Shared Secret
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsRetrieveAAASettingsForASiteResponseAAAClient struct {
-	ServerType string `json:"serverType,omitempty"` // Server Type
-
-	Protocol string `json:"protocol,omitempty"` // Protocol
-
-	Pan string `json:"pan,omitempty"` // Administration Node. Required for ISE.
-
-	PrimaryServerIP string `json:"primaryServerIp,omitempty"` // The server to use as a primary.
-
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
 	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
-
-	SharedSecret string `json:"sharedSecret,omitempty"` // Shared Secret
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsRetrieveBannerSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                         `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponse struct {
 	Banner *ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponseBanner `json:"banner,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveBannerSettingsForASiteResponseBanner struct {
-	Type string `json:"type,omitempty"` // Type
-
-	Message string `json:"message,omitempty"` // Custom message that appears when logging into routers, switches, and hubs. Required for custom type.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
+	Type              string `json:"type,omitempty"`              // Type
+	Message           string `json:"message,omitempty"`           // Custom message that appears when logging into routers, switches, and hubs. Required for custom type.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsSetBannerSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetBannerSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetBannerSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASite struct {
 	Response *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                              `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponse struct {
-	CliCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID `json:"cliCredentialsId,omitempty"` //
-
-	SNMPv2CReadCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID `json:"snmpv2cReadCredentialsId,omitempty"` //
-
+	CliCredentialsID          *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID          `json:"cliCredentialsId,omitempty"`          //
+	SNMPv2CReadCredentialsID  *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID  `json:"snmpv2cReadCredentialsId,omitempty"`  //
 	SNMPv2CWriteCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CWriteCredentialsID `json:"snmpv2cWriteCredentialsId,omitempty"` //
-
-	SNMPv3CredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID `json:"snmpv3CredentialsId,omitempty"` //
-
-	HTTPReadCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID `json:"httpReadCredentialsId,omitempty"` //
-
-	HTTPWriteCredentialsID *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID `json:"httpWriteCredentialsId,omitempty"` //
+	SNMPv3CredentialsID       *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID       `json:"snmpv3CredentialsId,omitempty"`       //
+	HTTPReadCredentialsID     *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID     `json:"httpReadCredentialsId,omitempty"`     //
+	HTTPWriteCredentialsID    *ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseCliCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CReadCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv2CWriteCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseSNMPv3CredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPReadCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsGetDeviceCredentialSettingsForASiteResponseHTTPWriteCredentialsID struct {
-	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id
-
+	CredentialsID     string `json:"credentialsId,omitempty"`     // The `id` of the credentials.
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name
 }
 type ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsUpdateDeviceCredentialSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatus struct {
 	Response *ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                 `json:"version,omitempty"`  //
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponse struct {
-	Cli *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseCli `json:"cli,omitempty"` //
-
-	SNMPV2Read *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Read `json:"snmpV2Read,omitempty"` //
-
+	Cli         *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseCli         `json:"cli,omitempty"`         //
+	SNMPV2Read  *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Read  `json:"snmpV2Read,omitempty"`  //
 	SNMPV2Write *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Write `json:"snmpV2Write,omitempty"` //
-
-	SNMPV3 *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV3 `json:"snmpV3,omitempty"` //
+	SNMPV3      *[]ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV3      `json:"snmpV3,omitempty"`      //
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseCli struct {
-	DeviceCount *int `json:"deviceCount,omitempty"` // Device count
-
-	Status string `json:"status,omitempty"` // Sync status
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Read struct {
-	DeviceCount *int `json:"deviceCount,omitempty"` // Device count
-
-	Status string `json:"status,omitempty"` // Sync status
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV2Write struct {
-	DeviceCount *int `json:"deviceCount,omitempty"` // Device count
-
-	Status string `json:"status,omitempty"` // Sync status
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
 }
 type ResponseNetworkSettingsGetNetworkDevicesCredentialsSyncStatusResponseSNMPV3 struct {
-	DeviceCount *int `json:"deviceCount,omitempty"` // Device count
-
-	Status string `json:"status,omitempty"` // Sync status
+	DeviceCount *int   `json:"deviceCount,omitempty"` // Device count
+	Status      string `json:"status,omitempty"`      // Sync status
 }
 type ResponseNetworkSettingsSetDhcpSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                  `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetDhcpSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetDhcpSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrieveDHCPSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                       `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponse struct {
 	Dhcp *ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponseDhcp `json:"dhcp,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveDHCPSettingsForASiteResponseDhcp struct {
-	Servers []string `json:"servers,omitempty"` // DHCP servers for managing client device networking configuration.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+	Servers           []string `json:"servers,omitempty"`           // DHCP servers for managing client device networking configuration.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsRetrieveDNSSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponse struct {
 	DNS *ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponseDNS `json:"dns,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveDNSSettingsForASiteResponseDNS struct {
-	DomainName string `json:"domainName,omitempty"` // Network's domain name.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // DNS servers for hostname resolution.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+	DomainName        string   `json:"domainName,omitempty"`        // Network's domain name.
+	DNSServers        []string `json:"dnsServers,omitempty"`        // DNS servers for hostname resolution.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsSetDNSSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetDNSSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetDNSSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsSetImageDistributionSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                               `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetImageDistributionSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetImageDistributionSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                    `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponse struct {
 	ImageDistribution *ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponseImageDistribution `json:"imageDistribution,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveImageDistributionSettingsForASiteResponseImageDistribution struct {
-	Servers []string `json:"servers,omitempty"` // This field holds an array of unique identifiers representing image distribution servers. SFTP servers to act as image distribution servers. A distributed SWIM architecture, using suitably located SFTP servers, can help support large-scale device software image upgrades and conserve WAN bandwidth.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+	Servers           []string `json:"servers,omitempty"`           // This field holds an array of unique identifiers representing image distribution servers. SFTP servers to act as image distribution servers. A distributed SWIM architecture, using suitably located SFTP servers, can help support large-scale device software image upgrades and conserve WAN bandwidth.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsSetNTPSettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetNTPSettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetNTPSettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrieveNTPSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponse struct {
 	Ntp *ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponseNtp `json:"ntp,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveNTPSettingsForASiteResponseNtp struct {
-	Servers []string `json:"servers,omitempty"` // NTP servers to facilitate system clock synchronization for your network.
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
-	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
+	Servers           []string `json:"servers,omitempty"`           // NTP servers to facilitate system clock synchronization for your network.
+	InheritedSiteID   string   `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
+	InheritedSiteName string   `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsRetrieveTelemetrySettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponse `json:"response,omitempty"` //
@@ -1035,9 +800,9 @@ type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponse struct {
 	ApplicationVisibility *ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplicationVisibility `json:"applicationVisibility,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWiredDataCollection struct {
-	EnableWiredDataCollectio *bool  `json:"enableWiredDataCollectio,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
-	InheritedSiteID          string `json:"inheritedSiteId,omitempty"`          // Inherited Site Id
-	InheritedSiteName        string `json:"inheritedSiteName,omitempty"`        // Inherited Site Name
+	EnableWiredDataCollection *bool  `json:"enableWiredDataCollection,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
+	InheritedSiteID           string `json:"inheritedSiteId,omitempty"`           // Inherited Site Id
+	InheritedSiteName         string `json:"inheritedSiteName,omitempty"`         // Inherited Site Name
 }
 type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseWirelessTelemetry struct {
 	EnableWirelessTelemetry *bool  `json:"enableWirelessTelemetry,omitempty"` // Enables Streaming Telemetry on your wireless controllers in order to determine the health of your wireless controller, access points and wireless clients.
@@ -1068,334 +833,235 @@ type ResponseNetworkSettingsRetrieveTelemetrySettingsForASiteResponseApplication
 	Port          *int   `json:"port,omitempty"`          // Min:1; Max: 65535. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional.
 }
 type ResponseNetworkSettingsSetTelemetrySettingsForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetTelemetrySettingsForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetTelemetrySettingsForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsSetTimeZoneForASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                              `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsSetTimeZoneForASiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsSetTimeZoneForASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASite struct {
 	Response *ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                           `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponse struct {
 	TimeZone *ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponseTimeZone `json:"timeZone,omitempty"` //
 }
 type ResponseNetworkSettingsRetrieveTimeZoneSettingsForASiteResponseTimeZone struct {
-	IDentifier string `json:"identifier,omitempty"` // Time zone that corresponds to the site's physical location. The site time zone is used when scheduling device provisioning and updates. Example : GMT
-
-	InheritedSiteID string `json:"inheritedSiteId,omitempty"` // Inherited Site Id.
-
+	IDentifier        string `json:"identifier,omitempty"`        // Time zone that corresponds to the site's physical location. The site time zone is used when scheduling device provisioning and updates. Example : GMT
+	InheritedSiteID   string `json:"inheritedSiteId,omitempty"`   // Inherited Site Id.
 	InheritedSiteName string `json:"inheritedSiteName,omitempty"` // Inherited Site Name.
 }
 type ResponseNetworkSettingsDeleteSpProfile struct {
-	ExecutionID string `json:"executionId,omitempty"` // Execution Id
-
+	ExecutionID        string `json:"executionId,omitempty"`        // Execution Id
 	ExecutionStatusURL string `json:"executionStatusUrl,omitempty"` // Execution Status Url
-
-	Message string `json:"message,omitempty"` // Message
+	Message            string `json:"message,omitempty"`            // Message
 }
 type ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSiteResponse `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetrySettingsForItsSiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseNetworkSettingsAssignDeviceCredentialToSiteV2 struct {
 	Response *ResponseNetworkSettingsAssignDeviceCredentialToSiteV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                         `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsAssignDeviceCredentialToSiteV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseNetworkSettingsGetNetworkV2 struct {
 	Response *[]ResponseNetworkSettingsGetNetworkV2Response `json:"response,omitempty"` //
 }
 type ResponseNetworkSettingsGetNetworkV2Response struct {
-	InstanceType string `json:"instanceType,omitempty"` // Instance Type
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid
-
-	Namespace string `json:"namespace,omitempty"` // Namespace
-
-	Type string `json:"type,omitempty"` // Type
-
-	Key string `json:"key,omitempty"` // Key
-
-	Version *int `json:"version,omitempty"` // Version
-
-	Value []string `json:"value,omitempty"` // Value
-
-	GroupUUID string `json:"groupUuid,omitempty"` // Group Uuid
-
-	InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-
-	InheritedGroupName string `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string   `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string   `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string   `json:"namespace,omitempty"`          // Namespace
+	Type               string   `json:"type,omitempty"`               // Type
+	Key                string   `json:"key,omitempty"`                // Key
+	Version            *int     `json:"version,omitempty"`            // Version
+	Value              []string `json:"value,omitempty"`              // Value
+	GroupUUID          string   `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string   `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string   `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsCreateNetworkV2 struct {
 	Response *ResponseNetworkSettingsCreateNetworkV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                          `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsCreateNetworkV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseNetworkSettingsUpdateNetworkV2 struct {
 	Response *ResponseNetworkSettingsUpdateNetworkV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                          `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsUpdateNetworkV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseNetworkSettingsCreateSpProfileV2 struct {
 	Response *ResponseNetworkSettingsCreateSpProfileV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                            `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsCreateSpProfileV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseNetworkSettingsUpdateSpProfileV2 struct {
 	Response *ResponseNetworkSettingsUpdateSpProfileV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                            `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsUpdateSpProfileV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsV2 struct {
 	Response *[]ResponseNetworkSettingsGetServiceProviderDetailsV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                        `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsV2Response struct {
-	InstanceType string `json:"instanceType,omitempty"` // Instance Type
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid
-
-	Namespace string `json:"namespace,omitempty"` // Namespace
-
-	Type string `json:"type,omitempty"` // Type
-
-	Key string `json:"key,omitempty"` // Key
-
-	Version *int `json:"version,omitempty"` // Version
-
-	Value *[]ResponseNetworkSettingsGetServiceProviderDetailsV2ResponseValue `json:"value,omitempty"` //
-
-	GroupUUID string `json:"groupUuid,omitempty"` // Group Uuid
-
-	InheritedGroupUUID string `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
-
-	InheritedGroupName string `json:"inheritedGroupName,omitempty"` // Inherited Group Name
+	InstanceType       string                                                             `json:"instanceType,omitempty"`       // Instance Type
+	InstanceUUID       string                                                             `json:"instanceUuid,omitempty"`       // Instance Uuid
+	Namespace          string                                                             `json:"namespace,omitempty"`          // Namespace
+	Type               string                                                             `json:"type,omitempty"`               // Type
+	Key                string                                                             `json:"key,omitempty"`                // Key
+	Version            *int                                                               `json:"version,omitempty"`            // Version
+	Value              *[]ResponseNetworkSettingsGetServiceProviderDetailsV2ResponseValue `json:"value,omitempty"`              //
+	GroupUUID          string                                                             `json:"groupUuid,omitempty"`          // Group Uuid
+	InheritedGroupUUID string                                                             `json:"inheritedGroupUuid,omitempty"` // Inherited Group Uuid
+	InheritedGroupName string                                                             `json:"inheritedGroupName,omitempty"` // Inherited Group Name
 }
 type ResponseNetworkSettingsGetServiceProviderDetailsV2ResponseValue struct {
-	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
-
-	SpProfileName string `json:"spProfileName,omitempty"` // Sp Profile Name
-
+	WanProvider    string `json:"wanProvider,omitempty"`    // Wan Provider
+	SpProfileName  string `json:"spProfileName,omitempty"`  // Sp Profile Name
 	SLAProfileName string `json:"slaProfileName,omitempty"` // Sla Profile Name
 }
 type ResponseNetworkSettingsDeleteSpProfileV2 struct {
 	Response *ResponseNetworkSettingsDeleteSpProfileV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                            `json:"version,omitempty"`  // Version
 }
 type ResponseNetworkSettingsDeleteSpProfileV2Response struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type RequestNetworkSettingsAssignDeviceCredentialToSite struct {
-	CliID string `json:"cliId,omitempty"` // Cli Id
-
-	SNMPV2ReadID string `json:"snmpV2ReadId,omitempty"` // Snmp V2 Read Id
-
+	CliID         string `json:"cliId,omitempty"`         // Cli Id
+	SNMPV2ReadID  string `json:"snmpV2ReadId,omitempty"`  // Snmp V2 Read Id
 	SNMPV2WriteID string `json:"snmpV2WriteId,omitempty"` // Snmp V2 Write Id
-
-	HTTPRead string `json:"httpRead,omitempty"` // Http Read
-
-	HTTPWrite string `json:"httpWrite,omitempty"` // Http Write
-
-	SNMPV3ID string `json:"snmpV3Id,omitempty"` // Snmp V3 Id
+	HTTPRead      string `json:"httpRead,omitempty"`      // Http Read
+	HTTPWrite     string `json:"httpWrite,omitempty"`     // Http Write
+	SNMPV3ID      string `json:"snmpV3Id,omitempty"`      // Snmp V3 Id
 }
 type RequestNetworkSettingsCreateDeviceCredentials struct {
 	Settings *RequestNetworkSettingsCreateDeviceCredentialsSettings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettings struct {
 	CliCredential *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsCliCredential `json:"cliCredential,omitempty"` //
-
-	SNMPV2CRead *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CRead `json:"snmpV2cRead,omitempty"` //
-
-	SNMPV2CWrite *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CWrite `json:"snmpV2cWrite,omitempty"` //
-
-	SNMPV3 *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV3 `json:"snmpV3,omitempty"` //
-
-	HTTPSRead *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSRead `json:"httpsRead,omitempty"` //
-
-	HTTPSWrite *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSWrite `json:"httpsWrite,omitempty"` //
+	SNMPV2CRead   *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CRead   `json:"snmpV2cRead,omitempty"`   //
+	SNMPV2CWrite  *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CWrite  `json:"snmpV2cWrite,omitempty"`  //
+	SNMPV3        *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV3        `json:"snmpV3,omitempty"`        //
+	HTTPSRead     *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSRead     `json:"httpsRead,omitempty"`     //
+	HTTPSWrite    *[]RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSWrite    `json:"httpsWrite,omitempty"`    //
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsCliCredential struct {
-	Description string `json:"description,omitempty"` // Name or description for CLI credential
-
-	Username string `json:"username,omitempty"` // User name for CLI credential
-
-	Password string `json:"password,omitempty"` // Password for CLI credential
-
+	Description    string `json:"description,omitempty"`    // Name or description for CLI credential
+	Username       string `json:"username,omitempty"`       // User name for CLI credential
+	Password       string `json:"password,omitempty"`       // Password for CLI credential
 	EnablePassword string `json:"enablePassword,omitempty"` // Enable password for CLI credential
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CRead struct {
-	Description string `json:"description,omitempty"` // Description for snmp v2 read
-
+	Description   string `json:"description,omitempty"`   // Description for snmp v2 read
 	ReadCommunity string `json:"readCommunity,omitempty"` // Ready community for snmp v2 read credential
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV2CWrite struct {
-	Description string `json:"description,omitempty"` // Description for snmp v2 write
-
+	Description    string `json:"description,omitempty"`    // Description for snmp v2 write
 	WriteCommunity string `json:"writeCommunity,omitempty"` // Write community for snmp v2 write credential
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsSNMPV3 struct {
-	Description string `json:"description,omitempty"` // Name or description for SNMPV3 credential
-
-	Username string `json:"username,omitempty"` // User name for SNMPv3 credential
-
-	PrivacyType string `json:"privacyType,omitempty"` // Privacy type for snmpv3 credential
-
+	Description     string `json:"description,omitempty"`     // Name or description for SNMPV3 credential
+	Username        string `json:"username,omitempty"`        // User name for SNMPv3 credential
+	PrivacyType     string `json:"privacyType,omitempty"`     // Privacy type for snmpv3 credential
 	PrivacyPassword string `json:"privacyPassword,omitempty"` // Privacy password for snmpv3 credential
-
-	AuthType string `json:"authType,omitempty"` // Authentication type for snmpv3 credential
-
-	AuthPassword string `json:"authPassword,omitempty"` // Authentication password for snmpv3 credential
-
-	SNMPMode string `json:"snmpMode,omitempty"` // Mode for snmpv3 credential
+	AuthType        string `json:"authType,omitempty"`        // Authentication type for snmpv3 credential
+	AuthPassword    string `json:"authPassword,omitempty"`    // Authentication password for snmpv3 credential
+	SNMPMode        string `json:"snmpMode,omitempty"`        // Mode for snmpv3 credential
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSRead struct {
-	Name string `json:"name,omitempty"` // Name or description of http read credential
-
-	Username string `json:"username,omitempty"` // User name of the http read credential
-
-	Password string `json:"password,omitempty"` // Password for http read credential
-
-	Port *float64 `json:"port,omitempty"` // Port for http read credential
+	Name     string   `json:"name,omitempty"`     // Name or description of http read credential
+	Username string   `json:"username,omitempty"` // User name of the http read credential
+	Password string   `json:"password,omitempty"` // Password for http read credential
+	Port     *float64 `json:"port,omitempty"`     // Port for http read credential
 }
 type RequestNetworkSettingsCreateDeviceCredentialsSettingsHTTPSWrite struct {
-	Name string `json:"name,omitempty"` // Name or description of http write credential
-
-	Username string `json:"username,omitempty"` // User name of the http write credential
-
-	Password string `json:"password,omitempty"` // Password for http write credential
-
-	Port *float64 `json:"port,omitempty"` // Port for http write credential
+	Name     string   `json:"name,omitempty"`     // Name or description of http write credential
+	Username string   `json:"username,omitempty"` // User name of the http write credential
+	Password string   `json:"password,omitempty"` // Password for http write credential
+	Port     *float64 `json:"port,omitempty"`     // Port for http write credential
 }
 type RequestNetworkSettingsUpdateDeviceCredentials struct {
 	Settings *RequestNetworkSettingsUpdateDeviceCredentialsSettings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettings struct {
 	CliCredential *RequestNetworkSettingsUpdateDeviceCredentialsSettingsCliCredential `json:"cliCredential,omitempty"` //
-
-	SNMPV2CRead *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CRead `json:"snmpV2cRead,omitempty"` //
-
-	SNMPV2CWrite *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CWrite `json:"snmpV2cWrite,omitempty"` //
-
-	SNMPV3 *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV3 `json:"snmpV3,omitempty"` //
-
-	HTTPSRead *RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSRead `json:"httpsRead,omitempty"` //
-
-	HTTPSWrite *RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSWrite `json:"httpsWrite,omitempty"` //
+	SNMPV2CRead   *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CRead   `json:"snmpV2cRead,omitempty"`   //
+	SNMPV2CWrite  *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CWrite  `json:"snmpV2cWrite,omitempty"`  //
+	SNMPV3        *RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV3        `json:"snmpV3,omitempty"`        //
+	HTTPSRead     *RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSRead     `json:"httpsRead,omitempty"`     //
+	HTTPSWrite    *RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSWrite    `json:"httpsWrite,omitempty"`    //
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsCliCredential struct {
-	Description string `json:"description,omitempty"` // Description
-
-	Username string `json:"username,omitempty"` // Username
-
-	Password string `json:"password,omitempty"` // Password
-
+	Description    string `json:"description,omitempty"`    // Description
+	Username       string `json:"username,omitempty"`       // Username
+	Password       string `json:"password,omitempty"`       // Password
 	EnablePassword string `json:"enablePassword,omitempty"` // Enable Password
-
-	ID string `json:"id,omitempty"` // Id
+	ID             string `json:"id,omitempty"`             // Id
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CRead struct {
-	Description string `json:"description,omitempty"` // Description
-
+	Description   string `json:"description,omitempty"`   // Description
 	ReadCommunity string `json:"readCommunity,omitempty"` // Read Community
-
-	ID string `json:"id,omitempty"` // Id
+	ID            string `json:"id,omitempty"`            // Id
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV2CWrite struct {
-	Description string `json:"description,omitempty"` // Description
-
+	Description    string `json:"description,omitempty"`    // Description
 	WriteCommunity string `json:"writeCommunity,omitempty"` // Write Community
-
-	ID string `json:"id,omitempty"` // Id
+	ID             string `json:"id,omitempty"`             // Id
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsSNMPV3 struct {
-	AuthPassword string `json:"authPassword,omitempty"` // Auth Password
-
-	AuthType string `json:"authType,omitempty"` // Auth Type
-
-	SNMPMode string `json:"snmpMode,omitempty"` // Snmp Mode
-
+	AuthPassword    string `json:"authPassword,omitempty"`    // Auth Password
+	AuthType        string `json:"authType,omitempty"`        // Auth Type
+	SNMPMode        string `json:"snmpMode,omitempty"`        // Snmp Mode
 	PrivacyPassword string `json:"privacyPassword,omitempty"` // Privacy Password
-
-	PrivacyType string `json:"privacyType,omitempty"` // Privacy Type
-
-	Username string `json:"username,omitempty"` // Username
-
-	Description string `json:"description,omitempty"` // Description
-
-	ID string `json:"id,omitempty"` // Id
+	PrivacyType     string `json:"privacyType,omitempty"`     // Privacy Type
+	Username        string `json:"username,omitempty"`        // Username
+	Description     string `json:"description,omitempty"`     // Description
+	ID              string `json:"id,omitempty"`              // Id
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSRead struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Username string `json:"username,omitempty"` // Username
-
 	Password string `json:"password,omitempty"` // Password
-
-	Port string `json:"port,omitempty"` // Port
-
-	ID string `json:"id,omitempty"` // Id
+	Port     string `json:"port,omitempty"`     // Port
+	ID       string `json:"id,omitempty"`       // Id
 }
 type RequestNetworkSettingsUpdateDeviceCredentialsSettingsHTTPSWrite struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Username string `json:"username,omitempty"` // Username
-
 	Password string `json:"password,omitempty"` // Password
-
-	Port string `json:"port,omitempty"` // Port
-
-	ID string `json:"id,omitempty"` // Id
+	Port     string `json:"port,omitempty"`     // Port
+	ID       string `json:"id,omitempty"`       // Id
 }
 type RequestNetworkSettingsUpdateGlobalPool struct {
 	Settings *RequestNetworkSettingsUpdateGlobalPoolSettings `json:"settings,omitempty"` //
@@ -1404,15 +1070,11 @@ type RequestNetworkSettingsUpdateGlobalPoolSettings struct {
 	IPpool *[]RequestNetworkSettingsUpdateGlobalPoolSettingsIPpool `json:"ippool,omitempty"` //
 }
 type RequestNetworkSettingsUpdateGlobalPoolSettingsIPpool struct {
-	IPPoolName string `json:"ipPoolName,omitempty"` // Ip Pool Name
-
-	Gateway string `json:"gateway,omitempty"` // Gateway
-
+	IPPoolName    string   `json:"ipPoolName,omitempty"`    // Ip Pool Name
+	Gateway       string   `json:"gateway,omitempty"`       // Gateway
 	DhcpServerIPs []string `json:"dhcpServerIps,omitempty"` // Dhcp Server Ips
-
-	DNSServerIPs []string `json:"dnsServerIps,omitempty"` // Dns Server Ips
-
-	ID string `json:"id,omitempty"` // Id
+	DNSServerIPs  []string `json:"dnsServerIps,omitempty"`  // Dns Server Ips
+	ID            string   `json:"id,omitempty"`            // Id
 }
 type RequestNetworkSettingsCreateGlobalPool struct {
 	Settings *RequestNetworkSettingsCreateGlobalPoolSettings `json:"settings,omitempty"` //
@@ -1421,371 +1083,234 @@ type RequestNetworkSettingsCreateGlobalPoolSettings struct {
 	IPpool *[]RequestNetworkSettingsCreateGlobalPoolSettingsIPpool `json:"ippool,omitempty"` //
 }
 type RequestNetworkSettingsCreateGlobalPoolSettingsIPpool struct {
-	IPPoolName string `json:"ipPoolName,omitempty"` // Ip Pool Name
-
-	Type string `json:"type,omitempty"` // Type
-
-	IPPoolCidr string `json:"ipPoolCidr,omitempty"` // Ip Pool Cidr
-
-	Gateway string `json:"gateway,omitempty"` // Gateway
-
-	DhcpServerIPs []string `json:"dhcpServerIps,omitempty"` // Dhcp Server Ips
-
-	DNSServerIPs []string `json:"dnsServerIps,omitempty"` // Dns Server Ips
-
-	IPAddressSpace string `json:"IpAddressSpace,omitempty"` // Ip Address Space
+	IPPoolName     string   `json:"ipPoolName,omitempty"`     // Ip Pool Name
+	Type           string   `json:"type,omitempty"`           // Type
+	IPPoolCidr     string   `json:"ipPoolCidr,omitempty"`     // Ip Pool Cidr
+	Gateway        string   `json:"gateway,omitempty"`        // Gateway
+	DhcpServerIPs  []string `json:"dhcpServerIps,omitempty"`  // Dhcp Server Ips
+	DNSServerIPs   []string `json:"dnsServerIps,omitempty"`   // Dns Server Ips
+	IPAddressSpace string   `json:"IpAddressSpace,omitempty"` // Ip Address Space
 }
 type RequestNetworkSettingsCreateAGlobalIPAddressPool struct {
 	AddressSpace *RequestNetworkSettingsCreateAGlobalIPAddressPoolAddressSpace `json:"addressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
+	Name         string                                                        `json:"name,omitempty"`         // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType     string                                                        `json:"poolType,omitempty"`     // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
 }
 type RequestNetworkSettingsCreateAGlobalIPAddressPoolAddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
+	Subnet           string   `json:"subnet,omitempty"`           // The IP address component of the CIDR notation for this subnet.
+	PrefixLength     *float64 `json:"prefixLength,omitempty"`     // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress string   `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
+	DhcpServers      []string `json:"dhcpServers,omitempty"`      // The DHCP server(s) for this subnet.
+	DNSServers       []string `json:"dnsServers,omitempty"`       // The DNS server(s) for this subnet.
 }
 type RequestNetworkSettingsUpdatesAGlobalIPAddressPool struct {
 	AddressSpace *RequestNetworkSettingsUpdatesAGlobalIPAddressPoolAddressSpace `json:"addressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
+	Name         string                                                         `json:"name,omitempty"`         // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType     string                                                         `json:"poolType,omitempty"`     // Once created, a global pool type cannot be changed. Tunnel: Assigns IP addresses to site-to-site VPN for IPSec tunneling. Generic: used for all other network types.
 }
 type RequestNetworkSettingsUpdatesAGlobalIPAddressPoolAddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
+	Subnet           string   `json:"subnet,omitempty"`           // The IP address component of the CIDR notation for this subnet.
+	PrefixLength     *float64 `json:"prefixLength,omitempty"`     // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress string   `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
+	DhcpServers      []string `json:"dhcpServers,omitempty"`      // The DHCP server(s) for this subnet.
+	DNSServers       []string `json:"dnsServers,omitempty"`       // The DNS server(s) for this subnet.
 }
 type RequestNetworkSettingsReservecreateIPAddressSubpools struct {
 	IPV4AddressSpace *RequestNetworkSettingsReservecreateIPAddressSubpoolsIPV4AddressSpace `json:"ipV4AddressSpace,omitempty"` //
-
 	IPV6AddressSpace *RequestNetworkSettingsReservecreateIPAddressSubpoolsIPV6AddressSpace `json:"ipV6AddressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
-
-	SiteID string `json:"siteId,omitempty"` // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
-
-	SiteName string `json:"siteName,omitempty"` // The name of the site that this subpool belongs to.
+	Name             string                                                                `json:"name,omitempty"`             // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType         string                                                                `json:"poolType,omitempty"`         // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
+	SiteID           string                                                                `json:"siteId,omitempty"`           // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
+	SiteName         string                                                                `json:"siteName,omitempty"`         // The name of the site that this subpool belongs to.
 }
 type RequestNetworkSettingsReservecreateIPAddressSubpoolsIPV4AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type RequestNetworkSettingsReservecreateIPAddressSubpoolsIPV6AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	TotalAddresses string `json:"totalAddresses,omitempty"` // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	UnassignableAddresses string `json:"unassignableAddresses,omitempty"` // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	AssignedAddresses string `json:"assignedAddresses,omitempty"` // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	DefaultAssignedAddresses string `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet                   string   `json:"subnet,omitempty"`                   // The IP address component of the CIDR notation for this subnet.
+	PrefixLength             *float64 `json:"prefixLength,omitempty"`             // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress         string   `json:"gatewayIpAddress,omitempty"`         // The gateway IP address for this subnet.
+	DhcpServers              []string `json:"dhcpServers,omitempty"`              // The DHCP server(s) for this subnet.
+	DNSServers               []string `json:"dnsServers,omitempty"`               // The DNS server(s) for this subnet.
+	TotalAddresses           string   `json:"totalAddresses,omitempty"`           // The total number of addresses in the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	UnassignableAddresses    string   `json:"unassignableAddresses,omitempty"`    // The number of addresses in the pool that cannot be assigned. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	AssignedAddresses        string   `json:"assignedAddresses,omitempty"`        // The number of addresses assigned from the pool. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	DefaultAssignedAddresses string   `json:"defaultAssignedAddresses,omitempty"` // The number of addresses that are assigned from the pool by default. This is a numeric string; since IPv6 address spaces are 128 bits in size, presume this string has a value up to 128 bits for IPv6 address spaces and 32 bits for IPv4 address spaces.
+	SLAacSupport             *bool    `json:"slaacSupport,omitempty"`             // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID             string   `json:"globalPoolId,omitempty"`             // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type RequestNetworkSettingsUpdatesAnIPAddressSubpool struct {
 	IPV4AddressSpace *RequestNetworkSettingsUpdatesAnIPAddressSubpoolIPV4AddressSpace `json:"ipV4AddressSpace,omitempty"` //
-
 	IPV6AddressSpace *RequestNetworkSettingsUpdatesAnIPAddressSubpoolIPV6AddressSpace `json:"ipV6AddressSpace,omitempty"` //
-
-	Name string `json:"name,omitempty"` // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
-
-	PoolType string `json:"poolType,omitempty"` // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
-
-	SiteID string `json:"siteId,omitempty"` // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
+	Name             string                                                           `json:"name,omitempty"`             // The name for this reserve IP pool. Only letters, numbers, '-' (hyphen), '_' (underscore), '.' (period), and '/' (forward slash) are allowed.
+	PoolType         string                                                           `json:"poolType,omitempty"`         // Once created, a subpool type cannot be changed.  LAN: Assigns IP addresses to LAN interfaces of applicable VNFs and underlay LAN automation.  Management: Assigns IP addresses to management interfaces. A management network is a dedicated network connected to VNFs for VNF management.  Service: Assigns IP addresses to service interfaces. Service networks are used for communication within VNFs.  WAN: Assigns IP addresses to NFVIS for UCS-E provisioning.  Generic: used for all other network types.
+	SiteID           string                                                           `json:"siteId,omitempty"`           // The `id` of the site that this subpool belongs to. This must be the `id` of a non-Global site.
 }
 type RequestNetworkSettingsUpdatesAnIPAddressSubpoolIPV4AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet           string   `json:"subnet,omitempty"`           // The IP address component of the CIDR notation for this subnet.
+	PrefixLength     *float64 `json:"prefixLength,omitempty"`     // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress string   `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
+	DhcpServers      []string `json:"dhcpServers,omitempty"`      // The DHCP server(s) for this subnet.
+	DNSServers       []string `json:"dnsServers,omitempty"`       // The DNS server(s) for this subnet.
+	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID     string   `json:"globalPoolId,omitempty"`     // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type RequestNetworkSettingsUpdatesAnIPAddressSubpoolIPV6AddressSpace struct {
-	Subnet string `json:"subnet,omitempty"` // The IP address component of the CIDR notation for this subnet.
-
-	PrefixLength *float64 `json:"prefixLength,omitempty"` // The network mask component, as a decimal, for the CIDR notation of this subnet.
-
-	GatewayIPAddress string `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
-
-	DhcpServers []string `json:"dhcpServers,omitempty"` // The DHCP server(s) for this subnet.
-
-	DNSServers []string `json:"dnsServers,omitempty"` // The DNS server(s) for this subnet.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
-
-	GlobalPoolID string `json:"globalPoolId,omitempty"` // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
+	Subnet           string   `json:"subnet,omitempty"`           // The IP address component of the CIDR notation for this subnet.
+	PrefixLength     *float64 `json:"prefixLength,omitempty"`     // The network mask component, as a decimal, for the CIDR notation of this subnet.
+	GatewayIPAddress string   `json:"gatewayIpAddress,omitempty"` // The gateway IP address for this subnet.
+	DhcpServers      []string `json:"dhcpServers,omitempty"`      // The DHCP server(s) for this subnet.
+	DNSServers       []string `json:"dnsServers,omitempty"`       // The DNS server(s) for this subnet.
+	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // If the prefixLength is 64, this option may be enabled. Stateless Address Auto-configuration (SLAAC) allows network devices to select their IP address without the use of DHCP servers.
+	GlobalPoolID     string   `json:"globalPoolId,omitempty"`     // The non-tunnel global pool for this reserve pool (which matches this IP address type). Once added this value cannot be changed.
 }
 type RequestNetworkSettingsCreateNetwork struct {
 	Settings *RequestNetworkSettingsCreateNetworkSettings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsCreateNetworkSettings struct {
-	DhcpServer []string `json:"dhcpServer,omitempty"` // DHCP Server IP (eg: 1.1.1.1)
-
-	DNSServer *RequestNetworkSettingsCreateNetworkSettingsDNSServer `json:"dnsServer,omitempty"` //
-
-	SyslogServer *RequestNetworkSettingsCreateNetworkSettingsSyslogServer `json:"syslogServer,omitempty"` //
-
-	SNMPServer *RequestNetworkSettingsCreateNetworkSettingsSNMPServer `json:"snmpServer,omitempty"` //
-
-	Netflowcollector *RequestNetworkSettingsCreateNetworkSettingsNetflowcollector `json:"netflowcollector,omitempty"` //
-
-	NtpServer []string `json:"ntpServer,omitempty"` // IP address for NTP server (eg: 1.1.1.2)
-
-	Timezone string `json:"timezone,omitempty"` // Input for time zone (eg: Africa/Abidjan)
-
-	MessageOfTheday *RequestNetworkSettingsCreateNetworkSettingsMessageOfTheday `json:"messageOfTheday,omitempty"` //
-
-	NetworkAAA *RequestNetworkSettingsCreateNetworkSettingsNetworkAAA `json:"network_aaa,omitempty"` //
-
+	DhcpServer           []string                                                         `json:"dhcpServer,omitempty"`            // DHCP Server IP (eg: 1.1.1.1)
+	DNSServer            *RequestNetworkSettingsCreateNetworkSettingsDNSServer            `json:"dnsServer,omitempty"`             //
+	SyslogServer         *RequestNetworkSettingsCreateNetworkSettingsSyslogServer         `json:"syslogServer,omitempty"`          //
+	SNMPServer           *RequestNetworkSettingsCreateNetworkSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
+	Netflowcollector     *RequestNetworkSettingsCreateNetworkSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
+	NtpServer            []string                                                         `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
+	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
+	MessageOfTheday      *RequestNetworkSettingsCreateNetworkSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
+	NetworkAAA           *RequestNetworkSettingsCreateNetworkSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsCreateNetworkSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsCreateNetworkSettingsDNSServer struct {
-	DomainName string `json:"domainName,omitempty"` // Domain Name of DHCP (eg; cisco)
-
-	PrimaryIPAddress string `json:"primaryIpAddress,omitempty"` // Primary IP Address for DHCP (eg: 2.2.2.2)
-
+	DomainName         string `json:"domainName,omitempty"`         // Domain Name of DHCP (eg; cisco)
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary IP Address for DHCP (eg: 2.2.2.2)
 	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary IP Address for DHCP (eg: 3.3.3.3)
 }
 type RequestNetworkSettingsCreateNetworkSettingsSyslogServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for syslog server (eg: 4.4.4.4)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for syslog server (eg: 4.4.4.4)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
 }
 type RequestNetworkSettingsCreateNetworkSettingsSNMPServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for SNMP Server (eg: 4.4.4.1)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for SNMP Server (eg: 4.4.4.1)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
 }
 type RequestNetworkSettingsCreateNetworkSettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
-
-	Port *float64 `json:"port,omitempty"` // Port for NetFlow Collector (eg; 443)
+	IPAddress string   `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
+	Port      *float64 `json:"port,omitempty"`      // Port for NetFlow Collector (eg; 443)
 }
 type RequestNetworkSettingsCreateNetworkSettingsMessageOfTheday struct {
-	BannerMessage string `json:"bannerMessage,omitempty"` // Massage for Banner message (eg; Good day)
-
+	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for Banner message (eg; Good day)
 	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing Banner Message (eg: "true" or "false")
 }
 type RequestNetworkSettingsCreateNetworkSettingsNetworkAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type for AAA Network (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for AAA and ISE server (eg: 1.1.1.1)
-
-	Network string `json:"network,omitempty"` // IP Address for AAA or ISE server (eg: 2.2.2.2)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA Network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1)
+	Network      string `json:"network,omitempty"`      // IP Address for AAA or ISE server (eg: 2.2.2.2)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE Server
 }
 type RequestNetworkSettingsCreateNetworkSettingsClientAndEndpointAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type AAA or ISE server (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for ISE serve (eg: 1.1.1.4)
-
-	Network string `json:"network,omitempty"` // IP address for AAA or ISE server (eg: 2.2.2.1)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4)
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server
 }
 type RequestNetworkSettingsUpdateNetwork struct {
 	Settings *RequestNetworkSettingsUpdateNetworkSettings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsUpdateNetworkSettings struct {
-	DhcpServer []string `json:"dhcpServer,omitempty"` // DHCP Server IP (eg: 1.1.1.1)
-
-	DNSServer *RequestNetworkSettingsUpdateNetworkSettingsDNSServer `json:"dnsServer,omitempty"` //
-
-	SyslogServer *RequestNetworkSettingsUpdateNetworkSettingsSyslogServer `json:"syslogServer,omitempty"` //
-
-	SNMPServer *RequestNetworkSettingsUpdateNetworkSettingsSNMPServer `json:"snmpServer,omitempty"` //
-
-	Netflowcollector *RequestNetworkSettingsUpdateNetworkSettingsNetflowcollector `json:"netflowcollector,omitempty"` //
-
-	NtpServer []string `json:"ntpServer,omitempty"` // IP address for NTP server (eg: 1.1.1.2)
-
-	Timezone string `json:"timezone,omitempty"` // Input for time zone (eg: Africa/Abidjan)
-
-	MessageOfTheday *RequestNetworkSettingsUpdateNetworkSettingsMessageOfTheday `json:"messageOfTheday,omitempty"` //
-
-	NetworkAAA *RequestNetworkSettingsUpdateNetworkSettingsNetworkAAA `json:"network_aaa,omitempty"` //
-
+	DhcpServer           []string                                                         `json:"dhcpServer,omitempty"`            // DHCP Server IP (eg: 1.1.1.1)
+	DNSServer            *RequestNetworkSettingsUpdateNetworkSettingsDNSServer            `json:"dnsServer,omitempty"`             //
+	SyslogServer         *RequestNetworkSettingsUpdateNetworkSettingsSyslogServer         `json:"syslogServer,omitempty"`          //
+	SNMPServer           *RequestNetworkSettingsUpdateNetworkSettingsSNMPServer           `json:"snmpServer,omitempty"`            //
+	Netflowcollector     *RequestNetworkSettingsUpdateNetworkSettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
+	NtpServer            []string                                                         `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
+	Timezone             string                                                           `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
+	MessageOfTheday      *RequestNetworkSettingsUpdateNetworkSettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
+	NetworkAAA           *RequestNetworkSettingsUpdateNetworkSettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsUpdateNetworkSettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsUpdateNetworkSettingsDNSServer struct {
-	DomainName string `json:"domainName,omitempty"` // Domain Name of DHCP (eg; cisco)
-
-	PrimaryIPAddress string `json:"primaryIpAddress,omitempty"` // Primary IP Address for DHCP (eg: 2.2.2.2)
-
+	DomainName         string `json:"domainName,omitempty"`         // Domain Name of DHCP (eg; cisco)
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary IP Address for DHCP (eg: 2.2.2.2)
 	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary IP Address for DHCP (eg: 3.3.3.3)
 }
 type RequestNetworkSettingsUpdateNetworkSettingsSyslogServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for syslog server (eg: 4.4.4.4)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for syslog server (eg: 4.4.4.4)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
 }
 type RequestNetworkSettingsUpdateNetworkSettingsSNMPServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for SNMP Server (eg: 4.4.4.1)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for SNMP Server (eg: 4.4.4.1)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
 }
 type RequestNetworkSettingsUpdateNetworkSettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
-
-	Port *float64 `json:"port,omitempty"` // Port for NetFlow Collector (eg; 443)
+	IPAddress string   `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
+	Port      *float64 `json:"port,omitempty"`      // Port for NetFlow Collector (eg; 443)
 }
 type RequestNetworkSettingsUpdateNetworkSettingsMessageOfTheday struct {
-	BannerMessage string `json:"bannerMessage,omitempty"` // Massage for Banner message (eg; Good day)
-
+	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for Banner message (eg; Good day)
 	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing Banner Message (eg: "true" or "false")
 }
 type RequestNetworkSettingsUpdateNetworkSettingsNetworkAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type for AAA Network (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for AAA and ISE server (eg: 1.1.1.1)
-
-	Network string `json:"network,omitempty"` // IP Address for AAA or ISE server (eg: 2.2.2.2)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA Network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1)
+	Network      string `json:"network,omitempty"`      // IP Address for AAA or ISE server (eg: 2.2.2.2)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE Server
 }
 type RequestNetworkSettingsUpdateNetworkSettingsClientAndEndpointAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type AAA or ISE server (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for ISE serve (eg: 1.1.1.4)
-
-	Network string `json:"network,omitempty"` // IP address for AAA or ISE server (eg: 2.2.2.1)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4)
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server
 }
 type RequestNetworkSettingsReserveIPSubpool struct {
-	Name string `json:"name,omitempty"` // Name of the reserve ip sub pool
-
-	Type string `json:"type,omitempty"` // Type of the reserve ip sub pool
-
-	IPv6AddressSpace *bool `json:"ipv6AddressSpace,omitempty"` // If the value is omitted or false only ipv4 input are required, otherwise both ipv6 and ipv4 are required
-
-	IPv4GlobalPool string `json:"ipv4GlobalPool,omitempty"` // IP v4 Global pool address with cidr, example: 175.175.0.0/16
-
-	IPv4Prefix *bool `json:"ipv4Prefix,omitempty"` // IPv4 prefix value is true, the ip4 prefix length input field is enabled , if it is false ipv4 total Host input is enable
-
-	IPv4PrefixLength *int `json:"ipv4PrefixLength,omitempty"` // The ipv4 prefix length is required when ipv4prefix value is true.
-
-	IPv4Subnet string `json:"ipv4Subnet,omitempty"` // IPv4 Subnet address, example: 175.175.0.0. Either ipv4Subnet or ipv4TotalHost needs to be passed if creating IPv4 subpool.
-
-	IPv4GateWay string `json:"ipv4GateWay,omitempty"` // Gateway ip address details, example: 175.175.0.1
-
-	IPv4DhcpServers []string `json:"ipv4DhcpServers,omitempty"` // IPv4 input for dhcp server ip example: ["1.1.1.1"]
-
-	IPv4DNSServers []string `json:"ipv4DnsServers,omitempty"` // IPv4 input for dns server ip example: ["4.4.4.4"]
-
-	IPv6GlobalPool string `json:"ipv6GlobalPool,omitempty"` // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
-
-	IPv6Prefix *bool `json:"ipv6Prefix,omitempty"` // Ipv6 prefix value is true, the ip6 prefix length input field is enabled , if it is false ipv6 total Host input is enable
-
-	IPv6PrefixLength *int `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
-
-	IPv6Subnet string `json:"ipv6Subnet,omitempty"` // IPv6 Subnet address, example :2001:db8:85a3:0:100::. Either ipv6Subnet or ipv6TotalHost needs to be passed if creating IPv6 subpool.
-
-	IPv6GateWay string `json:"ipv6GateWay,omitempty"` // Gateway ip address details, example: 2001:db8:85a3:0:100::1
-
-	IPv6DhcpServers []string `json:"ipv6DhcpServers,omitempty"` // IPv6 format dhcp server as input example : ["2001:db8::1234"]
-
-	IPv6DNSServers []string `json:"ipv6DnsServers,omitempty"` // IPv6 format dns server input example: ["2001:db8::1234"]
-
-	IPv4TotalHost *int `json:"ipv4TotalHost,omitempty"` // IPv4 total host is required when ipv4prefix value is false.
-
-	IPv6TotalHost *int `json:"ipv6TotalHost,omitempty"` // IPv6 total host is required when ipv6prefix value is false.
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // Slaac Support
+	Name             string   `json:"name,omitempty"`             // Name of the reserve ip sub pool
+	Type             string   `json:"type,omitempty"`             // Type of the reserve ip sub pool
+	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is omitted or false only ipv4 input are required, otherwise both ipv6 and ipv4 are required
+	IPv4GlobalPool   string   `json:"ipv4GlobalPool,omitempty"`   // IP v4 Global pool address with cidr, example: 175.175.0.0/16
+	IPv4Prefix       *bool    `json:"ipv4Prefix,omitempty"`       // IPv4 prefix value is true, the ip4 prefix length input field is enabled , if it is false ipv4 total Host input is enable
+	IPv4PrefixLength *int     `json:"ipv4PrefixLength,omitempty"` // The ipv4 prefix length is required when ipv4prefix value is true.
+	IPv4Subnet       string   `json:"ipv4Subnet,omitempty"`       // IPv4 Subnet address, example: 175.175.0.0. Either ipv4Subnet or ipv4TotalHost needs to be passed if creating IPv4 subpool.
+	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Gateway ip address details, example: 175.175.0.1
+	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: ["1.1.1.1"]
+	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip example: ["4.4.4.4"]
+	IPv6GlobalPool   string   `json:"ipv6GlobalPool,omitempty"`   // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
+	IPv6Prefix       *bool    `json:"ipv6Prefix,omitempty"`       // Ipv6 prefix value is true, the ip6 prefix length input field is enabled , if it is false ipv6 total Host input is enable
+	IPv6PrefixLength *int     `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
+	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::. Either ipv6Subnet or ipv6TotalHost needs to be passed if creating IPv6 subpool.
+	IPv6GateWay      string   `json:"ipv6GateWay,omitempty"`      // Gateway ip address details, example: 2001:db8:85a3:0:100::1
+	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : ["2001:db8::1234"]
+	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: ["2001:db8::1234"]
+	IPv4TotalHost    *int     `json:"ipv4TotalHost,omitempty"`    // IPv4 total host is required when ipv4prefix value is false.
+	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // IPv6 total host is required when ipv6prefix value is false.
+	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // Slaac Support
 }
 type RequestNetworkSettingsUpdateReserveIPSubpool struct {
-	Name string `json:"name,omitempty"` // Name of the reserve ip sub pool
-
-	IPv6AddressSpace *bool `json:"ipv6AddressSpace,omitempty"` // If the value is false only ipv4 input are required. NOTE if value is false then any existing ipv6 subpool in the group will be removed.
-
-	IPv4DhcpServers []string `json:"ipv4DhcpServers,omitempty"` // IPv4 input for dhcp server ip example: ["1.1.1.1"]
-
-	IPv4DNSServers []string `json:"ipv4DnsServers,omitempty"` // IPv4 input for dns server ip  example: ["4.4.4.4"]
-
-	IPv6GlobalPool string `json:"ipv6GlobalPool,omitempty"` // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
-
-	IPv6Prefix *bool `json:"ipv6Prefix,omitempty"` // Ipv6 prefix value is true, the ip6 prefix length input field is enabled, if it is false ipv6 total Host input is enable
-
-	IPv6PrefixLength *int `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
-
-	IPv6Subnet string `json:"ipv6Subnet,omitempty"` // IPv6 Subnet address, example :2001:db8:85a3:0:100::.
-
-	IPv6TotalHost *int `json:"ipv6TotalHost,omitempty"` // Size of pool in terms of number of IPs. IPv6 total host is required when ipv6prefix value is false.
-
-	IPv6GateWay string `json:"ipv6GateWay,omitempty"` // Gateway ip address details, example: 2001:db8:85a3:0:100::1
-
-	IPv6DhcpServers []string `json:"ipv6DhcpServers,omitempty"` // IPv6 format dhcp server as input example : ["2001:db8::1234"]
-
-	IPv6DNSServers []string `json:"ipv6DnsServers,omitempty"` // IPv6 format dns server input example: ["2001:db8::1234"]
-
-	SLAacSupport *bool `json:"slaacSupport,omitempty"` // Slaac Support
-
-	IPv4GateWay string `json:"ipv4GateWay,omitempty"` // Gateway ip address details, example: 175.175.0.1
+	Name             string   `json:"name,omitempty"`             // Name of the reserve ip sub pool
+	IPv6AddressSpace *bool    `json:"ipv6AddressSpace,omitempty"` // If the value is false only ipv4 input are required. NOTE if value is false then any existing ipv6 subpool in the group will be removed.
+	IPv4DhcpServers  []string `json:"ipv4DhcpServers,omitempty"`  // IPv4 input for dhcp server ip example: ["1.1.1.1"]
+	IPv4DNSServers   []string `json:"ipv4DnsServers,omitempty"`   // IPv4 input for dns server ip  example: ["4.4.4.4"]
+	IPv6GlobalPool   string   `json:"ipv6GlobalPool,omitempty"`   // IPv6 Global pool address with cidr this is required when Ipv6AddressSpace value is true, example: 2001:db8:85a3::/64
+	IPv6Prefix       *bool    `json:"ipv6Prefix,omitempty"`       // Ipv6 prefix value is true, the ip6 prefix length input field is enabled, if it is false ipv6 total Host input is enable
+	IPv6PrefixLength *int     `json:"ipv6PrefixLength,omitempty"` // IPv6 prefix length is required when the ipv6prefix value is true
+	IPv6Subnet       string   `json:"ipv6Subnet,omitempty"`       // IPv6 Subnet address, example :2001:db8:85a3:0:100::.
+	IPv6TotalHost    *int     `json:"ipv6TotalHost,omitempty"`    // Size of pool in terms of number of IPs. IPv6 total host is required when ipv6prefix value is false.
+	IPv6GateWay      string   `json:"ipv6GateWay,omitempty"`      // Gateway ip address details, example: 2001:db8:85a3:0:100::1
+	IPv6DhcpServers  []string `json:"ipv6DhcpServers,omitempty"`  // IPv6 format dhcp server as input example : ["2001:db8::1234"]
+	IPv6DNSServers   []string `json:"ipv6DnsServers,omitempty"`   // IPv6 format dns server input example: ["2001:db8::1234"]
+	SLAacSupport     *bool    `json:"slaacSupport,omitempty"`     // Slaac Support
+	IPv4GateWay      string   `json:"ipv4GateWay,omitempty"`      // Gateway ip address details, example: 175.175.0.1
 }
 type RequestNetworkSettingsCreateSpProfile struct {
 	Settings *RequestNetworkSettingsCreateSpProfileSettings `json:"settings,omitempty"` //
@@ -1795,9 +1320,7 @@ type RequestNetworkSettingsCreateSpProfileSettings struct {
 }
 type RequestNetworkSettingsCreateSpProfileSettingsQos struct {
 	ProfileName string `json:"profileName,omitempty"` // Profile Name
-
-	Model string `json:"model,omitempty"` // Model
-
+	Model       string `json:"model,omitempty"`       // Model
 	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
 }
 type RequestNetworkSettingsUpdateSpProfile struct {
@@ -1807,70 +1330,49 @@ type RequestNetworkSettingsUpdateSpProfileSettings struct {
 	Qos *[]RequestNetworkSettingsUpdateSpProfileSettingsQos `json:"qos,omitempty"` //
 }
 type RequestNetworkSettingsUpdateSpProfileSettingsQos struct {
-	ProfileName string `json:"profileName,omitempty"` // Profile Name
-
-	Model string `json:"model,omitempty"` // Model
-
-	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
-
+	ProfileName    string `json:"profileName,omitempty"`    // Profile Name
+	Model          string `json:"model,omitempty"`          // Model
+	WanProvider    string `json:"wanProvider,omitempty"`    // Wan Provider
 	OldProfileName string `json:"oldProfileName,omitempty"` // Old Profile Name
 }
 type RequestNetworkSettingsSyncNetworkDevicesCredential struct {
 	DeviceCredentialID string `json:"deviceCredentialId,omitempty"` // It must be cli/snmpV2Read/snmpV2Write/snmpV3 Id.
-
-	SiteID string `json:"siteId,omitempty"` // Site Id.
+	SiteID             string `json:"siteId,omitempty"`             // Site Id.
 }
 type RequestNetworkSettingsSetAAASettingsForASite struct {
 	AAANetwork *RequestNetworkSettingsSetAAASettingsForASiteAAANetwork `json:"aaaNetwork,omitempty"` //
-
-	AAAClient *RequestNetworkSettingsSetAAASettingsForASiteAAAClient `json:"aaaClient,omitempty"` //
+	AAAClient  *RequestNetworkSettingsSetAAASettingsForASiteAAAClient  `json:"aaaClient,omitempty"`  //
 }
 type RequestNetworkSettingsSetAAASettingsForASiteAAANetwork struct {
-	ServerType string `json:"serverType,omitempty"` // Server Type
-
-	Protocol string `json:"protocol,omitempty"` // Protocol
-
-	Pan string `json:"pan,omitempty"` // Administration Node. Required for ISE.
-
-	PrimaryServerIP string `json:"primaryServerIp,omitempty"` // The server to use as a primary.
-
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node. Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
 	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
-
-	SharedSecret string `json:"sharedSecret,omitempty"` // Shared Secret
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
 }
 type RequestNetworkSettingsSetAAASettingsForASiteAAAClient struct {
-	ServerType string `json:"serverType,omitempty"` // Server Type
-
-	Protocol string `json:"protocol,omitempty"` // Protocol
-
-	Pan string `json:"pan,omitempty"` // Administration Node.  Required for ISE.
-
-	PrimaryServerIP string `json:"primaryServerIp,omitempty"` // The server to use as a primary.
-
+	ServerType        string `json:"serverType,omitempty"`        // Server Type
+	Protocol          string `json:"protocol,omitempty"`          // Protocol
+	Pan               string `json:"pan,omitempty"`               // Administration Node.  Required for ISE.
+	PrimaryServerIP   string `json:"primaryServerIp,omitempty"`   // The server to use as a primary.
 	SecondaryServerIP string `json:"secondaryServerIp,omitempty"` // The server to use as a secondary.
-
-	SharedSecret string `json:"sharedSecret,omitempty"` // Shared Secret
+	SharedSecret      string `json:"sharedSecret,omitempty"`      // Shared Secret
 }
 type RequestNetworkSettingsSetBannerSettingsForASite struct {
 	Banner *RequestNetworkSettingsSetBannerSettingsForASiteBanner `json:"banner,omitempty"` //
 }
 type RequestNetworkSettingsSetBannerSettingsForASiteBanner struct {
-	Type string `json:"type,omitempty"` // Type
-
+	Type    string `json:"type,omitempty"`    // Type
 	Message string `json:"message,omitempty"` // Custom message that appears when logging into routers, switches, and hubs. Required for custom type.
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASite struct {
-	CliCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID `json:"cliCredentialsId,omitempty"` //
-
-	SNMPv2CReadCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CReadCredentialsID `json:"snmpv2cReadCredentialsId,omitempty"` //
-
+	CliCredentialsID          *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID          `json:"cliCredentialsId,omitempty"`          //
+	SNMPv2CReadCredentialsID  *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CReadCredentialsID  `json:"snmpv2cReadCredentialsId,omitempty"`  //
 	SNMPv2CWriteCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv2CWriteCredentialsID `json:"snmpv2cWriteCredentialsId,omitempty"` //
-
-	SNMPv3CredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv3CredentialsID `json:"snmpv3CredentialsId,omitempty"` //
-
-	HTTPReadCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPReadCredentialsID `json:"httpReadCredentialsId,omitempty"` //
-
-	HTTPWriteCredentialsID *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID `json:"httpWriteCredentialsId,omitempty"` //
+	SNMPv3CredentialsID       *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteSNMPv3CredentialsID       `json:"snmpv3CredentialsId,omitempty"`       //
+	HTTPReadCredentialsID     *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPReadCredentialsID     `json:"httpReadCredentialsId,omitempty"`     //
+	HTTPWriteCredentialsID    *RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteHTTPWriteCredentialsID    `json:"httpWriteCredentialsId,omitempty"`    //
 }
 type RequestNetworkSettingsUpdateDeviceCredentialSettingsForASiteCliCredentialsID struct {
 	CredentialsID string `json:"credentialsId,omitempty"` // The `id` of the credentials.
@@ -1916,43 +1418,34 @@ type RequestNetworkSettingsSetNTPSettingsForASiteNtp struct {
 	Servers []string `json:"servers,omitempty"` // NTP servers to facilitate system clock synchronization for your network. Max:10
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASite struct {
-	WiredDataCollection *RequestNetworkSettingsSetTelemetrySettingsForASiteWiredDataCollection `json:"wiredDataCollection,omitempty"` //
-
-	WirelessTelemetry *RequestNetworkSettingsSetTelemetrySettingsForASiteWirelessTelemetry `json:"wirelessTelemetry,omitempty"` //
-
-	SNMPTraps *RequestNetworkSettingsSetTelemetrySettingsForASiteSNMPTraps `json:"snmpTraps,omitempty"` //
-
-	Syslogs *RequestNetworkSettingsSetTelemetrySettingsForASiteSyslogs `json:"syslogs,omitempty"` //
-
+	WiredDataCollection   *RequestNetworkSettingsSetTelemetrySettingsForASiteWiredDataCollection   `json:"wiredDataCollection,omitempty"`   //
+	WirelessTelemetry     *RequestNetworkSettingsSetTelemetrySettingsForASiteWirelessTelemetry     `json:"wirelessTelemetry,omitempty"`     //
+	SNMPTraps             *RequestNetworkSettingsSetTelemetrySettingsForASiteSNMPTraps             `json:"snmpTraps,omitempty"`             //
+	Syslogs               *RequestNetworkSettingsSetTelemetrySettingsForASiteSyslogs               `json:"syslogs,omitempty"`               //
 	ApplicationVisibility *RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibility `json:"applicationVisibility,omitempty"` //
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteWiredDataCollection struct {
-	EnableWiredDataCollectio *bool `json:"enableWiredDataCollectio,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
+	EnableWiredDataCollection *bool `json:"enableWiredDataCollection,omitempty"` // Track the presence, location, and movement of wired endpoints in the network. Traffic received from endpoints is used to extract and store their identity information (MAC address and IP address). Other features, such as IEEE 802.1X, web authentication, Cisco Security Groups (formerly TrustSec), SD-Access, and Assurance, depend on this identity information to operate properly. Wired Endpoint Data Collection enables Device Tracking policies on devices assigned to the Access role in Inventory.
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteWirelessTelemetry struct {
 	EnableWirelessTelemetry *bool `json:"enableWirelessTelemetry,omitempty"` // Enables Streaming Telemetry on your wireless controllers in order to determine the health of your wireless controller, access points and wireless clients.
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteSNMPTraps struct {
-	UseBuiltinTrapServer *bool `json:"useBuiltinTrapServer,omitempty"` // Enable this server as a destination server for SNMP traps and messages from your network
-
-	ExternalTrapServers []string `json:"externalTrapServers,omitempty"` // External SNMP trap servers. Example: ["250.162.252.170","2001:db8:3c4d:15::1a2f:1a2b"]
+	UseBuiltinTrapServer *bool    `json:"useBuiltinTrapServer,omitempty"` // Enable this server as a destination server for SNMP traps and messages from your network
+	ExternalTrapServers  []string `json:"externalTrapServers,omitempty"`  // External SNMP trap servers. Example: ["250.162.252.170","2001:db8:3c4d:15::1a2f:1a2b"]
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteSyslogs struct {
-	UseBuiltinSyslogServer *bool `json:"useBuiltinSyslogServer,omitempty"` // Enable this server as a destination server for syslog messages.
-
-	ExternalSyslogServers []string `json:"externalSyslogServers,omitempty"` // External syslog servers. Example: ["250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"]
+	UseBuiltinSyslogServer *bool    `json:"useBuiltinSyslogServer,omitempty"` // Enable this server as a destination server for syslog messages.
+	ExternalSyslogServers  []string `json:"externalSyslogServers,omitempty"`  // External syslog servers. Example: ["250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"]
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibility struct {
-	Collector *RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibilityCollector `json:"collector,omitempty"` //
-
-	EnableOnWiredAccessDevices *bool `json:"enableOnWiredAccessDevices,omitempty"` // Enable Netflow Application Telemetry and Controller Based Application Recognition (CBAR) by default upon network device site assignment for wired access devices.
+	Collector                  *RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibilityCollector `json:"collector,omitempty"`                  //
+	EnableOnWiredAccessDevices *bool                                                                             `json:"enableOnWiredAccessDevices,omitempty"` // Enable Netflow Application Telemetry and Controller Based Application Recognition (CBAR) by default upon network device site assignment for wired access devices.
 }
 type RequestNetworkSettingsSetTelemetrySettingsForASiteApplicationVisibilityCollector struct {
 	CollectorType string `json:"collectorType,omitempty"` // Collector Type
-
-	Address string `json:"address,omitempty"` // IP Address. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional. Examples: "250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"
-
-	Port *int `json:"port,omitempty"` // Min:1; Max: 65535. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional.
+	Address       string `json:"address,omitempty"`       // IP Address. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional. Examples: "250.162.252.170", "2001:db8:3c4d:15::1a2f:1a2b"
+	Port          *int   `json:"port,omitempty"`          // Min:1; Max: 65535. If collection type is 'TelemetryBrokerOrUDPDirector', this field value is mandatory otherwise it is optional.
 }
 type RequestNetworkSettingsSetTimeZoneForASite struct {
 	TimeZone *RequestNetworkSettingsSetTimeZoneForASiteTimeZone `json:"timeZone,omitempty"` //
@@ -1964,162 +1457,111 @@ type RequestNetworkSettingsUpdateADevicesTelemetrySettingsToConformToTheTelemetr
 	DeviceIDs []string `json:"deviceIds,omitempty"` // The list of device Ids to perform the provisioning against
 }
 type RequestNetworkSettingsAssignDeviceCredentialToSiteV2 struct {
-	CliID string `json:"cliId,omitempty"` // CLI Credential Id
-
-	SNMPV2ReadID string `json:"snmpV2ReadId,omitempty"` // SNMPv2c Read Credential Id
-
+	CliID         string `json:"cliId,omitempty"`         // CLI Credential Id
+	SNMPV2ReadID  string `json:"snmpV2ReadId,omitempty"`  // SNMPv2c Read Credential Id
 	SNMPV2WriteID string `json:"snmpV2WriteId,omitempty"` // SNMPv2c Write Credential Id
-
-	SNMPV3ID string `json:"snmpV3Id,omitempty"` // SNMPv3 Credential Id
-
-	HTTPRead string `json:"httpRead,omitempty"` // HTTP(S) Read Credential Id
-
-	HTTPWrite string `json:"httpWrite,omitempty"` // HTTP(S) Write Credential Id
+	SNMPV3ID      string `json:"snmpV3Id,omitempty"`      // SNMPv3 Credential Id
+	HTTPRead      string `json:"httpRead,omitempty"`      // HTTP(S) Read Credential Id
+	HTTPWrite     string `json:"httpWrite,omitempty"`     // HTTP(S) Write Credential Id
 }
 type RequestNetworkSettingsCreateNetworkV2 struct {
 	Settings *RequestNetworkSettingsCreateNetworkV2Settings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsCreateNetworkV2Settings struct {
-	DhcpServer []string `json:"dhcpServer,omitempty"` // DHCP Server IP (eg: 1.1.1.1)
-
-	DNSServer *RequestNetworkSettingsCreateNetworkV2SettingsDNSServer `json:"dnsServer,omitempty"` //
-
-	SyslogServer *RequestNetworkSettingsCreateNetworkV2SettingsSyslogServer `json:"syslogServer,omitempty"` //
-
-	SNMPServer *RequestNetworkSettingsCreateNetworkV2SettingsSNMPServer `json:"snmpServer,omitempty"` //
-
-	Netflowcollector *RequestNetworkSettingsCreateNetworkV2SettingsNetflowcollector `json:"netflowcollector,omitempty"` //
-
-	NtpServer []string `json:"ntpServer,omitempty"` // IP address for NTP server (eg: 1.1.1.2)
-
-	Timezone string `json:"timezone,omitempty"` // Input for time zone (eg: Africa/Abidjan)
-
-	MessageOfTheday *RequestNetworkSettingsCreateNetworkV2SettingsMessageOfTheday `json:"messageOfTheday,omitempty"` //
-
-	NetworkAAA *RequestNetworkSettingsCreateNetworkV2SettingsNetworkAAA `json:"network_aaa,omitempty"` //
-
+	DhcpServer           []string                                                           `json:"dhcpServer,omitempty"`            // DHCP Server IP (eg: 1.1.1.1)
+	DNSServer            *RequestNetworkSettingsCreateNetworkV2SettingsDNSServer            `json:"dnsServer,omitempty"`             //
+	SyslogServer         *RequestNetworkSettingsCreateNetworkV2SettingsSyslogServer         `json:"syslogServer,omitempty"`          //
+	SNMPServer           *RequestNetworkSettingsCreateNetworkV2SettingsSNMPServer           `json:"snmpServer,omitempty"`            //
+	Netflowcollector     *RequestNetworkSettingsCreateNetworkV2SettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
+	NtpServer            []string                                                           `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
+	Timezone             string                                                             `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
+	MessageOfTheday      *RequestNetworkSettingsCreateNetworkV2SettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
+	NetworkAAA           *RequestNetworkSettingsCreateNetworkV2SettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsCreateNetworkV2SettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsDNSServer struct {
-	DomainName string `json:"domainName,omitempty"` // Domain Name of DHCP (eg; cisco)
-
-	PrimaryIPAddress string `json:"primaryIpAddress,omitempty"` // Primary IP Address for DHCP (eg: 2.2.2.2)
-
+	DomainName         string `json:"domainName,omitempty"`         // Domain Name of DHCP (eg; cisco)
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary IP Address for DHCP (eg: 2.2.2.2)
 	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary IP Address for DHCP (eg: 3.3.3.3)
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsSyslogServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for syslog server (eg: 4.4.4.4)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for syslog server (eg: 4.4.4.4)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsSNMPServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for SNMP Server (eg: 4.4.4.1)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for SNMP Server (eg: 4.4.4.1)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
-
-	Port *float64 `json:"port,omitempty"` // Port for NetFlow Collector (eg; 443)
+	IPAddress string   `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
+	Port      *float64 `json:"port,omitempty"`      // Port for NetFlow Collector (eg; 443)
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsMessageOfTheday struct {
-	BannerMessage string `json:"bannerMessage,omitempty"` // Massage for Banner message (eg; Good day)
-
+	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for Banner message (eg; Good day)
 	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing Banner Message (eg: "true" or "false")
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsNetworkAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type for AAA Network (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for AAA and ISE server (eg: 1.1.1.1)
-
-	Network string `json:"network,omitempty"` // IP Address for AAA or ISE server (eg: 2.2.2.2)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA Network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1)
+	Network      string `json:"network,omitempty"`      // IP Address for AAA or ISE server (eg: 2.2.2.2)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE Server
 }
 type RequestNetworkSettingsCreateNetworkV2SettingsClientAndEndpointAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type AAA or ISE server (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for ISE serve (eg: 1.1.1.4)
-
-	Network string `json:"network,omitempty"` // IP address for AAA or ISE server (eg: 2.2.2.1)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4)
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server
 }
 type RequestNetworkSettingsUpdateNetworkV2 struct {
 	Settings *RequestNetworkSettingsUpdateNetworkV2Settings `json:"settings,omitempty"` //
 }
 type RequestNetworkSettingsUpdateNetworkV2Settings struct {
-	DhcpServer []string `json:"dhcpServer,omitempty"` // DHCP Server IP (eg: 1.1.1.1)
-
-	DNSServer *RequestNetworkSettingsUpdateNetworkV2SettingsDNSServer `json:"dnsServer,omitempty"` //
-
-	SyslogServer *RequestNetworkSettingsUpdateNetworkV2SettingsSyslogServer `json:"syslogServer,omitempty"` //
-
-	SNMPServer *RequestNetworkSettingsUpdateNetworkV2SettingsSNMPServer `json:"snmpServer,omitempty"` //
-
-	Netflowcollector *RequestNetworkSettingsUpdateNetworkV2SettingsNetflowcollector `json:"netflowcollector,omitempty"` //
-
-	NtpServer []string `json:"ntpServer,omitempty"` // IP address for NTP server (eg: 1.1.1.2)
-
-	Timezone string `json:"timezone,omitempty"` // Input for time zone (eg: Africa/Abidjan)
-
-	MessageOfTheday *RequestNetworkSettingsUpdateNetworkV2SettingsMessageOfTheday `json:"messageOfTheday,omitempty"` //
-
-	NetworkAAA *RequestNetworkSettingsUpdateNetworkV2SettingsNetworkAAA `json:"network_aaa,omitempty"` //
-
+	DhcpServer           []string                                                           `json:"dhcpServer,omitempty"`            // DHCP Server IP (eg: 1.1.1.1)
+	DNSServer            *RequestNetworkSettingsUpdateNetworkV2SettingsDNSServer            `json:"dnsServer,omitempty"`             //
+	SyslogServer         *RequestNetworkSettingsUpdateNetworkV2SettingsSyslogServer         `json:"syslogServer,omitempty"`          //
+	SNMPServer           *RequestNetworkSettingsUpdateNetworkV2SettingsSNMPServer           `json:"snmpServer,omitempty"`            //
+	Netflowcollector     *RequestNetworkSettingsUpdateNetworkV2SettingsNetflowcollector     `json:"netflowcollector,omitempty"`      //
+	NtpServer            []string                                                           `json:"ntpServer,omitempty"`             // IP address for NTP server (eg: 1.1.1.2)
+	Timezone             string                                                             `json:"timezone,omitempty"`              // Input for time zone (eg: Africa/Abidjan)
+	MessageOfTheday      *RequestNetworkSettingsUpdateNetworkV2SettingsMessageOfTheday      `json:"messageOfTheday,omitempty"`       //
+	NetworkAAA           *RequestNetworkSettingsUpdateNetworkV2SettingsNetworkAAA           `json:"network_aaa,omitempty"`           //
 	ClientAndEndpointAAA *RequestNetworkSettingsUpdateNetworkV2SettingsClientAndEndpointAAA `json:"clientAndEndpoint_aaa,omitempty"` //
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsDNSServer struct {
-	DomainName string `json:"domainName,omitempty"` // Domain Name of DHCP (eg; cisco)
-
-	PrimaryIPAddress string `json:"primaryIpAddress,omitempty"` // Primary IP Address for DHCP (eg: 2.2.2.2)
-
+	DomainName         string `json:"domainName,omitempty"`         // Domain Name of DHCP (eg; cisco)
+	PrimaryIPAddress   string `json:"primaryIpAddress,omitempty"`   // Primary IP Address for DHCP (eg: 2.2.2.2)
 	SecondaryIPAddress string `json:"secondaryIpAddress,omitempty"` // Secondary IP Address for DHCP (eg: 3.3.3.3)
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsSyslogServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for syslog server (eg: 4.4.4.4)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for syslog server (eg: 4.4.4.4)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for syslog server (eg: true)
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsSNMPServer struct {
-	IPAddresses []string `json:"ipAddresses,omitempty"` // IP Address for SNMP Server (eg: 4.4.4.1)
-
-	ConfigureDnacIP *bool `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
+	IPAddresses     []string `json:"ipAddresses,omitempty"`     // IP Address for SNMP Server (eg: 4.4.4.1)
+	ConfigureDnacIP *bool    `json:"configureDnacIP,omitempty"` // Configuration DNAC IP for SNMP Server (eg: true)
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsNetflowcollector struct {
-	IPAddress string `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
-
-	Port *float64 `json:"port,omitempty"` // Port for NetFlow Collector (eg; 443)
+	IPAddress string   `json:"ipAddress,omitempty"` // IP Address for NetFlow collector (eg: 3.3.3.1)
+	Port      *float64 `json:"port,omitempty"`      // Port for NetFlow Collector (eg; 443)
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsMessageOfTheday struct {
-	BannerMessage string `json:"bannerMessage,omitempty"` // Massage for Banner message (eg; Good day)
-
+	BannerMessage        string `json:"bannerMessage,omitempty"`        // Massage for Banner message (eg; Good day)
 	RetainExistingBanner string `json:"retainExistingBanner,omitempty"` // Retain existing Banner Message (eg: "true" or "false")
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsNetworkAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type for AAA Network (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for AAA and ISE server (eg: 1.1.1.1)
-
-	Network string `json:"network,omitempty"` // IP Address for AAA or ISE server (eg: 2.2.2.2)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type for AAA Network (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for AAA and ISE server (eg: 1.1.1.1)
+	Network      string `json:"network,omitempty"`      // IP Address for AAA or ISE server (eg: 2.2.2.2)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE Server
 }
 type RequestNetworkSettingsUpdateNetworkV2SettingsClientAndEndpointAAA struct {
-	Servers string `json:"servers,omitempty"` // Server type AAA or ISE server (eg: AAA)
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address for ISE serve (eg: 1.1.1.4)
-
-	Network string `json:"network,omitempty"` // IP address for AAA or ISE server (eg: 2.2.2.1)
-
-	Protocol string `json:"protocol,omitempty"` // Protocol for AAA or ISE serve (eg: RADIUS)
-
+	Servers      string `json:"servers,omitempty"`      // Server type AAA or ISE server (eg: AAA)
+	IPAddress    string `json:"ipAddress,omitempty"`    // IP address for ISE serve (eg: 1.1.1.4)
+	Network      string `json:"network,omitempty"`      // IP address for AAA or ISE server (eg: 2.2.2.1)
+	Protocol     string `json:"protocol,omitempty"`     // Protocol for AAA or ISE serve (eg: RADIUS)
 	SharedSecret string `json:"sharedSecret,omitempty"` // Shared secret for ISE server
 }
 type RequestNetworkSettingsCreateSpProfileV2 struct {
@@ -2130,9 +1572,7 @@ type RequestNetworkSettingsCreateSpProfileV2Settings struct {
 }
 type RequestNetworkSettingsCreateSpProfileV2SettingsQos struct {
 	ProfileName string `json:"profileName,omitempty"` // Profile Name
-
-	Model string `json:"model,omitempty"` // Model
-
+	Model       string `json:"model,omitempty"`       // Model
 	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
 }
 type RequestNetworkSettingsUpdateSpProfileV2 struct {
@@ -2142,12 +1582,9 @@ type RequestNetworkSettingsUpdateSpProfileV2Settings struct {
 	Qos *[]RequestNetworkSettingsUpdateSpProfileV2SettingsQos `json:"qos,omitempty"` //
 }
 type RequestNetworkSettingsUpdateSpProfileV2SettingsQos struct {
-	ProfileName string `json:"profileName,omitempty"` // Profile Name
-
-	Model string `json:"model,omitempty"` // Model
-
-	WanProvider string `json:"wanProvider,omitempty"` // Wan Provider
-
+	ProfileName    string `json:"profileName,omitempty"`    // Profile Name
+	Model          string `json:"model,omitempty"`          // Model
+	WanProvider    string `json:"wanProvider,omitempty"`    // Wan Provider
 	OldProfileName string `json:"oldProfileName,omitempty"` // Old Profile Name
 }
 
@@ -2711,7 +2148,7 @@ func (s *NetworkSettingsService) GetServiceProviderDetails() (*ResponseNetworkSe
 
 @param RetrieveAAASettingsForASiteQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-a-a-a-settings-for-a-site
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-aaa-settings-for-a-site
 */
 func (s *NetworkSettingsService) RetrieveAAASettingsForASite(id string, RetrieveAAASettingsForASiteQueryParams *RetrieveAAASettingsForASiteQueryParams) (*ResponseNetworkSettingsRetrieveAAASettingsForASite, *resty.Response, error) {
 	path := "/dna/intent/api/v1/sites/{id}/aaaSettings"
@@ -2735,7 +2172,7 @@ func (s *NetworkSettingsService) RetrieveAAASettingsForASite(id string, Retrieve
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.RetrieveAAASettingsForASite(id, RetrieveAAASettingsForASiteQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrieveAAASettingsForASite")
+		return nil, response, fmt.Errorf("error with operation RetrieveAaaSettingsForASite")
 	}
 
 	result := response.Result().(*ResponseNetworkSettingsRetrieveAAASettingsForASite)
@@ -3969,7 +3406,7 @@ func (s *NetworkSettingsService) SetAAASettingsForASite(id string, requestNetwor
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.SetAAASettingsForASite(id, requestNetworkSettingsSetAAASettingsForASite)
 		}
-		return nil, response, fmt.Errorf("error with operation SetAAASettingsForASite")
+		return nil, response, fmt.Errorf("error with operation SetAaaSettingsForASite")
 	}
 
 	result := response.Result().(*ResponseNetworkSettingsSetAAASettingsForASite)
@@ -4362,7 +3799,8 @@ func (s *NetworkSettingsService) DeleteDeviceCredential(id string) (*ResponseNet
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceCredential(id)
+			return s.DeleteDeviceCredential(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceCredential")
 	}
@@ -4400,7 +3838,8 @@ func (s *NetworkSettingsService) DeleteGlobalIPPool(id string) (*ResponseNetwork
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteGlobalIPPool(id)
+			return s.DeleteGlobalIPPool(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteGlobalIpPool")
 	}
@@ -4438,7 +3877,8 @@ func (s *NetworkSettingsService) DeleteAGlobalIPAddressPool(id string) (*Respons
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteAGlobalIPAddressPool(id)
+			return s.DeleteAGlobalIPAddressPool(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteAGlobalIpAddressPool")
 	}
@@ -4477,7 +3917,8 @@ func (s *NetworkSettingsService) ReleaseAnIPAddressSubpool(id string) (*Response
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ReleaseAnIPAddressSubpool(id)
+			return s.ReleaseAnIPAddressSubpool(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation ReleaseAnIpAddressSubpool")
 	}
@@ -4515,7 +3956,8 @@ func (s *NetworkSettingsService) ReleaseReserveIPSubpool(id string) (*ResponseNe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.ReleaseReserveIPSubpool(id)
+			return s.ReleaseReserveIPSubpool(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation ReleaseReserveIpSubpool")
 	}
@@ -4553,7 +3995,8 @@ func (s *NetworkSettingsService) DeleteSpProfile(spProfileName string) (*Respons
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteSpProfile(spProfileName)
+			return s.DeleteSpProfile(
+				spProfileName)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteSpProfile")
 	}
@@ -4591,7 +4034,8 @@ func (s *NetworkSettingsService) DeleteSpProfileV2(spProfileName string) (*Respo
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteSpProfileV2(spProfileName)
+			return s.DeleteSpProfileV2(
+				spProfileName)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteSpProfileV2")
 	}

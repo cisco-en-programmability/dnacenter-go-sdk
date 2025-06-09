@@ -6,9 +6,17 @@ import (
 	"strings"
 
 	"github.com/go-resty/resty/v2"
+	"github.com/google/go-querystring/query"
 )
 
 type ItsmIntegrationService service
+
+type GetAllItsmIntegrationSettingsQueryParams struct {
+	PageSize float64 `url:"page_size,omitempty"` //Specifies the number of records to display per page.
+	Page     float64 `url:"page,omitempty"`      //Indicates the current page number to display.
+	SortBy   string  `url:"sortBy,omitempty"`    //The field name used to sort the records.
+	Order    string  `url:"order,omitempty"`     //Specify the sorting order - asc for ascending or desc for descending
+}
 
 type ResponseItsmIntegrationCreateItsmIntegrationSetting struct {
 	ID                 string                                                                   `json:"id,omitempty"`                 // Id
@@ -79,28 +87,27 @@ type ResponseItsmIntegrationGetItsmIntegrationSettingByIDDataConnectionSettings 
 	AuthUserName string `json:"Auth_UserName,omitempty"` // Auth User Name
 	AuthPassword string `json:"Auth_Password,omitempty"` // Auth Password
 }
-type ResponseItsmIntegrationGetAllItsmIntegrationSettings struct { // Array of ResponseItsmIntegrationGetAllITSMIntegrationSettings
-	Page         *int                                                       `json:"page,omitempty"`
-	PageSize     *int                                                       `json:"pageSize,omitempty"`
-	TotalPages   *int                                                       `json:"totalPages,omitempty"`
-	Data         []ResponseItsmIntegrationGetAllItsmIntegrationSettingsData `json:"data,omitempty"`
-	TotalRecords *int                                                       `json:"totalRecords,omitempty"`
+type ResponseItsmIntegrationGetAllItsmIntegrationSettings struct {
+	Page         *int                                                        `json:"page,omitempty"`         // Page
+	PageSize     *int                                                        `json:"pageSize,omitempty"`     // Page Size
+	TotalPages   *int                                                        `json:"totalPages,omitempty"`   // Total Pages
+	Data         *[]ResponseItsmIntegrationGetAllItsmIntegrationSettingsData `json:"data,omitempty"`         //
+	TotalRecords *int                                                        `json:"totalRecords,omitempty"` // Total Records
 }
 type ResponseItsmIntegrationGetAllItsmIntegrationSettingsData struct {
-	TypeID             string                                                                        `json:"_id,omitempty"`
+	TypeID             string                                                                        `json:"_id,omitempty"`                // Deprecated: Should not be used and will be removed in an upcoming release
 	ID                 string                                                                        `json:"id,omitempty"`                 // Id
+	CreatedBy          string                                                                        `json:"createdBy,omitempty"`          // Created By
+	Description        string                                                                        `json:"description,omitempty"`        // Description
 	DypID              string                                                                        `json:"dypId,omitempty"`              // Dyp Id
+	DypMajorVersion    *int                                                                          `json:"dypMajorVersion,omitempty"`    // Dyp Major Version
 	DypName            string                                                                        `json:"dypName,omitempty"`            // Dyp Name
 	Name               string                                                                        `json:"name,omitempty"`               // Name
-	UniqueKey          string                                                                        `json:"uniqueKey,omitempty"`          // Unique Key
-	DypMajorVersion    *int                                                                          `json:"dypMajorVersion,omitempty"`    // Dyp Major Version
-	Description        string                                                                        `json:"description,omitempty"`        // Description
-	CreatedDate        *int                                                                          `json:"createdDate,omitempty"`        // Created Date
-	CreatedBy          string                                                                        `json:"createdBy,omitempty"`          // Created By
-	UpdatedBy          string                                                                        `json:"updatedBy,omitempty"`          // Updated By
-	SoftwareVersionLog *[]ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
 	SchemaVersion      *float64                                                                      `json:"schemaVersion,omitempty"`      // Schema Version
-	TenantID           string                                                                        `json:"tenantId,omitempty"`           // Tenant Id
+	SoftwareVersionLog *[]ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog `json:"softwareVersionLog,omitempty"` // Software Version Log
+	UniqueKey          string                                                                        `json:"uniqueKey,omitempty"`          // Unique Key
+	UpdatedBy          string                                                                        `json:"updatedBy,omitempty"`          // Updated By
+	UpdatedDate        *int                                                                          `json:"updatedDate,omitempty"`        // Updated Date
 }
 type ResponseItsmIntegrationGetAllItsmIntegrationSettingsDataSoftwareVersionLog interface{}
 type ResponseItsmIntegrationGetItsmIntegrationStatus struct {
@@ -187,16 +194,19 @@ func (s *ItsmIntegrationService) GetItsmIntegrationSettingByID(instanceID string
 /* Fetches all ITSM Integration settings
 
 
+@param GetAllITSMIntegrationSettingsQueryParams Filtering parameter
 
 Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-all-itsm-integration-settings
 */
-func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmIntegrationGetAllItsmIntegrationSettings, *resty.Response, error) {
+func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings(GetAllITSMIntegrationSettingsQueryParams *GetAllItsmIntegrationSettingsQueryParams) (*ResponseItsmIntegrationGetAllItsmIntegrationSettings, *resty.Response, error) {
 	path := "/dna/intent/api/v1/integration-settings/itsm/instances"
+
+	queryString, _ := query.Values(GetAllITSMIntegrationSettingsQueryParams)
 
 	response, err := s.client.R().
 		SetHeader("Content-Type", "application/json").
 		SetHeader("Accept", "application/json").
-		SetResult(&ResponseItsmIntegrationGetAllItsmIntegrationSettings{}).
+		SetQueryString(queryString.Encode()).SetResult(&ResponseItsmIntegrationGetAllItsmIntegrationSettings{}).
 		SetError(&Error).
 		Get(path)
 
@@ -207,7 +217,7 @@ func (s *ItsmIntegrationService) GetAllItsmIntegrationSettings() (*ResponseItsmI
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.GetAllItsmIntegrationSettings()
+			return s.GetAllItsmIntegrationSettings(GetAllITSMIntegrationSettingsQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation GetAllItsmIntegrationSettings")
 	}
@@ -351,7 +361,8 @@ func (s *ItsmIntegrationService) DeleteItsmIntegrationSetting(instanceID string)
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteItsmIntegrationSetting(instanceID)
+			return s.DeleteItsmIntegrationSetting(
+				instanceID)
 		}
 		return response, fmt.Errorf("error with operation DeleteItsmIntegrationSetting")
 	}

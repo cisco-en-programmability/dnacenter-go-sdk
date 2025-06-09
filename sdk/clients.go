@@ -19,17 +19,17 @@ type RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilit
 	SortBy                     string  `url:"sortBy,omitempty"`                     //A field within the response to sort by.
 	Order                      string  `url:"order,omitempty"`                      //The sort order of the field ascending or descending.
 	Type                       string  `url:"type,omitempty"`                       //The client device type whether client is connected to network through Wired or Wireless medium.
-	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
-	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
+	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
+	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
 	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*BuildingName*` or `BuildingName*` or `*BuildingName` Examples: `siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2` (multiple siteHierarchy requested)
 	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard (`*`) character-based search.  Ex: `*buildingUuid*` or `buildingUuid*` or `*buildingUuid` Examples: `siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid` (single siteHierarchyId requested) `siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2` (multiple siteHierarchyId requested)
 	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: `siteId=floorUuid` (single siteId requested) `siteId=floorUuid1&siteId=floorUuid2` (multiple siteId requested)
-	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
+	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
 	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*2001:db8*` or `2001:db8*` or `*2001:db8` Examples: `ipv6Address=2001:db8:0:0:0:0:2:1` (single ipv6Address requested) `ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348` (multiple ipv6Address requested)
-	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search. Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*wlc-25*` or `wlc-25*` or `*wlc-25` Examples: `wlcName=wlc-25` (single wlcName requested) `wlcName=wlc-25&wlc-34` (multiple wlcName requested)
 	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*ap-25*` or `ap-25*` or `*ap-25` Examples: `connectedNetworkDeviceName=ap-25` (single connectedNetworkDeviceName requested) `connectedNetworkDeviceName=ap-25&ap-34` (multiple connectedNetworkDeviceName requested)
-	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
+	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
 	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: `band=5GHZ` (single band requested) `band=2.4GHZ&band=6GHZ` (multiple band requested)
 	View                       string  `url:"view,omitempty"`                       //Client related Views Refer to ClientView schema for list of views supported Examples: `view=Wireless` (single view requested) `view=WirelessHealth&view=WirelessTraffic` (multiple view requested)
 	Attribute                  string  `url:"attribute,omitempty"`                  //List of attributes related to resource that can be requested to only be part of the response along with the required attributes. Refer to ClientAttribute schema for list of attributes supported Examples: `attribute=band` (single attribute requested) `attribute=band&attribute=ssid&attribute=overallScore` (multiple attribute requested)
@@ -41,17 +41,17 @@ type RetrievesTheTotalCountOfClientsByApplyingBasicFilteringQueryParams struct {
 	StartTime                  float64 `url:"startTime,omitempty"`                  //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
 	EndTime                    float64 `url:"endTime,omitempty"`                    //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	Type                       string  `url:"type,omitempty"`                       //The client device type whether client is connected to network through Wired or Wireless medium.
-	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
-	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
+	OsType                     string  `url:"osType,omitempty"`                     //Client device operating system type. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*iOS*` or `iOS*` or `*iOS` Examples: `osType=iOS` (single osType requested) `osType=iOS&osType=Android` (multiple osType requested)
+	OsVersion                  string  `url:"osVersion,omitempty"`                  //Client device operating system version This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*14.3*` or `14.3*` or `*14.3` Examples: `osVersion=14.3` (single osVersion requested) `osVersion=14.3&osVersion=10.1` (multiple osVersion requested)
 	SiteHierarchy              string  `url:"siteHierarchy,omitempty"`              //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. "Global/AreaName/BuildingName/FloorName") This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*BuildingName*` or `BuildingName*` or `*BuildingName` Examples: `siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `siteHierarchy=Global/AreaName/BuildingName1/FloorName1&siteHierarchy=Global/AreaName/BuildingName1/FloorName2` (multiple siteHierarchy requested)
 	SiteHierarchyID            string  `url:"siteHierarchyId,omitempty"`            //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. "globalUuid/areaUuid/buildingUuid/floorUuid") This field supports wildcard (`*`) character-based search.  Ex: `*buildingUuid*` or `buildingUuid*` or `*buildingUuid` Examples: `siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid` (single siteHierarchyId requested) `siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid1&siteHierarchyId=globalUuid/areaUuid/buildingUuid1/floorUuid2` (multiple siteHierarchyId requested)
 	SiteID                     string  `url:"siteId,omitempty"`                     //The site UUID without the top level hierarchy. (Ex."floorUuid") Examples: `siteId=floorUuid` (single siteId requested) `siteId=floorUuid1&siteId=floorUuid2` (multiple siteId requested)
-	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search.  Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
+	IPv4Address                string  `url:"ipv4Address,omitempty"`                //IPv4 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*1.1*` or `1.1*` or `*1.1` Examples: `ipv4Address=1.1.1.1` (single ipv4Address requested) `ipv4Address=1.1.1.1&ipv4Address=2.2.2.2` (multiple ipv4Address requested)
 	IPv6Address                string  `url:"ipv6Address,omitempty"`                //IPv6 Address of the network entity either network device or client This field supports wildcard (`*`) character-based search. Ex: `*2001:db8*` or `2001:db8*` or `*2001:db8` Examples: `ipv6Address=2001:db8:0:0:0:0:2:1` (single ipv6Address requested) `ipv6Address=2001:db8:0:0:0:0:2:1&ipv6Address=2001:db8:85a3:8d3:1319:8a2e:370:7348` (multiple ipv6Address requested)
-	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search.  Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
+	MacAddress                 string  `url:"macAddress,omitempty"`                 //The macAddress of the network device or client This field supports wildcard (`*`) character-based search. Ex: `*AB:AB:AB*` or `AB:AB:AB*` or `*AB:AB:AB` Examples: `macAddress=AB:AB:AB:CD:CD:CD` (single macAddress requested) `macAddress=AB:AB:AB:CD:CD:DC&macAddress=AB:AB:AB:CD:CD:FE` (multiple macAddress requested)
 	WlcName                    string  `url:"wlcName,omitempty"`                    //Wireless Controller name that reports the wireless client. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*wlc-25*` or `wlc-25*` or `*wlc-25` Examples: `wlcName=wlc-25` (single wlcName requested) `wlcName=wlc-25&wlc-34` (multiple wlcName requested)
 	ConnectedNetworkDeviceName string  `url:"connectedNetworkDeviceName,omitempty"` //Name of the neighbor network device that client is connected to. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*ap-25*` or `ap-25*` or `*ap-25` Examples: `connectedNetworkDeviceName=ap-25` (single connectedNetworkDeviceName requested) `connectedNetworkDeviceName=ap-25&ap-34` (multiple connectedNetworkDeviceName requested)
-	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search.  Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
+	SSID                       string  `url:"ssid,omitempty"`                       //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the value contains the (`*`) character, please use the /query API for regex search. Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
 	Band                       string  `url:"band,omitempty"`                       //WiFi frequency band that client or Access Point operates. Band value is represented in Giga Hertz - GHz Examples: `band=5GHZ` (single band requested) `band=2.4GHZ&band=6GHZ` (multiple band requested)
 }
 type RetrievesTheTotalCountOfClientsByApplyingBasicFilteringHeaderParams struct {
@@ -90,6 +90,55 @@ type RetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeHeaderParams st
 	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
 	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
+type GetClientsEnergyQueryParams struct {
+	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	Limit             float64 `url:"limit,omitempty"`             //Maximum number of records to return
+	Cursor            string  `url:"cursor,omitempty"`            //It's an opaque string field that indicates the next record in the requested collection. If no records remain, the API returns a response with a count of zero. The default value is an empty string, and the initial value must be an empty string. The cursor value is populated by the API in the response page block. If the user wants more records, the cursor in the subsequent request must be updated with the value from the previous response.
+	SortBy            string  `url:"sortBy,omitempty"`            //A field within the response to sort by.
+	Order             string  `url:"order,omitempty"`             //The sort order of the field ascending or descending.
+	ID                string  `url:"id,omitempty"`                //The list of Mac addresses (e.g., `54:9F:C6:43:FF:80`). Examples: `id=54:9F:C6:43:FF:80` (single device requested) `id=54:9F:C6:43:FF:80&id=01:23:45:67:89:AB`
+	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	SiteHierarchy     string  `url:"siteHierarchy,omitempty"`     //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	DeviceCategory    string  `url:"deviceCategory,omitempty"`    //The list of device deviceCategories. Examples: `deviceCategory=AccessPoint` (single device family requested) `deviceCategory=AccessPoint&deviceCategory=OtherPOEDevice` (multiple device categories with comma separator)
+	DeviceSubCategory string  `url:"deviceSubCategory,omitempty"` //The list of device sub categories. Examples: `deviceSubCategory=IP Phone 7821` (single sub category requested) `deviceSubCategory=IP Phone 7821&deviceSubCategory=IEEE PD`
+	View              string  `url:"view,omitempty"`              //List of views. View and attribute work in union. Each view will include its attributes. For example, view device includes all the attributes related to device. Please refer to `ClientDeviceEnergyView` model for supported list of views Examples: `view=device&view=energy`
+	Attribute         string  `url:"attribute,omitempty"`         //List of attributes. Please refer to `ClientDeviceEnergyAttribute` for supported list of attributes Examples: `attribute=id&attribute=energyConsumed`
+}
+type GetClientsEnergyHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type CountClientsEnergyQueryParams struct {
+	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	ID                string  `url:"id,omitempty"`                //The list of Mac addresses (e.g., `54:9F:C6:43:FF:80`). Examples: `id=54:9F:C6:43:FF:80` (single device requested) `id=54:9F:C6:43:FF:80&id=01:23:45:67:89:AB`
+	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	SiteHierarchy     string  `url:"siteHierarchy,omitempty"`     //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	DeviceCategory    string  `url:"deviceCategory,omitempty"`    //The list of device deviceCategories. Examples: `deviceCategory=AccessPoint` (single device family requested) `deviceCategory=AccessPoint&deviceCategory=OtherPOEDevice` (multiple device categories with comma separator)
+	DeviceSubCategory string  `url:"deviceSubCategory,omitempty"` //The list of device sub categories. Examples: `deviceSubCategory=IP Phone 7821` (single sub category requested) `deviceSubCategory=IP Phone 7821&deviceSubCategory=IEEE PD`
+}
+type CountClientsEnergyHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type QueryClientsEnergyHeaderParams struct {
+	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
+	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type CountClientsEnergyFromQueryHeaderParams struct {
+	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
+	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type GetClientEnergyByIDQueryParams struct {
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	View      string  `url:"view,omitempty"`      //List of views. View and attribute work in union. Each view will include its attributes. For example, view device includes all the attributes related to device. Please refer to `ClientDeviceEnergyView` model for supported list of views Examples: `view=device&view=energy`
+	Attribute string  `url:"attribute,omitempty"` //List of attributes. Please refer to `ClientDeviceEnergyAttribute` for supported list of attributes Examples: `attribute=id&attribute=energyConsumed`
+}
+type GetClientEnergyByIDHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
 type GetClientDetailQueryParams struct {
 	MacAddress string  `url:"macAddress,omitempty"` //MAC Address of the client
 	Timestamp  float64 `url:"timestamp,omitempty"`  //Epoch time(in milliseconds) when the Client health data is required
@@ -98,7 +147,7 @@ type GetClientEnrichmentDetailsHeaderParams struct {
 	EntityType        string `url:"entity_type,omitempty"`         //Expects type string. Client enrichment details can be fetched based on either User ID or Client MAC address. This parameter value must either be network_user_id/mac_address
 	EntityValue       string `url:"entity_value,omitempty"`        //Expects type string. Contains the actual value for the entity type that has been defined
 	IssueCategory     string `url:"issueCategory,omitempty"`       //Expects type string. The category of the DNA event based on which the underlying issues need to be fetched
-	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool.
+	Persistbapioutput string `url:"__persistbapioutput,omitempty"` //Expects type bool. For the enrichment details to be made available as part of the API response, this header must be set to true. This header must be explicitly passed when called from client applications outside Catalyst Center
 }
 type GetOverallClientHealthQueryParams struct {
 	Timestamp float64 `url:"timestamp,omitempty"` //Epoch time(in milliseconds) when the Client health data is required
@@ -665,6 +714,106 @@ type ResponseClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime
 	Cursor        string `json:"cursor,omitempty"`        // Cursor
 	Count         *int   `json:"count,omitempty"`         // Count
 	TimeSortOrder string `json:"timeSortOrder,omitempty"` // Time Sort Order
+}
+type ResponseClientsGetClientsEnergy struct {
+	Response *[]ResponseClientsGetClientsEnergyResponse `json:"response,omitempty"` //
+	Page     *ResponseClientsGetClientsEnergyPage       `json:"page,omitempty"`     //
+	Version  string                                     `json:"version,omitempty"`  // Version
+}
+type ResponseClientsGetClientsEnergyResponse struct {
+	ID                     string   `json:"id,omitempty"`                     // Id
+	DeviceName             string   `json:"deviceName,omitempty"`             // Device Name
+	DeviceCategory         string   `json:"deviceCategory,omitempty"`         // Device Category
+	DeviceSubCategory      string   `json:"deviceSubCategory,omitempty"`      // Device Sub Category
+	SiteID                 string   `json:"siteId,omitempty"`                 // Site Id
+	SiteHierarchy          string   `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	SiteHierarchyID        string   `json:"siteHierarchyId,omitempty"`        // Site Hierarchy Id
+	EnergyConsumed         *float64 `json:"energyConsumed,omitempty"`         // Energy Consumed
+	EstimatedCost          *float64 `json:"estimatedCost,omitempty"`          // Estimated Cost
+	EstimatedEmission      *float64 `json:"estimatedEmission,omitempty"`      // Estimated Emission
+	CarbonIntensity        *float64 `json:"carbonIntensity,omitempty"`        // Carbon Intensity
+	ConnectedDeviceName    string   `json:"connectedDeviceName,omitempty"`    // Connected Device Name
+	ConnectedInterfaceName string   `json:"connectedInterfaceName,omitempty"` // Connected Interface Name
+}
+type ResponseClientsGetClientsEnergyPage struct {
+	Limit  *int                                         `json:"limit,omitempty"`  // Limit
+	Cursor string                                       `json:"cursor,omitempty"` // Cursor
+	Count  *int                                         `json:"count,omitempty"`  // Count
+	SortBy *[]ResponseClientsGetClientsEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type ResponseClientsGetClientsEnergyPageSortBy struct {
+	Name  string `json:"name,omitempty"`  // Name
+	Order string `json:"order,omitempty"` // Order
+}
+type ResponseClientsCountClientsEnergy struct {
+	Response *ResponseClientsCountClientsEnergyResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  // Version
+}
+type ResponseClientsCountClientsEnergyResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseClientsQueryClientsEnergy struct {
+	Response *[]ResponseClientsQueryClientsEnergyResponse `json:"response,omitempty"` //
+	Page     *ResponseClientsQueryClientsEnergyPage       `json:"page,omitempty"`     //
+	Version  string                                       `json:"version,omitempty"`  // Version
+}
+type ResponseClientsQueryClientsEnergyResponse struct {
+	ID                     string                                                          `json:"id,omitempty"`                     // Id
+	DeviceName             string                                                          `json:"deviceName,omitempty"`             // Device Name
+	DeviceCategory         string                                                          `json:"deviceCategory,omitempty"`         // Device Category
+	DeviceSubCategory      string                                                          `json:"deviceSubCategory,omitempty"`      // Device Sub Category
+	SiteID                 string                                                          `json:"siteId,omitempty"`                 // Site Id
+	SiteHierarchy          string                                                          `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	SiteHierarchyID        string                                                          `json:"siteHierarchyId,omitempty"`        // Site Hierarchy Id
+	EnergyConsumed         *float64                                                        `json:"energyConsumed,omitempty"`         // Energy Consumed
+	EstimatedCost          *float64                                                        `json:"estimatedCost,omitempty"`          // Estimated Cost
+	EstimatedEmission      *float64                                                        `json:"estimatedEmission,omitempty"`      // Estimated Emission
+	CarbonIntensity        *float64                                                        `json:"carbonIntensity,omitempty"`        // Carbon Intensity
+	ConnectedDeviceName    string                                                          `json:"connectedDeviceName,omitempty"`    // Connected Device Name
+	ConnectedInterfaceName string                                                          `json:"connectedInterfaceName,omitempty"` // Connected Interface Name
+	AggregateAttributes    *[]ResponseClientsQueryClientsEnergyResponseAggregateAttributes `json:"aggregateAttributes,omitempty"`    //
+}
+type ResponseClientsQueryClientsEnergyResponseAggregateAttributes struct {
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
+}
+type ResponseClientsQueryClientsEnergyPage struct {
+	Limit  *int                                           `json:"limit,omitempty"`  // Limit
+	Cursor string                                         `json:"cursor,omitempty"` // Cursor
+	Count  *int                                           `json:"count,omitempty"`  // Count
+	SortBy *[]ResponseClientsQueryClientsEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type ResponseClientsQueryClientsEnergyPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
+type ResponseClientsCountClientsEnergyFromQuery struct {
+	Response *ResponseClientsCountClientsEnergyFromQueryResponse `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseClientsCountClientsEnergyFromQueryResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseClientsGetClientEnergyByID struct {
+	Response *ResponseClientsGetClientEnergyByIDResponse `json:"response,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  // Version
+}
+type ResponseClientsGetClientEnergyByIDResponse struct {
+	ID                     string   `json:"id,omitempty"`                     // Id
+	DeviceName             string   `json:"deviceName,omitempty"`             // Device Name
+	DeviceCategory         string   `json:"deviceCategory,omitempty"`         // Device Category
+	DeviceSubCategory      string   `json:"deviceSubCategory,omitempty"`      // Device Sub Category
+	SiteID                 string   `json:"siteId,omitempty"`                 // Site Id
+	SiteHierarchy          string   `json:"siteHierarchy,omitempty"`          // Site Hierarchy
+	SiteHierarchyID        string   `json:"siteHierarchyId,omitempty"`        // Site Hierarchy Id
+	EnergyConsumed         *float64 `json:"energyConsumed,omitempty"`         // Energy Consumed
+	EstimatedCost          *float64 `json:"estimatedCost,omitempty"`          // Estimated Cost
+	EstimatedEmission      *float64 `json:"estimatedEmission,omitempty"`      // Estimated Emission
+	CarbonIntensity        *float64 `json:"carbonIntensity,omitempty"`        // Carbon Intensity
+	ConnectedDeviceName    string   `json:"connectedDeviceName,omitempty"`    // Connected Device Name
+	ConnectedInterfaceName string   `json:"connectedInterfaceName,omitempty"` // Connected Interface Name
 }
 type ResponseClientsGetClientDetail struct {
 	Detail         *ResponseClientsGetClientDetailDetail         `json:"detail,omitempty"`         //
@@ -1263,6 +1412,70 @@ type RequestClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTimeP
 	Cursor        string `json:"cursor,omitempty"`        // Cursor
 	TimeSortOrder string `json:"timeSortOrder,omitempty"` // Time Sort Order
 }
+type RequestClientsQueryClientsEnergy struct {
+	StartTime           *int                                                   `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                   `json:"endTime,omitempty"`             // End Time
+	Filters             *[]RequestClientsQueryClientsEnergyFilters             `json:"filters,omitempty"`             //
+	Views               []string                                               `json:"views,omitempty"`               // Views
+	Attributes          []string                                               `json:"attributes,omitempty"`          // Attributes
+	AggregateAttributes *[]RequestClientsQueryClientsEnergyAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	Page                *RequestClientsQueryClientsEnergyPage                  `json:"page,omitempty"`                //
+}
+type RequestClientsQueryClientsEnergyFilters struct {
+	LogicalOperator string                                            `json:"logicalOperator,omitempty"` // Logical Operator
+	Filters         *[]RequestClientsQueryClientsEnergyFiltersFilters `json:"filters,omitempty"`         //
+}
+type RequestClientsQueryClientsEnergyFiltersFilters struct {
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
+}
+type RequestClientsQueryClientsEnergyAggregateAttributes struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestClientsQueryClientsEnergyPage struct {
+	Limit  *int                                          `json:"limit,omitempty"`  // Limit
+	Cursor string                                        `json:"cursor,omitempty"` // Cursor
+	SortBy *[]RequestClientsQueryClientsEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type RequestClientsQueryClientsEnergyPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestClientsCountClientsEnergyFromQuery struct {
+	StartTime           *int                                                            `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                            `json:"endTime,omitempty"`             // End Time
+	Filters             *[]RequestClientsCountClientsEnergyFromQueryFilters             `json:"filters,omitempty"`             //
+	Views               []string                                                        `json:"views,omitempty"`               // Views
+	Attributes          []string                                                        `json:"attributes,omitempty"`          // Attributes
+	AggregateAttributes *[]RequestClientsCountClientsEnergyFromQueryAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	Page                *RequestClientsCountClientsEnergyFromQueryPage                  `json:"page,omitempty"`                //
+}
+type RequestClientsCountClientsEnergyFromQueryFilters struct {
+	LogicalOperator string                                                     `json:"logicalOperator,omitempty"` // Logical Operator
+	Filters         *[]RequestClientsCountClientsEnergyFromQueryFiltersFilters `json:"filters,omitempty"`         //
+}
+type RequestClientsCountClientsEnergyFromQueryFiltersFilters struct {
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
+}
+type RequestClientsCountClientsEnergyFromQueryAggregateAttributes struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestClientsCountClientsEnergyFromQueryPage struct {
+	Limit  *int                                                   `json:"limit,omitempty"`  // Limit
+	Offset *int                                                   `json:"offset,omitempty"` // Offset
+	SortBy *[]RequestClientsCountClientsEnergyFromQueryPageSortBy `json:"sortBy,omitempty"` //
+}
+type RequestClientsCountClientsEnergyFromQueryPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
 
 //RetrievesTheListOfClientsWhileAlsoOfferingBasicFilteringAndSortingCapabilities Retrieves the list of clients, while also offering basic filtering and sorting capabilities. - ecb7-ab7e-47eb-8793
 /* Retrieves the list of clients, while also offering basic filtering and sorting capabilities. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-clients1-1.0.0-resolved.yaml
@@ -1413,6 +1626,161 @@ func (s *ClientsService) RetrievesSpecificClientInformationMatchingTheMacaddress
 	}
 
 	result := response.Result().(*ResponseClientsRetrievesSpecificClientInformationMatchingTheMacaddress)
+	return result, response, err
+
+}
+
+//GetClientsEnergy Get clients energy - a2a3-4b20-4fe8-9bfd
+/* Retrieves a list of client devices with energy data based on the specified query parameters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param GetClientsEnergyHeaderParams Custom header parameters
+@param GetClientsEnergyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-clients-energy
+*/
+func (s *ClientsService) GetClientsEnergy(GetClientsEnergyHeaderParams *GetClientsEnergyHeaderParams, GetClientsEnergyQueryParams *GetClientsEnergyQueryParams) (*ResponseClientsGetClientsEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/clients"
+
+	queryString, _ := query.Values(GetClientsEnergyQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetClientsEnergyHeaderParams != nil {
+
+		if GetClientsEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetClientsEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseClientsGetClientsEnergy{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetClientsEnergy(GetClientsEnergyHeaderParams, GetClientsEnergyQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetClientsEnergy")
+	}
+
+	result := response.Result().(*ResponseClientsGetClientsEnergy)
+	return result, response, err
+
+}
+
+//CountClientsEnergy Count clients energy - b28b-2962-403b-b688
+/* Retrieves the total count of client devices that provide energy data, filtered according to the specified query parameters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param CountClientsEnergyHeaderParams Custom header parameters
+@param CountClientsEnergyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-clients-energy
+*/
+func (s *ClientsService) CountClientsEnergy(CountClientsEnergyHeaderParams *CountClientsEnergyHeaderParams, CountClientsEnergyQueryParams *CountClientsEnergyQueryParams) (*ResponseClientsCountClientsEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/clients/count"
+
+	queryString, _ := query.Values(CountClientsEnergyQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if CountClientsEnergyHeaderParams != nil {
+
+		if CountClientsEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", CountClientsEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseClientsCountClientsEnergy{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountClientsEnergy(CountClientsEnergyHeaderParams, CountClientsEnergyQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountClientsEnergy")
+	}
+
+	result := response.Result().(*ResponseClientsCountClientsEnergy)
+	return result, response, err
+
+}
+
+//GetClientEnergyByID Get client energy by ID - b69f-fad9-45fa-94f4
+/* Retrieves client device energy data for a specified time range based on the client ID. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param id id path parameter. Mac address of a client device (e.g., 54:9F:C6:43:FF:80). It can be specified is any notational conventions
+
+  01:23:45:67:89:AB or 01-23-45-67-89-AB or 0123.4567.89AB and is case insensitive.
+
+@param GetClientEnergyByIDHeaderParams Custom header parameters
+@param GetClientEnergyByIDQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-client-energy-by-id
+*/
+func (s *ClientsService) GetClientEnergyByID(id string, GetClientEnergyByIDHeaderParams *GetClientEnergyByIDHeaderParams, GetClientEnergyByIDQueryParams *GetClientEnergyByIDQueryParams) (*ResponseClientsGetClientEnergyByID, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/clients/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(GetClientEnergyByIDQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetClientEnergyByIDHeaderParams != nil {
+
+		if GetClientEnergyByIDHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetClientEnergyByIDHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseClientsGetClientEnergyByID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetClientEnergyByID(id, GetClientEnergyByIDHeaderParams, GetClientEnergyByIDQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetClientEnergyById")
+	}
+
+	result := response.Result().(*ResponseClientsGetClientEnergyByID)
 	return result, response, err
 
 }
@@ -1886,6 +2254,106 @@ func (s *ClientsService) RetrievesSpecificClientInformationOverASpecifiedPeriodO
 	}
 
 	result := response.Result().(*ResponseClientsRetrievesSpecificClientInformationOverASpecifiedPeriodOfTime)
+	return result, response, err
+
+}
+
+//QueryClientsEnergy Query clients energy - 3d9c-da44-4a6a-951e
+/* Retrieves a list of client devices along with their energy data for a specified time range, based on the filters provided in the request body. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param QueryClientsEnergyHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-clients-energy
+*/
+func (s *ClientsService) QueryClientsEnergy(requestClientsQueryClientsEnergy *RequestClientsQueryClientsEnergy, QueryClientsEnergyHeaderParams *QueryClientsEnergyHeaderParams) (*ResponseClientsQueryClientsEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/clients/query"
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if QueryClientsEnergyHeaderParams != nil {
+
+		if QueryClientsEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", QueryClientsEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestClientsQueryClientsEnergy).
+		SetResult(&ResponseClientsQueryClientsEnergy{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.QueryClientsEnergy(requestClientsQueryClientsEnergy, QueryClientsEnergyHeaderParams)
+		}
+
+		return nil, response, fmt.Errorf("error with operation QueryClientsEnergy")
+	}
+
+	result := response.Result().(*ResponseClientsQueryClientsEnergy)
+	return result, response, err
+
+}
+
+//CountClientsEnergyFromQuery Count clients energy from query - 5498-59c5-4508-97da
+/* Retrieves the total count of client devices based on the specified complex filters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param CountClientsEnergyFromQueryHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-clients-energy-from-query
+*/
+func (s *ClientsService) CountClientsEnergyFromQuery(requestClientsCountClientsEnergyFromQuery *RequestClientsCountClientsEnergyFromQuery, CountClientsEnergyFromQueryHeaderParams *CountClientsEnergyFromQueryHeaderParams) (*ResponseClientsCountClientsEnergyFromQuery, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/clients/query/count"
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if CountClientsEnergyFromQueryHeaderParams != nil {
+
+		if CountClientsEnergyFromQueryHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", CountClientsEnergyFromQueryHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestClientsCountClientsEnergyFromQuery).
+		SetResult(&ResponseClientsCountClientsEnergyFromQuery{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountClientsEnergyFromQuery(requestClientsCountClientsEnergyFromQuery, CountClientsEnergyFromQueryHeaderParams)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CountClientsEnergyFromQuery")
+	}
+
+	result := response.Result().(*ResponseClientsCountClientsEnergyFromQuery)
 	return result, response, err
 
 }

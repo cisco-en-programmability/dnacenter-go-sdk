@@ -19,7 +19,7 @@ type RetrievesTheListOfAAAServicesForGivenParametersQueryParams struct {
 	SortBy                string  `url:"sortBy,omitempty"`                //Field name on which sorting needs to be done
 	Order                 string  `url:"order,omitempty"`                 //The sort order of the field ascending or descending.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the AAA Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceName            string  `url:"deviceName,omitempty"`            //Name of the device. This parameter supports wildcard (`*`) character -based search. Example: `wnbu-sjc*` or `*wnbu-sjc*` or `*wnbu-sjc` Examples: deviceName=wnbu-sjc24.cisco.com (single device name is requested) deviceName=wnbu-sjc24.cisco.com&deviceName=wnbu-sjc22.cisco.com (multiple device names are requested)
 	SiteHierarchy         string  `url:"siteHierarchy,omitempty"`         //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -32,7 +32,7 @@ type RetrievesTheTotalNumberOfAAAServicesForGivenParametersQueryParams struct {
 	StartTime             float64 `url:"startTime,omitempty"`             //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	EndTime               float64 `url:"endTime,omitempty"`               //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the AAA Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceName            string  `url:"deviceName,omitempty"`            //Name of the device. This parameter supports wildcard (`*`) character -based search. Example: `wnbu-sjc*` or `*wnbu-sjc*` or `*wnbu-sjc` Examples: deviceName=wnbu-sjc24.cisco.com (single device name is requested) deviceName=wnbu-sjc24.cisco.com&deviceName=wnbu-sjc22.cisco.com (multiple device names are requested)
 	DeviceSiteHierarchy   string  `url:"deviceSiteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?deviceSiteHierarchy=Global/AreaName/BuildingName/FloorName&deviceSiteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -84,8 +84,8 @@ type QueryAssuranceEventsQueryParams struct {
 	NetworkDeviceID   string  `url:"networkDeviceId,omitempty"`   //The list of Network Device Uuids. (Ex. `6bef213c-19ca-4170-8375-b694e251101c`) Examples: `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c` (single networkDeviceId requested) `networkDeviceId=6bef213c-19ca-4170-8375-b694e251101c&networkDeviceId=32219612-819e-4b5e-a96b-cf22aca13dd9&networkDeviceId=2541e9a7-b80d-4955-8aa2-79b233318ba0` (multiple networkDeviceId with & separator)
 	ApMac             string  `url:"apMac,omitempty"`             //MAC address of the access point. This parameter is applicable for `Unified AP` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*50:0F*` or `50:0F*` or `*50:0F` Examples: `apMac=50:0F:80:0F:F7:E0` (single apMac requested) `apMac=50:0F:80:0F:F7:E0&apMac=18:80:90:AB:7E:A0` (multiple apMac requested)
 	ClientMac         string  `url:"clientMac,omitempty"`         //MAC address of the client. This parameter is applicable for `Wired Client` and `Wireless Client` events. This field supports wildcard (`*`) character-based search. Ex: `*66:2B*` or `66:2B*` or `*66:2B` Examples: `clientMac=66:2B:B8:D2:01:56` (single clientMac requested) `clientMac=66:2B:B8:D2:01:56&clientMac=DC:A6:32:F5:5A:89` (multiple clientMac requested)
-	Attribute         string  `url:"attribute,omitempty"`         //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.  Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
-	View              string  `url:"view,omitempty"`              //The list of events views. Please refer to `EventViews` for the supported list  Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
+	Attribute         string  `url:"attribute,omitempty"`         //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.   Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
+	View              string  `url:"view,omitempty"`              //The list of events views. Please refer to `EventViews` for the supported list   Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
 	Offset            float64 `url:"offset,omitempty"`            //Specifies the starting point within all records returned by the API. It's one based offset. The starting value is 1.
 	Limit             float64 `url:"limit,omitempty"`             //Maximum number of records to return
 	SortBy            string  `url:"sortBy,omitempty"`            //A field within the response to sort by.
@@ -119,8 +119,8 @@ type CountTheNumberOfEventsWithFiltersHeaderParams struct {
 	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type GetDetailsOfASingleAssuranceEventQueryParams struct {
-	Attribute string `url:"attribute,omitempty"` //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.  Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
-	View      string `url:"view,omitempty"`      //The list of events views. Please refer to `EventViews` for the supported list  Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
+	Attribute string `url:"attribute,omitempty"` //The list of attributes that needs to be included in the response. If this parameter is not provided, then basic attributes (`id`, `name`, `timestamp`, `details`, `messageType`, `siteHierarchyId`, `siteHierarchy`, `deviceFamily`, `networkDeviceId`, `networkDeviceName`, `managementIpAddress`) would be part of the response.   Examples:  `attribute=name` (single attribute requested) `attribute=name&attribute=networkDeviceName` (multiple attribute requested)
+	View      string `url:"view,omitempty"`      //The list of events views. Please refer to `EventViews` for the supported list   Examples:  `view=network` (single view requested) `view=network&view=ap` (multiple view requested)
 }
 type GetDetailsOfASingleAssuranceEventHeaderParams struct {
 	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
@@ -136,7 +136,7 @@ type RetrievesTheListOfDHCPServicesForGivenParametersQueryParams struct {
 	SortBy                string  `url:"sortBy,omitempty"`                //Field name on which sorting needs to be done
 	Order                 string  `url:"order,omitempty"`                 //The sort order of the field ascending or descending.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the DHCP Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceName            string  `url:"deviceName,omitempty"`            //Name of the device. This parameter supports wildcard (`*`) character -based search. Example: `wnbu-sjc*` or `*wnbu-sjc*` or `*wnbu-sjc` Examples: deviceName=wnbu-sjc24.cisco.com (single device name is requested) deviceName=wnbu-sjc24.cisco.com&deviceName=wnbu-sjc22.cisco.com (multiple device names are requested)
 	DeviceSiteHierarchy   string  `url:"deviceSiteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?deviceSiteHierarchy=Global/AreaName/BuildingName/FloorName&deviceSiteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -149,7 +149,7 @@ type RetrievesTheTotalNumberOfDHCPServicesForGivenParametersQueryParams struct {
 	StartTime             float64 `url:"startTime,omitempty"`             //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	EndTime               float64 `url:"endTime,omitempty"`               //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the DHCP Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceName            string  `url:"deviceName,omitempty"`            //Name of the device. This parameter supports wildcard (`*`) character -based search. Example: `wnbu-sjc*` or `*wnbu-sjc*` or `*wnbu-sjc` Examples: deviceName=wnbu-sjc24.cisco.com (single device name is requested) deviceName=wnbu-sjc24.cisco.com&deviceName=wnbu-sjc22.cisco.com (multiple device names are requested)
 	DeviceSiteHierarchy   string  `url:"deviceSiteHierarchy,omitempty"`   //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?deviceSiteHierarchy=Global/AreaName/BuildingName/FloorName&deviceSiteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -197,7 +197,7 @@ type RetrievesTheListOfDNSServicesForGivenParametersQueryParams struct {
 	SortBy                string  `url:"sortBy,omitempty"`                //Field name on which sorting needs to be done
 	Order                 string  `url:"order,omitempty"`                 //The sort order of the field ascending or descending.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the DNS Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
 	DeviceSiteID          string  `url:"deviceSiteId,omitempty"`          //The UUID of the site. (Ex. `flooruuid`) Examples: `?deviceSiteIds=id1` (single id requested) `?deviceSiteIds=id1&deviceSiteIds=id2&siteId=id3` (multiple ids requested)
 	SSID                  string  `url:"ssid,omitempty"`                  //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the field contains the (`*`) character, please use the /query API for search. Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
@@ -209,7 +209,7 @@ type RetrievesTheTotalNumberOfDNSServicesForGivenParametersQueryParams struct {
 	StartTime             float64 `url:"startTime,omitempty"`             //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	EndTime               float64 `url:"endTime,omitempty"`               //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive.
 	ServerIP              string  `url:"serverIp,omitempty"`              //IP Address of the DNS Server. This parameter supports wildcard (`*`) character -based search. Example: `10.76.81.*` or `*56.78*` or `*50.28` Examples: serverIp=10.42.3.31 (single IP Address is requested) serverIp=10.42.3.31&serverIp=name2&fabricVnName=name3 (multiple IP Addresses are requested)
-	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.   Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
+	DeviceID              string  `url:"deviceId,omitempty"`              //The device UUID.    Examples:  `deviceId=6bef213c-19ca-4170-8375-b694e251101c` (single deviceId is requested)  `deviceId=6bef213c-19ca-4170-8375-b694e251101c&deviceId=32219612-819e-4b5e-a96b-cf22aca13dd9 (multiple networkDeviceIds with & separator)
 	DeviceSiteHierarchyID string  `url:"deviceSiteHierarchyId,omitempty"` //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?deviceSiteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&deviceSiteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
 	DeviceSiteID          string  `url:"deviceSiteId,omitempty"`          //The UUID of the site. (Ex. `flooruuid`) Examples: `?deviceSiteIds=id1` (single id requested) `?deviceSiteIds=id1&deviceSiteIds=id2&siteId=id3` (multiple ids requested)
 	SSID                  string  `url:"ssid,omitempty"`                  //SSID is the name of wireless network to which client connects to. It is also referred to as WLAN ID - Wireless Local Area Network Identifier. This field supports wildcard (`*`) character-based search. If the field contains the (`*`) character, please use the /query API for search. Ex: `*Alpha*` or `Alpha*` or `*Alpha` Examples: `ssid=Alpha` (single ssid requested) `ssid=Alpha&ssid=Guest` (multiple ssid requested)
@@ -247,6 +247,55 @@ type RetrievesTheDetailsOfASpecificDNSServiceMatchingTheIDOfTheServiceHeaderPara
 type GetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceHeaderParams struct {
 	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
 	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type GetDevicesEnergyQueryParams struct {
+	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	Limit             float64 `url:"limit,omitempty"`             //Maximum number of records to return
+	Cursor            string  `url:"cursor,omitempty"`            //It's an opaque string field that indicates the next record in the requested collection. If no records remain, the API returns a response with a count of zero. The default value is an empty string, and the initial value must be an empty string. The cursor value is populated by the API in the response page block. If the user wants more records, the cursor in the subsequent request must be updated with the value from the previous response.
+	SortBy            string  `url:"sortBy,omitempty"`            //A field within the response to sort by.
+	Order             string  `url:"order,omitempty"`             //The sort order of the field ascending or descending.
+	ID                string  `url:"id,omitempty"`                //The list of Device Uuids (e.g., `6bef213c-19ca-4170-8375-b694e251101c`). Examples: `id=6bef213c-19ca-4170-8375-b694e251101c` (single device requested) `id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9`
+	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	SiteHierarchy     string  `url:"siteHierarchy,omitempty"`     //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	DeviceCategory    string  `url:"deviceCategory,omitempty"`    //The list of device deviceCategories. Examples: `deviceCategory=Switch` (single device family requested) `deviceCategory=Switch&deviceCategory=Router` (multiple device categories with comma separator)
+	DeviceSubCategory string  `url:"deviceSubCategory,omitempty"` //The list of device sub categories. Examples: `deviceSubCategory=Cisco Catalyst 9300 Series Switches` (single device family requested) `deviceSubCategory=Cisco Catalyst 9300 Series Switches&deviceSubCategory=Cisco Catalyst 9400 Series Switches`
+	View              string  `url:"view,omitempty"`              //List of views. View and attribute work in union. Each view will include its attributes. For example, view device includes all the attributes related to device. Please refer to `NetworkDeviceEnergyView` model for supported list of views Examples: `view=device&view=energy`
+	Attribute         string  `url:"attribute,omitempty"`         //List of attributes. Please refer to `NetworkDeviceEnergyAttribute` for supported list of attributes Examples: `attribute=id&attribute=energyConsumed`
+}
+type GetDevicesEnergyHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type CountDevicesEnergyQueryParams struct {
+	StartTime         float64 `url:"startTime,omitempty"`         //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime           float64 `url:"endTime,omitempty"`           //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	ID                string  `url:"id,omitempty"`                //The list of Device Uuids (e.g., `6bef213c-19ca-4170-8375-b694e251101c`). Examples: `id=6bef213c-19ca-4170-8375-b694e251101c` (single device requested) `id=6bef213c-19ca-4170-8375-b694e251101c&id=32219612-819e-4b5e-a96b-cf22aca13dd9`
+	SiteID            string  `url:"siteId,omitempty"`            //The UUID of the site. (Ex. `flooruuid`) Examples: `?siteId=id1` (single id requested) `?siteId=id1&siteId=id2&siteId=id3` (multiple ids requested)
+	SiteHierarchy     string  `url:"siteHierarchy,omitempty"`     //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (`*`) character search support. E.g. `*/San*, */San, /San*` Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
+	SiteHierarchyID   string  `url:"siteHierarchyId,omitempty"`   //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (`*`) character search support. E.g. `*uuid*, *uuid, uuid*` Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
+	DeviceCategory    string  `url:"deviceCategory,omitempty"`    //The list of device deviceCategories. Examples: `deviceCategory=Switch` (single device family requested) `deviceCategory=Switch&deviceCategory=Router` (multiple device categories with comma separator)
+	DeviceSubCategory string  `url:"deviceSubCategory,omitempty"` //The list of device sub categories. Examples: `deviceSubCategory=Cisco Catalyst 9300 Series Switches` (single device family requested) `deviceSubCategory=Cisco Catalyst 9300 Series Switches&deviceSubCategory=Cisco Catalyst 9400 Series Switches`
+}
+type CountDevicesEnergyHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type QueryDevicesEnergyHeaderParams struct {
+	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
+	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type CountDevicesEnergyFromQueryHeaderParams struct {
+	ContentType string `url:"Content-Type,omitempty"` //Expects type string. Request body content type
+	XCaLLERID   string `url:"X-CALLER-ID,omitempty"`  //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
+}
+type GetDeviceEnergyByIDQueryParams struct {
+	StartTime float64 `url:"startTime,omitempty"` //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to one day before `endTime`.
+	EndTime   float64 `url:"endTime,omitempty"`   //End time to which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `endTime` is not provided, API will default to one day after `startTime`. If `startTime` is not provided either, API will default to current time.
+	View      string  `url:"view,omitempty"`      //List of views. View and attribute work in union. Each view will include its attributes. For example, view device includes all the attributes related to device. Please refer to `NetworkDeviceEnergyView` model for supported list of views Examples: `view=device&view=energy`
+	Attribute string  `url:"attribute,omitempty"` //List of attributes. Please refer to `NetworkDeviceEnergyAttribute` for supported list of attributes Examples: `attribute=id&attribute=energyConsumed`
+}
+type GetDeviceEnergyByIDHeaderParams struct {
+	XCaLLERID string `url:"X-CALLER-ID,omitempty"` //Expects type string. Caller ID is used to trace the origin of API calls and their associated queries executed on the database. It's an optional header parameter that can be added to an API request.
 }
 type GetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevicesQueryParams struct {
 	StartTime               float64 `url:"startTime,omitempty"`               //Start time from which API queries the data set related to the resource. It must be specified in UNIX epochtime in milliseconds. Value is inclusive. If `startTime` is not provided, API will default to current time.
@@ -411,40 +460,40 @@ type ClearMacAddressTableQueryParams struct {
 	DeploymentMode string `url:"deploymentMode,omitempty"` //Preview/Deploy ['Preview' means the configuration is not pushed to the device. 'Deploy' makes the configuration pushed to the device]
 }
 type GetDeviceListQueryParams struct {
-	Hostname                  []string `url:"hostname,omitempty"`                   //hostname
-	ManagementIPAddress       []string `url:"managementIpAddress,omitempty"`        //managementIpAddress
-	MacAddress                []string `url:"macAddress,omitempty"`                 //macAddress
-	LocationName              []string `url:"locationName,omitempty"`               //locationName
-	SerialNumber              []string `url:"serialNumber,omitempty"`               //serialNumber
-	Location                  []string `url:"location,omitempty"`                   //location
-	Family                    []string `url:"family,omitempty"`                     //family
-	Type                      []string `url:"type,omitempty"`                       //type
-	Series                    []string `url:"series,omitempty"`                     //series
-	CollectionStatus          []string `url:"collectionStatus,omitempty"`           //collectionStatus
-	CollectionInterval        []string `url:"collectionInterval,omitempty"`         //collectionInterval
-	NotSyncedForMinutes       []string `url:"notSyncedForMinutes,omitempty"`        //notSyncedForMinutes
-	ErrorCode                 []string `url:"errorCode,omitempty"`                  //errorCode
-	ErrorDescription          []string `url:"errorDescription,omitempty"`           //errorDescription
-	SoftwareVersion           []string `url:"softwareVersion,omitempty"`            //softwareVersion
-	SoftwareType              []string `url:"softwareType,omitempty"`               //softwareType
-	PlatformID                []string `url:"platformId,omitempty"`                 //platformId
-	Role                      []string `url:"role,omitempty"`                       //role
-	ReachabilityStatus        []string `url:"reachabilityStatus,omitempty"`         //reachabilityStatus
-	UpTime                    []string `url:"upTime,omitempty"`                     //upTime
-	AssociatedWlcIP           []string `url:"associatedWlcIp,omitempty"`            //associatedWlcIp
-	Licensename               []string `url:"license.name,omitempty"`               //licenseName
-	Licensetype               []string `url:"license.type,omitempty"`               //licenseType
-	Licensestatus             []string `url:"license.status,omitempty"`             //licenseStatus
-	Modulename                []string `url:"module+name,omitempty"`                //moduleName
-	Moduleequpimenttype       []string `url:"module+equpimenttype,omitempty"`       //moduleEqupimentType
-	Moduleservicestate        []string `url:"module+servicestate,omitempty"`        //moduleServiceState
-	Modulevendorequipmenttype []string `url:"module+vendorequipmenttype,omitempty"` //moduleVendorEquipmentType
-	Modulepartnumber          []string `url:"module+partnumber,omitempty"`          //modulePartNumber
-	Moduleoperationstatecode  []string `url:"module+operationstatecode,omitempty"`  //moduleOperationStateCode
-	ID                        string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
-	DeviceSupportLevel        string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
-	Offset                    int      `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
-	Limit                     int      `url:"limit,omitempty"`                      //The number of records to show for this page. Min: 1, Max: 500
+	Hostname                   []string `url:"hostname,omitempty"`                   //hostname
+	ManagementIPAddress        []string `url:"managementIpAddress,omitempty"`        //managementIpAddress
+	MacAddress                 []string `url:"macAddress,omitempty"`                 //macAddress
+	LocationName               []string `url:"locationName,omitempty"`               //locationName
+	SerialNumber               []string `url:"serialNumber,omitempty"`               //serialNumber
+	Location                   []string `url:"location,omitempty"`                   //location
+	Family                     []string `url:"family,omitempty"`                     //family
+	Type                       []string `url:"type,omitempty"`                       //type
+	Series                     []string `url:"series,omitempty"`                     //series
+	CollectionStatus           []string `url:"collectionStatus,omitempty"`           //collectionStatus
+	CollectionInterval         []string `url:"collectionInterval,omitempty"`         //collectionInterval
+	NotSyncedForMinutes        []string `url:"notSyncedForMinutes,omitempty"`        //notSyncedForMinutes
+	ErrorCode                  []string `url:"errorCode,omitempty"`                  //errorCode
+	ErrorDescription           []string `url:"errorDescription,omitempty"`           //errorDescription
+	SoftwareVersion            []string `url:"softwareVersion,omitempty"`            //softwareVersion
+	SoftwareType               []string `url:"softwareType,omitempty"`               //softwareType
+	PlatformID                 []string `url:"platformId,omitempty"`                 //platformId
+	Role                       []string `url:"role,omitempty"`                       //role
+	ReachabilityStatus         []string `url:"reachabilityStatus,omitempty"`         //reachabilityStatus
+	UpTime                     []string `url:"upTime,omitempty"`                     //upTime
+	AssociatedWlcIP            []string `url:"associatedWlcIp,omitempty"`            //associatedWlcIp
+	Licensename                []string `url:"license.name,omitempty"`               //licenseName
+	LicensetypeR               []string `url:"license.type,omitempty"`               //licenseType
+	Licensestatus              []string `url:"license.status,omitempty"`             //licenseStatus
+	Modulename                 []string `url:"module+name,omitempty"`                //moduleName
+	ModuleequpimenttypeR       []string `url:"module+equpimenttype,omitempty"`       //moduleEqupimentType
+	Moduleservicestate         []string `url:"module+servicestate,omitempty"`        //moduleServiceState
+	ModulevendorequipmenttypeR []string `url:"module+vendorequipmenttype,omitempty"` //moduleVendorEquipmentType
+	Modulepartnumber           []string `url:"module+partnumber,omitempty"`          //modulePartNumber
+	Moduleoperationstatecode   []string `url:"module+operationstatecode,omitempty"`  //moduleOperationStateCode
+	ID                         string   `url:"id,omitempty"`                         //Accepts comma separated ids and return list of network-devices for the given ids. If invalid or not-found ids are provided, null entry will be returned in the list.
+	DeviceSupportLevel         string   `url:"deviceSupportLevel,omitempty"`         //deviceSupportLevel
+	Offset                     int      `url:"offset,omitempty"`                     //offset >= 1 [X gives results from Xth device onwards]
+	Limit                      int      `url:"limit,omitempty"`                      //The number of records to show for this page. Min: 1, Max: 500
 }
 type GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams struct {
 	VrfName                   string `url:"vrfName,omitempty"`                   //vrfName
@@ -570,6 +619,14 @@ type CountTheNumberOfNetworkDevicesQueryParams struct {
 }
 type GetDetailsOfASingleNetworkDeviceQueryParams struct {
 	Views string `url:"views,omitempty"` //The specific views being requested. This is an optional parameter which can be passed to get one or more of the network device data. If this is not provided, then it will default to BASIC views. If multiple views are provided, the response will contain the union of the views. Available values : BASIC, RESYNC, USER_DEFINED_FIELDS
+}
+type RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams struct {
+	ID   string `url:"id,omitempty"`   //Optional list of the port channel ids to filter by.
+	Name string `url:"name,omitempty"` //Optional name of the port channel to filter by. This supports partial search. For example, searching for "Port" will match "Port-channel1", "Port-channel2", etc.
+}
+type RetrievePortChannelsCountForANetworkDeviceQueryParams struct {
+	ID   string `url:"id,omitempty"`   //Optional list of the port channel ids to filter by.
+	Name string `url:"name,omitempty"` //Optional name of the port channel to filter by. This supports partial search. For example, searching for "Port" will match "Port-channel1", "Port-channel2", etc.
 }
 type GetAllowedMacAddressQueryParams struct {
 	Offset float64 `url:"offset,omitempty"` //The offset of the first item in the collection to return.
@@ -810,52 +867,38 @@ type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheSe
 	Page     *ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServicePage       `json:"page,omitempty"`     //
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponse struct {
-	Timestamp *int `json:"timestamp,omitempty"` // Timestamp
-
-	Groups *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroups `json:"groups,omitempty"` //
-
-	Attributes *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseAttributes `json:"attributes,omitempty"` //
-
+	Timestamp           *int                                                                                                           `json:"timestamp,omitempty"`           // Timestamp
+	Groups              *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroups              `json:"groups,omitempty"`              //
+	Attributes          *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroups struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Attributes *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroupsAttributes `json:"attributes,omitempty"` //
-
+	ID                  string                                                                                                               `json:"id,omitempty"`                  // Id
+	Attributes          *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroupsAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroupsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroupsAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseGroupsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Value *int `json:"value,omitempty"` // Value
+	Value    *int   `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceResponseAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Value *int `json:"value,omitempty"` // Value
+	Value    *int   `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServicePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
+	Count          *int   `json:"count,omitempty"`          // Count
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type ResponseDevicesQueryAssuranceEvents struct {
@@ -1759,6 +1802,100 @@ type ResponseDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheSe
 	Count          *int   `json:"count,omitempty"`          // Count
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
+type ResponseDevicesGetDevicesEnergy struct {
+	Response *[]ResponseDevicesGetDevicesEnergyResponse `json:"response,omitempty"` //
+	Page     *ResponseDevicesGetDevicesEnergyPage       `json:"page,omitempty"`     //
+	Version  string                                     `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesGetDevicesEnergyResponse struct {
+	ID                string   `json:"id,omitempty"`                // Id
+	DeviceName        string   `json:"deviceName,omitempty"`        // Device Name
+	DeviceCategory    string   `json:"deviceCategory,omitempty"`    // Device Category
+	DeviceSubCategory string   `json:"deviceSubCategory,omitempty"` // Device Sub Category
+	SiteID            string   `json:"siteId,omitempty"`            // Site Id
+	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteHierarchyID   string   `json:"siteHierarchyId,omitempty"`   // Site Hierarchy Id
+	EnergyConsumed    *float64 `json:"energyConsumed,omitempty"`    // Energy Consumed
+	EstimatedCost     *float64 `json:"estimatedCost,omitempty"`     // Estimated Cost
+	EstimatedEmission *float64 `json:"estimatedEmission,omitempty"` // Estimated Emission
+	CarbonIntensity   *float64 `json:"carbonIntensity,omitempty"`   // Carbon Intensity
+}
+type ResponseDevicesGetDevicesEnergyPage struct {
+	Limit  *int                                         `json:"limit,omitempty"`  // Limit
+	Cursor string                                       `json:"cursor,omitempty"` // Cursor
+	Count  *int                                         `json:"count,omitempty"`  // Count
+	SortBy *[]ResponseDevicesGetDevicesEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type ResponseDevicesGetDevicesEnergyPageSortBy struct {
+	Name  string `json:"name,omitempty"`  // Name
+	Order string `json:"order,omitempty"` // Order
+}
+type ResponseDevicesCountDevicesEnergy struct {
+	Response *ResponseDevicesCountDevicesEnergyResponse `json:"response,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesCountDevicesEnergyResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseDevicesQueryDevicesEnergy struct {
+	Response *[]ResponseDevicesQueryDevicesEnergyResponse `json:"response,omitempty"` //
+	Page     *ResponseDevicesQueryDevicesEnergyPage       `json:"page,omitempty"`     //
+	Version  string                                       `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesQueryDevicesEnergyResponse struct {
+	ID                  string                                                          `json:"id,omitempty"`                  // Id
+	DeviceName          string                                                          `json:"deviceName,omitempty"`          // Device Name
+	DeviceCategory      string                                                          `json:"deviceCategory,omitempty"`      // Device Category
+	DeviceSubCategory   string                                                          `json:"deviceSubCategory,omitempty"`   // Device Sub Category
+	SiteID              string                                                          `json:"siteId,omitempty"`              // Site Id
+	SiteHierarchy       string                                                          `json:"siteHierarchy,omitempty"`       // Site Hierarchy
+	SiteHierarchyID     string                                                          `json:"siteHierarchyId,omitempty"`     // Site Hierarchy Id
+	EnergyConsumed      *float64                                                        `json:"energyConsumed,omitempty"`      // Energy Consumed
+	EstimatedCost       *float64                                                        `json:"estimatedCost,omitempty"`       // Estimated Cost
+	EstimatedEmission   *float64                                                        `json:"estimatedEmission,omitempty"`   // Estimated Emission
+	CarbonIntensity     *float64                                                        `json:"carbonIntensity,omitempty"`     // Carbon Intensity
+	AggregateAttributes *[]ResponseDevicesQueryDevicesEnergyResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+}
+type ResponseDevicesQueryDevicesEnergyResponseAggregateAttributes struct {
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
+}
+type ResponseDevicesQueryDevicesEnergyPage struct {
+	Limit  *int                                           `json:"limit,omitempty"`  // Limit
+	Cursor string                                         `json:"cursor,omitempty"` // Cursor
+	Count  *int                                           `json:"count,omitempty"`  // Count
+	SortBy *[]ResponseDevicesQueryDevicesEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type ResponseDevicesQueryDevicesEnergyPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
+type ResponseDevicesCountDevicesEnergyFromQuery struct {
+	Response *ResponseDevicesCountDevicesEnergyFromQueryResponse `json:"response,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesCountDevicesEnergyFromQueryResponse struct {
+	Count *int `json:"count,omitempty"` // Count
+}
+type ResponseDevicesGetDeviceEnergyByID struct {
+	Response *ResponseDevicesGetDeviceEnergyByIDResponse `json:"response,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  // Version
+}
+type ResponseDevicesGetDeviceEnergyByIDResponse struct {
+	ID                string   `json:"id,omitempty"`                // Id
+	DeviceName        string   `json:"deviceName,omitempty"`        // Device Name
+	DeviceCategory    string   `json:"deviceCategory,omitempty"`    // Device Category
+	DeviceSubCategory string   `json:"deviceSubCategory,omitempty"` // Device Sub Category
+	SiteID            string   `json:"siteId,omitempty"`            // Site Id
+	SiteHierarchy     string   `json:"siteHierarchy,omitempty"`     // Site Hierarchy
+	SiteHierarchyID   string   `json:"siteHierarchyId,omitempty"`   // Site Hierarchy Id
+	EnergyConsumed    *float64 `json:"energyConsumed,omitempty"`    // Energy Consumed
+	EstimatedCost     *float64 `json:"estimatedCost,omitempty"`     // Estimated Cost
+	EstimatedEmission *float64 `json:"estimatedEmission,omitempty"` // Estimated Emission
+	CarbonIntensity   *float64 `json:"carbonIntensity,omitempty"`   // Carbon Intensity
+}
 type ResponseDevicesGetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevices struct {
 	Response *[]ResponseDevicesGetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevicesResponse `json:"response,omitempty"` //
 	Page     *ResponseDevicesGetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevicesPage       `json:"page,omitempty"`     //
@@ -2229,99 +2366,53 @@ type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersA
 	Version  string                                                                                                       `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // Management Ip Address
-
-	PlatformID string `json:"platformId,omitempty"` // Platform Id
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number
-
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	DeviceSeries string `json:"deviceSeries,omitempty"` // Device Series
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software Version
-
-	ProductVendor string `json:"productVendor,omitempty"` // Product Vendor
-
-	DeviceRole string `json:"deviceRole,omitempty"` // Device Role
-
-	DeviceType string `json:"deviceType,omitempty"` // Device Type
-
-	CommunicationState string `json:"communicationState,omitempty"` // Communication State
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection Status
-
-	HaStatus string `json:"haStatus,omitempty"` // Ha Status
-
-	LastBootTime *int `json:"lastBootTime,omitempty"` // Last Boot Time
-
-	SiteHierarchyID string `json:"siteHierarchyId,omitempty"` // Site Hierarchy Id
-
-	SiteHierarchy string `json:"siteHierarchy,omitempty"` // Site Hierarchy
-
-	SiteID string `json:"siteId,omitempty"` // Site Id
-
-	DeviceGroupHierarchyID string `json:"deviceGroupHierarchyId,omitempty"` // Device Group Hierarchy Id
-
-	TagNames []string `json:"tagNames,omitempty"` // Tag Names
-
-	StackType string `json:"stackType,omitempty"` // Stack Type
-
-	OsType string `json:"osType,omitempty"` // Os Type
-
-	RingStatus *bool `json:"ringStatus,omitempty"` // Ring Status
-
-	MaintenanceModeEnabled *bool `json:"maintenanceModeEnabled,omitempty"` // Maintenance Mode Enabled
-
-	UpTime *int `json:"upTime,omitempty"` // Up Time
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // Ipv4 Address
-
-	IPv6Address string `json:"ipv6Address,omitempty"` // Ipv6 Address
-
-	RedundancyMode string `json:"redundancyMode,omitempty"` // Redundancy Mode
-
-	FeatureFlagList []string `json:"featureFlagList,omitempty"` // Feature Flag List
-
-	HaLastResetReason string `json:"haLastResetReason,omitempty"` // Ha Last Reset Reason
-
-	RedundancyPeerStateDerived string `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
-
-	RedundancyPeerState string `json:"redundancyPeerState,omitempty"` // Redundancy Peer State
-
-	RedundancyStateDerived string `json:"redundancyStateDerived,omitempty"` // Redundancy State Derived
-
-	RedundancyState string `json:"redundancyState,omitempty"` // Redundancy State
-
-	WiredClientCount *int `json:"wiredClientCount,omitempty"` // Wired Client Count
-
-	WirelessClientCount *int `json:"wirelessClientCount,omitempty"` // Wireless Client Count
-
-	PortCount *int `json:"portCount,omitempty"` // Port Count
-
-	PhysicalPortCount *int `json:"physicalPortCount,omitempty"` // Physical Port Count
-
-	VirtualPortCount *int `json:"virtualPortCount,omitempty"` // Virtual Port Count
-
-	ClientCount *int `json:"clientCount,omitempty"` // Client Count
-
-	ApDetails *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseApDetails `json:"apDetails,omitempty"` //
-
-	MetricsDetails *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseMetricsDetails `json:"metricsDetails,omitempty"` //
-
-	FabricDetails *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricDetails `json:"fabricDetails,omitempty"` //
-
-	SwitchPoeDetails *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetails `json:"switchPoeDetails,omitempty"` //
-
-	FabricMetricsDetails *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricMetricsDetails `json:"fabricMetricsDetails,omitempty"` //
-
-	AggregateAttributes *[]ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	ID                         string                                                                                                                          `json:"id,omitempty"`                         // Id
+	Name                       string                                                                                                                          `json:"name,omitempty"`                       // Name
+	ManagementIPAddress        string                                                                                                                          `json:"managementIpAddress,omitempty"`        // Management Ip Address
+	PlatformID                 string                                                                                                                          `json:"platformId,omitempty"`                 // Platform Id
+	DeviceFamily               string                                                                                                                          `json:"deviceFamily,omitempty"`               // Device Family
+	SerialNumber               string                                                                                                                          `json:"serialNumber,omitempty"`               // Serial Number
+	MacAddress                 string                                                                                                                          `json:"macAddress,omitempty"`                 // Mac Address
+	DeviceSeries               string                                                                                                                          `json:"deviceSeries,omitempty"`               // Device Series
+	SoftwareVersion            string                                                                                                                          `json:"softwareVersion,omitempty"`            // Software Version
+	ProductVendor              string                                                                                                                          `json:"productVendor,omitempty"`              // Product Vendor
+	DeviceRole                 string                                                                                                                          `json:"deviceRole,omitempty"`                 // Device Role
+	DeviceType                 string                                                                                                                          `json:"deviceType,omitempty"`                 // Device Type
+	CommunicationState         string                                                                                                                          `json:"communicationState,omitempty"`         // Communication State
+	CollectionStatus           string                                                                                                                          `json:"collectionStatus,omitempty"`           // Collection Status
+	HaStatus                   string                                                                                                                          `json:"haStatus,omitempty"`                   // Ha Status
+	LastBootTime               *int                                                                                                                            `json:"lastBootTime,omitempty"`               // Last Boot Time
+	SiteHierarchyID            string                                                                                                                          `json:"siteHierarchyId,omitempty"`            // Site Hierarchy Id
+	SiteHierarchy              string                                                                                                                          `json:"siteHierarchy,omitempty"`              // Site Hierarchy
+	SiteID                     string                                                                                                                          `json:"siteId,omitempty"`                     // Site Id
+	DeviceGroupHierarchyID     string                                                                                                                          `json:"deviceGroupHierarchyId,omitempty"`     // Device Group Hierarchy Id
+	TagNames                   []string                                                                                                                        `json:"tagNames,omitempty"`                   // Tag Names
+	StackType                  string                                                                                                                          `json:"stackType,omitempty"`                  // Stack Type
+	OsType                     string                                                                                                                          `json:"osType,omitempty"`                     // Os Type
+	RingStatus                 *bool                                                                                                                           `json:"ringStatus,omitempty"`                 // Ring Status
+	MaintenanceModeEnabled     *bool                                                                                                                           `json:"maintenanceModeEnabled,omitempty"`     // Maintenance Mode Enabled
+	UpTime                     *int                                                                                                                            `json:"upTime,omitempty"`                     // Up Time
+	IPv4Address                string                                                                                                                          `json:"ipv4Address,omitempty"`                // Ipv4 Address
+	IPv6Address                string                                                                                                                          `json:"ipv6Address,omitempty"`                // Ipv6 Address
+	RedundancyMode             string                                                                                                                          `json:"redundancyMode,omitempty"`             // Redundancy Mode
+	FeatureFlagList            []string                                                                                                                        `json:"featureFlagList,omitempty"`            // Feature Flag List
+	HaLastResetReason          string                                                                                                                          `json:"haLastResetReason,omitempty"`          // Ha Last Reset Reason
+	RedundancyPeerStateDerived string                                                                                                                          `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
+	RedundancyPeerState        string                                                                                                                          `json:"redundancyPeerState,omitempty"`        // Redundancy Peer State
+	RedundancyStateDerived     string                                                                                                                          `json:"redundancyStateDerived,omitempty"`     // Redundancy State Derived
+	RedundancyState            string                                                                                                                          `json:"redundancyState,omitempty"`            // Redundancy State
+	WiredClientCount           *int                                                                                                                            `json:"wiredClientCount,omitempty"`           // Wired Client Count
+	WirelessClientCount        *int                                                                                                                            `json:"wirelessClientCount,omitempty"`        // Wireless Client Count
+	PortCount                  *int                                                                                                                            `json:"portCount,omitempty"`                  // Port Count
+	PhysicalPortCount          *int                                                                                                                            `json:"physicalPortCount,omitempty"`          // Physical Port Count
+	VirtualPortCount           *int                                                                                                                            `json:"virtualPortCount,omitempty"`           // Virtual Port Count
+	ClientCount                *int                                                                                                                            `json:"clientCount,omitempty"`                // Client Count
+	ApDetails                  *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseApDetails             `json:"apDetails,omitempty"`                  //
+	MetricsDetails             *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseMetricsDetails        `json:"metricsDetails,omitempty"`             //
+	FabricDetails              *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricDetails         `json:"fabricDetails,omitempty"`              //
+	SwitchPoeDetails           *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetails      `json:"switchPoeDetails,omitempty"`           //
+	FabricMetricsDetails       *ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricMetricsDetails  `json:"fabricMetricsDetails,omitempty"`       //
+	AggregateAttributes        *[]ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseAggregateAttributes `json:"aggregateAttributes,omitempty"`        //
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseApDetails struct {
 	ConnectedWlcName     string                                                                                                                      `json:"connectedWlcName,omitempty"`     // Connected Wlc Name
@@ -2393,142 +2484,79 @@ type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersA
 	AirQualityScore                    *int     `json:"airQualityScore,omitempty"`                    // Air Quality Score
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricDetails struct {
-	FabricRole []string `json:"fabricRole,omitempty"` // Fabric Role
-
-	FabricSiteName string `json:"fabricSiteName,omitempty"` // Fabric Site Name
-
-	TransitFabrics []string `json:"transitFabrics,omitempty"` // Transit Fabrics
-
-	L2Vns []string `json:"l2Vns,omitempty"` // L2 Vns
-
-	L3Vns []string `json:"l3Vns,omitempty"` // L3 Vns
-
-	FabricSiteID string `json:"fabricSiteId,omitempty"` // Fabric Site Id
-
-	NetworkProtocol string `json:"networkProtocol,omitempty"` // Network Protocol
+	FabricRole      []string `json:"fabricRole,omitempty"`      // Fabric Role
+	FabricSiteName  string   `json:"fabricSiteName,omitempty"`  // Fabric Site Name
+	TransitFabrics  []string `json:"transitFabrics,omitempty"`  // Transit Fabrics
+	L2Vns           []string `json:"l2Vns,omitempty"`           // L2 Vns
+	L3Vns           []string `json:"l3Vns,omitempty"`           // L3 Vns
+	FabricSiteID    string   `json:"fabricSiteId,omitempty"`    // Fabric Site Id
+	NetworkProtocol string   `json:"networkProtocol,omitempty"` // Network Protocol
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetails struct {
-	PortCount *int `json:"portCount,omitempty"` // Port Count
-
-	UsedPortCount *int `json:"usedPortCount,omitempty"` // Used Port Count
-
-	FreePortCount *int `json:"freePortCount,omitempty"` // Free Port Count
-
-	PowerConsumed *float64 `json:"powerConsumed,omitempty"` // Power Consumed
-
-	PoePowerConsumed *int `json:"poePowerConsumed,omitempty"` // Poe Power Consumed
-
-	SystemPowerConsumed *float64 `json:"systemPowerConsumed,omitempty"` // System Power Consumed
-
-	PowerBudget *int `json:"powerBudget,omitempty"` // Power Budget
-
-	PoePowerAllocated *float64 `json:"poePowerAllocated,omitempty"` // Poe Power Allocated
-
-	SystemPowerAllocated *int `json:"systemPowerAllocated,omitempty"` // System Power Allocated
-
-	PowerRemaining *float64 `json:"powerRemaining,omitempty"` // Power Remaining
-
-	PoeVersion string `json:"poeVersion,omitempty"` // Poe Version
-
-	ChassisCount *int `json:"chassisCount,omitempty"` // Chassis Count
-
-	ModuleCount *int `json:"moduleCount,omitempty"` // Module Count
-
-	ModuleDetails *[]ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetailsModuleDetails `json:"moduleDetails,omitempty"` //
+	PortCount            *int                                                                                                                                      `json:"portCount,omitempty"`            // Port Count
+	UsedPortCount        *int                                                                                                                                      `json:"usedPortCount,omitempty"`        // Used Port Count
+	FreePortCount        *int                                                                                                                                      `json:"freePortCount,omitempty"`        // Free Port Count
+	PowerConsumed        *float64                                                                                                                                  `json:"powerConsumed,omitempty"`        // Power Consumed
+	PoePowerConsumed     *int                                                                                                                                      `json:"poePowerConsumed,omitempty"`     // Poe Power Consumed
+	SystemPowerConsumed  *float64                                                                                                                                  `json:"systemPowerConsumed,omitempty"`  // System Power Consumed
+	PowerBudget          *int                                                                                                                                      `json:"powerBudget,omitempty"`          // Power Budget
+	PoePowerAllocated    *float64                                                                                                                                  `json:"poePowerAllocated,omitempty"`    // Poe Power Allocated
+	SystemPowerAllocated *int                                                                                                                                      `json:"systemPowerAllocated,omitempty"` // System Power Allocated
+	PowerRemaining       *float64                                                                                                                                  `json:"powerRemaining,omitempty"`       // Power Remaining
+	PoeVersion           string                                                                                                                                    `json:"poeVersion,omitempty"`           // Poe Version
+	ChassisCount         *int                                                                                                                                      `json:"chassisCount,omitempty"`         // Chassis Count
+	ModuleCount          *int                                                                                                                                      `json:"moduleCount,omitempty"`          // Module Count
+	ModuleDetails        *[]ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetailsModuleDetails `json:"moduleDetails,omitempty"`        //
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseSwitchPoeDetailsModuleDetails struct {
-	ModuleID string `json:"moduleId,omitempty"` // Module Id
-
-	ChassisID string `json:"chassisId,omitempty"` // Chassis Id
-
-	ModulePortCount *int `json:"modulePortCount,omitempty"` // Module Port Count
-
-	ModuleUsedPortCount *int `json:"moduleUsedPortCount,omitempty"` // Module Used Port Count
-
-	ModuleFreePortCount *int `json:"moduleFreePortCount,omitempty"` // Module Free Port Count
-
-	ModulePowerConsumed *float64 `json:"modulePowerConsumed,omitempty"` // Module Power Consumed
-
-	ModulePoePowerConsumed *int `json:"modulePoePowerConsumed,omitempty"` // Module Poe Power Consumed
-
-	ModuleSystemPowerConsumed *float64 `json:"moduleSystemPowerConsumed,omitempty"` // Module System Power Consumed
-
-	ModulePowerBudget *int `json:"modulePowerBudget,omitempty"` // Module Power Budget
-
-	ModulePoePowerAllocated *float64 `json:"modulePoePowerAllocated,omitempty"` // Module Poe Power Allocated
-
-	ModuleSystemPowerAllocated *int `json:"moduleSystemPowerAllocated,omitempty"` // Module System Power Allocated
-
-	ModulePowerRemaining *float64 `json:"modulePowerRemaining,omitempty"` // Module Power Remaining
-
-	InterfacePowerMax *int `json:"interfacePowerMax,omitempty"` // Interface Power Max
+	ModuleID                   string   `json:"moduleId,omitempty"`                   // Module Id
+	ChassisID                  string   `json:"chassisId,omitempty"`                  // Chassis Id
+	ModulePortCount            *int     `json:"modulePortCount,omitempty"`            // Module Port Count
+	ModuleUsedPortCount        *int     `json:"moduleUsedPortCount,omitempty"`        // Module Used Port Count
+	ModuleFreePortCount        *int     `json:"moduleFreePortCount,omitempty"`        // Module Free Port Count
+	ModulePowerConsumed        *float64 `json:"modulePowerConsumed,omitempty"`        // Module Power Consumed
+	ModulePoePowerConsumed     *int     `json:"modulePoePowerConsumed,omitempty"`     // Module Poe Power Consumed
+	ModuleSystemPowerConsumed  *float64 `json:"moduleSystemPowerConsumed,omitempty"`  // Module System Power Consumed
+	ModulePowerBudget          *int     `json:"modulePowerBudget,omitempty"`          // Module Power Budget
+	ModulePoePowerAllocated    *float64 `json:"modulePoePowerAllocated,omitempty"`    // Module Poe Power Allocated
+	ModuleSystemPowerAllocated *int     `json:"moduleSystemPowerAllocated,omitempty"` // Module System Power Allocated
+	ModulePowerRemaining       *float64 `json:"modulePowerRemaining,omitempty"`       // Module Power Remaining
+	InterfacePowerMax          *int     `json:"interfacePowerMax,omitempty"`          // Interface Power Max
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseFabricMetricsDetails struct {
-	OverallFabricScore *int `json:"overallFabricScore,omitempty"` // Overall Fabric Score
-
-	FabricTransitScore *int `json:"fabricTransitScore,omitempty"` // Fabric Transit Score
-
-	FabricSiteScore *int `json:"fabricSiteScore,omitempty"` // Fabric Site Score
-
-	FabricVnScore *int `json:"fabricVnScore,omitempty"` // Fabric Vn Score
-
-	FabsiteFcpScore *int `json:"fabsiteFcpScore,omitempty"` // Fabsite Fcp Score
-
-	FabsiteInfraScore *int `json:"fabsiteInfraScore,omitempty"` // Fabsite Infra Score
-
-	FabsiteFsconnScore *int `json:"fabsiteFsconnScore,omitempty"` // Fabsite Fsconn Score
-
-	VnExitScore *int `json:"vnExitScore,omitempty"` // Vn Exit Score
-
-	VnFcpScore *int `json:"vnFcpScore,omitempty"` // Vn Fcp Score
-
-	VnStatusScore *int `json:"vnStatusScore,omitempty"` // Vn Status Score
-
-	VnServiceScore *int `json:"vnServiceScore,omitempty"` // Vn Service Score
-
+	OverallFabricScore       *int `json:"overallFabricScore,omitempty"`       // Overall Fabric Score
+	FabricTransitScore       *int `json:"fabricTransitScore,omitempty"`       // Fabric Transit Score
+	FabricSiteScore          *int `json:"fabricSiteScore,omitempty"`          // Fabric Site Score
+	FabricVnScore            *int `json:"fabricVnScore,omitempty"`            // Fabric Vn Score
+	FabsiteFcpScore          *int `json:"fabsiteFcpScore,omitempty"`          // Fabsite Fcp Score
+	FabsiteInfraScore        *int `json:"fabsiteInfraScore,omitempty"`        // Fabsite Infra Score
+	FabsiteFsconnScore       *int `json:"fabsiteFsconnScore,omitempty"`       // Fabsite Fsconn Score
+	VnExitScore              *int `json:"vnExitScore,omitempty"`              // Vn Exit Score
+	VnFcpScore               *int `json:"vnFcpScore,omitempty"`               // Vn Fcp Score
+	VnStatusScore            *int `json:"vnStatusScore,omitempty"`            // Vn Status Score
+	VnServiceScore           *int `json:"vnServiceScore,omitempty"`           // Vn Service Score
 	TransitControlPlaneScore *int `json:"transitControlPlaneScore,omitempty"` // Transit Control Plane Score
-
-	TransitServicesScore *int `json:"transitServicesScore,omitempty"` // Transit Services Score
-
-	TCPConnScore *int `json:"tcpConnScore,omitempty"` // Tcp Conn Score
-
-	BgpBgpSiteScore *int `json:"bgpBgpSiteScore,omitempty"` // Bgp Bgp Site Score
-
-	VniStatusScore *int `json:"vniStatusScore,omitempty"` // Vni Status Score
-
-	PubsubTransitConnScore *int `json:"pubsubTransitConnScore,omitempty"` // Pubsub Transit Conn Score
-
-	BgpPeerInfraVnScore *int `json:"bgpPeerInfraVnScore,omitempty"` // Bgp Peer Infra Vn Score
-
-	InternetAvailScore *int `json:"internetAvailScore,omitempty"` // Internet Avail Score
-
-	BgpEvpnScore *int `json:"bgpEvpnScore,omitempty"` // Bgp Evpn Score
-
-	LispTransitConnScore *int `json:"lispTransitConnScore,omitempty"` // Lisp Transit Conn Score
-
-	CtsEnvDataDownloadScore *int `json:"ctsEnvDataDownloadScore,omitempty"` // Cts Env Data Download Score
-
-	PubsubInfraVnScore *int `json:"pubsubInfraVnScore,omitempty"` // Pubsub Infra Vn Score
-
-	PeerScore *int `json:"peerScore,omitempty"` // Peer Score
-
-	BgpPeerScore *int `json:"bgpPeerScore,omitempty"` // Bgp Peer Score
-
+	TransitServicesScore     *int `json:"transitServicesScore,omitempty"`     // Transit Services Score
+	TCPConnScore             *int `json:"tcpConnScore,omitempty"`             // Tcp Conn Score
+	BgpBgpSiteScore          *int `json:"bgpBgpSiteScore,omitempty"`          // Bgp Bgp Site Score
+	VniStatusScore           *int `json:"vniStatusScore,omitempty"`           // Vni Status Score
+	PubsubTransitConnScore   *int `json:"pubsubTransitConnScore,omitempty"`   // Pubsub Transit Conn Score
+	BgpPeerInfraVnScore      *int `json:"bgpPeerInfraVnScore,omitempty"`      // Bgp Peer Infra Vn Score
+	InternetAvailScore       *int `json:"internetAvailScore,omitempty"`       // Internet Avail Score
+	BgpEvpnScore             *int `json:"bgpEvpnScore,omitempty"`             // Bgp Evpn Score
+	LispTransitConnScore     *int `json:"lispTransitConnScore,omitempty"`     // Lisp Transit Conn Score
+	CtsEnvDataDownloadScore  *int `json:"ctsEnvDataDownloadScore,omitempty"`  // Cts Env Data Download Score
+	PubsubInfraVnScore       *int `json:"pubsubInfraVnScore,omitempty"`       // Pubsub Infra Vn Score
+	PeerScore                *int `json:"peerScore,omitempty"`                // Peer Score
+	BgpPeerScore             *int `json:"bgpPeerScore,omitempty"`             // Bgp Peer Score
 	RemoteInternetAvailScore *int `json:"remoteInternetAvailScore,omitempty"` // Remote Internet Avail Score
-
-	BgpTCPScore *int `json:"bgpTcpScore,omitempty"` // Bgp Tcp Score
-
-	PubsubSessionScore *int `json:"pubsubSessionScore,omitempty"` // Pubsub Session Score
-
-	AAAStatusScore *int `json:"aaaStatusScore,omitempty"` // Aaa Status Score
-
-	LispCpConnScore *int `json:"lispCpConnScore,omitempty"` // Lisp Cp Conn Score
-
-	BgpPubsubSiteScore *int `json:"bgpPubsubSiteScore,omitempty"` // Bgp Pubsub Site Score
-
-	McastScore *int `json:"mcastScore,omitempty"` // Mcast Score
-
-	PortChannelScore *int `json:"portChannelScore,omitempty"` // Port Channel Score
+	BgpTCPScore              *int `json:"bgpTcpScore,omitempty"`              // Bgp Tcp Score
+	PubsubSessionScore       *int `json:"pubsubSessionScore,omitempty"`       // Pubsub Session Score
+	AAAStatusScore           *int `json:"aaaStatusScore,omitempty"`           // Aaa Status Score
+	LispCpConnScore          *int `json:"lispCpConnScore,omitempty"`          // Lisp Cp Conn Score
+	BgpPubsubSiteScore       *int `json:"bgpPubsubSiteScore,omitempty"`       // Bgp Pubsub Site Score
+	McastScore               *int `json:"mcastScore,omitempty"`               // Mcast Score
+	PortChannelScore         *int `json:"portChannelScore,omitempty"`         // Port Channel Score
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponseAggregateAttributes struct {
 	Name     string   `json:"name,omitempty"`     // Name
@@ -2536,858 +2564,510 @@ type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersA
 	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit  *int   `json:"limit,omitempty"`  // Limit
+	Offset *int   `json:"offset,omitempty"` // Offset
+	Count  *int   `json:"count,omitempty"`  // Count
 	SortBy string `json:"sortBy,omitempty"` // Sort By
-
-	Order string `json:"order,omitempty"` // Order
+	Order  string `json:"order,omitempty"`  // Order
 }
 type ResponseDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions struct {
 	Response *ResponseDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                                          `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevices struct {
 	Response *ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Page *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage `json:"page,omitempty"` //
+	Page     *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage   `json:"page,omitempty"`     //
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponse struct {
-	Attributes *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseAttributes `json:"attributes,omitempty"` // Attributes
-
+	Attributes          *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseAttributes          `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` // Aggregate Attributes
-
-	Groups *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroups `json:"groups,omitempty"` //
+	Groups              *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroups              `json:"groups,omitempty"`              //
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseAttributes interface{}
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseAggregateAttributes interface{}
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroups struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Attributes *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroupsAttributes `json:"attributes,omitempty"` //
-
+	ID                  string                                                                                                `json:"id,omitempty"`                  // Id
+	Attributes          *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroupsAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroupsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroupsAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesResponseGroupsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit  *int                                                                           `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                           `json:"offset,omitempty"` // Offset
+	Count  *int                                                                           `json:"count,omitempty"`  // Count
 	SortBy *[]ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPageSortBy `json:"sortBy,omitempty"` //
 }
 type ResponseDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevices struct {
 	Response *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Page *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage `json:"page,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Page     *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage     `json:"page,omitempty"`     //
+	Version  string                                                                    `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Attributes *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponseAttributes `json:"attributes,omitempty"` //
-
+	ID                  string                                                                                       `json:"id,omitempty"`                  // Id
+	Attributes          *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponseAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponseAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesResponseAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit  *int                                                                        `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                        `json:"offset,omitempty"` // Offset
+	Count  *int                                                                        `json:"count,omitempty"`  // Count
 	SortBy *[]ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPageSortBy `json:"sortBy,omitempty"` //
 }
 type ResponseDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Order string `json:"order,omitempty"` // Order
-
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
 	Function string `json:"function,omitempty"` // Function
 }
 type ResponseDevicesGetsTheTrendAnalyticsData struct {
 	Response *[]ResponseDevicesGetsTheTrendAnalyticsDataResponse `json:"response,omitempty"` //
-
-	Page *ResponseDevicesGetsTheTrendAnalyticsDataPage `json:"page,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Page     *ResponseDevicesGetsTheTrendAnalyticsDataPage       `json:"page,omitempty"`     //
+	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponse struct {
-	Timestamp *float64 `json:"timestamp,omitempty"` // Timestamp
-
-	Attributes *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseAttributes `json:"attributes,omitempty"` //
-
+	Timestamp           *float64                                                               `json:"timestamp,omitempty"`           // Timestamp
+	Attributes          *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Groups *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseGroups `json:"groups,omitempty"` //
+	Groups              *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseGroups              `json:"groups,omitempty"`              //
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponseAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponseAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponseGroups struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Attributes *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseGroupsAttributes `json:"attributes,omitempty"` //
-
+	ID                  string                                                                       `json:"id,omitempty"`                  // Id
+	Attributes          *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseGroupsAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesGetsTheTrendAnalyticsDataResponseGroupsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponseGroupsAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataResponseGroupsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesGetsTheTrendAnalyticsDataPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
+	Count          *int   `json:"count,omitempty"`          // Count
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUID struct {
 	Response *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                          `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // Management Ip Address
-
-	PlatformID string `json:"platformId,omitempty"` // Platform Id
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number
-
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	DeviceSeries string `json:"deviceSeries,omitempty"` // Device Series
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software Version
-
-	ProductVendor string `json:"productVendor,omitempty"` // Product Vendor
-
-	DeviceRole string `json:"deviceRole,omitempty"` // Device Role
-
-	DeviceType string `json:"deviceType,omitempty"` // Device Type
-
-	CommunicationState string `json:"communicationState,omitempty"` // Communication State
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection Status
-
-	HaStatus string `json:"haStatus,omitempty"` // Ha Status
-
-	LastBootTime *int `json:"lastBootTime,omitempty"` // Last Boot Time
-
-	SiteHierarchyID string `json:"siteHierarchyId,omitempty"` // Site Hierarchy Id
-
-	SiteHierarchy string `json:"siteHierarchy,omitempty"` // Site Hierarchy
-
-	SiteID string `json:"siteId,omitempty"` // Site Id
-
-	DeviceGroupHierarchyID string `json:"deviceGroupHierarchyId,omitempty"` // Device Group Hierarchy Id
-
-	TagNames []string `json:"tagNames,omitempty"` // Tag Names
-
-	StackType string `json:"stackType,omitempty"` // Stack Type
-
-	OsType string `json:"osType,omitempty"` // Os Type
-
-	RingStatus *bool `json:"ringStatus,omitempty"` // Ring Status
-
-	MaintenanceModeEnabled *bool `json:"maintenanceModeEnabled,omitempty"` // Maintenance Mode Enabled
-
-	UpTime *int `json:"upTime,omitempty"` // Up Time
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // Ipv4 Address
-
-	IPv6Address string `json:"ipv6Address,omitempty"` // Ipv6 Address
-
-	RedundancyMode string `json:"redundancyMode,omitempty"` // Redundancy Mode
-
-	FeatureFlagList []string `json:"featureFlagList,omitempty"` // Feature Flag List
-
-	HaLastResetReason string `json:"haLastResetReason,omitempty"` // Ha Last Reset Reason
-
-	RedundancyPeerStateDerived string `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
-
-	RedundancyPeerState string `json:"redundancyPeerState,omitempty"` // Redundancy Peer State
-
-	RedundancyStateDerived string `json:"redundancyStateDerived,omitempty"` // Redundancy State Derived
-
-	RedundancyState string `json:"redundancyState,omitempty"` // Redundancy State
-
-	WiredClientCount *int `json:"wiredClientCount,omitempty"` // Wired Client Count
-
-	WirelessClientCount *int `json:"wirelessClientCount,omitempty"` // Wireless Client Count
-
-	PortCount *int `json:"portCount,omitempty"` // Port Count
-
-	PhysicalPortCount *int `json:"physicalPortCount,omitempty"` // Physical Port Count
-
-	VirtualPortCount *int `json:"virtualPortCount,omitempty"` // Virtual Port Count
-
-	ClientCount *int `json:"clientCount,omitempty"` // Client Count
-
-	ApDetails *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetails `json:"apDetails,omitempty"` //
-
-	MetricsDetails *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseMetricsDetails `json:"metricsDetails,omitempty"` //
-
-	FabricDetails *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricDetails `json:"fabricDetails,omitempty"` //
-
-	SwitchPoeDetails *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetails `json:"switchPoeDetails,omitempty"` //
-
-	FabricMetricsDetails *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricMetricsDetails `json:"fabricMetricsDetails,omitempty"` //
-
-	AggregateAttributes *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	ID                         string                                                                               `json:"id,omitempty"`                         // Id
+	Name                       string                                                                               `json:"name,omitempty"`                       // Name
+	ManagementIPAddress        string                                                                               `json:"managementIpAddress,omitempty"`        // Management Ip Address
+	PlatformID                 string                                                                               `json:"platformId,omitempty"`                 // Platform Id
+	DeviceFamily               string                                                                               `json:"deviceFamily,omitempty"`               // Device Family
+	SerialNumber               string                                                                               `json:"serialNumber,omitempty"`               // Serial Number
+	MacAddress                 string                                                                               `json:"macAddress,omitempty"`                 // Mac Address
+	DeviceSeries               string                                                                               `json:"deviceSeries,omitempty"`               // Device Series
+	SoftwareVersion            string                                                                               `json:"softwareVersion,omitempty"`            // Software Version
+	ProductVendor              string                                                                               `json:"productVendor,omitempty"`              // Product Vendor
+	DeviceRole                 string                                                                               `json:"deviceRole,omitempty"`                 // Device Role
+	DeviceType                 string                                                                               `json:"deviceType,omitempty"`                 // Device Type
+	CommunicationState         string                                                                               `json:"communicationState,omitempty"`         // Communication State
+	CollectionStatus           string                                                                               `json:"collectionStatus,omitempty"`           // Collection Status
+	HaStatus                   string                                                                               `json:"haStatus,omitempty"`                   // Ha Status
+	LastBootTime               *int                                                                                 `json:"lastBootTime,omitempty"`               // Last Boot Time
+	SiteHierarchyID            string                                                                               `json:"siteHierarchyId,omitempty"`            // Site Hierarchy Id
+	SiteHierarchy              string                                                                               `json:"siteHierarchy,omitempty"`              // Site Hierarchy
+	SiteID                     string                                                                               `json:"siteId,omitempty"`                     // Site Id
+	DeviceGroupHierarchyID     string                                                                               `json:"deviceGroupHierarchyId,omitempty"`     // Device Group Hierarchy Id
+	TagNames                   []string                                                                             `json:"tagNames,omitempty"`                   // Tag Names
+	StackType                  string                                                                               `json:"stackType,omitempty"`                  // Stack Type
+	OsType                     string                                                                               `json:"osType,omitempty"`                     // Os Type
+	RingStatus                 *bool                                                                                `json:"ringStatus,omitempty"`                 // Ring Status
+	MaintenanceModeEnabled     *bool                                                                                `json:"maintenanceModeEnabled,omitempty"`     // Maintenance Mode Enabled
+	UpTime                     *int                                                                                 `json:"upTime,omitempty"`                     // Up Time
+	IPv4Address                string                                                                               `json:"ipv4Address,omitempty"`                // Ipv4 Address
+	IPv6Address                string                                                                               `json:"ipv6Address,omitempty"`                // Ipv6 Address
+	RedundancyMode             string                                                                               `json:"redundancyMode,omitempty"`             // Redundancy Mode
+	FeatureFlagList            []string                                                                             `json:"featureFlagList,omitempty"`            // Feature Flag List
+	HaLastResetReason          string                                                                               `json:"haLastResetReason,omitempty"`          // Ha Last Reset Reason
+	RedundancyPeerStateDerived string                                                                               `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
+	RedundancyPeerState        string                                                                               `json:"redundancyPeerState,omitempty"`        // Redundancy Peer State
+	RedundancyStateDerived     string                                                                               `json:"redundancyStateDerived,omitempty"`     // Redundancy State Derived
+	RedundancyState            string                                                                               `json:"redundancyState,omitempty"`            // Redundancy State
+	WiredClientCount           *int                                                                                 `json:"wiredClientCount,omitempty"`           // Wired Client Count
+	WirelessClientCount        *int                                                                                 `json:"wirelessClientCount,omitempty"`        // Wireless Client Count
+	PortCount                  *int                                                                                 `json:"portCount,omitempty"`                  // Port Count
+	PhysicalPortCount          *int                                                                                 `json:"physicalPortCount,omitempty"`          // Physical Port Count
+	VirtualPortCount           *int                                                                                 `json:"virtualPortCount,omitempty"`           // Virtual Port Count
+	ClientCount                *int                                                                                 `json:"clientCount,omitempty"`                // Client Count
+	ApDetails                  *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetails             `json:"apDetails,omitempty"`                  //
+	MetricsDetails             *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseMetricsDetails        `json:"metricsDetails,omitempty"`             //
+	FabricDetails              *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricDetails         `json:"fabricDetails,omitempty"`              //
+	SwitchPoeDetails           *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetails      `json:"switchPoeDetails,omitempty"`           //
+	FabricMetricsDetails       *ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricMetricsDetails  `json:"fabricMetricsDetails,omitempty"`       //
+	AggregateAttributes        *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseAggregateAttributes `json:"aggregateAttributes,omitempty"`        //
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetails struct {
-	ConnectedWlcName string `json:"connectedWlcName,omitempty"` // Connected Wlc Name
-
-	PolicyTagName string `json:"policyTagName,omitempty"` // Policy Tag Name
-
-	ApOperationalState string `json:"apOperationalState,omitempty"` // Ap Operational State
-
-	PowerSaveMode string `json:"powerSaveMode,omitempty"` // Power Save Mode
-
-	OperationalMode string `json:"operationalMode,omitempty"` // Operational Mode
-
-	ResetReason string `json:"resetReason,omitempty"` // Reset Reason
-
-	Protocol string `json:"protocol,omitempty"` // Protocol
-
-	PowerMode string `json:"powerMode,omitempty"` // Power Mode
-
-	ConnectedTime *int `json:"connectedTime,omitempty"` // Connected Time
-
-	LedFlashEnabled *bool `json:"ledFlashEnabled,omitempty"` // Led Flash Enabled
-
-	LedFlashSeconds *int `json:"ledFlashSeconds,omitempty"` // Led Flash Seconds
-
-	SubMode string `json:"subMode,omitempty"` // Sub Mode
-
-	HomeApEnabled *bool `json:"homeApEnabled,omitempty"` // Home Ap Enabled
-
-	PowerType string `json:"powerType,omitempty"` // Power Type
-
-	ApType string `json:"apType,omitempty"` // Ap Type
-
-	AdminState string `json:"adminState,omitempty"` // Admin State
-
-	IcapCapability string `json:"icapCapability,omitempty"` // Icap Capability
-
-	RegulatoryDomain string `json:"regulatoryDomain,omitempty"` // Regulatory Domain
-
-	EthernetMac string `json:"ethernetMac,omitempty"` // Ethernet Mac
-
-	RfTagName string `json:"rfTagName,omitempty"` // Rf Tag Name
-
-	SiteTagName string `json:"siteTagName,omitempty"` // Site Tag Name
-
-	PowerSaveModeCapable string `json:"powerSaveModeCapable,omitempty"` // Power Save Mode Capable
-
-	PowerProfile string `json:"powerProfile,omitempty"` // Power Profile
-
-	FlexGroup string `json:"flexGroup,omitempty"` // Flex Group
-
-	PowerCalendarProfile string `json:"powerCalendarProfile,omitempty"` // Power Calendar Profile
-
-	ApGroup string `json:"apGroup,omitempty"` // Ap Group
-
-	Radios *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetailsRadios `json:"radios,omitempty"` //
+	ConnectedWlcName     string                                                                           `json:"connectedWlcName,omitempty"`     // Connected Wlc Name
+	PolicyTagName        string                                                                           `json:"policyTagName,omitempty"`        // Policy Tag Name
+	ApOperationalState   string                                                                           `json:"apOperationalState,omitempty"`   // Ap Operational State
+	PowerSaveMode        string                                                                           `json:"powerSaveMode,omitempty"`        // Power Save Mode
+	OperationalMode      string                                                                           `json:"operationalMode,omitempty"`      // Operational Mode
+	ResetReason          string                                                                           `json:"resetReason,omitempty"`          // Reset Reason
+	Protocol             string                                                                           `json:"protocol,omitempty"`             // Protocol
+	PowerMode            string                                                                           `json:"powerMode,omitempty"`            // Power Mode
+	ConnectedTime        *int                                                                             `json:"connectedTime,omitempty"`        // Connected Time
+	LedFlashEnabled      *bool                                                                            `json:"ledFlashEnabled,omitempty"`      // Led Flash Enabled
+	LedFlashSeconds      *int                                                                             `json:"ledFlashSeconds,omitempty"`      // Led Flash Seconds
+	SubMode              string                                                                           `json:"subMode,omitempty"`              // Sub Mode
+	HomeApEnabled        *bool                                                                            `json:"homeApEnabled,omitempty"`        // Home Ap Enabled
+	PowerType            string                                                                           `json:"powerType,omitempty"`            // Power Type
+	ApType               string                                                                           `json:"apType,omitempty"`               // Ap Type
+	AdminState           string                                                                           `json:"adminState,omitempty"`           // Admin State
+	IcapCapability       string                                                                           `json:"icapCapability,omitempty"`       // Icap Capability
+	RegulatoryDomain     string                                                                           `json:"regulatoryDomain,omitempty"`     // Regulatory Domain
+	EthernetMac          string                                                                           `json:"ethernetMac,omitempty"`          // Ethernet Mac
+	RfTagName            string                                                                           `json:"rfTagName,omitempty"`            // Rf Tag Name
+	SiteTagName          string                                                                           `json:"siteTagName,omitempty"`          // Site Tag Name
+	PowerSaveModeCapable string                                                                           `json:"powerSaveModeCapable,omitempty"` // Power Save Mode Capable
+	PowerProfile         string                                                                           `json:"powerProfile,omitempty"`         // Power Profile
+	FlexGroup            string                                                                           `json:"flexGroup,omitempty"`            // Flex Group
+	PowerCalendarProfile string                                                                           `json:"powerCalendarProfile,omitempty"` // Power Calendar Profile
+	ApGroup              string                                                                           `json:"apGroup,omitempty"`              // Ap Group
+	Radios               *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetailsRadios `json:"radios,omitempty"`               //
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseApDetailsRadios struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Band string `json:"band,omitempty"` // Band
-
-	Noise *int `json:"noise,omitempty"` // Noise
-
-	AirQuality *float64 `json:"airQuality,omitempty"` // Air Quality
-
+	ID           string   `json:"id,omitempty"`           // Id
+	Band         string   `json:"band,omitempty"`         // Band
+	Noise        *int     `json:"noise,omitempty"`        // Noise
+	AirQuality   *float64 `json:"airQuality,omitempty"`   // Air Quality
 	Interference *float64 `json:"interference,omitempty"` // Interference
-
-	TrafficUtil *int `json:"trafficUtil,omitempty"` // Traffic Util
-
-	Utilization *float64 `json:"utilization,omitempty"` // Utilization
-
-	ClientCount *int `json:"clientCount,omitempty"` // Client Count
+	TrafficUtil  *int     `json:"trafficUtil,omitempty"`  // Traffic Util
+	Utilization  *float64 `json:"utilization,omitempty"`  // Utilization
+	ClientCount  *int     `json:"clientCount,omitempty"`  // Client Count
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseMetricsDetails struct {
-	OverallHealthScore *int `json:"overallHealthScore,omitempty"` // Overall Health Score
-
-	CPUUtilization *float64 `json:"cpuUtilization,omitempty"` // Cpu Utilization
-
-	CPUScore *int `json:"cpuScore,omitempty"` // Cpu Score
-
-	MemoryUtilization *float64 `json:"memoryUtilization,omitempty"` // Memory Utilization
-
-	MemoryScore *int `json:"memoryScore,omitempty"` // Memory Score
-
-	AvgTemperature *float64 `json:"avgTemperature,omitempty"` // Avg Temperature
-
-	MaxTemperature *float64 `json:"maxTemperature,omitempty"` // Max Temperature
-
-	DiscardScore *int `json:"discardScore,omitempty"` // Discard Score
-
-	DiscardInterfaces []string `json:"discardInterfaces,omitempty"` // Discard Interfaces
-
-	ErrorScore *int `json:"errorScore,omitempty"` // Error Score
-
-	ErrorInterfaces []string `json:"errorInterfaces,omitempty"` // Error Interfaces
-
-	InterDeviceLinkScore *int `json:"interDeviceLinkScore,omitempty"` // Inter Device Link Score
-
+	OverallHealthScore                 *int     `json:"overallHealthScore,omitempty"`                 // Overall Health Score
+	CPUUtilization                     *float64 `json:"cpuUtilization,omitempty"`                     // Cpu Utilization
+	CPUScore                           *int     `json:"cpuScore,omitempty"`                           // Cpu Score
+	MemoryUtilization                  *float64 `json:"memoryUtilization,omitempty"`                  // Memory Utilization
+	MemoryScore                        *int     `json:"memoryScore,omitempty"`                        // Memory Score
+	AvgTemperature                     *float64 `json:"avgTemperature,omitempty"`                     // Avg Temperature
+	MaxTemperature                     *float64 `json:"maxTemperature,omitempty"`                     // Max Temperature
+	DiscardScore                       *int     `json:"discardScore,omitempty"`                       // Discard Score
+	DiscardInterfaces                  []string `json:"discardInterfaces,omitempty"`                  // Discard Interfaces
+	ErrorScore                         *int     `json:"errorScore,omitempty"`                         // Error Score
+	ErrorInterfaces                    []string `json:"errorInterfaces,omitempty"`                    // Error Interfaces
+	InterDeviceLinkScore               *int     `json:"interDeviceLinkScore,omitempty"`               // Inter Device Link Score
 	InterDeviceConnectedDownInterfaces []string `json:"interDeviceConnectedDownInterfaces,omitempty"` // Inter Device Connected Down Interfaces
-
-	LinkUtilizationScore *int `json:"linkUtilizationScore,omitempty"` // Link Utilization Score
-
-	HighLinkUtilizationInterfaces []string `json:"highLinkUtilizationInterfaces,omitempty"` // High Link Utilization Interfaces
-
-	FreeTimerScore *int `json:"freeTimerScore,omitempty"` // Free Timer Score
-
-	FreeTimer *float64 `json:"freeTimer,omitempty"` // Free Timer
-
-	PacketPoolScore *int `json:"packetPoolScore,omitempty"` // Packet Pool Score
-
-	PacketPool *int `json:"packetPool,omitempty"` // Packet Pool
-
-	FreeMemoryBufferScore *int `json:"freeMemoryBufferScore,omitempty"` // Free Memory Buffer Score
-
-	FreeMemoryBuffer *float64 `json:"freeMemoryBuffer,omitempty"` // Free Memory Buffer
-
-	WqePoolScore *int `json:"wqePoolScore,omitempty"` // Wqe Pool Score
-
-	WqePool *int `json:"wqePool,omitempty"` // Wqe Pool
-
-	ApCount *int `json:"apCount,omitempty"` // Ap Count
-
-	NoiseScore *int `json:"noiseScore,omitempty"` // Noise Score
-
-	UtilizationScore *int `json:"utilizationScore,omitempty"` // Utilization Score
-
-	InterferenceScore *int `json:"interferenceScore,omitempty"` // Interference Score
-
-	AirQualityScore *int `json:"airQualityScore,omitempty"` // Air Quality Score
+	LinkUtilizationScore               *int     `json:"linkUtilizationScore,omitempty"`               // Link Utilization Score
+	HighLinkUtilizationInterfaces      []string `json:"highLinkUtilizationInterfaces,omitempty"`      // High Link Utilization Interfaces
+	FreeTimerScore                     *int     `json:"freeTimerScore,omitempty"`                     // Free Timer Score
+	FreeTimer                          *float64 `json:"freeTimer,omitempty"`                          // Free Timer
+	PacketPoolScore                    *int     `json:"packetPoolScore,omitempty"`                    // Packet Pool Score
+	PacketPool                         *int     `json:"packetPool,omitempty"`                         // Packet Pool
+	FreeMemoryBufferScore              *int     `json:"freeMemoryBufferScore,omitempty"`              // Free Memory Buffer Score
+	FreeMemoryBuffer                   *float64 `json:"freeMemoryBuffer,omitempty"`                   // Free Memory Buffer
+	WqePoolScore                       *int     `json:"wqePoolScore,omitempty"`                       // Wqe Pool Score
+	WqePool                            *int     `json:"wqePool,omitempty"`                            // Wqe Pool
+	ApCount                            *int     `json:"apCount,omitempty"`                            // Ap Count
+	NoiseScore                         *int     `json:"noiseScore,omitempty"`                         // Noise Score
+	UtilizationScore                   *int     `json:"utilizationScore,omitempty"`                   // Utilization Score
+	InterferenceScore                  *int     `json:"interferenceScore,omitempty"`                  // Interference Score
+	AirQualityScore                    *int     `json:"airQualityScore,omitempty"`                    // Air Quality Score
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricDetails struct {
-	FabricRole []string `json:"fabricRole,omitempty"` // Fabric Role
-
-	FabricSiteName string `json:"fabricSiteName,omitempty"` // Fabric Site Name
-
-	TransitFabrics []string `json:"transitFabrics,omitempty"` // Transit Fabrics
-
-	L2Vns []string `json:"l2Vns,omitempty"` // L2 Vns
-
-	L3Vns []string `json:"l3Vns,omitempty"` // L3 Vns
-
-	FabricSiteID string `json:"fabricSiteId,omitempty"` // Fabric Site Id
-
-	NetworkProtocol string `json:"networkProtocol,omitempty"` // Network Protocol
+	FabricRole      []string `json:"fabricRole,omitempty"`      // Fabric Role
+	FabricSiteName  string   `json:"fabricSiteName,omitempty"`  // Fabric Site Name
+	TransitFabrics  []string `json:"transitFabrics,omitempty"`  // Transit Fabrics
+	L2Vns           []string `json:"l2Vns,omitempty"`           // L2 Vns
+	L3Vns           []string `json:"l3Vns,omitempty"`           // L3 Vns
+	FabricSiteID    string   `json:"fabricSiteId,omitempty"`    // Fabric Site Id
+	NetworkProtocol string   `json:"networkProtocol,omitempty"` // Network Protocol
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetails struct {
-	PortCount *int `json:"portCount,omitempty"` // Port Count
-
-	UsedPortCount *int `json:"usedPortCount,omitempty"` // Used Port Count
-
-	FreePortCount *int `json:"freePortCount,omitempty"` // Free Port Count
-
-	PowerConsumed *float64 `json:"powerConsumed,omitempty"` // Power Consumed
-
-	PoePowerConsumed *int `json:"poePowerConsumed,omitempty"` // Poe Power Consumed
-
-	SystemPowerConsumed *float64 `json:"systemPowerConsumed,omitempty"` // System Power Consumed
-
-	PowerBudget *int `json:"powerBudget,omitempty"` // Power Budget
-
-	PoePowerAllocated *float64 `json:"poePowerAllocated,omitempty"` // Poe Power Allocated
-
-	SystemPowerAllocated *int `json:"systemPowerAllocated,omitempty"` // System Power Allocated
-
-	PowerRemaining *float64 `json:"powerRemaining,omitempty"` // Power Remaining
-
-	PoeVersion string `json:"poeVersion,omitempty"` // Poe Version
-
-	ChassisCount *int `json:"chassisCount,omitempty"` // Chassis Count
-
-	ModuleCount *int `json:"moduleCount,omitempty"` // Module Count
-
-	ModuleDetails *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetailsModuleDetails `json:"moduleDetails,omitempty"` //
+	PortCount            *int                                                                                           `json:"portCount,omitempty"`            // Port Count
+	UsedPortCount        *int                                                                                           `json:"usedPortCount,omitempty"`        // Used Port Count
+	FreePortCount        *int                                                                                           `json:"freePortCount,omitempty"`        // Free Port Count
+	PowerConsumed        *float64                                                                                       `json:"powerConsumed,omitempty"`        // Power Consumed
+	PoePowerConsumed     *int                                                                                           `json:"poePowerConsumed,omitempty"`     // Poe Power Consumed
+	SystemPowerConsumed  *float64                                                                                       `json:"systemPowerConsumed,omitempty"`  // System Power Consumed
+	PowerBudget          *int                                                                                           `json:"powerBudget,omitempty"`          // Power Budget
+	PoePowerAllocated    *float64                                                                                       `json:"poePowerAllocated,omitempty"`    // Poe Power Allocated
+	SystemPowerAllocated *int                                                                                           `json:"systemPowerAllocated,omitempty"` // System Power Allocated
+	PowerRemaining       *float64                                                                                       `json:"powerRemaining,omitempty"`       // Power Remaining
+	PoeVersion           string                                                                                         `json:"poeVersion,omitempty"`           // Poe Version
+	ChassisCount         *int                                                                                           `json:"chassisCount,omitempty"`         // Chassis Count
+	ModuleCount          *int                                                                                           `json:"moduleCount,omitempty"`          // Module Count
+	ModuleDetails        *[]ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetailsModuleDetails `json:"moduleDetails,omitempty"`        //
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseSwitchPoeDetailsModuleDetails struct {
-	ModuleID string `json:"moduleId,omitempty"` // Module Id
-
-	ChassisID string `json:"chassisId,omitempty"` // Chassis Id
-
-	ModulePortCount *int `json:"modulePortCount,omitempty"` // Module Port Count
-
-	ModuleUsedPortCount *int `json:"moduleUsedPortCount,omitempty"` // Module Used Port Count
-
-	ModuleFreePortCount *int `json:"moduleFreePortCount,omitempty"` // Module Free Port Count
-
-	ModulePowerConsumed *float64 `json:"modulePowerConsumed,omitempty"` // Module Power Consumed
-
-	ModulePoePowerConsumed *int `json:"modulePoePowerConsumed,omitempty"` // Module Poe Power Consumed
-
-	ModuleSystemPowerConsumed *float64 `json:"moduleSystemPowerConsumed,omitempty"` // Module System Power Consumed
-
-	ModulePowerBudget *int `json:"modulePowerBudget,omitempty"` // Module Power Budget
-
-	ModulePoePowerAllocated *float64 `json:"modulePoePowerAllocated,omitempty"` // Module Poe Power Allocated
-
-	ModuleSystemPowerAllocated *int `json:"moduleSystemPowerAllocated,omitempty"` // Module System Power Allocated
-
-	ModulePowerRemaining *float64 `json:"modulePowerRemaining,omitempty"` // Module Power Remaining
-
-	InterfacePowerMax *int `json:"interfacePowerMax,omitempty"` // Interface Power Max
+	ModuleID                   string   `json:"moduleId,omitempty"`                   // Module Id
+	ChassisID                  string   `json:"chassisId,omitempty"`                  // Chassis Id
+	ModulePortCount            *int     `json:"modulePortCount,omitempty"`            // Module Port Count
+	ModuleUsedPortCount        *int     `json:"moduleUsedPortCount,omitempty"`        // Module Used Port Count
+	ModuleFreePortCount        *int     `json:"moduleFreePortCount,omitempty"`        // Module Free Port Count
+	ModulePowerConsumed        *float64 `json:"modulePowerConsumed,omitempty"`        // Module Power Consumed
+	ModulePoePowerConsumed     *int     `json:"modulePoePowerConsumed,omitempty"`     // Module Poe Power Consumed
+	ModuleSystemPowerConsumed  *float64 `json:"moduleSystemPowerConsumed,omitempty"`  // Module System Power Consumed
+	ModulePowerBudget          *int     `json:"modulePowerBudget,omitempty"`          // Module Power Budget
+	ModulePoePowerAllocated    *float64 `json:"modulePoePowerAllocated,omitempty"`    // Module Poe Power Allocated
+	ModuleSystemPowerAllocated *int     `json:"moduleSystemPowerAllocated,omitempty"` // Module System Power Allocated
+	ModulePowerRemaining       *float64 `json:"modulePowerRemaining,omitempty"`       // Module Power Remaining
+	InterfacePowerMax          *int     `json:"interfacePowerMax,omitempty"`          // Interface Power Max
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseFabricMetricsDetails struct {
-	OverallFabricScore *int `json:"overallFabricScore,omitempty"` // Overall Fabric Score
-
-	FabricTransitScore *int `json:"fabricTransitScore,omitempty"` // Fabric Transit Score
-
-	FabricSiteScore *int `json:"fabricSiteScore,omitempty"` // Fabric Site Score
-
-	FabricVnScore *int `json:"fabricVnScore,omitempty"` // Fabric Vn Score
-
-	FabsiteFcpScore *int `json:"fabsiteFcpScore,omitempty"` // Fabsite Fcp Score
-
-	FabsiteInfraScore *int `json:"fabsiteInfraScore,omitempty"` // Fabsite Infra Score
-
-	FabsiteFsconnScore *int `json:"fabsiteFsconnScore,omitempty"` // Fabsite Fsconn Score
-
-	VnExitScore *int `json:"vnExitScore,omitempty"` // Vn Exit Score
-
-	VnFcpScore *int `json:"vnFcpScore,omitempty"` // Vn Fcp Score
-
-	VnStatusScore *int `json:"vnStatusScore,omitempty"` // Vn Status Score
-
-	VnServiceScore *int `json:"vnServiceScore,omitempty"` // Vn Service Score
-
+	OverallFabricScore       *int `json:"overallFabricScore,omitempty"`       // Overall Fabric Score
+	FabricTransitScore       *int `json:"fabricTransitScore,omitempty"`       // Fabric Transit Score
+	FabricSiteScore          *int `json:"fabricSiteScore,omitempty"`          // Fabric Site Score
+	FabricVnScore            *int `json:"fabricVnScore,omitempty"`            // Fabric Vn Score
+	FabsiteFcpScore          *int `json:"fabsiteFcpScore,omitempty"`          // Fabsite Fcp Score
+	FabsiteInfraScore        *int `json:"fabsiteInfraScore,omitempty"`        // Fabsite Infra Score
+	FabsiteFsconnScore       *int `json:"fabsiteFsconnScore,omitempty"`       // Fabsite Fsconn Score
+	VnExitScore              *int `json:"vnExitScore,omitempty"`              // Vn Exit Score
+	VnFcpScore               *int `json:"vnFcpScore,omitempty"`               // Vn Fcp Score
+	VnStatusScore            *int `json:"vnStatusScore,omitempty"`            // Vn Status Score
+	VnServiceScore           *int `json:"vnServiceScore,omitempty"`           // Vn Service Score
 	TransitControlPlaneScore *int `json:"transitControlPlaneScore,omitempty"` // Transit Control Plane Score
-
-	TransitServicesScore *int `json:"transitServicesScore,omitempty"` // Transit Services Score
-
-	TCPConnScore *int `json:"tcpConnScore,omitempty"` // Tcp Conn Score
-
-	BgpBgpSiteScore *int `json:"bgpBgpSiteScore,omitempty"` // Bgp Bgp Site Score
-
-	VniStatusScore *int `json:"vniStatusScore,omitempty"` // Vni Status Score
-
-	PubsubTransitConnScore *int `json:"pubsubTransitConnScore,omitempty"` // Pubsub Transit Conn Score
-
-	BgpPeerInfraVnScore *int `json:"bgpPeerInfraVnScore,omitempty"` // Bgp Peer Infra Vn Score
-
-	InternetAvailScore *int `json:"internetAvailScore,omitempty"` // Internet Avail Score
-
-	BgpEvpnScore *int `json:"bgpEvpnScore,omitempty"` // Bgp Evpn Score
-
-	LispTransitConnScore *int `json:"lispTransitConnScore,omitempty"` // Lisp Transit Conn Score
-
-	CtsEnvDataDownloadScore *int `json:"ctsEnvDataDownloadScore,omitempty"` // Cts Env Data Download Score
-
-	PubsubInfraVnScore *int `json:"pubsubInfraVnScore,omitempty"` // Pubsub Infra Vn Score
-
-	PeerScore *int `json:"peerScore,omitempty"` // Peer Score
-
-	BgpPeerScore *int `json:"bgpPeerScore,omitempty"` // Bgp Peer Score
-
+	TransitServicesScore     *int `json:"transitServicesScore,omitempty"`     // Transit Services Score
+	TCPConnScore             *int `json:"tcpConnScore,omitempty"`             // Tcp Conn Score
+	BgpBgpSiteScore          *int `json:"bgpBgpSiteScore,omitempty"`          // Bgp Bgp Site Score
+	VniStatusScore           *int `json:"vniStatusScore,omitempty"`           // Vni Status Score
+	PubsubTransitConnScore   *int `json:"pubsubTransitConnScore,omitempty"`   // Pubsub Transit Conn Score
+	BgpPeerInfraVnScore      *int `json:"bgpPeerInfraVnScore,omitempty"`      // Bgp Peer Infra Vn Score
+	InternetAvailScore       *int `json:"internetAvailScore,omitempty"`       // Internet Avail Score
+	BgpEvpnScore             *int `json:"bgpEvpnScore,omitempty"`             // Bgp Evpn Score
+	LispTransitConnScore     *int `json:"lispTransitConnScore,omitempty"`     // Lisp Transit Conn Score
+	CtsEnvDataDownloadScore  *int `json:"ctsEnvDataDownloadScore,omitempty"`  // Cts Env Data Download Score
+	PubsubInfraVnScore       *int `json:"pubsubInfraVnScore,omitempty"`       // Pubsub Infra Vn Score
+	PeerScore                *int `json:"peerScore,omitempty"`                // Peer Score
+	BgpPeerScore             *int `json:"bgpPeerScore,omitempty"`             // Bgp Peer Score
 	RemoteInternetAvailScore *int `json:"remoteInternetAvailScore,omitempty"` // Remote Internet Avail Score
-
-	BgpTCPScore *int `json:"bgpTcpScore,omitempty"` // Bgp Tcp Score
-
-	PubsubSessionScore *int `json:"pubsubSessionScore,omitempty"` // Pubsub Session Score
-
-	AAAStatusScore *int `json:"aaaStatusScore,omitempty"` // Aaa Status Score
-
-	LispCpConnScore *int `json:"lispCpConnScore,omitempty"` // Lisp Cp Conn Score
-
-	BgpPubsubSiteScore *int `json:"bgpPubsubSiteScore,omitempty"` // Bgp Pubsub Site Score
-
-	McastScore *int `json:"mcastScore,omitempty"` // Mcast Score
-
-	PortChannelScore *int `json:"portChannelScore,omitempty"` // Port Channel Score
+	BgpTCPScore              *int `json:"bgpTcpScore,omitempty"`              // Bgp Tcp Score
+	PubsubSessionScore       *int `json:"pubsubSessionScore,omitempty"`       // Pubsub Session Score
+	AAAStatusScore           *int `json:"aaaStatusScore,omitempty"`           // Aaa Status Score
+	LispCpConnScore          *int `json:"lispCpConnScore,omitempty"`          // Lisp Cp Conn Score
+	BgpPubsubSiteScore       *int `json:"bgpPubsubSiteScore,omitempty"`       // Bgp Pubsub Site Score
+	McastScore               *int `json:"mcastScore,omitempty"`               // Mcast Score
+	PortChannelScore         *int `json:"portChannelScore,omitempty"`         // Port Channel Score
 }
 type ResponseDevicesGetTheDeviceDataForTheGivenDeviceIDUUIDResponseAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange struct {
 	Response *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponse `json:"response,omitempty"` //
-
-	Page *ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage `json:"page,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Page     *ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage       `json:"page,omitempty"`     //
+	Version  string                                                                                    `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponse struct {
-	Timestamp *float64 `json:"timestamp,omitempty"` // Timestamp
-
-	Attributes *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseAttributes `json:"attributes,omitempty"` //
-
+	Timestamp           *float64                                                                                                     `json:"timestamp,omitempty"`           // Timestamp
+	Attributes          *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Groups *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroups `json:"groups,omitempty"` //
+	Groups              *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroups              `json:"groups,omitempty"`              //
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroups struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Attributes *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroupsAttributes `json:"attributes,omitempty"` //
-
+	ID                  string                                                                                                             `json:"id,omitempty"`                  // Id
+	Attributes          *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroupsAttributes          `json:"attributes,omitempty"`          //
 	AggregateAttributes *[]ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroupsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroupsAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Value string `json:"value,omitempty"` // Value
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeResponseGroupsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Function string `json:"function,omitempty"` // Function
-
-	Value *float64 `json:"value,omitempty"` // Value
+	Name     string   `json:"name,omitempty"`     // Name
+	Function string   `json:"function,omitempty"` // Function
+	Value    *float64 `json:"value,omitempty"`    // Value
 }
 type ResponseDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
+	Count          *int   `json:"count,omitempty"`          // Count
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type ResponseDevicesGetPlannedAccessPointsForBuilding struct {
 	Response *[]ResponseDevicesGetPlannedAccessPointsForBuildingResponse `json:"response,omitempty"` //
-
-	Version *int `json:"version,omitempty"` // Version of the api response model
-
-	Total *int `json:"total,omitempty"` // Total number of the planned access points
+	Version  *int                                                        `json:"version,omitempty"`  // Version of the api response model
+	Total    *int                                                        `json:"total,omitempty"`    // Total number of the planned access points
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponse struct {
 	Attributes *ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributes `json:"attributes,omitempty"` //
-
-	Location *ResponseDevicesGetPlannedAccessPointsForBuildingResponseLocation `json:"location,omitempty"` //
-
-	Position *ResponseDevicesGetPlannedAccessPointsForBuildingResponsePosition `json:"position,omitempty"` //
-
-	RadioCount *int `json:"radioCount,omitempty"` // Number of radios of the planned access point
-
-	Radios *[]ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadios `json:"radios,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if the planned access point is sensor or not
+	Location   *ResponseDevicesGetPlannedAccessPointsForBuildingResponseLocation   `json:"location,omitempty"`   //
+	Position   *ResponseDevicesGetPlannedAccessPointsForBuildingResponsePosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                                `json:"radioCount,omitempty"` // Number of radios of the planned access point
+	Radios     *[]ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadios   `json:"radios,omitempty"`     //
+	IsSensor   *bool                                                               `json:"isSensor,omitempty"`   // Determines if the planned access point is sensor or not
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponseAttributes struct {
-	ID *float64 `json:"id,omitempty"` // Unique id of the planned access point
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance uuid of the planned access point
-
-	Name string `json:"name,omitempty"` // Display name of the planned access point
-
-	TypeString string `json:"typeString,omitempty"` // Type string representation of the planned access point
-
-	Domain string `json:"domain,omitempty"` // Service domain to which the planned access point belongs
-
-	HeirarchyName string `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
-
-	Source string `json:"source,omitempty"` // Source of the data used to create the planned access point
-
-	CreateDate *float64 `json:"createDate,omitempty"` // Created date of the planned access point
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the planned access point
+	ID            *float64 `json:"id,omitempty"`            // Unique id of the planned access point
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance uuid of the planned access point
+	Name          string   `json:"name,omitempty"`          // Display name of the planned access point
+	TypeString    string   `json:"typeString,omitempty"`    // Type string representation of the planned access point
+	Domain        string   `json:"domain,omitempty"`        // Service domain to which the planned access point belongs
+	HeirarchyName string   `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
+	Source        string   `json:"source,omitempty"`        // Source of the data used to create the planned access point
+	CreateDate    *float64 `json:"createDate,omitempty"`    // Created date of the planned access point
+	MacAddress    string   `json:"macAddress,omitempty"`    // MAC address of the planned access point
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponseLocation struct {
-	Altitude *float64 `json:"altitude,omitempty"` // Altitude of the planned access point's location
-
-	Lattitude *float64 `json:"lattitude,omitempty"` // Latitude of the planned access point's location
-
+	Altitude   *float64 `json:"altitude,omitempty"`   // Altitude of the planned access point's location
+	Lattitude  *float64 `json:"lattitude,omitempty"`  // Latitude of the planned access point's location
 	Longtitude *float64 `json:"longtitude,omitempty"` // Longitude of the planned access point's location
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponsePosition struct {
 	X *float64 `json:"x,omitempty"` // x-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Y *float64 `json:"y,omitempty"` // y-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Z *float64 `json:"z,omitempty"` // z-coordinate, or height, of the planned access point on the map
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadios struct {
 	Attributes *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributes `json:"attributes,omitempty"` //
-
-	Antenna *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAntenna `json:"antenna,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if it is sensor or not
+	Antenna    *ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAntenna    `json:"antenna,omitempty"`    //
+	IsSensor   *bool                                                                     `json:"isSensor,omitempty"`   // Determines if it is sensor or not
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAttributes struct {
-	ID *int `json:"id,omitempty"` // Id of the radio
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the radio
-
-	SlotID *float64 `json:"slotId,omitempty"` // Slot number in which the radio resides in the parent access point
-
-	IfTypeString string `json:"ifTypeString,omitempty"` // String representation of native band
-
-	IfTypeSubband string `json:"ifTypeSubband,omitempty"` // Sub band type of the radio
-
-	Channel *float64 `json:"channel,omitempty"` // Channel in which the radio operates
-
-	ChannelString string `json:"channelString,omitempty"` // Channel string representation
-
-	IfMode string `json:"ifMode,omitempty"` // IF mode of the radio
-
-	TxPowerLevel *float64 `json:"txPowerLevel,omitempty"` // Tx Power at which this radio operates (in dBm)
+	ID            *int     `json:"id,omitempty"`            // Id of the radio
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance Uuid of the radio
+	SlotID        *float64 `json:"slotId,omitempty"`        // Slot number in which the radio resides in the parent access point
+	IfTypeString  string   `json:"ifTypeString,omitempty"`  // String representation of native band
+	IfTypeSubband string   `json:"ifTypeSubband,omitempty"` // Sub band type of the radio
+	Channel       *float64 `json:"channel,omitempty"`       // Channel in which the radio operates
+	ChannelString string   `json:"channelString,omitempty"` // Channel string representation
+	IfMode        string   `json:"ifMode,omitempty"`        // IF mode of the radio
+	TxPowerLevel  *float64 `json:"txPowerLevel,omitempty"`  // Tx Power at which this radio operates (in dBm)
 }
 type ResponseDevicesGetPlannedAccessPointsForBuildingResponseRadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Name of the antenna
-
-	Type string `json:"type,omitempty"` // Type of the antenna associated with this radio
-
-	Mode string `json:"mode,omitempty"` // Mode of the antenna associated with this radio
-
-	AzimuthAngle *float64 `json:"azimuthAngle,omitempty"` // Azimuth angle of the antenna
-
+	Name           string   `json:"name,omitempty"`           // Name of the antenna
+	Type           string   `json:"type,omitempty"`           // Type of the antenna associated with this radio
+	Mode           string   `json:"mode,omitempty"`           // Mode of the antenna associated with this radio
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth angle of the antenna
 	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation angle of the antenna
-
-	Gain *float64 `json:"gain,omitempty"` // Gain of the antenna
+	Gain           *float64 `json:"gain,omitempty"`           // Gain of the antenna
 }
 type ResponseDevicesGetDeviceDetail struct {
 	Response *ResponseDevicesGetDeviceDetailResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetDeviceDetailResponse struct {
-	NoiseScore *int `json:"noiseScore,omitempty"` // Device (AP) WIFI signal noise health score
-
-	PolicyTagName string `json:"policyTagName,omitempty"` // Device (AP) policy tag
-
-	InterferenceScore *int `json:"interferenceScore,omitempty"` // Device (AP) WIFI signal interference health score
-
-	OpState string `json:"opState,omitempty"` // Operation state of device (AP)
-
-	PowerSaveMode string `json:"powerSaveMode,omitempty"` // Device power save mode
-
-	Mode string `json:"mode,omitempty"` // Device mode (AP)
-
-	ResetReason string `json:"resetReason,omitempty"` // Device reset reason
-
-	NwDeviceRole string `json:"nwDeviceRole,omitempty"` // Device role
-
-	Protocol string `json:"protocol,omitempty"` // Protocol code
-
-	PowerMode string `json:"powerMode,omitempty"` // Device's power mode
-
-	ConnectedTime string `json:"connectedTime,omitempty"` // UTC timestamp
-
-	RingStatus *bool `json:"ringStatus,omitempty"` // Device's ring status
-
-	LedFlashSeconds string `json:"ledFlashSeconds,omitempty"` // LED flash seconds
-
-	IPAddrManagementIPAddr string `json:"ip_addr_managementIpAddr,omitempty"` // Device's management IP address
-
-	StackType string `json:"stackType,omitempty"` // Device stack type (applicable for stackable devices)
-
-	SubMode string `json:"subMode,omitempty"` // Device submode
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Device serial number
-
-	NwDeviceName string `json:"nwDeviceName,omitempty"` // Device name
-
-	DeviceGroupHierarchyID string `json:"deviceGroupHierarchyId,omitempty"` // Device group site hierarchy UUID
-
-	CPU *float64 `json:"cpu,omitempty"` // Device CPU utilization
-
-	Utilization string `json:"utilization,omitempty"` // Device utilization
-
-	NwDeviceID string `json:"nwDeviceId,omitempty"` // Device's UUID
-
-	SiteHierarchyGraphID string `json:"siteHierarchyGraphId,omitempty"` // Site hierarchy UUID in which device is assigned to
-
-	NwDeviceFamily string `json:"nwDeviceFamily,omitempty"` // Device faimly string
-
-	MacAddress string `json:"macAddress,omitempty"` // Device MAC address
-
-	HomeApEnabled string `json:"homeApEnabled,omitempty"` // Home Ap Enabled
-
-	DeviceSeries string `json:"deviceSeries,omitempty"` // Device series string
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Device's telemetry data collection status for DNAC
-
-	UtilizationScore *int `json:"utilizationScore,omitempty"` // Device utilization health score
-
-	MaintenanceMode *bool `json:"maintenanceMode,omitempty"` // Whether device is in maintenance mode
-
-	Interference string `json:"interference,omitempty"` // Device (AP) WIFI signal interference
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Device's software version string
-
-	TagIDList *[]ResponseDevicesGetDeviceDetailResponseTagIDList `json:"tagIdList,omitempty"` // Tag ID List
-
-	PowerType string `json:"powerType,omitempty"` // Device (AP) power type
-
-	OverallHealth *int `json:"overallHealth,omitempty"` // Device's overall health score
-
-	ManagementIPAddr string `json:"managementIpAddr,omitempty"` // Management IP address of the device
-
-	Memory string `json:"memory,omitempty"` // Device memory utilization
-
-	CommunicationState string `json:"communicationState,omitempty"` // Device communication state
-
-	ApType string `json:"apType,omitempty"` // Ap Type
-
-	AdminState string `json:"adminState,omitempty"` // Device (AP) admin state
-
-	Noise string `json:"noise,omitempty"` // Device (AP) WIFI signal noise
-
-	IcapCapability string `json:"icapCapability,omitempty"` // Device (AP) ICAP capability bit values
-
-	RegulatoryDomain string `json:"regulatoryDomain,omitempty"` // Device (AP) WIFI domain
-
-	EthernetMac string `json:"ethernetMac,omitempty"` // Device (AP) ethernet MAC address
-
-	NwDeviceType string `json:"nwDeviceType,omitempty"` // Device type
-
-	AirQuality string `json:"airQuality,omitempty"` // Device (AP) WIFI air quality
-
-	RfTagName string `json:"rfTagName,omitempty"` // Device (AP) RF tag name
-
-	SiteTagName string `json:"siteTagName,omitempty"` // Device (AP) site tag name
-
-	PlatformID string `json:"platformId,omitempty"` // Device's platform ID
-
-	UpTime string `json:"upTime,omitempty"` // Device up time
-
-	MemoryScore *int `json:"memoryScore,omitempty"` // Device's memory usage score
-
-	PowerSaveModeCapable string `json:"powerSaveModeCapable,omitempty"` // Device (AP) power save mode capability
-
-	PowerProfile string `json:"powerProfile,omitempty"` // Device (AP) power profile name
-
-	AirQualityScore *int `json:"airQualityScore,omitempty"` // Device (AP) air quality health score
-
-	Location string `json:"location,omitempty"` // Device's site hierarchy UUID
-
-	FlexGroup string `json:"flexGroup,omitempty"` // Deivce (A) flexconnect group
-
-	LastBootTime *float64 `json:"lastBootTime,omitempty"` // Device's last boot UTC timestamp
-
-	PowerCalendarProfile string `json:"powerCalendarProfile,omitempty"` // Device (AP) power calendar profile name
-
-	ConnectivityStatus *int `json:"connectivityStatus,omitempty"` // Device connectivity status
-
-	LedFlashEnabled string `json:"ledFlashEnabled,omitempty"` // Device (AP) LED flash
-
-	CPUScore *int `json:"cpuScore,omitempty"` // Device's CPU usage score
-
-	AvgTemperature *float64 `json:"avgTemperature,omitempty"` // Device's average temperature
-
-	MaxTemperature *float64 `json:"maxTemperature,omitempty"` // Device's max temperature
-
-	HaStatus string `json:"haStatus,omitempty"` // Device's HA status
-
-	OsType string `json:"osType,omitempty"` // Device's OS type
-
-	Timestamp *int `json:"timestamp,omitempty"` // UTC timestamp of the device health data
-
-	ApGroup string `json:"apGroup,omitempty"` // Device (AP) AP group
-
-	RedundancyMode string `json:"redundancyMode,omitempty"` // Device redundancy mode
-
-	FeatureFlagList []string `json:"featureFlagList,omitempty"` // List of device feature capabilities
-
-	FreeMbufScore *int `json:"freeMbufScore,omitempty"` // Free memory buffer health score
-
-	HALastResetReason string `json:"HALastResetReason,omitempty"` // Last HA reset reason
-
-	WqeScore *int `json:"wqeScore,omitempty"` // WQE health score
-
-	RedundancyPeerStateDerived string `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
-
-	FreeTimerScore *int `json:"freeTimerScore,omitempty"` // Free Timer Score
-
-	RedundancyPeerState string `json:"redundancyPeerState,omitempty"` // Redundancy Peer State
-
-	RedundancyStateDerived string `json:"redundancyStateDerived,omitempty"` // Derived redundancy state
-
-	RedundancyState string `json:"redundancyState,omitempty"` // Redundancy state
-
-	PacketPoolScore *int `json:"packetPoolScore,omitempty"` // Device packet pool health score
-
-	FreeTimer *float64 `json:"freeTimer,omitempty"` // Free timer of the device
-
-	PacketPool *float64 `json:"packetPool,omitempty"` // Packet pool of the device
-
-	Wqe *float64 `json:"wqe,omitempty"` // WQE of the device
-
-	FreeMbuf *float64 `json:"freeMbuf,omitempty"` // Free memory buffer of the device
+	NoiseScore                 *int                                               `json:"noiseScore,omitempty"`                 // Device (AP) WIFI signal noise health score
+	PolicyTagName              string                                             `json:"policyTagName,omitempty"`              // Device (AP) policy tag
+	InterferenceScore          *int                                               `json:"interferenceScore,omitempty"`          // Device (AP) WIFI signal interference health score
+	OpState                    string                                             `json:"opState,omitempty"`                    // Operation state of device (AP)
+	PowerSaveMode              string                                             `json:"powerSaveMode,omitempty"`              // Device power save mode
+	Mode                       string                                             `json:"mode,omitempty"`                       // Device mode (AP)
+	ResetReason                string                                             `json:"resetReason,omitempty"`                // Device reset reason
+	NwDeviceRole               string                                             `json:"nwDeviceRole,omitempty"`               // Device role
+	Protocol                   string                                             `json:"protocol,omitempty"`                   // Protocol code
+	PowerMode                  string                                             `json:"powerMode,omitempty"`                  // Device's power mode
+	ConnectedTime              string                                             `json:"connectedTime,omitempty"`              // UTC timestamp
+	RingStatus                 *bool                                              `json:"ringStatus,omitempty"`                 // Device's ring status
+	LedFlashSeconds            string                                             `json:"ledFlashSeconds,omitempty"`            // LED flash seconds
+	IPAddrManagementIPAddr     string                                             `json:"ip_addr_managementIpAddr,omitempty"`   // Device's management IP address
+	StackType                  string                                             `json:"stackType,omitempty"`                  // Device stack type (applicable for stackable devices)
+	SubMode                    string                                             `json:"subMode,omitempty"`                    // Device submode
+	SerialNumber               string                                             `json:"serialNumber,omitempty"`               // Device serial number
+	NwDeviceName               string                                             `json:"nwDeviceName,omitempty"`               // Device name
+	DeviceGroupHierarchyID     string                                             `json:"deviceGroupHierarchyId,omitempty"`     // Device group site hierarchy UUID
+	CPU                        *float64                                           `json:"cpu,omitempty"`                        // Device CPU utilization
+	Utilization                string                                             `json:"utilization,omitempty"`                // Device utilization
+	NwDeviceID                 string                                             `json:"nwDeviceId,omitempty"`                 // Device's UUID
+	SiteHierarchyGraphID       string                                             `json:"siteHierarchyGraphId,omitempty"`       // Site hierarchy UUID in which device is assigned to
+	NwDeviceFamily             string                                             `json:"nwDeviceFamily,omitempty"`             // Device faimly string
+	MacAddress                 string                                             `json:"macAddress,omitempty"`                 // Device MAC address
+	HomeApEnabled              string                                             `json:"homeApEnabled,omitempty"`              // Home Ap Enabled
+	DeviceSeries               string                                             `json:"deviceSeries,omitempty"`               // Device series string
+	CollectionStatus           string                                             `json:"collectionStatus,omitempty"`           // Device's telemetry data collection status for DNAC
+	UtilizationScore           *int                                               `json:"utilizationScore,omitempty"`           // Device utilization health score
+	MaintenanceMode            *bool                                              `json:"maintenanceMode,omitempty"`            // Whether device is in maintenance mode
+	Interference               string                                             `json:"interference,omitempty"`               // Device (AP) WIFI signal interference
+	SoftwareVersion            string                                             `json:"softwareVersion,omitempty"`            // Device's software version string
+	TagIDList                  *[]ResponseDevicesGetDeviceDetailResponseTagIDList `json:"tagIdList,omitempty"`                  // Tag ID List
+	PowerType                  string                                             `json:"powerType,omitempty"`                  // Device (AP) power type
+	OverallHealth              *int                                               `json:"overallHealth,omitempty"`              // Device's overall health score
+	ManagementIPAddr           string                                             `json:"managementIpAddr,omitempty"`           // Management IP address of the device
+	Memory                     string                                             `json:"memory,omitempty"`                     // Device memory utilization
+	CommunicationState         string                                             `json:"communicationState,omitempty"`         // Device communication state
+	ApType                     string                                             `json:"apType,omitempty"`                     // Ap Type
+	AdminState                 string                                             `json:"adminState,omitempty"`                 // Device (AP) admin state
+	Noise                      string                                             `json:"noise,omitempty"`                      // Device (AP) WIFI signal noise
+	IcapCapability             string                                             `json:"icapCapability,omitempty"`             // Device (AP) ICAP capability bit values
+	RegulatoryDomain           string                                             `json:"regulatoryDomain,omitempty"`           // Device (AP) WIFI domain
+	EthernetMac                string                                             `json:"ethernetMac,omitempty"`                // Device (AP) ethernet MAC address
+	NwDeviceType               string                                             `json:"nwDeviceType,omitempty"`               // Device type
+	AirQuality                 string                                             `json:"airQuality,omitempty"`                 // Device (AP) WIFI air quality
+	RfTagName                  string                                             `json:"rfTagName,omitempty"`                  // Device (AP) RF tag name
+	SiteTagName                string                                             `json:"siteTagName,omitempty"`                // Device (AP) site tag name
+	PlatformID                 string                                             `json:"platformId,omitempty"`                 // Device's platform ID
+	UpTime                     string                                             `json:"upTime,omitempty"`                     // Device up time
+	MemoryScore                *int                                               `json:"memoryScore,omitempty"`                // Device's memory usage score
+	PowerSaveModeCapable       string                                             `json:"powerSaveModeCapable,omitempty"`       // Device (AP) power save mode capability
+	PowerProfile               string                                             `json:"powerProfile,omitempty"`               // Device (AP) power profile name
+	AirQualityScore            *int                                               `json:"airQualityScore,omitempty"`            // Device (AP) air quality health score
+	Location                   string                                             `json:"location,omitempty"`                   // Device's site hierarchy UUID
+	FlexGroup                  string                                             `json:"flexGroup,omitempty"`                  // Deivce (A) flexconnect group
+	LastBootTime               *float64                                           `json:"lastBootTime,omitempty"`               // Device's last boot UTC timestamp
+	PowerCalendarProfile       string                                             `json:"powerCalendarProfile,omitempty"`       // Device (AP) power calendar profile name
+	ConnectivityStatus         *int                                               `json:"connectivityStatus,omitempty"`         // Device connectivity status
+	LedFlashEnabled            string                                             `json:"ledFlashEnabled,omitempty"`            // Device (AP) LED flash
+	CPUScore                   *int                                               `json:"cpuScore,omitempty"`                   // Device's CPU usage score
+	AvgTemperature             *float64                                           `json:"avgTemperature,omitempty"`             // Device's average temperature
+	MaxTemperature             *float64                                           `json:"maxTemperature,omitempty"`             // Device's max temperature
+	HaStatus                   string                                             `json:"haStatus,omitempty"`                   // Device's HA status
+	OsType                     string                                             `json:"osType,omitempty"`                     // Device's OS type
+	Timestamp                  *int                                               `json:"timestamp,omitempty"`                  // UTC timestamp of the device health data
+	ApGroup                    string                                             `json:"apGroup,omitempty"`                    // Device (AP) AP group
+	RedundancyMode             string                                             `json:"redundancyMode,omitempty"`             // Device redundancy mode
+	FeatureFlagList            []string                                           `json:"featureFlagList,omitempty"`            // List of device feature capabilities
+	FreeMbufScore              *int                                               `json:"freeMbufScore,omitempty"`              // Free memory buffer health score
+	HALastResetReason          string                                             `json:"HALastResetReason,omitempty"`          // Last HA reset reason
+	WqeScore                   *int                                               `json:"wqeScore,omitempty"`                   // WQE health score
+	RedundancyPeerStateDerived string                                             `json:"redundancyPeerStateDerived,omitempty"` // Redundancy Peer State Derived
+	FreeTimerScore             *int                                               `json:"freeTimerScore,omitempty"`             // Free Timer Score
+	RedundancyPeerState        string                                             `json:"redundancyPeerState,omitempty"`        // Redundancy Peer State
+	RedundancyStateDerived     string                                             `json:"redundancyStateDerived,omitempty"`     // Derived redundancy state
+	RedundancyState            string                                             `json:"redundancyState,omitempty"`            // Redundancy state
+	PacketPoolScore            *int                                               `json:"packetPoolScore,omitempty"`            // Device packet pool health score
+	FreeTimer                  *float64                                           `json:"freeTimer,omitempty"`                  // Free timer of the device
+	PacketPool                 *float64                                           `json:"packetPool,omitempty"`                 // Packet pool of the device
+	Wqe                        *float64                                           `json:"wqe,omitempty"`                        // WQE of the device
+	FreeMbuf                   *float64                                           `json:"freeMbuf,omitempty"`                   // Free memory buffer of the device
 }
 type ResponseDevicesGetDeviceDetailResponseTagIDList interface{}
 type ResponseDevicesGetDeviceEnrichmentDetails []ResponseItemDevicesGetDeviceEnrichmentDetails // Array of ResponseDevicesGetDeviceEnrichmentDetails
@@ -3395,81 +3075,44 @@ type ResponseItemDevicesGetDeviceEnrichmentDetails struct {
 	DeviceDetails *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetails `json:"deviceDetails,omitempty"` //
 }
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetails struct {
-	Family string `json:"family,omitempty"` // Device Family
-
-	Type string `json:"type,omitempty"` // Device Type
-
-	Location *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocation `json:"location,omitempty"` // Device location - Site hierarchy
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	MacAddress string `json:"macAddress,omitempty"` // Device MAC address
-
-	Role string `json:"role,omitempty"` // Device role
-
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated WLC IP address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device's last boot UTC timestamp
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Device's telemetry data collection status for DNAC
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // Device Management Ip Address
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	PlatformID string `json:"platformId,omitempty"` // Device's platform ID
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Reachability Status of the Device(Reachable/Unreachable)
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	TunnelUDPPort *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsTunnelUDPPort `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	WaasDeviceMode *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsWaasDeviceMode `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	Series string `json:"series,omitempty"` // Device Series
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Device Serial Number
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Device Software Version
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	Hostname string `json:"hostname,omitempty"` // Device Hostname
-
-	UpTime string `json:"upTime,omitempty"` // Device's uptime
-
-	LastUpdateTime *int `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	LocationName *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocationName `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	ID string `json:"id,omitempty"` // Device's UUID
-
-	NeighborTopology *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopology `json:"neighborTopology,omitempty"` //
+	Family                    string                                                                        `json:"family,omitempty"`                    // Device Family
+	Type                      string                                                                        `json:"type,omitempty"`                      // Device Type
+	Location                  *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocation           `json:"location,omitempty"`                  // Device location - Site hierarchy
+	ErrorCode                 string                                                                        `json:"errorCode,omitempty"`                 // Inventory status error code
+	MacAddress                string                                                                        `json:"macAddress,omitempty"`                // Device MAC address
+	Role                      string                                                                        `json:"role,omitempty"`                      // Device role
+	ApManagerInterfaceIP      string                                                                        `json:"apManagerInterfaceIp,omitempty"`      // IP address of WLC on AP manager interface
+	AssociatedWlcIP           string                                                                        `json:"associatedWlcIp,omitempty"`           // Associated WLC IP address of the AP device
+	BootDateTime              string                                                                        `json:"bootDateTime,omitempty"`              // Device's last boot UTC timestamp
+	CollectionStatus          string                                                                        `json:"collectionStatus,omitempty"`          // Device's telemetry data collection status for DNAC
+	InterfaceCount            string                                                                        `json:"interfaceCount,omitempty"`            // Number of interfaces on the device
+	LineCardCount             string                                                                        `json:"lineCardCount,omitempty"`             // Number of linecards on the device
+	LineCardID                string                                                                        `json:"lineCardId,omitempty"`                // IDs of linecards of the device
+	ManagementIPAddress       string                                                                        `json:"managementIpAddress,omitempty"`       // Device Management Ip Address
+	MemorySize                string                                                                        `json:"memorySize,omitempty"`                // Processor memory size
+	PlatformID                string                                                                        `json:"platformId,omitempty"`                // Device's platform ID
+	ReachabilityFailureReason string                                                                        `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
+	ReachabilityStatus        string                                                                        `json:"reachabilityStatus,omitempty"`        // Reachability Status of the Device(Reachable/Unreachable)
+	SNMPContact               string                                                                        `json:"snmpContact,omitempty"`               // SNMP contact on device
+	SNMPLocation              string                                                                        `json:"snmpLocation,omitempty"`              // SNMP location on device
+	TunnelUDPPort             *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsTunnelUDPPort      `json:"tunnelUdpPort,omitempty"`             // Mobility protocol port is stored as tunneludpport for WLC
+	WaasDeviceMode            *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsWaasDeviceMode     `json:"waasDeviceMode,omitempty"`            // WAAS device mode
+	Series                    string                                                                        `json:"series,omitempty"`                    // Device Series
+	InventoryStatusDetail     string                                                                        `json:"inventoryStatusDetail,omitempty"`     // Status detail of inventory sync
+	CollectionInterval        string                                                                        `json:"collectionInterval,omitempty"`        // Re sync Interval of the device
+	SerialNumber              string                                                                        `json:"serialNumber,omitempty"`              // Device Serial Number
+	SoftwareVersion           string                                                                        `json:"softwareVersion,omitempty"`           // Device Software Version
+	RoleSource                string                                                                        `json:"roleSource,omitempty"`                // Role source as manual / auto
+	Hostname                  string                                                                        `json:"hostname,omitempty"`                  // Device Hostname
+	UpTime                    string                                                                        `json:"upTime,omitempty"`                    // Device's uptime
+	LastUpdateTime            *int                                                                          `json:"lastUpdateTime,omitempty"`            // Time in epoch when the network device info last got updated
+	ErrorDescription          string                                                                        `json:"errorDescription,omitempty"`          // Inventory status description
+	LocationName              *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocationName       `json:"locationName,omitempty"`              // [Deprecated] Name of the associated location
+	TagCount                  string                                                                        `json:"tagCount,omitempty"`                  // Number of tags associated with the device
+	LastUpdated               string                                                                        `json:"lastUpdated,omitempty"`               // Time when the network device info last got updated
+	InstanceUUID              string                                                                        `json:"instanceUuid,omitempty"`              // Instance Uuid of the device
+	ID                        string                                                                        `json:"id,omitempty"`                        // Device's UUID
+	NeighborTopology          *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopology `json:"neighborTopology,omitempty"`          //
 }
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocation interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsTunnelUDPPort interface{}
@@ -3477,44 +3120,26 @@ type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsWaasDeviceMode in
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsLocationName interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopology struct {
 	Nodes *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodes `json:"nodes,omitempty"` //
-
 	Links *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinks `json:"links,omitempty"` //
 }
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodes struct {
-	Role string `json:"role,omitempty"` // Role of the Node
-
-	Name string `json:"name,omitempty"` // Hostname of the Node
-
-	ID string `json:"id,omitempty"` // Id of the Node
-
-	Description string `json:"description,omitempty"` // Description of the Node
-
-	DeviceType string `json:"deviceType,omitempty"` // Device type of the node, like switch, AP, WCL,GateWay
-
-	PlatformID string `json:"platformId,omitempty"` // Type of platform
-
-	Family string `json:"family,omitempty"` // Device Family of the Node
-
-	IP string `json:"ip,omitempty"` // IP Address of the Node
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software Version of the Node
-
-	UserID *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesUserID `json:"userId,omitempty"` // User Id of the Node
-
-	NodeType string `json:"nodeType,omitempty"` // Type of the Node
-
-	RadioFrequency *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesRadioFrequency `json:"radioFrequency,omitempty"` // Frequency of wireless radio channel
-
-	Clients *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesClients `json:"clients,omitempty"` // Number of clients
-
-	Count *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesCount `json:"count,omitempty"` // The number of group nodes (for ap sepecifically)
-
-	HealthScore *int `json:"healthScore,omitempty"` // The total health score of the node
-
-	Level *float64 `json:"level,omitempty"` // The level index to be used by UI widget (starts from 0)
-
-	FabricGroup *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesFabricGroup `json:"fabricGroup,omitempty"` // Fabric device group name
-
+	Role            string                                                                                          `json:"role,omitempty"`            // Role of the Node
+	Name            string                                                                                          `json:"name,omitempty"`            // Hostname of the Node
+	ID              string                                                                                          `json:"id,omitempty"`              // Id of the Node
+	Description     string                                                                                          `json:"description,omitempty"`     // Description of the Node
+	DeviceType      string                                                                                          `json:"deviceType,omitempty"`      // Device type of the node, like switch, AP, WCL,GateWay
+	PlatformID      string                                                                                          `json:"platformId,omitempty"`      // Type of platform
+	Family          string                                                                                          `json:"family,omitempty"`          // Device Family of the Node
+	IP              string                                                                                          `json:"ip,omitempty"`              // IP Address of the Node
+	SoftwareVersion string                                                                                          `json:"softwareVersion,omitempty"` // Software Version of the Node
+	UserID          *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesUserID          `json:"userId,omitempty"`          // User Id of the Node
+	NodeType        string                                                                                          `json:"nodeType,omitempty"`        // Type of the Node
+	RadioFrequency  *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesRadioFrequency  `json:"radioFrequency,omitempty"`  // Frequency of wireless radio channel
+	Clients         *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesClients         `json:"clients,omitempty"`         // Number of clients
+	Count           *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesCount           `json:"count,omitempty"`           // The number of group nodes (for ap sepecifically)
+	HealthScore     *int                                                                                            `json:"healthScore,omitempty"`     // The total health score of the node
+	Level           *float64                                                                                        `json:"level,omitempty"`           // The level index to be used by UI widget (starts from 0)
+	FabricGroup     *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesFabricGroup     `json:"fabricGroup,omitempty"`     // Fabric device group name
 	ConnectedDevice *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesConnectedDevice `json:"connectedDevice,omitempty"` // The connected device to show the connected switch to wlc
 }
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesUserID interface{}
@@ -3524,355 +3149,223 @@ type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyN
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesFabricGroup interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyNodesConnectedDevice interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinks struct {
-	Source string `json:"source,omitempty"` // Edge line starting node
-
-	LinkStatus string `json:"linkStatus,omitempty"` // The status of the link (up/down)
-
-	Label *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksLabel `json:"label,omitempty"` // The details of the edge
-
-	Target string `json:"target,omitempty"` // End node of the edge line
-
-	ID *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksID `json:"id,omitempty"` // Id of the node
-
+	Source          string                                                                                          `json:"source,omitempty"`          // Edge line starting node
+	LinkStatus      string                                                                                          `json:"linkStatus,omitempty"`      // The status of the link (up/down)
+	Label           *[]ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksLabel         `json:"label,omitempty"`           // The details of the edge
+	Target          string                                                                                          `json:"target,omitempty"`          // End node of the edge line
+	ID              *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksID              `json:"id,omitempty"`              // Id of the node
 	PortUtilization *ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksPortUtilization `json:"portUtilization,omitempty"` // Number of clients
 }
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksLabel interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksID interface{}
 type ResponseItemDevicesGetDeviceEnrichmentDetailsDeviceDetailsNeighborTopologyLinksPortUtilization interface{}
 type ResponseDevicesDevices struct {
-	Version string `json:"version,omitempty"` // Response data's version string
-
-	TotalCount *int `json:"totalCount,omitempty"` // Total number of devices
-
-	Response *[]ResponseDevicesDevicesResponse `json:"response,omitempty"` //
+	Version    string                            `json:"version,omitempty"`    // Response data's version string
+	TotalCount *int                              `json:"totalCount,omitempty"` // Total number of devices
+	Response   *[]ResponseDevicesDevicesResponse `json:"response,omitempty"`   //
 }
 type ResponseDevicesDevicesResponse struct {
-	DeviceType string `json:"deviceType,omitempty"` // Device type
-
-	CPUUtilization *float64 `json:"cpuUtilization,omitempty"` // Device's CPU utilization
-
-	OverallHealth *int `json:"overallHealth,omitempty"` // Overall health score
-
-	UtilizationHealth *ResponseDevicesDevicesResponseUtilizationHealth `json:"utilizationHealth,omitempty"` //
-
-	AirQualityHealth *ResponseDevicesDevicesResponseAirQualityHealth `json:"airQualityHealth,omitempty"` //
-
-	IPAddress string `json:"ipAddress,omitempty"` // Management IP address of the device
-
-	CPUHealth *int `json:"cpuHealth,omitempty"` // Device CPU health score
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device family
-
-	IssueCount *int `json:"issueCount,omitempty"` // Number of issues
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the device
-
-	NoiseHealth *ResponseDevicesDevicesResponseNoiseHealth `json:"noiseHealth,omitempty"` //
-
-	OsVersion string `json:"osVersion,omitempty"` // Device OS version string
-
-	Name string `json:"name,omitempty"` // Device name
-
-	InterfaceLinkErrHealth *int `json:"interfaceLinkErrHealth,omitempty"` // Device (AP) error health score
-
-	MemoryUtilization *float64 `json:"memoryUtilization,omitempty"` // Device memory utilization
-
-	InterDeviceLinkAvailHealth *int `json:"interDeviceLinkAvailHealth,omitempty"` // Device connectivity status
-
-	InterferenceHealth *ResponseDevicesDevicesResponseInterferenceHealth `json:"interferenceHealth,omitempty"` //
-
-	Model string `json:"model,omitempty"` // Device model string
-
-	Location string `json:"location,omitempty"` // Site location in which this device is assigned to
-
-	ReachabilityHealth string `json:"reachabilityHealth,omitempty"` // Device reachability in the network
-
-	Band *ResponseDevicesDevicesResponseBand `json:"band,omitempty"` //
-
-	MemoryUtilizationHealth *int `json:"memoryUtilizationHealth,omitempty"` // Device memory utilization health score
-
-	ClientCount *ResponseDevicesDevicesResponseClientCount `json:"clientCount,omitempty"` //
-
-	AvgTemperature *float64 `json:"avgTemperature,omitempty"` // Average device (switch) temperature
-
-	MaxTemperature *float64 `json:"maxTemperature,omitempty"` // Max device (switch) temperature
-
-	InterDeviceLinkAvailFabric *int `json:"interDeviceLinkAvailFabric,omitempty"` // Device uplink health
-
-	ApCount *int `json:"apCount,omitempty"` // Number of AP count
-
-	FreeTimerScore *int `json:"freeTimerScore,omitempty"` // Device free timer health score
-
-	FreeTimer *float64 `json:"freeTimer,omitempty"` // Device free timer
-
-	PacketPoolHealth *int `json:"packetPoolHealth,omitempty"` // Device packet pool
-
-	PacketPool *int `json:"packetPool,omitempty"` // Device packet pool
-
-	FreeMemoryBufferHealth *int `json:"freeMemoryBufferHealth,omitempty"` // Device free memory buffer health
-
-	FreeMemoryBuffer *float64 `json:"freeMemoryBuffer,omitempty"` // Device free memory
-
-	WqePoolsHealth *int `json:"wqePoolsHealth,omitempty"` // Device WQE pool health
-
-	WqePools *float64 `json:"wqePools,omitempty"` // Device WQE pool
-
-	WanLinkUtilization *float64 `json:"wanLinkUtilization,omitempty"` // WLAN link utilization
-
-	CPUUlitilization *float64 `json:"cpuUlitilization,omitempty"` // Device's CPU utilization
-
-	UUID string `json:"uuid,omitempty"` // Device UUID
+	DeviceType                 string                                            `json:"deviceType,omitempty"`                 // Device type
+	CPUUtilization             *float64                                          `json:"cpuUtilization,omitempty"`             // Device's CPU utilization
+	OverallHealth              *int                                              `json:"overallHealth,omitempty"`              // Overall health score
+	UtilizationHealth          *ResponseDevicesDevicesResponseUtilizationHealth  `json:"utilizationHealth,omitempty"`          //
+	AirQualityHealth           *ResponseDevicesDevicesResponseAirQualityHealth   `json:"airQualityHealth,omitempty"`           //
+	IPAddress                  string                                            `json:"ipAddress,omitempty"`                  // Management IP address of the device
+	CPUHealth                  *int                                              `json:"cpuHealth,omitempty"`                  // Device CPU health score
+	DeviceFamily               string                                            `json:"deviceFamily,omitempty"`               // Device family
+	IssueCount                 *int                                              `json:"issueCount,omitempty"`                 // Number of issues
+	MacAddress                 string                                            `json:"macAddress,omitempty"`                 // MAC address of the device
+	NoiseHealth                *ResponseDevicesDevicesResponseNoiseHealth        `json:"noiseHealth,omitempty"`                //
+	OsVersion                  string                                            `json:"osVersion,omitempty"`                  // Device OS version string
+	Name                       string                                            `json:"name,omitempty"`                       // Device name
+	InterfaceLinkErrHealth     *int                                              `json:"interfaceLinkErrHealth,omitempty"`     // Device (AP) error health score
+	MemoryUtilization          *float64                                          `json:"memoryUtilization,omitempty"`          // Device memory utilization
+	InterDeviceLinkAvailHealth *int                                              `json:"interDeviceLinkAvailHealth,omitempty"` // Device connectivity status
+	InterferenceHealth         *ResponseDevicesDevicesResponseInterferenceHealth `json:"interferenceHealth,omitempty"`         //
+	Model                      string                                            `json:"model,omitempty"`                      // Device model string
+	Location                   string                                            `json:"location,omitempty"`                   // Site location in which this device is assigned to
+	ReachabilityHealth         string                                            `json:"reachabilityHealth,omitempty"`         // Device reachability in the network
+	Band                       *ResponseDevicesDevicesResponseBand               `json:"band,omitempty"`                       //
+	MemoryUtilizationHealth    *int                                              `json:"memoryUtilizationHealth,omitempty"`    // Device memory utilization health score
+	ClientCount                *ResponseDevicesDevicesResponseClientCount        `json:"clientCount,omitempty"`                //
+	AvgTemperature             *float64                                          `json:"avgTemperature,omitempty"`             // Average device (switch) temperature
+	MaxTemperature             *float64                                          `json:"maxTemperature,omitempty"`             // Max device (switch) temperature
+	InterDeviceLinkAvailFabric *int                                              `json:"interDeviceLinkAvailFabric,omitempty"` // Device uplink health
+	ApCount                    *int                                              `json:"apCount,omitempty"`                    // Number of AP count
+	FreeTimerScore             *int                                              `json:"freeTimerScore,omitempty"`             // Device free timer health score
+	FreeTimer                  *float64                                          `json:"freeTimer,omitempty"`                  // Device free timer
+	PacketPoolHealth           *int                                              `json:"packetPoolHealth,omitempty"`           // Device packet pool
+	PacketPool                 *int                                              `json:"packetPool,omitempty"`                 // Device packet pool
+	FreeMemoryBufferHealth     *int                                              `json:"freeMemoryBufferHealth,omitempty"`     // Device free memory buffer health
+	FreeMemoryBuffer           *float64                                          `json:"freeMemoryBuffer,omitempty"`           // Device free memory
+	WqePoolsHealth             *int                                              `json:"wqePoolsHealth,omitempty"`             // Device WQE pool health
+	WqePools                   *float64                                          `json:"wqePools,omitempty"`                   // Device WQE pool
+	WanLinkUtilization         *float64                                          `json:"wanLinkUtilization,omitempty"`         // WLAN link utilization
+	CPUUlitilization           *float64                                          `json:"cpuUlitilization,omitempty"`           // Device's CPU utilization
+	UUID                       string                                            `json:"uuid,omitempty"`                       // Device UUID
 }
 type ResponseDevicesDevicesResponseUtilizationHealth struct {
 	Radio0 *int `json:"radio0,omitempty"` // Radio0
-
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
-
 	Radio2 *int `json:"radio2,omitempty"` // Radio2
-
 	Radio3 *int `json:"radio3,omitempty"` // Radio3
-
-	Ghz24 *int `json:"Ghz24,omitempty"` // Ghz24
-
-	Ghz50 *int `json:"Ghz50,omitempty"` // Ghz50
+	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
+	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
 }
 type ResponseDevicesDevicesResponseAirQualityHealth struct {
 	Radio0 *int `json:"radio0,omitempty"` // Radio0
-
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
-
 	Radio2 *int `json:"radio2,omitempty"` // Radio2
-
 	Radio3 *int `json:"radio3,omitempty"` // Radio3
-
-	Ghz24 *int `json:"Ghz24,omitempty"` // Ghz24
-
-	Ghz50 *int `json:"Ghz50,omitempty"` // Ghz50
+	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
+	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
 }
 type ResponseDevicesDevicesResponseNoiseHealth struct {
 	Radio0 *int `json:"radio0,omitempty"` // Radio0
-
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
-
 	Radio2 *int `json:"radio2,omitempty"` // Radio2
-
 	Radio3 *int `json:"radio3,omitempty"` // Radio3
-
-	Ghz24 *int `json:"Ghz24,omitempty"` // Ghz24
-
-	Ghz50 *int `json:"Ghz50,omitempty"` // Ghz50
+	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
+	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
 }
 type ResponseDevicesDevicesResponseInterferenceHealth struct {
 	Radio0 *int `json:"radio0,omitempty"` // Radio0
-
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
-
 	Radio2 *int `json:"radio2,omitempty"` // Radio2
-
 	Radio3 *int `json:"radio3,omitempty"` // Radio3
-
-	Ghz24 *int `json:"Ghz24,omitempty"` // Ghz24
-
-	Ghz50 *int `json:"Ghz50,omitempty"` // Ghz50
+	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
+	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
 }
 type ResponseDevicesDevicesResponseBand struct {
 	Radio0 string `json:"radio0,omitempty"` // Radio0
-
 	Radio1 string `json:"radio1,omitempty"` // Radio1
-
 	Radio2 string `json:"radio2,omitempty"` // Radio2
-
-	Radio3 *int `json:"radio3,omitempty"` // Radio3
+	Radio3 *int   `json:"radio3,omitempty"` // Radio3
 }
 type ResponseDevicesDevicesResponseClientCount struct {
 	Radio0 *int `json:"radio0,omitempty"` // Radio0
-
 	Radio1 *int `json:"radio1,omitempty"` // Radio1
-
 	Radio2 *int `json:"radio2,omitempty"` // Radio2
-
 	Radio3 *int `json:"radio3,omitempty"` // Radio3
-
-	Ghz24 *int `json:"Ghz24,omitempty"` // Ghz24
-
-	Ghz50 *int `json:"Ghz50,omitempty"` // Ghz50
+	Ghz24  *int `json:"Ghz24,omitempty"`  // Ghz24
+	Ghz50  *int `json:"Ghz50,omitempty"`  // Ghz50
 }
 type ResponseDevicesUpdatePlannedAccessPointForFloor struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseDevicesUpdatePlannedAccessPointForFloorResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesUpdatePlannedAccessPointForFloorResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseDevicesCreatePlannedAccessPointForFloor struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseDevicesCreatePlannedAccessPointForFloorResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesCreatePlannedAccessPointForFloorResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseDevicesGetPlannedAccessPointsForFloor struct {
 	Response *[]ResponseDevicesGetPlannedAccessPointsForFloorResponse `json:"response,omitempty"` //
-
-	Version *int `json:"version,omitempty"` // Version of the api response model
-
-	Total *int `json:"total,omitempty"` // Total number of the planned access points
+	Version  *int                                                     `json:"version,omitempty"`  // Version of the api response model
+	Total    *int                                                     `json:"total,omitempty"`    // Total number of the planned access points
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponse struct {
 	Attributes *ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributes `json:"attributes,omitempty"` //
-
-	Location *ResponseDevicesGetPlannedAccessPointsForFloorResponseLocation `json:"location,omitempty"` //
-
-	Position *ResponseDevicesGetPlannedAccessPointsForFloorResponsePosition `json:"position,omitempty"` //
-
-	RadioCount *int `json:"radioCount,omitempty"` // Number of radios of the planned access point
-
-	Radios *[]ResponseDevicesGetPlannedAccessPointsForFloorResponseRadios `json:"radios,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if the planned access point is sensor or not
+	Location   *ResponseDevicesGetPlannedAccessPointsForFloorResponseLocation   `json:"location,omitempty"`   //
+	Position   *ResponseDevicesGetPlannedAccessPointsForFloorResponsePosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                             `json:"radioCount,omitempty"` // Number of radios of the planned access point
+	Radios     *[]ResponseDevicesGetPlannedAccessPointsForFloorResponseRadios   `json:"radios,omitempty"`     //
+	IsSensor   *bool                                                            `json:"isSensor,omitempty"`   // Determines if the planned access point is sensor or not
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponseAttributes struct {
-	ID *float64 `json:"id,omitempty"` // Unique id of the planned access point
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance uuid of the planned access point
-
-	Name string `json:"name,omitempty"` // Display name of the planned access point
-
-	TypeString string `json:"typeString,omitempty"` // Type string representation of the planned access point
-
-	Domain string `json:"domain,omitempty"` // Service domain to which the planned access point belongs
-
-	HeirarchyName string `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
-
-	Source string `json:"source,omitempty"` // Source of the data used to create the planned access point
-
-	CreateDate *float64 `json:"createDate,omitempty"` // Created date of the planned access point
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the planned access point
+	ID            *float64 `json:"id,omitempty"`            // Unique id of the planned access point
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance uuid of the planned access point
+	Name          string   `json:"name,omitempty"`          // Display name of the planned access point
+	TypeString    string   `json:"typeString,omitempty"`    // Type string representation of the planned access point
+	Domain        string   `json:"domain,omitempty"`        // Service domain to which the planned access point belongs
+	HeirarchyName string   `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
+	Source        string   `json:"source,omitempty"`        // Source of the data used to create the planned access point
+	CreateDate    *float64 `json:"createDate,omitempty"`    // Created date of the planned access point
+	MacAddress    string   `json:"macAddress,omitempty"`    // MAC address of the planned access point
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponseLocation struct {
-	Altitude *float64 `json:"altitude,omitempty"` // Altitude of the planned access point's location
-
-	Lattitude *float64 `json:"lattitude,omitempty"` // Latitude of the planned access point's location
-
+	Altitude   *float64 `json:"altitude,omitempty"`   // Altitude of the planned access point's location
+	Lattitude  *float64 `json:"lattitude,omitempty"`  // Latitude of the planned access point's location
 	Longtitude *float64 `json:"longtitude,omitempty"` // Longitude of the planned access point's location
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponsePosition struct {
 	X *float64 `json:"x,omitempty"` // x-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Y *float64 `json:"y,omitempty"` // y-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Z *float64 `json:"z,omitempty"` // z-coordinate, or height, of the planned access point on the map
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadios struct {
 	Attributes *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributes `json:"attributes,omitempty"` //
-
-	Antenna *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAntenna `json:"antenna,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if it is sensor or not
+	Antenna    *ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAntenna    `json:"antenna,omitempty"`    //
+	IsSensor   *bool                                                                  `json:"isSensor,omitempty"`   // Determines if it is sensor or not
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAttributes struct {
-	ID *int `json:"id,omitempty"` // Id of the radio
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the radio
-
-	SlotID *float64 `json:"slotId,omitempty"` // Slot number in which the radio resides in the parent access point
-
-	IfTypeString string `json:"ifTypeString,omitempty"` // String representation of native band
-
-	IfTypeSubband string `json:"ifTypeSubband,omitempty"` // Sub band type of the radio
-
-	Channel *float64 `json:"channel,omitempty"` // Channel in which the radio operates
-
-	ChannelString string `json:"channelString,omitempty"` // Channel string representation
-
-	IfMode string `json:"ifMode,omitempty"` // IF mode of the radio
-
-	TxPowerLevel *float64 `json:"txPowerLevel,omitempty"` // Tx Power at which this radio operates (in dBm)
+	ID            *int     `json:"id,omitempty"`            // Id of the radio
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance Uuid of the radio
+	SlotID        *float64 `json:"slotId,omitempty"`        // Slot number in which the radio resides in the parent access point
+	IfTypeString  string   `json:"ifTypeString,omitempty"`  // String representation of native band
+	IfTypeSubband string   `json:"ifTypeSubband,omitempty"` // Sub band type of the radio
+	Channel       *float64 `json:"channel,omitempty"`       // Channel in which the radio operates
+	ChannelString string   `json:"channelString,omitempty"` // Channel string representation
+	IfMode        string   `json:"ifMode,omitempty"`        // IF mode of the radio
+	TxPowerLevel  *float64 `json:"txPowerLevel,omitempty"`  // Tx Power at which this radio operates (in dBm)
 }
 type ResponseDevicesGetPlannedAccessPointsForFloorResponseRadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Name of the antenna
-
-	Type string `json:"type,omitempty"` // Type of the antenna associated with this radio
-
-	Mode string `json:"mode,omitempty"` // Mode of the antenna associated with this radio
-
-	AzimuthAngle *float64 `json:"azimuthAngle,omitempty"` // Azimuth angle of the antenna
-
+	Name           string   `json:"name,omitempty"`           // Name of the antenna
+	Type           string   `json:"type,omitempty"`           // Type of the antenna associated with this radio
+	Mode           string   `json:"mode,omitempty"`           // Mode of the antenna associated with this radio
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth angle of the antenna
 	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation angle of the antenna
-
-	Gain *float64 `json:"gain,omitempty"` // Gain of the antenna
+	Gain           *float64 `json:"gain,omitempty"`           // Gain of the antenna
 }
 type ResponseDevicesDeletePlannedAccessPointForFloor struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseDevicesDeletePlannedAccessPointForFloorResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesDeletePlannedAccessPointForFloorResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseDevicesGetAllHealthScoreDefinitionsForGivenFilters struct {
 	Response *[]ResponseDevicesGetAllHealthScoreDefinitionsForGivenFiltersResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetAllHealthScoreDefinitionsForGivenFiltersResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	DisplayName string `json:"displayName,omitempty"` // Display Name
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	Description string `json:"description,omitempty"` // Description
-
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
-
-	LastModified string `json:"lastModified,omitempty"` // Last Modified
+	ID                          string   `json:"id,omitempty"`                          // Id
+	Name                        string   `json:"name,omitempty"`                        // Name
+	DisplayName                 string   `json:"displayName,omitempty"`                 // Display Name
+	DeviceFamily                string   `json:"deviceFamily,omitempty"`                // Device Family
+	Description                 string   `json:"description,omitempty"`                 // Description
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	DefinitionStatus            string   `json:"definitionStatus,omitempty"`            // Definition Status
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Threshold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	LastModified                string   `json:"lastModified,omitempty"`                // Last Modified
 }
 type ResponseDevicesUpdateHealthScoreDefinitions struct {
 	Response *[]ResponseDevicesUpdateHealthScoreDefinitionsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesUpdateHealthScoreDefinitionsResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	DisplayName string `json:"displayName,omitempty"` // Display Name
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	Description string `json:"description,omitempty"` // Description
-
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
-
-	LastModified string `json:"lastModified,omitempty"` // Last Modified
+	ID                          string   `json:"id,omitempty"`                          // Id
+	Name                        string   `json:"name,omitempty"`                        // Name
+	DisplayName                 string   `json:"displayName,omitempty"`                 // Display Name
+	DeviceFamily                string   `json:"deviceFamily,omitempty"`                // Device Family
+	Description                 string   `json:"description,omitempty"`                 // Description
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	DefinitionStatus            string   `json:"definitionStatus,omitempty"`            // Definition Status
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Threshold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	LastModified                string   `json:"lastModified,omitempty"`                // Last Modified
 }
 type ResponseDevicesGetTheCountOfHealthScoreDefinitionsBasedOnProvidedFilters struct {
 	Response *ResponseDevicesGetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                            `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetTheCountOfHealthScoreDefinitionsBasedOnProvidedFiltersResponse struct {
 	Count *int `json:"count,omitempty"` // Count
@@ -3881,139 +3374,82 @@ type ResponseDevicesGetHealthScoreDefinitionForTheGivenID struct {
 	Response *[]ResponseDevicesGetHealthScoreDefinitionForTheGivenIDResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetHealthScoreDefinitionForTheGivenIDResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	DisplayName string `json:"displayName,omitempty"` // Display Name
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	Description string `json:"description,omitempty"` // Description
-
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
-
-	LastModified string `json:"lastModified,omitempty"` // Last Modified
+	ID                          string   `json:"id,omitempty"`                          // Id
+	Name                        string   `json:"name,omitempty"`                        // Name
+	DisplayName                 string   `json:"displayName,omitempty"`                 // Display Name
+	DeviceFamily                string   `json:"deviceFamily,omitempty"`                // Device Family
+	Description                 string   `json:"description,omitempty"`                 // Description
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	DefinitionStatus            string   `json:"definitionStatus,omitempty"`            // Definition Status
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Threshold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	LastModified                string   `json:"lastModified,omitempty"`                // Last Modified
 }
 type ResponseDevicesUpdateHealthScoreDefinitionForTheGivenID struct {
 	Response *ResponseDevicesUpdateHealthScoreDefinitionForTheGivenIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                           `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesUpdateHealthScoreDefinitionForTheGivenIDResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	DisplayName string `json:"displayName,omitempty"` // Display Name
-
-	DeviceFamily string `json:"deviceFamily,omitempty"` // Device Family
-
-	Description string `json:"description,omitempty"` // Description
-
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
-
-	LastModified string `json:"lastModified,omitempty"` // Last Modified
+	ID                          string   `json:"id,omitempty"`                          // Id
+	Name                        string   `json:"name,omitempty"`                        // Name
+	DisplayName                 string   `json:"displayName,omitempty"`                 // Display Name
+	DeviceFamily                string   `json:"deviceFamily,omitempty"`                // Device Family
+	Description                 string   `json:"description,omitempty"`                 // Description
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	DefinitionStatus            string   `json:"definitionStatus,omitempty"`            // Definition Status
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Threshold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	LastModified                string   `json:"lastModified,omitempty"`                // Last Modified
 }
 type ResponseDevicesGetAllInterfaces struct {
 	Response *[]ResponseDevicesGetAllInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetAllInterfacesResponse struct {
-	Addresses *[]ResponseDevicesGetAllInterfacesResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetAllInterfacesResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                              `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                              `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                              `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                              `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                              `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                              `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                              `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                              `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                              `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                              `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                              `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                              `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                              `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                              `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                            `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                            `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                              `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                              `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                              `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                              `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                              `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                              `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                              `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                              `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                              `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                              `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                              `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                              `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                              `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                              `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                              `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                              `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                              `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                              `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetAllInterfacesResponseAddresses struct {
 	Address *ResponseDevicesGetAllInterfacesResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                   `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetAllInterfacesResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetAllInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetAllInterfacesResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetAllInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetAllInterfacesResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                             `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetAllInterfacesResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4022,97 +3458,58 @@ type ResponseDevicesGetAllInterfacesResponseAddressesAddressIPMask struct {
 	Address string `json:"address,omitempty"` // IP Mask of the interface
 }
 type ResponseDevicesGetDeviceInterfaceCountForMultipleDevices struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceByIP struct {
 	Response *[]ResponseDevicesGetInterfaceByIPResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                     `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceByIPResponse struct {
-	Addresses *[]ResponseDevicesGetInterfaceByIPResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetInterfaceByIPResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                              `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                              `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                              `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                              `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                              `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                              `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                              `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                              `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                              `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                              `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                              `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                              `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                              `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                              `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                            `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                            `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                              `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                              `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                              `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                              `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                              `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                              `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                              `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                              `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                              `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                              `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                              `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                              `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                              `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                              `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                              `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                              `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                              `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                              `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetInterfaceByIPResponseAddresses struct {
 	Address *ResponseDevicesGetInterfaceByIPResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                   `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetInterfaceByIPResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                             `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4122,91 +3519,53 @@ type ResponseDevicesGetInterfaceByIPResponseAddressesAddressIPMask struct {
 }
 type ResponseDevicesGetIsisInterfaces struct {
 	Response *[]ResponseDevicesGetIsisInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetIsisInterfacesResponse struct {
-	Addresses *[]ResponseDevicesGetIsisInterfacesResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetIsisInterfacesResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                               `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                               `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                               `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                               `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                               `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                               `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                               `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                               `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                               `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                               `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                               `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                               `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                               `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                               `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                             `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                             `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                               `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                               `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                               `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                               `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                               `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                               `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                               `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                               `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                               `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                               `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                               `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                               `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                               `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                               `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                               `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                               `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                               `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                               `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetIsisInterfacesResponseAddresses struct {
 	Address *ResponseDevicesGetIsisInterfacesResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                    `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetIsisInterfacesResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                              `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4216,91 +3575,53 @@ type ResponseDevicesGetIsisInterfacesResponseAddressesAddressIPMask struct {
 }
 type ResponseDevicesGetInterfaceInfoByID struct {
 	Response *[]ResponseDevicesGetInterfaceInfoByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                         `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceInfoByIDResponse struct {
-	Addresses *[]ResponseDevicesGetInterfaceInfoByIDResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetInterfaceInfoByIDResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                                  `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                                  `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                                  `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                                  `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                                  `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                                  `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                                  `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                                  `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                                  `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                                  `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                                  `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                                  `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                                  `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                                  `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                                `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                                `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                                  `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                                  `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                                  `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                                  `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                                  `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                                  `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                                  `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                                  `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                                  `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                                  `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                                  `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                                  `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                                  `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                                  `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                                  `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                                  `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                                  `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                                  `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetInterfaceInfoByIDResponseAddresses struct {
 	Address *ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                       `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                                 `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4309,109 +3630,64 @@ type ResponseDevicesGetInterfaceInfoByIDResponseAddressesAddressIPMask struct {
 	Address string `json:"address,omitempty"` // IP Mask of the interface
 }
 type ResponseDevicesGetDeviceInterfaceCount struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceName struct {
 	Response *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                                `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponse struct {
-	Addresses *[]ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
-
-	Poweroverethernet string `json:"poweroverethernet,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
-
-	NetworkdeviceID string `json:"networkdevice_id,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
-
-	ManagedComputeElement string `json:"managedComputeElement,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
-
-	ManagedNetworkElement string `json:"managedNetworkElement,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
-
-	ManagedNetworkElementURL string `json:"managedNetworkElementUrl,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
-
-	ManagedComputeElementURL string `json:"managedComputeElementUrl,omitempty"` // This is internal attribute.  Not to be used.  Deprecated
+	Addresses                   *[]ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                                                           `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                                                           `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                                                           `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                                                           `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                                                           `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                                                           `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                                                           `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                                                           `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                                                           `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                                                           `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                                                           `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                                                           `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                                                           `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                                                           `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                                                         `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                                                         `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                                                           `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                                                           `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                                                           `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                                                           `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                                                           `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                                                           `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                                                           `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                                                           `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                                                           `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                                                           `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                                                           `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                                                           `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                                                           `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                                                           `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                                                           `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                                                           `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                                                           `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                                                           `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
+	Poweroverethernet           string                                                                           `json:"poweroverethernet,omitempty"`           // This is internal attribute.  Not to be used.  Deprecated
+	NetworkdeviceID             string                                                                           `json:"networkdevice_id,omitempty"`            // This is internal attribute.  Not to be used.  Deprecated
+	ManagedComputeElement       string                                                                           `json:"managedComputeElement,omitempty"`       // This is internal attribute.  Not to be used.  Deprecated
+	ManagedNetworkElement       string                                                                           `json:"managedNetworkElement,omitempty"`       // This is internal attribute.  Not to be used.  Deprecated
+	ManagedNetworkElementURL    string                                                                           `json:"managedNetworkElementUrl,omitempty"`    // This is internal attribute.  Not to be used.  Deprecated
+	ManagedComputeElementURL    string                                                                           `json:"managedComputeElementUrl,omitempty"`    // This is internal attribute.  Not to be used.  Deprecated
 }
 type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddresses struct {
 	Address *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                                                `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                                                          `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4421,91 +3697,53 @@ type ResponseDevicesGetInterfaceDetailsByDeviceIDAndInterfaceNameResponseAddress
 }
 type ResponseDevicesGetDeviceInterfacesBySpecifiedRange struct {
 	Response *[]ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                        `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponse struct {
-	Addresses *[]ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                                                 `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                                                 `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                                                 `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                                                 `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                                                 `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                                                 `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                                                 `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                                                 `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                                                 `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                                                 `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                                                 `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                                                 `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                                                 `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                                                 `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                                               `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                                               `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                                                 `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                                                 `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                                                 `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                                                 `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                                                 `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                                                 `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                                                 `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                                                 `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                                                 `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                                                 `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                                                 `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                                                 `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                                                 `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                                                 `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                                                 `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                                                 `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                                                 `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                                                 `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddresses struct {
 	Address *ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                                      `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                                                `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4515,91 +3753,53 @@ type ResponseDevicesGetDeviceInterfacesBySpecifiedRangeResponseAddressesAddressI
 }
 type ResponseDevicesGetOspfInterfaces struct {
 	Response *[]ResponseDevicesGetOspfInterfacesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetOspfInterfacesResponse struct {
-	Addresses *[]ResponseDevicesGetOspfInterfacesResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetOspfInterfacesResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                               `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                               `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                               `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                               `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                               `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                               `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                               `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                               `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                               `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                               `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                               `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                               `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                               `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                               `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                             `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                             `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                               `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                               `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                               `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                               `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                               `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                               `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                               `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                               `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                               `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                               `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                               `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                               `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                               `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                               `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                               `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                               `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                               `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                               `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetOspfInterfacesResponseAddresses struct {
 	Address *ResponseDevicesGetOspfInterfacesResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                    `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetOspfInterfacesResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                              `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4609,91 +3809,53 @@ type ResponseDevicesGetOspfInterfacesResponseAddressesAddressIPMask struct {
 }
 type ResponseDevicesGetInterfaceByID struct {
 	Response *ResponseDevicesGetInterfaceByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetInterfaceByIDResponse struct {
-	Addresses *[]ResponseDevicesGetInterfaceByIDResponseAddresses `json:"addresses,omitempty"` //
-
-	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	ClassName string `json:"className,omitempty"` // Classifies the port as switch port ,loopback interface etc.
-
-	Description string `json:"description,omitempty"` // Description for the Interface
-
-	Name string `json:"name,omitempty"` // Name for the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
-	Duplex string `json:"duplex,omitempty"` // Interface duplex as AutoNegotiate or FullDuplex
-
-	ID string `json:"id,omitempty"` // ID of the Interface
-
-	IfIndex string `json:"ifIndex,omitempty"` // Interface index
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the Interface
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the Interface
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Interface type as Physical or Virtual
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // IPV4 Address of the device
-
-	IPv4Mask string `json:"ipv4Mask,omitempty"` // IPV4 Mask of the device
-
-	IsisSupport string `json:"isisSupport,omitempty"` // Flag for ISIS enabled / disabled
-
-	LastOutgoingPacketTime *float64 `json:"lastOutgoingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
-
-	LastIncomingPacketTime *float64 `json:"lastIncomingPacketTime,omitempty"` // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the device interface info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of interface
-
-	MappedPhysicalInterfaceID string `json:"mappedPhysicalInterfaceId,omitempty"` // ID of physical interface mapped with the virtual interface of WLC
-
-	MappedPhysicalInterfaceName string `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
-
-	MediaType string `json:"mediaType,omitempty"` // Media Type of the interface
-
-	Mtu string `json:"mtu,omitempty"` // MTU Information of Interface
-
-	NativeVLANID string `json:"nativeVlanId,omitempty"` // Vlan to receive untagged frames on trunk port
-
-	OspfSupport string `json:"ospfSupport,omitempty"` // Flag for OSPF enabled / disabled
-
-	Pid string `json:"pid,omitempty"` // Platform ID of the device
-
-	PortMode string `json:"portMode,omitempty"` // Port mode as access, trunk, routed
-
-	PortName string `json:"portName,omitempty"` // Interface name
-
-	PortType string `json:"portType,omitempty"` // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
-
-	SerialNo string `json:"serialNo,omitempty"` // Serial number of the device
-
-	Series string `json:"series,omitempty"` // Series of the device
-
-	Speed string `json:"speed,omitempty"` // Speed of the interface
-
-	Status string `json:"status,omitempty"` // Interface status as Down / Up
-
-	VLANID string `json:"vlanId,omitempty"` // Vlan ID of interface
-
-	VoiceVLAN string `json:"voiceVlan,omitempty"` // Vlan information of the interface
+	Addresses                   *[]ResponseDevicesGetInterfaceByIDResponseAddresses `json:"addresses,omitempty"`                   //
+	AdminStatus                 string                                              `json:"adminStatus,omitempty"`                 // Admin status as ('UP'/'DOWN')
+	ClassName                   string                                              `json:"className,omitempty"`                   // Classifies the port as switch port ,loopback interface etc.
+	Description                 string                                              `json:"description,omitempty"`                 // Description for the Interface
+	Name                        string                                              `json:"name,omitempty"`                        // Name for the interface
+	DeviceID                    string                                              `json:"deviceId,omitempty"`                    // Device Id of the device
+	Duplex                      string                                              `json:"duplex,omitempty"`                      // Interface duplex as AutoNegotiate or FullDuplex
+	ID                          string                                              `json:"id,omitempty"`                          // ID of the Interface
+	IfIndex                     string                                              `json:"ifIndex,omitempty"`                     // Interface index
+	InstanceTenantID            string                                              `json:"instanceTenantId,omitempty"`            // Instance Tenant Id of the Interface
+	InstanceUUID                string                                              `json:"instanceUuid,omitempty"`                // Instance Uuid of the Interface
+	InterfaceType               string                                              `json:"interfaceType,omitempty"`               // Interface type as Physical or Virtual
+	IPv4Address                 string                                              `json:"ipv4Address,omitempty"`                 // IPV4 Address of the device
+	IPv4Mask                    string                                              `json:"ipv4Mask,omitempty"`                    // IPV4 Mask of the device
+	IsisSupport                 string                                              `json:"isisSupport,omitempty"`                 // Flag for ISIS enabled / disabled
+	LastOutgoingPacketTime      *float64                                            `json:"lastOutgoingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was sent from this interface
+	LastIncomingPacketTime      *float64                                            `json:"lastIncomingPacketTime,omitempty"`      // Time, in milliseconds since UNIX epoch, when the last packet was received on this interface
+	LastUpdated                 string                                              `json:"lastUpdated,omitempty"`                 // Time when the device interface info last got updated
+	MacAddress                  string                                              `json:"macAddress,omitempty"`                  // MAC address of interface
+	MappedPhysicalInterfaceID   string                                              `json:"mappedPhysicalInterfaceId,omitempty"`   // ID of physical interface mapped with the virtual interface of WLC
+	MappedPhysicalInterfaceName string                                              `json:"mappedPhysicalInterfaceName,omitempty"` // Physical interface name mapped with the virtual interface of WLC
+	MediaType                   string                                              `json:"mediaType,omitempty"`                   // Media Type of the interface
+	Mtu                         string                                              `json:"mtu,omitempty"`                         // MTU Information of Interface
+	NativeVLANID                string                                              `json:"nativeVlanId,omitempty"`                // Vlan to receive untagged frames on trunk port
+	OspfSupport                 string                                              `json:"ospfSupport,omitempty"`                 // Flag for OSPF enabled / disabled
+	Pid                         string                                              `json:"pid,omitempty"`                         // Platform ID of the device
+	PortMode                    string                                              `json:"portMode,omitempty"`                    // Port mode as access, trunk, routed
+	PortName                    string                                              `json:"portName,omitempty"`                    // Interface name
+	PortType                    string                                              `json:"portType,omitempty"`                    // Port type as Ethernet Port / Ethernet SVI / Ethernet Sub Interface
+	SerialNo                    string                                              `json:"serialNo,omitempty"`                    // Serial number of the device
+	Series                      string                                              `json:"series,omitempty"`                      // Series of the device
+	Speed                       string                                              `json:"speed,omitempty"`                       // Speed of the interface
+	Status                      string                                              `json:"status,omitempty"`                      // Interface status as Down / Up
+	VLANID                      string                                              `json:"vlanId,omitempty"`                      // Vlan ID of interface
+	VoiceVLAN                   string                                              `json:"voiceVlan,omitempty"`                   // Vlan information of the interface
 }
 type ResponseDevicesGetInterfaceByIDResponseAddresses struct {
 	Address *ResponseDevicesGetInterfaceByIDResponseAddressesAddress `json:"address,omitempty"` //
-
-	Type string `json:"type,omitempty"` // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
+	Type    string                                                   `json:"type,omitempty"`    // Type of the interface. For e.g. IPv4, IPv6 (with unicast, multicast, anycast, etc.)
 }
 type ResponseDevicesGetInterfaceByIDResponseAddressesAddress struct {
-	IPAddress *ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"` //
-
-	IPMask *ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPMask `json:"ipMask,omitempty"` //
-
-	IsInverseMask *bool `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
+	IPAddress     *ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPAddress `json:"ipAddress,omitempty"`     //
+	IPMask        *ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPMask    `json:"ipMask,omitempty"`        //
+	IsInverseMask *bool                                                             `json:"isInverseMask,omitempty"` // Inverse Mask of the IP address is enabled or not
 }
 type ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPAddress struct {
 	Address string `json:"address,omitempty"` // IP address of the interface
@@ -4703,3529 +3865,2363 @@ type ResponseDevicesGetInterfaceByIDResponseAddressesAddressIPMask struct {
 }
 type ResponseDevicesUpdateInterfaceDetails struct {
 	Response *ResponseDevicesUpdateInterfaceDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  *ResponseDevicesUpdateInterfaceDetailsVersion  `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateInterfaceDetailsResponse struct {
-	TaskID string `json:"taskId,omitempty"` //
-	URL    string `json:"url,omitempty"`    //
+	Type       string                                                   `json:"type,omitempty"`       // Type
+	Properties *ResponseDevicesUpdateInterfaceDetailsResponseProperties `json:"properties,omitempty"` //
+	Required   []string                                                 `json:"required,omitempty"`   // Required
+}
+type ResponseDevicesUpdateInterfaceDetailsResponseProperties struct {
+	TaskID *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID `json:"taskId,omitempty"` //
+	URL    *ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL    `json:"url,omitempty"`    //
+}
+type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesTaskID struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesUpdateInterfaceDetailsResponsePropertiesURL struct {
+	Type string `json:"type,omitempty"` // Type
+}
+type ResponseDevicesUpdateInterfaceDetailsVersion struct {
+	Type string `json:"type,omitempty"` // Type
 }
 type ResponseDevicesLegitOperationsForInterface struct {
 	Response *ResponseDevicesLegitOperationsForInterfaceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesLegitOperationsForInterfaceResponse struct {
-	InterfaceUUID string `json:"interfaceUuid,omitempty"` // Id of the Interface
-
-	Properties *[]ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"` //
-
-	Operations *[]ResponseDevicesLegitOperationsForInterfaceResponseOperations `json:"operations,omitempty"` //
+	InterfaceUUID string                                                          `json:"interfaceUuid,omitempty"` // Id of the Interface
+	Properties    *[]ResponseDevicesLegitOperationsForInterfaceResponseProperties `json:"properties,omitempty"`    //
+	Operations    *[]ResponseDevicesLegitOperationsForInterfaceResponseOperations `json:"operations,omitempty"`    //
 }
 type ResponseDevicesLegitOperationsForInterfaceResponseProperties struct {
-	Name string `json:"name,omitempty"` // Name of the Property
-
-	Applicable string `json:"applicable,omitempty"` // Checks if property is applicable to interface
-
+	Name          string `json:"name,omitempty"`          // Name of the Property
+	Applicable    string `json:"applicable,omitempty"`    // Checks if property is applicable to interface
 	FailureReason string `json:"failureReason,omitempty"` // Failure reason of the Property
 }
 type ResponseDevicesLegitOperationsForInterfaceResponseOperations struct {
-	Name string `json:"name,omitempty"` // Name of the Operation
-
-	Applicable string `json:"applicable,omitempty"` // Checks if operation is applicable to interface
-
+	Name          string `json:"name,omitempty"`          // Name of the Operation
+	Applicable    string `json:"applicable,omitempty"`    // Checks if operation is applicable to interface
 	FailureReason string `json:"failureReason,omitempty"` // Failure reason of the Operation
 }
 type ResponseDevicesClearMacAddressTable struct {
 	Response *ResponseDevicesClearMacAddressTableResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                       `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesClearMacAddressTableResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesGetDeviceList struct {
 	Response *[]ResponseDevicesGetDeviceListResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                  `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetDeviceListResponse struct {
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Device reachability status as Reachable / Unreachable
-
-	Series string `json:"series,omitempty"` // Device series
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	TunnelUDPPort string `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	UptimeSeconds *float64 `json:"uptimeSeconds,omitempty"` // Uptime in Seconds
-
-	WaasDeviceMode string `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of device
-
-	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	UpTime string `json:"upTime,omitempty"` // Time that shows for how long the device has been up
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // Support level of the device
-
-	Hostname string `json:"hostname,omitempty"` // Device name
-
-	Type string `json:"type,omitempty"` // Type of device as switch, router, wireless lan controller, accesspoints
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	Family string `json:"family,omitempty"` // Family of device as switch, router, wireless lan controller, accesspoints
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	SoftwareType string `json:"softwareType,omitempty"` // Software type on the device
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software version on the device
-
-	Description string `json:"description,omitempty"` // System description
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	Location string `json:"location,omitempty"` // [Deprecated] Location ID that is associated with the device
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // AccessPoint Ethernet MacAddress of AP device
-
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated Wlc Ip address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device boot time
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	LocationName string `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	ManagedAtleastOnce *bool `json:"managedAtleastOnce,omitempty"` // Indicates if device went into Managed state atleast once
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // IP address of the device
-
-	PlatformID string `json:"platformId,omitempty"` // Platform ID of device
-
-	ManagementState string `json:"managementState,omitempty"` // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
-
-	PendingSyncRequestsCount string `json:"pendingSyncRequestsCount,omitempty"` // Count of pending sync requests , if any
-
-	ReasonsForDeviceResync string `json:"reasonsForDeviceResync,omitempty"` // Reason for last/ongoing sync
-
-	ReasonsForPendingSyncRequests string `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
-
-	SyncRequestedByApp string `json:"syncRequestedByApp,omitempty"` // Applications which requested for the resync of network device
-
-	LastManagedResyncReasons string `json:"lastManagedResyncReasons,omitempty"` // Reasons for last successful sync
-
-	DNSResolvedManagementAddress string `json:"dnsResolvedManagementAddress,omitempty"` // Specifies the resolved ip address of dns name
-
-	LastDeviceResyncStartTime string `json:"lastDeviceResyncStartTime,omitempty"` // Start time for last/ongoing sync
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	ID string `json:"id,omitempty"` // Instance Uuid of the device
+	ReachabilityFailureReason     string   `json:"reachabilityFailureReason,omitempty"`     // Failure reason for unreachable devices
+	ReachabilityStatus            string   `json:"reachabilityStatus,omitempty"`            // Device reachability status as Reachable / Unreachable
+	Series                        string   `json:"series,omitempty"`                        // Device series
+	SNMPContact                   string   `json:"snmpContact,omitempty"`                   // SNMP contact on device
+	SNMPLocation                  string   `json:"snmpLocation,omitempty"`                  // SNMP location on device
+	TagCount                      string   `json:"tagCount,omitempty"`                      // Number of tags associated with the device
+	TunnelUDPPort                 string   `json:"tunnelUdpPort,omitempty"`                 // Mobility protocol port is stored as tunneludpport for WLC
+	UptimeSeconds                 *float64 `json:"uptimeSeconds,omitempty"`                 // Uptime in Seconds
+	WaasDeviceMode                string   `json:"waasDeviceMode,omitempty"`                // WAAS device mode
+	SerialNumber                  string   `json:"serialNumber,omitempty"`                  // Serial number of device
+	LastUpdateTime                *float64 `json:"lastUpdateTime,omitempty"`                // Time in epoch when the network device info last got updated
+	MacAddress                    string   `json:"macAddress,omitempty"`                    // MAC address of device
+	UpTime                        string   `json:"upTime,omitempty"`                        // Time that shows for how long the device has been up
+	DeviceSupportLevel            string   `json:"deviceSupportLevel,omitempty"`            // Support level of the device
+	Hostname                      string   `json:"hostname,omitempty"`                      // Device name
+	Type                          string   `json:"type,omitempty"`                          // Type of device as switch, router, wireless lan controller, accesspoints
+	MemorySize                    string   `json:"memorySize,omitempty"`                    // Processor memory size
+	Family                        string   `json:"family,omitempty"`                        // Family of device as switch, router, wireless lan controller, accesspoints
+	ErrorCode                     string   `json:"errorCode,omitempty"`                     // Inventory status error code
+	SoftwareType                  string   `json:"softwareType,omitempty"`                  // Software type on the device
+	SoftwareVersion               string   `json:"softwareVersion,omitempty"`               // Software version on the device
+	Description                   string   `json:"description,omitempty"`                   // System description
+	RoleSource                    string   `json:"roleSource,omitempty"`                    // Role source as manual / auto
+	Location                      string   `json:"location,omitempty"`                      // [Deprecated] Location ID that is associated with the device
+	Role                          string   `json:"role,omitempty"`                          // Role of device as access, distribution, border router, core
+	CollectionInterval            string   `json:"collectionInterval,omitempty"`            // Re sync Interval of the device
+	InventoryStatusDetail         string   `json:"inventoryStatusDetail,omitempty"`         // Status detail of inventory sync
+	ApEthernetMacAddress          string   `json:"apEthernetMacAddress,omitempty"`          // AccessPoint Ethernet MacAddress of AP device
+	ApManagerInterfaceIP          string   `json:"apManagerInterfaceIp,omitempty"`          // IP address of WLC on AP manager interface
+	AssociatedWlcIP               string   `json:"associatedWlcIp,omitempty"`               // Associated Wlc Ip address of the AP device
+	BootDateTime                  string   `json:"bootDateTime,omitempty"`                  // Device boot time
+	CollectionStatus              string   `json:"collectionStatus,omitempty"`              // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
+	ErrorDescription              string   `json:"errorDescription,omitempty"`              // Inventory status description
+	InterfaceCount                string   `json:"interfaceCount,omitempty"`                // Number of interfaces on the device
+	LastUpdated                   string   `json:"lastUpdated,omitempty"`                   // Time when the network device info last got updated
+	LineCardCount                 string   `json:"lineCardCount,omitempty"`                 // Number of linecards on the device
+	LineCardID                    string   `json:"lineCardId,omitempty"`                    // IDs of linecards of the device
+	LocationName                  string   `json:"locationName,omitempty"`                  // [Deprecated] Name of the associated location
+	ManagedAtleastOnce            *bool    `json:"managedAtleastOnce,omitempty"`            // Indicates if device went into Managed state atleast once
+	ManagementIPAddress           string   `json:"managementIpAddress,omitempty"`           // IP address of the device
+	PlatformID                    string   `json:"platformId,omitempty"`                    // Platform ID of device
+	ManagementState               string   `json:"managementState,omitempty"`               // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
+	PendingSyncRequestsCount      string   `json:"pendingSyncRequestsCount,omitempty"`      // Count of pending sync requests , if any
+	ReasonsForDeviceResync        string   `json:"reasonsForDeviceResync,omitempty"`        // Reason for last/ongoing sync
+	ReasonsForPendingSyncRequests string   `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
+	SyncRequestedByApp            string   `json:"syncRequestedByApp,omitempty"`            // Applications which requested for the resync of network device
+	LastManagedResyncReasons      string   `json:"lastManagedResyncReasons,omitempty"`      // Reasons for last successful sync
+	DNSResolvedManagementAddress  string   `json:"dnsResolvedManagementAddress,omitempty"`  // Specifies the resolved ip address of dns name
+	LastDeviceResyncStartTime     string   `json:"lastDeviceResyncStartTime,omitempty"`     // Start time for last/ongoing sync
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              // Instance Tenant Id of the device
+	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
+	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
 }
 type ResponseDevicesAddDeviceKnowYourNetwork struct {
 	Response *ResponseDevicesAddDeviceKnowYourNetworkResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  //
 }
 type ResponseDevicesAddDeviceKnowYourNetworkResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesUpdateDeviceDetails struct {
 	Response *ResponseDevicesUpdateDeviceDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                      `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateDeviceDetailsResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetDeviceValuesThatMatchFullyOrPartiallyAnAttribute struct {
 	Response []string `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string   `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateDeviceRole struct {
 	Response *ResponseDevicesUpdateDeviceRoleResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 type ResponseDevicesUpdateDeviceRoleResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetPollingIntervalForAllDevices struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceConfigForAllDevices struct {
 	Response *[]ResponseDevicesGetDeviceConfigForAllDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                 `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceConfigForAllDevicesResponse struct {
-	AttributeInfo *ResponseDevicesGetDeviceConfigForAllDevicesResponseAttributeInfo `json:"attributeInfo,omitempty"` //
-
-	CdpNeighbors string `json:"cdpNeighbors,omitempty"` //
-
-	HealthMonitor string `json:"healthMonitor,omitempty"` //
-
-	ID string `json:"id,omitempty"` //
-
-	IntfDescription string `json:"intfDescription,omitempty"` //
-
-	Inventory string `json:"inventory,omitempty"` //
-
-	IPIntfBrief string `json:"ipIntfBrief,omitempty"` //
-
-	MacAddressTable string `json:"macAddressTable,omitempty"` //
-
-	RunningConfig string `json:"runningConfig,omitempty"` //
-
-	SNMP string `json:"snmp,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	AttributeInfo   *ResponseDevicesGetDeviceConfigForAllDevicesResponseAttributeInfo `json:"attributeInfo,omitempty"`   //
+	CdpNeighbors    string                                                            `json:"cdpNeighbors,omitempty"`    //
+	HealthMonitor   string                                                            `json:"healthMonitor,omitempty"`   //
+	ID              string                                                            `json:"id,omitempty"`              //
+	IntfDescription string                                                            `json:"intfDescription,omitempty"` //
+	Inventory       string                                                            `json:"inventory,omitempty"`       //
+	IPIntfBrief     string                                                            `json:"ipIntfBrief,omitempty"`     //
+	MacAddressTable string                                                            `json:"macAddressTable,omitempty"` //
+	RunningConfig   string                                                            `json:"runningConfig,omitempty"`   //
+	SNMP            string                                                            `json:"snmp,omitempty"`            //
+	Version         string                                                            `json:"version,omitempty"`         //
 }
 type ResponseDevicesGetDeviceConfigForAllDevicesResponseAttributeInfo interface{}
 type ResponseDevicesGetDeviceConfigCount struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceCountKnowYourNetwork struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesExportDeviceList struct {
 	Response *ResponseDevicesExportDeviceListResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 type ResponseDevicesExportDeviceListResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetFunctionalCapabilityForDevices struct {
 	Response *[]ResponseDevicesGetFunctionalCapabilityForDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponse struct {
-	AttributeInfo *ResponseDevicesGetFunctionalCapabilityForDevicesResponseAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id of the device
-
+	AttributeInfo        *ResponseDevicesGetFunctionalCapabilityForDevicesResponseAttributeInfo          `json:"attributeInfo,omitempty"`        // Deprecated
+	DeviceID             string                                                                          `json:"deviceId,omitempty"`             // Device Id of the device
 	FunctionalCapability *[]ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapability `json:"functionalCapability,omitempty"` //
-
-	ID string `json:"id,omitempty"` // Deprecated
+	ID                   string                                                                          `json:"id,omitempty"`                   // Deprecated
 }
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponseAttributeInfo interface{}
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapability struct {
-	AttributeInfo *ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
+	AttributeInfo   *ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityAttributeInfo     `json:"attributeInfo,omitempty"`   // Deprecated
 	FunctionDetails *[]ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityFunctionDetails `json:"functionDetails,omitempty"` //
-
-	FunctionName string `json:"functionName,omitempty"` // Name of the function
-
-	FunctionOpState string `json:"functionOpState,omitempty"` // Operational state of the function
-
-	ID string `json:"id,omitempty"` // Id of the function
+	FunctionName    string                                                                                         `json:"functionName,omitempty"`    // Name of the function
+	FunctionOpState string                                                                                         `json:"functionOpState,omitempty"` // Operational state of the function
+	ID              string                                                                                         `json:"id,omitempty"`              // Id of the function
 }
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityAttributeInfo interface{}
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityFunctionDetails struct {
 	AttributeInfo *ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityFunctionDetailsAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
-	ID string `json:"id,omitempty"` // Deprecated
-
-	PropertyName string `json:"propertyName,omitempty"` // Property Name of the function
-
-	StringValue string `json:"stringValue,omitempty"` // Value for the property
+	ID            string                                                                                                    `json:"id,omitempty"`            // Deprecated
+	PropertyName  string                                                                                                    `json:"propertyName,omitempty"`  // Property Name of the function
+	StringValue   string                                                                                                    `json:"stringValue,omitempty"`   // Value for the property
 }
 type ResponseDevicesGetFunctionalCapabilityForDevicesResponseFunctionalCapabilityFunctionDetailsAttributeInfo interface{}
 type ResponseDevicesGetFunctionalCapabilityByID struct {
 	Response *ResponseDevicesGetFunctionalCapabilityByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                              `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetFunctionalCapabilityByIDResponse struct {
-	AttributeInfo *ResponseDevicesGetFunctionalCapabilityByIDResponseAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
+	AttributeInfo   *ResponseDevicesGetFunctionalCapabilityByIDResponseAttributeInfo     `json:"attributeInfo,omitempty"`   // Deprecated
 	FunctionDetails *[]ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetails `json:"functionDetails,omitempty"` //
-
-	FunctionName string `json:"functionName,omitempty"` // Name of the function
-
-	FunctionOpState string `json:"functionOpState,omitempty"` // Operational state of the function
-
-	ID string `json:"id,omitempty"` // Id of the function
+	FunctionName    string                                                               `json:"functionName,omitempty"`    // Name of the function
+	FunctionOpState string                                                               `json:"functionOpState,omitempty"` // Operational state of the function
+	ID              string                                                               `json:"id,omitempty"`              // Id of the function
 }
 type ResponseDevicesGetFunctionalCapabilityByIDResponseAttributeInfo interface{}
 type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetails struct {
 	AttributeInfo *ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetailsAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
-	ID string `json:"id,omitempty"` // Deprecated
-
-	PropertyName string `json:"propertyName,omitempty"` // Property Name of the function
-
-	StringValue string `json:"stringValue,omitempty"` // Value for the property
+	ID            string                                                                          `json:"id,omitempty"`            // Deprecated
+	PropertyName  string                                                                          `json:"propertyName,omitempty"`  // Property Name of the function
+	StringValue   string                                                                          `json:"stringValue,omitempty"`   // Value for the property
 }
 type ResponseDevicesGetFunctionalCapabilityByIDResponseFunctionDetailsAttributeInfo interface{}
 type ResponseDevicesInventoryInsightDeviceLinkMismatchAPI struct {
 	Response *[]ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Api version
+	Version  string                                                          `json:"version,omitempty"`  // Api version
 }
 type ResponseDevicesInventoryInsightDeviceLinkMismatchAPIResponse struct {
-	EndPortAllowedVLANIDs string `json:"endPortAllowedVlanIds,omitempty"` // End port allowed vlan ids
-
-	EndPortNativeVLANID string `json:"endPortNativeVlanId,omitempty"` // End port native vlan id
-
-	StartPortAllowedVLANIDs string `json:"startPortAllowedVlanIds,omitempty"` // Start port allowed vlan ids
-
-	StartPortNativeVLANID string `json:"startPortNativeVlanId,omitempty"` // Start port native vlan id
-
-	LinkStatus string `json:"linkStatus,omitempty"` // Link status
-
-	EndDeviceHostName string `json:"endDeviceHostName,omitempty"` // End device hostname
-
-	EndDeviceID string `json:"endDeviceId,omitempty"` // End device id
-
-	EndDeviceIPAddress string `json:"endDeviceIpAddress,omitempty"` // End device ip address
-
-	EndPortAddress string `json:"endPortAddress,omitempty"` // End port address
-
-	EndPortDuplex string `json:"endPortDuplex,omitempty"` // End port duplex
-
-	EndPortID string `json:"endPortId,omitempty"` // End port id
-
-	EndPortMask string `json:"endPortMask,omitempty"` // End port mask
-
-	EndPortName string `json:"endPortName,omitempty"` // End port name
-
-	EndPortPepID string `json:"endPortPepId,omitempty"` // End port pep id
-
-	EndPortSpeed string `json:"endPortSpeed,omitempty"` // End port speed
-
-	StartDeviceHostName string `json:"startDeviceHostName,omitempty"` // Start device hostname
-
-	StartDeviceID string `json:"startDeviceId,omitempty"` // Start device id
-
-	StartDeviceIPAddress string `json:"startDeviceIpAddress,omitempty"` // Start device ip address
-
-	StartPortAddress string `json:"startPortAddress,omitempty"` // Start port address
-
-	StartPortDuplex string `json:"startPortDuplex,omitempty"` // Start port duplex
-
-	StartPortID string `json:"startPortId,omitempty"` // Start port id
-
-	StartPortMask string `json:"startPortMask,omitempty"` // Start port mask
-
-	StartPortName string `json:"startPortName,omitempty"` // Start port name
-
-	StartPortPepID string `json:"startPortPepId,omitempty"` // Start port pep id
-
-	StartPortSpeed string `json:"startPortSpeed,omitempty"` // Start port speed
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Last updated
-
-	NumUpdates *float64 `json:"numUpdates,omitempty"` // Number updates
-
-	AvgUpdateFrequency *float64 `json:"avgUpdateFrequency,omitempty"` // Average update frequency
-
-	Type string `json:"type,omitempty"` // Type
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Unique instance id
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance tenant id
+	EndPortAllowedVLANIDs   string   `json:"endPortAllowedVlanIds,omitempty"`   // End port allowed vlan ids
+	EndPortNativeVLANID     string   `json:"endPortNativeVlanId,omitempty"`     // End port native vlan id
+	StartPortAllowedVLANIDs string   `json:"startPortAllowedVlanIds,omitempty"` // Start port allowed vlan ids
+	StartPortNativeVLANID   string   `json:"startPortNativeVlanId,omitempty"`   // Start port native vlan id
+	LinkStatus              string   `json:"linkStatus,omitempty"`              // Link status
+	EndDeviceHostName       string   `json:"endDeviceHostName,omitempty"`       // End device hostname
+	EndDeviceID             string   `json:"endDeviceId,omitempty"`             // End device id
+	EndDeviceIPAddress      string   `json:"endDeviceIpAddress,omitempty"`      // End device ip address
+	EndPortAddress          string   `json:"endPortAddress,omitempty"`          // End port address
+	EndPortDuplex           string   `json:"endPortDuplex,omitempty"`           // End port duplex
+	EndPortID               string   `json:"endPortId,omitempty"`               // End port id
+	EndPortMask             string   `json:"endPortMask,omitempty"`             // End port mask
+	EndPortName             string   `json:"endPortName,omitempty"`             // End port name
+	EndPortPepID            string   `json:"endPortPepId,omitempty"`            // End port pep id
+	EndPortSpeed            string   `json:"endPortSpeed,omitempty"`            // End port speed
+	StartDeviceHostName     string   `json:"startDeviceHostName,omitempty"`     // Start device hostname
+	StartDeviceID           string   `json:"startDeviceId,omitempty"`           // Start device id
+	StartDeviceIPAddress    string   `json:"startDeviceIpAddress,omitempty"`    // Start device ip address
+	StartPortAddress        string   `json:"startPortAddress,omitempty"`        // Start port address
+	StartPortDuplex         string   `json:"startPortDuplex,omitempty"`         // Start port duplex
+	StartPortID             string   `json:"startPortId,omitempty"`             // Start port id
+	StartPortMask           string   `json:"startPortMask,omitempty"`           // Start port mask
+	StartPortName           string   `json:"startPortName,omitempty"`           // Start port name
+	StartPortPepID          string   `json:"startPortPepId,omitempty"`          // Start port pep id
+	StartPortSpeed          string   `json:"startPortSpeed,omitempty"`          // Start port speed
+	LastUpdated             string   `json:"lastUpdated,omitempty"`             // Last updated
+	NumUpdates              *float64 `json:"numUpdates,omitempty"`              // Number updates
+	AvgUpdateFrequency      *float64 `json:"avgUpdateFrequency,omitempty"`      // Average update frequency
+	Type                    string   `json:"type,omitempty"`                    // Type
+	InstanceUUID            string   `json:"instanceUuid,omitempty"`            // Unique instance id
+	InstanceTenantID        string   `json:"instanceTenantId,omitempty"`        // Instance tenant id
 }
 type ResponseDevicesGetNetworkDeviceByIP struct {
 	Response *ResponseDevicesGetNetworkDeviceByIPResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                       `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetNetworkDeviceByIPResponse struct {
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated Wlc Ip address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device boot time
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	Family string `json:"family,omitempty"` // Family of device as switch, router, wireless lan controller, accesspoints
-
-	Hostname string `json:"hostname,omitempty"` // Device name
-
-	ID string `json:"id,omitempty"` // Instance Uuid of the device
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	Location string `json:"location,omitempty"` // [Deprecated] Location ID that is associated with the device
-
-	LocationName string `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // IP address of the device
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	PlatformID string `json:"platformId,omitempty"` // Platform ID of device
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Device reachability status as Reachable / Unreachable
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of device
-
-	Series string `json:"series,omitempty"` // Device series
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Software type on the device
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software version on the device
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	TunnelUDPPort string `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	Type string `json:"type,omitempty"` // Type of device as switch, router, wireless lan controller, accesspoints
-
-	UpTime string `json:"upTime,omitempty"` // Time that shows for how long the device has been up
-
-	WaasDeviceMode string `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	DNSResolvedManagementAddress string `json:"dnsResolvedManagementAddress,omitempty"` // Specifies the resolved ip address of dns name
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // AccessPoint Ethernet MacAddress of AP device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor details
-
-	ReasonsForPendingSyncRequests string `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
-
-	PendingSyncRequestsCount string `json:"pendingSyncRequestsCount,omitempty"` // Count of pending sync requests , if any
-
-	ReasonsForDeviceResync string `json:"reasonsForDeviceResync,omitempty"` // Reason for last/ongoing sync
-
-	LastDeviceResyncStartTime string `json:"lastDeviceResyncStartTime,omitempty"` // Start time for last/ongoing sync
-
-	UptimeSeconds *float64 `json:"uptimeSeconds,omitempty"` // Uptime in Seconds
-
-	ManagedAtleastOnce *bool `json:"managedAtleastOnce,omitempty"` // Indicates if device went into Managed state atleast once
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // Support level of the device
-
-	ManagementState string `json:"managementState,omitempty"` // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
-
-	Description string `json:"description,omitempty"` // System description
+	ApManagerInterfaceIP          string   `json:"apManagerInterfaceIp,omitempty"`          // IP address of WLC on AP manager interface
+	AssociatedWlcIP               string   `json:"associatedWlcIp,omitempty"`               // Associated Wlc Ip address of the AP device
+	BootDateTime                  string   `json:"bootDateTime,omitempty"`                  // Device boot time
+	CollectionInterval            string   `json:"collectionInterval,omitempty"`            // Re sync Interval of the device
+	CollectionStatus              string   `json:"collectionStatus,omitempty"`              // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
+	ErrorCode                     string   `json:"errorCode,omitempty"`                     // Inventory status error code
+	ErrorDescription              string   `json:"errorDescription,omitempty"`              // Inventory status description
+	Family                        string   `json:"family,omitempty"`                        // Family of device as switch, router, wireless lan controller, accesspoints
+	Hostname                      string   `json:"hostname,omitempty"`                      // Device name
+	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              // Instance Tenant Id of the device
+	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
+	InterfaceCount                string   `json:"interfaceCount,omitempty"`                // Number of interfaces on the device
+	InventoryStatusDetail         string   `json:"inventoryStatusDetail,omitempty"`         // Status detail of inventory sync
+	LastUpdateTime                *float64 `json:"lastUpdateTime,omitempty"`                // Time in epoch when the network device info last got updated
+	LastUpdated                   string   `json:"lastUpdated,omitempty"`                   // Time when the network device info last got updated
+	LineCardCount                 string   `json:"lineCardCount,omitempty"`                 // Number of linecards on the device
+	LineCardID                    string   `json:"lineCardId,omitempty"`                    // IDs of linecards of the device
+	Location                      string   `json:"location,omitempty"`                      // [Deprecated] Location ID that is associated with the device
+	LocationName                  string   `json:"locationName,omitempty"`                  // [Deprecated] Name of the associated location
+	MacAddress                    string   `json:"macAddress,omitempty"`                    // MAC address of device
+	ManagementIPAddress           string   `json:"managementIpAddress,omitempty"`           // IP address of the device
+	MemorySize                    string   `json:"memorySize,omitempty"`                    // Processor memory size
+	PlatformID                    string   `json:"platformId,omitempty"`                    // Platform ID of device
+	ReachabilityFailureReason     string   `json:"reachabilityFailureReason,omitempty"`     // Failure reason for unreachable devices
+	ReachabilityStatus            string   `json:"reachabilityStatus,omitempty"`            // Device reachability status as Reachable / Unreachable
+	Role                          string   `json:"role,omitempty"`                          // Role of device as access, distribution, border router, core
+	RoleSource                    string   `json:"roleSource,omitempty"`                    // Role source as manual / auto
+	SerialNumber                  string   `json:"serialNumber,omitempty"`                  // Serial number of device
+	Series                        string   `json:"series,omitempty"`                        // Device series
+	SNMPContact                   string   `json:"snmpContact,omitempty"`                   // SNMP contact on device
+	SNMPLocation                  string   `json:"snmpLocation,omitempty"`                  // SNMP location on device
+	SoftwareType                  string   `json:"softwareType,omitempty"`                  // Software type on the device
+	SoftwareVersion               string   `json:"softwareVersion,omitempty"`               // Software version on the device
+	TagCount                      string   `json:"tagCount,omitempty"`                      // Number of tags associated with the device
+	TunnelUDPPort                 string   `json:"tunnelUdpPort,omitempty"`                 // Mobility protocol port is stored as tunneludpport for WLC
+	Type                          string   `json:"type,omitempty"`                          // Type of device as switch, router, wireless lan controller, accesspoints
+	UpTime                        string   `json:"upTime,omitempty"`                        // Time that shows for how long the device has been up
+	WaasDeviceMode                string   `json:"waasDeviceMode,omitempty"`                // WAAS device mode
+	DNSResolvedManagementAddress  string   `json:"dnsResolvedManagementAddress,omitempty"`  // Specifies the resolved ip address of dns name
+	ApEthernetMacAddress          string   `json:"apEthernetMacAddress,omitempty"`          // AccessPoint Ethernet MacAddress of AP device
+	Vendor                        string   `json:"vendor,omitempty"`                        // Vendor details
+	ReasonsForPendingSyncRequests string   `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
+	PendingSyncRequestsCount      string   `json:"pendingSyncRequestsCount,omitempty"`      // Count of pending sync requests , if any
+	ReasonsForDeviceResync        string   `json:"reasonsForDeviceResync,omitempty"`        // Reason for last/ongoing sync
+	LastDeviceResyncStartTime     string   `json:"lastDeviceResyncStartTime,omitempty"`     // Start time for last/ongoing sync
+	UptimeSeconds                 *float64 `json:"uptimeSeconds,omitempty"`                 // Uptime in Seconds
+	ManagedAtleastOnce            *bool    `json:"managedAtleastOnce,omitempty"`            // Indicates if device went into Managed state atleast once
+	DeviceSupportLevel            string   `json:"deviceSupportLevel,omitempty"`            // Support level of the device
+	ManagementState               string   `json:"managementState,omitempty"`               // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
+	Description                   string   `json:"description,omitempty"`                   // System description
 }
 type ResponseDevicesGetModules struct {
 	Response *[]ResponseDevicesGetModulesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                               `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetModulesResponse struct {
-	AssemblyNumber string `json:"assemblyNumber,omitempty"` // Assembly Number of the module
-
-	AssemblyRevision string `json:"assemblyRevision,omitempty"` // Assembly Revision of the module
-
-	AttributeInfo *ResponseDevicesGetModulesResponseAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
-	ContainmentEntity string `json:"containmentEntity,omitempty"` // Containment Entity of the module
-
-	Description string `json:"description,omitempty"` // Description of the module
-
-	EntityPhysicalIndex string `json:"entityPhysicalIndex,omitempty"` // Entity Physical Index of the module
-
-	ID string `json:"id,omitempty"` // ID of the module
-
-	IsFieldReplaceable string `json:"isFieldReplaceable,omitempty"` // To mention if field is replaceable
-
-	IsReportingAlarmsAllowed string `json:"isReportingAlarmsAllowed,omitempty"` // To mention if reporting alarms are allowed
-
-	Manufacturer string `json:"manufacturer,omitempty"` // Manufacturer of the module
-
-	ModuleIndex *int `json:"moduleIndex,omitempty"` // Index of the module
-
-	Name string `json:"name,omitempty"` // Name of the module
-
-	OperationalStateCode string `json:"operationalStateCode,omitempty"` // Operational state of the module
-
-	PartNumber string `json:"partNumber,omitempty"` // Part number of the module
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of the module
-
-	VendorEquipmentType string `json:"vendorEquipmentType,omitempty"` // Vendor euipment type of the module
+	AssemblyNumber           string                                          `json:"assemblyNumber,omitempty"`           // Assembly Number of the module
+	AssemblyRevision         string                                          `json:"assemblyRevision,omitempty"`         // Assembly Revision of the module
+	AttributeInfo            *ResponseDevicesGetModulesResponseAttributeInfo `json:"attributeInfo,omitempty"`            // Deprecated
+	ContainmentEntity        string                                          `json:"containmentEntity,omitempty"`        // Containment Entity of the module
+	Description              string                                          `json:"description,omitempty"`              // Description of the module
+	EntityPhysicalIndex      string                                          `json:"entityPhysicalIndex,omitempty"`      // Entity Physical Index of the module
+	ID                       string                                          `json:"id,omitempty"`                       // ID of the module
+	IsFieldReplaceable       string                                          `json:"isFieldReplaceable,omitempty"`       // To mention if field is replaceable
+	IsReportingAlarmsAllowed string                                          `json:"isReportingAlarmsAllowed,omitempty"` // To mention if reporting alarms are allowed
+	Manufacturer             string                                          `json:"manufacturer,omitempty"`             // Manufacturer of the module
+	ModuleIndex              *int                                            `json:"moduleIndex,omitempty"`              // Index of the module
+	Name                     string                                          `json:"name,omitempty"`                     // Name of the module
+	OperationalStateCode     string                                          `json:"operationalStateCode,omitempty"`     // Operational state of the module
+	PartNumber               string                                          `json:"partNumber,omitempty"`               // Part number of the module
+	SerialNumber             string                                          `json:"serialNumber,omitempty"`             // Serial number of the module
+	VendorEquipmentType      string                                          `json:"vendorEquipmentType,omitempty"`      // Vendor euipment type of the module
 }
 type ResponseDevicesGetModulesResponseAttributeInfo interface{}
 type ResponseDevicesGetModuleCount struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetModuleInfoByID struct {
 	Response *ResponseDevicesGetModuleInfoByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                    `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetModuleInfoByIDResponse struct {
-	AssemblyNumber string `json:"assemblyNumber,omitempty"` // Assembly number of the module
-
-	AssemblyRevision string `json:"assemblyRevision,omitempty"` // Assembly revision of the module
-
-	AttributeInfo *ResponseDevicesGetModuleInfoByIDResponseAttributeInfo `json:"attributeInfo,omitempty"` // Deprecated
-
-	ContainmentEntity string `json:"containmentEntity,omitempty"` // Containment entity of the module
-
-	Description string `json:"description,omitempty"` // Description of the module
-
-	EntityPhysicalIndex string `json:"entityPhysicalIndex,omitempty"` // Entity physical index of the module
-
-	ID string `json:"id,omitempty"` // Id of the module
-
-	IsFieldReplaceable string `json:"isFieldReplaceable,omitempty"` // To mention if field is replaceable
-
-	IsReportingAlarmsAllowed string `json:"isReportingAlarmsAllowed,omitempty"` // To mention if reporting alarms are allowed
-
-	Manufacturer string `json:"manufacturer,omitempty"` // Manufacturer of the module
-
-	ModuleIndex *int `json:"moduleIndex,omitempty"` // Index of the module
-
-	Name string `json:"name,omitempty"` // Name of the module
-
-	OperationalStateCode string `json:"operationalStateCode,omitempty"` // Operational state of the module
-
-	PartNumber string `json:"partNumber,omitempty"` // Part number of the module
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of the modules
-
-	VendorEquipmentType string `json:"vendorEquipmentType,omitempty"` // Vendor equipment type of the module
+	AssemblyNumber           string                                                 `json:"assemblyNumber,omitempty"`           // Assembly number of the module
+	AssemblyRevision         string                                                 `json:"assemblyRevision,omitempty"`         // Assembly revision of the module
+	AttributeInfo            *ResponseDevicesGetModuleInfoByIDResponseAttributeInfo `json:"attributeInfo,omitempty"`            // Deprecated
+	ContainmentEntity        string                                                 `json:"containmentEntity,omitempty"`        // Containment entity of the module
+	Description              string                                                 `json:"description,omitempty"`              // Description of the module
+	EntityPhysicalIndex      string                                                 `json:"entityPhysicalIndex,omitempty"`      // Entity physical index of the module
+	ID                       string                                                 `json:"id,omitempty"`                       // Id of the module
+	IsFieldReplaceable       string                                                 `json:"isFieldReplaceable,omitempty"`       // To mention if field is replaceable
+	IsReportingAlarmsAllowed string                                                 `json:"isReportingAlarmsAllowed,omitempty"` // To mention if reporting alarms are allowed
+	Manufacturer             string                                                 `json:"manufacturer,omitempty"`             // Manufacturer of the module
+	ModuleIndex              *int                                                   `json:"moduleIndex,omitempty"`              // Index of the module
+	Name                     string                                                 `json:"name,omitempty"`                     // Name of the module
+	OperationalStateCode     string                                                 `json:"operationalStateCode,omitempty"`     // Operational state of the module
+	PartNumber               string                                                 `json:"partNumber,omitempty"`               // Part number of the module
+	SerialNumber             string                                                 `json:"serialNumber,omitempty"`             // Serial number of the modules
+	VendorEquipmentType      string                                                 `json:"vendorEquipmentType,omitempty"`      // Vendor equipment type of the module
 }
 type ResponseDevicesGetModuleInfoByIDResponseAttributeInfo interface{}
 type ResponseDevicesGetDeviceBySerialNumber struct {
 	Response *ResponseDevicesGetDeviceBySerialNumberResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                          `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceBySerialNumberResponse struct {
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated Wlc Ip address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device boot time
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	Family string `json:"family,omitempty"` // Family of device as switch, router, wireless lan controller, accesspoints
-
-	Hostname string `json:"hostname,omitempty"` // Device name
-
-	ID string `json:"id,omitempty"` // Instance Uuid of the device
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	Location string `json:"location,omitempty"` // [Deprecated] Location ID that is associated with the device
-
-	LocationName string `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // IP address of the device
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	PlatformID string `json:"platformId,omitempty"` // Platform ID of device
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Device reachability status as Reachable / Unreachable
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of device
-
-	Series string `json:"series,omitempty"` // Device series
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Software type on the device
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software version on the device
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	TunnelUDPPort string `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	Type string `json:"type,omitempty"` // Type of device as switch, router, wireless lan controller, accesspoints
-
-	UpTime string `json:"upTime,omitempty"` // Time that shows for how long the device has been up
-
-	WaasDeviceMode string `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	DNSResolvedManagementAddress string `json:"dnsResolvedManagementAddress,omitempty"` // Specifies the resolved ip address of dns name
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // AccessPoint Ethernet MacAddress of AP device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor details
-
-	ReasonsForPendingSyncRequests string `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
-
-	PendingSyncRequestsCount string `json:"pendingSyncRequestsCount,omitempty"` // Count of pending sync requests , if any
-
-	ReasonsForDeviceResync string `json:"reasonsForDeviceResync,omitempty"` // Reason for last/ongoing sync
-
-	LastDeviceResyncStartTime string `json:"lastDeviceResyncStartTime,omitempty"` // Start time for last/ongoing sync
-
-	UptimeSeconds *float64 `json:"uptimeSeconds,omitempty"` // Uptime in Seconds
-
-	ManagedAtleastOnce *bool `json:"managedAtleastOnce,omitempty"` // Indicates if device went into Managed state atleast once
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // Support level of the device
-
-	ManagementState string `json:"managementState,omitempty"` // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
-
-	Description string `json:"description,omitempty"` // System description
+	ApManagerInterfaceIP          string   `json:"apManagerInterfaceIp,omitempty"`          // IP address of WLC on AP manager interface
+	AssociatedWlcIP               string   `json:"associatedWlcIp,omitempty"`               // Associated Wlc Ip address of the AP device
+	BootDateTime                  string   `json:"bootDateTime,omitempty"`                  // Device boot time
+	CollectionInterval            string   `json:"collectionInterval,omitempty"`            // Re sync Interval of the device
+	CollectionStatus              string   `json:"collectionStatus,omitempty"`              // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
+	ErrorCode                     string   `json:"errorCode,omitempty"`                     // Inventory status error code
+	ErrorDescription              string   `json:"errorDescription,omitempty"`              // Inventory status description
+	Family                        string   `json:"family,omitempty"`                        // Family of device as switch, router, wireless lan controller, accesspoints
+	Hostname                      string   `json:"hostname,omitempty"`                      // Device name
+	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              // Instance Tenant Id of the device
+	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
+	InterfaceCount                string   `json:"interfaceCount,omitempty"`                // Number of interfaces on the device
+	InventoryStatusDetail         string   `json:"inventoryStatusDetail,omitempty"`         // Status detail of inventory sync
+	LastUpdateTime                *float64 `json:"lastUpdateTime,omitempty"`                // Time in epoch when the network device info last got updated
+	LastUpdated                   string   `json:"lastUpdated,omitempty"`                   // Time when the network device info last got updated
+	LineCardCount                 string   `json:"lineCardCount,omitempty"`                 // Number of linecards on the device
+	LineCardID                    string   `json:"lineCardId,omitempty"`                    // IDs of linecards of the device
+	Location                      string   `json:"location,omitempty"`                      // [Deprecated] Location ID that is associated with the device
+	LocationName                  string   `json:"locationName,omitempty"`                  // [Deprecated] Name of the associated location
+	MacAddress                    string   `json:"macAddress,omitempty"`                    // MAC address of device
+	ManagementIPAddress           string   `json:"managementIpAddress,omitempty"`           // IP address of the device
+	MemorySize                    string   `json:"memorySize,omitempty"`                    // Processor memory size
+	PlatformID                    string   `json:"platformId,omitempty"`                    // Platform ID of device
+	ReachabilityFailureReason     string   `json:"reachabilityFailureReason,omitempty"`     // Failure reason for unreachable devices
+	ReachabilityStatus            string   `json:"reachabilityStatus,omitempty"`            // Device reachability status as Reachable / Unreachable
+	Role                          string   `json:"role,omitempty"`                          // Role of device as access, distribution, border router, core
+	RoleSource                    string   `json:"roleSource,omitempty"`                    // Role source as manual / auto
+	SerialNumber                  string   `json:"serialNumber,omitempty"`                  // Serial number of device
+	Series                        string   `json:"series,omitempty"`                        // Device series
+	SNMPContact                   string   `json:"snmpContact,omitempty"`                   // SNMP contact on device
+	SNMPLocation                  string   `json:"snmpLocation,omitempty"`                  // SNMP location on device
+	SoftwareType                  string   `json:"softwareType,omitempty"`                  // Software type on the device
+	SoftwareVersion               string   `json:"softwareVersion,omitempty"`               // Software version on the device
+	TagCount                      string   `json:"tagCount,omitempty"`                      // Number of tags associated with the device
+	TunnelUDPPort                 string   `json:"tunnelUdpPort,omitempty"`                 // Mobility protocol port is stored as tunneludpport for WLC
+	Type                          string   `json:"type,omitempty"`                          // Type of device as switch, router, wireless lan controller, accesspoints
+	UpTime                        string   `json:"upTime,omitempty"`                        // Time that shows for how long the device has been up
+	WaasDeviceMode                string   `json:"waasDeviceMode,omitempty"`                // WAAS device mode
+	DNSResolvedManagementAddress  string   `json:"dnsResolvedManagementAddress,omitempty"`  // Specifies the resolved ip address of dns name
+	ApEthernetMacAddress          string   `json:"apEthernetMacAddress,omitempty"`          // AccessPoint Ethernet MacAddress of AP device
+	Vendor                        string   `json:"vendor,omitempty"`                        // Vendor details
+	ReasonsForPendingSyncRequests string   `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
+	PendingSyncRequestsCount      string   `json:"pendingSyncRequestsCount,omitempty"`      // Count of pending sync requests , if any
+	ReasonsForDeviceResync        string   `json:"reasonsForDeviceResync,omitempty"`        // Reason for last/ongoing sync
+	LastDeviceResyncStartTime     string   `json:"lastDeviceResyncStartTime,omitempty"`     // Start time for last/ongoing sync
+	UptimeSeconds                 *float64 `json:"uptimeSeconds,omitempty"`                 // Uptime in Seconds
+	ManagedAtleastOnce            *bool    `json:"managedAtleastOnce,omitempty"`            // Indicates if device went into Managed state atleast once
+	DeviceSupportLevel            string   `json:"deviceSupportLevel,omitempty"`            // Support level of the device
+	ManagementState               string   `json:"managementState,omitempty"`               // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
+	Description                   string   `json:"description,omitempty"`                   // System description
 }
 type ResponseDevicesSyncDevices struct {
 	Response *ResponseDevicesSyncDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                              `json:"version,omitempty"`  //
 }
 type ResponseDevicesSyncDevicesResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetDevicesRegisteredForWsaNotification struct {
 	Response *ResponseDevicesGetDevicesRegisteredForWsaNotificationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                         `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDevicesRegisteredForWsaNotificationResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	ModelNumber string `json:"modelNumber,omitempty"` // Model number of the device
-
-	Name string `json:"name,omitempty"` // Name of the device
-
+	MacAddress   string `json:"macAddress,omitempty"`   // MAC address of device
+	ModelNumber  string `json:"modelNumber,omitempty"`  // Model number of the device
+	Name         string `json:"name,omitempty"`         // Name of the device
 	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number of the device
-
-	TenantID string `json:"tenantId,omitempty"` // Tenant Id of the device
+	TenantID     string `json:"tenantId,omitempty"`     // Tenant Id of the device
 }
 type ResponseDevicesGetAllUserDefinedFields struct {
 	Response *[]ResponseDevicesGetAllUserDefinedFieldsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                            `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetAllUserDefinedFieldsResponse struct {
-	ID string `json:"id,omitempty"` // DeviceId of the Device
-
-	Name string `json:"name,omitempty"` // UDF name
-
+	ID          string `json:"id,omitempty"`          // DeviceId of the Device
+	Name        string `json:"name,omitempty"`        // UDF name
 	Description string `json:"description,omitempty"` // Description for UDF
 }
 type ResponseDevicesCreateUserDefinedField struct {
 	Response *ResponseDevicesCreateUserDefinedFieldResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                         `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesCreateUserDefinedFieldResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesUpdateUserDefinedField struct {
 	Response *ResponseDevicesUpdateUserDefinedFieldResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                         `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesUpdateUserDefinedFieldResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesDeleteUserDefinedField struct {
 	Response *ResponseDevicesDeleteUserDefinedFieldResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                         `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesDeleteUserDefinedFieldResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesGetChassisDetailsForDevice struct {
 	Response *[]ResponseDevicesGetChassisDetailsForDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                               `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetChassisDetailsForDeviceResponse struct {
-	AssemblyNumber string `json:"assemblyNumber,omitempty"` // Assembly Number of the chassis
-
-	AssemblyRevision string `json:"assemblyRevision,omitempty"` // Assembly Revision of the chassis
-
-	ContainmentEntity string `json:"containmentEntity,omitempty"` // Containment Entity of the chassis
-
-	Description string `json:"description,omitempty"` // Description of the chassis
-
-	EntityPhysicalIndex string `json:"entityPhysicalIndex,omitempty"` // Entity Physical Index of the chassis
-
-	HardwareVersion string `json:"hardwareVersion,omitempty"` // Hardware Version of the chassis
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // ID of the chassis
-
-	IsFieldReplaceable string `json:"isFieldReplaceable,omitempty"` // To mention if field is replaceable
-
+	AssemblyNumber           string `json:"assemblyNumber,omitempty"`           // Assembly Number of the chassis
+	AssemblyRevision         string `json:"assemblyRevision,omitempty"`         // Assembly Revision of the chassis
+	ContainmentEntity        string `json:"containmentEntity,omitempty"`        // Containment Entity of the chassis
+	Description              string `json:"description,omitempty"`              // Description of the chassis
+	EntityPhysicalIndex      string `json:"entityPhysicalIndex,omitempty"`      // Entity Physical Index of the chassis
+	HardwareVersion          string `json:"hardwareVersion,omitempty"`          // Hardware Version of the chassis
+	InstanceUUID             string `json:"instanceUuid,omitempty"`             // ID of the chassis
+	IsFieldReplaceable       string `json:"isFieldReplaceable,omitempty"`       // To mention if field is replaceable
 	IsReportingAlarmsAllowed string `json:"isReportingAlarmsAllowed,omitempty"` // To mention if reporting alarms are allowed
-
-	Manufacturer string `json:"manufacturer,omitempty"` // Manufacturer of the chassis
-
-	Name string `json:"name,omitempty"` // Name of the chassis
-
-	PartNumber string `json:"partNumber,omitempty"` // Part Number of the chassis
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number of the chassis
-
-	VendorEquipmentType string `json:"vendorEquipmentType,omitempty"` // Vendor Equipment Type of the chassis
+	Manufacturer             string `json:"manufacturer,omitempty"`             // Manufacturer of the chassis
+	Name                     string `json:"name,omitempty"`                     // Name of the chassis
+	PartNumber               string `json:"partNumber,omitempty"`               // Part Number of the chassis
+	SerialNumber             string `json:"serialNumber,omitempty"`             // Serial Number of the chassis
+	VendorEquipmentType      string `json:"vendorEquipmentType,omitempty"`      // Vendor Equipment Type of the chassis
 }
 type ResponseDevicesGetStackDetailsForDevice struct {
 	Response *ResponseDevicesGetStackDetailsForDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                           `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetStackDetailsForDeviceResponse struct {
-	DeviceID string `json:"deviceId,omitempty"` // Device ID
-
-	StackPortInfo *[]ResponseDevicesGetStackDetailsForDeviceResponseStackPortInfo `json:"stackPortInfo,omitempty"` //
-
+	DeviceID        string                                                            `json:"deviceId,omitempty"`        // Device ID
+	StackPortInfo   *[]ResponseDevicesGetStackDetailsForDeviceResponseStackPortInfo   `json:"stackPortInfo,omitempty"`   //
 	StackSwitchInfo *[]ResponseDevicesGetStackDetailsForDeviceResponseStackSwitchInfo `json:"stackSwitchInfo,omitempty"` //
-
-	SvlSwitchInfo *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfo `json:"svlSwitchInfo,omitempty"` //
+	SvlSwitchInfo   *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfo   `json:"svlSwitchInfo,omitempty"`   //
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseStackPortInfo struct {
-	IsSynchOk string `json:"isSynchOk,omitempty"` // If link partner sends valid protocol message
-
-	LinkActive *bool `json:"linkActive,omitempty"` // If stack port is in same state as link partner
-
-	LinkOk *bool `json:"linkOk,omitempty"` // If link is stable
-
-	Name string `json:"name,omitempty"` // Name of the stack port
-
-	NeighborPort string `json:"neighborPort,omitempty"` // Neighbor's member number and stack port number
-
-	NrLinkOkChanges *int `json:"nrLinkOkChanges,omitempty"` // Relative stability of the link
-
-	StackCableLengthInfo string `json:"stackCableLengthInfo,omitempty"` // Cable length
-
+	IsSynchOk               string `json:"isSynchOk,omitempty"`               // If link partner sends valid protocol message
+	LinkActive              *bool  `json:"linkActive,omitempty"`              // If stack port is in same state as link partner
+	LinkOk                  *bool  `json:"linkOk,omitempty"`                  // If link is stable
+	Name                    string `json:"name,omitempty"`                    // Name of the stack port
+	NeighborPort            string `json:"neighborPort,omitempty"`            // Neighbor's member number and stack port number
+	NrLinkOkChanges         *int   `json:"nrLinkOkChanges,omitempty"`         // Relative stability of the link
+	StackCableLengthInfo    string `json:"stackCableLengthInfo,omitempty"`    // Cable length
 	StackPortOperStatusInfo string `json:"stackPortOperStatusInfo,omitempty"` // Port opearation status
-
-	SwitchPort string `json:"switchPort,omitempty"` // Member number and stack port number
+	SwitchPort              string `json:"switchPort,omitempty"`              // Member number and stack port number
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseStackSwitchInfo struct {
-	EntPhysicalIndex string `json:"entPhysicalIndex,omitempty"` //
-
-	HwPriority *int `json:"hwPriority,omitempty"` // Hardware priority of the switch
-
-	MacAddress string `json:"macAddress,omitempty"` // Mac address of the switch
-
-	NumNextReload *int `json:"numNextReload,omitempty"` // Stack member number to be used in next reload
-
-	PlatformID string `json:"platformId,omitempty"` // Platform Id
-
-	Role string `json:"role,omitempty"` // Function of the switch
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number
-
-	SoftwareImage string `json:"softwareImage,omitempty"` // Software image type running on the switch
-
-	StackMemberNumber *int `json:"stackMemberNumber,omitempty"` // Switch member number
-
-	State string `json:"state,omitempty"` // Current state of the switch
-
-	SwitchPriority *int `json:"switchPriority,omitempty"` // Priority of the switch
+	EntPhysicalIndex  string `json:"entPhysicalIndex,omitempty"`  //
+	HwPriority        *int   `json:"hwPriority,omitempty"`        // Hardware priority of the switch
+	MacAddress        string `json:"macAddress,omitempty"`        // Mac address of the switch
+	NumNextReload     *int   `json:"numNextReload,omitempty"`     // Stack member number to be used in next reload
+	PlatformID        string `json:"platformId,omitempty"`        // Platform Id
+	Role              string `json:"role,omitempty"`              // Function of the switch
+	SerialNumber      string `json:"serialNumber,omitempty"`      // Serial number
+	SoftwareImage     string `json:"softwareImage,omitempty"`     // Software image type running on the switch
+	StackMemberNumber *int   `json:"stackMemberNumber,omitempty"` // Switch member number
+	State             string `json:"state,omitempty"`             // Current state of the switch
+	SwitchPriority    *int   `json:"switchPriority,omitempty"`    // Priority of the switch
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfo struct {
-	DadProtocol string `json:"dadProtocol,omitempty"` // Stackwise virtual dual active detection config
-
-	DadRecoveryReloadEnabled *bool `json:"dadRecoveryReloadEnabled,omitempty"` // If dad recovery reload enabled
-
-	DomainNumber *int `json:"domainNumber,omitempty"` // Stackwise virtual switch domain number
-
-	InDadRecoveryMode *bool `json:"inDadRecoveryMode,omitempty"` // If in dad recovery mode
-
-	SwVirtualStatus string `json:"swVirtualStatus,omitempty"` // Stackwise virtual status
-
-	SwitchMembers *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembers `json:"switchMembers,omitempty"` //
+	DadProtocol              string                                                                       `json:"dadProtocol,omitempty"`              // Stackwise virtual dual active detection config
+	DadRecoveryReloadEnabled *bool                                                                        `json:"dadRecoveryReloadEnabled,omitempty"` // If dad recovery reload enabled
+	DomainNumber             *int                                                                         `json:"domainNumber,omitempty"`             // Stackwise virtual switch domain number
+	InDadRecoveryMode        *bool                                                                        `json:"inDadRecoveryMode,omitempty"`        // If in dad recovery mode
+	SwVirtualStatus          string                                                                       `json:"swVirtualStatus,omitempty"`          // Stackwise virtual status
+	SwitchMembers            *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembers `json:"switchMembers,omitempty"`            //
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembers struct {
-	Bandwidth string `json:"bandwidth,omitempty"` // Bandwidth
-
-	SvlMemberEndPoints *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberEndPoints `json:"svlMemberEndPoints,omitempty"` //
-
-	SvlMemberNumber *int `json:"svlMemberNumber,omitempty"` // Switch member number
-
+	Bandwidth            string                                                                                           `json:"bandwidth,omitempty"`            // Bandwidth
+	SvlMemberEndPoints   *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberEndPoints   `json:"svlMemberEndPoints,omitempty"`   //
+	SvlMemberNumber      *int                                                                                             `json:"svlMemberNumber,omitempty"`      // Switch member number
 	SvlMemberPepSettings *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberPepSettings `json:"svlMemberPepSettings,omitempty"` //
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberEndPoints struct {
 	SvlMemberEndPointPorts *[]ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberEndPointsSvlMemberEndPointPorts `json:"svlMemberEndPointPorts,omitempty"` //
-
-	SvlNumber *int `json:"svlNumber,omitempty"` // Stackwise virtual link number
-
-	SvlStatus string `json:"svlStatus,omitempty"` // Stackwise virtual status
+	SvlNumber              *int                                                                                                                 `json:"svlNumber,omitempty"`              // Stackwise virtual link number
+	SvlStatus              string                                                                                                               `json:"svlStatus,omitempty"`              // Stackwise virtual status
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberEndPointsSvlMemberEndPointPorts struct {
 	SvlProtocolStatus string `json:"svlProtocolStatus,omitempty"` // Stackwise virtual protocol status
-
-	SwLocalInterface string `json:"swLocalInterface,omitempty"` // Stackwise virtual local interface
-
+	SwLocalInterface  string `json:"swLocalInterface,omitempty"`  // Stackwise virtual local interface
 	SwRemoteInterface string `json:"swRemoteInterface,omitempty"` // Stackwise virtual remote interface
 }
 type ResponseDevicesGetStackDetailsForDeviceResponseSvlSwitchInfoSwitchMembersSvlMemberPepSettings struct {
-	DadEnabled *bool `json:"dadEnabled,omitempty"` // If dadInterface is configured for dual active detection
-
+	DadEnabled       *bool  `json:"dadEnabled,omitempty"`       // If dadInterface is configured for dual active detection
 	DadInterfaceName string `json:"dadInterfaceName,omitempty"` // Interface for dual active detection
 }
 type ResponseDevicesRemoveUserDefinedFieldFromDevice struct {
 	Response *ResponseDevicesRemoveUserDefinedFieldFromDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                   `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesRemoveUserDefinedFieldFromDeviceResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesAddUserDefinedFieldToDevice struct {
 	Response *ResponseDevicesAddUserDefinedFieldToDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesAddUserDefinedFieldToDeviceResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesGetTheDetailsOfPhysicalComponentsOfTheGivenDevice struct {
 	Response *[]ResponseDevicesGetTheDetailsOfPhysicalComponentsOfTheGivenDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                      `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetTheDetailsOfPhysicalComponentsOfTheGivenDeviceResponse struct {
 	OperationalStateCode string `json:"operationalStateCode,omitempty"` // Operational State Code
-
-	ProductID string `json:"productId,omitempty"` // Product Id
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number
-
-	VendorEquipmentType string `json:"vendorEquipmentType,omitempty"` // Vendor Equipment Type
-
-	Description string `json:"description,omitempty"` // Description
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid
-
-	Name string `json:"name,omitempty"` // Name
-
-	Manufacturer string `json:"manufacturer,omitempty"` // Manufacturer
+	ProductID            string `json:"productId,omitempty"`            // Product Id
+	SerialNumber         string `json:"serialNumber,omitempty"`         // Serial Number
+	VendorEquipmentType  string `json:"vendorEquipmentType,omitempty"`  // Vendor Equipment Type
+	Description          string `json:"description,omitempty"`          // Description
+	InstanceUUID         string `json:"instanceUuid,omitempty"`         // Instance Uuid
+	Name                 string `json:"name,omitempty"`                 // Name
+	Manufacturer         string `json:"manufacturer,omitempty"`         // Manufacturer
 }
 type ResponseDevicesReturnsPoeInterfaceDetailsForTheDevice struct {
-	Version string `json:"version,omitempty"` // Version
-
+	Version  string                                                           `json:"version,omitempty"`  // Version
 	Response *[]ResponseDevicesReturnsPoeInterfaceDetailsForTheDeviceResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesReturnsPoeInterfaceDetailsForTheDeviceResponse struct {
-	AdminStatus string `json:"adminStatus,omitempty"` // Administration Status. Possible values: AUTO, STATIC, NEVER
-
-	OperStatus string `json:"operStatus,omitempty"` // Operational Status. Possible values: ON, OFF, FAULTY, POWER_DENY
-
-	InterfaceName string `json:"interfaceName,omitempty"` // Name of the interface
-
-	MaxPortPower string `json:"maxPortPower,omitempty"` // Maximum power (in Watts) that port can hold
-
+	AdminStatus    string `json:"adminStatus,omitempty"`    // Administration Status. Possible values: AUTO, STATIC, NEVER
+	OperStatus     string `json:"operStatus,omitempty"`     // Operational Status. Possible values: ON, OFF, FAULTY, POWER_DENY
+	InterfaceName  string `json:"interfaceName,omitempty"`  // Name of the interface
+	MaxPortPower   string `json:"maxPortPower,omitempty"`   // Maximum power (in Watts) that port can hold
 	AllocatedPower string `json:"allocatedPower,omitempty"` // Power (in Watts) allocated for a given interface
-
 	PortPowerDrawn string `json:"portPowerDrawn,omitempty"` // Power (in Watts) that the port has drawn so far
 }
 type ResponseDevicesGetConnectedDeviceDetail struct {
 	Response *ResponseDevicesGetConnectedDeviceDetailResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                           `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetConnectedDeviceDetailResponse struct {
-	NeighborDevice string `json:"neighborDevice,omitempty"` // Info about the devices connected to the interface
-
-	NeighborPort string `json:"neighborPort,omitempty"` // Info about the connected interface
-
-	Capabilities []string `json:"capabilities,omitempty"` // Info about capabilities of the connected device
+	NeighborDevice string   `json:"neighborDevice,omitempty"` // Info about the devices connected to the interface
+	NeighborPort   string   `json:"neighborPort,omitempty"`   // Info about the connected interface
+	Capabilities   []string `json:"capabilities,omitempty"`   // Info about capabilities of the connected device
 }
 type ResponseDevicesGetLinecardDetails struct {
 	Response *[]ResponseDevicesGetLinecardDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                       `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetLinecardDetailsResponse struct {
 	Serialno string `json:"serialno,omitempty"` // Serial number of the line card
-
-	Partno string `json:"partno,omitempty"` // Part number of the line card
-
+	Partno   string `json:"partno,omitempty"`   // Part number of the line card
 	Switchno string `json:"switchno,omitempty"` // Switch number of the line card
-
-	Slotno string `json:"slotno,omitempty"` // Slot number of line card
+	Slotno   string `json:"slotno,omitempty"`   // Slot number of line card
 }
 type ResponseDevicesPoeDetails struct {
 	Response *ResponseDevicesPoeDetailsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                             `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesPoeDetailsResponse struct {
 	PowerAllocated string `json:"powerAllocated,omitempty"` // Total power available on the switch on all interfaces combined in Watts
-
-	PowerConsumed string `json:"powerConsumed,omitempty"` // Total power being currently drawn by all interfaces combined in Watts
-
+	PowerConsumed  string `json:"powerConsumed,omitempty"`  // Total power being currently drawn by all interfaces combined in Watts
 	PowerRemaining string `json:"powerRemaining,omitempty"` // Total power remaining in Watts (powerConsumed - powerAllocated)
 }
 type ResponseDevicesGetSupervisorCardDetail struct {
 	Response *[]ResponseDevicesGetSupervisorCardDetailResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                            `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetSupervisorCardDetailResponse struct {
 	Serialno string `json:"serialno,omitempty"` // Serial number of the supervisor card
-
-	Partno string `json:"partno,omitempty"` // Part number of the supervisor card
-
+	Partno   string `json:"partno,omitempty"`   // Part number of the supervisor card
 	Switchno string `json:"switchno,omitempty"` // Switch number of the supervisor card
-
-	Slotno string `json:"slotno,omitempty"` // Slot number of supervisor card
+	Slotno   string `json:"slotno,omitempty"`   // Slot number of supervisor card
 }
 type ResponseDevicesUpdateDeviceManagementAddress struct {
 	Response *ResponseDevicesUpdateDeviceManagementAddressResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesUpdateDeviceManagementAddressResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseDevicesGetDeviceByID struct {
 	Response *ResponseDevicesGetDeviceByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceByIDResponse struct {
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated Wlc Ip address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device boot time
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	Family string `json:"family,omitempty"` // Family of device as switch, router, wireless lan controller, accesspoints
-
-	Hostname string `json:"hostname,omitempty"` // Device name
-
-	ID string `json:"id,omitempty"` // Instance Uuid of the device
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	Location string `json:"location,omitempty"` // [Deprecated] Location ID that is associated with the device
-
-	LocationName string `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // IP address of the device
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	PlatformID string `json:"platformId,omitempty"` // Platform ID of device
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Device reachability status as Reachable / Unreachable
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of device
-
-	Series string `json:"series,omitempty"` // Device series
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Software type on the device
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software version on the device
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	TunnelUDPPort string `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	Type string `json:"type,omitempty"` // Type of device as switch, router, wireless lan controller, accesspoints
-
-	UpTime string `json:"upTime,omitempty"` // Time that shows for how long the device has been up
-
-	WaasDeviceMode string `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	DNSResolvedManagementAddress string `json:"dnsResolvedManagementAddress,omitempty"` // Specifies the resolved ip address of dns name
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // AccessPoint Ethernet MacAddress of AP device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor details
-
-	ReasonsForPendingSyncRequests string `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
-
-	PendingSyncRequestsCount string `json:"pendingSyncRequestsCount,omitempty"` // Count of pending sync requests , if any
-
-	ReasonsForDeviceResync string `json:"reasonsForDeviceResync,omitempty"` // Reason for last/ongoing sync
-
-	LastDeviceResyncStartTime string `json:"lastDeviceResyncStartTime,omitempty"` // Start time for last/ongoing sync
-
-	UptimeSeconds *float64 `json:"uptimeSeconds,omitempty"` // Uptime in Seconds
-
-	ManagedAtleastOnce *bool `json:"managedAtleastOnce,omitempty"` // Indicates if device went into Managed state atleast once
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // Support level of the device
-
-	ManagementState string `json:"managementState,omitempty"` // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
-
-	Description string `json:"description,omitempty"` // System description
+	ApManagerInterfaceIP          string   `json:"apManagerInterfaceIp,omitempty"`          // IP address of WLC on AP manager interface
+	AssociatedWlcIP               string   `json:"associatedWlcIp,omitempty"`               // Associated Wlc Ip address of the AP device
+	BootDateTime                  string   `json:"bootDateTime,omitempty"`                  // Device boot time
+	CollectionInterval            string   `json:"collectionInterval,omitempty"`            // Re sync Interval of the device
+	CollectionStatus              string   `json:"collectionStatus,omitempty"`              // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
+	ErrorCode                     string   `json:"errorCode,omitempty"`                     // Inventory status error code
+	ErrorDescription              string   `json:"errorDescription,omitempty"`              // Inventory status description
+	Family                        string   `json:"family,omitempty"`                        // Family of device as switch, router, wireless lan controller, accesspoints
+	Hostname                      string   `json:"hostname,omitempty"`                      // Device name
+	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              // Instance Tenant Id of the device
+	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
+	InterfaceCount                string   `json:"interfaceCount,omitempty"`                // Number of interfaces on the device
+	InventoryStatusDetail         string   `json:"inventoryStatusDetail,omitempty"`         // Status detail of inventory sync
+	LastUpdateTime                *float64 `json:"lastUpdateTime,omitempty"`                // Time in epoch when the network device info last got updated
+	LastUpdated                   string   `json:"lastUpdated,omitempty"`                   // Time when the network device info last got updated
+	LineCardCount                 string   `json:"lineCardCount,omitempty"`                 // Number of linecards on the device
+	LineCardID                    string   `json:"lineCardId,omitempty"`                    // IDs of linecards of the device
+	Location                      string   `json:"location,omitempty"`                      // [Deprecated] Location ID that is associated with the device
+	LocationName                  string   `json:"locationName,omitempty"`                  // [Deprecated] Name of the associated location
+	MacAddress                    string   `json:"macAddress,omitempty"`                    // MAC address of device
+	ManagementIPAddress           string   `json:"managementIpAddress,omitempty"`           // IP address of the device
+	MemorySize                    string   `json:"memorySize,omitempty"`                    // Processor memory size
+	PlatformID                    string   `json:"platformId,omitempty"`                    // Platform ID of device
+	ReachabilityFailureReason     string   `json:"reachabilityFailureReason,omitempty"`     // Failure reason for unreachable devices
+	ReachabilityStatus            string   `json:"reachabilityStatus,omitempty"`            // Device reachability status as Reachable / Unreachable
+	Role                          string   `json:"role,omitempty"`                          // Role of device as access, distribution, border router, core
+	RoleSource                    string   `json:"roleSource,omitempty"`                    // Role source as manual / auto
+	SerialNumber                  string   `json:"serialNumber,omitempty"`                  // Serial number of device
+	Series                        string   `json:"series,omitempty"`                        // Device series
+	SNMPContact                   string   `json:"snmpContact,omitempty"`                   // SNMP contact on device
+	SNMPLocation                  string   `json:"snmpLocation,omitempty"`                  // SNMP location on device
+	SoftwareType                  string   `json:"softwareType,omitempty"`                  // Software type on the device
+	SoftwareVersion               string   `json:"softwareVersion,omitempty"`               // Software version on the device
+	TagCount                      string   `json:"tagCount,omitempty"`                      // Number of tags associated with the device
+	TunnelUDPPort                 string   `json:"tunnelUdpPort,omitempty"`                 // Mobility protocol port is stored as tunneludpport for WLC
+	Type                          string   `json:"type,omitempty"`                          // Type of device as switch, router, wireless lan controller, accesspoints
+	UpTime                        string   `json:"upTime,omitempty"`                        // Time that shows for how long the device has been up
+	WaasDeviceMode                string   `json:"waasDeviceMode,omitempty"`                // WAAS device mode
+	DNSResolvedManagementAddress  string   `json:"dnsResolvedManagementAddress,omitempty"`  // Specifies the resolved ip address of dns name
+	ApEthernetMacAddress          string   `json:"apEthernetMacAddress,omitempty"`          // AccessPoint Ethernet MacAddress of AP device
+	Vendor                        string   `json:"vendor,omitempty"`                        // Vendor details
+	ReasonsForPendingSyncRequests string   `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
+	PendingSyncRequestsCount      string   `json:"pendingSyncRequestsCount,omitempty"`      // Count of pending sync requests , if any
+	ReasonsForDeviceResync        string   `json:"reasonsForDeviceResync,omitempty"`        // Reason for last/ongoing sync
+	LastDeviceResyncStartTime     string   `json:"lastDeviceResyncStartTime,omitempty"`     // Start time for last/ongoing sync
+	UptimeSeconds                 *float64 `json:"uptimeSeconds,omitempty"`                 // Uptime in Seconds
+	ManagedAtleastOnce            *bool    `json:"managedAtleastOnce,omitempty"`            // Indicates if device went into Managed state atleast once
+	DeviceSupportLevel            string   `json:"deviceSupportLevel,omitempty"`            // Support level of the device
+	ManagementState               string   `json:"managementState,omitempty"`               // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
+	Description                   string   `json:"description,omitempty"`                   // System description
 }
 type ResponseDevicesDeleteDeviceByID struct {
 	Response *ResponseDevicesDeleteDeviceByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 type ResponseDevicesDeleteDeviceByIDResponse struct {
 	TaskID string `json:"taskId,omitempty"` //
-
-	URL string `json:"url,omitempty"` //
+	URL    string `json:"url,omitempty"`    //
 }
 type ResponseDevicesGetDeviceSummary struct {
 	Response *ResponseDevicesGetDeviceSummaryResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                   `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceSummaryResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier of the network device
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
+	ID         string `json:"id,omitempty"`         // Unique identifier of the network device
+	Role       string `json:"role,omitempty"`       // Role of device as access, distribution, border router, core
 	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
 }
 type ResponseDevicesGetPollingIntervalByID struct {
-	Response *int `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Response *int   `json:"response,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetOrganizationListForMeraki struct {
 	Response []string `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string   `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceInterfaceVLANs struct {
 	Response *[]ResponseDevicesGetDeviceInterfaceVLANsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                            `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetDeviceInterfaceVLANsResponse struct {
-	InterfaceName string `json:"interfaceName,omitempty"` // Interface name
-
-	IPAddress string `json:"ipAddress,omitempty"` // IP address
-
-	Mask *int `json:"mask,omitempty"` // Mask IP
-
+	InterfaceName  string `json:"interfaceName,omitempty"`  // Interface name
+	IPAddress      string `json:"ipAddress,omitempty"`      // IP address
+	Mask           *int   `json:"mask,omitempty"`           // Mask IP
 	NetworkAddress string `json:"networkAddress,omitempty"` // Network addresses
-
-	NumberOfIPs *int `json:"numberOfIPs,omitempty"` // Number of Ip addresses
-
-	Prefix string `json:"prefix,omitempty"` // Prefix associated with the IP address
-
-	VLANNumber *int `json:"vlanNumber,omitempty"` // Vlan Number
-
-	VLANType string `json:"vlanType,omitempty"` // [Deprecated] Description of the interface VLAN
+	NumberOfIPs    *int   `json:"numberOfIPs,omitempty"`    // Number of Ip addresses
+	Prefix         string `json:"prefix,omitempty"`         // Prefix associated with the IP address
+	VLANNumber     *int   `json:"vlanNumber,omitempty"`     // Vlan Number
+	VLANType       string `json:"vlanType,omitempty"`       // [Deprecated] Description of the interface VLAN
 }
 type ResponseDevicesGetWirelessLanControllerDetailsByID struct {
-	AdminEnabledPorts *[]int `json:"adminEnabledPorts,omitempty"` // Admin Enabled Ports of the Device
-
-	ApGroupName string `json:"apGroupName,omitempty"` // Name of the AP Group that Access point assigned
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id
-
-	EthMacAddress string `json:"ethMacAddress,omitempty"` // Ethernet MacAddress of the Device
-
-	FlexGroupName string `json:"flexGroupName,omitempty"` // Name of the Flex Group that Access point assigned
-
-	ID string `json:"id,omitempty"` // Id of the Device
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // TenantId of the Device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance UUID of the Device
-
-	LagModeEnabled *bool `json:"lagModeEnabled,omitempty"` // LagMode status of the Device
-
-	NetconfEnabled *bool `json:"netconfEnabled,omitempty"` // Netconf Status of the Device
-
-	WirelessLicenseInfo string `json:"wirelessLicenseInfo,omitempty"` // License type of Wireless Device
-
-	WirelessPackageInstalled *bool `json:"wirelessPackageInstalled,omitempty"` // Status of the Wireless Package on the Device
+	AdminEnabledPorts        *[]int `json:"adminEnabledPorts,omitempty"`        // Admin Enabled Ports of the Device
+	ApGroupName              string `json:"apGroupName,omitempty"`              // Name of the AP Group that Access point assigned
+	DeviceID                 string `json:"deviceId,omitempty"`                 // Device Id
+	EthMacAddress            string `json:"ethMacAddress,omitempty"`            // Ethernet MacAddress of the Device
+	FlexGroupName            string `json:"flexGroupName,omitempty"`            // Name of the Flex Group that Access point assigned
+	ID                       string `json:"id,omitempty"`                       // Id of the Device
+	InstanceTenantID         string `json:"instanceTenantId,omitempty"`         // TenantId of the Device
+	InstanceUUID             string `json:"instanceUuid,omitempty"`             // Instance UUID of the Device
+	LagModeEnabled           *bool  `json:"lagModeEnabled,omitempty"`           // LagMode status of the Device
+	NetconfEnabled           *bool  `json:"netconfEnabled,omitempty"`           // Netconf Status of the Device
+	WirelessLicenseInfo      string `json:"wirelessLicenseInfo,omitempty"`      // License type of Wireless Device
+	WirelessPackageInstalled *bool  `json:"wirelessPackageInstalled,omitempty"` // Status of the Wireless Package on the Device
 }
 type ResponseDevicesGetDeviceConfigByID struct {
 	Response string `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetNetworkDeviceByPaginationRange struct {
 	Response *[]ResponseDevicesGetNetworkDeviceByPaginationRangeResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  //
 }
 type ResponseDevicesGetNetworkDeviceByPaginationRangeResponse struct {
-	ApManagerInterfaceIP string `json:"apManagerInterfaceIp,omitempty"` // IP address of WLC on AP manager interface
-
-	AssociatedWlcIP string `json:"associatedWlcIp,omitempty"` // Associated Wlc Ip address of the AP device
-
-	BootDateTime string `json:"bootDateTime,omitempty"` // Device boot time
-
-	CollectionInterval string `json:"collectionInterval,omitempty"` // Re sync Interval of the device
-
-	CollectionStatus string `json:"collectionStatus,omitempty"` // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
-
-	ErrorCode string `json:"errorCode,omitempty"` // Inventory status error code
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Inventory status description
-
-	Family string `json:"family,omitempty"` // Family of device as switch, router, wireless lan controller, accesspoints
-
-	Hostname string `json:"hostname,omitempty"` // Device name
-
-	ID string `json:"id,omitempty"` // Instance Uuid of the device
-
-	InstanceTenantID string `json:"instanceTenantId,omitempty"` // Instance Tenant Id of the device
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the device
-
-	InterfaceCount string `json:"interfaceCount,omitempty"` // Number of interfaces on the device
-
-	InventoryStatusDetail string `json:"inventoryStatusDetail,omitempty"` // Status detail of inventory sync
-
-	LastUpdateTime *float64 `json:"lastUpdateTime,omitempty"` // Time in epoch when the network device info last got updated
-
-	LastUpdated string `json:"lastUpdated,omitempty"` // Time when the network device info last got updated
-
-	LineCardCount string `json:"lineCardCount,omitempty"` // Number of linecards on the device
-
-	LineCardID string `json:"lineCardId,omitempty"` // IDs of linecards of the device
-
-	Location string `json:"location,omitempty"` // [Deprecated] Location ID that is associated with the device
-
-	LocationName string `json:"locationName,omitempty"` // [Deprecated] Name of the associated location
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of device
-
-	ManagementIPAddress string `json:"managementIpAddress,omitempty"` // IP address of the device
-
-	MemorySize string `json:"memorySize,omitempty"` // Processor memory size
-
-	PlatformID string `json:"platformId,omitempty"` // Platform ID of device
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Failure reason for unreachable devices
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Device reachability status as Reachable / Unreachable
-
-	Role string `json:"role,omitempty"` // Role of device as access, distribution, border router, core
-
-	RoleSource string `json:"roleSource,omitempty"` // Role source as manual / auto
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial number of device
-
-	Series string `json:"series,omitempty"` // Device series
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact on device
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location on device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Software type on the device
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Software version on the device
-
-	TagCount string `json:"tagCount,omitempty"` // Number of tags associated with the device
-
-	TunnelUDPPort string `json:"tunnelUdpPort,omitempty"` // Mobility protocol port is stored as tunneludpport for WLC
-
-	Type string `json:"type,omitempty"` // Type of device as switch, router, wireless lan controller, accesspoints
-
-	UpTime string `json:"upTime,omitempty"` // Time that shows for how long the device has been up
-
-	WaasDeviceMode string `json:"waasDeviceMode,omitempty"` // WAAS device mode
-
-	DNSResolvedManagementAddress string `json:"dnsResolvedManagementAddress,omitempty"` // Specifies the resolved ip address of dns name
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // AccessPoint Ethernet MacAddress of AP device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor details
-
-	ReasonsForPendingSyncRequests string `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
-
-	PendingSyncRequestsCount string `json:"pendingSyncRequestsCount,omitempty"` // Count of pending sync requests , if any
-
-	ReasonsForDeviceResync string `json:"reasonsForDeviceResync,omitempty"` // Reason for last/ongoing sync
-
-	LastDeviceResyncStartTime string `json:"lastDeviceResyncStartTime,omitempty"` // Start time for last/ongoing sync
-
-	UptimeSeconds *float64 `json:"uptimeSeconds,omitempty"` // Uptime in Seconds
-
-	ManagedAtleastOnce *bool `json:"managedAtleastOnce,omitempty"` // Indicates if device went into Managed state atleast once
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // Support level of the device
-
-	ManagementState string `json:"managementState,omitempty"` // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
-
-	Description string `json:"description,omitempty"` // System description
+	ApManagerInterfaceIP          string   `json:"apManagerInterfaceIp,omitempty"`          // IP address of WLC on AP manager interface
+	AssociatedWlcIP               string   `json:"associatedWlcIp,omitempty"`               // Associated Wlc Ip address of the AP device
+	BootDateTime                  string   `json:"bootDateTime,omitempty"`                  // Device boot time
+	CollectionInterval            string   `json:"collectionInterval,omitempty"`            // Re sync Interval of the device
+	CollectionStatus              string   `json:"collectionStatus,omitempty"`              // Collection status as Synchronizing, Could not synchronize, Not manageable, Managed, Partial Collection Failure, Incomplete, Unreachable, Wrong credential, Reachable, In Progress
+	ErrorCode                     string   `json:"errorCode,omitempty"`                     // Inventory status error code
+	ErrorDescription              string   `json:"errorDescription,omitempty"`              // Inventory status description
+	Family                        string   `json:"family,omitempty"`                        // Family of device as switch, router, wireless lan controller, accesspoints
+	Hostname                      string   `json:"hostname,omitempty"`                      // Device name
+	ID                            string   `json:"id,omitempty"`                            // Instance Uuid of the device
+	InstanceTenantID              string   `json:"instanceTenantId,omitempty"`              // Instance Tenant Id of the device
+	InstanceUUID                  string   `json:"instanceUuid,omitempty"`                  // Instance Uuid of the device
+	InterfaceCount                string   `json:"interfaceCount,omitempty"`                // Number of interfaces on the device
+	InventoryStatusDetail         string   `json:"inventoryStatusDetail,omitempty"`         // Status detail of inventory sync
+	LastUpdateTime                *float64 `json:"lastUpdateTime,omitempty"`                // Time in epoch when the network device info last got updated
+	LastUpdated                   string   `json:"lastUpdated,omitempty"`                   // Time when the network device info last got updated
+	LineCardCount                 string   `json:"lineCardCount,omitempty"`                 // Number of linecards on the device
+	LineCardID                    string   `json:"lineCardId,omitempty"`                    // IDs of linecards of the device
+	Location                      string   `json:"location,omitempty"`                      // [Deprecated] Location ID that is associated with the device
+	LocationName                  string   `json:"locationName,omitempty"`                  // [Deprecated] Name of the associated location
+	MacAddress                    string   `json:"macAddress,omitempty"`                    // MAC address of device
+	ManagementIPAddress           string   `json:"managementIpAddress,omitempty"`           // IP address of the device
+	MemorySize                    string   `json:"memorySize,omitempty"`                    // Processor memory size
+	PlatformID                    string   `json:"platformId,omitempty"`                    // Platform ID of device
+	ReachabilityFailureReason     string   `json:"reachabilityFailureReason,omitempty"`     // Failure reason for unreachable devices
+	ReachabilityStatus            string   `json:"reachabilityStatus,omitempty"`            // Device reachability status as Reachable / Unreachable
+	Role                          string   `json:"role,omitempty"`                          // Role of device as access, distribution, border router, core
+	RoleSource                    string   `json:"roleSource,omitempty"`                    // Role source as manual / auto
+	SerialNumber                  string   `json:"serialNumber,omitempty"`                  // Serial number of device
+	Series                        string   `json:"series,omitempty"`                        // Device series
+	SNMPContact                   string   `json:"snmpContact,omitempty"`                   // SNMP contact on device
+	SNMPLocation                  string   `json:"snmpLocation,omitempty"`                  // SNMP location on device
+	SoftwareType                  string   `json:"softwareType,omitempty"`                  // Software type on the device
+	SoftwareVersion               string   `json:"softwareVersion,omitempty"`               // Software version on the device
+	TagCount                      string   `json:"tagCount,omitempty"`                      // Number of tags associated with the device
+	TunnelUDPPort                 string   `json:"tunnelUdpPort,omitempty"`                 // Mobility protocol port is stored as tunneludpport for WLC
+	Type                          string   `json:"type,omitempty"`                          // Type of device as switch, router, wireless lan controller, accesspoints
+	UpTime                        string   `json:"upTime,omitempty"`                        // Time that shows for how long the device has been up
+	WaasDeviceMode                string   `json:"waasDeviceMode,omitempty"`                // WAAS device mode
+	DNSResolvedManagementAddress  string   `json:"dnsResolvedManagementAddress,omitempty"`  // Specifies the resolved ip address of dns name
+	ApEthernetMacAddress          string   `json:"apEthernetMacAddress,omitempty"`          // AccessPoint Ethernet MacAddress of AP device
+	Vendor                        string   `json:"vendor,omitempty"`                        // Vendor details
+	ReasonsForPendingSyncRequests string   `json:"reasonsForPendingSyncRequests,omitempty"` // Reasons for pending sync requests , if any
+	PendingSyncRequestsCount      string   `json:"pendingSyncRequestsCount,omitempty"`      // Count of pending sync requests , if any
+	ReasonsForDeviceResync        string   `json:"reasonsForDeviceResync,omitempty"`        // Reason for last/ongoing sync
+	LastDeviceResyncStartTime     string   `json:"lastDeviceResyncStartTime,omitempty"`     // Start time for last/ongoing sync
+	UptimeSeconds                 *float64 `json:"uptimeSeconds,omitempty"`                 // Uptime in Seconds
+	ManagedAtleastOnce            *bool    `json:"managedAtleastOnce,omitempty"`            // Indicates if device went into Managed state atleast once
+	DeviceSupportLevel            string   `json:"deviceSupportLevel,omitempty"`            // Support level of the device
+	ManagementState               string   `json:"managementState,omitempty"`               // Represents the current management state of the network element: managed, unmanaged, under maintenance, and so on.
+	Description                   string   `json:"description,omitempty"`                   // System description
 }
 type ResponseDevicesCreateMaintenanceScheduleForNetworkDevices struct {
 	Response *ResponseDevicesCreateMaintenanceScheduleForNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                             `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesCreateMaintenanceScheduleForNetworkDevicesResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevices struct {
 	Response *[]ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                                                         `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponse struct {
-	ID string `json:"id,omitempty"` // Id of the schedule maintenance window
-
-	Description string `json:"description,omitempty"` // A brief narrative describing the maintenance schedule.
-
+	ID                  string                                                                                          `json:"id,omitempty"`                  // Id of the schedule maintenance window
+	Description         string                                                                                          `json:"description,omitempty"`         // A brief narrative describing the maintenance schedule.
 	MaintenanceSchedule *ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponseMaintenanceSchedule `json:"maintenanceSchedule,omitempty"` //
-
-	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
+	NetworkDeviceIDs    []string                                                                                        `json:"networkDeviceIds,omitempty"`    // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
 }
 type ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponseMaintenanceSchedule struct {
-	StartID string `json:"startId,omitempty"` // Activity id of start schedule of the maintenance window. To check the status of the start schedule, use GET /dna/intent/api/v1/activities/{id}. startId remains same for every occurrence of recurrence instance.
-
-	EndID string `json:"endId,omitempty"` // Activity id of end schedule of the maintenance window. To check the status of the end schedule, use GET /dna/intent/api/v1/activities/{id}. endId remains same for every occurrence of recurrence instance.
-
-	StartTime *float64 `json:"startTime,omitempty"` // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
-
-	EndTime *float64 `json:"endTime,omitempty"` // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
-
+	StartID    string                                                                                                    `json:"startId,omitempty"`    // Activity id of start schedule of the maintenance window. To check the status of the start schedule, use GET /dna/intent/api/v1/activities/{id}. startId remains same for every occurrence of recurrence instance.
+	EndID      string                                                                                                    `json:"endId,omitempty"`      // Activity id of end schedule of the maintenance window. To check the status of the end schedule, use GET /dna/intent/api/v1/activities/{id}. endId remains same for every occurrence of recurrence instance.
+	StartTime  *float64                                                                                                  `json:"startTime,omitempty"`  // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
+	EndTime    *float64                                                                                                  `json:"endTime,omitempty"`    // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
 	Recurrence *ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponseMaintenanceScheduleRecurrence `json:"recurrence,omitempty"` //
-
-	Status string `json:"status,omitempty"` // The status of the maintenance schedule.
+	Status     string                                                                                                    `json:"status,omitempty"`     // The status of the maintenance schedule.
 }
 type ResponseDevicesRetrieveScheduledMaintenanceWindowsForNetworkDevicesResponseMaintenanceScheduleRecurrence struct {
-	Interval *int `json:"interval,omitempty"` // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
-
+	Interval          *int     `json:"interval,omitempty"`          // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
 	RecurrenceEndTime *float64 `json:"recurrenceEndTime,omitempty"` // The end date for the recurrence in Unix epoch time in milliseconds. Recurrence end time should be greater than maintenance end date/time.
 }
 type ResponseDevicesRetrieveTheTotalNumberOfScheduledMaintenanceWindows struct {
 	Response *ResponseDevicesRetrieveTheTotalNumberOfScheduledMaintenanceWindowsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                      `json:"version,omitempty"`  // The version of the response
 }
 type ResponseDevicesRetrieveTheTotalNumberOfScheduledMaintenanceWindowsResponse struct {
 	Count *int `json:"count,omitempty"` // Count of scheduled maintenance windows
 }
 type ResponseDevicesUpdatesTheMaintenanceScheduleInformation struct {
 	Response *ResponseDevicesUpdatesTheMaintenanceScheduleInformationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                           `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesUpdatesTheMaintenanceScheduleInformationResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesRetrievesTheMaintenanceScheduleInformation struct {
 	Response *ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                                             `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponse struct {
-	ID string `json:"id,omitempty"` // Id of the schedule maintenance window
-
-	Description string `json:"description,omitempty"` // A brief narrative describing the maintenance schedule.
-
+	ID                  string                                                                                `json:"id,omitempty"`                  // Id of the schedule maintenance window
+	Description         string                                                                                `json:"description,omitempty"`         // A brief narrative describing the maintenance schedule.
 	MaintenanceSchedule *ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponseMaintenanceSchedule `json:"maintenanceSchedule,omitempty"` //
-
-	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
+	NetworkDeviceIDs    []string                                                                              `json:"networkDeviceIds,omitempty"`    // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
 }
 type ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponseMaintenanceSchedule struct {
-	StartID string `json:"startId,omitempty"` // Activity id of start schedule of the maintenance window. To check the status of the start schedule, use GET /intent/api/v1/activities/{id}. startId remains same for every occurrence of recurrence instance.
-
-	EndID string `json:"endId,omitempty"` // Activity id of end schedule of the maintenance window. To check the status of the end schedule, use GET /intent/api/v1/activities/{id}. endId remains same for every occurrence of recurrence instance.
-
-	StartTime *float64 `json:"startTime,omitempty"` // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
-
-	EndTime *float64 `json:"endTime,omitempty"` // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
-
+	StartID    string                                                                                          `json:"startId,omitempty"`    // Activity id of start schedule of the maintenance window. To check the status of the start schedule, use GET /dna/intent/api/v1/activities/{id}. startId remains same for every occurrence of recurrence instance.
+	EndID      string                                                                                          `json:"endId,omitempty"`      // Activity id of end schedule of the maintenance window. To check the status of the end schedule, use GET /dna/intent/api/v1/activities/{id}. endId remains same for every occurrence of recurrence instance.
+	StartTime  *float64                                                                                        `json:"startTime,omitempty"`  // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
+	EndTime    *float64                                                                                        `json:"endTime,omitempty"`    // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
 	Recurrence *ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponseMaintenanceScheduleRecurrence `json:"recurrence,omitempty"` //
-
-	Status string `json:"status,omitempty"` // The status of the maintenance schedule.
+	Status     string                                                                                          `json:"status,omitempty"`     // The status of the maintenance schedule.
 }
 type ResponseDevicesRetrievesTheMaintenanceScheduleInformationResponseMaintenanceScheduleRecurrence struct {
-	Interval *int `json:"interval,omitempty"` // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
-
+	Interval          *int     `json:"interval,omitempty"`          // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
 	RecurrenceEndTime *float64 `json:"recurrenceEndTime,omitempty"` // The end date for the recurrence in Unix epoch time in milliseconds. Recurrence end time should be greater than maintenance end date/time.
 }
 type ResponseDevicesDeleteMaintenanceSchedule struct {
 	Response *ResponseDevicesDeleteMaintenanceScheduleResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                            `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesDeleteMaintenanceScheduleResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesRetrieveNetworkDevices struct {
 	Response *[]ResponseDevicesRetrieveNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                           `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseDevicesRetrieveNetworkDevicesResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier of the network device
-
-	ManagementAddress string `json:"managementAddress,omitempty"` // Management address of the network device
-
-	DNSResolvedManagementIPAddress string `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
-
-	Hostname string `json:"hostname,omitempty"` // Hostname of the network device
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the network device
-
-	SerialNumbers []string `json:"serialNumbers,omitempty"` // Serial number of the network device. In case of stack device, there will be multiple serial numbers
-
-	Type string `json:"type,omitempty"` // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
-
-	Family string `json:"family,omitempty"` // Product family of the network device. For example, Switches, Routers, etc
-
-	Series string `json:"series,omitempty"` // The model range or series of the network device
-
-	Status string `json:"status,omitempty"` // Inventory related status of the network device. Refer features for more details
-
-	PlatformIDs []string `json:"platformIds,omitempty"` // Platform identifier of the network device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Type of software running on the network device. For example, IOS-XE, etc.
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Version of the software running on the network device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor of the network device
-
-	StackDevice *bool `json:"stackDevice,omitempty"` // Flag indicating if the network device is a stack device
-
-	BootTime *float64 `json:"bootTime,omitempty"` // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
-
-	Role string `json:"role,omitempty"` // Role assigned to the network device
-
-	RoleSource string `json:"roleSource,omitempty"` // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // Ethernet MAC address of the AP network device
-
-	ApManagerInterfaceIPAddress string `json:"apManagerInterfaceIpAddress,omitempty"` // Management IP address of the AP network device
-
-	ApWlcIPAddress string `json:"apWlcIpAddress,omitempty"` // Management IP address of the WLC on which AP is associated to
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // The level of support Catalyst Center provides for the network device.
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location of the network device
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact of the network device
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Reachability status of the network device. Refer features for more details
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Reason for reachability failure. This message that provides more information about the reachability failure.
-
-	ManagementState string `json:"managementState,omitempty"` // The status of the network device's manageability. Refer features for more details.
-
-	LastSuccessfulResyncReasons []string `json:"lastSuccessfulResyncReasons,omitempty"` // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncStartTime *float64 `json:"resyncStartTime,omitempty"` // Start time for the last/ongoing resync represented as epoch in milliseconds
-
-	ResyncEndTime *float64 `json:"resyncEndTime,omitempty"` // End time for the last resync represented as epoch in milliseconds
-
-	ResyncReasons []string `json:"resyncReasons,omitempty"` // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncRequestedByApps []string `json:"resyncRequestedByApps,omitempty"` // List of applications that requested the last/ongoing resync on the device
-
-	PendingResyncRequestCount *int `json:"pendingResyncRequestCount,omitempty"` // Number of pending resync requests for the device
-
-	PendingResyncRequestReasons []string `json:"pendingResyncRequestReasons,omitempty"` // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncIntervalSource string `json:"resyncIntervalSource,omitempty"` // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
-
-	ResyncIntervalMinutes *int `json:"resyncIntervalMinutes,omitempty"` // The duration in minutes between the periodic resync attempts for the device
-
-	ErrorCode string `json:"errorCode,omitempty"` // Error code indicating the reason for the last resync failure
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
-
-	UserDefinedFields *ResponseDevicesRetrieveNetworkDevicesResponseUserDefinedFields `json:"userDefinedFields,omitempty"` // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
+	ID                             string                                                          `json:"id,omitempty"`                             // Unique identifier of the network device
+	ManagementAddress              string                                                          `json:"managementAddress,omitempty"`              // Management address of the network device
+	DNSResolvedManagementIPAddress string                                                          `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
+	Hostname                       string                                                          `json:"hostname,omitempty"`                       // Hostname of the network device
+	MacAddress                     string                                                          `json:"macAddress,omitempty"`                     // MAC address of the network device
+	SerialNumbers                  []string                                                        `json:"serialNumbers,omitempty"`                  // Serial number of the network device. In case of stack device, there will be multiple serial numbers
+	Type                           string                                                          `json:"type,omitempty"`                           // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
+	Family                         string                                                          `json:"family,omitempty"`                         // Product family of the network device. For example, Switches, Routers, etc
+	Series                         string                                                          `json:"series,omitempty"`                         // The model range or series of the network device
+	Status                         string                                                          `json:"status,omitempty"`                         // Inventory related status of the network device. Refer features for more details
+	PlatformIDs                    []string                                                        `json:"platformIds,omitempty"`                    // Platform identifier of the network device
+	SoftwareType                   string                                                          `json:"softwareType,omitempty"`                   // Type of software running on the network device. For example, IOS-XE, etc.
+	SoftwareVersion                string                                                          `json:"softwareVersion,omitempty"`                // Version of the software running on the network device
+	Vendor                         string                                                          `json:"vendor,omitempty"`                         // Vendor of the network device
+	StackDevice                    *bool                                                           `json:"stackDevice,omitempty"`                    // Flag indicating if the network device is a stack device
+	BootTime                       *float64                                                        `json:"bootTime,omitempty"`                       // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
+	Role                           string                                                          `json:"role,omitempty"`                           // Role assigned to the network device
+	RoleSource                     string                                                          `json:"roleSource,omitempty"`                     // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
+	ApEthernetMacAddress           string                                                          `json:"apEthernetMacAddress,omitempty"`           // Ethernet MAC address of the AP network device
+	ApManagerInterfaceIPAddress    string                                                          `json:"apManagerInterfaceIpAddress,omitempty"`    // Management IP address of the AP network device
+	ApWlcIPAddress                 string                                                          `json:"apWlcIpAddress,omitempty"`                 // Management IP address of the WLC on which AP is associated to
+	DeviceSupportLevel             string                                                          `json:"deviceSupportLevel,omitempty"`             // The level of support Catalyst Center provides for the network device.
+	SNMPLocation                   string                                                          `json:"snmpLocation,omitempty"`                   // SNMP location of the network device
+	SNMPContact                    string                                                          `json:"snmpContact,omitempty"`                    // SNMP contact of the network device
+	ReachabilityStatus             string                                                          `json:"reachabilityStatus,omitempty"`             // Reachability status of the network device. Refer features for more details
+	ReachabilityFailureReason      string                                                          `json:"reachabilityFailureReason,omitempty"`      // Reason for reachability failure. This message that provides more information about the reachability failure.
+	ManagementState                string                                                          `json:"managementState,omitempty"`                // The status of the network device's manageability. Refer features for more details.
+	LastSuccessfulResyncReasons    []string                                                        `json:"lastSuccessfulResyncReasons,omitempty"`    // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncStartTime                *float64                                                        `json:"resyncStartTime,omitempty"`                // Start time for the last/ongoing resync represented as epoch in milliseconds
+	ResyncEndTime                  *float64                                                        `json:"resyncEndTime,omitempty"`                  // End time for the last resync represented as epoch in milliseconds
+	ResyncReasons                  []string                                                        `json:"resyncReasons,omitempty"`                  // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncRequestedByApps          []string                                                        `json:"resyncRequestedByApps,omitempty"`          // List of applications that requested the last/ongoing resync on the device
+	PendingResyncRequestCount      *int                                                            `json:"pendingResyncRequestCount,omitempty"`      // Number of pending resync requests for the device
+	PendingResyncRequestReasons    []string                                                        `json:"pendingResyncRequestReasons,omitempty"`    // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncIntervalSource           string                                                          `json:"resyncIntervalSource,omitempty"`           // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
+	ResyncIntervalMinutes          *int                                                            `json:"resyncIntervalMinutes,omitempty"`          // The duration in minutes between the periodic resync attempts for the device
+	ErrorCode                      string                                                          `json:"errorCode,omitempty"`                      // Error code indicating the reason for the last resync failure
+	ErrorDescription               string                                                          `json:"errorDescription,omitempty"`               // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
+	UserDefinedFields              *ResponseDevicesRetrieveNetworkDevicesResponseUserDefinedFields `json:"userDefinedFields,omitempty"`              // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
 }
 type ResponseDevicesRetrieveNetworkDevicesResponseUserDefinedFields interface{}
 type ResponseDevicesCountTheNumberOfNetworkDevices struct {
 	Response *ResponseDevicesCountTheNumberOfNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                 `json:"version,omitempty"`  // The version of the response
 }
 type ResponseDevicesCountTheNumberOfNetworkDevicesResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseDevicesDeleteNetworkDeviceWithConfigurationCleanup struct {
 	Response *ResponseDevicesDeleteNetworkDeviceWithConfigurationCleanupResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                              `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesDeleteNetworkDeviceWithConfigurationCleanupResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesDeleteANetworkDeviceWithoutConfigurationCleanup struct {
 	Response *ResponseDevicesDeleteANetworkDeviceWithoutConfigurationCleanupResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                                  `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesDeleteANetworkDeviceWithoutConfigurationCleanupResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesQueryNetworkDevicesWithFilters struct {
 	Response *[]ResponseDevicesQueryNetworkDevicesWithFiltersResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                                   `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseDevicesQueryNetworkDevicesWithFiltersResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier of the network device
-
-	ManagementAddress string `json:"managementAddress,omitempty"` // Management address of the network device
-
-	DNSResolvedManagementIPAddress string `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
-
-	Hostname string `json:"hostname,omitempty"` // Hostname of the network device
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the network device
-
-	SerialNumbers []string `json:"serialNumbers,omitempty"` // Serial number of the network device. In case of stack device, there will be multiple serial numbers
-
-	Type string `json:"type,omitempty"` // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
-
-	Family string `json:"family,omitempty"` // Product family of the network device. For example, Switches, Routers, etc
-
-	Series string `json:"series,omitempty"` // The model range or series of the network device
-
-	Status string `json:"status,omitempty"` // Inventory related status of the network device. Refer features for more details
-
-	PlatformIDs []string `json:"platformIds,omitempty"` // Platform identifier of the network device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Type of software running on the network device. For example, IOS-XE, etc.
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Version of the software running on the network device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor of the network device
-
-	StackDevice *bool `json:"stackDevice,omitempty"` // Flag indicating if the network device is a stack device
-
-	BootTime *float64 `json:"bootTime,omitempty"` // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
-
-	Role string `json:"role,omitempty"` // Role assigned to the network device
-
-	RoleSource string `json:"roleSource,omitempty"` // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // Ethernet MAC address of the AP network device
-
-	ApManagerInterfaceIPAddress string `json:"apManagerInterfaceIpAddress,omitempty"` // Management IP address of the AP network device
-
-	ApWlcIPAddress string `json:"apWlcIpAddress,omitempty"` // Management IP address of the WLC on which AP is associated to
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // The level of support Catalyst Center provides for the network device.
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location of the network device
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact of the network device
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Reachability status of the network device. Refer features for more details
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Reason for reachability failure. This message that provides more information about the reachability failure.
-
-	ManagementState string `json:"managementState,omitempty"` // The status of the network device's manageability. Refer features for more details.
-
-	LastSuccessfulResyncReasons []string `json:"lastSuccessfulResyncReasons,omitempty"` // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncStartTime *float64 `json:"resyncStartTime,omitempty"` // Start time for the last/ongoing resync represented as epoch in milliseconds
-
-	ResyncEndTime *float64 `json:"resyncEndTime,omitempty"` // End time for the last resync represented as epoch in milliseconds
-
-	ResyncReasons []string `json:"resyncReasons,omitempty"` // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncRequestedByApps []string `json:"resyncRequestedByApps,omitempty"` // List of applications that requested the last/ongoing resync on the device
-
-	PendingResyncRequestCount *int `json:"pendingResyncRequestCount,omitempty"` // Number of pending resync requests for the device
-
-	PendingResyncRequestReasons []string `json:"pendingResyncRequestReasons,omitempty"` // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncIntervalSource string `json:"resyncIntervalSource,omitempty"` // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
-
-	ResyncIntervalMinutes *int `json:"resyncIntervalMinutes,omitempty"` // The duration in minutes between the periodic resync attempts for the device
-
-	ErrorCode string `json:"errorCode,omitempty"` // Error code indicating the reason for the last resync failure
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
-
-	UserDefinedFields *ResponseDevicesQueryNetworkDevicesWithFiltersResponseUserDefinedFields `json:"userDefinedFields,omitempty"` // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
+	ID                             string                                                                  `json:"id,omitempty"`                             // Unique identifier of the network device
+	ManagementAddress              string                                                                  `json:"managementAddress,omitempty"`              // Management address of the network device
+	DNSResolvedManagementIPAddress string                                                                  `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
+	Hostname                       string                                                                  `json:"hostname,omitempty"`                       // Hostname of the network device
+	MacAddress                     string                                                                  `json:"macAddress,omitempty"`                     // MAC address of the network device
+	SerialNumbers                  []string                                                                `json:"serialNumbers,omitempty"`                  // Serial number of the network device. In case of stack device, there will be multiple serial numbers
+	Type                           string                                                                  `json:"type,omitempty"`                           // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
+	Family                         string                                                                  `json:"family,omitempty"`                         // Product family of the network device. For example, Switches, Routers, etc
+	Series                         string                                                                  `json:"series,omitempty"`                         // The model range or series of the network device
+	Status                         string                                                                  `json:"status,omitempty"`                         // Inventory related status of the network device. Refer features for more details
+	PlatformIDs                    []string                                                                `json:"platformIds,omitempty"`                    // Platform identifier of the network device
+	SoftwareType                   string                                                                  `json:"softwareType,omitempty"`                   // Type of software running on the network device. For example, IOS-XE, etc.
+	SoftwareVersion                string                                                                  `json:"softwareVersion,omitempty"`                // Version of the software running on the network device
+	Vendor                         string                                                                  `json:"vendor,omitempty"`                         // Vendor of the network device
+	StackDevice                    *bool                                                                   `json:"stackDevice,omitempty"`                    // Flag indicating if the network device is a stack device
+	BootTime                       *float64                                                                `json:"bootTime,omitempty"`                       // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
+	Role                           string                                                                  `json:"role,omitempty"`                           // Role assigned to the network device
+	RoleSource                     string                                                                  `json:"roleSource,omitempty"`                     // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
+	ApEthernetMacAddress           string                                                                  `json:"apEthernetMacAddress,omitempty"`           // Ethernet MAC address of the AP network device
+	ApManagerInterfaceIPAddress    string                                                                  `json:"apManagerInterfaceIpAddress,omitempty"`    // Management IP address of the AP network device
+	ApWlcIPAddress                 string                                                                  `json:"apWlcIpAddress,omitempty"`                 // Management IP address of the WLC on which AP is associated to
+	DeviceSupportLevel             string                                                                  `json:"deviceSupportLevel,omitempty"`             // The level of support Catalyst Center provides for the network device.
+	SNMPLocation                   string                                                                  `json:"snmpLocation,omitempty"`                   // SNMP location of the network device
+	SNMPContact                    string                                                                  `json:"snmpContact,omitempty"`                    // SNMP contact of the network device
+	ReachabilityStatus             string                                                                  `json:"reachabilityStatus,omitempty"`             // Reachability status of the network device. Refer features for more details
+	ReachabilityFailureReason      string                                                                  `json:"reachabilityFailureReason,omitempty"`      // Reason for reachability failure. This message that provides more information about the reachability failure.
+	ManagementState                string                                                                  `json:"managementState,omitempty"`                // The status of the network device's manageability. Refer features for more details.
+	LastSuccessfulResyncReasons    []string                                                                `json:"lastSuccessfulResyncReasons,omitempty"`    // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncStartTime                *float64                                                                `json:"resyncStartTime,omitempty"`                // Start time for the last/ongoing resync represented as epoch in milliseconds
+	ResyncEndTime                  *float64                                                                `json:"resyncEndTime,omitempty"`                  // End time for the last resync represented as epoch in milliseconds
+	ResyncReasons                  []string                                                                `json:"resyncReasons,omitempty"`                  // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncRequestedByApps          []string                                                                `json:"resyncRequestedByApps,omitempty"`          // List of applications that requested the last/ongoing resync on the device
+	PendingResyncRequestCount      *int                                                                    `json:"pendingResyncRequestCount,omitempty"`      // Number of pending resync requests for the device
+	PendingResyncRequestReasons    []string                                                                `json:"pendingResyncRequestReasons,omitempty"`    // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncIntervalSource           string                                                                  `json:"resyncIntervalSource,omitempty"`           // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
+	ResyncIntervalMinutes          *int                                                                    `json:"resyncIntervalMinutes,omitempty"`          // The duration in minutes between the periodic resync attempts for the device
+	ErrorCode                      string                                                                  `json:"errorCode,omitempty"`                      // Error code indicating the reason for the last resync failure
+	ErrorDescription               string                                                                  `json:"errorDescription,omitempty"`               // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
+	UserDefinedFields              *ResponseDevicesQueryNetworkDevicesWithFiltersResponseUserDefinedFields `json:"userDefinedFields,omitempty"`              // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
 }
 type ResponseDevicesQueryNetworkDevicesWithFiltersResponseUserDefinedFields interface{}
 type ResponseDevicesCountTheNumberOfNetworkDevicesWithFilters struct {
 	Response *ResponseDevicesCountTheNumberOfNetworkDevicesWithFiltersResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                            `json:"version,omitempty"`  // The version of the response
 }
 type ResponseDevicesCountTheNumberOfNetworkDevicesWithFiltersResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseDevicesUpdateGlobalResyncInterval struct {
 	Response *ResponseDevicesUpdateGlobalResyncIntervalResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                             `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesUpdateGlobalResyncIntervalResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesOverrideResyncInterval struct {
 	Response *ResponseDevicesOverrideResyncIntervalResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                         `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesOverrideResyncIntervalResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesGetDetailsOfASingleNetworkDevice struct {
 	Response *ResponseDevicesGetDetailsOfASingleNetworkDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version number of the response
+	Version  string                                                   `json:"version,omitempty"`  // Version number of the response
 }
 type ResponseDevicesGetDetailsOfASingleNetworkDeviceResponse struct {
-	ID string `json:"id,omitempty"` // Unique identifier of the network device
-
-	ManagementAddress string `json:"managementAddress,omitempty"` // Management address of the network device
-
-	DNSResolvedManagementIPAddress string `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
-
-	Hostname string `json:"hostname,omitempty"` // Hostname of the network device
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the network device
-
-	SerialNumbers []string `json:"serialNumbers,omitempty"` // Serial number of the network device. In case of stack device, there will be multiple serial numbers
-
-	Type string `json:"type,omitempty"` // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
-
-	Family string `json:"family,omitempty"` // Product family of the network device. For example, Switches, Routers, etc
-
-	Series string `json:"series,omitempty"` // The model range or series of the network device
-
-	Status string `json:"status,omitempty"` // Inventory related status of the network device. Refer features for more details
-
-	PlatformIDs []string `json:"platformIds,omitempty"` // Platform identifier of the network device
-
-	SoftwareType string `json:"softwareType,omitempty"` // Type of software running on the network device. For example, IOS-XE, etc.
-
-	SoftwareVersion string `json:"softwareVersion,omitempty"` // Version of the software running on the network device
-
-	Vendor string `json:"vendor,omitempty"` // Vendor of the network device
-
-	StackDevice *bool `json:"stackDevice,omitempty"` // Flag indicating if the network device is a stack device
-
-	BootTime *float64 `json:"bootTime,omitempty"` // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
-
-	Role string `json:"role,omitempty"` // Role assigned to the network device
-
-	RoleSource string `json:"roleSource,omitempty"` // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
-
-	ApEthernetMacAddress string `json:"apEthernetMacAddress,omitempty"` // Ethernet MAC address of the AP network device
-
-	ApManagerInterfaceIPAddress string `json:"apManagerInterfaceIpAddress,omitempty"` // Management IP address of the AP network device
-
-	ApWlcIPAddress string `json:"apWlcIpAddress,omitempty"` // Management IP address of the WLC on which AP is associated to
-
-	DeviceSupportLevel string `json:"deviceSupportLevel,omitempty"` // The level of support Catalyst Center provides for the network device.
-
-	SNMPLocation string `json:"snmpLocation,omitempty"` // SNMP location of the network device
-
-	SNMPContact string `json:"snmpContact,omitempty"` // SNMP contact of the network device
-
-	ReachabilityStatus string `json:"reachabilityStatus,omitempty"` // Reachability status of the network device. Refer features for more details
-
-	ReachabilityFailureReason string `json:"reachabilityFailureReason,omitempty"` // Reason for reachability failure. This message that provides more information about the reachability failure.
-
-	ManagementState string `json:"managementState,omitempty"` // The status of the network device's manageability. Refer features for more details.
-
-	LastSuccessfulResyncReasons []string `json:"lastSuccessfulResyncReasons,omitempty"` // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncStartTime *float64 `json:"resyncStartTime,omitempty"` // Start time for the last/ongoing resync represented as epoch in milliseconds
-
-	ResyncEndTime *float64 `json:"resyncEndTime,omitempty"` // End time for the last resync represented as epoch in milliseconds
-
-	ResyncReasons []string `json:"resyncReasons,omitempty"` // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncRequestedByApps []string `json:"resyncRequestedByApps,omitempty"` // List of applications that requested the last/ongoing resync on the device
-
-	PendingResyncRequestCount *int `json:"pendingResyncRequestCount,omitempty"` // Number of pending resync requests for the device
-
-	PendingResyncRequestReasons []string `json:"pendingResyncRequestReasons,omitempty"` // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
-
-	ResyncIntervalSource string `json:"resyncIntervalSource,omitempty"` // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
-
-	ResyncIntervalMinutes *int `json:"resyncIntervalMinutes,omitempty"` // The duration in minutes between the periodic resync attempts for the device
-
-	ErrorCode string `json:"errorCode,omitempty"` // Error code indicating the reason for the last resync failure
-
-	ErrorDescription string `json:"errorDescription,omitempty"` // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
-
-	UserDefinedFields *ResponseDevicesGetDetailsOfASingleNetworkDeviceResponseUserDefinedFields `json:"userDefinedFields,omitempty"` // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
+	ID                             string                                                                    `json:"id,omitempty"`                             // Unique identifier of the network device
+	ManagementAddress              string                                                                    `json:"managementAddress,omitempty"`              // Management address of the network device
+	DNSResolvedManagementIPAddress string                                                                    `json:"dnsResolvedManagementIpAddress,omitempty"` // DNS-resolved management IP address of the network device
+	Hostname                       string                                                                    `json:"hostname,omitempty"`                       // Hostname of the network device
+	MacAddress                     string                                                                    `json:"macAddress,omitempty"`                     // MAC address of the network device
+	SerialNumbers                  []string                                                                  `json:"serialNumbers,omitempty"`                  // Serial number of the network device. In case of stack device, there will be multiple serial numbers
+	Type                           string                                                                    `json:"type,omitempty"`                           // Type of the network device. This list of types can be obtained from the API intent/networkDeviceProductNames productName field.
+	Family                         string                                                                    `json:"family,omitempty"`                         // Product family of the network device. For example, Switches, Routers, etc
+	Series                         string                                                                    `json:"series,omitempty"`                         // The model range or series of the network device
+	Status                         string                                                                    `json:"status,omitempty"`                         // Inventory related status of the network device. Refer features for more details
+	PlatformIDs                    []string                                                                  `json:"platformIds,omitempty"`                    // Platform identifier of the network device
+	SoftwareType                   string                                                                    `json:"softwareType,omitempty"`                   // Type of software running on the network device. For example, IOS-XE, etc.
+	SoftwareVersion                string                                                                    `json:"softwareVersion,omitempty"`                // Version of the software running on the network device
+	Vendor                         string                                                                    `json:"vendor,omitempty"`                         // Vendor of the network device
+	StackDevice                    *bool                                                                     `json:"stackDevice,omitempty"`                    // Flag indicating if the network device is a stack device
+	BootTime                       *float64                                                                  `json:"bootTime,omitempty"`                       // The time at which the network device was last rebooted or powered on represented as epoch in milliseconds
+	Role                           string                                                                    `json:"role,omitempty"`                           // Role assigned to the network device
+	RoleSource                     string                                                                    `json:"roleSource,omitempty"`                     // Indicates whether the network device's role was assigned automatically by the software or manually by an administrator.
+	ApEthernetMacAddress           string                                                                    `json:"apEthernetMacAddress,omitempty"`           // Ethernet MAC address of the AP network device
+	ApManagerInterfaceIPAddress    string                                                                    `json:"apManagerInterfaceIpAddress,omitempty"`    // Management IP address of the AP network device
+	ApWlcIPAddress                 string                                                                    `json:"apWlcIpAddress,omitempty"`                 // Management IP address of the WLC on which AP is associated to
+	DeviceSupportLevel             string                                                                    `json:"deviceSupportLevel,omitempty"`             // The level of support Catalyst Center provides for the network device.
+	SNMPLocation                   string                                                                    `json:"snmpLocation,omitempty"`                   // SNMP location of the network device
+	SNMPContact                    string                                                                    `json:"snmpContact,omitempty"`                    // SNMP contact of the network device
+	ReachabilityStatus             string                                                                    `json:"reachabilityStatus,omitempty"`             // Reachability status of the network device. Refer features for more details
+	ReachabilityFailureReason      string                                                                    `json:"reachabilityFailureReason,omitempty"`      // Reason for reachability failure. This message that provides more information about the reachability failure.
+	ManagementState                string                                                                    `json:"managementState,omitempty"`                // The status of the network device's manageability. Refer features for more details.
+	LastSuccessfulResyncReasons    []string                                                                  `json:"lastSuccessfulResyncReasons,omitempty"`    // List of reasons for the last successful resync of the device. If multiple resync requests are made before the device can start the resync, all the reasons will be captured. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncStartTime                *float64                                                                  `json:"resyncStartTime,omitempty"`                // Start time for the last/ongoing resync represented as epoch in milliseconds
+	ResyncEndTime                  *float64                                                                  `json:"resyncEndTime,omitempty"`                  // End time for the last resync represented as epoch in milliseconds
+	ResyncReasons                  []string                                                                  `json:"resyncReasons,omitempty"`                  // List of reasons for the ongoing/last resync on the device. If multiple resync requests were made before the resync could start, all the reasons will be captured as an array. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncRequestedByApps          []string                                                                  `json:"resyncRequestedByApps,omitempty"`          // List of applications that requested the last/ongoing resync on the device
+	PendingResyncRequestCount      *int                                                                      `json:"pendingResyncRequestCount,omitempty"`      // Number of pending resync requests for the device
+	PendingResyncRequestReasons    []string                                                                  `json:"pendingResyncRequestReasons,omitempty"`    // List of reasons for the pending resync requests. Possible values: ADD_DEVICE_SYNC, LINK_UP_DOWN, CONFIG_CHANGE, DEVICE_UPDATED_SYNC, AP_EVENT_BASED_SYNC, APP_REQUESTED_SYNC, PERIODIC_SYNC, UI_SYNC, CUSTOM, UNKNOWN, REFRESH_OBJECTS_FEATURE_BASED_SYNC
+	ResyncIntervalSource           string                                                                    `json:"resyncIntervalSource,omitempty"`           // Source of the resync interval. Note: Please refer to PUT /dna/intent/api/v1/networkDevices/resyncIntervalSettings API to update the global resync interval.
+	ResyncIntervalMinutes          *int                                                                      `json:"resyncIntervalMinutes,omitempty"`          // The duration in minutes between the periodic resync attempts for the device
+	ErrorCode                      string                                                                    `json:"errorCode,omitempty"`                      // Error code indicating the reason for the last resync failure
+	ErrorDescription               string                                                                    `json:"errorDescription,omitempty"`               // Additional information regarding the reason for resync failure. This is a human-readable error message and should not be expected programmatically.
+	UserDefinedFields              *ResponseDevicesGetDetailsOfASingleNetworkDeviceResponseUserDefinedFields `json:"userDefinedFields,omitempty"`              // Map of all user defined fields and their values associated with the device. Refer to /dna/intent/api/v1/network-device/user-defined-field API to fetch all the user defined fields.
 }
 type ResponseDevicesGetDetailsOfASingleNetworkDeviceResponseUserDefinedFields interface{}
 type ResponseDevicesUpdateResyncIntervalForTheNetworkDevice struct {
 	Response *ResponseDevicesUpdateResyncIntervalForTheNetworkDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                          `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseDevicesUpdateResyncIntervalForTheNetworkDeviceResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseDevicesGetResyncIntervalForTheNetworkDevice struct {
 	Response *ResponseDevicesGetResyncIntervalForTheNetworkDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                       `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetResyncIntervalForTheNetworkDeviceResponse struct {
 	Interval *int `json:"interval,omitempty"` // Resync interval of the device
 }
+type ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDevice struct {
+	Response *[]ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                                      `json:"version,omitempty"`  // Version number of the response
+}
+type ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDeviceResponse struct {
+	ID                  string                                                                              `json:"id,omitempty"`                  // Unique identifier for the port channel
+	Name                string                                                                              `json:"name,omitempty"`                // Name of the port channel.
+	AggregationProtocol string                                                                              `json:"aggregationProtocol,omitempty"` // The protocol used for aggregating multiple physical links into the port channel.
+	LogicalSlotPort     string                                                                              `json:"logicalSlotPort,omitempty"`     // The logical slot and port number associated with the port channel.
+	Interfaces          *ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDeviceResponseInterfaces `json:"interfaces,omitempty"`          //
+	NetworkDeviceID     string                                                                              `json:"networkDeviceId,omitempty"`     // Unique identifier for the network device
+}
+type ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDeviceResponseInterfaces struct {
+	Name        string `json:"name,omitempty"`        // Name of the interface.
+	ChannelMode string `json:"channelMode,omitempty"` // The mode of operation for the channel.
+}
+type ResponseDevicesRetrievePortChannelsCountForANetworkDevice struct {
+	Response *ResponseDevicesRetrievePortChannelsCountForANetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                             `json:"version,omitempty"`  // The version of the response
+}
+type ResponseDevicesRetrievePortChannelsCountForANetworkDeviceResponse struct {
+	Count *int `json:"count,omitempty"` // The reported count.
+}
+type ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice struct {
+	Response *ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDeviceResponse `json:"response,omitempty"` //
+	Version  string                                                                                     `json:"version,omitempty"`  // Version number of the response
+}
+type ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDeviceResponse struct {
+	ID                  string                                                                                               `json:"id,omitempty"`                  // Unique identifier for the port channel
+	Name                string                                                                                               `json:"name,omitempty"`                // Name of the port channel.
+	AggregationProtocol string                                                                                               `json:"aggregationProtocol,omitempty"` // The protocol used for aggregating multiple physical links into the port channel.
+	LogicalSlotPort     string                                                                                               `json:"logicalSlotPort,omitempty"`     // The logical slot and port number associated with the port channel.
+	Interfaces          *ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDeviceResponseInterfaces `json:"interfaces,omitempty"`          //
+	NetworkDeviceID     string                                                                                               `json:"networkDeviceId,omitempty"`     // Unique identifier for the network device
+}
+type ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDeviceResponseInterfaces struct {
+	Name        string `json:"name,omitempty"`        // Name of the interface.
+	ChannelMode string `json:"channelMode,omitempty"` // The mode of operation for the channel.
+}
 type ResponseDevicesRogueAdditionalDetails struct {
-	Response *[]ResponseDevicesRogueAdditionalDetailsResponse `json:"response,omitempty"` //
-
-	TotalCount *int `json:"totalCount,omitempty"` // Total Count
-
-	Version string `json:"version,omitempty"` // Version
+	Response   *[]ResponseDevicesRogueAdditionalDetailsResponse `json:"response,omitempty"`   //
+	TotalCount *int                                             `json:"totalCount,omitempty"` // Total Count
+	Version    string                                           `json:"version,omitempty"`    // Version
 }
 type ResponseDevicesRogueAdditionalDetailsResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // MAC Address of the Rogue BSSID
-
-	MldMacAddress string `json:"mldMacAddress,omitempty"` // MLD MAC Address of the Rogue BSSID, this is applicable only for Wi-Fi 7 Rogues
-
-	UpdatedTime *int `json:"updatedTime,omitempty"` // Last time when the Rogue is seen in the network
-
-	CreatedTime *int `json:"createdTime,omitempty"` // First time when the Rogue is seen in the network
-
-	ThreatType string `json:"threatType,omitempty"` // Type of the Rogue Threat
-
-	ThreatLevel string `json:"threatLevel,omitempty"` // Level of the Rogue Threat
-
-	ApName string `json:"apName,omitempty"` // Detecting AP Name
-
-	DetectingApMac string `json:"detectingAPMac,omitempty"` // MAC Address of the Detecting AP
-
-	SSID string `json:"ssid,omitempty"` // Rogue SSID
-
-	Containment string `json:"containment,omitempty"` // Containment Status of the Rogue
-
-	RadioType string `json:"radioType,omitempty"` // Radio Type on which Rogue is detected
-
-	ControllerIP string `json:"controllerIp,omitempty"` // IP Address of the Controller detecting this Rogue
-
-	ControllerName string `json:"controllerName,omitempty"` // Name of the Controller detecting this Rogue
-
-	ChannelNumber string `json:"channelNumber,omitempty"` // Channel Number on which the Rogue is detected
-
+	MacAddress        string `json:"macAddress,omitempty"`        // MAC Address of the Rogue BSSID
+	MldMacAddress     string `json:"mldMacAddress,omitempty"`     // MLD MAC Address of the Rogue BSSID, this is applicable only for Wi-Fi 7 Rogues
+	UpdatedTime       *int   `json:"updatedTime,omitempty"`       // Last time when the Rogue is seen in the network
+	CreatedTime       *int   `json:"createdTime,omitempty"`       // First time when the Rogue is seen in the network
+	ThreatType        string `json:"threatType,omitempty"`        // Type of the Rogue Threat
+	ThreatLevel       string `json:"threatLevel,omitempty"`       // Level of the Rogue Threat
+	ApName            string `json:"apName,omitempty"`            // Detecting AP Name
+	DetectingApMac    string `json:"detectingAPMac,omitempty"`    // MAC Address of the Detecting AP
+	SSID              string `json:"ssid,omitempty"`              // Rogue SSID
+	Containment       string `json:"containment,omitempty"`       // Containment Status of the Rogue
+	RadioType         string `json:"radioType,omitempty"`         // Radio Type on which Rogue is detected
+	ControllerIP      string `json:"controllerIp,omitempty"`      // IP Address of the Controller detecting this Rogue
+	ControllerName    string `json:"controllerName,omitempty"`    // Name of the Controller detecting this Rogue
+	ChannelNumber     string `json:"channelNumber,omitempty"`     // Channel Number on which the Rogue is detected
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Hierarchy of the Rogue
-
-	Encryption string `json:"encryption,omitempty"` // Security status of the Rogue SSID
-
-	SwitchIP string `json:"switchIp,omitempty"` // IP Address of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
-
-	SwitchName string `json:"switchName,omitempty"` // Name of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
-
-	PortDescription string `json:"portDescription,omitempty"` // Port information of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
+	Encryption        string `json:"encryption,omitempty"`        // Security status of the Rogue SSID
+	SwitchIP          string `json:"switchIp,omitempty"`          // IP Address of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
+	SwitchName        string `json:"switchName,omitempty"`        // Name of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
+	PortDescription   string `json:"portDescription,omitempty"`   // Port information of the Switch on which the Rogue is connected. This will be filled only in case of Rogue on Wire Threat Type
 }
 type ResponseDevicesRogueAdditionalDetailCount struct {
-	Response *int `json:"response,omitempty"` // Response
-
-	Version string `json:"version,omitempty"` // Version
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesStartWirelessRogueApContainment struct {
 	Response *ResponseDevicesStartWirelessRogueApContainmentResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                  `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesStartWirelessRogueApContainmentResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Type *int `json:"type,omitempty"` // Type
-
-	InitiatedOnWlcIP string `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
-
-	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	TaskType string `json:"taskType,omitempty"` // Task Type
-
+	MacAddress       string   `json:"macAddress,omitempty"`       // Mac Address
+	Type             *int     `json:"type,omitempty"`             // Type
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
 	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
 }
 type ResponseDevicesWirelessRogueApContainmentStatus struct {
 	Response *[]ResponseDevicesWirelessRogueApContainmentStatusResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                     `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesWirelessRogueApContainmentStatusResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Type *int `json:"type,omitempty"` // Type
-
-	Classification string `json:"classification,omitempty"` // Classification
-
-	ContainmentStatus string `json:"containmentStatus,omitempty"` // Containment Status
-
-	ContainedByWlcIP []string `json:"containedByWlcIp,omitempty"` // Contained By Wlc Ip
-
-	LastSeen *int `json:"lastSeen,omitempty"` // Last Seen
-
-	StrongestDetectingWlcIP string `json:"strongestDetectingWlcIp,omitempty"` // Strongest Detecting Wlc Ip
-
-	LastTaskDetail *ResponseDevicesWirelessRogueApContainmentStatusResponseLastTaskDetail `json:"lastTaskDetail,omitempty"` //
-
-	BssidContainmentStatus *[]ResponseDevicesWirelessRogueApContainmentStatusResponseBssidContainmentStatus `json:"bssidContainmentStatus,omitempty"` //
+	MacAddress              string                                                                           `json:"macAddress,omitempty"`              // Mac Address
+	Type                    *int                                                                             `json:"type,omitempty"`                    // Type
+	Classification          string                                                                           `json:"classification,omitempty"`          // Classification
+	ContainmentStatus       string                                                                           `json:"containmentStatus,omitempty"`       // Containment Status
+	ContainedByWlcIP        []string                                                                         `json:"containedByWlcIp,omitempty"`        // Contained By Wlc Ip
+	LastSeen                *int                                                                             `json:"lastSeen,omitempty"`                // Last Seen
+	StrongestDetectingWlcIP string                                                                           `json:"strongestDetectingWlcIp,omitempty"` // Strongest Detecting Wlc Ip
+	LastTaskDetail          *ResponseDevicesWirelessRogueApContainmentStatusResponseLastTaskDetail           `json:"lastTaskDetail,omitempty"`          //
+	BssidContainmentStatus  *[]ResponseDevicesWirelessRogueApContainmentStatusResponseBssidContainmentStatus `json:"bssidContainmentStatus,omitempty"`  //
 }
 type ResponseDevicesWirelessRogueApContainmentStatusResponseLastTaskDetail struct {
-	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	TaskType string `json:"taskType,omitempty"` // Task Type
-
-	TaskState string `json:"taskState,omitempty"` // Task State
-
-	TaskStartTime *int `json:"taskStartTime,omitempty"` // Task Start Time
-
-	InitiatedOnWlcIP string `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
-
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
+	TaskState        string   `json:"taskState,omitempty"`        // Task State
+	TaskStartTime    *int     `json:"taskStartTime,omitempty"`    // Task Start Time
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
 	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
 }
 type ResponseDevicesWirelessRogueApContainmentStatusResponseBssidContainmentStatus struct {
-	Bssid string `json:"bssid,omitempty"` // Bssid
-
-	SSID string `json:"ssid,omitempty"` // Ssid
-
-	RadioType string `json:"radioType,omitempty"` // Radio Type
-
+	Bssid             string `json:"bssid,omitempty"`             // Bssid
+	SSID              string `json:"ssid,omitempty"`              // Ssid
+	RadioType         string `json:"radioType,omitempty"`         // Radio Type
 	ContainmentStatus string `json:"containmentStatus,omitempty"` // Containment Status
-
-	ContainedByWlcIP string `json:"containedByWlcIp,omitempty"` // Contained By Wlc Ip
-
-	IsAdhoc *bool `json:"isAdhoc,omitempty"` // Is Adhoc
+	ContainedByWlcIP  string `json:"containedByWlcIp,omitempty"`  // Contained By Wlc Ip
+	IsAdhoc           *bool  `json:"isAdhoc,omitempty"`           // Is Adhoc
 }
 type ResponseDevicesStopWirelessRogueApContainment struct {
 	Response *ResponseDevicesStopWirelessRogueApContainmentResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesStopWirelessRogueApContainmentResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Type *int `json:"type,omitempty"` // Type
-
-	InitiatedOnWlcIP string `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
-
-	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	TaskType string `json:"taskType,omitempty"` // Task Type
-
+	MacAddress       string   `json:"macAddress,omitempty"`       // Mac Address
+	Type             *int     `json:"type,omitempty"`             // Type
+	InitiatedOnWlcIP string   `json:"initiatedOnWlcIp,omitempty"` // Initiated On Wlc Ip
+	TaskID           string   `json:"taskId,omitempty"`           // Task Id
+	TaskType         string   `json:"taskType,omitempty"`         // Task Type
 	InitiatedOnBssid []string `json:"initiatedOnBssid,omitempty"` // Initiated On Bssid
 }
 type ResponseDevicesThreatDetails struct {
-	Response *[]ResponseDevicesThreatDetailsResponse `json:"response,omitempty"` //
-
-	TotalCount *int `json:"totalCount,omitempty"` // Total Count
-
-	Version string `json:"version,omitempty"` // Version
+	Response   *[]ResponseDevicesThreatDetailsResponse `json:"response,omitempty"`   //
+	TotalCount *int                                    `json:"totalCount,omitempty"` // Total Count
+	Version    string                                  `json:"version,omitempty"`    // Version
 }
 type ResponseDevicesThreatDetailsResponse struct {
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	UpdatedTime *int `json:"updatedTime,omitempty"` // Updated Time
-
-	Vendor string `json:"vendor,omitempty"` // Vendor
-
-	ThreatType string `json:"threatType,omitempty"` // Threat Type
-
-	ThreatLevel string `json:"threatLevel,omitempty"` // Threat Level
-
-	ApName string `json:"apName,omitempty"` // Ap Name
-
-	DetectingApMac string `json:"detectingAPMac,omitempty"` // Detecting A P Mac
-
-	SiteID string `json:"siteId,omitempty"` // Site Id
-
-	Rssi string `json:"rssi,omitempty"` // Rssi
-
-	SSID string `json:"ssid,omitempty"` // Ssid
-
-	Containment string `json:"containment,omitempty"` // Containment
-
-	State string `json:"state,omitempty"` // State
-
+	MacAddress        string `json:"macAddress,omitempty"`        // Mac Address
+	UpdatedTime       *int   `json:"updatedTime,omitempty"`       // Updated Time
+	Vendor            string `json:"vendor,omitempty"`            // Vendor
+	ThreatType        string `json:"threatType,omitempty"`        // Threat Type
+	ThreatLevel       string `json:"threatLevel,omitempty"`       // Threat Level
+	ApName            string `json:"apName,omitempty"`            // Ap Name
+	DetectingApMac    string `json:"detectingAPMac,omitempty"`    // Detecting A P Mac
+	SiteID            string `json:"siteId,omitempty"`            // Site Id
+	Rssi              string `json:"rssi,omitempty"`              // Rssi
+	SSID              string `json:"ssid,omitempty"`              // Ssid
+	Containment       string `json:"containment,omitempty"`       // Containment
+	State             string `json:"state,omitempty"`             // State
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site Name Hierarchy
 }
 type ResponseDevicesThreatDetailCount struct {
-	Response *int `json:"response,omitempty"` // Response
-
-	Version string `json:"version,omitempty"` // Version
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesGetThreatLevels struct {
 	Response *[]ResponseDevicesGetThreatLevelsResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetThreatLevelsResponse struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Value *int `json:"value,omitempty"` // Value
+	Name  string `json:"name,omitempty"`  // Name
+	Value *int   `json:"value,omitempty"` // Value
 }
 type ResponseDevicesAddAllowedMacAddress struct {
-	Response string `json:"response,omitempty"` // Response
-
-	Error *ResponseDevicesAddAllowedMacAddressError `json:"error,omitempty"` // Error
+	Response string                                    `json:"response,omitempty"` // Response
+	Error    *ResponseDevicesAddAllowedMacAddressError `json:"error,omitempty"`    // Error
 }
 type ResponseDevicesAddAllowedMacAddressError interface{}
 type ResponseDevicesGetAllowedMacAddress []ResponseItemDevicesGetAllowedMacAddress // Array of ResponseDevicesGetAllowedMacAddress
 type ResponseItemDevicesGetAllowedMacAddress struct {
-	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Category *int `json:"category,omitempty"` // Category
-
-	LastModified *int `json:"lastModified,omitempty"` // Last Modified
+	MacAddress   string `json:"macAddress,omitempty"`   // Mac Address
+	Category     *int   `json:"category,omitempty"`     // Category
+	LastModified *int   `json:"lastModified,omitempty"` // Last Modified
 }
 type ResponseDevicesGetAllowedMacAddressCount struct {
-	Response *int `json:"response,omitempty"` // Response
-
-	Version string `json:"version,omitempty"` // Version
+	Response *int   `json:"response,omitempty"` // Response
+	Version  string `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesRemoveAllowedMacAddress struct {
-	Response string `json:"response,omitempty"` // Response
-
-	Error *ResponseDevicesRemoveAllowedMacAddressError `json:"error,omitempty"` // Error
+	Response string                                       `json:"response,omitempty"` // Response
+	Error    *ResponseDevicesRemoveAllowedMacAddressError `json:"error,omitempty"`    // Error
 }
 type ResponseDevicesRemoveAllowedMacAddressError interface{}
 type ResponseDevicesThreatSummary struct {
 	Response *[]ResponseDevicesThreatSummaryResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                  `json:"version,omitempty"`  // Version
 }
 type ResponseDevicesThreatSummaryResponse struct {
-	Timestamp *int `json:"timestamp,omitempty"` // Timestamp
-
+	Timestamp  *int                                              `json:"timestamp,omitempty"`  // Timestamp
 	ThreatData *[]ResponseDevicesThreatSummaryResponseThreatData `json:"threatData,omitempty"` //
 }
 type ResponseDevicesThreatSummaryResponseThreatData struct {
-	ThreatType string `json:"threatType,omitempty"` // Threat Type
-
+	ThreatType  string `json:"threatType,omitempty"`  // Threat Type
 	ThreatLevel string `json:"threatLevel,omitempty"` // Threat Level
-
-	ThreatCount *int `json:"threatCount,omitempty"` // Threat Count
+	ThreatCount *int   `json:"threatCount,omitempty"` // Threat Count
 }
 type ResponseDevicesGetThreatTypes struct {
 	Response *[]ResponseDevicesGetThreatTypesResponse `json:"response,omitempty"` //
 }
 type ResponseDevicesGetThreatTypesResponse struct {
-	Value *int `json:"value,omitempty"` // Value
-
-	Name string `json:"name,omitempty"` // Name
-
-	Label string `json:"label,omitempty"` // Label
-
-	IsCustom *bool `json:"isCustom,omitempty"` // Is Custom
-
-	IsDeleted *bool `json:"isDeleted,omitempty"` // Is Deleted
+	Value     *int   `json:"value,omitempty"`     // Value
+	Name      string `json:"name,omitempty"`      // Name
+	Label     string `json:"label,omitempty"`     // Label
+	IsCustom  *bool  `json:"isCustom,omitempty"`  // Is Custom
+	IsDeleted *bool  `json:"isDeleted,omitempty"` // Is Deleted
 }
 type ResponseDevicesGetDeviceInterfaceStatsInfoV2 struct {
-	Version string `json:"version,omitempty"` // Version
-
-	TotalCount *float64 `json:"totalCount,omitempty"` // The total count
-
-	Response *[]ResponseDevicesGetDeviceInterfaceStatsInfoV2Response `json:"response,omitempty"` //
-
-	Page *ResponseDevicesGetDeviceInterfaceStatsInfoV2Page `json:"page,omitempty"` //
+	Version    string                                                  `json:"version,omitempty"`    // Version
+	TotalCount *float64                                                `json:"totalCount,omitempty"` // The total count
+	Response   *[]ResponseDevicesGetDeviceInterfaceStatsInfoV2Response `json:"response,omitempty"`   //
+	Page       *ResponseDevicesGetDeviceInterfaceStatsInfoV2Page       `json:"page,omitempty"`       //
 }
 type ResponseDevicesGetDeviceInterfaceStatsInfoV2Response struct {
-	ID string `json:"id,omitempty"` // Interface Instance Id
-
+	ID     string                                                      `json:"id,omitempty"`     // Interface Instance Id
 	Values *ResponseDevicesGetDeviceInterfaceStatsInfoV2ResponseValues `json:"values,omitempty"` //
 }
 type ResponseDevicesGetDeviceInterfaceStatsInfoV2ResponseValues struct {
-	AdminStatus string `json:"adminStatus,omitempty"` // The desired state of the interface
-
-	DeviceID string `json:"deviceId,omitempty"` // Device Id
-
-	DuplexConfig string `json:"duplexConfig,omitempty"` // Interface duplex config status
-
-	DuplexOper string `json:"duplexOper,omitempty"` // Interface duplex operational status
-
-	InterfaceID string `json:"interfaceId,omitempty"` // Interface ifIndex
-
-	InterfaceType string `json:"interfaceType,omitempty"` // Physical or Virtual type
-
-	InstanceID string `json:"instanceId,omitempty"` // Interface InstanceId
-
-	IPv4Address string `json:"ipv4Address,omitempty"` // Interface IPV4 Address
-
+	AdminStatus     string   `json:"adminStatus,omitempty"`     // The desired state of the interface
+	DeviceID        string   `json:"deviceId,omitempty"`        // Device Id
+	DuplexConfig    string   `json:"duplexConfig,omitempty"`    // Interface duplex config status
+	DuplexOper      string   `json:"duplexOper,omitempty"`      // Interface duplex operational status
+	InterfaceID     string   `json:"interfaceId,omitempty"`     // Interface ifIndex
+	InterfaceType   string   `json:"interfaceType,omitempty"`   // Physical or Virtual type
+	InstanceID      string   `json:"instanceId,omitempty"`      // Interface InstanceId
+	IPv4Address     string   `json:"ipv4Address,omitempty"`     // Interface IPV4 Address
 	IPv6AddressList []string `json:"ipv6AddressList,omitempty"` // List of interface IPV6 Address
-
-	IsL3Interface string `json:"isL3Interface,omitempty"` // Interface is L3 or not
-
-	IsWan string `json:"isWan,omitempty"` // nterface is WAN link or not
-
-	MacAddr string `json:"macAddr,omitempty"` // Interface MAC Address
-
-	MediaType string `json:"mediaType,omitempty"` // Interface media type
-
-	Name string `json:"name,omitempty"` // Name of the interface
-
-	OperStatus string `json:"operStatus,omitempty"` // Interface operational status
-
-	PeerStackMember string `json:"peerStackMember,omitempty"` // Interface peer stack member Id
-
-	PeerStackPort string `json:"peerStackPort,omitempty"` // Interface peer stack member port
-
-	PortChannelID string `json:"portChannelId,omitempty"` // Interface Port-Channel Id
-
-	PortMode string `json:"portMode,omitempty"` // Interface Port Mode
-
-	PortType string `json:"portType,omitempty"` // Interface ifType
-
-	Description string `json:"description,omitempty"` // Interface description
-
-	RxDiscards string `json:"rxDiscards,omitempty"` // Rx Discards in %
-
-	RxError string `json:"rxError,omitempty"` // Rx Errors in %
-
-	RxRate string `json:"rxRate,omitempty"` // Rx rate in bps
-
-	RxUtilization string `json:"rxUtilization,omitempty"` // Rx Utilization in %
-
-	Speed string `json:"speed,omitempty"` // Speed of the Interface in kbps
-
-	StackPortType string `json:"stackPortType,omitempty"` // Interface stack port type. SVL or DAD
-
-	Timestamp string `json:"timestamp,omitempty"` // Interface stats collected timestamp
-
-	TxDiscards string `json:"txDiscards,omitempty"` // Tx Discards in %
-
-	TxError string `json:"txError,omitempty"` // Tx Errors in %
-
-	TxRate string `json:"txRate,omitempty"` // Tx Rate in bps
-
-	TxUtilization string `json:"txUtilization,omitempty"` // Tx  Utilization in %
-
-	VLANID string `json:"vlanId,omitempty"` // Interface VLAN Id
+	IsL3Interface   string   `json:"isL3Interface,omitempty"`   // Interface is L3 or not
+	IsWan           string   `json:"isWan,omitempty"`           // nterface is WAN link or not
+	MacAddr         string   `json:"macAddr,omitempty"`         // Interface MAC Address
+	MediaType       string   `json:"mediaType,omitempty"`       // Interface media type
+	Name            string   `json:"name,omitempty"`            // Name of the interface
+	OperStatus      string   `json:"operStatus,omitempty"`      // Interface operational status
+	PeerStackMember string   `json:"peerStackMember,omitempty"` // Interface peer stack member Id
+	PeerStackPort   string   `json:"peerStackPort,omitempty"`   // Interface peer stack member port
+	PortChannelID   string   `json:"portChannelId,omitempty"`   // Interface Port-Channel Id
+	PortMode        string   `json:"portMode,omitempty"`        // Interface Port Mode
+	PortType        string   `json:"portType,omitempty"`        // Interface ifType
+	Description     string   `json:"description,omitempty"`     // Interface description
+	RxDiscards      string   `json:"rxDiscards,omitempty"`      // Rx Discards in %
+	RxError         string   `json:"rxError,omitempty"`         // Rx Errors in %
+	RxRate          string   `json:"rxRate,omitempty"`          // Rx rate in bps
+	RxUtilization   string   `json:"rxUtilization,omitempty"`   // Rx Utilization in %
+	Speed           string   `json:"speed,omitempty"`           // Speed of the Interface in kbps
+	StackPortType   string   `json:"stackPortType,omitempty"`   // Interface stack port type. SVL or DAD
+	Timestamp       string   `json:"timestamp,omitempty"`       // Interface stats collected timestamp
+	TxDiscards      string   `json:"txDiscards,omitempty"`      // Tx Discards in %
+	TxError         string   `json:"txError,omitempty"`         // Tx Errors in %
+	TxRate          string   `json:"txRate,omitempty"`          // Tx Rate in bps
+	TxUtilization   string   `json:"txUtilization,omitempty"`   // Tx  Utilization in %
+	VLANID          string   `json:"vlanId,omitempty"`          // Interface VLAN Id
 }
 type ResponseDevicesGetDeviceInterfaceStatsInfoV2Page struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
+	Limit  *int     `json:"limit,omitempty"`  // Limit
 	Offset *float64 `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
+	Count  *int     `json:"count,omitempty"`  // Count
 }
 type RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Page *RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	StartTime *int                                                                             `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                             `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
+	Page      *RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersPage      `json:"page,omitempty"`      //
 }
 type RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
+	StartTime *int                                                                                    `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                                    `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
 }
 type RequestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                `json:"endTime,omitempty"`             // End Time
+	GroupBy             []string                                                                                            `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                            `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                     `json:"key,omitempty"`             // Key
+	Operator        string                                                                                     `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                     `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                   `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                       `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                       `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TopN *int `json:"topN,omitempty"` // Top N
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                             `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                             `json:"endTime,omitempty"`             // End Time
+	TopN                *int                                                                                             `json:"topN,omitempty"`                // Top N
+	GroupBy             []string                                                                                         `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                         `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                  `json:"key,omitempty"`             // Key
+	Operator        string                                                                                  `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                  `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                    `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                    `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                              `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                              `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                            `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                          `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                          `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                   `json:"key,omitempty"`             // Key
+	Operator        string                                                                                   `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                   `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                 `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                  `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                  `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                                `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                              `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                              `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServicePage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServicePage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                       `json:"key,omitempty"`             // Key
+	Operator        string                                                                                       `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                       `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                     `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServicePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesQueryAssuranceEventsWithFilters struct {
-	DeviceFamily []string `json:"deviceFamily,omitempty"` // Device Family
-
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Views []string `json:"views,omitempty"` // Views
-
-	Filters *[]RequestDevicesQueryAssuranceEventsWithFiltersFilters `json:"filters,omitempty"` //
-
-	Page *RequestDevicesQueryAssuranceEventsWithFiltersPage `json:"page,omitempty"` //
+	DeviceFamily []string                                                `json:"deviceFamily,omitempty"` // Device Family
+	StartTime    *int                                                    `json:"startTime,omitempty"`    // Start Time
+	EndTime      *int                                                    `json:"endTime,omitempty"`      // End Time
+	Attributes   []string                                                `json:"attributes,omitempty"`   // Attributes
+	Views        []string                                                `json:"views,omitempty"`        // Views
+	Filters      *[]RequestDevicesQueryAssuranceEventsWithFiltersFilters `json:"filters,omitempty"`      //
+	Page         *RequestDevicesQueryAssuranceEventsWithFiltersPage      `json:"page,omitempty"`         //
 }
 type RequestDevicesQueryAssuranceEventsWithFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesQueryAssuranceEventsWithFiltersPage struct {
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Limit *int `json:"limit,omitempty"` // Limit
-
+	Offset *int                                                       `json:"offset,omitempty"` // Offset
+	Limit  *int                                                       `json:"limit,omitempty"`  // Limit
 	SortBy *[]RequestDevicesQueryAssuranceEventsWithFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesQueryAssuranceEventsWithFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesCountTheNumberOfEventsWithFilters struct {
-	DeviceFamily []string `json:"deviceFamily,omitempty"` // Device Family
-
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesCountTheNumberOfEventsWithFiltersFilters `json:"filters,omitempty"` //
+	DeviceFamily []string                                                  `json:"deviceFamily,omitempty"` // Device Family
+	StartTime    *int                                                      `json:"startTime,omitempty"`    // Start Time
+	EndTime      *int                                                      `json:"endTime,omitempty"`      // End Time
+	Filters      *[]RequestDevicesCountTheNumberOfEventsWithFiltersFilters `json:"filters,omitempty"`      //
 }
 type RequestDevicesCountTheNumberOfEventsWithFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Page *RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	StartTime *int                                                                              `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                              `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
+	Page      *RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersPage      `json:"page,omitempty"`      //
 }
 type RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                 `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                 `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesRetrievesTheListOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesRetrievesTheTotalNumberOfDHCPServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheTotalNumberOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
+	StartTime *int                                                                                     `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                                     `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheTotalNumberOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
 }
 type RequestDevicesRetrievesTheTotalNumberOfDHCPServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                 `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                 `json:"endTime,omitempty"`             // End Time
+	GroupBy             []string                                                                                             `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                             `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFilters `json:"filters,omitempty"` //
+	Key             string                                                                                          `json:"key,omitempty"`             // Key
+	Operator        string                                                                                          `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                          `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue     `json:"value,omitempty"`           // Value
+	Filters         *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFilters `json:"filters,omitempty"`         //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                             `json:"key,omitempty"`             // Key
+	Operator        string                                                                                             `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                             `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                           `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersFiltersValue interface{}
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                        `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                        `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TopN *int `json:"topN,omitempty"` // Top N
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                              `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                              `json:"endTime,omitempty"`             // End Time
+	TopN                *int                                                                                              `json:"topN,omitempty"`                // Top N
+	GroupBy             []string                                                                                          `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                          `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                   `json:"key,omitempty"`             // Key
+	Operator        string                                                                                   `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                   `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                 `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                     `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                     `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetTopNAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                               `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                               `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                             `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                           `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                           `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                    `json:"key,omitempty"`             // Key
+	Operator        string                                                                                    `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                    `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                  `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataOfDHCPServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheService struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                   `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                   `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                                 `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                               `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                               `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServicePage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServicePage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                        `json:"key,omitempty"`             // Key
+	Operator        string                                                                                        `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                        `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                      `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServiceAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDHCPServiceMatchingTheIDOfTheServicePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Page *RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	StartTime *int                                                                             `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                             `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
+	Page      *RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersPage      `json:"page,omitempty"`      //
 }
 type RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesRetrievesTheListOfDNSServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesRetrievesTheTotalNumberOfDNSServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesRetrievesTheTotalNumberOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
+	StartTime *int                                                                                    `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                                    `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesRetrievesTheTotalNumberOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"`   //
 }
 type RequestDevicesRetrievesTheTotalNumberOfDNSServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	Value []string `json:"value,omitempty"` // Value
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                `json:"endTime,omitempty"`             // End Time
+	GroupBy             []string                                                                                            `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                            `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFilters `json:"filters,omitempty"` //
+	Key             string                                                                                         `json:"key,omitempty"`             // Key
+	Operator        string                                                                                         `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                         `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue     `json:"value,omitempty"`           // Value
+	Filters         *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFilters `json:"filters,omitempty"`         //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                            `json:"key,omitempty"`             // Key
+	Operator        string                                                                                            `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                            `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                          `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersFiltersValue interface{}
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                       `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                       `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetSummaryAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TopN *int `json:"topN,omitempty"` // Top N
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                             `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                             `json:"endTime,omitempty"`             // End Time
+	TopN                *int                                                                                             `json:"topN,omitempty"`                // Top N
+	GroupBy             []string                                                                                         `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                         `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                  `json:"key,omitempty"`             // Key
+	Operator        string                                                                                  `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                  `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                    `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                    `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetTopNAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
-
-	Order string `json:"order,omitempty"` // Order
+	Order    string `json:"order,omitempty"`    // Order
 }
 type RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFilters struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                              `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                              `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                            `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                          `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                          `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                   `json:"key,omitempty"`             // Key
+	Operator        string                                                                                   `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                   `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                 `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataOfDNSServicesForGivenSetOfComplexFiltersPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheService struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
+	StartTime           *int                                                                                                  `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                  `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                                                                `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             []string                                                                                              `json:"groupBy,omitempty"`             // Group By
+	Filters             *[]RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFilters             `json:"filters,omitempty"`             //
+	Attributes          []string                                                                                              `json:"attributes,omitempty"`          // Attributes
 	AggregateAttributes *[]RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServicePage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServicePage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                       `json:"key,omitempty"`             // Key
+	Operator        string                                                                                       `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                       `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                     `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceFiltersValue interface{}
 type RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServiceAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOfTheServicePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
+type RequestDevicesQueryDevicesEnergy struct {
+	StartTime           *int                                                   `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                   `json:"endTime,omitempty"`             // End Time
+	Filters             *[]RequestDevicesQueryDevicesEnergyFilters             `json:"filters,omitempty"`             //
+	Views               []string                                               `json:"views,omitempty"`               // Views
+	Attributes          []string                                               `json:"attributes,omitempty"`          // Attributes
+	AggregateAttributes *[]RequestDevicesQueryDevicesEnergyAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	Page                *RequestDevicesQueryDevicesEnergyPage                  `json:"page,omitempty"`                //
+}
+type RequestDevicesQueryDevicesEnergyFilters struct {
+	LogicalOperator string                                            `json:"logicalOperator,omitempty"` // Logical Operator
+	Filters         *[]RequestDevicesQueryDevicesEnergyFiltersFilters `json:"filters,omitempty"`         //
+}
+type RequestDevicesQueryDevicesEnergyFiltersFilters struct {
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
+}
+type RequestDevicesQueryDevicesEnergyAggregateAttributes struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestDevicesQueryDevicesEnergyPage struct {
+	Limit  *int                                          `json:"limit,omitempty"`  // Limit
+	Cursor string                                        `json:"cursor,omitempty"` // Cursor
+	SortBy *[]RequestDevicesQueryDevicesEnergyPageSortBy `json:"sortBy,omitempty"` //
+}
+type RequestDevicesQueryDevicesEnergyPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestDevicesCountDevicesEnergyFromQuery struct {
+	StartTime           *int                                                            `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                            `json:"endTime,omitempty"`             // End Time
+	Filters             *[]RequestDevicesCountDevicesEnergyFromQueryFilters             `json:"filters,omitempty"`             //
+	Views               []string                                                        `json:"views,omitempty"`               // Views
+	Attributes          []string                                                        `json:"attributes,omitempty"`          // Attributes
+	AggregateAttributes *[]RequestDevicesCountDevicesEnergyFromQueryAggregateAttributes `json:"aggregateAttributes,omitempty"` //
+	Page                *RequestDevicesCountDevicesEnergyFromQueryPage                  `json:"page,omitempty"`                //
+}
+type RequestDevicesCountDevicesEnergyFromQueryFilters struct {
+	LogicalOperator string                                                     `json:"logicalOperator,omitempty"` // Logical Operator
+	Filters         *[]RequestDevicesCountDevicesEnergyFromQueryFiltersFilters `json:"filters,omitempty"`         //
+}
+type RequestDevicesCountDevicesEnergyFromQueryFiltersFilters struct {
+	Key      string   `json:"key,omitempty"`      // Key
+	Operator string   `json:"operator,omitempty"` // Operator
+	Value    []string `json:"value,omitempty"`    // Value
+}
+type RequestDevicesCountDevicesEnergyFromQueryAggregateAttributes struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Function string `json:"function,omitempty"` // Function
+}
+type RequestDevicesCountDevicesEnergyFromQueryPage struct {
+	Limit  *int                                                   `json:"limit,omitempty"`  // Limit
+	Offset *int                                                   `json:"offset,omitempty"` // Offset
+	SortBy *[]RequestDevicesCountDevicesEnergyFromQueryPageSortBy `json:"sortBy,omitempty"` //
+}
+type RequestDevicesCountDevicesEnergyFromQueryPageSortBy struct {
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
+	Function string `json:"function,omitempty"` // Function
+}
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Views []string `json:"views,omitempty"` // Views
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                                                                                                      `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                                                      `json:"endTime,omitempty"`             // End Time
+	Views               []string                                                                                                                                  `json:"views,omitempty"`               // Views
+	Attributes          []string                                                                                                                                  `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersValue `json:"value,omitempty"` // Value
-
-	Filters *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFilters `json:"filters,omitempty"` //
+	Key             string                                                                                                                               `json:"key,omitempty"`             // Key
+	Operator        string                                                                                                                               `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                                                               `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersValue     `json:"value,omitempty"`           // Value
+	Filters         *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFilters `json:"filters,omitempty"`         //
 }
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersValue interface{}
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                                                                  `json:"key,omitempty"`             // Key
+	Operator        string                                                                                                                                  `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                                                                  `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                                                                `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFiltersFiltersValue interface{}
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                                                                             `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                                                                             `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevices struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Views []string `json:"views,omitempty"` // Views
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                                               `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                               `json:"endTime,omitempty"`             // End Time
+	Views               []string                                                                           `json:"views,omitempty"`               // Views
+	Attributes          []string                                                                           `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesPage `json:"page,omitempty"` //
+	Page                *RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                    `json:"key,omitempty"`             // Key
+	Operator        string                                                                    `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                    `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                  `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesFiltersValue interface{}
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                      `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                      `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesTheTotalInterfacesCountAcrossTheNetworkDevicesPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRange struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendIntervalInMinutes *int `json:"trendIntervalInMinutes,omitempty"` // Trend Interval In Minutes
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeFilters `json:"filters,omitempty"` //
-
-	AggregateAttributes *[]RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
+	StartTime              *int                                                                                             `json:"startTime,omitempty"`              // Start Time
+	EndTime                *int                                                                                             `json:"endTime,omitempty"`                // End Time
+	TrendIntervalInMinutes *int                                                                                             `json:"trendIntervalInMinutes,omitempty"` // Trend Interval In Minutes
+	Attributes             []string                                                                                         `json:"attributes,omitempty"`             // Attributes
+	Filters                *[]RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeFilters             `json:"filters,omitempty"`                //
+	AggregateAttributes    *[]RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeAggregateAttributes `json:"aggregateAttributes,omitempty"`    //
+	TimestampOrder         string                                                                                           `json:"timestampOrder,omitempty"`         // Timestamp Order
 }
 type RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesTheTrendAnalytcisDataForTheInterfacesInTheSpecifiedTimeRangeAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Views []string `json:"views,omitempty"` // Views
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                                                                                   `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                                                   `json:"endTime,omitempty"`             // End Time
+	Views               []string                                                                                                               `json:"views,omitempty"`               // Views
+	Attributes          []string                                                                                                               `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheListOfNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Count *int `json:"count,omitempty"` // Count
-
+	Limit  *int   `json:"limit,omitempty"`  // Limit
+	Offset *int   `json:"offset,omitempty"` // Offset
+	Count  *int   `json:"count,omitempty"`  // Count
 	SortBy string `json:"sortBy,omitempty"` // Sort By
 }
 type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	Filters *[]RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters `json:"filters,omitempty"` //
-
-	Views []string `json:"views,omitempty"`
-
-	Attributes []string `json:"attributes,omitempty"`
-
-	AggregateAttributes []RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes `json:"aggregateAttributes,omitempty"`
-
-	Page *RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage `json:"page,omitempty"`
-}
-type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPage struct {
-	Limit  *int `json:"limit,omitempty"`
-	Offset *int `json:"offset,omitempty"`
-	SortBy *[]RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy
-}
-type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsPageSortBy struct {
-	Name  string `json:"name,omitempty"`
-	Order string `json:"order,omitempty"`
-}
-type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsAggregateAttributes struct {
-	Name     string `json:"name,omitempty"`
-	Function string `json:"function,omitempty"`
+	StartTime *int                                                                                                            `json:"startTime,omitempty"` // Start Time
+	EndTime   *int                                                                                                            `json:"endTime,omitempty"`   // End Time
+	Filters   *[]RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters `json:"filters,omitempty"`   //
 }
 type RequestDevicesGetsTheTotalNumberNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctionsFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevices struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                                                   `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                   `json:"endTime,omitempty"`             // End Time
+	GroupBy             []string                                                                               `json:"groupBy,omitempty"`             // Group By
+	Attributes          []string                                                                               `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                          `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                          `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetsTheSummaryAnalyticsDataRelatedToNetworkDevicesPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name  string `json:"name,omitempty"`  // Name
 	Order string `json:"order,omitempty"` // Order
 }
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevices struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TopN *int `json:"topN,omitempty"` // Top N
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Attributes *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesAttributes `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                                                `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                                                `json:"endTime,omitempty"`             // End Time
+	TopN                *int                                                                                `json:"topN,omitempty"`                // Top N
+	GroupBy             []string                                                                            `json:"groupBy,omitempty"`             // Group By
+	Attributes          *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesAttributes          `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesAttributes interface{}
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit  *int                                                                       `json:"limit,omitempty"`  // Limit
+	Offset *int                                                                       `json:"offset,omitempty"` // Offset
 	SortBy *[]RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPageSortBy `json:"sortBy,omitempty"` //
 }
 type RequestDevicesGetsTheTopNAnalyticsDataRelatedToNetworkDevicesPageSortBy struct {
-	Name string `json:"name,omitempty"` // Name
-
-	Order string `json:"order,omitempty"` // Order
-
+	Name     string `json:"name,omitempty"`     // Name
+	Order    string `json:"order,omitempty"`    // Order
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesGetsTheTrendAnalyticsData struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendInterval string `json:"trendInterval,omitempty"` // Trend Interval
-
-	GroupBy *[]RequestDevicesGetsTheTrendAnalyticsDataGroupBy `json:"groupBy,omitempty"` // Group By
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	Filters *[]RequestDevicesGetsTheTrendAnalyticsDataFilters `json:"filters,omitempty"` //
-
+	StartTime           *int                                                          `json:"startTime,omitempty"`           // Start Time
+	EndTime             *int                                                          `json:"endTime,omitempty"`             // End Time
+	TrendInterval       string                                                        `json:"trendInterval,omitempty"`       // Trend Interval
+	GroupBy             *[]RequestDevicesGetsTheTrendAnalyticsDataGroupBy             `json:"groupBy,omitempty"`             // Group By
+	Attributes          []string                                                      `json:"attributes,omitempty"`          // Attributes
+	Filters             *[]RequestDevicesGetsTheTrendAnalyticsDataFilters             `json:"filters,omitempty"`             //
 	AggregateAttributes *[]RequestDevicesGetsTheTrendAnalyticsDataAggregateAttributes `json:"aggregateAttributes,omitempty"` // Aggregate Attributes
-
-	Page *RequestDevicesGetsTheTrendAnalyticsDataPage `json:"page,omitempty"` //
+	Page                *RequestDevicesGetsTheTrendAnalyticsDataPage                  `json:"page,omitempty"`                //
 }
 type RequestDevicesGetsTheTrendAnalyticsDataGroupBy interface{}
 type RequestDevicesGetsTheTrendAnalyticsDataFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
+	Key      string `json:"key,omitempty"`      // Key
 	Operator string `json:"operator,omitempty"` // Operator
-
-	Value string `json:"value,omitempty"` // Value
+	Value    string `json:"value,omitempty"`    // Value
 }
 type RequestDevicesGetsTheTrendAnalyticsDataAggregateAttributes interface{}
 type RequestDevicesGetsTheTrendAnalyticsDataPage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRange struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	TrendIntervalInMinutes *int `json:"trendIntervalInMinutes,omitempty"` // Trend Interval In Minutes
-
-	GroupBy []string `json:"groupBy,omitempty"` // Group By
-
-	Filters *[]RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFilters `json:"filters,omitempty"` //
-
-	Attributes []string `json:"attributes,omitempty"` // Attributes
-
-	AggregateAttributes *[]RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeAggregateAttributes `json:"aggregateAttributes,omitempty"` //
-
-	Page *RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage `json:"page,omitempty"` //
+	StartTime              *int                                                                                                `json:"startTime,omitempty"`              // Start Time
+	EndTime                *int                                                                                                `json:"endTime,omitempty"`                // End Time
+	TrendIntervalInMinutes *int                                                                                                `json:"trendIntervalInMinutes,omitempty"` // Trend Interval In Minutes
+	GroupBy                []string                                                                                            `json:"groupBy,omitempty"`                // Group By
+	Filters                *[]RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFilters             `json:"filters,omitempty"`                //
+	Attributes             []string                                                                                            `json:"attributes,omitempty"`             // Attributes
+	AggregateAttributes    *[]RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeAggregateAttributes `json:"aggregateAttributes,omitempty"`    //
+	Page                   *RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage                  `json:"page,omitempty"`                   //
 }
 type RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFilters struct {
-	Key string `json:"key,omitempty"` // Key
-
-	Operator string `json:"operator,omitempty"` // Operator
-
-	LogicalOperator string `json:"logicalOperator,omitempty"` // Logical Operator
-
-	Value *RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFiltersValue `json:"value,omitempty"` // Value
-
-	Filters []string `json:"filters,omitempty"` // Filters
+	Key             string                                                                                     `json:"key,omitempty"`             // Key
+	Operator        string                                                                                     `json:"operator,omitempty"`        // Operator
+	LogicalOperator string                                                                                     `json:"logicalOperator,omitempty"` // Logical Operator
+	Value           *RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFiltersValue `json:"value,omitempty"`           // Value
+	Filters         []string                                                                                   `json:"filters,omitempty"`         // Filters
 }
 type RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeFiltersValue interface{}
 type RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangeAggregateAttributes struct {
-	Name string `json:"name,omitempty"` // Name
-
+	Name     string `json:"name,omitempty"`     // Name
 	Function string `json:"function,omitempty"` // Function
 }
 type RequestDevicesTheTrendAnalyticsDataForTheNetworkDeviceInTheSpecifiedTimeRangePage struct {
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	Offset *int `json:"offset,omitempty"` // Offset
-
+	Limit          *int   `json:"limit,omitempty"`          // Limit
+	Offset         *int   `json:"offset,omitempty"`         // Offset
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestDevicesUpdatePlannedAccessPointForFloor struct {
 	Attributes *RequestDevicesUpdatePlannedAccessPointForFloorAttributes `json:"attributes,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Indicates that PAP is a sensor
-
-	Location *RequestDevicesUpdatePlannedAccessPointForFloorLocation `json:"location,omitempty"` //
-
-	Position *RequestDevicesUpdatePlannedAccessPointForFloorPosition `json:"position,omitempty"` //
-
-	RadioCount *int `json:"radioCount,omitempty"` // Number of radios of the planned access point
-
-	Radios *[]RequestDevicesUpdatePlannedAccessPointForFloorRadios `json:"radios,omitempty"` //
+	IsSensor   *bool                                                     `json:"isSensor,omitempty"`   // Indicates that PAP is a sensor
+	Location   *RequestDevicesUpdatePlannedAccessPointForFloorLocation   `json:"location,omitempty"`   //
+	Position   *RequestDevicesUpdatePlannedAccessPointForFloorPosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                      `json:"radioCount,omitempty"` // Number of radios of the planned access point
+	Radios     *[]RequestDevicesUpdatePlannedAccessPointForFloorRadios   `json:"radios,omitempty"`     //
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorAttributes struct {
-	CreateDate *float64 `json:"createDate,omitempty"` // Created date of the planned access point
-
-	Domain string `json:"domain,omitempty"` // Service domain to which the planned access point belongs
-
-	HeirarchyName string `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
-
-	ID *float64 `json:"id,omitempty"` // Unique id of the planned access point
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance uuid of the planned access point
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the planned access point
-
-	Name string `json:"name,omitempty"` // Display name of the planned access point
-
-	Source string `json:"source,omitempty"` // Source of the data used to create the planned access point
-
-	TypeString string `json:"typeString,omitempty"` // Type string representation of the planned access point
+	CreateDate    *float64 `json:"createDate,omitempty"`    // Created date of the planned access point
+	Domain        string   `json:"domain,omitempty"`        // Service domain to which the planned access point belongs
+	HeirarchyName string   `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
+	ID            *float64 `json:"id,omitempty"`            // Unique id of the planned access point
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance uuid of the planned access point
+	MacAddress    string   `json:"macAddress,omitempty"`    // MAC address of the planned access point
+	Name          string   `json:"name,omitempty"`          // Display name of the planned access point
+	Source        string   `json:"source,omitempty"`        // Source of the data used to create the planned access point
+	TypeString    string   `json:"typeString,omitempty"`    // Type string representation of the planned access point
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorLocation struct {
-	Altitude *float64 `json:"altitude,omitempty"` // Altitude of the planned access point's location
-
-	Lattitude *float64 `json:"lattitude,omitempty"` // Latitude of the planned access point's location
-
+	Altitude   *float64 `json:"altitude,omitempty"`   // Altitude of the planned access point's location
+	Lattitude  *float64 `json:"lattitude,omitempty"`  // Latitude of the planned access point's location
 	Longtitude *float64 `json:"longtitude,omitempty"` // Longitude of the planned access point's location
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorPosition struct {
 	X *float64 `json:"x,omitempty"` // x-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Y *float64 `json:"y,omitempty"` // y-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Z *float64 `json:"z,omitempty"` // z-coordinate, or height, of the planned access point on the map
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorRadios struct {
-	Antenna *RequestDevicesUpdatePlannedAccessPointForFloorRadiosAntenna `json:"antenna,omitempty"` //
-
+	Antenna    *RequestDevicesUpdatePlannedAccessPointForFloorRadiosAntenna    `json:"antenna,omitempty"`    //
 	Attributes *RequestDevicesUpdatePlannedAccessPointForFloorRadiosAttributes `json:"attributes,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if it is sensor or not
+	IsSensor   *bool                                                           `json:"isSensor,omitempty"`   // Determines if it is sensor or not
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorRadiosAntenna struct {
-	AzimuthAngle *float64 `json:"azimuthAngle,omitempty"` // Azimuth angle of the antenna
-
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth angle of the antenna
 	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation angle of the antenna
-
-	Gain *float64 `json:"gain,omitempty"` // Gain of the antenna
-
-	Mode string `json:"mode,omitempty"` // Mode of the antenna associated with this radio
-
-	Name string `json:"name,omitempty"` // Name of the antenna
-
-	Type string `json:"type,omitempty"` // Type of the antenna associated with this radio
+	Gain           *float64 `json:"gain,omitempty"`           // Gain of the antenna
+	Mode           string   `json:"mode,omitempty"`           // Mode of the antenna associated with this radio
+	Name           string   `json:"name,omitempty"`           // Name of the antenna
+	Type           string   `json:"type,omitempty"`           // Type of the antenna associated with this radio
 }
 type RequestDevicesUpdatePlannedAccessPointForFloorRadiosAttributes struct {
-	Channel *float64 `json:"channel,omitempty"` // Channel in which this radio operates
-
-	ChannelString string `json:"channelString,omitempty"` // Channel string representation
-
-	ID *int `json:"id,omitempty"` // Id of the radio
-
-	IfMode string `json:"ifMode,omitempty"` // IF mode of the radio
-
-	IfTypeString string `json:"ifTypeString,omitempty"` // String representation of native band
-
-	IfTypeSubband string `json:"ifTypeSubband,omitempty"` // Sub band of the radio
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the radio
-
-	SlotID *float64 `json:"slotId,omitempty"` // Slot number in which the radio resides in the parent access point
-
-	TxPowerLevel *float64 `json:"txPowerLevel,omitempty"` // Tx Power at which this radio operates (in dBm)
+	Channel       *float64 `json:"channel,omitempty"`       // Channel in which this radio operates
+	ChannelString string   `json:"channelString,omitempty"` // Channel string representation
+	ID            *int     `json:"id,omitempty"`            // Id of the radio
+	IfMode        string   `json:"ifMode,omitempty"`        // IF mode of the radio
+	IfTypeString  string   `json:"ifTypeString,omitempty"`  // String representation of native band
+	IfTypeSubband string   `json:"ifTypeSubband,omitempty"` // Sub band of the radio
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance Uuid of the radio
+	SlotID        *float64 `json:"slotId,omitempty"`        // Slot number in which the radio resides in the parent access point
+	TxPowerLevel  *float64 `json:"txPowerLevel,omitempty"`  // Tx Power at which this radio operates (in dBm)
 }
 type RequestDevicesCreatePlannedAccessPointForFloor struct {
 	Attributes *RequestDevicesCreatePlannedAccessPointForFloorAttributes `json:"attributes,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Indicates that PAP is a sensor
-
-	Location *RequestDevicesCreatePlannedAccessPointForFloorLocation `json:"location,omitempty"` //
-
-	Position *RequestDevicesCreatePlannedAccessPointForFloorPosition `json:"position,omitempty"` //
-
-	RadioCount *int `json:"radioCount,omitempty"` // Number of radios of the planned access point
-
-	Radios *[]RequestDevicesCreatePlannedAccessPointForFloorRadios `json:"radios,omitempty"` //
+	IsSensor   *bool                                                     `json:"isSensor,omitempty"`   // Indicates that PAP is a sensor
+	Location   *RequestDevicesCreatePlannedAccessPointForFloorLocation   `json:"location,omitempty"`   //
+	Position   *RequestDevicesCreatePlannedAccessPointForFloorPosition   `json:"position,omitempty"`   //
+	RadioCount *int                                                      `json:"radioCount,omitempty"` // Number of radios of the planned access point
+	Radios     *[]RequestDevicesCreatePlannedAccessPointForFloorRadios   `json:"radios,omitempty"`     //
 }
 type RequestDevicesCreatePlannedAccessPointForFloorAttributes struct {
-	CreateDate *float64 `json:"createDate,omitempty"` // Created date of the planned access point
-
-	Domain string `json:"domain,omitempty"` // Service domain to which the planned access point belongs
-
-	HeirarchyName string `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
-
-	ID *float64 `json:"id,omitempty"` // Unique id of the planned access point
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance uuid of the planned access point
-
-	MacAddress string `json:"macAddress,omitempty"` // MAC address of the planned access point
-
-	Name string `json:"name,omitempty"` // Display name of the planned access point
-
-	Source string `json:"source,omitempty"` // Source of the data used to create the planned access point
-
-	TypeString string `json:"typeString,omitempty"` // Type string representation of the planned access point
+	CreateDate    *float64 `json:"createDate,omitempty"`    // Created date of the planned access point
+	Domain        string   `json:"domain,omitempty"`        // Service domain to which the planned access point belongs
+	HeirarchyName string   `json:"heirarchyName,omitempty"` // Hierarchy name of the planned access point
+	ID            *float64 `json:"id,omitempty"`            // Unique id of the planned access point
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance uuid of the planned access point
+	MacAddress    string   `json:"macAddress,omitempty"`    // MAC address of the planned access point
+	Name          string   `json:"name,omitempty"`          // Display name of the planned access point
+	Source        string   `json:"source,omitempty"`        // Source of the data used to create the planned access point
+	TypeString    string   `json:"typeString,omitempty"`    // Type string representation of the planned access point
 }
 type RequestDevicesCreatePlannedAccessPointForFloorLocation struct {
-	Altitude *float64 `json:"altitude,omitempty"` // Altitude of the planned access point's location
-
-	Lattitude *float64 `json:"lattitude,omitempty"` // Latitude of the planned access point's location
-
+	Altitude   *float64 `json:"altitude,omitempty"`   // Altitude of the planned access point's location
+	Lattitude  *float64 `json:"lattitude,omitempty"`  // Latitude of the planned access point's location
 	Longtitude *float64 `json:"longtitude,omitempty"` // Longitude of the planned access point's location
 }
 type RequestDevicesCreatePlannedAccessPointForFloorPosition struct {
 	X *float64 `json:"x,omitempty"` // x-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Y *float64 `json:"y,omitempty"` // y-coordinate of the planned access point on the map, 0,0 point being the top-left corner
-
 	Z *float64 `json:"z,omitempty"` // z-coordinate, or height, of the planned access point on the map
 }
 type RequestDevicesCreatePlannedAccessPointForFloorRadios struct {
-	Antenna *RequestDevicesCreatePlannedAccessPointForFloorRadiosAntenna `json:"antenna,omitempty"` //
-
+	Antenna    *RequestDevicesCreatePlannedAccessPointForFloorRadiosAntenna    `json:"antenna,omitempty"`    //
 	Attributes *RequestDevicesCreatePlannedAccessPointForFloorRadiosAttributes `json:"attributes,omitempty"` //
-
-	IsSensor *bool `json:"isSensor,omitempty"` // Determines if it is sensor or not
+	IsSensor   *bool                                                           `json:"isSensor,omitempty"`   // Determines if it is sensor or not
 }
 type RequestDevicesCreatePlannedAccessPointForFloorRadiosAntenna struct {
-	AzimuthAngle *float64 `json:"azimuthAngle,omitempty"` // Azimuth angle of the antenna
-
+	AzimuthAngle   *float64 `json:"azimuthAngle,omitempty"`   // Azimuth angle of the antenna
 	ElevationAngle *float64 `json:"elevationAngle,omitempty"` // Elevation angle of the antenna
-
-	Gain *float64 `json:"gain,omitempty"` // Gain of the antenna
-
-	Mode string `json:"mode,omitempty"` // Mode of the antenna associated with this radio
-
-	Name string `json:"name,omitempty"` // Name of the antenna
-
-	Type string `json:"type,omitempty"` // Type of the antenna associated with this radio
+	Gain           *float64 `json:"gain,omitempty"`           // Gain of the antenna
+	Mode           string   `json:"mode,omitempty"`           // Mode of the antenna associated with this radio
+	Name           string   `json:"name,omitempty"`           // Name of the antenna
+	Type           string   `json:"type,omitempty"`           // Type of the antenna associated with this radio
 }
 type RequestDevicesCreatePlannedAccessPointForFloorRadiosAttributes struct {
-	Channel *float64 `json:"channel,omitempty"` // Channel in which this radio operates
-
-	ChannelString string `json:"channelString,omitempty"` // Channel string representation
-
-	ID *int `json:"id,omitempty"` // Id of the radio
-
-	IfMode string `json:"ifMode,omitempty"` // IF mode of the radio
-
-	IfTypeString string `json:"ifTypeString,omitempty"` // String representation of native band
-
-	IfTypeSubband string `json:"ifTypeSubband,omitempty"` // Sub band of the radio
-
-	InstanceUUID string `json:"instanceUuid,omitempty"` // Instance Uuid of the radio
-
-	SlotID *float64 `json:"slotId,omitempty"` // Slot number in which the radio resides in the parent access point
-
-	TxPowerLevel *float64 `json:"txPowerLevel,omitempty"` // Tx Power at which this radio operates (in dBm)
+	Channel       *float64 `json:"channel,omitempty"`       // Channel in which this radio operates
+	ChannelString string   `json:"channelString,omitempty"` // Channel string representation
+	ID            *int     `json:"id,omitempty"`            // Id of the radio
+	IfMode        string   `json:"ifMode,omitempty"`        // IF mode of the radio
+	IfTypeString  string   `json:"ifTypeString,omitempty"`  // String representation of native band
+	IfTypeSubband string   `json:"ifTypeSubband,omitempty"` // Sub band of the radio
+	InstanceUUID  string   `json:"instanceUuid,omitempty"`  // Instance Uuid of the radio
+	SlotID        *float64 `json:"slotId,omitempty"`        // Slot number in which the radio resides in the parent access point
+	TxPowerLevel  *float64 `json:"txPowerLevel,omitempty"`  // Tx Power at which this radio operates (in dBm)
 }
 type RequestDevicesUpdateHealthScoreDefinitions []RequestItemDevicesUpdateHealthScoreDefinitions // Array of RequestDevicesUpdateHealthScoreDefinitions
 type RequestItemDevicesUpdateHealthScoreDefinitions struct {
-	ID string `json:"id,omitempty"` // Id
-
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	ID                          string   `json:"id,omitempty"`                          // Id
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Threshold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
 }
 type RequestDevicesUpdateHealthScoreDefinitionForTheGivenID struct {
-	IncludeForOverallHealth *bool `json:"includeForOverallHealth,omitempty"` // Include For Overall Health
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Thresehold Value
-
-	SynchronizeToIssueThreshold *bool `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
+	IncludeForOverallHealth     *bool    `json:"includeForOverallHealth,omitempty"`     // Include For Overall Health
+	ThresholdValue              *float64 `json:"thresholdValue,omitempty"`              // Thresehold Value
+	SynchronizeToIssueThreshold *bool    `json:"synchronizeToIssueThreshold,omitempty"` // Synchronize To Issue Threshold
 }
 type RequestDevicesUpdateInterfaceDetails struct {
 	Description string `json:"description,omitempty"` // Description for the Interface
-
 	AdminStatus string `json:"adminStatus,omitempty"` // Admin status as ('UP'/'DOWN')
-
-	VLANID *int `json:"vlanId,omitempty"` // VLAN Id to be Updated
-
-	VoiceVLANID *int `json:"voiceVlanId,omitempty"` // Voice Vlan Id to be Updated
+	VLANID      *int   `json:"vlanId,omitempty"`      // VLAN Id to be Updated
+	VoiceVLANID *int   `json:"voiceVlanId,omitempty"` // Voice Vlan Id to be Updated
 }
 type RequestDevicesClearMacAddressTable struct {
-	Operation string `json:"operation,omitempty"` // Operation needs to be specified as 'ClearMacAddress'.
-
-	Payload *RequestDevicesClearMacAddressTablePayload `json:"payload,omitempty"` // Payload is not applicable
+	Operation string                                     `json:"operation,omitempty"` // Operation needs to be specified as 'ClearMacAddress'.
+	Payload   *RequestDevicesClearMacAddressTablePayload `json:"payload,omitempty"`   // Payload is not applicable
 }
 type RequestDevicesClearMacAddressTablePayload interface{}
 type RequestDevicesAddDeviceKnowYourNetwork struct {
-	CliTransport string `json:"cliTransport,omitempty"` // CLI transport. Supported values: telnet, ssh. Required if type is NETWORK_DEVICE.
-
-	ComputeDevice *bool `json:"computeDevice,omitempty"` // Compute Device or not. Options are true / false.
-
-	EnablePassword string `json:"enablePassword,omitempty"` // CLI enable password of the device. Required if device is configured to use enable password.
-
-	ExtendedDiscoveryInfo string `json:"extendedDiscoveryInfo,omitempty"` // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
-
-	HTTPPassword string `json:"httpPassword,omitempty"` // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE.
-
-	HTTPPort string `json:"httpPort,omitempty"` // HTTP port of the device. Required if type is COMPUTE_DEVICE.
-
-	HTTPSecure *bool `json:"httpSecure,omitempty"` // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP. Default is true.
-
-	HTTPUserName string `json:"httpUserName,omitempty"` // HTTP Username of the device. Required if type is COMPUTE_DEVICE.
-
-	IPAddress []string `json:"ipAddress,omitempty"` // IP Address of the device. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
-
-	MerakiOrgID []string `json:"merakiOrgId,omitempty"` // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
-
-	NetconfPort string `json:"netconfPort,omitempty"` // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided. Netconf port is required for eWLC.
-
-	Password string `json:"password,omitempty"` // CLI Password of the device. Required if type is NETWORK_DEVICE.
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
-
-	SNMPAuthPassphrase string `json:"snmpAuthPassphrase,omitempty"` // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv.
-
-	SNMPAuthProtocol string `json:"snmpAuthProtocol,omitempty"` // SNMPv3 auth protocol. Supported values: sha, md5. Required if snmpMode is authNoPriv or authPriv.
-
-	SNMPMode string `json:"snmpMode,omitempty"` // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3.
-
-	SNMPPrivPassphrase string `json:"snmpPrivPassphrase,omitempty"` // SNMPv3 priv passphrase. Required if snmpMode is authPriv.
-
-	SNMPPrivProtocol string `json:"snmpPrivProtocol,omitempty"` // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv.
-
-	SNMPROCommunity string `json:"snmpROCommunity,omitempty"` // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
-
-	SNMPRWCommunity string `json:"snmpRWCommunity,omitempty"` // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
-
-	SNMPRetry *int `json:"snmpRetry,omitempty"` // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
-
-	SNMPTimeout *int `json:"snmpTimeout,omitempty"` // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
-
-	SNMPUserName string `json:"snmpUserName,omitempty"` // SNMPV3 user name of the device. Required if snmpVersion is v3.
-
-	SNMPVersion string `json:"snmpVersion,omitempty"` // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
-
-	Type string `json:"type,omitempty"` // Type of device being added. Default is NETWORK_DEVICE.
-
-	UserName string `json:"userName,omitempty"` // CLI user name of the device. Required if type is NETWORK_DEVICE.
+	CliTransport          string   `json:"cliTransport,omitempty"`          // CLI transport. Supported values: telnet, ssh. Required if type is NETWORK_DEVICE.
+	ComputeDevice         *bool    `json:"computeDevice,omitempty"`         // Compute Device or not. Options are true / false.
+	EnablePassword        string   `json:"enablePassword,omitempty"`        // CLI enable password of the device. Required if device is configured to use enable password.
+	ExtendedDiscoveryInfo string   `json:"extendedDiscoveryInfo,omitempty"` // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
+	HTTPPassword          string   `json:"httpPassword,omitempty"`          // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE.
+	HTTPPort              string   `json:"httpPort,omitempty"`              // HTTP port of the device. Required if type is COMPUTE_DEVICE.
+	HTTPSecure            *bool    `json:"httpSecure,omitempty"`            // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP. Default is true.
+	HTTPUserName          string   `json:"httpUserName,omitempty"`          // HTTP Username of the device. Required if type is COMPUTE_DEVICE.
+	IPAddress             []string `json:"ipAddress,omitempty"`             // IP Address of the device. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
+	MerakiOrgID           []string `json:"merakiOrgId,omitempty"`           // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
+	NetconfPort           string   `json:"netconfPort,omitempty"`           // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided. Netconf port is required for eWLC.
+	Password              string   `json:"password,omitempty"`              // CLI Password of the device. Required if type is NETWORK_DEVICE.
+	SerialNumber          string   `json:"serialNumber,omitempty"`          // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
+	SNMPAuthPassphrase    string   `json:"snmpAuthPassphrase,omitempty"`    // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv.
+	SNMPAuthProtocol      string   `json:"snmpAuthProtocol,omitempty"`      // SNMPv3 auth protocol. Supported values: sha, md5. Required if snmpMode is authNoPriv or authPriv.
+	SNMPMode              string   `json:"snmpMode,omitempty"`              // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3.
+	SNMPPrivPassphrase    string   `json:"snmpPrivPassphrase,omitempty"`    // SNMPv3 priv passphrase. Required if snmpMode is authPriv.
+	SNMPPrivProtocol      string   `json:"snmpPrivProtocol,omitempty"`      // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv.
+	SNMPROCommunity       string   `json:"snmpROCommunity,omitempty"`       // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
+	SNMPRWCommunity       string   `json:"snmpRWCommunity,omitempty"`       // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required.
+	SNMPRetry             *int     `json:"snmpRetry,omitempty"`             // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
+	SNMPTimeout           *int     `json:"snmpTimeout,omitempty"`           // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
+	SNMPUserName          string   `json:"snmpUserName,omitempty"`          // SNMPV3 user name of the device. Required if snmpVersion is v3.
+	SNMPVersion           string   `json:"snmpVersion,omitempty"`           // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE.
+	Type                  string   `json:"type,omitempty"`                  // Type of device being added. Default is NETWORK_DEVICE.
+	UserName              string   `json:"userName,omitempty"`              // CLI user name of the device. Required if type is NETWORK_DEVICE.
 }
 type RequestDevicesUpdateDeviceDetails struct {
-	CliTransport string `json:"cliTransport,omitempty"` // CLI transport. Supported values: telnet, ssh. Use NO!$DATA!$ if no change is required. Required if type is NETWORK_DEVICE.
-
-	ComputeDevice *bool `json:"computeDevice,omitempty"` // Compute Device or not. Options are true / false.
-
-	EnablePassword string `json:"enablePassword,omitempty"` // CLI enable password of the device. Required if device is configured to use enable password. Use NO!$DATA!$ if no change is required.
-
-	ExtendedDiscoveryInfo string `json:"extendedDiscoveryInfo,omitempty"` // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
-
-	HTTPPassword string `json:"httpPassword,omitempty"` // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE. Use NO!$DATA!$ if no change is required.
-
-	HTTPPort string `json:"httpPort,omitempty"` // HTTP port of the device. Required if type is COMPUTE_DEVICE.
-
-	HTTPSecure *bool `json:"httpSecure,omitempty"` // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP.
-
-	HTTPUserName string `json:"httpUserName,omitempty"` // HTTP Username of the device. Required if type is COMPUTE_DEVICE. Use NO!$DATA!$ if no change is required.
-
-	IPAddress []string `json:"ipAddress,omitempty"` // IP Address of the device. Required. Use 'api.meraki.com' for Meraki Dashboard.
-
-	MerakiOrgID []string `json:"merakiOrgId,omitempty"` // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
-
-	NetconfPort string `json:"netconfPort,omitempty"` // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided. Netconf port is required for eWLC.
-
-	Password string `json:"password,omitempty"` // CLI Password of the device. Required if type is NETWORK_DEVICE. Use NO!$DATA!$ if no change is required.
-
-	SerialNumber string `json:"serialNumber,omitempty"` // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
-
-	SNMPAuthPassphrase string `json:"snmpAuthPassphrase,omitempty"` // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv. Use NO!$DATA!$ if no change is required.
-
-	SNMPAuthProtocol string `json:"snmpAuthProtocol,omitempty"` // SNMPv3 auth protocol. Supported values: sha, md5.  Required if snmpMode is authNoPriv or authPriv. Use NODATACHANGE if no change is required.
-
-	SNMPMode string `json:"snmpMode,omitempty"` // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3. Use NODATACHANGE if no change is required.
-
-	SNMPPrivPassphrase string `json:"snmpPrivPassphrase,omitempty"` // SNMPv3 priv passphrase. Required if snmpMode is authPriv. Use NO!$DATA!$ if no change is required.
-
-	SNMPPrivProtocol string `json:"snmpPrivProtocol,omitempty"` // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv. Use NODATACHANGE if no change is required.
-
-	SNMPROCommunity string `json:"snmpROCommunity,omitempty"` // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required. Use NO!$DATA!$ if no change is required.
-
-	SNMPRWCommunity string `json:"snmpRWCommunity,omitempty"` // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required. Use NO!$DATA!$ if no change is required.
-
-	SNMPRetry *int `json:"snmpRetry,omitempty"` // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
-
-	SNMPTimeout *int `json:"snmpTimeout,omitempty"` // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
-
-	SNMPUserName string `json:"snmpUserName,omitempty"` // SNMPV3 user name of the device. Required if snmpVersion is v3. Use NO!$DATA!$ if no change is required.
-
-	SNMPVersion string `json:"snmpVersion,omitempty"` // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE. Use NODATACHANGE if no change is required.
-
-	Type string `json:"type,omitempty"` // Type of device being edited. Default is NETWORK_DEVICE.
-
+	CliTransport            string                                                      `json:"cliTransport,omitempty"`            // CLI transport. Supported values: telnet, ssh. Use NO!$DATA!$ if no change is required. Required if type is NETWORK_DEVICE.
+	ComputeDevice           *bool                                                       `json:"computeDevice,omitempty"`           // Compute Device or not. Options are true / false.
+	EnablePassword          string                                                      `json:"enablePassword,omitempty"`          // CLI enable password of the device. Required if device is configured to use enable password. Use NO!$DATA!$ if no change is required.
+	ExtendedDiscoveryInfo   string                                                      `json:"extendedDiscoveryInfo,omitempty"`   // This field holds that info as whether to add device with canned data or not. Supported values: DISCOVER_WITH_CANNED_DATA.
+	HTTPPassword            string                                                      `json:"httpPassword,omitempty"`            // HTTP password of the device / API key for Meraki Dashboard. Required if type is MERAKI_DASHBOARD or COMPUTE_DEVICE. Use NO!$DATA!$ if no change is required.
+	HTTPPort                string                                                      `json:"httpPort,omitempty"`                // HTTP port of the device. Required if type is COMPUTE_DEVICE.
+	HTTPSecure              *bool                                                       `json:"httpSecure,omitempty"`              // Flag to select HTTP / HTTPS protocol. Options are true / false. true for HTTPS and false for HTTP.
+	HTTPUserName            string                                                      `json:"httpUserName,omitempty"`            // HTTP Username of the device. Required if type is COMPUTE_DEVICE. Use NO!$DATA!$ if no change is required.
+	IPAddress               []string                                                    `json:"ipAddress,omitempty"`               // IP Address of the device. Required. Use 'api.meraki.com' for Meraki Dashboard.
+	MerakiOrgID             []string                                                    `json:"merakiOrgId,omitempty"`             // Selected Meraki organization for which the devices needs to be imported. Required if type is MERAKI_DASHBOARD.
+	NetconfPort             string                                                      `json:"netconfPort,omitempty"`             // Netconf Port of the device. cliTransport must be 'ssh' if netconf is provided. Netconf port is required for eWLC.
+	Password                string                                                      `json:"password,omitempty"`                // CLI Password of the device. Required if type is NETWORK_DEVICE. Use NO!$DATA!$ if no change is required.
+	SerialNumber            string                                                      `json:"serialNumber,omitempty"`            // Serial Number of the Device. Required if extendedDiscoveryInfo is 'DISCOVER_WITH_CANNED_DATA'.
+	SNMPAuthPassphrase      string                                                      `json:"snmpAuthPassphrase,omitempty"`      // SNMPv3 auth passphrase of the device. Required if snmpMode is authNoPriv or authPriv. Use NO!$DATA!$ if no change is required.
+	SNMPAuthProtocol        string                                                      `json:"snmpAuthProtocol,omitempty"`        // SNMPv3 auth protocol. Supported values: sha, md5.  Required if snmpMode is authNoPriv or authPriv. Use NODATACHANGE if no change is required.
+	SNMPMode                string                                                      `json:"snmpMode,omitempty"`                // SNMPv3 mode. Supported values: noAuthnoPriv, authNoPriv, authPriv. Required if snmpVersion is v3. Use NODATACHANGE if no change is required.
+	SNMPPrivPassphrase      string                                                      `json:"snmpPrivPassphrase,omitempty"`      // SNMPv3 priv passphrase. Required if snmpMode is authPriv. Use NO!$DATA!$ if no change is required.
+	SNMPPrivProtocol        string                                                      `json:"snmpPrivProtocol,omitempty"`        // SNMPv3 priv protocol. Supported values: AES128. Required if snmpMode is authPriv. Use NODATACHANGE if no change is required.
+	SNMPROCommunity         string                                                      `json:"snmpROCommunity,omitempty"`         // SNMP Read Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required. Use NO!$DATA!$ if no change is required.
+	SNMPRWCommunity         string                                                      `json:"snmpRWCommunity,omitempty"`         // SNMP Write Community of the device. If snmpVersion is v2, at least one of snmpROCommunity and snmpRWCommunity is required. Use NO!$DATA!$ if no change is required.
+	SNMPRetry               *int                                                        `json:"snmpRetry,omitempty"`               // SNMP retry count. Max value supported is 3. Default is Global SNMP retry (if exists) or 3.
+	SNMPTimeout             *int                                                        `json:"snmpTimeout,omitempty"`             // SNMP timeout in seconds. Max value supported is 300. Default is Global SNMP timeout (if exists) or 5.
+	SNMPUserName            string                                                      `json:"snmpUserName,omitempty"`            // SNMPV3 user name of the device. Required if snmpVersion is v3. Use NO!$DATA!$ if no change is required.
+	SNMPVersion             string                                                      `json:"snmpVersion,omitempty"`             // SNMP version. Values supported: v2, v3. Required if type is NETWORK_DEVICE, COMPUTE_DEVICE or THIRD_PARTY_DEVICE. Use NODATACHANGE if no change is required.
+	Type                    string                                                      `json:"type,omitempty"`                    // Type of device being edited. Default is NETWORK_DEVICE.
 	UpdateMgmtIPaddressList *[]RequestDevicesUpdateDeviceDetailsUpdateMgmtIPaddressList `json:"updateMgmtIPaddressList,omitempty"` //
-
-	UserName string `json:"userName,omitempty"` // CLI user name of the device. Required if type is NETWORK_DEVICE. Use NO!$DATA!$ if no change is required.
+	UserName                string                                                      `json:"userName,omitempty"`                // CLI user name of the device. Required if type is NETWORK_DEVICE. Use NO!$DATA!$ if no change is required.
 }
 type RequestDevicesUpdateDeviceDetailsUpdateMgmtIPaddressList struct {
 	ExistMgmtIPAddress string `json:"existMgmtIpAddress,omitempty"` // existMgmtIpAddress IP Address of the device.
-
-	NewMgmtIPAddress string `json:"newMgmtIpAddress,omitempty"` // New IP Address to be Updated.
+	NewMgmtIPAddress   string `json:"newMgmtIpAddress,omitempty"`   // New IP Address to be Updated.
 }
 type RequestDevicesUpdateDeviceRole struct {
-	ID string `json:"id,omitempty"` // DeviceId of the Device
-
-	Role string `json:"role,omitempty"` // Role of device as ACCESS, CORE, DISTRIBUTION, BORDER ROUTER
-
+	ID         string `json:"id,omitempty"`         // DeviceId of the Device
+	Role       string `json:"role,omitempty"`       // Role of device as ACCESS, CORE, DISTRIBUTION, BORDER ROUTER
 	RoleSource string `json:"roleSource,omitempty"` // Role source as MANUAL / AUTO
 }
 type RequestDevicesExportDeviceList struct {
-	DeviceUUIDs []string `json:"deviceUuids,omitempty"` // List of device uuids
-
-	OperationEnum string `json:"operationEnum,omitempty"` // 0 to export Device Credential Details Or 1 to export Device Details
-
-	Parameters []string `json:"parameters,omitempty"` // List of device parameters that needs to be exported to file
-
-	Password string `json:"password,omitempty"` // Password is required when the operationEnum value is 0
+	DeviceUUIDs   []string `json:"deviceUuids,omitempty"`   // List of device uuids
+	OperationEnum string   `json:"operationEnum,omitempty"` // 0 to export Device Credential Details Or 1 to export Device Details
+	Parameters    []string `json:"parameters,omitempty"`    // List of device parameters that needs to be exported to file
+	Password      string   `json:"password,omitempty"`      // Password is required when the operationEnum value is 0
 }
 type RequestDevicesSyncDevices []string // Array of RequestDevicesSyncDevices
 type RequestDevicesCreateUserDefinedField struct {
-	Name string `json:"name,omitempty"` // Name of UDF
-
+	Name        string `json:"name,omitempty"`        // Name of UDF
 	Description string `json:"description,omitempty"` // Description of UDF
 }
 type RequestDevicesUpdateUserDefinedField struct {
-	Name string `json:"name,omitempty"` // Name of UDF
-
+	Name        string `json:"name,omitempty"`        // Name of UDF
 	Description string `json:"description,omitempty"` // Description of UDF
 }
 type RequestDevicesAddUserDefinedFieldToDevice []RequestItemDevicesAddUserDefinedFieldToDevice // Array of RequestDevicesAddUserDefinedFieldToDevice
 type RequestItemDevicesAddUserDefinedFieldToDevice struct {
-	Name string `json:"name,omitempty"` // Name of the User Defined Field
-
+	Name  string `json:"name,omitempty"`  // Name of the User Defined Field
 	Value string `json:"value,omitempty"` // Value of the User Defined Field that will be assigned to the device
 }
 type RequestDevicesUpdateDeviceManagementAddress struct {
 	NewIP string `json:"newIP,omitempty"` // New IP Address of the device to be Updated
 }
 type RequestDevicesCreateMaintenanceScheduleForNetworkDevices struct {
-	Description string `json:"description,omitempty"` // A brief narrative describing the maintenance schedule.
-
+	Description         string                                                                       `json:"description,omitempty"`         // A brief narrative describing the maintenance schedule.
 	MaintenanceSchedule *RequestDevicesCreateMaintenanceScheduleForNetworkDevicesMaintenanceSchedule `json:"maintenanceSchedule,omitempty"` //
-
-	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
+	NetworkDeviceIDs    []string                                                                     `json:"networkDeviceIds,omitempty"`    // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
 }
 type RequestDevicesCreateMaintenanceScheduleForNetworkDevicesMaintenanceSchedule struct {
-	StartTime *float64 `json:"startTime,omitempty"` // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
-
-	EndTime *float64 `json:"endTime,omitempty"` // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
-
+	StartTime  *float64                                                                               `json:"startTime,omitempty"`  // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
+	EndTime    *float64                                                                               `json:"endTime,omitempty"`    // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
 	Recurrence *RequestDevicesCreateMaintenanceScheduleForNetworkDevicesMaintenanceScheduleRecurrence `json:"recurrence,omitempty"` //
 }
 type RequestDevicesCreateMaintenanceScheduleForNetworkDevicesMaintenanceScheduleRecurrence struct {
-	Interval *int `json:"interval,omitempty"` // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
-
+	Interval          *int     `json:"interval,omitempty"`          // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
 	RecurrenceEndTime *float64 `json:"recurrenceEndTime,omitempty"` // The end date for the recurrence in Unix epoch time in milliseconds. Recurrence end time should be greater than maintenance end date/time.
 }
 type RequestDevicesUpdatesTheMaintenanceScheduleInformation struct {
-	Description string `json:"description,omitempty"` // A brief narrative describing the maintenance schedule.
-
+	Description         string                                                                     `json:"description,omitempty"`         // A brief narrative describing the maintenance schedule.
 	MaintenanceSchedule *RequestDevicesUpdatesTheMaintenanceScheduleInformationMaintenanceSchedule `json:"maintenanceSchedule,omitempty"` //
-
-	NetworkDeviceIDs []string `json:"networkDeviceIds,omitempty"` // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
+	NetworkDeviceIDs    []string                                                                   `json:"networkDeviceIds,omitempty"`    // List of network device ids. This field is applicable only during creation of schedules; for updates, it is read-only.
 }
 type RequestDevicesUpdatesTheMaintenanceScheduleInformationMaintenanceSchedule struct {
-	StartTime *float64 `json:"startTime,omitempty"` // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
-
-	EndTime *float64 `json:"endTime,omitempty"` // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
-
+	StartTime  *float64                                                                             `json:"startTime,omitempty"`  // Start time indicates the beginning of the maintenance window in Unix epoch time in milliseconds.
+	EndTime    *float64                                                                             `json:"endTime,omitempty"`    // End time indicates the ending of the maintenance window in Unix epoch time in milliseconds.
 	Recurrence *RequestDevicesUpdatesTheMaintenanceScheduleInformationMaintenanceScheduleRecurrence `json:"recurrence,omitempty"` //
 }
 type RequestDevicesUpdatesTheMaintenanceScheduleInformationMaintenanceScheduleRecurrence struct {
-	Interval *int `json:"interval,omitempty"` // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
-
+	Interval          *int     `json:"interval,omitempty"`          // Interval for recurrence in days. The interval must be longer than the duration of the schedules. The maximum allowed interval is 365 days.
 	RecurrenceEndTime *float64 `json:"recurrenceEndTime,omitempty"` // The end date for the recurrence in Unix epoch time in milliseconds. Recurrence end time should be greater than maintenance end date/time.
 }
 type RequestDevicesDeleteNetworkDeviceWithConfigurationCleanup struct {
@@ -8236,50 +6232,39 @@ type RequestDevicesDeleteANetworkDeviceWithoutConfigurationCleanup struct {
 }
 type RequestDevicesQueryNetworkDevicesWithFilters struct {
 	Filter *RequestDevicesQueryNetworkDevicesWithFiltersFilter `json:"filter,omitempty"` //
-
-	Views []string `json:"views,omitempty"` // The specific views being requested. This is an optional parameter which can be passed to get one or more of the network device data. If this is not provided, then it will default to BASIC views. If multiple views are provided, the response will contain the union of the views.
-
-	Page *RequestDevicesQueryNetworkDevicesWithFiltersPage `json:"page,omitempty"` //
+	Views  []string                                            `json:"views,omitempty"`  // The specific views being requested. This is an optional parameter which can be passed to get one or more of the network device data. If this is not provided, then it will default to BASIC views. If multiple views are provided, the response will contain the union of the views.
+	Page   *RequestDevicesQueryNetworkDevicesWithFiltersPage   `json:"page,omitempty"`   //
 }
 type RequestDevicesQueryNetworkDevicesWithFiltersFilter struct {
-	LogicalOperator string `json:"logicalOperator,omitempty"` // The logical operator to use for combining the filter criteria. If not provided, the default value is AND.
-
-	Filters *[]RequestDevicesQueryNetworkDevicesWithFiltersFilterFilters `json:"filters,omitempty"` //
+	LogicalOperator string                                                       `json:"logicalOperator,omitempty"` // The logical operator to use for combining the filter criteria. If not provided, the default value is AND.
+	Filters         *[]RequestDevicesQueryNetworkDevicesWithFiltersFilterFilters `json:"filters,omitempty"`         //
 }
 type RequestDevicesQueryNetworkDevicesWithFiltersFilterFilters struct {
-	Key string `json:"key,omitempty"` // The key to filter by
-
-	Operator string `json:"operator,omitempty"` // The operator to use for filtering the values
-
-	Value *RequestDevicesQueryNetworkDevicesWithFiltersFilterFiltersValue `json:"value,omitempty"` // Value to filter by. For `in` operator, the value should be a list of values.
+	Key      string                                                          `json:"key,omitempty"`      // The key to filter by
+	Operator string                                                          `json:"operator,omitempty"` // The operator to use for filtering the values
+	Value    *RequestDevicesQueryNetworkDevicesWithFiltersFilterFiltersValue `json:"value,omitempty"`    // Value to filter by. For `in` operator, the value should be a list of values.
 }
 type RequestDevicesQueryNetworkDevicesWithFiltersFilterFiltersValue interface{}
 type RequestDevicesQueryNetworkDevicesWithFiltersPage struct {
 	SortBy *RequestDevicesQueryNetworkDevicesWithFiltersPageSortBy `json:"sortBy,omitempty"` //
-
-	Limit *int `json:"limit,omitempty"` // The number of records to show for this page. Min: 1, Max: 500
-
-	Offset *int `json:"offset,omitempty"` // The first record to show for this page; the first record is numbered 1.
+	Limit  *int                                                    `json:"limit,omitempty"`  // The number of records to show for this page. Min: 1, Max: 500
+	Offset *int                                                    `json:"offset,omitempty"` // The first record to show for this page; the first record is numbered 1.
 }
 type RequestDevicesQueryNetworkDevicesWithFiltersPageSortBy struct {
-	Name string `json:"name,omitempty"` // The field to sort by. Default is hostname.
-
+	Name  string `json:"name,omitempty"`  // The field to sort by. Default is hostname.
 	Order string `json:"order,omitempty"` // The order to sort by.
 }
 type RequestDevicesCountTheNumberOfNetworkDevicesWithFilters struct {
 	Filter *RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilter `json:"filter,omitempty"` //
 }
 type RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilter struct {
-	LogicalOperator string `json:"logicalOperator,omitempty"` // The logical operator to use for combining the filter criteria. If not provided, the default value is AND.
-
-	Filters *[]RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFilters `json:"filters,omitempty"` //
+	LogicalOperator string                                                                  `json:"logicalOperator,omitempty"` // The logical operator to use for combining the filter criteria. If not provided, the default value is AND.
+	Filters         *[]RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFilters `json:"filters,omitempty"`         //
 }
 type RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFilters struct {
-	Key string `json:"key,omitempty"` // The key to filter by
-
-	Operator string `json:"operator,omitempty"` // The operator to use for filtering the values
-
-	Value *RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFiltersValue `json:"value,omitempty"` // Value to filter by. For `in` operator, the value should be a list of values.
+	Key      string                                                                     `json:"key,omitempty"`      // The key to filter by
+	Operator string                                                                     `json:"operator,omitempty"` // The operator to use for filtering the values
+	Value    *RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFiltersValue `json:"value,omitempty"`    // Value to filter by. For `in` operator, the value should be a list of values.
 }
 type RequestDevicesCountTheNumberOfNetworkDevicesWithFiltersFilterFiltersValue interface{}
 type RequestDevicesUpdateGlobalResyncInterval struct {
@@ -8289,126 +6274,85 @@ type RequestDevicesUpdateResyncIntervalForTheNetworkDevice struct {
 	Interval *int `json:"interval,omitempty"` // Resync interval in minutes. To disable periodic resync, set interval as `0`. To use global settings, set interval as `null`.
 }
 type RequestDevicesRogueAdditionalDetails struct {
-	Offset *float64 `json:"offset,omitempty"` // The offset of the first item in the collection to return. Default value is 1
-
-	Limit *float64 `json:"limit,omitempty"` // The maximum number of entries to return. Default value is 1000
-
-	StartTime *float64 `json:"startTime,omitempty"` // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
-
-	EndTime *float64 `json:"endTime,omitempty"` // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
-
-	SiteID []string `json:"siteId,omitempty"` // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
-
+	Offset      *float64 `json:"offset,omitempty"`      // The offset of the first item in the collection to return. Default value is 1
+	Limit       *float64 `json:"limit,omitempty"`       // The maximum number of entries to return. Default value is 1000
+	StartTime   *float64 `json:"startTime,omitempty"`   // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
+	EndTime     *float64 `json:"endTime,omitempty"`     // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
+	SiteID      []string `json:"siteId,omitempty"`      // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
 	ThreatLevel []string `json:"threatLevel,omitempty"` // Filter Rogues by Threat Level. Threat Level information can be fetched from "Get Threat Levels" API
-
-	ThreatType []string `json:"threatType,omitempty"` // Filter Rogues by Threat Type. Threat Type information can be fetched from "Get Threat Types" API
+	ThreatType  []string `json:"threatType,omitempty"`  // Filter Rogues by Threat Type. Threat Type information can be fetched from "Get Threat Types" API
 }
 type RequestDevicesRogueAdditionalDetailCount struct {
-	StartTime *float64 `json:"startTime,omitempty"` // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
-
-	EndTime *float64 `json:"endTime,omitempty"` // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
-
-	SiteID []string `json:"siteId,omitempty"` // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
-
+	StartTime   *float64 `json:"startTime,omitempty"`   // This is the epoch start time in milliseconds from which data need to be fetched. Default value is 24 hours earlier to endTime
+	EndTime     *float64 `json:"endTime,omitempty"`     // This is the epoch end time in milliseconds upto which data need to be fetched. Default value is current time
+	SiteID      []string `json:"siteId,omitempty"`      // Filter Rogues by location. Site IDs information can be fetched from "Get Site" API
 	ThreatLevel []string `json:"threatLevel,omitempty"` // This information can be fetched from "Get Threat Levels" API
-
-	ThreatType []string `json:"threatType,omitempty"` // This information can be fetched from "Get Threat Types" API
+	ThreatType  []string `json:"threatType,omitempty"`  // This information can be fetched from "Get Threat Types" API
 }
 type RequestDevicesStartWirelessRogueApContainment struct {
 	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Type *int `json:"type,omitempty"` // Type
+	Type       *int   `json:"type,omitempty"`       // Type
 }
 type RequestDevicesStopWirelessRogueApContainment struct {
 	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Type *int `json:"type,omitempty"` // Type
-
-	WlcIP string `json:"wlcIp,omitempty"` // Wlc Ip
+	Type       *int   `json:"type,omitempty"`       // Type
+	WlcIP      string `json:"wlcIp,omitempty"`      // Wlc Ip
 }
 type RequestDevicesThreatDetails struct {
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	SiteID []string `json:"siteId,omitempty"` // Site Id
-
+	Offset      *int     `json:"offset,omitempty"`      // Offset
+	Limit       *int     `json:"limit,omitempty"`       // Limit
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
 	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-
-	ThreatType []string `json:"threatType,omitempty"` // Threat Type
-
-	IsNewThreat *bool `json:"isNewThreat,omitempty"` // Is New Threat
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
 }
 type RequestDevicesThreatDetailCount struct {
-	Offset *int `json:"offset,omitempty"` // Offset
-
-	Limit *int `json:"limit,omitempty"` // Limit
-
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	SiteID []string `json:"siteId,omitempty"` // Site Id
-
+	Offset      *int     `json:"offset,omitempty"`      // Offset
+	Limit       *int     `json:"limit,omitempty"`       // Limit
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
 	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-
-	ThreatType []string `json:"threatType,omitempty"` // Threat Type
-
-	IsNewThreat *bool `json:"isNewThreat,omitempty"` // Is New Threat
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
+	IsNewThreat *bool    `json:"isNewThreat,omitempty"` // Is New Threat
 }
 type RequestDevicesAddAllowedMacAddress []RequestItemDevicesAddAllowedMacAddress // Array of RequestDevicesAddAllowedMacAddress
 type RequestItemDevicesAddAllowedMacAddress struct {
 	MacAddress string `json:"macAddress,omitempty"` // Mac Address
-
-	Category *int `json:"category,omitempty"` // Category
+	Category   *int   `json:"category,omitempty"`   // Category
 }
 type RequestDevicesThreatSummary struct {
-	StartTime *int `json:"startTime,omitempty"` // Start Time
-
-	EndTime *int `json:"endTime,omitempty"` // End Time
-
-	SiteID []string `json:"siteId,omitempty"` // Site Id
-
+	StartTime   *int     `json:"startTime,omitempty"`   // Start Time
+	EndTime     *int     `json:"endTime,omitempty"`     // End Time
+	SiteID      []string `json:"siteId,omitempty"`      // Site Id
 	ThreatLevel []string `json:"threatLevel,omitempty"` // Threat Level
-
-	ThreatType []string `json:"threatType,omitempty"` // Threat Type
+	ThreatType  []string `json:"threatType,omitempty"`  // Threat Type
 }
 type RequestDevicesGetDeviceInterfaceStatsInfoV2 struct {
-	StartTime *int `json:"startTime,omitempty"` // UTC epoch timestamp in milliseconds
-
-	EndTime *int `json:"endTime,omitempty"` // UTC epoch timestamp in milliseconds
-
-	Query *RequestDevicesGetDeviceInterfaceStatsInfoV2Query `json:"query,omitempty"` //
+	StartTime *int                                              `json:"startTime,omitempty"` // UTC epoch timestamp in milliseconds
+	EndTime   *int                                              `json:"endTime,omitempty"`   // UTC epoch timestamp in milliseconds
+	Query     *RequestDevicesGetDeviceInterfaceStatsInfoV2Query `json:"query,omitempty"`     //
 }
 type RequestDevicesGetDeviceInterfaceStatsInfoV2Query struct {
-	Fields *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFields `json:"fields,omitempty"` // Required field names, default ALL
-
+	Fields  *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFields  `json:"fields,omitempty"`  // Required field names, default ALL
 	Filters *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFilters `json:"filters,omitempty"` //
-
-	Page *RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPage `json:"page,omitempty"` //
+	Page    *RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPage      `json:"page,omitempty"`    //
 }
 type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFields interface{}
 type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryFilters struct {
-	Key string `json:"key,omitempty"` // Name of the field that the filter should be applied to
-
+	Key      string `json:"key,omitempty"`      // Name of the field that the filter should be applied to
 	Operator string `json:"operator,omitempty"` // Supported operators are eq,in,like
-
-	Value string `json:"value,omitempty"` // Value of the field
+	Value    string `json:"value,omitempty"`    // Value of the field
 }
 type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPage struct {
-	Limit *int `json:"limit,omitempty"` // Number of records, Max is 1000
-
-	Offset *float64 `json:"offset,omitempty"` // Record offset value, default 0
-
+	Limit   *int                                                           `json:"limit,omitempty"`   // Number of records, Max is 1000
+	Offset  *float64                                                       `json:"offset,omitempty"`  // Record offset value, default 0
 	OrderBy *[]RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPageOrderBy `json:"orderBy,omitempty"` //
 }
 type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPageOrderBy struct {
-	Name string `json:"name,omitempty"` // Name of the field used to sort
-
+	Name  string `json:"name,omitempty"`  // Name of the field used to sort
 	Order string `json:"order,omitempty"` // Possible values asc, des
 }
 
@@ -8419,7 +6363,7 @@ type RequestDevicesGetDeviceInterfaceStatsInfoV2QueryPageOrderBy struct {
 @param RetrievesTheListOfAAAServicesForGivenParametersHeaderParams Custom header parameters
 @param RetrievesTheListOfAAAServicesForGivenParametersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-a-a-a-services-for-given-parameters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-aaa-services-for-given-parameters
 */
 func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenParameters(RetrievesTheListOfAAAServicesForGivenParametersHeaderParams *RetrievesTheListOfAAAServicesForGivenParametersHeaderParams, RetrievesTheListOfAAAServicesForGivenParametersQueryParams *RetrievesTheListOfAAAServicesForGivenParametersQueryParams) (*ResponseDevicesRetrievesTheListOfAAAServicesForGivenParameters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices"
@@ -8454,7 +6398,7 @@ func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenParameters(Retriev
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.RetrievesTheListOfAAAServicesForGivenParameters(RetrievesTheListOfAAAServicesForGivenParametersHeaderParams, RetrievesTheListOfAAAServicesForGivenParametersQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfAAAServicesForGivenParameters")
+		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfAaaServicesForGivenParameters")
 	}
 
 	result := response.Result().(*ResponseDevicesRetrievesTheListOfAAAServicesForGivenParameters)
@@ -8469,7 +6413,7 @@ func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenParameters(Retriev
 @param RetrievesTheTotalNumberOfAAAServicesForGivenParametersHeaderParams Custom header parameters
 @param RetrievesTheTotalNumberOfAAAServicesForGivenParametersQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-number-of-a-a-a-services-for-given-parameters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-number-of-aaa-services-for-given-parameters
 */
 func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenParameters(RetrievesTheTotalNumberOfAAAServicesForGivenParametersHeaderParams *RetrievesTheTotalNumberOfAAAServicesForGivenParametersHeaderParams, RetrievesTheTotalNumberOfAAAServicesForGivenParametersQueryParams *RetrievesTheTotalNumberOfAAAServicesForGivenParametersQueryParams) (*ResponseDevicesRetrievesTheTotalNumberOfAAAServicesForGivenParameters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/count"
@@ -8504,7 +6448,7 @@ func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenParameters(
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.RetrievesTheTotalNumberOfAAAServicesForGivenParameters(RetrievesTheTotalNumberOfAAAServicesForGivenParametersHeaderParams, RetrievesTheTotalNumberOfAAAServicesForGivenParametersQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrievesTheTotalNumberOfAAAServicesForGivenParameters")
+		return nil, response, fmt.Errorf("error with operation RetrievesTheTotalNumberOfAaaServicesForGivenParameters")
 	}
 
 	result := response.Result().(*ResponseDevicesRetrievesTheTotalNumberOfAAAServicesForGivenParameters)
@@ -8521,7 +6465,7 @@ func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenParameters(
 @param RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceHeaderParams Custom header parameters
 @param RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceQueryParams Filtering parameter
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-details-of-a-specific-a-a-a-service-matching-the-id-of-the-service
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-details-of-a-specific-aaa-service-matching-the-id-of-the-service
 */
 func (s *DevicesService) RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheService(id string, RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceHeaderParams *RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheServiceHeaderParams, RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceQueryParams *RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheServiceQueryParams) (*ResponseDevicesRetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheService, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/{id}"
@@ -8557,7 +6501,7 @@ func (s *DevicesService) RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOf
 		if response.StatusCode() == http.StatusUnauthorized {
 			return s.RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheService(id, RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceHeaderParams, RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheServiceQueryParams)
 		}
-		return nil, response, fmt.Errorf("error with operation RetrievesTheDetailsOfASpecificAAAServiceMatchingTheIdOfTheService")
+		return nil, response, fmt.Errorf("error with operation RetrievesTheDetailsOfASpecificAaaServiceMatchingTheIdOfTheService")
 	}
 
 	result := response.Result().(*ResponseDevicesRetrievesTheDetailsOfASpecificAAAServiceMatchingTheIDOfTheService)
@@ -9074,6 +7018,159 @@ func (s *DevicesService) RetrievesTheDetailsOfASpecificDNSServiceMatchingTheIDOf
 
 }
 
+//GetDevicesEnergy Get devices energy - 60b1-394d-4438-9950
+/* Retrieves a list of network devices with energy data based on the specified query parameters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param GetDevicesEnergyHeaderParams Custom header parameters
+@param GetDevicesEnergyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-devices-energy
+*/
+func (s *DevicesService) GetDevicesEnergy(GetDevicesEnergyHeaderParams *GetDevicesEnergyHeaderParams, GetDevicesEnergyQueryParams *GetDevicesEnergyQueryParams) (*ResponseDevicesGetDevicesEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/networkDevices"
+
+	queryString, _ := query.Values(GetDevicesEnergyQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetDevicesEnergyHeaderParams != nil {
+
+		if GetDevicesEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetDevicesEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDevicesEnergy{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDevicesEnergy(GetDevicesEnergyHeaderParams, GetDevicesEnergyQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetDevicesEnergy")
+	}
+
+	result := response.Result().(*ResponseDevicesGetDevicesEnergy)
+	return result, response, err
+
+}
+
+//CountDevicesEnergy Count devices energy - 4694-ca43-4148-8c5a
+/* Retrieves the total count of network devices that provide energy data, filtered according to the specified query parameters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param CountDevicesEnergyHeaderParams Custom header parameters
+@param CountDevicesEnergyQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-devices-energy
+*/
+func (s *DevicesService) CountDevicesEnergy(CountDevicesEnergyHeaderParams *CountDevicesEnergyHeaderParams, CountDevicesEnergyQueryParams *CountDevicesEnergyQueryParams) (*ResponseDevicesCountDevicesEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/networkDevices/count"
+
+	queryString, _ := query.Values(CountDevicesEnergyQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if CountDevicesEnergyHeaderParams != nil {
+
+		if CountDevicesEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", CountDevicesEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesCountDevicesEnergy{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountDevicesEnergy(CountDevicesEnergyHeaderParams, CountDevicesEnergyQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation CountDevicesEnergy")
+	}
+
+	result := response.Result().(*ResponseDevicesCountDevicesEnergy)
+	return result, response, err
+
+}
+
+//GetDeviceEnergyByID Get device energy by ID - c6b5-2a21-4beb-8576
+/* Retrieves network device energy data for a specified time range based on the device ID. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param id id path parameter. The UUID of the Network Device. (Ex. "6bef213c-19ca-4170-8375-b694e251101c")
+
+@param GetDeviceEnergyByIDHeaderParams Custom header parameters
+@param GetDeviceEnergyByIDQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-device-energy-by-id
+*/
+func (s *DevicesService) GetDeviceEnergyByID(id string, GetDeviceEnergyByIDHeaderParams *GetDeviceEnergyByIDHeaderParams, GetDeviceEnergyByIDQueryParams *GetDeviceEnergyByIDQueryParams) (*ResponseDevicesGetDeviceEnergyByID, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/networkDevices/{id}"
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	queryString, _ := query.Values(GetDeviceEnergyByIDQueryParams)
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if GetDeviceEnergyByIDHeaderParams != nil {
+
+		if GetDeviceEnergyByIDHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", GetDeviceEnergyByIDHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesGetDeviceEnergyByID{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.GetDeviceEnergyByID(id, GetDeviceEnergyByIDHeaderParams, GetDeviceEnergyByIDQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation GetDeviceEnergyById")
+	}
+
+	result := response.Result().(*ResponseDevicesGetDeviceEnergyByID)
+	return result, response, err
+
+}
+
 //GetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevices Gets interfaces along with statistics and poe data from all network devices. - 9898-9b5a-445b-884f
 /* Retrieves the list of the interfaces from all network devices based on the provided query parameters. The latest interfaces data in the specified start and end time range will be returned. When there is no start and end time specified returns the latest available data.
 
@@ -9086,8 +7183,7 @@ name, adminStatus, description, duplexConfig, duplexOper, interfaceIfIndex,inter
 
 
 This API can paginate up to 500,000 records, please narrow matching results with additional filters beyond that value. The elements are grouped and sorted by deviceUuid first, and are then sorted by the given sort field, or by the default value: name.
-
- The supported sorting options are: name, adminStatus, description, duplexConfig, duplexOper,interfaceIfIndex,interfaceType, macAddress,mediaType, operStatus,portChannelId, portMode, portType,speed, vlanId,pdPowerAdminMaxInWatt,pdPowerBudgetInWatt,pdPowerConsumedInWatt,pdPowerRemainingInWatt,pdMaxPowerDrawn. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-interfaces-2.0.0-resolved.yaml
+The supported sorting options are: name, adminStatus, description, duplexConfig, duplexOper,interfaceIfIndex,interfaceType, macAddress,mediaType, operStatus,portChannelId, portMode, portType,speed, vlanId,pdPowerAdminMaxInWatt,pdPowerBudgetInWatt,pdPowerConsumedInWatt,pdPowerRemainingInWatt,pdMaxPowerDrawn. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-interfaces-2.0.0-resolved.yaml
 
 
 @param GetsInterfacesAlongWithStatisticsAndPoeDataFromAllNetworkDevicesQueryParams Filtering parameter
@@ -9676,7 +7772,7 @@ func (s *DevicesService) GetHealthScoreDefinitionForTheGivenID(id string, GetHea
 }
 
 //GetAllInterfaces Get all interfaces - f594-7a4c-439a-8bf0
-/* Returns all available interfaces. This endpoint can return a maximum of 500 interfaces
+/* Returns all available interfaces. This endpoint can return a maximum of 500 interfaces. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use '/dna/intent/api/v1/interface/count' to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param GetAllInterfacesQueryParams Filtering parameter
@@ -10084,7 +8180,7 @@ func (s *DevicesService) LegitOperationsForInterface(interfaceUUID string) (*Res
 
 //GetDeviceList Get Device list - 20b1-9b52-464b-8972
 /* Returns list of network devices based on filter criteria such as management IP address, mac address, hostname, etc. You can use the .* in any value to conduct a wildcard search. For example, to find all hostnames beginning with myhost in the IP address range 192.25.18.n, issue the following request: GET /dna/intent/api/v1/network-device?hostname=myhost.*&managementIpAddress=192.25.18..*
-If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters. You can also specify offset & limit to get the required list.
+If id parameter is provided with comma separated ids, it will return the list of network-devices for the given ids and ignores the other request parameters. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use '/dna/intent/api/v1/network-device/count' to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param GetDeviceListQueryParams Filtering parameter
@@ -10121,7 +8217,7 @@ func (s *DevicesService) GetDeviceList(GetDeviceListQueryParams *GetDeviceListQu
 }
 
 //GetDeviceValuesThatMatchFullyOrPartiallyAnAttribute Get Device Values that match fully or partially an Attribute - ffa7-48cc-44e9-a437
-/* Returns the list of values of the first given required parameter. You can use the .* in any value to conduct a wildcard search. For example, to get all the devices with the management IP address starting with 10.10. , issue the following request: GET /dna/inten/api/v1/network-device/autocomplete?managementIpAddress=10.10..* It will return the device management IP addresses that match fully or partially the provided attribute. {[10.10.1.1, 10.10.20.2, …]}.
+/* Returns the list of values of the first given required parameter. You can use the .* in any value to conduct a wildcard search. For example, to get all the devices with the management IP address starting with 10.10. , issue the following request: GET /dna/intent/api/v1/network-device/autocomplete?managementIpAddress=10.10..* It will return the device management IP addresses that match fully or partially the provided attribute. {[10.10.1.1, 10.10.20.2, …]}. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param GetDeviceValuesThatMatchFullyOrPartiallyAnAttributeQueryParams Filtering parameter
@@ -10447,7 +8543,7 @@ func (s *DevicesService) GetNetworkDeviceByIP(ipAddress string) (*ResponseDevice
 }
 
 //GetModules Get Modules - eb82-49e3-4f69-b0f1
-/* Returns modules by specified device id
+/* Returns modules by specified device id. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use /dna/intent/api/v1/network-device/module/count API to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param GetModulesQueryParams Filtering parameter
@@ -11273,7 +9369,7 @@ func (s *DevicesService) GetNetworkDeviceByPaginationRange(startIndex int, recor
 }
 
 //RetrieveScheduledMaintenanceWindowsForNetworkDevices Retrieve scheduled maintenance windows for network devices - 7d9e-198c-4a9b-8971
-/* This API retrieves a list of scheduled maintenance windows for network devices based on filter parameters. Each maintenance window is composed of a start schedule and end schedule, both of which have unique identifiers(`startId` and `endId`). These identifiers can be used to fetch the status of the start schedule and end schedule using the `GET /dna/intent/api/v1/activities/{id}` API. Completed maintenance schedules are automatically removed from the system after two weeks.
+/* This API retrieves a list of scheduled maintenance windows for network devices based on filter parameters. Each maintenance window is composed of a start schedule and end schedule, both of which have unique identifiers(`startId` and `endId`). These identifiers can be used to fetch the status of the start schedule and end schedule using the `GET /dna/intent/api/v1/activities/{id}` API. Completed maintenance schedules are automatically removed from the system after two weeks. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use '/dna/intent/api/v1/networkDeviceMaintenanceSchedules/count' API to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param RetrieveScheduledMaintenanceWindowsForNetworkDevicesQueryParams Filtering parameter
@@ -11384,7 +9480,7 @@ func (s *DevicesService) RetrievesTheMaintenanceScheduleInformation(id string) (
 }
 
 //RetrieveNetworkDevices Retrieve network devices - 9e97-b8b2-4539-86a3
-/* API to fetch the list of network devices using basic filters. Use the `/dna/intent/api/v1/networkDevices/query` API for advanced filtering. Refer features for more details.
+/* API to fetch the list of network devices using basic filters. Use the `/dna/intent/api/v1/networkDevices/query` API for advanced filtering. Refer features for more details. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use /dna/intent/api/v1/networkDevices/count API to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 @param RetrieveNetworkDevicesQueryParams Filtering parameter
@@ -11530,6 +9626,126 @@ func (s *DevicesService) GetResyncIntervalForTheNetworkDevice(id string) (*Respo
 	}
 
 	result := response.Result().(*ResponseDevicesGetResyncIntervalForTheNetworkDevice)
+	return result, response, err
+
+}
+
+//RetrievesTheListOfPortChannelsForTheNetworkDevice Retrieves the list of port channels for the network device - cc97-1b82-4cb9-831e
+/* This API endpoint retrieves the list of port channels for the given network device.
+
+
+@param networkDeviceID networkDeviceId path parameter. Unique identifier for the network device
+
+@param RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-port-channels-for-the-network-device
+*/
+func (s *DevicesService) RetrievesTheListOfPortChannelsForTheNetworkDevice(networkDeviceID string, RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams *RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams) (*ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDevices/{networkDeviceId}/portChannels"
+	path = strings.Replace(path, "{networkDeviceId}", fmt.Sprintf("%v", networkDeviceID), -1)
+
+	queryString, _ := query.Values(RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesTheListOfPortChannelsForTheNetworkDevice(networkDeviceID, RetrievesTheListOfPortChannelsForTheNetworkDeviceQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfPortChannelsForTheNetworkDevice")
+	}
+
+	result := response.Result().(*ResponseDevicesRetrievesTheListOfPortChannelsForTheNetworkDevice)
+	return result, response, err
+
+}
+
+//RetrievePortChannelsCountForANetworkDevice Retrieve port channels count for a network device. - 038a-4a87-467b-9ded
+/* This API endpoint retrieves the count of port channels for the given network device.
+
+
+@param networkDeviceID networkDeviceId path parameter. Unique identifier for the network device
+
+@param RetrievePortChannelsCountForANetworkDeviceQueryParams Filtering parameter
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieve-port-channels-count-for-a-network-device
+*/
+func (s *DevicesService) RetrievePortChannelsCountForANetworkDevice(networkDeviceID string, RetrievePortChannelsCountForANetworkDeviceQueryParams *RetrievePortChannelsCountForANetworkDeviceQueryParams) (*ResponseDevicesRetrievePortChannelsCountForANetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDevices/{networkDeviceId}/portChannels/count"
+	path = strings.Replace(path, "{networkDeviceId}", fmt.Sprintf("%v", networkDeviceID), -1)
+
+	queryString, _ := query.Values(RetrievePortChannelsCountForANetworkDeviceQueryParams)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetQueryString(queryString.Encode()).SetResult(&ResponseDevicesRetrievePortChannelsCountForANetworkDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievePortChannelsCountForANetworkDevice(networkDeviceID, RetrievePortChannelsCountForANetworkDeviceQueryParams)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievePortChannelsCountForANetworkDevice")
+	}
+
+	result := response.Result().(*ResponseDevicesRetrievePortChannelsCountForANetworkDevice)
+	return result, response, err
+
+}
+
+//RetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice Retrieves information for the given port channel on a specific network device. - 0a8d-2abf-4e6b-b558
+/* This API endpoint retrieves detailed information for a specified port channel using its unique identifier within a given network device.
+
+
+@param networkDeviceID networkDeviceId path parameter. Unique identifier for the network device
+
+@param id id path parameter. Unique identifier for the port channel
+
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-information-for-the-given-port-channel-on-a-specific-network-device
+*/
+func (s *DevicesService) RetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice(networkDeviceID string, id string) (*ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice, *resty.Response, error) {
+	path := "/dna/intent/api/v1/networkDevices/{networkDeviceId}/portChannels/{id}"
+	path = strings.Replace(path, "{networkDeviceId}", fmt.Sprintf("%v", networkDeviceID), -1)
+	path = strings.Replace(path, "{id}", fmt.Sprintf("%v", id), -1)
+
+	response, err := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json").
+		SetResult(&ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice{}).
+		SetError(&Error).
+		Get(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.RetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice(networkDeviceID, id)
+		}
+		return nil, response, fmt.Errorf("error with operation RetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice")
+	}
+
+	result := response.Result().(*ResponseDevicesRetrievesInformationForTheGivenPortChannelOnASpecificNetworkDevice)
 	return result, response, err
 
 }
@@ -11716,7 +9932,7 @@ func (s *DevicesService) GetThreatTypes() (*ResponseDevicesGetThreatTypes, *rest
 
 @param RetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-a-a-a-services-for-given-set-of-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-list-of-aaa-services-for-given-set-of-complex-filters
 */
 func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenSetOfComplexFilters(requestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters *RequestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters, RetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersHeaderParams *RetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersHeaderParams) (*ResponseDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/query"
@@ -11752,7 +9968,7 @@ func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenSetOfComplexFilter
 			return s.RetrievesTheListOfAAAServicesForGivenSetOfComplexFilters(requestDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters, RetrievesTheListOfAAAServicesForGivenSetOfComplexFiltersHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfAAAServicesForGivenSetOfComplexFilters")
+		return nil, response, fmt.Errorf("error with operation RetrievesTheListOfAaaServicesForGivenSetOfComplexFilters")
 	}
 
 	result := response.Result().(*ResponseDevicesRetrievesTheListOfAAAServicesForGivenSetOfComplexFilters)
@@ -11766,7 +9982,7 @@ func (s *DevicesService) RetrievesTheListOfAAAServicesForGivenSetOfComplexFilter
 
 @param RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-number-of-a-a-a-services-for-given-set-of-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!retrieves-the-total-number-of-aaa-services-for-given-set-of-complex-filters
 */
 func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters(requestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters *RequestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters, RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersHeaderParams *RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersHeaderParams) (*ResponseDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/query/count"
@@ -11802,7 +10018,7 @@ func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComple
 			return s.RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters(requestDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters, RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFiltersHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters")
+		return nil, response, fmt.Errorf("error with operation RetrievesTheTotalNumberOfAaaServicesForGivenSetOfComplexFilters")
 	}
 
 	result := response.Result().(*ResponseDevicesRetrievesTheTotalNumberOfAAAServicesForGivenSetOfComplexFilters)
@@ -11816,7 +10032,7 @@ func (s *DevicesService) RetrievesTheTotalNumberOfAAAServicesForGivenSetOfComple
 
 @param GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-a-a-a-services-for-given-set-of-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-summary-analytics-data-of-aaa-services-for-given-set-of-complex-filters
 */
 func (s *DevicesService) GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters *RequestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams *GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams) (*ResponseDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/summaryAnalytics"
@@ -11852,7 +10068,7 @@ func (s *DevicesService) GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComple
 			return s.GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters")
+		return nil, response, fmt.Errorf("error with operation GetSummaryAnalyticsDataOfAaaServicesForGivenSetOfComplexFilters")
 	}
 
 	result := response.Result().(*ResponseDevicesGetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters)
@@ -11866,7 +10082,7 @@ func (s *DevicesService) GetSummaryAnalyticsDataOfAAAServicesForGivenSetOfComple
 
 @param GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-a-a-a-services-for-given-set-of-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-top-n-analytics-data-of-aaa-services-for-given-set-of-complex-filters
 */
 func (s *DevicesService) GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters *RequestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams *GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams) (*ResponseDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/topNAnalytics"
@@ -11902,7 +10118,7 @@ func (s *DevicesService) GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFi
 			return s.GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters")
+		return nil, response, fmt.Errorf("error with operation GetTopNAnalyticsDataOfAaaServicesForGivenSetOfComplexFilters")
 	}
 
 	result := response.Result().(*ResponseDevicesGetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters)
@@ -11916,7 +10132,7 @@ func (s *DevicesService) GetTopNAnalyticsDataOfAAAServicesForGivenSetOfComplexFi
 
 @param GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-a-a-a-services-for-given-set-of-complex-filters
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-of-aaa-services-for-given-set-of-complex-filters
 */
 func (s *DevicesService) GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters *RequestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams *GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams) (*ResponseDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/trendAnalytics"
@@ -11952,7 +10168,7 @@ func (s *DevicesService) GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexF
 			return s.GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters(requestDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters, GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFiltersHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters")
+		return nil, response, fmt.Errorf("error with operation GetTrendAnalyticsDataOfAaaServicesForGivenSetOfComplexFilters")
 	}
 
 	result := response.Result().(*ResponseDevicesGetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexFilters)
@@ -11968,7 +10184,7 @@ func (s *DevicesService) GetTrendAnalyticsDataOfAAAServicesForGivenSetOfComplexF
 
 @param GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheServiceHeaderParams Custom header parameters
 
-Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-for-a-given-a-a-a-service-matching-the-id-of-the-service
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!get-trend-analytics-data-for-a-given-aaa-service-matching-the-id-of-the-service
 */
 func (s *DevicesService) GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService(id string, requestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheService *RequestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService, GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheServiceHeaderParams *GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheServiceHeaderParams) (*ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService, *resty.Response, error) {
 	path := "/dna/data/api/v1/aaaServices/{id}/trendAnalytics"
@@ -12005,7 +10221,7 @@ func (s *DevicesService) GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOf
 			return s.GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService(id, requestDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheService, GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheServiceHeaderParams)
 		}
 
-		return nil, response, fmt.Errorf("error with operation GetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIdOfTheService")
+		return nil, response, fmt.Errorf("error with operation GetTrendAnalyticsDataForAGivenAaaServiceMatchingTheIdOfTheService")
 	}
 
 	result := response.Result().(*ResponseDevicesGetTrendAnalyticsDataForAGivenAAAServiceMatchingTheIDOfTheService)
@@ -12719,6 +10935,106 @@ func (s *DevicesService) GetTrendAnalyticsDataForAGivenDNSServiceMatchingTheIDOf
 
 }
 
+//QueryDevicesEnergy Query devices energy. - 70bf-483d-497a-9924
+/* Retrieves a list of network devices along with their energy data for a specified time range, based on the filters provided in the request body. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param QueryDevicesEnergyHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!query-devices-energy
+*/
+func (s *DevicesService) QueryDevicesEnergy(requestDevicesQueryDevicesEnergy *RequestDevicesQueryDevicesEnergy, QueryDevicesEnergyHeaderParams *QueryDevicesEnergyHeaderParams) (*ResponseDevicesQueryDevicesEnergy, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/networkDevices/query"
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if QueryDevicesEnergyHeaderParams != nil {
+
+		if QueryDevicesEnergyHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", QueryDevicesEnergyHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestDevicesQueryDevicesEnergy).
+		SetResult(&ResponseDevicesQueryDevicesEnergy{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.QueryDevicesEnergy(requestDevicesQueryDevicesEnergy, QueryDevicesEnergyHeaderParams)
+		}
+
+		return nil, response, fmt.Errorf("error with operation QueryDevicesEnergy")
+	}
+
+	result := response.Result().(*ResponseDevicesQueryDevicesEnergy)
+	return result, response, err
+
+}
+
+//CountDevicesEnergyFromQuery Count devices energy from query - bf8d-c9a3-473b-9764
+/* Retrieves the total count of network devices based on the specified complex filters. For detailed information about the usage of the API, please refer to the Open API specification document - https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-deviceEnergy_1.0-1.0.1-resolved.yaml
+
+
+@param CountDevicesEnergyFromQueryHeaderParams Custom header parameters
+
+Documentation Link: https://developer.cisco.com/docs/dna-center/#!count-devices-energy-from-query
+*/
+func (s *DevicesService) CountDevicesEnergyFromQuery(requestDevicesCountDevicesEnergyFromQuery *RequestDevicesCountDevicesEnergyFromQuery, CountDevicesEnergyFromQueryHeaderParams *CountDevicesEnergyFromQueryHeaderParams) (*ResponseDevicesCountDevicesEnergyFromQuery, *resty.Response, error) {
+	path := "/dna/data/api/v1/energy/networkDevices/query/count"
+
+	var response *resty.Response
+	var err error
+	clientRequest := s.client.R().
+		SetHeader("Content-Type", "application/json").
+		SetHeader("Accept", "application/json")
+
+	if CountDevicesEnergyFromQueryHeaderParams != nil {
+
+		if CountDevicesEnergyFromQueryHeaderParams.XCaLLERID != "" {
+			clientRequest = clientRequest.SetHeader("X-CALLER-ID", CountDevicesEnergyFromQueryHeaderParams.XCaLLERID)
+		}
+
+	}
+
+	response, err = clientRequest.
+		SetBody(requestDevicesCountDevicesEnergyFromQuery).
+		SetResult(&ResponseDevicesCountDevicesEnergyFromQuery{}).
+		SetError(&Error).
+		Post(path)
+
+	if err != nil {
+		return nil, nil, err
+
+	}
+
+	if response.IsError() {
+
+		if response.StatusCode() == http.StatusUnauthorized {
+			return s.CountDevicesEnergyFromQuery(requestDevicesCountDevicesEnergyFromQuery, CountDevicesEnergyFromQueryHeaderParams)
+		}
+
+		return nil, response, fmt.Errorf("error with operation CountDevicesEnergyFromQuery")
+	}
+
+	result := response.Result().(*ResponseDevicesCountDevicesEnergyFromQuery)
+	return result, response, err
+
+}
+
 //GetsTheListOfInterfacesAcrossTheNetworkDevicesBasedOnTheProvidedComplexFiltersAndAggregationFunctions Gets the list of interfaces across the Network Devices based on the provided complex filters and aggregation functions - 45b8-ba96-4daa-843c
 /* Gets the list of interfaces across the Network Devices based on the provided complex filters and aggregation functions
 The elements are grouped and sorted by deviceUuid first, and are then sorted by the given sort field, or by the default value: name.
@@ -13383,7 +11699,7 @@ func (s *DevicesService) DeleteNetworkDeviceWithConfigurationCleanup(requestDevi
 }
 
 //DeleteANetworkDeviceWithoutConfigurationCleanup Delete a network device without configuration cleanup - 9a88-7984-4ba8-ab1c
-/* This API endpoint facilitates the deletion of a network device without performing configuration cleanup on the device.
+/* This API endpoint facilitates the deletion of a network device without performing configuration cleanup on the device. To delete a device via API, you must have permission to provision the network device. Although the API operation does not change the device configuration, removing a device without cleaning up its configuration could lead to a network behaviour that is not consistent with the configurations that are known to the system.
 
 
 
@@ -13420,7 +11736,7 @@ func (s *DevicesService) DeleteANetworkDeviceWithoutConfigurationCleanup(request
 }
 
 //QueryNetworkDevicesWithFilters Query network devices with filters - 0caa-2abb-490a-8e69
-/* Returns the list of network devices, determined by the filters. It is possible to filter the network devices based on various parameters, such as device type, device role, software version, etc.
+/* Returns the list of network devices, determined by the filters. It is possible to filter the network devices based on various parameters, such as device type, device role, software version, etc. The API returns a paginated response based on 'limit' and 'offset' parameters, allowing up to 500 records per page. 'limit' specifies the number of records, and 'offset' sets the starting point using 1-based indexing. Use '/dna/intent/api/v1/networkDevices/query/count' API to get the total record count. For data sets over 500 records, make multiple calls, adjusting 'limit' and 'offset' to retrieve all records incrementally.
 
 
 
@@ -14325,7 +12641,8 @@ func (s *DevicesService) DeletePlannedAccessPointForFloor(floorID string, planne
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletePlannedAccessPointForFloor(floorID, plannedAccessPointUUID)
+			return s.DeletePlannedAccessPointForFloor(
+				floorID, plannedAccessPointUUID)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletePlannedAccessPointForFloor")
 	}
@@ -14363,7 +12680,8 @@ func (s *DevicesService) DeleteUserDefinedField(id string) (*ResponseDevicesDele
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteUserDefinedField(id)
+			return s.DeleteUserDefinedField(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteUserDefinedField")
 	}
@@ -14404,7 +12722,8 @@ func (s *DevicesService) RemoveUserDefinedFieldFromDevice(deviceID string, Remov
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveUserDefinedFieldFromDevice(deviceID, RemoveUserDefinedFieldFromDeviceQueryParams)
+			return s.RemoveUserDefinedFieldFromDevice(
+				deviceID, RemoveUserDefinedFieldFromDeviceQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveUserDefinedFieldFromDevice")
 	}
@@ -14445,7 +12764,8 @@ func (s *DevicesService) DeleteDeviceByID(id string, DeleteDeviceByIdQueryParams
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteDeviceByID(id, DeleteDeviceByIdQueryParams)
+			return s.DeleteDeviceByID(
+				id, DeleteDeviceByIdQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteDeviceById")
 	}
@@ -14483,7 +12803,8 @@ func (s *DevicesService) DeleteMaintenanceSchedule(id string) (*ResponseDevicesD
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeleteMaintenanceSchedule(id)
+			return s.DeleteMaintenanceSchedule(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeleteMaintenanceSchedule")
 	}
@@ -14521,7 +12842,8 @@ func (s *DevicesService) RemoveAllowedMacAddress(macAddress string) (*ResponseDe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveAllowedMacAddress(macAddress)
+			return s.RemoveAllowedMacAddress(
+				macAddress)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveAllowedMacAddress")
 	}

@@ -51,38 +51,26 @@ type SystemPerformanceHistoricalAPIQueryParams struct {
 
 type ResponseHealthAndPerformanceRetrievesDiagnosticTaskByID struct {
 	Response *ResponseHealthAndPerformanceRetrievesDiagnosticTaskByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                           `json:"version,omitempty"`  // The version of the response
 }
 type ResponseHealthAndPerformanceRetrievesDiagnosticTaskByIDResponse struct {
-	ID string `json:"id,omitempty"` // The ID of this task
-
-	RootID string `json:"rootId,omitempty"` // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task
-
-	ParentID string `json:"parentId,omitempty"` // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId
-
-	StartTime *int `json:"startTime,omitempty"` // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
-
+	ID             string `json:"id,omitempty"`             // The ID of this task
+	RootID         string `json:"rootId,omitempty"`         // The ID of the task representing the root node of the tree which this task belongs to.  In some cases, this may be the same as the ID or null, which indicates that this task is the root task
+	ParentID       string `json:"parentId,omitempty"`       // The ID of the parent task if this happens to be a subtask. In case this task is not a subtask, then the parentId is expected to be null.  To construct a task tree, this task will be the child of the task with the ID listed here, or the root of the tree if this task has no parentId
+	StartTime      *int   `json:"startTime,omitempty"`      // An approximate time of when the task creation was triggered; as measured in Unix epoch time in milliseconds
 	ResultLocation string `json:"resultLocation,omitempty"` // A server-relative URL indicating where additional task-specific details may be found
-
-	Status string `json:"status,omitempty"` // Summarizes the status of a task
-
-	UpdatedTime *int `json:"updatedTime,omitempty"` // The last modification date and time of this task, expressed in Unix epoch time format to the millisecond precision.
-
-	EndTime *int `json:"endTime,omitempty"` // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
+	Status         string `json:"status,omitempty"`         // Summarizes the status of a task
+	UpdatedTime    *int   `json:"updatedTime,omitempty"`    // The last modification date and time of this task, expressed in Unix epoch time format to the millisecond precision.
+	EndTime        *int   `json:"endTime,omitempty"`        // An approximate time of when this task has been marked completed; as measured in Unix epoch time in milliseconds
 }
 type ResponseHealthAndPerformanceRetrievesDiagnosticTaskDetailsByID struct {
 	Response *ResponseHealthAndPerformanceRetrievesDiagnosticTaskDetailsByIDResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                                  `json:"version,omitempty"`  // The version of the response
 }
 type ResponseHealthAndPerformanceRetrievesDiagnosticTaskDetailsByIDResponse struct {
-	Data string `json:"data,omitempty"` // Any data associated with this task; the value may vary significantly across different tasks
-
-	Progress string `json:"progress,omitempty"` // A textual representation which indicates the progress of this task; the value may vary significantly across different tasks
-
-	ErrorCode string `json:"errorCode,omitempty"` // An error code if in case this task has failed in its execution
-
+	Data          string `json:"data,omitempty"`          // Any data associated with this task; the value may vary significantly across different tasks
+	Progress      string `json:"progress,omitempty"`      // A textual representation which indicates the progress of this task; the value may vary significantly across different tasks
+	ErrorCode     string `json:"errorCode,omitempty"`     // An error code if in case this task has failed in its execution
 	FailureReason string `json:"failureReason,omitempty"` // A textual description indicating the reason why a task has failed
 }
 type ResponseHealthAndPerformanceRetrievesAllTheValidationSets struct {
@@ -739,7 +727,8 @@ func (s *HealthAndPerformanceService) DeletesAValidationWorkflow(id string) (*re
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAValidationWorkflow(id)
+			return s.DeletesAValidationWorkflow(
+				id)
 		}
 		return response, fmt.Errorf("error with operation DeletesAValidationWorkflow")
 	}

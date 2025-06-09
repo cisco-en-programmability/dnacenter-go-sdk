@@ -21,14 +21,14 @@ type GetComplianceStatusCountQueryParams struct {
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" separated by commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
 }
 type GetComplianceDetailQueryParams struct {
-	ComplianceType   string  `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" in commas. The Compliance type can be 'NETWORK_PROFILE', 'IMAGE', 'FABRIC', 'APPLICATION_VISIBILITY', 'FABRIC', RUNNING_CONFIG', 'NETWORK_SETTINGS', 'WORKFLOW' , 'EoX'.
+	ComplianceType   string  `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" in commas. The Compliance type can be 'NETWORK_PROFILE', 'IMAGE', 'FABRIC', 'APPLICATION_VISIBILITY', 'FABRIC', RUNNING_CONFIG', 'NETWORK_SETTINGS', 'WORKFLOW' , 'EOX'.
 	ComplianceStatus string  `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" in commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
 	DeviceUUID       string  `url:"deviceUuid,omitempty"`       //Comma separated "Device Id(s)"
 	Offset           float64 `url:"offset,omitempty"`           //offset/starting row
 	Limit            float64 `url:"limit,omitempty"`            //The number of records to be retrieved defaults to 500 if not specified, with a maximum allowed limit of 500.
 }
 type GetComplianceDetailCountQueryParams struct {
-	ComplianceType   string `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" separated by commas. The Compliance type can be 'APPLICATION_VISIBILITY', 'EoX', 'FABRIC', 'IMAGE', 'NETWORK_PROFILE', 'NETWORK_SETTINGS', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.
+	ComplianceType   string `url:"complianceType,omitempty"`   //Specify "Compliance type(s)" separated by commas. The Compliance type can be 'APPLICATION_VISIBILITY', 'EOX', 'FABRIC', 'IMAGE', 'NETWORK_PROFILE', 'NETWORK_SETTINGS', 'PSIRT', 'RUNNING_CONFIG', 'WORKFLOW'.
 	ComplianceStatus string `url:"complianceStatus,omitempty"` //Specify "Compliance status(es)" separated by commas. The Compliance status can be 'COMPLIANT', 'NON_COMPLIANT', 'IN_PROGRESS', 'NOT_AVAILABLE', 'NOT_APPLICABLE', 'ERROR'.
 }
 type ComplianceDetailsOfDeviceQueryParams struct {
@@ -271,12 +271,12 @@ type ResponseComplianceGetComplianceDetail struct {
 	Response *[]ResponseComplianceGetComplianceDetailResponse `json:"response,omitempty"` //
 }
 type ResponseComplianceGetComplianceDetailResponse struct {
-	ComplianceType       string   `json:"complianceType,omitempty"`       // Compliance type corresponds to a tile on the UI. Will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EoX.
+	ComplianceType       string   `json:"complianceType,omitempty"`       // Compliance type corresponds to a tile on the UI. Will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EOX.
 	LastSyncTime         *float64 `json:"lastSyncTime,omitempty"`         // Timestamp when the status changed from different value to the current value.
 	DeviceUUID           string   `json:"deviceUuid,omitempty"`           // UUID of the device.
 	DisplayName          string   `json:"displayName,omitempty"`          // User friendly name for the configuration.
 	Status               string   `json:"status,omitempty"`               // Current status of compliance for the complianceType. Will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
-	Category             string   `json:"category,omitempty"`             // category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILE,WORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EoX' , 'NETWORK_SETTINGS'.
+	Category             string   `json:"category,omitempty"`             // category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILE,WORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EOX' , 'NETWORK_SETTINGS'.
 	LastUpdateTime       *float64 `json:"lastUpdateTime,omitempty"`       // Timestamp when the latest compliance checks ran.
 	State                string   `json:"state,omitempty"`                // State of latest compliance check for the complianceType. Will be one of SUCCESS, FAILED, or IN_PROGRESS.
 	RemediationSupported *bool    `json:"remediationSupported,omitempty"` // Indicates whether remediation is supported for this compliance type or not
@@ -308,15 +308,16 @@ type ResponseComplianceComplianceDetailsOfDevice struct {
 	DeviceUUID string                                                 `json:"deviceUuid,omitempty"` // UUID of the device.
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponse struct {
-	DeviceUUID     string                                                               `json:"deviceUuid,omitempty"`     // UUID of the device.
-	ComplianceType string                                                               `json:"complianceType,omitempty"` // Compliance type corresponds to a tile on the UI that will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EoX.
-	Status         string                                                               `json:"status,omitempty"`         // Status of compliance for the compliance type, will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, COMPLIANT_WARNING, REMEDIATION_IN_PROGRESS, or ABORTED.
-	State          string                                                               `json:"state,omitempty"`          // State of the compliance check for the compliance type, will be one of SUCCESS, FAILED, or IN_PROGRESS.
-	LastSyncTime   *float64                                                             `json:"lastSyncTime,omitempty"`   // Timestamp when the status changed from a different value to the current value.
-	LastUpdateTime *float64                                                             `json:"lastUpdateTime,omitempty"` // Timestamp of the latest compliance check that was run.
-	SourceInfoList *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList `json:"sourceInfoList,omitempty"` //
-	AckStatus      string                                                               `json:"ackStatus,omitempty"`      // Acknowledgment status of the compliance type. UNACKNOWLEDGED if none of the violations under the compliance type are acknowledged. Otherwise it will be ACKNOWLEDGED.
-	Version        string                                                               `json:"version,omitempty"`        // Version of the API.
+	DeviceUUID           string                                                               `json:"deviceUuid,omitempty"`           // UUID of the device.
+	ComplianceType       string                                                               `json:"complianceType,omitempty"`       // Compliance type corresponds to a tile on the UI that will be one of NETWORK_PROFILE, IMAGE, APPLICATION_VISIBILITY, FABRIC, PSIRT, RUNNING_CONFIG, NETWORK_SETTINGS, WORKFLOW, or EOX.
+	Status               string                                                               `json:"status,omitempty"`               // Status of compliance for the compliance type, will be one of COMPLIANT, NON_COMPLIANT, ERROR, IN_PROGRESS, NOT_APPLICABLE, NOT_AVAILABLE, WARNING, REMEDIATION_IN_PROGRESS can be the value of the compliance status parameter. [COMPLIANT: Device currently meets the compliance requirements.  NON_COMPLIANT: One of the compliance requirements like Software Image, PSIRT, Network Profile, Startup vs Running, etc. are not met. ERROR: Compliance is unable to compute status due to underlying errors. IN_PROGRESS: Compliance check is in progress for the device. NOT_APPLICABLE: Device is not supported for compliance, or minimum license requirement is not met. NOT_AVAILABLE: Compliance is not available for the device. COMPLIANT_WARNING: The device is compliant with warning if the last date of support is nearing. REMEDIATION_IN_PROGRESS: Compliance remediation is in progress for the device.]
+	State                string                                                               `json:"state,omitempty"`                // State of the compliance check for the compliance type, will be one of SUCCESS, FAILED, or IN_PROGRESS.
+	LastSyncTime         *float64                                                             `json:"lastSyncTime,omitempty"`         // Timestamp when the status changed from a different value to the current value.
+	LastUpdateTime       *float64                                                             `json:"lastUpdateTime,omitempty"`       // Timestamp of the latest compliance check that was run.
+	SourceInfoList       *[]ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList `json:"sourceInfoList,omitempty"`       //
+	AckStatus            string                                                               `json:"ackStatus,omitempty"`            // Acknowledgment status of the compliance type. UNACKNOWLEDGED if none of the violations under the compliance type are acknowledged. Otherwise it will be ACKNOWLEDGED.
+	Version              string                                                               `json:"version,omitempty"`              // Version of the API.
+	RemediationSupported *bool                                                                `json:"remediationSupported,omitempty"` // Indicates whether remediation is supported for this compliance type or not.
 }
 type ResponseComplianceComplianceDetailsOfDeviceResponseSourceInfoList struct {
 	Name                string                                                                        `json:"name,omitempty"`                // Name of the type of top level configuration.
@@ -952,7 +953,7 @@ type ResponseComplianceTriggersASecurityAdvisoriesScanForTheSupportedNetworkDevi
 }
 type RequestComplianceRunCompliance struct {
 	TriggerFull *bool    `json:"triggerFull,omitempty"` // if it is true then compliance will be triggered for all categories. If it is false then compliance will be triggered for categories mentioned in categories section .
-	Categories  []string `json:"categories,omitempty"`  // Category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILE,WORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EoX' , 'NETWORK_SETTINGS'
+	Categories  []string `json:"categories,omitempty"`  // Category can have any value among 'INTENT'(mapped to compliance types: NETWORK_SETTINGS,NETWORK_PROFILE,WORKFLOW,FABRIC,APPLICATION_VISIBILITY), 'RUNNING_CONFIG' , 'IMAGE' , 'PSIRT' , 'EOX'
 	DeviceUUIDs []string `json:"deviceUuids,omitempty"` // UUID of the device.
 }
 type RequestComplianceCommitDeviceConfiguration struct {

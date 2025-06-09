@@ -39,7 +39,7 @@ func main() {
 
 	fmt.Println("Post ConfArchive")
 	reqBody := &dnac.RequestConfigurationArchiveExportDeviceConfigurations{
-		DeviceID: deviceUUID,
+		DeviceID: []string{deviceUUID},
 		Password: "C1sco123!",
 	}
 

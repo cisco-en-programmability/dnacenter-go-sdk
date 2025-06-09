@@ -27,7 +27,7 @@ type GetTheDetailsOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams struct 
 	DeviceType             string  `url:"deviceType,omitempty"`             //Device Type of the device to which this issue belongs to. Supports single device type and multiple device types. Examples: deviceType=wireless controller (single device type requested) deviceType=wireless controller&deviceType=core (multiple device types requested)
 	Name                   string  `url:"name,omitempty"`                   //The name of the issue Examples: name=ap_down (single issue name requested) name=ap_down&name=wlc_monitor (multiple issue names requested) Issue names can be retrieved using the API - /data/api/v1/assuranceIssueConfigurations
 	IssueID                string  `url:"issueId,omitempty"`                //UUID of the issue Examples: issueId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single issue id requested) issueId=e52aecfe-b142-4287-a587-11a16ba6dd26&issueId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple issue ids requested)
-	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it     could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
+	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it      could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
 	UpdatedBy              string  `url:"updatedBy,omitempty"`              //The user who last updated this issue. Examples: updatedBy=admin (single updatedBy requested) updatedBy=admin&updatedBy=john (multiple updatedBy requested)
 	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -63,7 +63,7 @@ type GetTheTotalNumberOfIssuesForGivenSetOfFiltersKnowYourNetworkQueryParams str
 	DeviceType             string  `url:"deviceType,omitempty"`             //Device Type of the device to which this issue belongs to. Supports single device type and multiple device types. Examples: deviceType=wireless controller (single device type requested) deviceType=wireless controller&deviceType=core (multiple device types requested)
 	Name                   string  `url:"name,omitempty"`                   //The name of the issue Examples: name=ap_down (single issue name requested) name=ap_down&name=wlc_monitor (multiple issue names requested) Issue names can be retrieved using the API - /data/api/v1/assuranceIssueConfigurations
 	IssueID                string  `url:"issueId,omitempty"`                //UUID of the issue Examples: issueId=e52aecfe-b142-4287-a587-11a16ba6dd26 (single issue id requested) issueId=e52aecfe-b142-4287-a587-11a16ba6dd26&issueId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple issue ids requested)
-	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it     could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
+	EntityID               string  `url:"entityId,omitempty"`               //Id of the entity for which this issue belongs to. For example, it      could be mac address of AP or UUID of Sensor   example: 68:ca:e4:79:3f:20 4de02167-901b-43cf-8822-cffd3caa286f Examples: entityId=68:ca:e4:79:3f:20 (single entity id requested) entityId=68:ca:e4:79:3f:20&entityId=864d0421-02c0-43a6-9c52-81cad45f66d8 (multiple entity ids requested)
 	UpdatedBy              string  `url:"updatedBy,omitempty"`              //The user who last updated this issue. Examples: updatedBy=admin (single updatedBy requested) updatedBy=admin&updatedBy=john (multiple updatedBy requested)
 	SiteHierarchy          string  `url:"siteHierarchy,omitempty"`          //The full hierarchical breakdown of the site tree starting from Global site name and ending with the specific site name. The Root site is named "Global" (Ex. `Global/AreaName/BuildingName/FloorName`) This field supports wildcard asterisk (*) character search support. E.g. */San*, */San, /San* Examples: `?siteHierarchy=Global/AreaName/BuildingName/FloorName` (single siteHierarchy requested) `?siteHierarchy=Global/AreaName/BuildingName/FloorName&siteHierarchy=Global/AreaName2/BuildingName2/FloorName2` (multiple siteHierarchies requested)
 	SiteHierarchyID        string  `url:"siteHierarchyId,omitempty"`        //The full hierarchy breakdown of the site tree in id form starting from Global site UUID and ending with the specific site UUID. (Ex. `globalUuid/areaUuid/buildingUuid/floorUuid`) This field supports wildcard asterisk (*) character search support. E.g. `*uuid*, *uuid, uuid* Examples: `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid `(single siteHierarchyId requested) `?siteHierarchyId=globalUuid/areaUuid/buildingUuid/floorUuid&siteHierarchyId=globalUuid/areaUuid2/buildingUuid2/floorUuid2` (multiple siteHierarchyIds requested)
@@ -622,44 +622,27 @@ type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionID
 	Response *ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse `json:"response,omitempty"` //
 }
 type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	Description string `json:"description,omitempty"` // Description
-
-	ProfileID string `json:"profileId,omitempty"` // Profile Id
-
-	TriggerID string `json:"triggerId,omitempty"` // Trigger Id
-
-	Rules *[]ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules `json:"rules,omitempty"` //
-
-	IsEnabled *bool `json:"isEnabled,omitempty"` // Is Enabled
-
-	Priority string `json:"priority,omitempty"` // Priority
-
-	IsDeletable *bool `json:"isDeletable,omitempty"` // Is Deletable
-
-	IsNotificationEnabled *bool `json:"isNotificationEnabled,omitempty"` // Is Notification Enabled
-
-	CreatedTime *int `json:"createdTime,omitempty"` // Created Time
-
-	LastUpdatedTime *int `json:"lastUpdatedTime,omitempty"` // Last Updated Time
+	ID                    string                                                                                      `json:"id,omitempty"`                    // Id
+	Name                  string                                                                                      `json:"name,omitempty"`                  // Name
+	Description           string                                                                                      `json:"description,omitempty"`           // Description
+	ProfileID             string                                                                                      `json:"profileId,omitempty"`             // Profile Id
+	TriggerID             string                                                                                      `json:"triggerId,omitempty"`             // Trigger Id
+	Rules                 *[]ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules `json:"rules,omitempty"`                 //
+	IsEnabled             *bool                                                                                       `json:"isEnabled,omitempty"`             // Is Enabled
+	Priority              string                                                                                      `json:"priority,omitempty"`              // Priority
+	IsDeletable           *bool                                                                                       `json:"isDeletable,omitempty"`           // Is Deletable
+	IsNotificationEnabled *bool                                                                                       `json:"isNotificationEnabled,omitempty"` // Is Notification Enabled
+	CreatedTime           *int                                                                                        `json:"createdTime,omitempty"`           // Created Time
+	LastUpdatedTime       *int                                                                                        `json:"lastUpdatedTime,omitempty"`       // Last Updated Time
 }
 type ResponseIssuesGetTheCustomIssueDefinitionForTheGivenCustomIssueDefinitionIDResponseRules struct {
-	Type string `json:"type,omitempty"` // Type
-
-	Severity *int `json:"severity,omitempty"` // Severity
-
-	Facility string `json:"facility,omitempty"` // Facility
-
-	Mnemonic string `json:"mnemonic,omitempty"` // Mnemonic
-
-	Pattern string `json:"pattern,omitempty"` // Pattern
-
-	Occurrences *int `json:"occurrences,omitempty"` // Occurrences
-
-	DurationInMinutes *int `json:"durationInMinutes,omitempty"` // Duration In Minutes
+	Type              string `json:"type,omitempty"`              // Type
+	Severity          *int   `json:"severity,omitempty"`          // Severity
+	Facility          string `json:"facility,omitempty"`          // Facility
+	Mnemonic          string `json:"mnemonic,omitempty"`          // Mnemonic
+	Pattern           string `json:"pattern,omitempty"`           // Pattern
+	Occurrences       *int   `json:"occurrences,omitempty"`       // Occurrences
+	DurationInMinutes *int   `json:"durationInMinutes,omitempty"` // Duration In Minutes
 }
 type ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID struct {
 	Response *ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIDResponse `json:"response,omitempty"` //
@@ -795,33 +778,20 @@ type ResponseIssuesIssueTriggerDefinitionUpdate struct {
 	Version  string                                              `json:"version,omitempty"`  // Version
 }
 type ResponseIssuesIssueTriggerDefinitionUpdateResponse struct {
-	ID string `json:"id,omitempty"` // Id
-
-	Name string `json:"name,omitempty"` // Name
-
-	DisplayName string `json:"displayName,omitempty"` // Display Name
-
-	Description string `json:"description,omitempty"` // Description
-
-	Priority string `json:"priority,omitempty"` // Priority
-
-	DefaultPriority string `json:"defaultPriority,omitempty"` // Default Priority
-
-	DeviceType string `json:"deviceType,omitempty"` // Device Type
-
-	IssueEnabled *bool `json:"issueEnabled,omitempty"` // Issue Enabled
-
-	ProfileID string `json:"profileId,omitempty"` // Profile Id
-
-	DefinitionStatus string `json:"definitionStatus,omitempty"` // Definition Status
-
-	CategoryName string `json:"categoryName,omitempty"` // Category Name
-
-	SynchronizeToHealthThreshold *bool `json:"synchronizeToHealthThreshold,omitempty"` // Synchronize To Health Threshold
-
-	ThresholdValue *float64 `json:"thresholdValue,omitempty"` // Threshold Value
-
-	LastModified string `json:"lastModified,omitempty"` // Last Modified
+	ID                           string   `json:"id,omitempty"`                           // Id
+	Name                         string   `json:"name,omitempty"`                         // Name
+	DisplayName                  string   `json:"displayName,omitempty"`                  // Display Name
+	Description                  string   `json:"description,omitempty"`                  // Description
+	Priority                     string   `json:"priority,omitempty"`                     // Priority
+	DefaultPriority              string   `json:"defaultPriority,omitempty"`              // Default Priority
+	DeviceType                   string   `json:"deviceType,omitempty"`                   // Device Type
+	IssueEnabled                 *bool    `json:"issueEnabled,omitempty"`                 // Issue Enabled
+	ProfileID                    string   `json:"profileId,omitempty"`                    // Profile Id
+	DefinitionStatus             string   `json:"definitionStatus,omitempty"`             // Definition Status
+	CategoryName                 string   `json:"categoryName,omitempty"`                 // Category Name
+	SynchronizeToHealthThreshold *bool    `json:"synchronizeToHealthThreshold,omitempty"` // Synchronize To Health Threshold
+	ThresholdValue               *float64 `json:"thresholdValue,omitempty"`               // Threshold Value
+	LastModified                 string   `json:"lastModified,omitempty"`                 // Last Modified
 }
 type RequestIssuesGetTheDetailsOfIssuesForGivenSetOfFilters struct {
 	StartTime *int                                                             `json:"startTime,omitempty"` // Start Time
@@ -951,7 +921,8 @@ type RequestIssuesGetTrendAnalyticsDataOfIssuesPage struct {
 	TimestampOrder string `json:"timestampOrder,omitempty"` // Timestamp Order
 }
 type RequestIssuesIgnoreTheGivenListOfIssues struct {
-	IssueIDs []string `json:"issueIds,omitempty"` // Issue Ids
+	IssueIDs    []string `json:"issueIds,omitempty"`    // Issue Ids
+	IgnoreHours *int     `json:"ignoreHours,omitempty"` // Ignore Hours
 }
 type RequestIssuesResolveTheGivenListsOfIssues struct {
 	IssueIDs []string `json:"issueIds,omitempty"` // Issue Ids
@@ -1165,6 +1136,7 @@ func (s *IssuesService) GetAllTheDetailsAndSuggestedActionsOfAnIssueForTheGivenI
 
 //GetAllTheCustomIssueDefinitionsBasedOnTheGivenFilters Get all the custom issue definitions based on the given filters. - 1bb9-bb87-4efa-afd2
 /* Retrieve the existing syslog-based custom issue definitions. The supported filters are id, name, profileId,  definition enable status, priority, severity, facility and mnemonic. The issue definition configurations may vary across profiles, hence specifying the profile Id in the query parameter is important and the default profile is global.
+
 
   The assurance profile definitions can be obtain via the API endpoint: /api/v1/siteprofile?namespace=assurance. For detailed information about the usage of the API, please refer to the Open API specification document https://github.com/cisco-en-programmability/catalyst-center-api-specs/blob/main/Assurance/CE_Cat_Center_Org-AssuranceUserDefinedIssueAPIs-1.0.0-resolved.yaml
 
@@ -2060,7 +2032,6 @@ func (s *IssuesService) ExecuteSuggestedActionsCommands(requestIssuesExecuteSugg
 
 @param id id path parameter. The custom issue definition Identifier
 
-@param UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedIdHeaderParams Custom header parameters
 */
 func (s *IssuesService) UpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID(id string, requestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedId *RequestIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID) (*ResponseIssuesUpdatesAnExistingCustomIssueDefinitionBasedOnTheProvidedID, *resty.Response, error) {
 	path := "/dna/intent/api/v1/customIssueDefinitions/{id}"
@@ -2159,7 +2130,8 @@ func (s *IssuesService) DeletesAnExistingCustomIssueDefinition(id string) (*rest
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAnExistingCustomIssueDefinition(id)
+			return s.DeletesAnExistingCustomIssueDefinition(
+				id)
 		}
 		return response, fmt.Errorf("error with operation DeletesAnExistingCustomIssueDefinition")
 	}

@@ -83,40 +83,32 @@ type ResponseFabricWirelessReturnTheCountOfAllTheFabricSiteWhichHasSSIDToIPPoolM
 }
 type ResponseFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagement struct {
 	Response *ResponseFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagementResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version of the response
+	Version  string                                                                            `json:"version,omitempty"`  // Version of the response.
 }
 type ResponseFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagementResponse struct {
-	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task
-
-	URL string `json:"url,omitempty"` // URL for the task
+	TaskID string `json:"taskId,omitempty"` // Unique identifier for the task.
+	URL    string `json:"url,omitempty"`    // URL for the task.
 }
 type ResponseFabricWirelessGetSdaWirelessDetailsFromSwitches struct {
 	Response *[]ResponseFabricWirelessGetSdaWirelessDetailsFromSwitchesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                             `json:"version,omitempty"`  // Version
 }
 type ResponseFabricWirelessGetSdaWirelessDetailsFromSwitchesResponse struct {
-	ID string `json:"id,omitempty"` // Network Device ID of the Wireless Capable Switch
-
-	EnableWireless *bool `json:"enableWireless,omitempty"` // Enable Wireless
-
+	ID               string                                                                           `json:"id,omitempty"`               // Network Device ID of the Wireless Capable Switch
+	EnableWireless   *bool                                                                            `json:"enableWireless,omitempty"`   // Enable Wireless
 	RollingApUpgrade *ResponseFabricWirelessGetSdaWirelessDetailsFromSwitchesResponseRollingApUpgrade `json:"rollingApUpgrade,omitempty"` //
 }
 type ResponseFabricWirelessGetSdaWirelessDetailsFromSwitchesResponseRollingApUpgrade struct {
 	EnableRollingApUpgrade *bool `json:"enableRollingApUpgrade,omitempty"` // Enable Rolling Ap Upgrade
-
-	ApRebootPercentage *int `json:"apRebootPercentage,omitempty"` // AP Reboot Percentage. Permissible values - 5, 15, 25
+	ApRebootPercentage     *int  `json:"apRebootPercentage,omitempty"`     // AP Reboot Percentage. Permissible values - 5, 15, 25
 }
 type ResponseFabricWirelessReloadSwitchForWirelessControllerCleanup struct {
 	Response *ResponseFabricWirelessReloadSwitchForWirelessControllerCleanupResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                  `json:"version,omitempty"`  // Version
 }
 type ResponseFabricWirelessReloadSwitchForWirelessControllerCleanupResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
-
-	URL string `json:"url,omitempty"` // Task URL
+	URL    string `json:"url,omitempty"`    // Task URL
 }
 type ResponseFabricWirelessAddUpdateOrRemoveSSIDMappingToAVLAN struct {
 	Response *ResponseFabricWirelessAddUpdateOrRemoveSSIDMappingToAVLANResponse `json:"response,omitempty"` //
@@ -147,18 +139,15 @@ type ResponseFabricWirelessReturnsTheCountOfVLANsMappedToSSIDsInAFabricSiteRespo
 }
 type ResponseFabricWirelessUpdateSdaWirelessMulticast struct {
 	Response *ResponseFabricWirelessUpdateSdaWirelessMulticastResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                    `json:"version,omitempty"`  // Version
 }
 type ResponseFabricWirelessUpdateSdaWirelessMulticastResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task ID
-
-	URL string `json:"url,omitempty"` // Task URL
+	URL    string `json:"url,omitempty"`    // Task URL
 }
 type ResponseFabricWirelessGetSdaWirelessMulticast struct {
 	Response *ResponseFabricWirelessGetSdaWirelessMulticastResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                 `json:"version,omitempty"`  // Version
 }
 type ResponseFabricWirelessGetSdaWirelessMulticastResponse struct {
 	MulticastEnabled *bool `json:"multicastEnabled,omitempty"` // The setting indicates whether multicast is enabled (true) or disabled (false).
@@ -180,16 +169,13 @@ type RequestFabricWirelessAddWLCToFabricDomain struct {
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Fabric Site Name Hierarchy
 }
 type RequestFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagement struct {
-	ID string `json:"id,omitempty"` // Network Device ID of the wireless capable switch
-
-	EnableWireless *bool `json:"enableWireless,omitempty"` // Enable Wireless
-
+	ID               string                                                                                   `json:"id,omitempty"`               // Network Device ID of the wireless capable switch
+	EnableWireless   *bool                                                                                    `json:"enableWireless,omitempty"`   // Enable Wireless
 	RollingApUpgrade *RequestFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagementRollingApUpgrade `json:"rollingApUpgrade,omitempty"` //
 }
 type RequestFabricWirelessSwitchWirelessSettingAndRollingApUpgradeManagementRollingApUpgrade struct {
 	EnableRollingApUpgrade *bool `json:"enableRollingApUpgrade,omitempty"` // Enable Rolling Ap Upgrade
-
-	ApRebootPercentage *int `json:"apRebootPercentage,omitempty"` // AP Reboot Percentage. Permissible values - 5, 15, 25
+	ApRebootPercentage     *int  `json:"apRebootPercentage,omitempty"`     // AP Reboot Percentage. Permissible values - 5, 15, 25
 }
 type RequestFabricWirelessReloadSwitchForWirelessControllerCleanup struct {
 	DeviceID string `json:"deviceId,omitempty"` // Network Device ID
@@ -762,7 +748,8 @@ func (s *FabricWirelessService) RemoveWLCFromFabricDomain(RemoveWLCFromFabricDom
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.RemoveWLCFromFabricDomain(RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams)
+			return s.RemoveWLCFromFabricDomain(
+				RemoveWLCFromFabricDomainHeaderParams, RemoveWLCFromFabricDomainQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation RemoveWLCFromFabricDomain")
 	}

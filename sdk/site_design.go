@@ -41,12 +41,12 @@ type UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams struct {
 	SiteID string `url:"siteId,omitempty"` //The id or ids of the network profile, retrievable from /dna/intent/api/v1/sites.. A list of profile ids can be passed as a queryParameter in two ways:  1. a comma-separated string ( siteId=388a23e9-4739-4be7-a0aa-cc5a95d158dd,2726dc60-3a12-451e-947a-d972ebf58743), or... 2. as separate query parameters with the same name ( siteId=388a23e9-4739-4be7-a0aa-cc5a95d158dd&siteId=2726dc60-3a12-451e-947a-d972ebf58743
 }
 type GetSitesQueryParams struct {
-	Name           string `url:"name,omitempty"`            //Site name.
-	NameHierarchy  string `url:"nameHierarchy,omitempty"`   //Site name hierarchy.
-	Type           string `url:"type,omitempty"`            //Site type.
-	UnitsOfMeasure string `url:"_unitsOfMeasure,omitempty"` //Floor units of measure
-	Offset         int    `url:"offset,omitempty"`          //The first record to show for this page; the first record is numbered 1.
-	Limit          int    `url:"limit,omitempty"`           //The number of records to show for this page;The minimum is 1, and the maximum is 500.
+	Name           string  `url:"name,omitempty"`            //Site name.
+	NameHierarchy  string  `url:"nameHierarchy,omitempty"`   //Site name hierarchy.
+	Type           string  `url:"type,omitempty"`            //Site type.
+	UnitsOfMeasure string  `url:"_unitsOfMeasure,omitempty"` //Floor units of measure
+	Offset         float64 `url:"offset,omitempty"`          //The first record to show for this page; the first record is numbered 1.
+	Limit          float64 `url:"limit,omitempty"`           //The number of records to show for this page;The minimum is 1, and the maximum is 500.
 }
 type GetSitesCountQueryParams struct {
 	Name string `url:"name,omitempty"` //Site name.
@@ -86,625 +86,483 @@ type GetsAFloorV2QueryParams struct {
 }
 
 type ResponseSiteDesignCreatesAnArea struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignCreatesAnAreaResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignCreatesAnAreaResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignUpdatesAnArea struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUpdatesAnAreaResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUpdatesAnAreaResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignDeletesAnArea struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                   `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignDeletesAnAreaResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDeletesAnAreaResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetsAnArea struct {
 	Response *ResponseSiteDesignGetsAnAreaResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                `json:"version,omitempty"`  //
 }
 type ResponseSiteDesignGetsAnAreaResponse struct {
-	ID string `json:"id,omitempty"` // Aread Id. Read only.
-
-	Name string `json:"name,omitempty"` // Area name
-
-	NameHierarchy string `json:"nameHierarchy,omitempty"` // Area hierarchical name. Read only.
-
-	ParentID string `json:"parentId,omitempty"` // Parent Id
-
-	Type string `json:"type,omitempty"` // Site Type.
+	ID              string `json:"id,omitempty"`              // Aread Id. Read only.
+	SiteHierarchyID string `json:"siteHierarchyId,omitempty"` // Site Hierarchical Id. Read Only. Can be used to add the access groups using the API POST:/dna/system/api/v1/accessGroups, this value should be used to populate the srcResourceId field of the request payload.
+	Name            string `json:"name,omitempty"`            // Area name
+	NameHierarchy   string `json:"nameHierarchy,omitempty"`   // Area hierarchical name. Read only.
+	ParentID        string `json:"parentId,omitempty"`        // Parent Id
+	Type            string `json:"type,omitempty"`            // Site Type.
 }
 type ResponseSiteDesignAssignNetworkDevicesToASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignAssignNetworkDevicesToASiteResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAssignNetworkDevicesToASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDevices struct {
 	Response *[]ResponseSiteDesignGetSiteAssignedNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                     `json:"version,omitempty"`  //
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDevicesResponse struct {
-	DeviceID string `json:"deviceId,omitempty"` // Site assigned network device Id.
-
-	SiteID string `json:"siteId,omitempty"` // Site Id where device has been assigned.
-
+	DeviceID          string `json:"deviceId,omitempty"`          // Site assigned network device Id.
+	SiteID            string `json:"siteId,omitempty"`            // Site Id where device has been assigned.
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site name hierarchy
-
-	SiteType string `json:"siteType,omitempty"` // Type of the site where device has been assigned.
+	SiteType          string `json:"siteType,omitempty"`          // Type of the site where device has been assigned.
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDevicesCount struct {
 	Response *ResponseSiteDesignGetSiteAssignedNetworkDevicesCountResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                        `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDevicesCountResponse struct {
 	Count *int `json:"count,omitempty"` // The total number of records related to the resource
 }
 type ResponseSiteDesignGetDeviceControllabilitySettings struct {
 	Response *ResponseSiteDesignGetDeviceControllabilitySettingsResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  //
 }
 type ResponseSiteDesignGetDeviceControllabilitySettingsResponse struct {
 	AutocorrectTelemetryConfig *bool `json:"autocorrectTelemetryConfig,omitempty"` // If it is true, autocorrect telemetry config is enabled. If it is false, autocorrect telemetry config is disabled. The autocorrect telemetry config feature is supported only when device controllability is enabled.
-
-	DeviceControllability *bool `json:"deviceControllability,omitempty"` // If it is true, device controllability is enabled. If it is false, device controllability is disabled.
+	DeviceControllability      *bool `json:"deviceControllability,omitempty"`      // If it is true, device controllability is enabled. If it is false, device controllability is disabled.
 }
 type ResponseSiteDesignUpdateDeviceControllabilitySettings struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                         `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUpdateDeviceControllabilitySettingsResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUpdateDeviceControllabilitySettingsResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetSiteNotAssignedNetworkDevices struct {
 	Response *ResponseSiteDesignGetSiteNotAssignedNetworkDevicesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                      `json:"version,omitempty"`  //
 }
 type ResponseSiteDesignGetSiteNotAssignedNetworkDevicesResponse struct {
 	DeviceIDs []string `json:"deviceIds,omitempty"` // Network device Ids.
 }
 type ResponseSiteDesignGetSiteNotAssignedNetworkDevicesCount struct {
 	Response *ResponseSiteDesignGetSiteNotAssignedNetworkDevicesCountResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                                           `json:"version,omitempty"`  // The version of the response
 }
 type ResponseSiteDesignGetSiteNotAssignedNetworkDevicesCountResponse struct {
 	Count *int `json:"count,omitempty"` // The total number of records related to the resource
 }
 type ResponseSiteDesignUnassignNetworkDevicesFromSites struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUnassignNetworkDevicesFromSitesResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUnassignNetworkDevicesFromSitesResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDevice struct {
 	Response *ResponseSiteDesignGetSiteAssignedNetworkDeviceResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` //
+	Version  string                                                  `json:"version,omitempty"`  //
 }
 type ResponseSiteDesignGetSiteAssignedNetworkDeviceResponse struct {
-	DeviceID string `json:"deviceId,omitempty"` // Site assigned network device Id.
-
-	SiteID string `json:"siteId,omitempty"` // Site Id where device has been assigned.
-
+	DeviceID          string `json:"deviceId,omitempty"`          // Site assigned network device Id.
+	SiteID            string `json:"siteId,omitempty"`            // Site Id where device has been assigned.
 	SiteNameHierarchy string `json:"siteNameHierarchy,omitempty"` // Site name hierarchy
-
-	SiteType string `json:"siteType,omitempty"` // Type of the site where device has been assigned.
+	SiteType          string `json:"siteType,omitempty"`          // Type of the site where device has been assigned.
 }
 type ResponseSiteDesignRetrievesTheListOfNetworkProfilesForSites struct {
 	Response *[]ResponseSiteDesignRetrievesTheListOfNetworkProfilesForSitesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                 `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheListOfNetworkProfilesForSitesResponse struct {
-	ID string `json:"id,omitempty"` // The ID of this network profile.
-
+	ID   string `json:"id,omitempty"`   // The ID of this network profile.
 	Name string `json:"name,omitempty"` // The name of the network profile.
-
 	Type string `json:"type,omitempty"` // Type
 }
 type ResponseSiteDesignRetrievesTheCountOfNetworkProfilesForSites struct {
 	Response *ResponseSiteDesignRetrievesTheCountOfNetworkProfilesForSitesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheCountOfNetworkProfilesForSitesResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseSiteDesignDeletesANetworkProfileForSites struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignDeletesANetworkProfileForSitesResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDeletesANetworkProfileForSitesResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignRetrieveANetworkProfileForSitesByID struct {
 	Response *ResponseSiteDesignRetrieveANetworkProfileForSitesByIDResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignRetrieveANetworkProfileForSitesByIDResponse struct {
-	ID string `json:"id,omitempty"` // The ID of this network profile.
-
+	ID   string `json:"id,omitempty"`   // The ID of this network profile.
 	Name string `json:"name,omitempty"` // The name of the network profile.
-
 	Type string `json:"type,omitempty"` // Type
 }
 type ResponseSiteDesignAssignANetworkProfileForSitesToTheGivenSite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignAssignANetworkProfileForSitesToTheGivenSiteResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAssignANetworkProfileForSitesToTheGivenSiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignRetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo struct {
 	Response *[]ResponseSiteDesignRetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                             `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheListOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToResponse struct {
 	ID string `json:"id,omitempty"` // Id
 }
 type ResponseSiteDesignAssignANetworkProfileForSitesToAListOfSites struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignAssignANetworkProfileForSitesToAListOfSitesResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAssignANetworkProfileForSitesToAListOfSitesResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignUnassignsANetworkProfileForSitesFromMultipleSites struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUnassignsANetworkProfileForSitesFromMultipleSitesResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUnassignsANetworkProfileForSitesFromMultipleSitesResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignRetrievesTheCountOfSitesThatTheGivenNetworkProfileForSitesIsAssignedTo struct {
 	Response *ResponseSiteDesignRetrievesTheCountOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                            `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheCountOfSitesThatTheGivenNetworkProfileForSitesIsAssignedToResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseSiteDesignUnassignsANetworkProfileForSitesFromASite struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                               `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUnassignsANetworkProfileForSitesFromASiteResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUnassignsANetworkProfileForSitesFromASiteResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignAssociate struct {
-	Version string `json:"version,omitempty"` // Version
-
+	Version  string                               `json:"version,omitempty"`  // Version
 	Response *ResponseSiteDesignAssociateResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAssociateResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseSiteDesignDisassociate struct {
-	Version string `json:"version,omitempty"` // Version
-
+	Version  string                                  `json:"version,omitempty"`  // Version
 	Response *ResponseSiteDesignDisassociateResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDisassociateResponse struct {
 	TaskID string `json:"taskId,omitempty"` // Task Id
-
-	URL string `json:"url,omitempty"` // Url
+	URL    string `json:"url,omitempty"`    // Url
 }
 type ResponseSiteDesignGetSites struct {
 	Response *[]ResponseSiteDesignGetSitesResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetSitesResponse struct {
-	NameHierarchy string `json:"nameHierarchy,omitempty"` // Site hierarchical name. Read only. Example: Global/USA/San Jose/Building1
-
-	Name string `json:"name,omitempty"` // Site name.
-
-	Latitude *float64 `json:"latitude,omitempty"` // Building Latitude. Example: 37.403712
-
-	Longitude *float64 `json:"longitude,omitempty"` // Building Longitude. Example: -121.971063
-
-	Address string `json:"address,omitempty"` // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
-
-	Country string `json:"country,omitempty"` // Country name for the building.
-
-	FloorNumber *int `json:"floorNumber,omitempty"` // Floor number
-
-	RfModel string `json:"rfModel,omitempty"` // Floor RF Model
-
-	Width *float64 `json:"width,omitempty"` // Floor width. Example : 100.5
-
-	Length *float64 `json:"length,omitempty"` // Floor length. Example : 110.3
-
-	Height *float64 `json:"height,omitempty"` // Floor height. Example : 10.1
-
-	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor unit of measure
-
-	Type string `json:"type,omitempty"` // Type
-
-	ID string `json:"id,omitempty"` // Site Id. Read only.
-
-	ParentID string `json:"parentId,omitempty"` // Parent Id. Read only
+	NameHierarchy   string   `json:"nameHierarchy,omitempty"`   // Site hierarchical name. Read only. Example: Global/USA/San Jose/Building1
+	Name            string   `json:"name,omitempty"`            // Site name.
+	Latitude        *float64 `json:"latitude,omitempty"`        // Building Latitude. Example: 37.403712
+	Longitude       *float64 `json:"longitude,omitempty"`       // Building Longitude. Example: -121.971063
+	Address         string   `json:"address,omitempty"`         // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
+	Country         string   `json:"country,omitempty"`         // Country name for the building.
+	FloorNumber     *int     `json:"floorNumber,omitempty"`     // Floor number
+	RfModel         string   `json:"rfModel,omitempty"`         // Floor RF Model
+	Width           *float64 `json:"width,omitempty"`           // Floor width. Example : 100.5
+	Length          *float64 `json:"length,omitempty"`          // Floor length. Example : 110.3
+	Height          *float64 `json:"height,omitempty"`          // Floor height. Example : 10.1
+	UnitsOfMeasure  string   `json:"unitsOfMeasure,omitempty"`  // Floor unit of measure
+	Type            string   `json:"type,omitempty"`            // Type
+	ID              string   `json:"id,omitempty"`              // Site Id. Read only.
+	ParentID        string   `json:"parentId,omitempty"`        // Parent Id. Read only
+	SiteHierarchyID string   `json:"siteHierarchyId,omitempty"` // Site Hierarchical Id. Read only. Can be used to add the access groups using the API POST:/dna/system/api/v1/accessGroups, this value should be used to populate the srcResourceId field of the request payload.
 }
 type ResponseSiteDesignCreateSites struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignCreateSitesResponse `json:"response,omitempty"` //
 }
 type ResponseSiteDesignCreateSitesResponse struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetSitesCount []ResponseItemSiteDesignGetSitesCount // Array of ResponseSiteDesignGetSitesCount
 type ResponseItemSiteDesignGetSitesCount struct {
 	Response *ResponseItemSiteDesignGetSitesCountResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // The version of the response
+	Version  string                                       `json:"version,omitempty"`  // The version of the response
 }
 type ResponseItemSiteDesignGetSitesCountResponse struct {
 	Count *int `json:"count,omitempty"` // The reported count.
 }
 type ResponseSiteDesignRetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssigned struct {
 	Response *[]ResponseSiteDesignRetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                        `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheListOfNetworkProfilesThatTheGivenSiteHasBeenAssignedResponse struct {
 	ID string `json:"id,omitempty"` // Id
 }
 type ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssigned struct {
 	Response *ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssignedResponse `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                                                `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignRetrievesTheCountOfProfilesThatTheGivenSiteHasBeenAssignedResponse struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseSiteDesignCreatesABuildingV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignCreatesABuildingV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignCreatesABuildingV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignUpdatesABuildingV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUpdatesABuildingV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUpdatesABuildingV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignDeletesABuildingV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignDeletesABuildingV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDeletesABuildingV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetsABuildingV2 struct {
 	Response *ResponseSiteDesignGetsABuildingV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignGetsABuildingV2Response struct {
-	ParentID string `json:"parentId,omitempty"` // Parent Id
-
-	Name string `json:"name,omitempty"` // Building name
-
-	Latitude *float64 `json:"latitude,omitempty"` // Building Latitude. Example: 37.403712
-
-	Longitude *float64 `json:"longitude,omitempty"` // Building Longitude. Example: -121.971063
-
-	Address string `json:"address,omitempty"` // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
-
-	Country string `json:"country,omitempty"` // Country name
-
-	Type string `json:"type,omitempty"` // Example: building
+	ParentID        string   `json:"parentId,omitempty"`        // Parent Id
+	Name            string   `json:"name,omitempty"`            // Building name
+	Latitude        *float64 `json:"latitude,omitempty"`        // Building Latitude. Example: 37.403712
+	Longitude       *float64 `json:"longitude,omitempty"`       // Building Longitude. Example: -121.971063
+	Address         string   `json:"address,omitempty"`         // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
+	Country         string   `json:"country,omitempty"`         // Country name
+	Type            string   `json:"type,omitempty"`            // Example: building
+	ID              string   `json:"id,omitempty"`              // Building Id. Read only
+	NameHierarchy   string   `json:"nameHierarchy,omitempty"`   // Building hierarchical name. Read only
+	SiteHierarchyID string   `json:"siteHierarchyId,omitempty"` // Site Hierarchical Id. Read only. Can be used to add the access groups using the API POST:/dna/system/api/v1/accessGroups, this value should be used to populate the srcResourceId field of the request payload.
 }
 type ResponseSiteDesignCreatesAFloorV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignCreatesAFloorV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignCreatesAFloorV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignUpdatesFloorSettingsV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                            `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUpdatesFloorSettingsV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUpdatesFloorSettingsV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetFloorSettingsV2 struct {
 	Response *ResponseSiteDesignGetFloorSettingsV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                        `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetFloorSettingsV2Response struct {
 	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor units of measure.
 }
 type ResponseSiteDesignGetAccessPointsPositionsV2 struct {
 	Response *[]ResponseSiteDesignGetAccessPointsPositionsV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                  `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetAccessPointsPositionsV2Response struct {
-	ID string `json:"id,omitempty"` // Access Point Id (readonly)
-
-	MacAddress string `json:"macAddress,omitempty"` // Access Point MAC address (readonly)
-
-	Model string `json:"model,omitempty"` // Access Point model (readonly)
-
-	Name string `json:"name,omitempty"` // Access Point Name (readonly)
-
-	Type string `json:"type,omitempty"` // Access Point type (readonly)
-
-	Position *ResponseSiteDesignGetAccessPointsPositionsV2ResponsePosition `json:"position,omitempty"` //
-
-	Radios *[]ResponseSiteDesignGetAccessPointsPositionsV2ResponseRadios `json:"radios,omitempty"` //
+	ID         string                                                        `json:"id,omitempty"`         // Access Point Id (readonly)
+	MacAddress string                                                        `json:"macAddress,omitempty"` // Access Point MAC address (readonly)
+	Model      string                                                        `json:"model,omitempty"`      // Access Point model (readonly)
+	Name       string                                                        `json:"name,omitempty"`       // Access Point Name (readonly)
+	Type       string                                                        `json:"type,omitempty"`       // Access Point type (readonly)
+	Position   *ResponseSiteDesignGetAccessPointsPositionsV2ResponsePosition `json:"position,omitempty"`   //
+	Radios     *[]ResponseSiteDesignGetAccessPointsPositionsV2ResponseRadios `json:"radios,omitempty"`     //
 }
 type ResponseSiteDesignGetAccessPointsPositionsV2ResponsePosition struct {
 	X *float64 `json:"x,omitempty"` // Access Point X coordinate in feet
-
 	Y *float64 `json:"y,omitempty"` // Access Point Y coordinate in feet
-
 	Z *float64 `json:"z,omitempty"` // Access Point Z coordinate in feet
 }
 type ResponseSiteDesignGetAccessPointsPositionsV2ResponseRadios struct {
-	ID string `json:"id,omitempty"` // Radio Id (readonly)
-
-	Bands *[]float64 `json:"bands,omitempty"` // Radio frequencies in GHz (readonly). Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
-
-	Channel *int `json:"channel,omitempty"` // Channel to be used by the Access Point (readonly). The value gets updated only every 24 hours
-
-	TxPower *int `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm) (readonly). The value gets updated only every 24 hours
-
+	ID      string                                                             `json:"id,omitempty"`      // Radio Id (readonly)
+	Bands   *[]float64                                                         `json:"bands,omitempty"`   // Radio frequencies in GHz (readonly). Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
+	Channel *int                                                               `json:"channel,omitempty"` // Channel to be used by the Access Point (readonly). The value gets updated only every 24 hours
+	TxPower *int                                                               `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm) (readonly). The value gets updated only every 24 hours
 	Antenna *ResponseSiteDesignGetAccessPointsPositionsV2ResponseRadiosAntenna `json:"antenna,omitempty"` //
 }
 type ResponseSiteDesignGetAccessPointsPositionsV2ResponseRadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Antenna type for this Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Access Point model.
-
-	Azimuth *int `json:"azimuth,omitempty"` // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
-
-	Elevation *int `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
+	Name      string `json:"name,omitempty"`      // Antenna type for this Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Access Point model.
+	Azimuth   *int   `json:"azimuth,omitempty"`   // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
+	Elevation *int   `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
 }
 type ResponseSiteDesignEditTheAccessPointsPositionsV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                    `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignEditTheAccessPointsPositionsV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignEditTheAccessPointsPositionsV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetAccessPointsPositionsCountV2 struct {
 	Response *ResponseSiteDesignGetAccessPointsPositionsCountV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                     `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetAccessPointsPositionsCountV2Response struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsV2 struct {
 	Response *[]ResponseSiteDesignGetPlannedAccessPointsPositionsV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                         `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsV2Response struct {
-	Name string `json:"name,omitempty"` // Planned Access Point Name
-
-	MacAddress string `json:"macAddress,omitempty"` // Planned Access Point MAC address
-
-	Type string `json:"type,omitempty"` // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
-
-	Position *ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponsePosition `json:"position,omitempty"` //
-
-	Radios *[]ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponseRadios `json:"radios,omitempty"` //
-
-	ID string `json:"id,omitempty"` // Planned Access Point Id (readonly)
+	Name       string                                                               `json:"name,omitempty"`       // Planned Access Point Name
+	MacAddress string                                                               `json:"macAddress,omitempty"` // Planned Access Point MAC address
+	Type       string                                                               `json:"type,omitempty"`       // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
+	Position   *ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponsePosition `json:"position,omitempty"`   //
+	Radios     *[]ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponseRadios `json:"radios,omitempty"`     //
+	ID         string                                                               `json:"id,omitempty"`         // Planned Access Point Id (readonly)
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponsePosition struct {
 	X *float64 `json:"x,omitempty"` // Planned Access Point X coordinate in feet
-
 	Y *float64 `json:"y,omitempty"` // Planned Access Point Y coordinate in feet
-
 	Z *float64 `json:"z,omitempty"` // Planned Access Point Z coordinate in feet
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponseRadios struct {
-	Bands *[]float64 `json:"bands,omitempty"` // Radio frequencies in GHz (readonly). Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
-
-	Channel *int `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
-	TxPower *int `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
+	Bands   *[]float64                                                                `json:"bands,omitempty"`   // Radio frequencies in GHz (readonly). Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
+	Channel *int                                                                      `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
+	TxPower *int                                                                      `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
 	Antenna *ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponseRadiosAntenna `json:"antenna,omitempty"` //
-
-	ID string `json:"id,omitempty"` // Radio Id (readonly)
+	ID      string                                                                    `json:"id,omitempty"`      // Radio Id (readonly)
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsV2ResponseRadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
-
-	Azimuth *int `json:"azimuth,omitempty"` // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
-
-	Elevation *int `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
+	Name      string `json:"name,omitempty"`      // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
+	Azimuth   *int   `json:"azimuth,omitempty"`   // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
+	Elevation *int   `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
 }
 type ResponseSiteDesignAssignPlannedAccessPointsToOperationsOnesV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                                 `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignAssignPlannedAccessPointsToOperationsOnesV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAssignPlannedAccessPointsToOperationsOnesV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignAddPlannedAccessPointsPositionsV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                       `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignAddPlannedAccessPointsPositionsV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignAddPlannedAccessPointsPositionsV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignEditPlannedAccessPointsPositionsV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                        `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignEditPlannedAccessPointsPositionsV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignEditPlannedAccessPointsPositionsV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsCountV2 struct {
 	Response *ResponseSiteDesignGetPlannedAccessPointsPositionsCountV2Response `json:"response,omitempty"` //
-
-	Version string `json:"version,omitempty"` // Version
+	Version  string                                                            `json:"version,omitempty"`  // Version
 }
 type ResponseSiteDesignGetPlannedAccessPointsPositionsCountV2Response struct {
 	Count *int `json:"count,omitempty"` // Count
 }
 type ResponseSiteDesignDeletePlannedAccessPointsPositionV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                                         `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignDeletePlannedAccessPointsPositionV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDeletePlannedAccessPointsPositionV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignUpdatesAFloorV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignUpdatesAFloorV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignUpdatesAFloorV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type ResponseSiteDesignGetsAFloorV2 struct {
 	Response *ResponseSiteDesignGetsAFloorV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignGetsAFloorV2Response struct {
-	ParentID string `json:"parentId,omitempty"` // Parent Id.
-
-	Name string `json:"name,omitempty"` // Floor name
-
-	FloorNumber *int `json:"floorNumber,omitempty"` // Floor number
-
-	RfModel string `json:"rfModel,omitempty"` // RF Model
-
-	Width *float64 `json:"width,omitempty"` // Floor width. Example : 100.5
-
-	Length *float64 `json:"length,omitempty"` // Floor length. Example : 110.3
-
-	Height *float64 `json:"height,omitempty"` // Floor height. Example : 10.1
-
-	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Units Of Measure
-
-	Type string `json:"type,omitempty"` // Example : floor
-
-	ID string `json:"id,omitempty"` // Floor Id. Read only.
-
-	NameHierarchy string `json:"nameHierarchy,omitempty"` // Floor hierarchical name. Read only.
+	ParentID        string   `json:"parentId,omitempty"`        // Parent Id.
+	Name            string   `json:"name,omitempty"`            // Floor name
+	FloorNumber     *int     `json:"floorNumber,omitempty"`     // Floor number
+	RfModel         string   `json:"rfModel,omitempty"`         // RF Model
+	Width           *float64 `json:"width,omitempty"`           // Floor width. Example : 100.5
+	Length          *float64 `json:"length,omitempty"`          // Floor length. Example : 110.3
+	Height          *float64 `json:"height,omitempty"`          // Floor height. Example : 10.1
+	UnitsOfMeasure  string   `json:"unitsOfMeasure,omitempty"`  // Units Of Measure
+	Type            string   `json:"type,omitempty"`            // Example : floor
+	ID              string   `json:"id,omitempty"`              // Floor Id. Read only.
+	NameHierarchy   string   `json:"nameHierarchy,omitempty"`   // Floor hierarchical name. Read only.
+	SiteHierarchyID string   `json:"siteHierarchyId,omitempty"` // Site Hierarchical Id. Read only. Can be used to add the access groups using the API POST:/dna/system/api/v1/accessGroups, this value should be used to populate the srcResourceId field of the request payload.
 }
 type ResponseSiteDesignDeletesAFloorV2 struct {
-	Version string `json:"version,omitempty"` // Response Version e.g. : 1.0
-
+	Version  string                                     `json:"version,omitempty"`  // Response Version e.g. : 1.0
 	Response *ResponseSiteDesignDeletesAFloorV2Response `json:"response,omitempty"` //
 }
 type ResponseSiteDesignDeletesAFloorV2Response struct {
-	URL string `json:"url,omitempty"` // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
-
+	URL    string `json:"url,omitempty"`    // URL to get task details e.g. : /api/v1/task/3200a44a-9186-4caf-8c32-419cd1f3d3f5
 	TaskID string `json:"taskId,omitempty"` // Task Id in uuid format. e.g. : 3200a44a-9186-4caf-8c32-419cd1f3d3f5
 }
 type RequestSiteDesignCreatesAnArea struct {
-	Name string `json:"name,omitempty"` // Area name
-
+	Name     string `json:"name,omitempty"`     // Area name
 	ParentID string `json:"parentId,omitempty"` // Parent Id
 }
 type RequestSiteDesignUpdatesAnArea struct {
-	Name string `json:"name,omitempty"` // Area name
-
+	Name     string `json:"name,omitempty"`     // Area name
 	ParentID string `json:"parentId,omitempty"` // Parent Id
 }
 type RequestSiteDesignAssignNetworkDevicesToASite struct {
 	DeviceIDs []string `json:"deviceIds,omitempty"` // Unassigned network devices, ranging from a minimum of 1 to a maximum of 100.
-
-	SiteID string `json:"siteId,omitempty"` // This must be building Id or floor Id. Access points, Sensors are assigned to floor. Remaining network devices are assigned to building. Site Id can be retrieved using '/intent/api/v1/sites'.
+	SiteID    string   `json:"siteId,omitempty"`    // This must be building Id or floor Id. Access points, Sensors are assigned to floor. Remaining network devices are assigned to building. Site Id can be retrieved using '/intent/api/v1/sites'.
 }
 type RequestSiteDesignUpdateDeviceControllabilitySettings struct {
 	AutocorrectTelemetryConfig *bool `json:"autocorrectTelemetryConfig,omitempty"` // If it is true, autocorrect telemetry config is enabled. If it is false, autocorrect telemetry config is disabled. The autocorrect telemetry config feature is supported only when device controllability is enabled.
-
-	DeviceControllability *bool `json:"deviceControllability,omitempty"` // If it is true, device controllability is enabled. If it is false, device controllability is disabled.
+	DeviceControllability      *bool `json:"deviceControllability,omitempty"`      // If it is true, device controllability is enabled. If it is false, device controllability is disabled.
 }
 type RequestSiteDesignUnassignNetworkDevicesFromSites struct {
 	DeviceIDs []string `json:"deviceIds,omitempty"` // Network device Ids, ranging from a minimum of 1 to a maximum of 100.
@@ -713,188 +571,126 @@ type RequestSiteDesignAssignANetworkProfileForSitesToTheGivenSite struct {
 	ID string `json:"id,omitempty"` // Id
 }
 type RequestSiteDesignAssignANetworkProfileForSitesToAListOfSites struct {
-	Items []struct {
-		ID string `json:"id,omitempty"`
-	} `json:"items,omitempty"` // Items
+	Items *[][]string `json:"items,omitempty"` // Items
 }
 type RequestSiteDesignCreateSites []RequestItemSiteDesignCreateSites // Array of RequestSiteDesignCreateSites
 type RequestItemSiteDesignCreateSites struct {
-	ParentNameHierarchy string `json:"parentNameHierarchy,omitempty"` // Parent hierarchical name. Example: Global/USA/San Jose/Building1
-
-	Name string `json:"name,omitempty"` // Site name.
-
-	Latitude *float64 `json:"latitude,omitempty"` // Building Latitude. Example: 37.403712
-
-	Longitude *float64 `json:"longitude,omitempty"` // Building Longitude. Example: -121.971063
-
-	Address string `json:"address,omitempty"` // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
-
-	Country string `json:"country,omitempty"` // Country name. Required for building.
-
-	FloorNumber *int `json:"floorNumber,omitempty"` // Floor number. Required for floor.
-
-	RfModel string `json:"rfModel,omitempty"` // Floor RF Model. Required for floor.
-
-	Width *float64 `json:"width,omitempty"` // Floor width. Required for floor. Example : 100.5
-
-	Length *float64 `json:"length,omitempty"` // Floor length. Required for floor. Example : 110.3
-
-	Height *float64 `json:"height,omitempty"` // Floor height. Required for floor. Example : 10.1
-
-	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor unit of measure. Required for floor.
-
-	Type string `json:"type,omitempty"` // Type
+	ParentNameHierarchy string   `json:"parentNameHierarchy,omitempty"` // Parent hierarchical name. Example: Global/USA/San Jose/Building1
+	Name                string   `json:"name,omitempty"`                // Site name.
+	Latitude            *float64 `json:"latitude,omitempty"`            // Building Latitude. Example: 37.403712
+	Longitude           *float64 `json:"longitude,omitempty"`           // Building Longitude. Example: -121.971063
+	Address             string   `json:"address,omitempty"`             // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States
+	Country             string   `json:"country,omitempty"`             // Country name. Required for building.
+	FloorNumber         *int     `json:"floorNumber,omitempty"`         // Floor number. Required for floor.
+	RfModel             string   `json:"rfModel,omitempty"`             // Floor RF Model. Required for floor.
+	Width               *float64 `json:"width,omitempty"`               // Floor width. Required for floor. Example : 100.5
+	Length              *float64 `json:"length,omitempty"`              // Floor length. Required for floor. Example : 110.3
+	Height              *float64 `json:"height,omitempty"`              // Floor height. Required for floor. Example : 10.1
+	UnitsOfMeasure      string   `json:"unitsOfMeasure,omitempty"`      // Floor unit of measure. Required for floor.
+	Type                string   `json:"type,omitempty"`                // Type
 }
 type RequestSiteDesignCreatesABuildingV2 struct {
-	ParentID string `json:"parentId,omitempty"` // Parent Id
-
-	Name string `json:"name,omitempty"` // Building name
-
-	Latitude *float64 `json:"latitude,omitempty"` // Building Latitude. Example: 37.403712
-
+	ParentID  string   `json:"parentId,omitempty"`  // Parent Id
+	Name      string   `json:"name,omitempty"`      // Building name
+	Latitude  *float64 `json:"latitude,omitempty"`  // Building Latitude. Example: 37.403712
 	Longitude *float64 `json:"longitude,omitempty"` // Building Longitude. Example: -121.971063
-
-	Address string `json:"address,omitempty"` // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States. Please note that if only the address is provided when creating a building, the UI will not display the geo-location on the map. To ensure the location is rendered, you must also provide the latitude and longitude. If a building has been created without these coordinates and you wish to display its geo-location on the map later, you can edit the building details via the UI to include the latitude and longitude. This limitation will be resolved in a future release.
-
-	Country string `json:"country,omitempty"` // Country name
+	Address   string   `json:"address,omitempty"`   // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States. Please note that if only the address is provided when creating a building, the UI will not display the geo-location on the map. To ensure the location is rendered, you must also provide the latitude and longitude. If a building has been created without these coordinates and you wish to display its geo-location on the map later, you can edit the building details via the UI to include the latitude and longitude. This limitation will be resolved in a future release.
+	Country   string   `json:"country,omitempty"`   // Country name
 }
 type RequestSiteDesignUpdatesABuildingV2 struct {
-	ParentID string `json:"parentId,omitempty"` // Parent Id
-
-	Name string `json:"name,omitempty"` // Building name
-
-	Latitude *float64 `json:"latitude,omitempty"` // Building Latitude. Example: 37.403712
-
+	ParentID  string   `json:"parentId,omitempty"`  // Parent Id
+	Name      string   `json:"name,omitempty"`      // Building name
+	Latitude  *float64 `json:"latitude,omitempty"`  // Building Latitude. Example: 37.403712
 	Longitude *float64 `json:"longitude,omitempty"` // Building Longitude. Example: -121.971063
-
-	Address string `json:"address,omitempty"` // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States. Please note that if only the address is provided when creating a building, the UI will not display the geo-location on the map. To ensure the location is rendered, you must also provide the latitude and longitude. If a building has been created without these coordinates and you wish to display its geo-location on the map later, you can edit the building details via the UI to include the latitude and longitude. This limitation will be resolved in a future release.
-
-	Country string `json:"country,omitempty"` // Country name
+	Address   string   `json:"address,omitempty"`   // Building address. Example: 4900 Marie P. Debartolo Way, Santa Clara, California 95054, United States. Please note that if only the address is provided when creating a building, the UI will not display the geo-location on the map. To ensure the location is rendered, you must also provide the latitude and longitude. If a building has been created without these coordinates and you wish to display its geo-location on the map later, you can edit the building details via the UI to include the latitude and longitude. This limitation will be resolved in a future release.
+	Country   string   `json:"country,omitempty"`   // Country name
 }
 type RequestSiteDesignCreatesAFloorV2 struct {
-	ParentID string `json:"parentId,omitempty"` // Parent Id
-
-	Name string `json:"name,omitempty"` // Floor name
-
-	FloorNumber *int `json:"floorNumber,omitempty"` // Floor number
-
-	RfModel string `json:"rfModel,omitempty"` // RF Model
-
-	Width *float64 `json:"width,omitempty"` // Floor width. Example : 100.5
-
-	Length *float64 `json:"length,omitempty"` // Floor length. Example : 110.3
-
-	Height *float64 `json:"height,omitempty"` // Floor height. Example : 10.1
-
-	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Units Of Measure
+	ParentID       string   `json:"parentId,omitempty"`       // Parent Id
+	Name           string   `json:"name,omitempty"`           // Floor name
+	FloorNumber    *int     `json:"floorNumber,omitempty"`    // Floor number
+	RfModel        string   `json:"rfModel,omitempty"`        // RF Model
+	Width          *float64 `json:"width,omitempty"`          // Floor width. Example : 100.5
+	Length         *float64 `json:"length,omitempty"`         // Floor length. Example : 110.3
+	Height         *float64 `json:"height,omitempty"`         // Floor height. Example : 10.1
+	UnitsOfMeasure string   `json:"unitsOfMeasure,omitempty"` // Units Of Measure
 }
 type RequestSiteDesignUpdatesFloorSettingsV2 struct {
 	UnitsOfMeasure string `json:"unitsOfMeasure,omitempty"` // Floor units of measure
 }
 type RequestSiteDesignEditTheAccessPointsPositionsV2 []RequestItemSiteDesignEditTheAccessPointsPositionsV2 // Array of RequestSiteDesignEditTheAccessPointsPositionsV2
 type RequestItemSiteDesignEditTheAccessPointsPositionsV2 struct {
-	ID string `json:"id,omitempty"` // Access Point Id
-
+	ID       string                                                       `json:"id,omitempty"`       // Access Point Id
 	Position *RequestItemSiteDesignEditTheAccessPointsPositionsV2Position `json:"position,omitempty"` //
-
-	Radios *[]RequestItemSiteDesignEditTheAccessPointsPositionsV2Radios `json:"radios,omitempty"` //
+	Radios   *[]RequestItemSiteDesignEditTheAccessPointsPositionsV2Radios `json:"radios,omitempty"`   //
 }
 type RequestItemSiteDesignEditTheAccessPointsPositionsV2Position struct {
 	X *float64 `json:"x,omitempty"` // Access Point X coordinate in feet
-
 	Y *float64 `json:"y,omitempty"` // Access Point Y coordinate in feet
-
 	Z *float64 `json:"z,omitempty"` // Access Point Z coordinate in feet
 }
 type RequestItemSiteDesignEditTheAccessPointsPositionsV2Radios struct {
-	ID string `json:"id,omitempty"` // Radio Id
-
+	ID      string                                                            `json:"id,omitempty"`      // Radio Id
 	Antenna *RequestItemSiteDesignEditTheAccessPointsPositionsV2RadiosAntenna `json:"antenna,omitempty"` //
 }
 type RequestItemSiteDesignEditTheAccessPointsPositionsV2RadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Antenna type for this Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Access Point model
-
-	Azimuth *int `json:"azimuth,omitempty"` // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
-
-	Elevation *int `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
+	Name      string `json:"name,omitempty"`      // Antenna type for this Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Access Point model
+	Azimuth   *int   `json:"azimuth,omitempty"`   // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
+	Elevation *int   `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
 }
 type RequestSiteDesignAssignPlannedAccessPointsToOperationsOnesV2 []RequestItemSiteDesignAssignPlannedAccessPointsToOperationsOnesV2 // Array of RequestSiteDesignAssignPlannedAccessPointsToOperationsOnesV2
 type RequestItemSiteDesignAssignPlannedAccessPointsToOperationsOnesV2 struct {
 	PlannedAccessPointID string `json:"plannedAccessPointId,omitempty"` // Planned Access Point Id
-
-	AccessPointID string `json:"accessPointId,omitempty"` // Operational Access Point Id
+	AccessPointID        string `json:"accessPointId,omitempty"`        // Operational Access Point Id
 }
 type RequestSiteDesignAddPlannedAccessPointsPositionsV2 []RequestItemSiteDesignAddPlannedAccessPointsPositionsV2 // Array of RequestSiteDesignAddPlannedAccessPointsPositionsV2
 type RequestItemSiteDesignAddPlannedAccessPointsPositionsV2 struct {
-	Name string `json:"name,omitempty"` // Planned Access Point Name
-
-	MacAddress string `json:"macAddress,omitempty"` // Planned Access Point MAC address
-
-	Type string `json:"type,omitempty"` // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
-
-	Position *RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Position `json:"position,omitempty"` //
-
-	Radios *[]RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Radios `json:"radios,omitempty"` //
+	Name       string                                                          `json:"name,omitempty"`       // Planned Access Point Name
+	MacAddress string                                                          `json:"macAddress,omitempty"` // Planned Access Point MAC address
+	Type       string                                                          `json:"type,omitempty"`       // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
+	Position   *RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Position `json:"position,omitempty"`   //
+	Radios     *[]RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Radios `json:"radios,omitempty"`     //
 }
 type RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Position struct {
 	X *float64 `json:"x,omitempty"` // Planned Access Point X coordinate in feet
-
 	Y *float64 `json:"y,omitempty"` // Planned Access Point Y coordinate in feet
-
 	Z *float64 `json:"z,omitempty"` // Planned Access Point Z coordinate in feet
 }
 type RequestItemSiteDesignAddPlannedAccessPointsPositionsV2Radios struct {
-	Bands *[]float64 `json:"bands,omitempty"` // Radio frequencies in GHz. Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
-
-	Channel *int `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
-	TxPower *int `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
+	Bands   *[]float64                                                           `json:"bands,omitempty"`   // Radio frequencies in GHz. Radio frequencies are expected to be 2.4, 5, and 6. MinItems: 1; MaxItems: 3
+	Channel *int                                                                 `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
+	TxPower *int                                                                 `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
 	Antenna *RequestItemSiteDesignAddPlannedAccessPointsPositionsV2RadiosAntenna `json:"antenna,omitempty"` //
 }
 type RequestItemSiteDesignAddPlannedAccessPointsPositionsV2RadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
-
-	Azimuth *int `json:"azimuth,omitempty"` // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
-
-	Elevation *int `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
+	Name      string `json:"name,omitempty"`      // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
+	Azimuth   *int   `json:"azimuth,omitempty"`   // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
+	Elevation *int   `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
 }
 type RequestSiteDesignEditPlannedAccessPointsPositionsV2 []RequestItemSiteDesignEditPlannedAccessPointsPositionsV2 // Array of RequestSiteDesignEditPlannedAccessPointsPositionsV2
 type RequestItemSiteDesignEditPlannedAccessPointsPositionsV2 struct {
-	Name string `json:"name,omitempty"` // Planned Access Point Name
-
-	MacAddress string `json:"macAddress,omitempty"` // Planned Access Point MAC address
-
-	Type string `json:"type,omitempty"` // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
-
-	Position *RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Position `json:"position,omitempty"` //
-
-	Radios *[]RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Radios `json:"radios,omitempty"` //
-
-	ID string `json:"id,omitempty"` // Planned Access Point Id
+	Name       string                                                           `json:"name,omitempty"`       // Planned Access Point Name
+	MacAddress string                                                           `json:"macAddress,omitempty"` // Planned Access Point MAC address
+	Type       string                                                           `json:"type,omitempty"`       // Planned Access Point type. Use `dna/intent/api/v1/maps/supported-access-points` to find the supported models
+	Position   *RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Position `json:"position,omitempty"`   //
+	Radios     *[]RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Radios `json:"radios,omitempty"`     //
+	ID         string                                                           `json:"id,omitempty"`         // Planned Access Point Id
 }
 type RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Position struct {
 	X *float64 `json:"x,omitempty"` // Planned Access Point X coordinate in feet
-
 	Y *float64 `json:"y,omitempty"` // Planned Access Point Y coordinate in feet
-
 	Z *float64 `json:"z,omitempty"` // Planned Access Point Z coordinate in feet
 }
 type RequestItemSiteDesignEditPlannedAccessPointsPositionsV2Radios struct {
-	Channel *int `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
-	TxPower *int `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
-
+	Channel *int                                                                  `json:"channel,omitempty"` // Channel to be used by the Planned Access Point. In the context of a Planned Access Point, the channel have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
+	TxPower *int                                                                  `json:"txPower,omitempty"` // Transmit power for the channel in Decibel milliwatts (dBm). In the context of a Planned Access Point, the txPower have no bearing on what the real Access Point will actually be, they are just used for Maps visualization feature set
 	Antenna *RequestItemSiteDesignEditPlannedAccessPointsPositionsV2RadiosAntenna `json:"antenna,omitempty"` //
-
-	ID string `json:"id,omitempty"` // Radio Id
+	ID      string                                                                `json:"id,omitempty"`      // Radio Id
 }
 type RequestItemSiteDesignEditPlannedAccessPointsPositionsV2RadiosAntenna struct {
-	Name string `json:"name,omitempty"` // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
-
-	Azimuth *int `json:"azimuth,omitempty"` // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
-
-	Elevation *int `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
+	Name      string `json:"name,omitempty"`      // Antenna type for this Planned Access Point. Use `/dna/intent/api/v1/maps/supported-access-points` to find supported Antennas for a particualr Planned Access Point type
+	Azimuth   *int   `json:"azimuth,omitempty"`   // Angle of the antenna, measured relative to the x axis, clockwise. The azimuth range is from 0 through 360
+	Elevation *int   `json:"elevation,omitempty"` // Elevation of the antenna. The elevation range is from -90 through 90
 }
 type RequestSiteDesignUpdatesAFloorV2 struct {
 	ParentID       string   `json:"parentId,omitempty"`       // Parent Id
@@ -2352,14 +2148,17 @@ func (s *SiteDesignService) UpdatesAnArea(id string, requestSiteDesignUpdatesAnA
 //UpdateDeviceControllabilitySettings Update device controllability settings - f58f-e8d6-4b88-912c
 /* Device Controllability is a system-level process on Catalyst Center that enforces state synchronization for some device-layer features. Its purpose is to aid in the deployment of required network settings that Catalyst Center needs to manage devices. Changes are made on network devices during discovery, when adding a device to Inventory, or when assigning a device to a site. If changes are made to any settings that are under the scope of this process, these changes are applied to the network devices during the Provision and Update Telemetry Settings operations, even if Device Controllability is disabled. The following device settings will be enabled as part of Device Controllability when devices are discovered.
 
+
   SNMP Credentials.
   NETCONF Credentials.
 
 Subsequent to discovery, devices will be added to Inventory. The following device settings will be enabled when devices are added to inventory.
 
+
   Cisco TrustSec (CTS) Credentials.
 
 The following device settings will be enabled when devices are assigned to a site. Some of these settings can be defined at a site level under Design > Network Settings > Telemetry & Wireless.
+
 
   Wired Endpoint Data Collection Enablement.
   Controller Certificates.
@@ -2374,6 +2173,7 @@ The following device settings will be enabled when devices are assigned to a sit
 
 If Device Controllability is disabled, Catalyst Center does not configure any of the preceding credentials or settings on devices during discovery, at runtime, or during site assignment. However, the telemetry settings and related configuration are pushed when the device is provisioned or when the update Telemetry Settings action is performed.
 Catalyst Center identifies and automatically corrects the following telemetry configuration issues on the device.
+
 
   SWIM certificate issue.
   IOS WLC NA certificate issue.
@@ -2545,7 +2345,8 @@ func (s *SiteDesignService) DeletesAnArea(id string) (*ResponseSiteDesignDeletes
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAnArea(id)
+			return s.DeletesAnArea(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletesAnArea")
 	}
@@ -2583,7 +2384,8 @@ func (s *SiteDesignService) DeletesANetworkProfileForSites(id string) (*Response
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesANetworkProfileForSites(id)
+			return s.DeletesANetworkProfileForSites(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletesANetworkProfileForSites")
 	}
@@ -2624,7 +2426,8 @@ func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromMultipleSites(pr
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UnassignsANetworkProfileForSitesFromMultipleSites(profileID, UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams)
+			return s.UnassignsANetworkProfileForSitesFromMultipleSites(
+				profileID, UnassignsANetworkProfileForSitesFromMultipleSitesQueryParams)
 		}
 		return nil, response, fmt.Errorf("error with operation UnassignsANetworkProfileForSitesFromMultipleSites")
 	}
@@ -2665,7 +2468,8 @@ func (s *SiteDesignService) UnassignsANetworkProfileForSitesFromASite(profileID 
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.UnassignsANetworkProfileForSitesFromASite(profileID, id)
+			return s.UnassignsANetworkProfileForSitesFromASite(
+				profileID, id)
 		}
 		return nil, response, fmt.Errorf("error with operation UnassignsANetworkProfileForSitesFromASite")
 	}
@@ -2706,7 +2510,8 @@ func (s *SiteDesignService) Disassociate(networkProfileID string, siteID string)
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.Disassociate(networkProfileID, siteID)
+			return s.Disassociate(
+				networkProfileID, siteID)
 		}
 		return nil, response, fmt.Errorf("error with operation Disassociate")
 	}
@@ -2744,7 +2549,8 @@ func (s *SiteDesignService) DeletesABuildingV2(id string) (*ResponseSiteDesignDe
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesABuildingV2(id)
+			return s.DeletesABuildingV2(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletesABuildingV2")
 	}
@@ -2785,7 +2591,8 @@ func (s *SiteDesignService) DeletePlannedAccessPointsPositionV2(floorID string, 
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletePlannedAccessPointsPositionV2(floorID, id)
+			return s.DeletePlannedAccessPointsPositionV2(
+				floorID, id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletePlannedAccessPointsPositionV2")
 	}
@@ -2823,7 +2630,8 @@ func (s *SiteDesignService) DeletesAFloorV2(id string) (*ResponseSiteDesignDelet
 
 	if response.IsError() {
 		if response.StatusCode() == http.StatusUnauthorized {
-			return s.DeletesAFloorV2(id)
+			return s.DeletesAFloorV2(
+				id)
 		}
 		return nil, response, fmt.Errorf("error with operation DeletesAFloorV2")
 	}

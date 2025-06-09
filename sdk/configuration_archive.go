@@ -33,12 +33,12 @@ type CountOfNetworkDeviceConfigurationFilesQueryParams struct {
 }
 
 type ResponseConfigurationArchiveExportDeviceConfigurations struct {
-	Version  string                                                          `json:"version,omitempty"`  // Version
 	Response *ResponseConfigurationArchiveExportDeviceConfigurationsResponse `json:"response,omitempty"` //
+	Version  string                                                          `json:"version,omitempty"`  // Version of API.
 }
 type ResponseConfigurationArchiveExportDeviceConfigurationsResponse struct {
-	URL    string `json:"url,omitempty"`    // Url
-	TaskID string `json:"taskId,omitempty"` // Task Id
+	TaskID string `json:"taskId,omitempty"` // The UUID of the task.
+	URL    string `json:"url,omitempty"`    // The path to the API endpoint to GET for information on the task.
 }
 type ResponseConfigurationArchiveGetConfigurationArchiveDetails []ResponseItemConfigurationArchiveGetConfigurationArchiveDetails // Array of ResponseConfigurationArchiveGetConfigurationArchiveDetails
 type ResponseItemConfigurationArchiveGetConfigurationArchiveDetails struct {
@@ -107,8 +107,8 @@ type ResponseConfigurationArchiveGetConfigurationFileDetailsByIDResponse struct 
 type ResponseConfigurationArchiveDownloadMaskedDeviceConfiguration interface{}
 type ResponseConfigurationArchiveDownloadUnmaskedrawDeviceConfigurationAsZIP interface{}
 type RequestConfigurationArchiveExportDeviceConfigurations struct {
-	Password string `json:"password,omitempty"` // Password for the zip file to protect exported configurations. Must contain, at minimum 8 characters, one lowercase letter, one uppercase letter, one number, one special character(-=[];,./~!@#$%^&*()_+{}|:?). It may not contain white space or the characters <>.
-	DeviceID string `json:"deviceId,omitempty"` // UUIDs of the devices for which configurations need to be exported.
+	DeviceID []string `json:"deviceId,omitempty"` // UUIDs of the devices for which configurations need to be exported.
+	Password string   `json:"password,omitempty"` // Password for the zip file to protect exported configurations. Must contain, at minimum 8 characters, one lowercase letter, one uppercase letter, one number, one special character(-=[];,./~!@#$%^&*()_+{}|:?). It may not contain white space or the characters <>.
 }
 type RequestConfigurationArchiveDownloadUnmaskedrawDeviceConfigurationAsZIP struct {
 	Password string `json:"password,omitempty"` // Password for the zip file to protect exported configurations. Must contain, at minimum 8 characters, one lowercase letter, one uppercase letter, one number, one special character(-=[];,./~!@#$%^&*()_+{}|:?). It may not contain white space or the characters <>.
